@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Native Scroll Reveal - Smooth & Controlled Curtain</title>
+    <style>
+        /* Base Resets */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #050505;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Top and bottom dummy sections */
+        .normal-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0a0a0a;
+            font-size: 1.5rem;
+            position: relative;
+            z-index: 3;
+            border-bottom: 1px solid #222;
+        }
+
+        /* 
+         * ==========================================
+         * THE TRANSITION ARCHITECTURE
+         * ==========================================
+         */
+        
+        .transition-wrapper {
+            position: relative;
+            --progress: 0; 
+        }
+
+        /* SECTION A: Dark Background (Sticks to the screen) */
+        .section-dark {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            width: 100%;
+            z-index: 1;
+            overflow: hidden;
+            background: #050505;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .bg-content {
+            /* Pushes backwards slightly as the next section comes up (from original CSS) */
+            transform: scale(calc(1 - (var(--progress) * 0.05))) translate3d(0, calc(var(--progress) * 5vh), 0);
+            opacity: calc(1 - var(--progress));
+            will-change: transform, opacity;
+            text-align: center;
+        }
+
+        .marquee {
+            font-size: clamp(3rem, 7vw, 7rem);
+            font-weight: 900;
+            white-space: nowrap;
+            letter-spacing: -2px;
+            color: transparent;
+            -webkit-text-stroke: 2px rgba(255, 255, 255, 0.4);
+            margin: 0;
+        }
+
+        /* SECTION B: Next Section (The Light Layout) */
+        .section-light {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            z-index: 2;
+            background: transparent; /* Remains transparent to see the dark background beneath */
+        }
+
+        /* 
+         * THE STRIPS CONTAINER
+         * Renders empty solid white bars on scroll.
+         */
+        .strips-container {
+            position: absolute;
+            inset: 0;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .strip {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: calc(100% / var(--total));
+            top: calc(100% / var(--total) * var(--index));
+        }
+
+        .strip-bar {
+            position: absolute;
+            inset: 0;
+            background-color: #ffffff; /* Solid white curtain */
+            transform-origin: center center;
+            /* 
+             * Starts as a thin line (scaleY: 0.02), scales to 1.01 
+             * (slight overlap to prevent hairline seams) 
+             */
+            transform: scaleY(calc(0.02 + 0.99 * var(--local-progress, 0)));
+            will-change: transform;
+        }
+
+        /* 
+         * THE CONTENT LAYER
+         * Sits completely un-sliced on top of the strips.
+         * Fades and slides in once the white curtain merges.
+         */
+        .content-layer {
+            position: absolute;
+            inset: 0;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(40px);
+            /* Smooth, accelerated transition */
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
+        }
+
+        /* Activated when background strips merge */
+        .section-light.is-merged .content-layer {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        /* 
+         * THE VISUAL DESIGN
+         */
+        .content-layout {
+            text-align: center;
+        }
+
+        .content-layout h2 {
+            font-weight: 300;
+            font-size: 3.5rem;
+            margin-bottom: 3rem;
+            letter-spacing: -1px;
+            color: #111;
+        }
+
+        .cards {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .card {
+            width: 260px;
+            height: 340px;
+            background: #fff;
+            color: #111;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+        }
+
+        .card h3 {
+            font-size: 4rem;
+            margin: 0 0 10px 0;
+            color: #111;
+        }
+
+        .card p {
+            font-weight: 700;
+            color: #888;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="normal-section">
+        Scroll Down ↓
+    </div>
+
+    <!-- The Animation Wrapper -->
+    <div class="transition-wrapper" id="transition-wrapper">
+        
+        <!-- Sticks to the background -->
+        <div class="section-dark">
+            <div class="bg-content">
+                <h1 class="marquee">IMPACT + INSPIRE + INNOVATE</h1>
+            </div>
+        </div>
+
+        <!-- The Light Section scrolling upwards naturally -->
+        <div class="section-light" id="section-light">
+            <!-- Sliced strips (The solid background curtain) -->
+            <div class="strips-container" id="strips-container"></div>
+            
+            <!-- The unsliced content layer sitting cleanly on top -->
+            <div class="content-layer">
+                <div class="content-layout">
+                    <h2>Key facts</h2>
+                    <div class="cards">
+                        <div class="card">
+                            <h3>1.5K+</h3>
+                            <p>Projects Completed</p>
+                        </div>
+                        <div class="card" style="background: #111;">
+                            <h3 style="color: #fff;">20+</h3>
+                            <p style="color: #666;">Awards Won</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="normal-section" style="background: #ffffff; color: #111; border: none;">
+        Normal Page Continues Here
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const wrapper = document.getElementById('transition-wrapper');
+            const sectionLight = document.getElementById('section-light');
+            const stripsContainer = document.getElementById('strips-container');
+            
+            // Using 12 strips to make them thin
+            const NUM_STRIPS = 12;
+
+            // 1. GENERATE THE SOLID STRIPS 
+            for (let i = 0; i < NUM_STRIPS; i++) {
+                const strip = document.createElement('div');
+                strip.classList.add('strip');
+                strip.style.setProperty('--index', i);
+                strip.style.setProperty('--total', NUM_STRIPS);
+
+                const bar = document.createElement('div');
+                bar.classList.add('strip-bar');
+                
+                strip.appendChild(bar);
+                stripsContainer.appendChild(strip);
+            }
+
+            const strips = document.querySelectorAll('.strip');
+
+            // 2. JITTER-FREE SCROLL MONITOR (With Eased Progress Lerp)
+            let wrapperOffsetTop = 0;
+            let viewportHeight = 0;
+            
+            let targetProgress = 0;
+            let currentProgress = 0;
+
+            function measure() {
+                const rect = wrapper.getBoundingClientRect();
+                wrapperOffsetTop = window.scrollY + rect.top;
+                viewportHeight = window.innerHeight;
+            }
+
+            // Math Curves
+            function easeInOutCubic(t) {
+                return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+            }
+
+            // Ease-in quadratic for calculating starting delay stagger
+            function easeInQuad(t) {
+                return t * t;
+            }
+
+            function updateScrollTarget() {
+                const scrollY = window.scrollY;
+                let progress = (scrollY - wrapperOffsetTop) / viewportHeight;
+                targetProgress = Math.max(0, Math.min(1, progress));
+            }
+
+            function animate() {
+                // LERP: Slower, heavier progress interpolation factor (0.05 instead of 0.1)
+                // This dampens scroll speeds, making the strips unfold slowly and smoothly
+                currentProgress += (targetProgress - currentProgress) * 0.05;
+
+                // Stop calculating when mathematics are basically equal
+                if (Math.abs(targetProgress - currentProgress) < 0.0005) {
+                    currentProgress = targetProgress;
+                }
+
+                // Write progress to CSS variable
+                wrapper.style.setProperty('--progress', currentProgress.toFixed(4));
+                
+                // Update individual strips based on smoothed progress
+                strips.forEach((strip, i) => {
+                    const normalizedIndex = i / (NUM_STRIPS - 1);
+                    const delayFactor = easeInQuad(normalizedIndex);
+                    const delay = delayFactor * 0.4; // max delay of 0.4
+                    
+                    const localProgress = Math.max(0, Math.min(1, (currentProgress - delay) / (1 - delay)));
+                    const eased = easeInOutCubic(localProgress);
+                    
+                    strip.style.setProperty('--local-progress', eased.toFixed(3));
+                });
+
+                // Trigger the content layout transition once the background elements merge
+                if (currentProgress >= 0.95) {
+                    sectionLight.classList.add('is-merged');
+                } else {
+                    sectionLight.classList.remove('is-merged');
+                }
+
+                requestAnimationFrame(animate);
+            }
+
+            // Passive listeners
+            window.addEventListener('scroll', updateScrollTarget, { passive: true });
+            window.addEventListener('resize', () => {
+                measure();
+                updateScrollTarget();
+            });
+            
+            // Initialize and kickoff loop
+            measure();
+            updateScrollTarget();
+            requestAnimationFrame(animate);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-Shape Conveyor Belt Transition</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fcfcfc;
+            color: #222;
+            overflow-x: hidden;
+        }
+
+        /* The total scrolling height of the page */
+        .scroll-space {
+            height: 400vh; 
+        }
+
+        /* The fixed window that frames our scene */
+        .scene {
+            position: sticky;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        /* 
+         * Box Base Styling
+         * Sizes and positions are handled dynamically by Javascript
+         * to perfectly fit 5 boxes across any screen size.
+         */
+        .box {
+            position: absolute;
+            top: 0;
+            left: 0;
+            /* Using centered transform origin makes track math perfectly precise */
+            transform-origin: center;
+            
+            border: 4px solid #111;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            
+            /* Subtle drop shadow matching your screenshot */
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.08);
+            
+            /* Optimizes the element for continuous movement */
+            will-change: transform;
+        }
+
+        /* The floating instruction text from your screenshot */
+        .floating-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: clamp(10px, 0.8vw, 14px);
+            font-weight: 700;
+            width: 8vw;
+            line-height: 1.2;
+            will-change: transform;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Creates the scrolling distance -->
+    <div class="scroll-space">
+        
+        <!-- The framed visible area -->
+        <div class="scene">
+            
+            <!-- The floating text from the screenshot -->
+            <div class="floating-text">
+                this also goes to left when the user scrolls down
+            </div>
+
+            <!-- The 10 conveyor boxes -->
+            <div class="box">1</div>
+            <div class="box">2</div>
+            <div class="box">3</div>
+            <div class="box">4</div>
+            <div class="box">5</div> <!-- The Corner Box -->
+            <div class="box">6</div>
+            <div class="box">7</div>
+            <div class="box">8</div>
+            <div class="box">9</div>
+            <div class="box">10</div>
+
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const boxes = document.querySelectorAll('.box');
+            const floatingText = document.querySelector('.floating-text');
+            
+            // Core coordinate variables
+            let vW, vH, boxSize, gap, step, cornerX, cornerY;
+
+            // Box initial layout offsets (Box 5 is the corner, so it is at 0)
+            // Box 1 is 4 steps behind the corner (-4)
+            const boxOffsets = [-4, -3, -2, -1, 0, 1, 2, 3, 4, 5];
+
+            // Calculates responsive sizes based on the user's screen
+            function calculateLayout() {
+                vW = window.innerWidth;
+                vH = window.innerHeight;
+
+                // Make the boxes fit perfectly 5-wide across the screen
+                boxSize = vW * 0.16; // 16% of screen width
+                gap = vW * 0.03;     // 3% gap between boxes
+                step = boxSize + gap;
+
+                // Set coordinates for the "Corner" (Where Box 5 starts)
+                cornerX = vW * 0.88; // Places Box 5 nicely on the right edge
+                cornerY = vH * 0.50; // Vertically centers the row
+
+                // Apply dynamic sizing to boxes
+                boxes.forEach(box => {
+                    box.style.width = `${boxSize}px`;
+                    box.style.height = `${boxSize}px`;
+                    box.style.fontSize = `${boxSize * 0.15}px`; // Scale text relative to box
+                });
+
+                renderFrame();
+            }
+
+            // The main animation loop based on scroll
+            function renderFrame() {
+                // Calculate scroll progress percentage (0.0 to 1.0)
+                const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+                let scrollProgress = window.scrollY / maxScroll;
+                scrollProgress = Math.max(0, Math.min(1, scrollProgress)); // Clamp between 0 and 1
+
+                // How far along the track the whole system should move.
+                // 6 steps total ensures Box 10 makes it all the way up and around the corner
+                const trackMovement = scrollProgress * (6 * step);
+
+                boxes.forEach((box, index) => {
+                    // Where is this specific box currently located on the theoretical 1D track?
+                    const startingPosition = boxOffsets[index] * step;
+                    const currentPosition = startingPosition - trackMovement;
+
+                    let x, y;
+
+                    if (currentPosition <= 0) {
+                        // HORIZONTAL PATH (Moving Left from the corner)
+                        x = cornerX + currentPosition;
+                        y = cornerY;
+                    } else {
+                        // VERTICAL PATH (Moving Upwards towards the corner)
+                        x = cornerX;
+                        y = cornerY + currentPosition;
+                    }
+
+                    // Apply the coordinates. 
+                    // `calc(-50% + Xpx)` centers the box directly over the coordinate
+                    box.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+                });
+
+                // Animate the floating text just like the boxes
+                // Originally positioned between Box 1 (-4) and Box 2 (-3)
+                const textStartPosition = -3.5 * step;
+                const textCurrentPosition = textStartPosition - trackMovement;
+                
+                // It stays on the horizontal path
+                const textX = cornerX + textCurrentPosition;
+                const textY = cornerY;
+
+                floatingText.style.transform = `translate(calc(-50% + ${textX + (boxSize*0.6)}px), calc(-50% + ${textY}px))`;
+            }
+
+            // Listeners
+            window.addEventListener('resize', calculateLayout);
+            window.addEventListener('scroll', renderFrame);
+            
+            // Initialize
+            calculateLayout();
+        });
+    </script>
+</body>
+</html>
