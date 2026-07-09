@@ -1,0 +1,224 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-space: "Space Grotesk", sans-serif;
+  
+  --color-primary: #FF6B00;
+  --color-primary-container: #FF6B00;
+  --color-on-primary-container: #FFF;
+  --color-background: #F5F5F5;
+  --color-on-background: #0A0A0A;
+  --color-surface: #FFFFFF;
+  --color-on-surface: #0A0A0A;
+  --color-surface-variant: #EAEAEA;
+  --color-on-surface-variant: #5A5A5A;
+  --color-blueprint-line: #D1D5DB;
+  --color-cad-white: #FFFFFF;
+  
+  --spacing-gutter: 24px;
+  --spacing-margin-desktop: 64px;
+  --spacing-margin-mobile: 20px;
+}
+
+:root {
+  --ease-soft: cubic-bezier(.22, 1, .36, 1);
+  --ease-in-out: cubic-bezier(.4, 0, .2, 1);
+  scroll-behavior: smooth;
+}
+
+body {
+  cursor: crosshair;
+  background-color: var(--color-background);
+  color: var(--color-on-background);
+  overflow-x: hidden;
+  font-family: var(--font-sans);
+}
+
+.bracket-corners {
+  position: relative;
+}
+.bracket-corners::before, .bracket-corners::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border: 2px solid var(--color-primary);
+  transition: all 0.3s ease;
+}
+.bracket-corners::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+.bracket-corners::after {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+.hover-brackets:hover::before, .hover-brackets:hover::after {
+  width: 12px;
+  height: 12px;
+}
+
+.nav-scrolled {
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 2px solid var(--color-primary);
+}
+
+/* Process Steps Styling */
+.process-step {
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  opacity: 0.4;
+  transform: scale(0.98);
+}
+.process-step.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+.process-step .step-number {
+  transition: all 0.3s ease;
+  border-color: var(--color-blueprint-line);
+  color: var(--color-on-surface-variant);
+}
+.process-step.is-active .step-number {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  box-shadow: 0 0 15px rgba(255, 107, 0, 0.2);
+}
+.process-step .step-content {
+  transition: border-color 0.3s ease;
+}
+.process-step.is-active .step-content {
+  border-color: var(--color-primary);
+}
+
+/* Link underline animation */
+.link-underline {
+  display: inline-block;
+  position: relative;
+}
+.link-underline::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: currentColor;
+  transform-origin: 100% 50%;
+  transform: scaleX(0);
+  transition: transform 0.5s var(--ease-in-out);
+}
+.link-underline:hover::before,
+.link-underline.active::before {
+  transform-origin: 0% 50%;
+  transform: scaleX(1);
+}
+
+/* Dual-arrow hover (slide swap) */
+.arrow-hover {
+  overflow: hidden;
+  position: relative;
+}
+.arrow-hover .arrow-track {
+  display: flex;
+  transition: transform 0.5s var(--ease-in-out);
+}
+.arrow-hover:hover .arrow-track {
+  transform: translateX(-50%);
+}
+.arrow-hover .arrow-icon-first,
+.arrow-hover .arrow-icon-second {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Button stagger hover */
+.btn-stagger {
+  --base-dur: 0.3s;
+}
+.btn-stagger .stagger-word {
+  display: inline-block;
+  transition: transform var(--dur, var(--base-dur)) ease var(--delay, 0s);
+  transform: translateX(0);
+  will-change: transform;
+}
+.btn-stagger:hover .stagger-word {
+  transform: translateX(var(--group-move, 0px));
+}
+
+/* Character split spans */
+.char-split {
+  display: inline-block;
+  white-space: pre;
+  will-change: opacity, filter, transform;
+}
+
+/* Slot machine reel */
+.slot-reel {
+  width: 3ch;
+  height: 0.938rem;
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+.slot-strip {
+  will-change: transform;
+  display: block;
+}
+.slot-digit {
+  height: 1rem;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1rem;
+  display: block;
+}
+
+/* Flying plus */
+.flying-plus {
+  pointer-events: none;
+  will-change: left, top, opacity, transform;
+  position: fixed;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+}
+
+/* CometCard perspective utility */
+.perspective-distant {
+  perspective: 1200px;
+}
+
+.transform-3d {
+  transform-style: preserve-3d;
+}
+
+/* Propagate preserve-3d through the full descendant tree for 3D cards */
+.preserve-3d-tree,
+.preserve-3d-tree * {
+  transform-style: preserve-3d;
+}
+
+/* CSS-only marquee ticker — GPU composited, no JS ticking */
+.marquee-track {
+  display: flex;
+  white-space: nowrap;
+  overflow: hidden;
+  gap: 0;
+}
+.marquee-content {
+  flex-shrink: 0;
+  display: inline-block;
+  animation: marquee-scroll 30s linear infinite;
+  padding-right: 0;
+}
+@keyframes marquee-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}

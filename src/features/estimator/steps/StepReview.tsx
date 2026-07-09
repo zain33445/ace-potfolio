@@ -1,6 +1,8 @@
+'use client';
+
 import { motion } from 'motion/react';
 import { CheckCircle2, Sparkles, ChevronRight } from 'lucide-react';
-import { EstimationInputs, CostBreakdown } from '../../types';
+import { EstimationInputs, CostBreakdown } from '../../../types';
 import { projectTypes } from './projectTypes';
 
 type Inputs = EstimationInputs;

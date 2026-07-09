@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { createScene } from './createScene';
@@ -89,6 +91,7 @@ export function useThreeEngine(
     window.addEventListener('resize', handleResize);
 
     let lastTime = performance.now();
+    let accumulatedTime = 0;
     let animFrameId: number;
     const animate = () => {
       animFrameId = requestAnimationFrame(animate);
@@ -101,9 +104,11 @@ export function useThreeEngine(
         return;
       }
 
+      accumulatedTime += delta;
+
       onFrameRef.current({
         delta,
-        time: Date.now() * 0.001,
+        time: accumulatedTime,
         mouseX,
         mouseY,
         isMouseIdle,

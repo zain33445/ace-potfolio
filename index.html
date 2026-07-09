@@ -1,10 +1,217 @@
-<!doctype html>
+﻿<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  </head>
-  <body>
-    <div id="page-view"></div>
-  </body>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Building Construction Sequence</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#fff}
+canvas{display:block;position:fixed;top:0;left:0;width:100vw;height:100vh}
+#scroll-bar{position:fixed;top:0;left:0;width:100%;height:3px;background:#eee;z-index:10}
+#scroll-bar-inner{height:100%;background:#222;width:0%}
+#scroll-trigger{height:400vh;position:relative;z-index:1;pointer-events:none}
+#info{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);font-family:system-ui,-apple-system,sans-serif;font-size:12px;color:#bbb;letter-spacing:0.08em;z-index:10;pointer-events:none;text-align:center;user-select:none}
+</style>
+</head>
+<body>
+<div id="scroll-bar"><div id="scroll-bar-inner"></div></div>
+<div id="scroll-trigger"></div>
+<div id="info">SCROLL TO CONSTRUCT</div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+  }
+}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+const SCALE = 1.6;
+
+const FLOOR_T = [
+  { col:[0.00,0.10], beam:[0.07,0.10], slab:null,       glass:[0.14,0.08] },
+  { col:[0.20,0.10], beam:[0.27,0.10], slab:[0.34,0.08], glass:[0.34,0.08] },
+  { col:[0.38,0.10], beam:[0.45,0.10], slab:[0.52,0.08], glass:[0.52,0.08] },
+  { col:[0.56,0.10], beam:[0.63,0.10], slab:[0.70,0.08], glass:[0.70,0.08] },
+  { col:[0.74,0.10], beam:[0.81,0.10], slab:[0.88,0.08], glass:[0.88,0.08] },
+  { beam:[0.88,0.10], slab:[0.91,0.08] },
+];
+
+const CORE_T = [0.00, 0.20];
+const ROOF_T = [0.94, 0.06];
+const PARAPET_T = [0.95, 0.05];
+const REST_T = [0.88, 0.12];
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 0.9;
+document.body.prepend(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xffffff);
+const camera = new THREE.PerspectiveCamera(32, window.innerWidth/window.innerHeight, 0.1, 300);
+
+scene.add(new THREE.AmbientLight(0xffffff, 0.55));
+const sun = new THREE.DirectionalLight(0xffeedd, 2.0); sun.position.set(35,55,40); scene.add(sun);
+const fill = new THREE.DirectionalLight(0xccddff, 0.7); fill.position.set(-25,20,-35); scene.add(fill);
+const rim = new THREE.DirectionalLight(0xffffff, 0.5); rim.position.set(0,-15,-50); scene.add(rim);
+
+const parts = [];
+let progress = 0;
+
+function easeCubic(t) {
+  return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2, 3)/2;
+}
+
+function parseFloor(name) {
+  const m = name.match(/F(\d+)/);
+  return m ? parseInt(m[1]) : -1;
+}
+
+function setupMesh(mesh, name) {
+  const final = mesh.position.clone();
+  let start = final.clone();
+  let startT = 0, dur = 0;
+
+  if (name.startsWith('Col_F')) {
+    const fi = parseFloor(name);
+    const t = FLOOR_T[fi]?.col;
+    if (t) { startT=t[0]; dur=t[1]; start.z=final.z-8; }
+  } else if (name.startsWith('Beam_F')) {
+    const fi = parseFloor(name);
+    const t = FLOOR_T[fi]?.beam;
+    if (t) { startT=t[0]; dur=t[1]; start.x=final.x+(fi%2===0?28:-28); }
+  } else if (name.startsWith('Slab_F')) {
+    const fi = parseFloor(name);
+    if (fi > 0) {
+      const t = FLOOR_T[fi]?.slab;
+      if (t) { startT=t[0]; dur=t[1]; start.z=final.z+18; }
+    }
+  } else if (name.startsWith('Glass_F')) {
+    const p = name.split('_');
+    const fi = parseInt(p[1][1]);
+    const side = parseInt(p[2][1]);
+    const t = FLOOR_T[fi]?.glass;
+    if (t) {
+      startT=t[0]; dur=t[1];
+      const OFF = { 0:[0,-35], 1:[0,35], 2:[-35,0], 3:[35,0] };
+      const o = OFF[side] || [0,0];
+      start.x=final.x+o[0]; start.y=final.y+o[1];
+    }
+  } else if (name === 'Core') {
+    startT=CORE_T[0]; dur=CORE_T[1]; start.z=final.z-15;
+  } else if (name === 'RoofSlab') {
+    startT=ROOF_T[0]; dur=ROOF_T[1]; start.z=final.z+18;
+  } else if (name === 'Parapet') {
+    startT=PARAPET_T[0]; dur=PARAPET_T[1]; start.z=final.z-15;
+  } else if (name.startsWith('Mullions_')) {
+    startT=0.14; dur=0.28; start.x=final.x+30;
+  } else if (name.startsWith('Fins_')||name.startsWith('Spandrels_')) {
+    const fi=parseFloor(name);
+    const ft=FLOOR_T[fi]?.glass;
+    startT=ft?ft[0]+0.02:0.50; dur=0.10; start.z=final.z+12;
+  } else if (name.startsWith('Terrace_F')) {
+    const fi=parseFloor(name);
+    const ft=FLOOR_T[fi]?.slab;
+    startT=ft?ft[0]:0.60; dur=0.08; start.z=final.z+10;
+  } else if (name.startsWith('TerraceGlass')) {
+    const fi=parseFloor(name);
+    const ft=FLOOR_T[fi]?.glass;
+    startT=ft?ft[0]+0.02:0.60; dur=0.08; start.z=final.z+12;
+  } else {
+    startT=REST_T[0]; dur=REST_T[1]; start.z=final.z-5;
+  }
+
+  parts.push({ mesh, start, final, startT, dur });
+}
+
+const loader = new GLTFLoader();
+loader.load('model-v2-separated.glb', (gltf) => {
+  const root = gltf.scene;
+  root.rotation.x = -Math.PI / 2;
+  root.scale.setScalar(SCALE);
+  scene.add(root);
+
+  const meshes = [];
+  root.traverse(c => { if (c.isMesh) meshes.push(c); });
+  meshes.sort((a,b) => a.name.localeCompare(b.name));
+
+  meshes.forEach(m => {
+    if (!m.name) return;
+    m.position.set(0,0,0);
+    const mat = m.material;
+    if (mat) {
+      if (m.name.includes('Glass')||m.name.startsWith('Glass')) {
+        mat.transparent=true; mat.opacity=0.5;
+        mat.roughness=0.02; mat.metalness=0.0; mat.side=THREE.DoubleSide;
+      } else if (m.name.startsWith('TerraceGlass')) {
+        mat.transparent=true; mat.opacity=0.15;
+        mat.roughness=0.02; mat.side=THREE.DoubleSide;
+      } else if (m.name.startsWith('Mullions')||m.name.startsWith('Fins')||m.name==='MechD') {
+        mat.metalness=1.0; mat.roughness=0.25;
+      } else if (m.name.startsWith('Spandrels')||m.name.startsWith('PoolE')||m.name.startsWith('Steps')) {
+        mat.roughness=0.10; mat.metalness=0.0;
+      } else if (m.name==='Pool') {
+        mat.transparent=true; mat.opacity=0.6; mat.roughness=0.01;
+      } else {
+        mat.roughness=0.55; mat.metalness=0.0;
+      }
+    }
+    setupMesh(m, m.name);
+  });
+
+  update(0);
+  renderer.render(scene, camera);
+});
+
+function update(p) {
+  for (const item of parts) {
+    const {mesh,start,final,startT,dur} = item;
+    if (dur<=0) continue;
+    const t = Math.max(0, Math.min(1, (p-startT)/dur));
+    const e = easeCubic(t);
+    mesh.position.lerpVectors(start, final, e);
+    mesh.updateMatrix();
+  }
+}
+
+function onScroll() {
+  const sy = window.scrollY;
+  const ms = document.getElementById('scroll-trigger').offsetHeight - window.innerHeight;
+  progress = Math.max(0, Math.min(1, ms>0 ? sy/ms : 0));
+  document.getElementById('scroll-bar-inner').style.width = (progress*100)+'%';
+  update(progress);
+}
+
+window.addEventListener('scroll', onScroll, {passive:true});
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth/window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+const camY = 11 * SCALE;
+const camDist = 38 * SCALE;
+camera.position.set(0, camY, camDist);
+camera.lookAt(0, camY*0.85, 0);
+
+function animate() {
+  requestAnimationFrame(animate);
+  const rise = 2.5 * SCALE * progress;
+  camera.position.y = camY + rise;
+  camera.lookAt(0, camY*0.85 + rise*0.4, 0);
+  renderer.render(scene, camera);
+}
+animate();
+onScroll();
+</script>
+</body>
 </html>

@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
@@ -75,6 +77,13 @@ export default function About3D() {
 
     let animFrameId: number;
     let scrollY = 0;
+    let isVisible = true;
+    const observer = new IntersectionObserver(
+      ([entry]) => { isVisible = entry.isIntersecting; },
+      { threshold: 0 },
+    );
+    observer.observe(container);
+
     const handleScroll = () => {
       scrollY = window.scrollY;
     };
@@ -82,6 +91,11 @@ export default function About3D() {
 
     const animate = () => {
       animFrameId = requestAnimationFrame(animate);
+
+      if (!isVisible) {
+        renderer.render(scene, camera);
+        return;
+      }
 
       // Smooth tracking towards mouse state
       group.rotation.y += (mouseX * 0.4 - group.rotation.y) * 0.05;
@@ -111,6 +125,7 @@ export default function About3D() {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
+      observer.disconnect();
       renderer.dispose();
       if (container.contains(renderer.domElement)) {
         container.removeChild(renderer.domElement);

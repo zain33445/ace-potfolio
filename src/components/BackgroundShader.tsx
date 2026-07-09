@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useRef } from 'react';
 
 export default function BackgroundShader() {
@@ -24,7 +26,6 @@ export default function BackgroundShader() {
       uniform vec2 u_resolution;
 
       void main() {
-        vec2 uv = gl_FragCoord.xy / u_resolution.xy;
         float gridSize = 64.0;
         vec2 grid = fract(gl_FragCoord.xy / gridSize);
         float lineThickness = 1.0 / gridSize;

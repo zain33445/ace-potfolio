@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { ChevronRight, Layers, FileSpreadsheet, Compass, ShieldCheck } from 'lucide-react';
@@ -8,29 +10,37 @@ const SOLUTION_IDS = ['sol_01', 'sol_02', 'sol_03', 'sol_04'];
 export default function SolutionAccordion() {
   const [activeId, setActiveId] = useState<string>('sol_01');
   const activeRef = useRef(0);
+  const mountedRef = useRef(true);
 
   useEffect(() => {
+    mountedRef.current = true;
     const section = document.getElementById('solutions');
     if (!section) return;
 
+    let scrollAccum = 0;
+
     const onWheel = (e: WheelEvent) => {
       if (!section.contains(e.target as Node)) return;
+      if (!mountedRef.current) return;
 
-      const dir = e.deltaY > 0 ? 1 : -1;
-      const next = activeRef.current + dir;
-      if (next >= 0 && next < SOLUTION_IDS.length) {
-        activeRef.current = next;
-        setActiveId(SOLUTION_IDS[next]);
-        e.stopPropagation();
-        e.preventDefault();
+      scrollAccum += e.deltaY;
+
+      if (Math.abs(scrollAccum) >= 80) {
+        const dir = scrollAccum > 0 ? 1 : -1;
+        const next = activeRef.current + dir;
+        if (next >= 0 && next < SOLUTION_IDS.length) {
+          activeRef.current = next;
+          if (mountedRef.current) setActiveId(SOLUTION_IDS[next]);
+        }
+        scrollAccum = 0;
       }
     };
 
-    document.addEventListener('wheel', onWheel, { passive: false, capture: true });
-    return () =>
-      document.removeEventListener('wheel', onWheel, {
-        capture: true,
-      } as EventListenerOptions);
+    document.addEventListener('wheel', onWheel, { passive: true });
+    return () => {
+      document.removeEventListener('wheel', onWheel);
+      mountedRef.current = false;
+    };
   }, []);
 
   const solutions: SolutionItem[] = [

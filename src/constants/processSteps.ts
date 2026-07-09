@@ -1,3 +1,5 @@
+'use client';
+
 import { Database, Laptop, ShieldAlert, BadgeCheck } from 'lucide-react';
 
 export interface Step {

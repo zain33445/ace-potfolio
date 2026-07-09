@@ -1,3 +1,5 @@
+'use client';
+
 import { motion, AnimatePresence } from 'motion/react';
 import { Calculator, DollarSign, Hammer, Truck, FileText, ChevronRight, Check, ArrowLeft, Sparkles } from 'lucide-react';
 import { useLerpedDisplay } from '../features/estimator/useLerpedDisplay';

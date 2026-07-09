@@ -1,4 +1,6 @@
-import { EstimationInputs } from '../../types';
+'use client';
+
+import { EstimationInputs } from '../../../types';
 import { projectTypes } from './projectTypes';
 
 type Inputs = EstimationInputs;

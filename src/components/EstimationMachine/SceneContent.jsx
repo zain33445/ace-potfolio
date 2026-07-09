@@ -1,4 +1,6 @@
-import { useRef, useState, useCallback, useImperativeHandle, forwardRef } from 'react';
+'use client';
+
+import { useRef, useState, useCallback, useImperativeHandle, forwardRef, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import gsap from 'gsap';
@@ -65,33 +67,35 @@ const SceneContent = forwardRef(function SceneContent(_, ref) {
   const groupRef = useRef();
   const idlePhase = useRef(0);
   const tlRef = useRef(null);
+  const mountedRef = useRef(true);
 
   const set = useCallback((patch) => {
+    if (!mountedRef.current) return;
     setS(prev => ({ ...prev, ...patch }));
   }, []);
 
   useFrame((_, delta) => {
     if (sRef.current.idleActive) {
       idlePhase.current += delta * 1.5;
+    } else {
+      idlePhase.current = 0;
     }
   });
 
   /* ── Camera shake ──────────────────── */
   const shake = useCallback((dur = 0.25) => {
     if (!groupRef.current) return;
-    gsap.to({}, {
-      duration: dur,
+    const pos = groupRef.current.position;
+    const origX = pos.x;
+    const origY = pos.y;
+    gsap.to(pos, {
+      x: origX, y: origY, duration: dur,
       onUpdate: () => {
-        if (!groupRef.current) return;
-        groupRef.current.position.x = (Math.random() - 0.5) * 0.12;
-        groupRef.current.position.y = (Math.random() - 0.5) * 0.1;
+        if (!groupRef.current || !mountedRef.current) { gsap.killTweensOf(pos); return; }
+        pos.x += (Math.random() - 0.5) * 0.12;
+        pos.y += (Math.random() - 0.5) * 0.1;
       },
-      onComplete: () => {
-        if (groupRef.current) {
-          groupRef.current.position.x = 0;
-          groupRef.current.position.y = 0;
-        }
-      },
+      overwrite: 'auto',
     });
   }, []);
 
@@ -302,11 +306,14 @@ const SceneContent = forwardRef(function SceneContent(_, ref) {
   useImperativeHandle(ref, () => ({
     playStep1, playStep2, playStep3, playStep4,
     reset: () => {
-      if (tlRef.current) tlRef.current.kill();
-      gsap.globalTimeline.clear();
+      if (tlRef.current) { tlRef.current.kill(); tlRef.current = null; }
       set({ ...INITIAL });
     },
   }), [playStep1, playStep2, playStep3, playStep4, set]);
+
+  useEffect(() => {
+    return () => { mountedRef.current = false; };
+  }, []);
 
   const idleY = s.idleActive ? Math.sin(idlePhase.current) * 0.2 : 0;
 

@@ -1,3 +1,5 @@
+'use client';
+
 import { useRef, useEffect, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
@@ -103,8 +105,8 @@ function GridLines() {
       <line key={`h${i}`}>
         <bufferGeometry>
           <float32BufferAttribute
-            array={hArray}
-            itemSize={3}
+            args={[hArray, 3]}
+            attach="attributes-position"
           />
         </bufferGeometry>
         <lineBasicMaterial color={COLORS.charcoal} transparent opacity={0.08} />
@@ -114,8 +116,8 @@ function GridLines() {
       <line key={`v${i}`}>
         <bufferGeometry>
           <float32BufferAttribute
-            array={vArray}
-            itemSize={3}
+            args={[vArray, 3]}
+            attach="attributes-position"
           />
         </bufferGeometry>
         <lineBasicMaterial color={COLORS.charcoal} transparent opacity={0.08} />
@@ -127,30 +129,44 @@ function GridLines() {
 }
 
 function FloatingParticles() {
-  const positions = useRef<Float32Array>(new Float32Array(100 * 3));
-  const [, setTick] = useState(0);
+  const meshRef = useRef<THREE.Points>(null);
+  const posRef = useRef<Float32Array | null>(null);
 
   useEffect(() => {
+    const pos = new Float32Array(100 * 3);
     for (let i = 0; i < 100; i++) {
-      positions.current[i * 3] = (Math.random() - 0.5) * 10;
-      positions.current[i * 3 + 1] = (Math.random() - 0.5) * 8;
-      positions.current[i * 3 + 2] = (Math.random() - 0.5) * 10;
+      pos[i * 3] = (Math.random() - 0.5) * 10;
+      pos[i * 3 + 1] = (Math.random() - 0.5) * 8;
+      pos[i * 3 + 2] = (Math.random() - 0.5) * 10;
+    }
+    posRef.current = pos;
+    if (meshRef.current) {
+      const geom = meshRef.current.geometry as THREE.BufferGeometry;
+      geom.setAttribute('position', new THREE.BufferAttribute(pos, 3));
     }
   }, []);
 
   useFrame((_, delta) => {
-    const pos = positions.current;
+    const pos = posRef.current;
+    if (!pos) return;
     for (let i = 0; i < 100; i++) {
       pos[i * 3 + 1] += delta * 0.3;
       if (pos[i * 3 + 1] > 4) pos[i * 3 + 1] = -4;
     }
-    setTick(t => t + 1);
+    if (meshRef.current) {
+      const attr = meshRef.current.geometry.getAttribute('position');
+      if (attr) attr.needsUpdate = true;
+    }
   });
 
   return (
-    <points>
+    <points ref={meshRef}>
       <bufferGeometry>
-        <float32BufferAttribute attach="attributes.position" array={positions.current} itemSize={3} usage={THREE.DynamicDrawUsage} />
+        <float32BufferAttribute
+          args={[new Float32Array(100 * 3), 3]}
+          attach="attributes-position"
+          usage={THREE.DynamicDrawUsage}
+        />
       </bufferGeometry>
       <pointsMaterial
         color={COLORS.primary}

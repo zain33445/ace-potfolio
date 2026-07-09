@@ -1,43 +1,67 @@
-import { useRef, useLayoutEffect, useEffect, useState } from 'react';
+'use client';
+
+import { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
-import { Database, Laptop, ShieldAlert, BadgeCheck, ClipboardCheck } from 'lucide-react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ClipboardCheck } from 'lucide-react';
 
 import ThreeScene from './EstimationMachine/ThreeScene';
 
 import { steps, STEP_COUNT } from '../constants/processSteps';
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function ProcessFlow() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const headingRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [activeStep, setActiveStep] = useState(1);
   const sceneRef = useRef<any>(null);
   const [sceneReady, setSceneReady] = useState(false);
   const currentStepRef = useRef(0);
 
+  /* ----------------------------------------------------------------
+   * ScrollTrigger: pin the section when the heading reaches the
+   * viewport top, then scrub through steps as the user scrolls.
+   * ---------------------------------------------------------------- */
   useEffect(() => {
-    const section = document.getElementById('process');
-    if (!section) return;
+    const section = sectionRef.current;
+    const heading = headingRef.current;
+    if (!section || !heading) return;
 
-    const onWheel = (e: WheelEvent) => {
-      if (!section.contains(e.target as Node)) return;
+    // Measure how far the heading sits below the section's top edge
+    // so we can delay pinning until the heading arrives at viewport top.
+    const sectionTop = section.getBoundingClientRect().top;
+    const headingTop = heading.getBoundingClientRect().top;
+    const headingOffset = Math.round(headingTop - sectionTop);
 
-      const dir = e.deltaY > 0 ? 1 : -1;
-      const next = activeStep + dir;
-      if (next >= 1 && next <= steps.length) {
-        setActiveStep(next);
-        e.stopPropagation();
-        e.preventDefault();
-      }
+    // Create scroll distance for (STEP_COUNT - 1) viewport heights
+    // so each step gets roughly 1vh of scroll travel
+    const scrollDistance = window.innerHeight * (STEP_COUNT - 1);
+
+    const st = ScrollTrigger.create({
+      trigger: section,
+      start: `top+=${headingOffset} top`,
+      end: `+=${scrollDistance}`,
+      pin: true,
+      scrub: 0.5,
+      onUpdate: (self) => {
+        const step = Math.min(
+          Math.floor(self.progress * STEP_COUNT) + 1,
+          STEP_COUNT,
+        );
+        setActiveStep(step);
+      },
+    });
+
+    return () => {
+      st.kill();
     };
+  }, []);
 
-    document.addEventListener('wheel', onWheel, { passive: false, capture: true });
-    return () =>
-      document.removeEventListener('wheel', onWheel, {
-        capture: true,
-      } as EventListenerOptions);
-  }, [activeStep]);
-
-  // Animate the active card indicator whenever activeStep changes
+  /* ----------------------------------------------------------------
+   * Animate the active card indicator whenever activeStep changes
+   * ---------------------------------------------------------------- */
   useEffect(() => {
     const wrappers = cardRefs.current.filter(Boolean) as HTMLDivElement[];
     if (!wrappers.length) return;
@@ -53,53 +77,56 @@ export default function ProcessFlow() {
     });
   }, [activeStep]);
 
-
-
-  const getIcon = (id: number) => {
-    switch (id) {
-      case 1: return <Database className="w-5 h-5" />;
-      case 2: return <Laptop className="w-5 h-5" />;
-      case 3: return <ShieldAlert className="w-5 h-5" />;
-      default: return <BadgeCheck className="w-5 h-5" />;
-    }
-  };
-
+  /* ----------------------------------------------------------------
+   * Play 3D scene step animations
+   * ---------------------------------------------------------------- */
   useEffect(() => {
     const scene = sceneRef.current;
     if (!scene) return;
 
     const fns = [
-      scene.playStep1, scene.playStep2,
-      scene.playStep3, scene.playStep4,
+      scene.playStep1,
+      scene.playStep2,
+      scene.playStep3,
+      scene.playStep4,
     ];
 
     const target = activeStep;
     const current = currentStepRef.current;
     if (target === current) return;
 
+    let cancelled = false;
+
     const play = async () => {
       if (target > current) {
         for (let i = current + 1; i <= target; i++) {
+          if (cancelled) return;
           await fns[i - 1](1.5);
+          if (cancelled) return;
           currentStepRef.current = i;
         }
       } else {
         scene.reset();
         currentStepRef.current = 0;
         for (let i = 1; i <= target; i++) {
+          if (cancelled) return;
           await fns[i - 1](3);
+          if (cancelled) return;
           currentStepRef.current = i;
         }
       }
     };
 
     play();
+
+    return () => {
+      cancelled = true;
+    };
   }, [activeStep, sceneReady]);
 
   return (
     <div
       ref={sectionRef}
-      id="process"
       className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start"
     >
       <div className="order-2 lg:order-1 h-[450px] border border-blueprint-line bg-surface relative p-4 bracket-corners cursor-move">
@@ -109,10 +136,12 @@ export default function ProcessFlow() {
         </div>
 
         <div className="w-full h-full absolute inset-0">
-          <ThreeScene ref={(node) => {
-            sceneRef.current = node;
-            if (node && !sceneReady) setSceneReady(true);
-          }} />
+          <ThreeScene
+            ref={(node) => {
+              sceneRef.current = node;
+              if (node && !sceneReady) setSceneReady(true);
+            }}
+          />
         </div>
 
         <div className="absolute bottom-4 left-4 z-10 bg-background/95 border border-blueprint-line p-3 font-mono text-[10px] space-y-1 shadow-sm max-w-xs">
@@ -135,7 +164,7 @@ export default function ProcessFlow() {
       </div>
 
       <div className="order-1 lg:order-2 space-y-6">
-        <div>
+        <div ref={headingRef}>
           <span className="font-mono text-xs text-primary block mb-2 font-bold">
             [OPERATIONAL_FLOW]
           </span>
@@ -154,21 +183,21 @@ export default function ProcessFlow() {
             return (
               <div
                 key={step.id}
-                ref={(el) => { cardRefs.current[idx] = el; }}
+                ref={(el) => {
+                  cardRefs.current[idx] = el;
+                }}
                 onClick={() => setActiveStep(step.id)}
                 className={`flex gap-4 p-4 border rounded-sm bracket-corners relative overflow-hidden transition-colors duration-300 cursor-pointer ${
                   isOpen
                     ? 'bg-surface border-primary'
                     : isDone
-                    ? 'bg-surface/60 border-primary/30'
-                    : 'bg-background/40 border-blueprint-line/20 hover:border-blueprint-line'
+                      ? 'bg-surface/60 border-primary/30'
+                      : 'bg-background/40 border-blueprint-line/20 hover:border-blueprint-line'
                 }`}
               >
                 {(isOpen || isDone) && (
                   <div
-                    className={`absolute left-0 top-0 h-full w-1 ${
-                      isOpen ? 'bg-primary' : 'bg-primary/30'
-                    }`}
+                    className={`absolute left-0 top-0 h-full w-1 ${isOpen ? 'bg-primary' : 'bg-primary/30'}`}
                   />
                 )}
 
@@ -177,8 +206,8 @@ export default function ProcessFlow() {
                     isOpen
                       ? 'border-primary bg-primary/10 text-primary shadow-sm shadow-primary/25'
                       : isDone
-                      ? 'border-primary/30 bg-primary/5 text-primary/50'
-                      : 'border-blueprint-line bg-surface text-on-surface-variant'
+                        ? 'border-primary/30 bg-primary/5 text-primary/50'
+                        : 'border-blueprint-line bg-surface text-on-surface-variant'
                   }`}
                 >
                   {step.num}
@@ -190,16 +219,16 @@ export default function ProcessFlow() {
                       isOpen
                         ? 'text-primary'
                         : isDone
-                        ? 'text-on-background/60'
-                        : 'text-on-background/40'
+                          ? 'text-on-background/60'
+                          : 'text-on-background/40'
                     }`}
                   >
                     {step.title}
                   </h3>
 
-                  <div className={`overflow-hidden transition-all duration-300 ${
-                    isOpen ? 'max-h-[500px]' : 'max-h-0'
-                  }`}>
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-[500px]' : 'max-h-0'}`}
+                  >
                     <div className="space-y-3 pt-2">
                       <p className="font-sans text-xs text-on-surface-variant leading-relaxed">
                         {step.desc}
@@ -213,7 +242,10 @@ export default function ProcessFlow() {
 
                           <ul className="space-y-1">
                             {step.benchmarks.map((v, i) => (
-                              <li key={i} className="flex items-center gap-1.5">
+                              <li
+                                key={i}
+                                className="flex items-center gap-1.5"
+                              >
                                 <span className="w-1 h-1 rounded-full bg-primary" />
                                 <span>{v}</span>
                               </li>

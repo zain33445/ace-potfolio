@@ -1,6 +1,10 @@
+'use client';
+
 import { useEffect, useRef, type ReactNode } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 type AnimationType = 'fadeUp' | 'scaleIn' | 'fadeIn';
 
@@ -37,67 +41,21 @@ export default function Reveal({
     const el = ref.current;
     if (!el) return;
 
-    // Set initial hidden state immediately
-    gsap.set(el, fromMap[type]);
+    const anim = gsap.fromTo(el, fromMap[type], {
+      ...toMap[type],
+      delay,
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 85%',
+        once,
+        invalidateOnRefresh: true,
+      },
+    });
 
-    let played = false;
-
-    const play = () => {
-      if (played && once) return;
-      played = true;
-      gsap.to(el, { ...toMap[type], delay });
+    return () => {
+      anim.kill();
+      anim.scrollTrigger?.kill();
     };
-
-    // Find the nearest fixed-position Section ancestor (FullscreenScroller section)
-    const fixedAncestor = el.closest<HTMLElement>('[style*="position: fixed"]');
-
-    if (fixedAncestor) {
-      // Inside a FullscreenScroller: use IntersectionObserver on the fixed section
-      // The section slides in via GSAP translateY, so we watch it with threshold 0
-      const observer = new IntersectionObserver(
-        (entries) => {
-          for (const entry of entries) {
-            if (entry.isIntersecting) {
-              play();
-              if (once) observer.disconnect();
-            }
-          }
-        },
-        { threshold: 0.05 }
-      );
-      observer.observe(fixedAncestor);
-      return () => observer.disconnect();
-    } else {
-      // Standard scroll context: use ScrollTrigger as before
-      let killed = false;
-      let anim: gsap.core.Tween | null = null;
-
-      const raf = requestAnimationFrame(() => {
-        if (killed) return;
-        const isPastTrigger = el.getBoundingClientRect().top < window.innerHeight * 0.85;
-        if (isPastTrigger) {
-          play();
-          return;
-        }
-        anim = gsap.fromTo(el, fromMap[type], {
-          ...toMap[type],
-          delay,
-          scrollTrigger: {
-            trigger: el,
-            start: 'top 85%',
-            once,
-            invalidateOnRefresh: true,
-          },
-        });
-      });
-
-      return () => {
-        killed = true;
-        cancelAnimationFrame(raf);
-        if (anim) anim.kill();
-        ScrollTrigger.refresh();
-      };
-    }
   }, [type, delay, once]);
 
   return <div ref={ref} className={className}>{children}</div>;

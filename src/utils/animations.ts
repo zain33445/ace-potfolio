@@ -52,3 +52,39 @@ export const scaleInVariants = {
     transition: { duration: 0.7, ease: easeSoft },
   },
 };
+
+/* ── Shared SVG path utilities ──────────────── */
+
+export function buildCurvedPath(points: { x: number; y: number }[]): string {
+  if (points.length < 2) return '';
+  let d = `M ${points[0].x} ${points[0].y}`;
+  for (let i = 1; i < points.length; i++) {
+    const prev = points[i - 1];
+    const curr = points[i];
+    const midX = (prev.x + curr.x) / 2;
+    d += ` C ${midX} ${prev.y}, ${midX} ${curr.y}, ${curr.x} ${curr.y}`;
+  }
+  return d;
+}
+
+export function computePathPositions(
+  container: HTMLElement,
+  cardEls: (HTMLDivElement | null)[],
+): { x: number; y: number }[] | null {
+  if (cardEls.some((c) => !c)) return null;
+  const cr = container.getBoundingClientRect();
+  return cardEls.map((c) => {
+    const r = c!.getBoundingClientRect();
+    return {
+      x: r.left + r.width / 2 - cr.left,
+      y: r.top + r.height / 2 - cr.top,
+    };
+  });
+}
+
+export function applyDashOffset(path: SVGPathElement, ratio: number) {
+  const len = path.getTotalLength();
+  if (!len) return;
+  path.style.strokeDasharray = String(len);
+  path.style.strokeDashoffset = String(len * Math.max(0, Math.min(1, 1 - ratio)));
+}

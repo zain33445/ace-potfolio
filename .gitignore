@@ -7,4 +7,29 @@ coverage/
 .env*
 !.env.example
 
+# Next.js
+.next/
+out/
+
 .vercel
+
+# Development tooling
+.opencode/
+.claude/
+.agents/
+.planning/
+skills/
+
+# Blender source assets
+*.blend
+*.blend1
+*.glb
+*.gltf
+*.py
+
+# Build artifacts
+build-log.txt
+*.png
+*.jpg
+v3_analysis.json
+tsconfig.tsbuildinfo

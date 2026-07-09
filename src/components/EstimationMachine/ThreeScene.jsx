@@ -1,3 +1,5 @@
+'use client';
+
 import { forwardRef } from 'react';
 import { Canvas } from '@react-three/fiber';
 import SceneContent from './SceneContent';

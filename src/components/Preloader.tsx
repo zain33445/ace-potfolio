@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
@@ -15,7 +17,12 @@ export default function Preloader({ onComplete }: PreloaderProps) {
     const overlay = overlayRef.current;
     const logo = logoRef.current;
     const strip = stripRef.current;
-    const tagWords = taglineRef.current?.children;
+    const taglineEl = taglineRef.current;
+    const tagWords = taglineEl
+      ? ([...taglineEl.children].filter(
+          (c) => c.textContent?.trim() && c.textContent.trim() !== '\u2022',
+        ) as HTMLElement[])
+      : undefined;
 
     if (!overlay) return;
 
@@ -39,7 +46,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
     }
 
     // 3. Tagline words stagger in
-    if (tagWords) {
+    if (tagWords?.length) {
       tl.fromTo(
         tagWords,
         { opacity: 0, y: 12, filter: 'blur(4px)' },
