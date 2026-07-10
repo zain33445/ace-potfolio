@@ -29,6 +29,10 @@ skills/
 
 # Build artifacts
 build-log.txt
+
+# Motion MCP OAuth token
+.motion-token.json
+.motion-token
 *.png
 *.jpg
 v3_analysis.json
