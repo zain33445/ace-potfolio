@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { CometCard } from '../../components/ui/comet-card';
+import { Lens } from '../../components/ui/lens';
 import PaginationGrid from '../../components/PaginationGrid';
 import { getSamples, type SampleProject } from '../../services/wordpress/content';
 
@@ -115,7 +116,7 @@ export default async function ProjectsPage() {
           gridCols="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
         >
           {projects.map((project, idx) => (
-            <ProjectCard key={project.id} project={project} index={idx} />
+            <ProjectCard key={project.id} project={project} index={idx} priority={idx < 3} />
           ))}
         </PaginationGrid>
       </div>
@@ -169,33 +170,36 @@ function StatBlock({ label, value }: { label: string; value: string }) {
   );
 }
 
-function ProjectCard({ project, index }: { project: SampleProject; index: number }) {
+function ProjectCard({ project, index, priority = false }: { project: SampleProject; index: number; priority?: boolean }) {
   const colorClass = CATEGORY_COLORS[project.category] ?? 'bg-[#a3a3a3]/15 text-[#a3a3a3] border-[#a3a3a3]/30';
 
   return (
     <CometCard>
       <article className="group relative flex flex-col border border-blueprint-line bg-surface transition-all duration-300 hover:border-primary hover:shadow-[0_0_30px_rgba(255,107,0,0.08)] bracket-corners hover-brackets">
         {/* Image area */}
-        <div className="relative aspect-[4/3] overflow-hidden">
-          <Image
-            src={project.imageUrl}
-            alt={project.title}
-            fill
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-          />
+        <div className="relative aspect-[1/1] overflow-hidden">
+          <Lens zoomFactor={2.5} lensSize={170}>
+            <Image
+              src={project.imageUrl}
+              alt={project.title}
+              fill
+              priority={priority}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="object-cover brightness-[1.15] transition-transform duration-500 group-hover:scale-105"
+            />
 
-          {/* Scanline overlay for that industrial feel */}
-          <div
-            className="pointer-events-none absolute inset-0 opacity-20"
-            style={{
-              backgroundImage:
-                'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.15) 2px, rgba(0,0,0,0.15) 4px)',
-            }}
-          />
+            {/* Scanline overlay */}
+            <div
+              className="pointer-events-none absolute inset-0 opacity-20"
+              style={{
+                backgroundImage:
+                  'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.15) 2px, rgba(0,0,0,0.15) 4px)',
+              }}
+            />
 
-          {/* Dark gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+            {/* Dark gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+          </Lens>
 
           {/* ID badge */}
           <div className="absolute left-3 top-3 border border-white/20 bg-black/50 px-2 py-1 font-mono text-[9px] font-bold tracking-wider text-white/80 backdrop-blur-sm">
@@ -211,7 +215,7 @@ function ProjectCard({ project, index }: { project: SampleProject; index: number
         </div>
 
         {/* Content */}
-        <div className="flex flex-1 flex-col p-5">
+        <div className="flex flex-1 flex-col px-5 py-10">
           <h3 className="font-[family-name:var(--font-space)] text-lg font-bold leading-snug text-on-background transition-colors group-hover:text-primary">
             {project.title}
           </h3>

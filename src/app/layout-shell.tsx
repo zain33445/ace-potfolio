@@ -4,7 +4,6 @@ import { useState, type ReactNode } from 'react';
 import { usePathname } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import Nav from '../components/Nav';
-import CursorFollower from '../components/CursorFollower';
 import { PreloaderProvider } from '../PreloaderContext';
 
 /* Lazy-load the Preloader — it pulls in ~60KB of gsap and is only
@@ -12,6 +11,13 @@ import { PreloaderProvider } from '../PreloaderContext';
    chunk slashes the JS shipped to every other route. */
 const Preloader = dynamic(
   () => import('../components/Preloader'),
+  { ssr: false },
+);
+
+/* Lazy-load the CursorFollower — it also pulls in gsap. Keeping it
+   out of the shared layout chunk saves ~50KB of JS on every page. */
+const CursorFollower = dynamic(
+  () => import('../components/CursorFollower'),
   { ssr: false },
 );
 

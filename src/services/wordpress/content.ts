@@ -16,7 +16,7 @@
  */
 
 import { wpGet, wpGetList, wpGetListSafe } from './client';
-import { cleanExcerpt, cleanTitle, decodeEntities, htmlToText } from './html';
+import { cleanExcerpt, cleanTitle, decodeEntities, htmlToArticle, htmlToText, sanitizeHtml } from './html';
 import type { WPMedia, WPPage, WPPageQuery, WPPost, WPPostQuery, WPListResponse } from './types';
 
 /* ------------------------------------------------------------------ */
@@ -31,6 +31,12 @@ export interface Insight {
   date: string;
   url: string;
   image: string | null;
+}
+
+/** Full blog post with rendered content for the individual post page. */
+export interface BlogPost extends Insight {
+  content: string;
+  modified: string;
 }
 
 export interface ServicePage {
@@ -417,6 +423,43 @@ export async function getPosts(
 export async function getInsights(limit = 6): Promise<Insight[]> {
   const result = await getPosts({ per_page: limit });
   return result.data;
+}
+
+/** Adapter: WPPost → BlogPost (includes full content). */
+export function toBlogPost(post: WPPost): BlogPost {
+  return {
+    id: post.id,
+    slug: post.slug,
+    title: cleanTitle(post.title.rendered),
+    excerpt: cleanExcerpt(post.excerpt.rendered),
+    content: sanitizeHtml(post.content.rendered),
+    date: post.date,
+    modified: post.modified,
+    url: post.link,
+    image: featuredImage(post),
+  };
+}
+
+/**
+ * Fetch a single blog post by slug.
+ *
+ * Returns the full post including rendered content for the individual
+ * post page. Returns `null` when the slug doesn't match any post.
+ */
+export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
+  try {
+    const posts = await wpGet<WPPost[]>('/posts', {
+      slug,
+      _embed: true,
+      per_page: 1,
+      categories: INSIGHT_CATEGORY_IDS,
+    });
+    if (!posts.length) return null;
+    return toBlogPost(posts[0]);
+  } catch (err) {
+    console.warn(`[getPostBySlug] Failed to fetch post "${slug}":`, (err as Error).message);
+    return null;
+  }
 }
 
 /* ------------------------------------------------------------------ */

@@ -49,7 +49,7 @@ export const HeroParallax = ({
     springConfig
   );
   const opacity = useSpring(
-    useTransform(scrollYProgress, [0, 0.25], [0.3, 1]),
+    useTransform(scrollYProgress, [0, 0.25], [0.75, 1]),
     springConfig
   );
   const rotateZ = useSpring(
@@ -57,7 +57,7 @@ export const HeroParallax = ({
     springConfig
   );
   const translateY = useSpring(
-    useTransform(scrollYProgress, [0, 0.25], [-500, 400]),
+    useTransform(scrollYProgress, [0, 0.25], [-500, 80]),
     springConfig
   );
 
@@ -81,24 +81,37 @@ export const HeroParallax = ({
               product={product}
               translate={translateX}
               key={product.title}
+              fetchPriority="high"
             />
           ))}
         </motion.div>
-        <motion.div className="flex flex-row  mb-20 space-x-20 ">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.15, duration: 0.4 }}
+          className="flex flex-row mb-20 space-x-20"
+        >
           {secondRow.map((product) => (
             <ProductCard
               product={product}
               translate={translateXReverse}
               key={product.title}
+              fetchPriority="low"
             />
           ))}
         </motion.div>
-        <motion.div className="flex flex-row-reverse space-x-reverse space-x-20">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.25, duration: 0.4 }}
+          className="flex flex-row-reverse space-x-reverse space-x-20"
+        >
           {thirdRow.map((product) => (
             <ProductCard
               product={product}
               translate={translateX}
               key={product.title}
+              fetchPriority="low"
             />
           ))}
         </motion.div>
@@ -128,14 +141,17 @@ export const Header = ({
 };
 
 /* ──────────────────────────────────────────────────────────────────
-   ProductCard — wrapped in will-change + native lazy loading
+   ProductCard — lightweight card with image priority hints
    ────────────────────────────────────────────────────────────────── */
 export const ProductCard = ({
   product,
   translate,
+  fetchPriority,
 }: {
   product: HeroParallaxProduct;
   translate: MotionValue<number>;
+  /** Browser image fetch priority hint. Omit for default. */
+  fetchPriority?: "high" | "low";
 }) => {
   return (
     <motion.div
@@ -146,7 +162,7 @@ export const ProductCard = ({
         y: -20,
       }}
       key={product.title}
-      className="group/product h-80 w-[26rem] relative shrink-0 will-change-transform"
+      className="group/product h-80 w-[26rem] relative shrink-0"
     >
       <a
         href={product.link}
@@ -158,6 +174,7 @@ export const ProductCard = ({
           width="600"
           loading="lazy"
           decoding="async"
+          fetchPriority={fetchPriority}
           className="object-cover object-left-top absolute h-full w-full inset-0"
           alt={product.title}
         />

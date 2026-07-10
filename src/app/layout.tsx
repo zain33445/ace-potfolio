@@ -1,6 +1,27 @@
 import type { Metadata } from 'next';
+import { Inter, JetBrains_Mono, Space_Grotesk } from 'next/font/google';
 import './globals.css';
 import LayoutShell from './layout-shell';
+
+/* ── next/font (self-hosted, no external render-blocking requests) ── */
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  weight: ['400', '500', '600'],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-jetbrains-mono',
+  weight: ['400', '500', '700'],
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-space',
+  weight: ['500', '600', '700'],
+});
 
 const url = 'https://ace2-six.vercel.app';
 const ogImage = 'https://ace2-six.vercel.app/og-image.png';
@@ -178,16 +199,11 @@ const howToSchema = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable}`}
+    >
       <head>
-        {/* Google Fonts preconnect */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap"
-          rel="stylesheet"
-        />
-
         {/* JSON-LD structured data */}
         <script
           type="application/ld+json"

@@ -14,7 +14,7 @@ const PAGE_LINKS = [
 
 export default function Nav() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [navHeight, setNavHeight] = useState(60);
+  const [navHeight, setNavHeight] = useState(80);
   const [navScrolled, setNavScrolled] = useState(false);
   const navRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
@@ -37,14 +37,14 @@ export default function Nav() {
   }, [isHome]);
 
   useEffect(() => {
-    if (navRef.current) {
-      setNavHeight(navRef.current.offsetHeight);
+    function measureNavBottom() {
+      if (navRef.current) {
+        setNavHeight(navRef.current.getBoundingClientRect().bottom);
+      }
     }
-    const onResize = () => {
-      if (navRef.current) setNavHeight(navRef.current.offsetHeight);
-    };
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
+    measureNavBottom();
+    window.addEventListener('resize', measureNavBottom);
+    return () => window.removeEventListener('resize', measureNavBottom);
   }, []);
 
   const handleNav = (id: string) => {
@@ -63,8 +63,10 @@ export default function Nav() {
     <>
       <nav
         ref={navRef}
-        className={`fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 md:px-16 py-4 transition-all duration-300 bg-surface border-b-2 ${
-          navScrolled ? 'border-primary shadow-sm' : 'border-blueprint-line/40'
+        className={`fixed top-3 md:top-5 left-1/2 -translate-x-1/2 w-[calc(100%-1.5rem)] md:w-[calc(100%-2.5rem)] max-w-5xl z-50 flex justify-between items-center px-4 md:px-6 py-3 transition-all duration-300 bg-white/20 backdrop-blur-3xl rounded-2xl border shadow-2xl shadow-black/5 ring-1 ring-inset ${
+          navScrolled
+            ? 'border-white/50 ring-white/30'
+            : 'border-white/40 ring-white/20'
         }`}
         id="main-nav"
         aria-label="Main navigation"

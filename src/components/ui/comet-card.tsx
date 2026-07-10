@@ -5,7 +5,6 @@ import {
   useMotionValue,
   useSpring,
   useTransform,
-  useMotionTemplate,
 } from "motion/react";
 import { cn } from "../../lib/utils";
 
@@ -49,11 +48,6 @@ export const CometCard = ({
     [-0.5, 0.5],
     [`${translateDepth}px`, `-${translateDepth}px`],
   );
-
-  const glareX = useTransform(mouseXSpring, [-0.5, 0.5], [0, 100]);
-  const glareY = useTransform(mouseYSpring, [-0.5, 0.5], [0, 100]);
-
-  const glareBackground = useMotionTemplate`radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255, 255, 255, 0.9) 10%, rgba(255, 255, 255, 0.75) 20%, rgba(255, 255, 255, 0) 80%)`;
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return;
@@ -101,14 +95,6 @@ export const CometCard = ({
         className="relative rounded-2xl"
       >
         {children}
-        <motion.div
-          className="pointer-events-none absolute inset-0 z-50 h-full w-full rounded-[16px] mix-blend-overlay"
-          style={{
-            background: glareBackground,
-            opacity: 0.6,
-          }}
-          transition={{ duration: 0.2 }}
-        />
       </motion.div>
     </div>
   );

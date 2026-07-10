@@ -12,15 +12,21 @@ import ProjectsSection from '@/src/components/Home/sections/ProjectsSection';
 import ProcessSection from '@/src/components/Home/sections/ProcessSection';
 import FAQSection from '@/src/components/Home/sections/FAQSection';
 import ContactSection from '@/src/components/Home/sections/ContactSection';
+import type { HeroParallaxProduct } from '@/src/components/ui/hero-parallax';
 const BackgroundShader = dynamic(() => import('@/src/components/BackgroundShader'), {
   ssr: false,
 });
 
-export default function HomePage() {
+export default function HomePage({
+  products,
+}: {
+  /** Optional CMS product cards for the hero parallax. */
+  products?: HeroParallaxProduct[];
+}) {
   return (
     <>
       <BackgroundShader />
-      <HeroSection />
+      <HeroSection products={products} />
       <StatsSection />
       <AboutSection />
       <SolutionsSection />

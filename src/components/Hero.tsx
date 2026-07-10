@@ -4,11 +4,11 @@ import { HeroParallax } from '@/src/components/ui/hero-parallax';
 import type { HeroParallaxProduct } from '@/src/components/ui/hero-parallax';
 
 /* ──────────────────────────────────────────────────────────────────
-   Construction service cards — title, link, thumbnail
-   Each links to a relevant section on the single-page site
+   Default construction service cards — title, link, thumbnail
+   Used as fallback when no CMS products are provided.
    ────────────────────────────────────────────────────────────────── */
 
-const constructionProducts: HeroParallaxProduct[] = [
+const DEFAULT_PRODUCTS: HeroParallaxProduct[] = [
   {
     title: 'Material Takeoffs',
     subtitle: 'PlanSwift + Bluebeam',
@@ -116,11 +116,18 @@ const constructionProducts: HeroParallaxProduct[] = [
   },
 ];
 
-export default function Hero() {
+export default function Hero({
+  products,
+}: {
+  /** Optional product cards from the CMS. Falls back to hardcoded defaults. */
+  products?: HeroParallaxProduct[];
+}) {
+  const cards = products ?? DEFAULT_PRODUCTS;
+
   return (
     <>
       <HeroParallax
-        products={constructionProducts}
+        products={cards}
         headerTitle="Precision Construction Estimation"
         headerDescription="The ACE Services delivers data-driven pre-construction support across 35 states. Industry-leading tools like PlanSwift and Bluebeam, rigorous two-stage quality checks, and a verified 89% bid win rate — so you win more work and protect your margins."
       />
