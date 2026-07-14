@@ -91,13 +91,13 @@ export default function Nav() {
         <div className="hidden md:flex items-center gap-6 text-2xl">
           {/* Homepage section anchor links — always visible */}
           <div className="flex items-center gap-6">
-            <button type="button" onClick={() => handleNav('solutions')} className="link-underline text-on-surface-variant font-mono text-xs font-bold tracking-wide pb-0.5">
+            <button type="button" onClick={() => handleNav('solutions')} className="link-underline text-on-surface-variant font-mono text-sm font-bold tracking-wide pb-0.5">
               SOLUTIONS
             </button>
-            <button type="button" onClick={() => handleNav('about')} className="link-underline text-on-surface-variant font-mono text-xs font-bold tracking-wide pb-0.5">
+            <button type="button" onClick={() => handleNav('about')} className="link-underline text-on-surface-variant font-mono text-sm font-bold tracking-wide pb-0.5">
               ABOUT US
             </button>
-            <button type="button" onClick={() => handleNav('contact')} className="link-underline text-on-surface-variant font-mono text-xs font-bold tracking-wide pb-0.5">
+            <button type="button" onClick={() => handleNav('contact')} className="link-underline text-on-surface-variant font-mono text-sm font-bold tracking-wide pb-0.5">
               CONTACT US
             </button>
           </div>
@@ -111,7 +111,7 @@ export default function Nav() {
               <Link
                 key={href}
                 href={href}
-                className={`font-mono text-xs font-bold tracking-wide pb-0.5 transition-colors duration-150 ${
+                className={`font-mono text-sm font-bold tracking-wide pb-0.5 transition-colors duration-150 ${
                   isActive(href)
                     ? 'text-primary'
                     : 'text-on-surface-variant hover:text-primary'
