@@ -9,6 +9,7 @@ import {
   useMotionValueEvent,
 } from 'motion/react';
 import { useCountUp } from '../../../hooks/useCountUp';
+import { usePin } from '../../../PinContext';
 
 interface StatConfig {
   id: string;
@@ -145,6 +146,7 @@ export default function StatsSection() {
   const pathRef = useRef<SVGPathElement>(null);
   const [sectionVisible, setSectionVisible] = useState(false);
   const [isDesktop, setIsDesktop] = useState(true);
+  const { setPinned } = usePin();
 
   /* ── Continuous scroll progress, spring-smoothed ── */
   const { scrollYProgress } = useScroll({
@@ -173,6 +175,8 @@ export default function StatsSection() {
         path.style.strokeDashoffset = String(len * (1 - v));
       }
     }
+    /* Hide nav while this sticky section is actively scrolling */
+    setPinned(v > 0.05 && v < 0.95);
   });
 
   /* ── IntersectionObserver to trigger count-up ── */

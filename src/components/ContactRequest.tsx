@@ -108,7 +108,7 @@ export default function ContactRequest() {
   const progress = ((step - 1) / 3) * 100;
 
   return (
-    <section className="min-h-[80vh] flex items-center justify-center bg-surface px-4 py-24 md:py-32" id="contact">
+    <section className="min-h-[80vh] flex items-center justify-center bg-surface px-4 py-24 md:py-32">
       <div className="w-full md:w-[85%] mx-auto">
         <AnimatePresence mode="wait">
           {!form.hasSubmitted ? (

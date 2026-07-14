@@ -32,21 +32,21 @@ export default function Footer() {
               text="ACE SERVICES"
               className="font-space text-3xl font-extrabold tracking-tighter text-on-background"
               radius={100}
-              strength={40}
+              strength={50}
               mode="repel"
             />
             <TextRepel
               text="Parametric estimating precision for general builders, civil engineers, and trade specialists nationwide. Eliminating manual error thresholds."
               className="font-sans text-sm text-on-surface-variant max-w-sm leading-relaxed font-semibold"
               radius={80}
-              strength={20}
+              strength={50}
               mode="repel"
             />
             <TextRepel
               text="[EST_SYS_CORE_V.2.5.0_ACTIVE]"
               className="font-mono text-[9px] text-primary uppercase tracking-widest font-bold"
               radius={60}
-              strength={15}
+              strength={35}
               mode="repel"
             />
           </div>
@@ -59,7 +59,7 @@ export default function Footer() {
                 text="[NAVIGATION]"
                 className="font-mono text-[10px] text-primary tracking-wider font-bold"
                 radius={60}
-                strength={15}
+                strength={35}
                 mode="repel"
               />
               {navItems.map((item) => (
@@ -68,7 +68,7 @@ export default function Footer() {
                   text={item.label}
                   className="text-left font-sans text-xs font-semibold text-on-surface-variant hover:text-primary transition-colors link-underline w-fit cursor-pointer"
                   radius={60}
-                  strength={20}
+                  strength={35}
                   mode="repel"
                   onClick={() => handleClick(item.id)}
                 />
@@ -81,7 +81,7 @@ export default function Footer() {
                 text="[STANDARDS]"
                 className="font-mono text-[10px] text-primary tracking-wider font-bold"
                 radius={60}
-                strength={15}
+                strength={35}
                 mode="repel"
               />
               {standards.map((item) => (
@@ -90,7 +90,7 @@ export default function Footer() {
                   text={item}
                   className="font-sans text-xs text-on-surface-variant font-semibold"
                   radius={60}
-                  strength={20}
+                  strength={35}
                   mode="repel"
                 />
               ))}
@@ -102,7 +102,7 @@ export default function Footer() {
                 text="[COMMUNICATION]"
                 className="font-mono text-[10px] text-primary tracking-wider font-bold"
                 radius={60}
-                strength={15}
+                strength={35}
                 mode="repel"
               />
               {communication.map((item) => (
@@ -111,7 +111,7 @@ export default function Footer() {
                   text={item}
                   className="font-sans text-xs text-on-surface-variant font-semibold"
                   radius={60}
-                  strength={20}
+                  strength={35}
                   mode="repel"
                 />
               ))}
@@ -125,14 +125,14 @@ export default function Footer() {
             text="©2026 ACE SERVICES. ALL CODES SECURED."
             className="font-mono text-xs text-on-surface-variant font-bold"
             radius={80}
-            strength={20}
+            strength={35}
             mode="repel"
           />
           <TextRepel
             text="LAT: 32.7767° N | LONG: 96.7970° W | BLUEPRINT RECT_X_COORD"
             className="font-mono text-[9px] text-on-surface-variant opacity-60"
             radius={80}
-            strength={15}
+            strength={35}
             mode="repel"
           />
         </div>

@@ -25,11 +25,11 @@ export default function HomePage({
 }) {
   return (
     <>
-      <BackgroundShader />
+      {/* <BackgroundShader /> */}
       <HeroSection products={products} />
       <StatsSection />
-      <AboutSection />
       <SolutionsSection />
+      <AboutSection />
       <WhyChooseUsSection />
       <TestimonialsSection />
       <CalculatorSection />

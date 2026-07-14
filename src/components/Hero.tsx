@@ -128,8 +128,9 @@ export default function Hero({
     <>
       <HeroParallax
         products={cards}
-        headerTitle="Precision Construction Estimation"
-        headerDescription="The ACE Services delivers data-driven pre-construction support across 35 states. Industry-leading tools like PlanSwift and Bluebeam, rigorous two-stage quality checks, and a verified 89% bid win rate — so you win more work and protect your margins."
+        headerH1="Stop Losing Bids."
+        headerH2="Get the numbers right, win more work, and protect your margins."
+        headerH3="We take care of your construction estimating, delivering precise takeoffs and reliable cost estimates that support competitive bids."
       />
 
       {/* CSS-only marquee — pure GPU compositing, zero JS ticking */}

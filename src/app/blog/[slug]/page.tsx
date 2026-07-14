@@ -2,7 +2,18 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getPostBySlug } from '@/src/services/wordpress/content';
+import { getPostBySlug, getPosts } from '@/src/services/wordpress/content';
+
+/* ── Static params for output: 'export' ──────────────────────── */
+
+export async function generateStaticParams() {
+  try {
+    const result = await getPosts({ per_page: 100 });
+    return result.data.map((post) => ({ slug: post.slug }));
+  } catch {
+    return [];
+  }
+}
 
 /* ── Dynamic metadata ─────────────────────────────────────────── */
 

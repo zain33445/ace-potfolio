@@ -6,6 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ClipboardCheck } from 'lucide-react';
 
 import ThreeScene from './EstimationMachine/ThreeScene';
+import { usePin } from '../PinContext';
 
 import { steps, STEP_COUNT } from '../constants/processSteps';
 
@@ -19,6 +20,7 @@ export default function ProcessFlow() {
   const sceneRef = useRef<any>(null);
   const [sceneReady, setSceneReady] = useState(false);
   const currentStepRef = useRef(0);
+  const { setPinned } = usePin();
 
   /* ----------------------------------------------------------------
    * ScrollTrigger: pin the section when the heading reaches the
@@ -45,6 +47,10 @@ export default function ProcessFlow() {
       end: `+=${scrollDistance}`,
       pin: true,
       scrub: 0.5,
+      onEnter: () => setPinned(true),
+      onLeave: () => setPinned(false),
+      onEnterBack: () => setPinned(true),
+      onLeaveBack: () => setPinned(false),
       onUpdate: (self) => {
         const step = Math.min(
           Math.floor(self.progress * STEP_COUNT) + 1,

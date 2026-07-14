@@ -3,14 +3,8 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { Menu, X, ChevronRight } from 'lucide-react';
-
-const PAGE_LINKS = [
-  { href: '/blog', label: 'BLOG', shortLabel: 'Blog' },
-  { href: '/pricing', label: 'PRICING', shortLabel: 'Pricing' },
-  { href: '/projects', label: 'PROJECTS', shortLabel: 'Projects' },
-  { href: '/testimonials', label: 'TESTIMONIALS', shortLabel: 'Testimonials' },
-];
+import { Menu, X } from 'lucide-react';
+import { usePin } from '../PinContext';
 
 export default function Nav() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -20,6 +14,7 @@ export default function Nav() {
   const pathname = usePathname();
   const router = useRouter();
   const isHome = pathname === '/';
+  const { isPinned } = usePin();
 
   /* Track scroll state via IntersectionObserver on the hero section.
      Replaces the old FullscreenScroller's currentIndex > 0 check, with
@@ -52,10 +47,19 @@ export default function Nav() {
     if (isHome) {
       document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
     } else {
-      // Navigate to home page, then scroll to the section
-      router.push('/#' + id);
+      // Store target section, then client-navigate to homepage
+      sessionStorage.setItem('scrollToSection', id);
+      router.push('/');
     }
   };
+
+  const PAGE_LINKS = [
+  { href: '/blog', label: 'BLOG', shortLabel: 'Blog' },
+  { href: '/pricing', label: 'PRICING', shortLabel: 'Pricing' },
+  { href: '/projects', label: 'PROJECTS', shortLabel: 'Projects' },
+  { href: '/testimonials', label: 'TESTIMONIALS', shortLabel: 'Testimonials' },
+  { href: '/calculator', label: 'CALCULATOR', shortLabel: 'Calculator' },
+]; 
 
   const isActive = (href: string) => pathname === href;
 
@@ -63,10 +67,8 @@ export default function Nav() {
     <>
       <nav
         ref={navRef}
-        className={`fixed top-3 md:top-5 left-1/2 -translate-x-1/2 w-[calc(100%-1.5rem)] md:w-[calc(100%-2.5rem)] max-w-5xl z-50 flex justify-between items-center px-4 md:px-6 py-3 transition-all duration-300 bg-white/20 backdrop-blur-3xl rounded-2xl border shadow-2xl shadow-black/5 ring-1 ring-inset ${
-          navScrolled
-            ? 'border-white/50 ring-white/30'
-            : 'border-white/40 ring-white/20'
+        className={`fixed z-50 flex justify-between items-center px-4 md:px-6 py-3 transition-all duration-500 bg-white/20 backdrop-blur-3xl border shadow-2xl shadow-black/5 ring-1 ring-inset top-0 left-0 w-full rounded-none border-transparent ring-transparent h-24 ${
+          isPinned ? '-translate-y-full' : 'translate-y-0'
         }`}
         id="main-nav"
         aria-label="Main navigation"
@@ -74,46 +76,42 @@ export default function Nav() {
         <Link
           href="/"
           onClick={() => setMobileMenuOpen(false)}
-          className="font-space text-2xl font-bold tracking-tighter text-on-background cursor-pointer select-none flex items-center gap-2"
+          className="font-mono text-3xl tracking-wide min-w-[400px] font-medium text-on-background cursor-pointer select-none flex items-center pl-10 gap-2"
         >
-          <div className="w-5 h-5 bg-primary rounded-none p-0.5 flex items-center justify-center">
-            <span className="font-mono text-[10px] text-white">A</span>
-          </div>
+          <img
+            src="/aceLogo.png"
+            alt=""
+            className='h-18 w-auto'
+          />
+
           ACE SERVICES
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-6">
-          {/* Homepage section anchor links */}
-          {isHome && (
-            <div className="flex items-center gap-6">
-              <button type="button" onClick={() => handleNav('solutions')} className="link-underline text-on-surface-variant font-mono text-[10px] font-bold tracking-wide pb-0.5">
-                SOLUTIONS
-              </button>
-              <button type="button" onClick={() => handleNav('projects')} className="link-underline text-on-surface-variant font-mono text-[10px] font-bold tracking-wide pb-0.5">
-                PROJECTS
-              </button>
-              <button type="button" onClick={() => handleNav('process')} className="link-underline text-on-surface-variant font-mono text-[10px] font-bold tracking-wide pb-0.5">
-                METHODOLOGY
-              </button>
-              <button type="button" onClick={() => handleNav('about')} className="link-underline text-on-surface-variant font-mono text-[10px] font-bold tracking-wide pb-0.5">
-                ABOUT
-              </button>
-            </div>
-          )}
+        <div className="hidden md:flex items-center gap-6 text-2xl">
+          {/* Homepage section anchor links — always visible */}
+          <div className="flex items-center gap-6">
+            <button type="button" onClick={() => handleNav('solutions')} className="link-underline text-on-surface-variant font-mono text-xs font-bold tracking-wide pb-0.5">
+              SOLUTIONS
+            </button>
+            <button type="button" onClick={() => handleNav('about')} className="link-underline text-on-surface-variant font-mono text-xs font-bold tracking-wide pb-0.5">
+              ABOUT US
+            </button>
+            <button type="button" onClick={() => handleNav('contact')} className="link-underline text-on-surface-variant font-mono text-xs font-bold tracking-wide pb-0.5">
+              CONTACT US
+            </button>
+          </div>
 
           {/* Divider between section links and page links */}
-          {isHome && (
-            <div className="w-px h-4 bg-blueprint-line/60" aria-hidden="true" />
-          )}
+          <div className="w-px h-4 bg-blueprint-line/60" aria-hidden="true" />
 
           {/* Page links */}
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-5 pr-10">
             {PAGE_LINKS.map(({ href, label }) => (
               <Link
                 key={href}
                 href={href}
-                className={`font-mono text-[10px] font-bold tracking-wide pb-0.5 transition-colors duration-150 ${
+                className={`font-mono text-xs font-bold tracking-wide pb-0.5 transition-colors duration-150 ${
                   isActive(href)
                     ? 'text-primary'
                     : 'text-on-surface-variant hover:text-primary'
@@ -125,20 +123,9 @@ export default function Nav() {
                 )}
               </Link>
             ))}
+
           </div>
 
-          {/* Calculator CTA */}
-          <Link
-            href="/calculator"
-            className={`font-mono text-[11px] font-bold px-5 py-2.5 bracket-corners hover-brackets transition-transform duration-100 uppercase tracking-wider shadow-sm flex items-center gap-1.5 ${
-              isActive('/calculator')
-                ? 'bg-primary/20 text-primary border-2 border-primary'
-                : 'bg-primary text-white'
-            }`}
-          >
-            <span>CALCULATOR</span>
-            <ChevronRight className="w-3.5 h-3.5" aria-hidden="true" />
-          </Link>
         </div>
 
         {/* Mobile hamburger */}
@@ -161,29 +148,24 @@ export default function Nav() {
           className="fixed left-0 right-0 bottom-0 bg-surface z-40 flex flex-col p-6 overflow-y-auto border-b border-blueprint-line md:hidden shadow-lg"
           role="menu"
         >
-          {/* Homepage section links (mobile) */}
-          {isHome && (
-            <div className="space-y-0">
-              <p className="font-mono text-[9px] text-on-surface-variant/60 tracking-widest uppercase mb-1">
-                Sections
-              </p>
-              <button onClick={() => handleNav('solutions')} className="text-left py-2 font-mono text-sm tracking-wider hover:text-primary border-b border-blueprint-line/30">
-                [SOL_X] PORTFOLIO SERVICES
-              </button>
-              <button onClick={() => handleNav('projects')} className="text-left py-2 font-mono text-sm tracking-wider hover:text-primary border-b border-blueprint-line/30">
-                [PROJ_Y] EXECUTED WORK
-              </button>
-              <button onClick={() => handleNav('process')} className="text-left py-2 font-mono text-sm tracking-wider hover:text-primary border-b border-blueprint-line/30">
-                [PROC_Z] FLOW & STEPS
-              </button>
-              <button onClick={() => handleNav('about')} className="text-left py-2 font-mono text-sm tracking-wider hover:text-primary border-b border-blueprint-line/30">
-                [CORP_W] BIO DETAILS
-              </button>
-            </div>
-          )}
+          {/* Section links (mobile) — always visible */}
+          <div className="space-y-0">
+            <p className="font-mono text-[9px] text-on-surface-variant/60 tracking-widest uppercase mb-1">
+              Sections
+            </p>
+            <button onClick={() => handleNav('solutions')} className="text-left py-2 font-mono text-sm tracking-wider hover:text-primary border-b border-blueprint-line/30 w-full">
+              [SOL_X] PORTFOLIO SERVICES
+            </button>
+            <button onClick={() => handleNav('about')} className="text-left py-2 font-mono text-sm tracking-wider hover:text-primary border-b border-blueprint-line/30 w-full">
+              [CORP_W] BIO DETAILS
+            </button>
+            <button onClick={() => handleNav('contact')} className="text-left py-2 font-mono text-sm tracking-wider hover:text-primary border-b border-blueprint-line/30 w-full">
+              [CONTACT] GET IN TOUCH
+            </button>
+          </div>
 
           {/* Divider */}
-          {isHome && <div className="w-full h-px bg-blueprint-line/40 my-3" aria-hidden="true" />}
+          <div className="w-full h-px bg-blueprint-line/40 my-3" aria-hidden="true" />
 
           {/* Page links (mobile) */}
           <div className="space-y-0">

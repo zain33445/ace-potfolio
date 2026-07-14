@@ -7,6 +7,7 @@ import {
   useMotionValueEvent,
 } from 'motion/react';
 import { buildCurvedPath, computePathPositions } from '../../../utils/animations';
+import { usePin } from '../../../PinContext';
 
 const cards = [
   {
@@ -48,6 +49,7 @@ export default function WhyChooseUsSection() {
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const pathRef = useRef<SVGPathElement>(null);
   const [isDesktop, setIsDesktop] = useState(true);
+  const { setPinned } = usePin();
 
   /* ── Continuous scroll progress ── */
   const { scrollYProgress } = useScroll({
@@ -68,6 +70,8 @@ export default function WhyChooseUsSection() {
         path.style.strokeDashoffset = String(len * (1 - v));
       }
     }
+    /* Hide nav while this sticky section is actively scrolling */
+    setPinned(v > 0.05 && v < 0.95);
   });
 
   useEffect(() => {

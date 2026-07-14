@@ -1,10 +1,11 @@
 'use client';
 
-import { useState, type ReactNode } from 'react';
+import { useState, useLayoutEffect, type ReactNode } from 'react';
 import { usePathname } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import Nav from '../components/Nav';
 import { PreloaderProvider } from '../PreloaderContext';
+import { PinProvider } from '../PinContext';
 
 /* Lazy-load the Preloader — it pulls in ~60KB of gsap and is only
    meaningful on the homepage. Offloading it from the shared layout
@@ -27,19 +28,47 @@ export default function LayoutShell({ children }: { children: ReactNode }) {
   // Non-homepage routes skip the preloader entirely — start "done".
   const [preloaderDone, setPreloaderDone] = useState(!isHome);
 
+  // Scroll to section after navigating from another page (via sessionStorage) or direct hash URL
+  useLayoutEffect(() => {
+    if (!isHome) return;
+
+    // Determine target section: sessionStorage (client nav) > URL hash (direct link)
+    const targetId =
+      sessionStorage.getItem('scrollToSection') ||
+      (window.location.hash ? window.location.hash.slice(1) : '');
+
+    if (targetId) {
+      sessionStorage.removeItem('scrollToSection');
+      setPreloaderDone(true);
+
+      // Poll with requestAnimationFrame until the element exists, then scroll
+      const tryScroll = () => {
+        const el = document.getElementById(targetId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          requestAnimationFrame(tryScroll);
+        }
+      };
+      requestAnimationFrame(tryScroll);
+    }
+  }, [isHome]);
+
   return (
     <PreloaderProvider value={{ preloaderDone }}>
-      <div className="min-h-screen relative antialiased selection:bg-primary selection:text-white">
-        <CursorFollower />
-        {isHome && !preloaderDone && (
-          <Preloader onComplete={() => setPreloaderDone(true)} />
-        )}
+      <PinProvider>
+        <div className="min-h-screen relative antialiased selection:bg-primary selection:text-white">
+          <CursorFollower />
+          {isHome && !preloaderDone && (
+            <Preloader onComplete={() => setPreloaderDone(true)} />
+          )}
 
-        <header>
-          <Nav />
-        </header>
-        <main>{children}</main>
-      </div>
+          <header>
+            <Nav />
+          </header>
+          <main>{children}</main>
+        </div>
+      </PinProvider>
     </PreloaderProvider>
   );
 }
