@@ -40,3 +40,29 @@ export interface CostBreakdown {
   lowRange: number;
   highRange: number;
 }
+
+/** A single CSI division cost line item. */
+export interface CostDivision {
+  csiCode: string;
+  name: string;
+  cost: number;
+}
+
+/** Full project detail with cost estimation breakdown. */
+export interface ProjectDetail {
+  id: string;
+  slug: string;
+  title: string;
+  category: string;
+  location: string;
+  imageUrl: string;
+  pdfUrl: string;
+  scope: string[];
+  totalAreaSqFt: number;
+  estimatedCost: number;
+  suggestedBid: number;
+  costPerSf: number;
+  costDivisions: CostDivision[];
+  csiDivisions: string[];
+  description: string;
+}

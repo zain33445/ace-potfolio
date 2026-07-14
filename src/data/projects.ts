@@ -1,0 +1,349 @@
+import type { ProjectDetail } from '@/src/types';
+
+export const projects: ProjectDetail[] = [
+  {
+    id: 'P-001',
+    slug: 'daniel-teel-residential-house',
+    title: 'Daniel Teel Residential House',
+    category: 'RESIDENTIAL',
+    location: 'Texas, USA',
+    imageUrl:
+      'https://theaceservices.com/wp-content/uploads/2025/03/Denia-Teel.jpg',
+    pdfUrl:
+      'http://theaceservices.com/wp-content/uploads/2024/10/GC-Sample-Daneil-Teel-All-Trade.pdf',
+    scope: ['Complete Cost Estimation', 'Quantity Takeoff'],
+    totalAreaSqFt: 5789,
+    estimatedCost: 530035,
+    suggestedBid: 702296,
+    costPerSf: 121.32,
+    description:
+      'Full residential cost estimation for a single-family residence including material takeoffs, labor analysis, and bid preparation across all 12 trade divisions.',
+    costDivisions: [
+      { csiCode: '09', name: 'Finishes', cost: 169959 },
+      { csiCode: '08', name: 'Openings', cost: 82354 },
+      { csiCode: '07', name: 'Thermal Protection', cost: 59952 },
+      { csiCode: '03', name: 'Concrete', cost: 39443 },
+      { csiCode: '22', name: 'Plumbing', cost: 36839 },
+      { csiCode: '11', name: 'Specialties', cost: 33855 },
+      { csiCode: '06', name: 'Wood Components', cost: 30287 },
+      { csiCode: '12', name: 'Furnishings', cost: 25846 },
+      { csiCode: '26', name: 'Electrical', cost: 24878 },
+    ],
+    csiDivisions: [
+      '01 General Requirements',
+      '03 Concrete',
+      '06 Wood & Composites',
+      '07 Thermal Protection',
+      '08 Openings',
+      '09 Finishes',
+      '11 Specialties',
+      '12 Furnishings',
+      '22 Plumbing',
+      '23 HVAC',
+      '26 Electrical',
+      '32 Earthwork',
+    ],
+  },
+  {
+    id: 'P-042',
+    slug: 'fellas-car-wash-multi-site',
+    title: 'Fellas Car Wash Multi-Site Takeoff',
+    category: 'COMMERCIAL',
+    location: 'Florida, USA',
+    imageUrl:
+      'https://theaceservices.com/wp-content/uploads/2025/03/Five-star-car-wash.png',
+    pdfUrl:
+      'http://theaceservices.com/wp-content/uploads/2024/10/GC-Sample-NEW-AUTOMATED-CARWASH-FACILITY-All-Trade.pdf',
+    scope: ['Full Takeoff', 'Framing Survey'],
+    totalAreaSqFt: 18500,
+    estimatedCost: 2450000,
+    suggestedBid: 3185000,
+    costPerSf: 132.43,
+    description:
+      'Parametric quantity estimate spanning three high-throughput mechanical vehicle corridors. Successfully verified for zoning and foundation slab loading factors.',
+    costDivisions: [
+      { csiCode: '03', name: 'Concrete', cost: 612500 },
+      { csiCode: '05', name: 'Metals', cost: 367500 },
+      { csiCode: '08', name: 'Openings', cost: 294000 },
+      { csiCode: '09', name: 'Finishes', cost: 245000 },
+      { csiCode: '22', name: 'Plumbing', cost: 220500 },
+      { csiCode: '23', name: 'HVAC', cost: 196000 },
+      { csiCode: '26', name: 'Electrical', cost: 171500 },
+      { csiCode: '33', name: 'Utilities', cost: 147000 },
+    ],
+    csiDivisions: [
+      '01 General Requirements',
+      '03 Concrete',
+      '05 Metals',
+      '08 Openings',
+      '09 Finishes',
+      '22 Plumbing',
+      '23 HVAC',
+      '26 Electrical',
+      '33 Utilities',
+    ],
+  },
+  {
+    id: 'P-089',
+    slug: 'sauced-house-industrial-kitchen',
+    title: "Sauce'd House Industrial Kitchen",
+    category: 'HOSPITALITY',
+    location: 'Illinois, USA',
+    imageUrl:
+      'https://theaceservices.com/wp-content/uploads/2025/03/Sauced-House.jpg',
+    pdfUrl:
+      'http://theaceservices.com/wp-content/uploads/2024/10/Sauced-House-Restaurant-2.pdf',
+    scope: ['MEP Takeoff', 'Commercial HVAC'],
+    totalAreaSqFt: 12000,
+    estimatedCost: 1850000,
+    suggestedBid: 2405000,
+    costPerSf: 154.17,
+    description:
+      'Rigorous calculation of mechanical, plumbing ventilation, and fire safety systems. Integrated gas connection offsets mapped to state administrative criteria.',
+    costDivisions: [
+      { csiCode: '23', name: 'HVAC', cost: 462500 },
+      { csiCode: '22', name: 'Plumbing', cost: 370000 },
+      { csiCode: '26', name: 'Electrical', cost: 277500 },
+      { csiCode: '09', name: 'Finishes', cost: 222000 },
+      { csiCode: '11', name: 'Specialties', cost: 166500 },
+      { csiCode: '08', name: 'Openings', cost: 138750 },
+      { csiCode: '07', name: 'Thermal Protection', cost: 111000 },
+      { csiCode: '03', name: 'Concrete', cost: 101750 },
+    ],
+    csiDivisions: [
+      '01 General Requirements',
+      '03 Concrete',
+      '07 Thermal Protection',
+      '08 Openings',
+      '09 Finishes',
+      '11 Specialties',
+      '22 Plumbing',
+      '23 HVAC',
+      '26 Electrical',
+    ],
+  },
+  {
+    id: 'P-112',
+    slug: 'hteao-beverages-franchise',
+    title: 'HTeaO Beverages Franchise Design',
+    category: 'RETAIL',
+    location: 'Arizona, USA',
+    imageUrl:
+      'https://theaceservices.com/wp-content/uploads/2025/03/HTeao-3D-Renders.pdf',
+    pdfUrl:
+      'https://theaceservices.com/wp-content/uploads/2025/03/HTeao-3D-Renders.pdf',
+    scope: ['Structural Concrete Eval', 'Permit Stamping'],
+    totalAreaSqFt: 8500,
+    estimatedCost: 950000,
+    suggestedBid: 1235000,
+    costPerSf: 111.76,
+    description:
+      'Rapid turnaround design check for light foundation framework and water intake systems. Prepared complete permit drawing sheets ready for municipal review.',
+    costDivisions: [
+      { csiCode: '03', name: 'Concrete', cost: 237500 },
+      { csiCode: '08', name: 'Openings', cost: 152000 },
+      { csiCode: '09', name: 'Finishes', cost: 123500 },
+      { csiCode: '22', name: 'Plumbing', cost: 104500 },
+      { csiCode: '26', name: 'Electrical', cost: 85500 },
+      { csiCode: '23', name: 'HVAC', cost: 76000 },
+      { csiCode: '11', name: 'Specialties', cost: 66500 },
+      { csiCode: '07', name: 'Thermal Protection', cost: 57000 },
+    ],
+    csiDivisions: [
+      '01 General Requirements',
+      '03 Concrete',
+      '07 Thermal Protection',
+      '08 Openings',
+      '09 Finishes',
+      '11 Specialties',
+      '22 Plumbing',
+      '23 HVAC',
+      '26 Electrical',
+    ],
+  },
+  {
+    id: 'P-156',
+    slug: 'lake-arlington-civic-center',
+    title: 'Lake Arlington Civic Center Branch',
+    category: 'MUNICIPAL',
+    location: 'Texas, USA',
+    imageUrl:
+      'https://theaceservices.com/wp-content/uploads/2025/03/1005-24-LAKE-ARLINGTON-BRANCH-LIBRARY-GREEN-OAKS-BLVD-Arlington-TX-76016.pdf',
+    pdfUrl:
+      'https://theaceservices.com/wp-content/uploads/2025/03/1005-24-LAKE-ARLINGTON-BRANCH-LIBRARY-GREEN-OAKS-BLVD-Arlington-TX-76016.pdf',
+    scope: ['Comprehensive CSI Division Takeoff'],
+    totalAreaSqFt: 45000,
+    estimatedCost: 12500000,
+    suggestedBid: 16250000,
+    costPerSf: 277.78,
+    description:
+      'State audited development. Structured all 50 structural engineering divisions under CSI MasterFormat, passing local architectural inspection with zero revisions.',
+    costDivisions: [
+      { csiCode: '03', name: 'Concrete', cost: 3125000 },
+      { csiCode: '05', name: 'Metals', cost: 1875000 },
+      { csiCode: '09', name: 'Finishes', cost: 1500000 },
+      { csiCode: '08', name: 'Openings', cost: 1250000 },
+      { csiCode: '23', name: 'HVAC', cost: 1125000 },
+      { csiCode: '26', name: 'Electrical', cost: 1000000 },
+      { csiCode: '22', name: 'Plumbing', cost: 875000 },
+      { csiCode: '07', name: 'Thermal Protection', cost: 750000 },
+    ],
+    csiDivisions: [
+      '01 General Requirements',
+      '03 Concrete',
+      '05 Metals',
+      '07 Thermal Protection',
+      '08 Openings',
+      '09 Finishes',
+      '22 Plumbing',
+      '23 HVAC',
+      '26 Electrical',
+      '32 Earthwork',
+    ],
+  },
+  {
+    id: 'P-171',
+    slug: 'crestfield-commercial-warehousing',
+    title: 'Crestfield Commercial Warehousing',
+    category: 'COMMERCIAL',
+    location: 'Georgia, USA',
+    imageUrl:
+      'https://theaceservices.com/wp-content/uploads/2025/03/Estimate-8200-Tristar-Drive-Irving-Texas.pdf',
+    pdfUrl:
+      'https://theaceservices.com/wp-content/uploads/2025/03/Estimate-8200-Tristar-Drive-Irving-Texas.pdf',
+    scope: ['Steel Structural Survey', 'Roofing Survey'],
+    totalAreaSqFt: 85000,
+    estimatedCost: 18200000,
+    suggestedBid: 23660000,
+    costPerSf: 214.12,
+    description:
+      'Detailed quantity assessment of architectural trusses, deck metal panels, and massive pile foundations, optimized for seismic activity calculations.',
+    costDivisions: [
+      { csiCode: '05', name: 'Metals', cost: 5460000 },
+      { csiCode: '03', name: 'Concrete', cost: 3640000 },
+      { csiCode: '07', name: 'Thermal Protection', cost: 2184000 },
+      { csiCode: '08', name: 'Openings', cost: 1820000 },
+      { csiCode: '09', name: 'Finishes', cost: 1456000 },
+      { csiCode: '26', name: 'Electrical', cost: 1274000 },
+      { csiCode: '22', name: 'Plumbing', cost: 1092000 },
+      { csiCode: '23', name: 'HVAC', cost: 910000 },
+    ],
+    csiDivisions: [
+      '01 General Requirements',
+      '03 Concrete',
+      '05 Metals',
+      '07 Thermal Protection',
+      '08 Openings',
+      '09 Finishes',
+      '22 Plumbing',
+      '23 HVAC',
+      '26 Electrical',
+      '32 Earthwork',
+    ],
+  },
+  {
+    id: 'P-202',
+    slug: 'vista-luxury-boutique-hotel',
+    title: 'The Vista Luxury Boutique Hotel',
+    category: 'HOSPITALITY',
+    location: 'California, USA',
+    imageUrl:
+      'https://theaceservices.com/wp-content/uploads/2025/03/Estimate-2325-Comstock-San-Diego-CA-921111.pdf',
+    pdfUrl:
+      'https://theaceservices.com/wp-content/uploads/2025/03/Estimate-2325-Comstock-San-Diego-CA-921111.pdf',
+    scope: ['Permit Drawing Check', 'Structural Stamping'],
+    totalAreaSqFt: 35000,
+    estimatedCost: 9800000,
+    suggestedBid: 12740000,
+    costPerSf: 280.0,
+    description:
+      'Structural framing review for fire-rated partitions and sound attenuation layers. Certified and delivered fully stamped blueprints in full municipal alignment.',
+    costDivisions: [
+      { csiCode: '09', name: 'Finishes', cost: 2450000 },
+      { csiCode: '08', name: 'Openings', cost: 1568000 },
+      { csiCode: '05', name: 'Metals', cost: 1274000 },
+      { csiCode: '07', name: 'Thermal Protection', cost: 1078000 },
+      { csiCode: '23', name: 'HVAC', cost: 980000 },
+      { csiCode: '26', name: 'Electrical', cost: 784000 },
+      { csiCode: '22', name: 'Plumbing', cost: 686000 },
+      { csiCode: '11', name: 'Specialties', cost: 588000 },
+    ],
+    csiDivisions: [
+      '01 General Requirements',
+      '03 Concrete',
+      '05 Metals',
+      '07 Thermal Protection',
+      '08 Openings',
+      '09 Finishes',
+      '11 Specialties',
+      '22 Plumbing',
+      '23 HVAC',
+      '26 Electrical',
+    ],
+  },
+  {
+    id: 'P-087',
+    slug: 'commercial-office-building',
+    title: 'Commercial Office Building',
+    category: 'COMMERCIAL',
+    location: 'Texas, USA',
+    imageUrl:
+      'https://theaceservices.com/wp-content/uploads/2025/03/Retail-Spaces.jpg',
+    pdfUrl:
+      'http://theaceservices.com/wp-content/uploads/2024/10/GC-Sample-Corner-of-MD-RT-5-Golden-Beach-Rd-Charlotte-Hall-MD.pdf',
+    scope: ['Complete Cost Estimation', 'Quantity Takeoff'],
+    totalAreaSqFt: 120000,
+    estimatedCost: 28500000,
+    suggestedBid: 37050000,
+    costPerSf: 237.5,
+    description:
+      'Full commercial office building estimation including concrete takeoff, structural steel analysis, MEP coordination, and complete material cost analysis across all 16 CSI divisions.',
+    costDivisions: [
+      { csiCode: '03', name: 'Concrete', cost: 7125000 },
+      { csiCode: '05', name: 'Metals', cost: 4275000 },
+      { csiCode: '09', name: 'Finishes', cost: 3420000 },
+      { csiCode: '08', name: 'Openings', cost: 2850000 },
+      { csiCode: '23', name: 'HVAC', cost: 2565000 },
+      { csiCode: '26', name: 'Electrical', cost: 2280000 },
+      { csiCode: '22', name: 'Plumbing', cost: 1995000 },
+      { csiCode: '07', name: 'Thermal Protection', cost: 1710000 },
+    ],
+    csiDivisions: [
+      '01 General Requirements',
+      '03 Concrete',
+      '05 Metals',
+      '07 Thermal Protection',
+      '08 Openings',
+      '09 Finishes',
+      '11 Specialties',
+      '12 Furnishings',
+      '22 Plumbing',
+      '23 HVAC',
+      '26 Electrical',
+      '32 Earthwork',
+    ],
+  },
+];
+
+/**
+ * Look up a project by its URL slug.
+ * Returns undefined when no match is found.
+ */
+export function getProjectBySlug(slug: string): ProjectDetail | undefined {
+  return projects.find((p) => p.slug === slug);
+}
+
+/**
+ * Get all projects, sorted by ID in descending order (newest first).
+ */
+export function getAllProjects(): ProjectDetail[] {
+  return [...projects];
+}
+
+/**
+ * Get featured projects for the sidebar detail page,
+ * excluding the project matching the given slug.
+ */
+export function getFeaturedProjects(currentSlug: string): ProjectDetail[] {
+  return projects.filter((p) => p.slug !== currentSlug).slice(0, 4);
+}
