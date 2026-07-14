@@ -295,21 +295,21 @@ export default function StatsSection() {
         className="p-6 border border-blueprint-line bg-background bracket-corners group hover:border-primary hover:shadow-sm transition-all duration-300 w-full max-w-[280px] relative"
       >
         <div className="flex justify-between items-center mb-3">
-          <span className="font-mono text-[9px] text-[#FF6B00] tracking-wider block font-bold">
+          <span className="font-mono text-[10px] text-[#FF6B00] tracking-wider block font-bold">
             {stat.sysId}
           </span>
           <StatIcon className="w-4 h-4 text-on-surface-variant group-hover:text-primary transition-colors" />
         </div>
         <StatCounter stat={stat} shouldCount={shouldCount} />
-        <h4 className="font-space font-bold text-sm text-on-background group-hover:text-primary transition-colors">
+        <h4 className="font-space font-bold text-base text-on-background group-hover:text-primary transition-colors">
           {stat.label}
         </h4>
-        <p className="font-sans text-xs text-on-surface-variant mt-2 leading-relaxed font-semibold">
+        <p className="font-sans text-sm text-on-surface-variant mt-2 leading-relaxed font-semibold">
           {stat.desc}
         </p>
         {raw >= 0 && (
           <div className="absolute top-4 right-4 text-primary">
-            <span className="font-mono text-[9px] font-bold">LIVE</span>
+            <span className="font-mono text-[10px] font-bold">LIVE</span>
           </div>
         )}
       </motion.div>

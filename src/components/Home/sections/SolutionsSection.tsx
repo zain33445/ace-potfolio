@@ -11,7 +11,7 @@ export default function SolutionsSection() {
             <h2 className="font-space text-3xl md:text-4xl font-extrabold text-on-background tracking-tighter">
               Core Service Solutions
             </h2>
-            <p className="font-sans text-sm text-on-surface-variant">
+            <p className="font-sans text-base text-on-surface-variant">
               Explore our specialized divisions engineered to provide highly reliable pricing models and architectural reviews.
             </p>
           </div>

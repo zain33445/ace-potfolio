@@ -30,7 +30,7 @@ export default function StepReview({ inputs, breakdown, transmitted, onTransmit 
           { label: 'Delivery', value: inputs.turnaroundSpeed === 'standard' ? '48 Hours' : '24 Hours (Rush)' },
           { label: 'Region', value: `Zip ${inputs.zipCode || '75001'}` },
         ].map((row) => (
-          <div key={row.label} className="flex justify-between items-center font-mono text-[11px]">
+          <div key={row.label} className="flex justify-between items-center font-mono text-xs">
             <span className="text-on-surface-variant">{row.label}</span>
             <span className="text-on-background font-bold uppercase">{row.value}</span>
           </div>
@@ -45,7 +45,7 @@ export default function StepReview({ inputs, breakdown, transmitted, onTransmit 
         onClick={onTransmit}
         disabled={transmitted}
         whileTap={{ scale: 0.98 }}
-        className="w-full bg-primary text-white font-mono text-xs font-bold uppercase tracking-widest py-3.5 bracket-corners transition-all duration-200 flex items-center justify-center gap-2 shadow-sm disabled:opacity-60"
+        className="w-full bg-primary text-white font-mono text-sm font-bold uppercase tracking-widest py-3.5 bracket-corners transition-all duration-200 flex items-center justify-center gap-2 shadow-sm disabled:opacity-60"
       >
         {transmitted ? (
           <motion.span

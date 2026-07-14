@@ -327,7 +327,7 @@ export default function ContactRequest() {
                             <div className="font-space font-semibold text-sm text-on-background mb-1">
                               {option.label}
                             </div>
-                            <div className="font-mono text-[9px] text-on-surface-variant tracking-wider">
+                            <div className="font-mono text-[10px] text-on-surface-variant tracking-wider">
                               {option.range}
                             </div>
                           </motion.button>
@@ -467,7 +467,7 @@ export default function ContactRequest() {
                             disabled={form.isSubmitting || !form.email || !form.name}
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
-                            className="w-full group relative overflow-hidden rounded-full bg-on-background text-white font-mono text-xs font-bold py-4 px-8 uppercase tracking-[0.2em] transition-all duration-500 disabled:opacity-30 disabled:cursor-not-allowed"
+                            className="w-full group relative overflow-hidden rounded-full bg-on-background text-white font-mono text-sm font-bold py-4 px-8 uppercase tracking-[0.2em] transition-all duration-500 disabled:opacity-30 disabled:cursor-not-allowed"
                           >
                             {/* Button glow */}
                             <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/20 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
@@ -506,7 +506,7 @@ export default function ContactRequest() {
                               <ArrowLeft className="w-3 h-3" />
                               Back
                             </button>
-                            <div className="flex items-center gap-4 font-mono text-[9px] text-on-surface-variant/50 uppercase tracking-wider">
+                            <div className="flex items-center gap-4 font-mono text-[10px] text-on-surface-variant/50 uppercase tracking-wider">
                               <span className="flex items-center gap-1.5">
                                 <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
                                 SSL

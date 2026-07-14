@@ -11,7 +11,7 @@ export default function FAQSection() {
             <h2 className="font-space text-3xl md:text-4xl font-extrabold text-on-background tracking-tighter">
               Frequently Asked Questions
             </h2>
-            <p className="font-sans text-sm text-on-surface-variant">
+            <p className="font-sans text-base text-on-surface-variant">
               Common questions about our estimating process, turnaround times, and how we can support your next project.
             </p>
           </div>

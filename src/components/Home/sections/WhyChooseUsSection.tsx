@@ -164,13 +164,13 @@ export default function WhyChooseUsSection() {
         animate={{ opacity, y, scale, rotate }}
         className="p-5 border border-blueprint-line bg-surface hover:border-primary transition-colors duration-300 bracket-corners w-full max-w-[280px]"
       >
-        <span className="font-mono text-[9px] text-[#FF6B00] font-bold tracking-widest block mb-2">
+        <span className="font-mono text-[10px] text-[#FF6B00] font-bold tracking-widest block mb-2">
           {card.label}
         </span>
-        <h3 className="font-space font-extrabold text-base text-on-background mb-2 uppercase leading-tight">
+        <h3 className="font-space font-extrabold text-lg text-on-background mb-2 uppercase leading-tight">
           {card.title}
         </h3>
-        <p className="font-sans text-[11px] text-on-surface-variant leading-relaxed font-semibold">
+        <p className="font-sans text-sm text-on-surface-variant leading-relaxed font-semibold">
           {card.desc}
         </p>
       </motion.div>
@@ -198,7 +198,7 @@ export default function WhyChooseUsSection() {
             <div className="flex justify-center pt-1 pointer-events-auto">
               <div className="w-16 h-0.5 bg-primary rounded-full" />
             </div>
-            <p className="font-sans text-sm text-on-surface-variant font-medium pointer-events-auto">
+            <p className="font-sans text-base text-on-surface-variant font-medium pointer-events-auto">
               We leverage elite mathematical modeling and multi-layered audit procedures to deliver unmatched pre-construction confidence.
             </p>
           </div>

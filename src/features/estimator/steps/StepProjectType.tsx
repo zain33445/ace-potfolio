@@ -18,7 +18,7 @@ export default function StepProjectType({ inputs, setInputs }: { inputs: Inputs;
           <button
             key={type.value}
             onClick={() => setInputs((prev) => ({ ...prev, projectType: type.value as Inputs['projectType'] }))}
-            className={`px-3 py-3 border text-left font-sans text-xs font-semibold uppercase tracking-wider transition-all duration-200 bracket-corners ${
+            className={`px-3 py-3 border text-left font-sans text-sm font-semibold uppercase tracking-wider transition-all duration-200 bracket-corners ${
               inputs.projectType === type.value
                 ? 'border-primary bg-primary/10 text-primary font-bold shadow-sm'
                 : 'border-blueprint-line text-on-surface-variant hover:border-primary hover:text-primary bg-surface'

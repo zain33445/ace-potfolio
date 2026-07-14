@@ -133,11 +133,11 @@ export default function ProjectPortfolio() {
 
                     <div className="grid grid-cols-2 gap-3 font-mono text-[10px] text-on-surface-variant mb-3">
                       <div>
-                        <span className="block text-primary uppercase font-bold text-[9px]">SCOPE OF WORK</span>
+                        <span className="block text-primary uppercase font-bold text-[10px]">SCOPE OF WORK</span>
                         <span className="text-on-background font-sans font-medium">{p.scope}</span>
                       </div>
                       <div>
-                        <span className="block text-primary uppercase font-bold text-[9px]">TURNAROUND</span>
+                        <span className="block text-primary uppercase font-bold text-[10px]">TURNAROUND</span>
                         <span className="text-on-background font-sans font-medium">{p.turnaroundHours} Hours</span>
                       </div>
                     </div>
@@ -152,7 +152,7 @@ export default function ProjectPortfolio() {
                         className="overflow-hidden bg-background p-4 border border-dashed border-blueprint-line bracket-corners my-3 font-sans text-xs text-on-surface-variant space-y-2.5"
                       >
                         <p className="leading-relaxed font-medium">{p.description}</p>
-                        <div className="flex border-t border-dashed border-blueprint-line pt-2 justify-between font-mono text-[9px] text-on-surface-variant">
+                        <div className="flex border-t border-dashed border-blueprint-line pt-2 justify-between font-mono text-[10px] text-on-surface-variant">
                           <span>Area: {p.totalAreaSqFt.toLocaleString()} SF</span>
                           <span>Est. Volume: ${(p.estimatedCost / 1000000).toFixed(1)}M</span>
                         </div>

@@ -150,7 +150,7 @@ export default function Nav() {
         >
           {/* Section links (mobile) — always visible */}
           <div className="space-y-0">
-            <p className="font-mono text-[9px] text-on-surface-variant/60 tracking-widest uppercase mb-1">
+            <p className="font-mono text-[10px] text-on-surface-variant/60 tracking-widest uppercase mb-1">
               Sections
             </p>
             <button onClick={() => handleNav('solutions')} className="text-left py-2 font-mono text-sm tracking-wider hover:text-primary border-b border-blueprint-line/30 w-full">
@@ -169,7 +169,7 @@ export default function Nav() {
 
           {/* Page links (mobile) */}
           <div className="space-y-0">
-            <p className="font-mono text-[9px] text-on-surface-variant/60 tracking-widest uppercase mb-1">
+            <p className="font-mono text-[10px] text-on-surface-variant/60 tracking-widest uppercase mb-1">
               Pages
             </p>
             {PAGE_LINKS.map(({ href, shortLabel }) => (
@@ -183,7 +183,7 @@ export default function Nav() {
               >
                 {shortLabel}
                 {isActive(href) && (
-                  <span className="ml-2 text-[9px] tracking-widest">(ACTIVE)</span>
+                  <span className="ml-2 text-[10px] tracking-widest">(ACTIVE)</span>
                 )}
               </Link>
             ))}
@@ -197,14 +197,14 @@ export default function Nav() {
             <Link
               href="/"
               onClick={() => setMobileMenuOpen(false)}
-              className="bg-primary/20 text-primary border border-primary font-mono text-xs font-bold py-3 text-center uppercase tracking-widest block bracket-corners"
+              className="bg-primary/20 text-primary border border-primary font-mono text-sm font-bold py-3 text-center uppercase tracking-widest block bracket-corners"
             >
               HOME
             </Link>
             <Link
               href="/calculator"
               onClick={() => setMobileMenuOpen(false)}
-              className="bg-primary text-white font-mono text-xs font-bold py-3 text-center uppercase tracking-widest block bracket-corners"
+              className="bg-primary text-white font-mono text-sm font-bold py-3 text-center uppercase tracking-widest block bracket-corners"
             >
               CALCULATOR
             </Link>

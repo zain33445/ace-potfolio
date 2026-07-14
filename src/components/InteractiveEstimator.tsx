@@ -72,7 +72,7 @@ export default function InteractiveEstimator() {
                   {i < stepIndex ? <Check className="w-3 h-3" /> : i + 1}
                 </div>
                 <div className="hidden md:block">
-                  <span className={`block font-mono text-[9px] uppercase tracking-widest ${
+                  <span className={`block font-mono text-[10px] uppercase tracking-widest ${
                     i <= stepIndex ? 'text-primary' : 'text-on-surface-variant'
                   }`}>{s.description}</span>
                 </div>
@@ -126,7 +126,7 @@ export default function InteractiveEstimator() {
               </div>
               <button
                 onClick={next}
-                className="flex items-center gap-1.5 px-5 py-2.5 bg-primary text-white font-mono text-xs font-bold uppercase tracking-widest bracket-corners hover-brackets transition-all duration-200"
+                className="flex items-center gap-1.5 px-5 py-2.5 bg-primary text-white font-mono text-sm font-bold uppercase tracking-widest bracket-corners hover-brackets transition-all duration-200"
               >
                 Continue <ChevronRight className="w-3.5 h-3.5" />
               </button>
@@ -139,18 +139,18 @@ export default function InteractiveEstimator() {
           <div>
             <div className="flex justify-between items-start mb-6">
               <div>
-                <span className="font-mono text-[10px] text-on-surface-variant block uppercase">
+                <span className="font-mono text-xs text-on-surface-variant block uppercase">
                   ESTIMATED CONSTRUCTION COST INTERVAL
                 </span>
                 <motion.h3 className="font-space font-bold text-4xl md:text-5xl text-on-background tracking-tighter mt-1">
                   ${displayTotal}
                 </motion.h3>
-                <span className="font-mono text-[10px] text-primary block mt-1 tracking-wider uppercase">
+                <span className="font-mono text-xs text-primary block mt-1 tracking-wider uppercase">
                   Class 3 Accuracy range: ${breakdown.lowRange.toLocaleString()} — ${breakdown.highRange.toLocaleString()} (99.8%)
                 </span>
               </div>
               <div className="p-2 border border-blueprint-line bg-surface bracket-corners font-mono text-center">
-                <span className="block text-[9px] text-primary">BID ENGINE</span>
+                <span className="block text-[10px] text-primary">BID ENGINE</span>
                 <span className="block text-sm font-bold">ACTIVE</span>
               </div>
             </div>

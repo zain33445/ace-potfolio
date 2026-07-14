@@ -27,7 +27,7 @@ export default function StepArea({ inputs, setInputs }: { inputs: Inputs; setInp
         onChange={(e) => setInputs((prev) => ({ ...prev, areaSqFt: parseInt(e.target.value) }))}
         className="w-full accent-primary h-1.5 bg-background rounded-lg appearance-none cursor-pointer border border-blueprint-line"
       />
-      <div className="flex justify-between font-mono text-[9px] text-on-surface-variant">
+      <div className="flex justify-between font-mono text-[10px] text-on-surface-variant">
         <span>1,000 SF</span>
         <span>50,000 SF</span>
         <span>100,000 SF</span>

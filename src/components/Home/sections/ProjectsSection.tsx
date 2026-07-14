@@ -26,7 +26,7 @@ export default function ProjectsSection() {
                 Executed Takeoffs
               </h2>
 
-              <p className="font-sans text-sm text-on-surface-variant max-w-md">
+              <p className="font-sans text-base text-on-surface-variant max-w-md">
                 Review certified schematics and bills of quantities delivered
                 across the nation. Click any project for the full cost breakdown.
               </p>
@@ -57,21 +57,21 @@ export default function ProjectsSection() {
                       }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                    <div className="absolute left-3 top-3 border border-white/20 bg-black/50 px-2 py-1 font-mono text-[9px] font-bold tracking-wider text-white/80 backdrop-blur-sm">
+                    <div className="absolute left-3 top-3 border border-white/20 bg-black/50 px-2 py-1 font-mono text-[10px] font-bold tracking-wider text-white/80 backdrop-blur-sm">
                       {project.category}
                     </div>
                   </div>
 
                   {/* Content */}
                   <div className="flex flex-col p-4">
-                    <h3 className="font-space text-sm font-bold leading-snug text-on-background transition-colors group-hover:text-primary line-clamp-2">
+                    <h3 className="font-space text-base font-bold leading-snug text-on-background transition-colors group-hover:text-primary line-clamp-2">
                       {project.title}
                     </h3>
-                    <p className="mt-1 font-mono text-[9px] text-on-surface-variant">
+                    <p className="mt-1 font-mono text-[10px] text-on-surface-variant">
                       {project.location}
                     </p>
                     <div className="my-2 h-px w-full bg-blueprint-line transition-colors group-hover:bg-primary" />
-                    <div className="flex items-center justify-between font-mono text-[9px] text-on-surface-variant">
+                    <div className="flex items-center justify-between font-mono text-[10px] text-on-surface-variant">
                       <span>{project.totalAreaSqFt.toLocaleString()} SF</span>
                       <span className="text-primary font-bold">
                         ${(project.estimatedCost / 1000000).toFixed(1)}M
@@ -86,7 +86,7 @@ export default function ProjectsSection() {
             <div className="flex justify-center mt-4">
               <Link
                 href="/projects"
-                className="group/btn inline-flex items-center gap-2 border border-blueprint-line bg-transparent px-6 py-3 font-mono text-[10px] font-bold uppercase tracking-wider text-on-surface-variant transition-all hover:border-primary hover:text-primary"
+                className="group/btn inline-flex items-center gap-2 border border-blueprint-line bg-transparent px-6 py-3 font-mono text-xs font-bold uppercase tracking-wider text-on-surface-variant transition-all hover:border-primary hover:text-primary"
               >
                 <span>VIEW ALL PROJECTS</span>
                 <svg

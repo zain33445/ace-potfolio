@@ -48,7 +48,7 @@ export default function CostBreakdownChart({ divisions, maxCost }: Props) {
               />
               {/* Percentage label inside bar */}
               <div className="absolute inset-y-0 left-0 flex items-center px-2">
-                <span className="font-mono text-[9px] font-bold text-white mix-blend-difference">
+                <span className="font-mono text-[10px] font-bold text-white mix-blend-difference">
                   {pct.toFixed(1)}%
                 </span>
               </div>

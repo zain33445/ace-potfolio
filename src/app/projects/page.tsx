@@ -170,7 +170,7 @@ export default async function ProjectsPage() {
 function StatBlock({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <div className="font-mono text-[9px] font-bold uppercase tracking-[0.15em] text-on-surface-variant">
+      <div className="font-mono text-[10px] font-bold uppercase tracking-[0.15em] text-on-surface-variant">
         {label}
       </div>
       <div className="mt-1 font-[family-name:var(--font-space)] text-xl font-bold text-on-background">
@@ -223,13 +223,13 @@ function ProjectCard({
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
               {/* Cost badge — top left */}
-              <div className="absolute left-3 top-3 border border-white/20 bg-black/50 px-2 py-1 font-mono text-[9px] font-bold tracking-wider text-white/80 backdrop-blur-sm">
+              <div className="absolute left-3 top-3 border border-white/20 bg-black/50 px-2 py-1 font-mono text-[10px] font-bold tracking-wider text-white/80 backdrop-blur-sm">
                 {formatCurrency(project.estimatedCost)}
               </div>
 
               {/* Category badge — top right */}
               <div
-                className={`absolute right-3 top-3 border px-2 py-1 font-mono text-[9px] font-bold tracking-wider backdrop-blur-sm ${colorClass}`}
+                className={`absolute right-3 top-3 border px-2 py-1 font-mono text-[10px] font-bold tracking-wider backdrop-blur-sm ${colorClass}`}
               >
                 {project.category}
               </div>
@@ -253,7 +253,7 @@ function ProjectCard({
 
           {/* Scope */}
           <div className="mb-2">
-            <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-primary">
+            <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-primary">
               SCOPE:
             </span>
             <p className="mt-0.5 font-sans text-xs text-on-surface-variant">
@@ -263,7 +263,7 @@ function ProjectCard({
 
           {/* Size */}
           <div className="mb-3">
-            <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-primary">
+            <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-primary">
               SIZE:
             </span>
             <p className="mt-0.5 font-sans text-xs text-on-surface-variant">
@@ -274,7 +274,7 @@ function ProjectCard({
           {/* Services checklist */}
           <div className="mb-4 space-y-1">
             {project.scope.map((item: string) => (
-              <div key={item} className="flex items-center gap-2 font-sans text-[11px] text-on-surface-variant">
+              <div key={item} className="flex items-center gap-2 font-sans text-xs text-on-surface-variant">
                 <svg className="h-3 w-3 flex-shrink-0 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
@@ -282,7 +282,7 @@ function ProjectCard({
               </div>
             ))}
             {project.costDivisions.slice(0, 3).map((d: CostDivision) => (
-              <div key={d.csiCode} className="flex items-center gap-2 font-sans text-[11px] text-on-surface-variant">
+              <div key={d.csiCode} className="flex items-center gap-2 font-sans text-xs text-on-surface-variant">
                 <svg className="h-3 w-3 flex-shrink-0 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="20 6 9 17 4 12" />
                 </svg>

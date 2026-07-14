@@ -114,7 +114,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
       <div className="flex items-center gap-4 border-t border-surface-variant pt-5">
         <Avatar initials={testimonial.initials} color={testimonial.accentColor} />
         <div className="min-w-0">
-          <p className="font-[family-name:var(--font-space)] text-sm font-bold text-on-surface">
+          <p className="font-[family-name:var(--font-space)] text-base font-bold text-on-surface">
             {testimonial.author}
           </p>
           <p className="text-xs text-on-surface-variant">

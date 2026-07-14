@@ -150,7 +150,7 @@ export default function ProcessFlow() {
           />
         </div>
 
-        <div className="absolute bottom-4 left-4 z-10 bg-background/95 border border-blueprint-line p-3 font-mono text-[10px] space-y-1 shadow-sm max-w-xs">
+        <div className="absolute bottom-4 left-4 z-10 bg-background/95 border border-blueprint-line p-3 font-mono text-xs space-y-1 shadow-sm max-w-xs">
           <span className="text-primary font-bold uppercase block">
             [STATUS_ACTIVE_STAGES]
           </span>
@@ -159,12 +159,12 @@ export default function ProcessFlow() {
             Step {activeStep}: {steps[activeStep - 1]?.title}
           </span>
 
-          <span className="block text-on-surface-variant leading-relaxed text-[9px]">
+          <span className="block text-on-surface-variant leading-relaxed text-[10px]">
             {steps[activeStep - 1]?.output}
           </span>
         </div>
 
-        <div className="absolute top-4 right-4 z-10 font-mono text-[10px] text-primary">
+        <div className="absolute top-4 right-4 z-10 font-mono text-xs text-primary">
           {activeStep}/{STEP_COUNT}
         </div>
       </div>
@@ -221,7 +221,7 @@ export default function ProcessFlow() {
 
                 <div className="flex-1 min-w-0">
                   <h3
-                    className={`font-space font-bold text-base transition-colors duration-300 ${
+                    className={`font-space font-bold text-lg transition-colors duration-300 ${
                       isOpen
                         ? 'text-primary'
                         : isDone
@@ -236,13 +236,13 @@ export default function ProcessFlow() {
                     className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-[500px]' : 'max-h-0'}`}
                   >
                     <div className="space-y-3 pt-2">
-                      <p className="font-sans text-xs text-on-surface-variant leading-relaxed">
+                      <p className="font-sans text-sm text-on-surface-variant leading-relaxed">
                         {step.desc}
                       </p>
 
-                      <div className="border-t border-dashed border-blueprint-line/60 pt-2 grid grid-cols-1 sm:grid-cols-2 gap-2 font-sans text-[10px] font-semibold text-on-surface-variant">
+                      <div className="border-t border-dashed border-blueprint-line/60 pt-2 grid grid-cols-1 sm:grid-cols-2 gap-2 font-sans text-xs font-semibold text-on-surface-variant">
                         <div>
-                          <span className="block text-primary uppercase font-mono text-[9px] mb-1 font-bold">
+                          <span className="block text-primary uppercase font-mono text-[10px] mb-1 font-bold">
                             [VERIFICATIONS]
                           </span>
 
@@ -260,7 +260,7 @@ export default function ProcessFlow() {
                         </div>
 
                         <div>
-                          <span className="block text-primary uppercase font-mono text-[9px] mb-1 font-bold">
+                          <span className="block text-primary uppercase font-mono text-[10px] mb-1 font-bold">
                             [MILESTONE_DELIVERABLE]
                           </span>
 

@@ -184,7 +184,7 @@ function HeroSection({ project }: { project: ProjectDetail }) {
 function QuickStat({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <div className="font-mono text-[9px] font-bold uppercase tracking-[0.15em] text-on-surface-variant">
+      <div className="font-mono text-[10px] font-bold uppercase tracking-[0.15em] text-on-surface-variant">
         {label}
       </div>
       <div className="mt-1 font-[family-name:var(--font-space)] text-2xl font-bold text-on-background">
@@ -213,7 +213,7 @@ function FeaturedProjectCard({ project }: { project: ProjectDetail }) {
         <h4 className="truncate font-[family-name:var(--font-space)] text-sm font-bold text-on-background transition-colors group-hover:text-primary">
           {project.title}
         </h4>
-        <p className="font-mono text-[9px] text-on-surface-variant">
+        <p className="font-mono text-[10px] text-on-surface-variant">
           {formatCurrency(project.estimatedCost)}
         </p>
       </div>
@@ -265,7 +265,7 @@ function ProjectSummarySection({ project }: { project: ProjectDetail }) {
 
           {/* Estimation Scope */}
           <div>
-            <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-primary">
+            <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-primary">
               ESTIMATION SCOPE
             </span>
             <div className="mt-2 space-y-1.5">
@@ -296,7 +296,7 @@ function ProjectSummarySection({ project }: { project: ProjectDetail }) {
 function MetricBox({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <div className="font-mono text-[9px] font-bold uppercase tracking-wider text-on-surface-variant">
+      <div className="font-mono text-[10px] font-bold uppercase tracking-wider text-on-surface-variant">
         {label}
       </div>
       <div className="mt-0.5 font-[family-name:var(--font-space)] text-lg font-bold text-on-background">
@@ -350,7 +350,7 @@ function CsiDivisionsSection({ project }: { project: ProjectDetail }) {
           {project.csiDivisions.map((div) => (
             <div
               key={div}
-              className="flex items-center gap-3 border border-blueprint-line/50 bg-background/50 px-3 py-2 font-mono text-[11px] text-on-surface-variant transition-colors hover:border-primary/30 hover:text-primary"
+              className="flex items-center gap-3 border border-blueprint-line/50 bg-background/50 px-3 py-2 font-mono text-xs text-on-surface-variant transition-colors hover:border-primary/30 hover:text-primary"
             >
               <span className="h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
               <span>{div}</span>
@@ -458,7 +458,7 @@ function SampleReportSection({ project }: { project: ProjectDetail }) {
 
           <div className="flex items-center justify-between border-t border-blueprint-line p-4 md:p-6">
             <div>
-              <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-primary">
+              <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-primary">
                 REPORT
               </span>
               <p className="font-[family-name:var(--font-space)] text-sm font-bold text-on-background mt-0.5">

@@ -37,14 +37,14 @@ export default function Footer() {
             />
             <TextRepel
               text="Parametric estimating precision for general builders, civil engineers, and trade specialists nationwide. Eliminating manual error thresholds."
-              className="font-sans text-sm text-on-surface-variant max-w-sm leading-relaxed font-semibold"
+              className="font-sans text-base text-on-surface-variant max-w-sm leading-relaxed font-semibold"
               radius={80}
               strength={50}
               mode="repel"
             />
             <TextRepel
               text="[EST_SYS_CORE_V.2.5.0_ACTIVE]"
-              className="font-mono text-[9px] text-primary uppercase tracking-widest font-bold"
+              className="font-mono text-[10px] text-primary uppercase tracking-widest font-bold"
               radius={60}
               strength={35}
               mode="repel"
@@ -57,7 +57,7 @@ export default function Footer() {
             <div className="flex flex-col gap-4">
               <TextRepel
                 text="[NAVIGATION]"
-                className="font-mono text-[10px] text-primary tracking-wider font-bold"
+                className="font-mono text-xs text-primary tracking-wider font-bold"
                 radius={60}
                 strength={35}
                 mode="repel"
@@ -79,7 +79,7 @@ export default function Footer() {
             <div className="flex flex-col gap-4">
               <TextRepel
                 text="[STANDARDS]"
-                className="font-mono text-[10px] text-primary tracking-wider font-bold"
+                className="font-mono text-xs text-primary tracking-wider font-bold"
                 radius={60}
                 strength={35}
                 mode="repel"
@@ -100,7 +100,7 @@ export default function Footer() {
             <div className="flex flex-col gap-4">
               <TextRepel
                 text="[COMMUNICATION]"
-                className="font-mono text-[10px] text-primary tracking-wider font-bold"
+                className="font-mono text-xs text-primary tracking-wider font-bold"
                 radius={60}
                 strength={35}
                 mode="repel"
@@ -130,7 +130,7 @@ export default function Footer() {
           />
           <TextRepel
             text="LAT: 32.7767° N | LONG: 96.7970° W | BLUEPRINT RECT_X_COORD"
-            className="font-mono text-[9px] text-on-surface-variant opacity-60"
+            className="font-mono text-[10px] text-on-surface-variant opacity-60"
             radius={80}
             strength={35}
             mode="repel"

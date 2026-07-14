@@ -23,7 +23,7 @@ export default function CalculatorPage() {
         <h1 className="font-[family-name:var(--font-space)] text-3xl font-bold md:text-5xl tracking-tight">
           Cost <span className="text-primary">Calculator</span>
         </h1>
-        <p className="mt-4 max-w-2xl text-on-surface-variant font-[family-name:var(--font-sans)] text-sm leading-relaxed">
+        <p className="mt-4 max-w-2xl text-on-surface-variant font-[family-name:var(--font-sans)] text-base leading-relaxed">
           Configure your project parameters below to receive an instant preliminary cost estimate.
           All figures are AACE Class 3 accuracy — suitable for budget authorization and preliminary funding allocation.
         </p>

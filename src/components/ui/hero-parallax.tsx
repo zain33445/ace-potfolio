@@ -117,7 +117,7 @@ export const HeroParallax = ({
             {product.title}
           </h2>
           {product.subtitle && (
-            <p className="text-white/70 text-[8px] font-mono mt-0.5">
+            <p className="text-white/70 text-[10px] font-mono mt-0.5">
               {product.subtitle}
             </p>
           )}
@@ -269,7 +269,7 @@ export const Header = ({
   return (
     <div className="w-4/5 max-w-[900px] min-[2000px]:max-w-[1200px] mx-auto px-10 pt-10 pb-15 bg-[rgba(255, 255, 255, 0.45)] border border-2 border-blueprint-line relative z-10 shadow-[0_20px_80px_-12px_rgba(0,0,0,0.08)] bracket-corners-lg liquid-glass">
       <h1 
-        className="font-sans text-[1.25rem] font-extrabold  uppercase leading-[1.1] tracking-wider text-[#FF6B00] text-center mb-10  decoration-primary decoration-[6px] underline-offset-[10px]">
+        className="font-sans text-lg font-extrabold  uppercase leading-[1.1] tracking-wider text-[#FF6B00] text-center mb-10  decoration-primary decoration-[6px] underline-offset-[10px]">
           <TextGenerateEffect words={ 'Top Construction Estimating Services in the US'} duration={5}/>
       </h1>
       <h1 
@@ -357,7 +357,7 @@ export const ProductCard = ({
             {product.title}
           </h2>
           {product.subtitle && (
-            <p className="text-white/70 text-[8px] font-mono mt-0.5">
+            <p className="text-white/70 text-[10px] font-mono mt-0.5">
               {product.subtitle}
             </p>
           )}

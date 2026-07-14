@@ -15,7 +15,7 @@ export default function CalculatorSection() {
           <h2 className="font-space text-3xl md:text-4xl font-extrabold text-on-background tracking-tighter">
             Instant Bid Cost Configurator
           </h2>
-          <p className="font-sans text-sm text-on-surface-variant">
+          <p className="font-sans text-base text-on-surface-variant">
             Adjust parametric multipliers to generate class-3 budgetary allocations ready for estimation draft submission.
           </p>
         </div>

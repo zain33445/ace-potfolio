@@ -133,10 +133,10 @@ export default function SolutionAccordion() {
                       {getIcon(item.id)}
                     </div>
                     <div>
-                      <span className="block font-mono text-[9px] text-primary tracking-widest mb-0.5 font-bold">
+                      <span className="block font-mono text-[10px] text-primary tracking-widest mb-0.5 font-bold">
                         {item.category}
                       </span>
-                      <h3 className={`font-space font-bold text-base transition-colors duration-200 ${
+                      <h3 className={`font-space font-bold text-lg transition-colors duration-200 ${
                         isActive ? 'text-primary' : 'text-on-background group-hover:text-primary'
                       }`}>
                         {item.title}
@@ -188,10 +188,10 @@ export default function SolutionAccordion() {
                 </p>
 
                 <div className="bg-background p-5 border border-blueprint-line bracket-corners">
-                  <h4 className="font-space font-semibold text-sm text-on-background uppercase tracking-wider mb-4">
+                  <h4 className="font-space font-semibold text-base text-on-background uppercase tracking-wider mb-4">
                     TECHNICAL SCOPE & VERIFICATIONS
                   </h4>
-                  <ul className="space-y-3 font-sans text-sm text-on-surface-variant">
+                  <ul className="space-y-3 font-sans text-base text-on-surface-variant">
                     {activeItem.details.map((detail, index) => (
                       <li key={index} className="flex items-start gap-3">
                         <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-primary mt-2" />
