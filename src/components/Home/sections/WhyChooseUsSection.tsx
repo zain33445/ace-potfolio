@@ -459,7 +459,7 @@ export default function WhyChooseUsSection() {
       <div className="sticky top-0 h-screen overflow-hidden">
         <div className="relative w-full h-full flex items-center justify-center">
           {/* Heading — left corner */}
-          <div className="absolute top-8 left-8 md:left-16 z-20 max-w-lg text-left space-y-3 pointer-events-none">
+          <div className="absolute top-20 left-8 md:left-16 z-20 max-w-lg text-left space-y-3 pointer-events-none">
             <span className="font-mono text-sm text-primary font-bold block">
               [DIFFERENTIATOR_MATRIX]
             </span>
