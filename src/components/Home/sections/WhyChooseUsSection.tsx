@@ -82,7 +82,7 @@ export default function WhyChooseUsSection() {
       const scrollable = w.offsetHeight - window.innerHeight;
       if (scrollable <= 0) return;
       const p = Math.max(0, Math.min(1, -rect.top / scrollable));
-      setActiveStep(Math.min(PILLARS.length, Math.max(0, Math.floor(p * (PILLARS.length + 1)))));
+      setActiveStep(Math.min(PILLARS.length + 1, Math.max(0, Math.floor(p * (PILLARS.length + 2)))));
       setPinned(p > 0.05 && p < 0.95);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -113,7 +113,7 @@ export default function WhyChooseUsSection() {
     // ══════════════════════════════════════════════════════════════
     // 1. SUSPENSION BRIDGE SUPERSTRUCTURE
     // ══════════════════════════════════════════════════════════════
-    const superG = el('g', { id: 'bridge-superstructure' });
+    const superG = el('g', { id: 'bridge-superstructure', opacity: '0' });
 
     const dx = 40;
     const dy = -25;
@@ -423,17 +423,26 @@ export default function WhyChooseUsSection() {
   /* ── Drive active step ── */
   useEffect(() => {
     if (!isDesktop) return;
+
+    // Bridge superstructure — appears all at once at step 1
+    const superG = document.getElementById('bridge-superstructure');
+    if (superG) {
+      superG.style.transition = 'opacity 0.8s ease';
+      superG.style.opacity = activeStep >= 1 ? '1' : '0';
+    }
+
+    // Pillars — shift by 1 (step 1 = bridge, steps 2–5 = pillars)
     PILLARS.forEach((_, idx) => {
       const group = document.getElementById(`pillar-${idx}`);
       const card = document.getElementById(`card-${idx}`);
       const scan = document.getElementById(`scan-${idx}`) as SVGPolygonElement | null;
       if (!group) return;
 
-      if (activeStep > idx) {
+      if (activeStep > idx + 1) {
         group.classList.add('active');
         card?.classList.add('active');
         if (scan) scan.style.animation = 'none';
-      } else if (activeStep === idx + 1) {
+      } else if (activeStep === idx + 2) {
         group.classList.add('active');
         card?.classList.add('active');
         if (scan) {
@@ -454,7 +463,7 @@ export default function WhyChooseUsSection() {
       id="why-choose-us"
       ref={wrapperRef}
       className="relative bg-background border-b border-blueprint-line"
-      style={{ height: `${(PILLARS.length + 1) * 100}vh` }}
+      style={{ height: `${(PILLARS.length + 2) * 100}vh` }}
     >
       <div className="sticky top-0 h-screen overflow-hidden">
         <div className="relative w-full h-full flex items-center justify-center">
@@ -489,7 +498,7 @@ export default function WhyChooseUsSection() {
                 />
 
                 {cards.map((card, i) => {
-                  const isActive = activeStep > i || activeStep === i + 1;
+                  const isActive = activeStep > i + 1 || activeStep === i + 2;
                   return (
                     <div
                       key={card.label}
