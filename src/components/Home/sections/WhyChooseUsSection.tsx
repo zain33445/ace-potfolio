@@ -106,6 +106,16 @@ export default function WhyChooseUsSection() {
     defs.appendChild(pat);
     svg.appendChild(el('rect', { width: '1200', height: '900', fill: 'url(#grid)' }));
 
+    // Clip-path for bridge construction sweep
+    const clipBridge = el('clipPath', { id: 'clip-bridge' });
+    clipBridge.appendChild(el('rect', { id: 'rect-bridge', x: '0', y: '0', width: '1200', height: '0' }));
+    defs.appendChild(clipBridge);
+
+    // Clip-path for callouts (delayed reveal)
+    const clipCallouts = el('clipPath', { id: 'clip-callouts' });
+    clipCallouts.appendChild(el('rect', { id: 'rect-callouts', x: '0', y: '0', width: '1200', height: '0' }));
+    defs.appendChild(clipCallouts);
+
     // ── Hero focal point ──
     svg.appendChild(el('polygon', { points: '550,130 650,130 650,330 550,330', fill: 'rgba(180,83,9,0.08)' }));
     svg.appendChild(el('line', { x1: '550', y1: '130', x2: '650', y2: '130', stroke: '#b45309', 'stroke-width': '2', opacity: '0.5' }));
@@ -113,7 +123,7 @@ export default function WhyChooseUsSection() {
     // ══════════════════════════════════════════════════════════════
     // 1. SUSPENSION BRIDGE SUPERSTRUCTURE
     // ══════════════════════════════════════════════════════════════
-    const superG = el('g', { id: 'bridge-superstructure', opacity: '0' });
+    const superG = el('g', { id: 'bridge-superstructure', 'clip-path': 'url(#clip-bridge)' });
 
     const dx = 40;
     const dy = -25;
@@ -233,7 +243,7 @@ export default function WhyChooseUsSection() {
     // ══════════════════════════════════════════════════════════════
     // 2. CAD CALLOUT ANNOTATIONS
     // ══════════════════════════════════════════════════════════════
-    const calloutsG = el('g', { id: 'bridge-callouts' });
+    const calloutsG = el('g', { id: 'bridge-callouts', 'clip-path': 'url(#clip-callouts)' });
     const drawCallout = (sx: number, sy: number, ex: number, ey: number, title: string) => {
       calloutsG.appendChild(elHTML('line', {
         x1: String(sx), y1: String(sy), x2: String(ex), y2: String(ey),
@@ -424,11 +434,28 @@ export default function WhyChooseUsSection() {
   useEffect(() => {
     if (!isDesktop) return;
 
-    // Bridge superstructure — appears all at once at step 1
-    const superG = document.getElementById('bridge-superstructure');
-    if (superG) {
-      superG.style.transition = 'opacity 0.8s ease';
-      superG.style.opacity = activeStep >= 1 ? '1' : '0';
+    // Bridge superstructure — clip-path sweep from top
+    const rectBridge = document.getElementById('rect-bridge');
+    if (rectBridge) {
+      if (activeStep >= 1) {
+        rectBridge.setAttribute('height', '900');
+        rectBridge.style.transition = 'height 1.6s cubic-bezier(0.16, 1, 0.3, 1)';
+      } else {
+        rectBridge.setAttribute('height', '0');
+        rectBridge.style.transition = 'none';
+      }
+    }
+
+    // Callouts — appear after bridge is built
+    const rectCallouts = document.getElementById('rect-callouts');
+    if (rectCallouts) {
+      if (activeStep >= 1) {
+        rectCallouts.setAttribute('height', '900');
+        rectCallouts.style.transition = 'height 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.8s';
+      } else {
+        rectCallouts.setAttribute('height', '0');
+        rectCallouts.style.transition = 'none';
+      }
     }
 
     // Pillars — shift by 1 (step 1 = bridge, steps 2–5 = pillars)
