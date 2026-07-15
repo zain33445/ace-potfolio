@@ -458,18 +458,18 @@ export default function WhyChooseUsSection() {
     >
       <div className="sticky top-0 h-screen overflow-hidden">
         <div className="relative w-full h-full flex items-center justify-center">
-          {/* Heading */}
-          <div className="absolute top-8 left-1/2 -translate-x-1/2 z-20 w-full max-w-2xl text-center space-y-3 pointer-events-none">
+          {/* Heading — left corner */}
+          <div className="absolute top-8 left-8 md:left-16 z-20 max-w-lg text-left space-y-3 pointer-events-none">
             <span className="font-mono text-sm text-primary font-bold block">
               [DIFFERENTIATOR_MATRIX]
             </span>
-            <h2 className="font-space text-4xl md:text-5xl font-extrabold text-on-background tracking-tighter">
+            <h2 className="font-space text-3xl md:text-5xl font-extrabold text-on-background tracking-tighter">
               Why Choose The ACE Services?
             </h2>
-            <div className="flex justify-center pt-1">
+            <div className="pt-1">
               <div className="w-16 h-0.5 bg-primary rounded-full" />
             </div>
-            <p className="font-sans text-lg text-on-surface-variant font-medium">
+            <p className="font-sans text-base md:text-lg text-on-surface-variant font-medium">
               We leverage elite mathematical modeling and multi-layered audit procedures to
               deliver unmatched pre-construction confidence.
             </p>
