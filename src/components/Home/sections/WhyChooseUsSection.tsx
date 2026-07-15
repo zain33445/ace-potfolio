@@ -478,7 +478,7 @@ export default function WhyChooseUsSection() {
           {isDesktop ? (
             <>
               <div
-                className="relative w-[95%] max-w-[1400px]"
+                className="relative w-[95%] max-w-[1400px] translate-x-[4%]"
                 style={{ aspectRatio: '1200 / 900' }}
               >
                 <svg
