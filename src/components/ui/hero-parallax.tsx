@@ -103,7 +103,7 @@ export const HeroParallax = ({
             loop
             muted
             playsInline
-            preload="auto"
+            preload="metadata"
             className="absolute inset-0 w-full h-full object-cover z-0"
             src="/mobile-video-header.mp4"
           />
@@ -222,7 +222,7 @@ export const Header = ({
 }) => {
   const subhead = [h2, h3].filter(Boolean).join(' ');
   return (
-    <div className={`w-[92%] md:w-4/5 max-w-[900px] min-[2000px]:max-w-[1200px] mx-auto px-5 md:px-10 pt-6 md:pt-10 pb-8 md:pb-15 relative z-10 ${mobile ? '' : 'bg-[rgba(255,255,255,0.45)] border border-2 border-blueprint-line shadow-[0_20px_80px_-12px_rgba(0,0,0,0.08)] bracket-corners-lg liquid-glass'}`}>
+    <div className={`w-[92%] md:w-4/5 max-w-[900px] min-[2000px]:max-w-[1200px] mx-auto px-5 md:px-10 pt-6 md:pt-10 pb-8 md:pb-15 relative z-10 liquid-glass ${mobile ? 'bg-white/20 border border-white/30' : 'bg-[rgba(255,255,255,0.45)] border border-2 border-blueprint-line shadow-[0_20px_80px_-12px_rgba(0,0,0,0.08)] bracket-corners-lg'}`}>
       <h1 
         className="font-sans text-base md:text-lg font-extrabold  uppercase leading-[1.1] tracking-wider text-[#FF6B00] text-center mb-10  decoration-primary decoration-[6px] underline-offset-[10px]">
           <TextGenerateEffect words={ 'Top Construction Estimating Services in the US'} duration={5}/>
