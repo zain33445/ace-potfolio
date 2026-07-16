@@ -15,10 +15,12 @@ export const TextGenerateEffect = ({
   words='',
   sub='',
   duration = 0.5,
+  subColor = '#111827',
 }: {
   words: string;
   sub?: string;
   duration?: number;
+  subColor?: string;
 }) => {
   let wordsArray = words.split(" ");
   let subArray = sub?.split(" ");
@@ -48,7 +50,7 @@ export const TextGenerateEffect = ({
             lineHeight: '1',
             fontSize: '1.2rem',
             fontWeight: boldWords.includes(word.toLowerCase()) ? 700 : 400,
-            color: '#111827',
+            color: subColor,
           }}
         >
           {word}{" "}

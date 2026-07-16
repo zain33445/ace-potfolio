@@ -222,19 +222,19 @@ export const Header = ({
 }) => {
   const subhead = [h2, h3].filter(Boolean).join(' ');
   return (
-    <div className={`w-[92%] md:w-4/5 max-w-[900px] min-[2000px]:max-w-[1200px] mx-auto px-5 md:px-10 pt-6 md:pt-10 pb-8 md:pb-15 relative z-10 liquid-glass ${mobile ? 'bg-white/20 border border-white/30' : 'bg-[rgba(255,255,255,0.45)] border border-2 border-blueprint-line shadow-[0_20px_80px_-12px_rgba(0,0,0,0.08)] bracket-corners-lg'}`}>
+    <div className={`w-[92%] md:w-4/5 max-w-[900px] min-[2000px]:max-w-[1200px] mx-auto px-2 md:px-10 pt-6 md:pt-10 pb-8 md:pb-15 relative z-10 ${mobile ? '' : 'bg-[rgba(255,255,255,0.45)] border border-2 border-blueprint-line shadow-[0_20px_80px_-12px_rgba(0,0,0,0.08)] bracket-corners-lg liquid-glass'}`}>
       <h1 
-        className="font-sans text-base md:text-lg font-extrabold  uppercase leading-[1.1] tracking-wider text-[#FF6B00] text-center mb-10  decoration-primary decoration-[6px] underline-offset-[10px]">
+        className={`font-sans text-base md:text-lg font-extrabold uppercase leading-[1.1] tracking-wider text-center mb-10 decoration-primary decoration-[6px] underline-offset-[10px] ${mobile ? 'text-white' : 'text-[#FF6B00]'}`}>
           <TextGenerateEffect words={ 'Top Construction Estimating Services in the US'} duration={5}/>
       </h1>
       <h1 
-      className="font-sans text-[clamp(2.5rem,5vw,4rem)] font-extrabold leading-[1.1] tracking-tighter text-[#111827] text-center my-5  decoration-primary decoration-[6px] underline-offset-[10px]">
+      className={`font-sans text-[clamp(2.5rem,5vw,4rem)] font-extrabold leading-[1.1] tracking-tighter text-center my-5 decoration-primary decoration-[6px] underline-offset-[10px] ${mobile ? 'text-white' : 'text-[#111827]'}`}>
         {h1 ?? "Construction Pre-Estimation"}
       </h1>
       {subhead && (
-        <div className="font-sans text-[clamp(1.1rem,2vw,1.35rem)] leading-relaxed text-[#4B5563] mx-auto px-5 text-center ">
+        <div className={`font-sans text-[clamp(1.1rem,2vw,1.35rem)] leading-relaxed mx-auto px-5 text-center ${mobile ? 'text-white/90' : 'text-[#4B5563]'}`}>
           <br />
-          <span style={{ fontWeight: 'bold', color: '#111827' }}><TextGenerateEffect words={h2 ?? ''} sub={h3 ?? ''} /></span>
+          <span style={{ fontWeight: 'bold', color: mobile ? 'white' : '#111827' }}><TextGenerateEffect words={h2 ?? ''} sub={h3 ?? ''} subColor={mobile ? 'white' : '#111827'} /></span>
         </div>
       )}
 
@@ -258,12 +258,12 @@ export const Header = ({
           </span>
         </button>
         {/* See Our Work — second on mobile (bottom), first on desktop (left) */}
-        <button className="text-[#111827] font-medium text-sm underline underline-offset-10 decoration-primary decoration-2 order-2 md:order-1">
+        <button className={`font-medium text-sm underline underline-offset-10 decoration-primary decoration-2 order-2 md:order-1 ${mobile ? 'text-white' : 'text-[#111827]'}`}>
           See Our Work
         </button>
       </div>
       
-            <p className="text-center text-[#000] font-medium mt-8 md:mt-11 text-xs md:text-sm leading-relaxed">
+            <p className={`text-center font-medium mt-8 md:mt-11 text-xs md:text-sm leading-relaxed ${mobile ? 'text-white' : 'text-[#000]'}`}>
         <span style={{background: '#1d1d1d6b', padding: '5px', color: 'white', fontWeight: 'bold', borderRadius: '.5rem'}}>✓ Trusted by 200+ Contractors</span>
         <br className="md:hidden" />
         <span className="hidden md:inline mx-2">|</span>
