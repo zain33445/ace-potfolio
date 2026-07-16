@@ -291,7 +291,7 @@ body {
 /* Slot machine reel */
 .slot-reel {
   width: 3ch;
-  height: 0.938rem;
+  height: 1rem;
   display: block;
   position: relative;
   overflow: hidden;

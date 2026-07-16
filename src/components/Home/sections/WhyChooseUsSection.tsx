@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { motion } from 'motion/react';
 import { usePin } from '../../../PinContext';
 
 /* ── Card content (unchanged) ── */
@@ -73,8 +74,9 @@ export default function WhyChooseUsSection() {
     return () => mq.removeEventListener('change', h);
   }, []);
 
-  /* ── Scroll tracking ── */
+  /* ── Scroll tracking (desktop only) ── */
   useEffect(() => {
+    if (!isDesktop) return;
     const w = wrapperRef.current;
     if (!w) return;
     const onScroll = () => {
@@ -88,7 +90,7 @@ export default function WhyChooseUsSection() {
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener('scroll', onScroll);
-  }, [setPinned]);
+  }, [setPinned, isDesktop]);
 
   /* ── Generate full SVG on mount ── */
   useEffect(() => {
@@ -489,13 +491,13 @@ export default function WhyChooseUsSection() {
     <div
       id="why-choose-us"
       ref={wrapperRef}
-      className="relative bg-background border-b border-blueprint-line"
-      style={{ height: `${(PILLARS.length + 2) * 100}vh` }}
+      className={`relative bg-background border-b border-blueprint-line ${isDesktop ? '' : ''}`}
+      style={isDesktop ? { height: `${(PILLARS.length + 2) * 100}vh` } : {}}
     >
-      <div className="sticky top-0 h-screen overflow-hidden">
-        <div className="relative w-full h-full flex items-center justify-center">
-          {/* Heading — left corner */}
-          <div className="absolute top-20 left-8 md:left-16 z-20 max-w-lg text-left space-y-3 pointer-events-none">
+      <div className={isDesktop ? 'sticky top-0 h-screen overflow-hidden' : ''}>
+        <div className={`relative w-full h-full ${isDesktop ? 'flex items-center justify-center' : 'flex flex-col'}`}>
+          {/* Heading — left corner on desktop, top on mobile */}
+          <div className={`${isDesktop ? 'absolute top-20 left-16 z-20 max-w-lg' : 'relative px-6 pt-24 pb-8 z-20 max-w-lg mx-auto'} text-left space-y-3 pointer-events-none`}>
             <span className="font-mono text-sm text-primary font-bold block">
               [DIFFERENTIATOR_MATRIX]
             </span>
@@ -555,10 +557,14 @@ export default function WhyChooseUsSection() {
               </div>
             </>
           ) : (
-            <div className="relative z-10 grid grid-cols-1 gap-6 px-4 max-w-md mx-auto pt-24">
-              {cards.map((card) => (
-                <div
+            <div className="relative z-10 grid grid-cols-1 gap-6 px-6 max-w-md mx-auto pb-16">
+              {cards.map((card, i) => (
+                <motion.div
                   key={card.label}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-50px' }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
                   className="p-5 border border-blueprint-line bg-surface hover:border-primary transition-colors duration-300 bracket-corners"
                 >
                   <span className="font-mono text-xs text-[#FF6B00] font-bold tracking-widest block mb-2">
@@ -570,7 +576,7 @@ export default function WhyChooseUsSection() {
                   <p className="font-sans text-base text-on-surface-variant leading-relaxed font-semibold">
                     {card.desc}
                   </p>
-                </div>
+                </motion.div>
               ))}
             </div>
           )}

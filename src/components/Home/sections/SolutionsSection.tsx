@@ -1,15 +1,28 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useScroll, useMotionValueEvent } from 'motion/react';
 import SolutionAccordion from '../../../components/SolutionAccordion';
 import { usePin } from '../../../PinContext';
 
 const SERVICES_COUNT = 4;
 
+function useMediaQuery(query: string): boolean {
+  return React.useSyncExternalStore(
+    (callback) => {
+      const mql = window.matchMedia(query);
+      mql.addEventListener("change", callback);
+      return () => mql.removeEventListener("change", callback);
+    },
+    () => window.matchMedia(query).matches,
+    () => false,
+  );
+}
+
 export default function SolutionsSection() {
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const isMobile = useMediaQuery("(max-width: 767px)");
+  const [activeIndex, setActiveIndex] = useState(-1);
   const { setPinned } = usePin();
 
   /* ── Continuous scroll progress ── */
@@ -22,28 +35,28 @@ export default function SolutionsSection() {
 
   useMotionValueEvent(scrollYProgress, 'change', (v) => {
     setProgress(v);
-    setPinned(v > 0.05 && v < 0.95);
+    if (!isMobile) setPinned(v > 0.05 && v < 0.95);
   });
 
-  /* ── Map scroll progress → active service index ── */
-  /* progress 0→1 mapped to 0→4. Each card = 25% of scroll:
-   *   0.00–0.25 → card 0
-   *   0.25–0.50 → card 1
-   *   0.50–0.75 → card 2
-   *   0.75–1.00 → card 3
-   * One scroll-wheel click ≈ one card advance. */
+  /* ── Map scroll progress → active service index (desktop only) ── */
   const index = Math.max(
     0,
     Math.min(SERVICES_COUNT - 1, Math.floor(progress * SERVICES_COUNT)),
   );
 
-  /* Update active index only when it changes */
-  if (index !== activeIndex) {
+  /* Update active index only when it changes — desktop only */
+  if (!isMobile && index !== activeIndex) {
     setActiveIndex(index);
   }
 
-  /* ── Click-to-jump ── */
+  /* ── Click-to-jump (desktop) / toggle (mobile) ── */
   const handleCardClick = (cardIndex: number) => {
+    if (isMobile) {
+      /* Mobile: toggle — clicking same card deactivates, otherwise activates */
+      setActiveIndex(prev => prev === cardIndex ? -1 : cardIndex);
+      return;
+    }
+
     const wrapper = wrapperRef.current;
     if (!wrapper) return;
 
@@ -58,11 +71,11 @@ export default function SolutionsSection() {
     <div
       id="solutions"
       ref={wrapperRef}
-      className="relative bg-background border-b border-blueprint-line"
-      style={{ height: `${(SERVICES_COUNT + 1) * 100}vh` }}
+      className={`relative bg-background border-b border-blueprint-line ${isMobile ? 'overflow-hidden' : ''}`}
+      style={isMobile ? {} : { height: `${(SERVICES_COUNT + 1) * 100}vh` }}
     >
-      {/* Sticky content — pins at top while parent scrolls through */}
-      <div className="sticky top-0 h-screen overflow-hidden">
+      {/* Sticky content — pins at top while parent scrolls through (desktop only) */}
+      <div className={isMobile ? '' : 'sticky top-0 h-screen overflow-hidden'}>
         <div className="w-full h-full max-w-7xl mx-auto px-6 md:px-16 py-24 flex flex-col">
           {/* Heading */}
           <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
@@ -80,6 +93,7 @@ export default function SolutionsSection() {
             <SolutionAccordion
               activeIndex={activeIndex}
               onCardClick={handleCardClick}
+              mobile={isMobile}
             />
           </div>
         </div>

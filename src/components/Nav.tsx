@@ -3,47 +3,47 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { Menu, X } from 'lucide-react';
 import { usePin } from '../PinContext';
+import StaggeredMenu from '@/src/components/ui/StaggeredMenu';
+
+const menuItems = [
+  { label: 'Contact', ariaLabel: 'Go to home page', link: '/contact' },
+  { label: 'About', ariaLabel: 'Learn about us', link: '/about' },
+  { label: 'Services', ariaLabel: 'View our services', link: '/services' },
+  { label: 'Projects', ariaLabel: 'View our projects', link: '/projects' },
+  { label: 'Blog', ariaLabel: 'Read our blog', link: '/blog' },
+  { label: 'Calculator', ariaLabel: 'Get in touch', link: '/calculator' }
+];
+
+const socialItems = [
+  { label: 'Twitter', link: 'https://twitter.com' },
+  { label: 'GitHub', link: 'https://github.com' },
+  { label: 'LinkedIn', link: 'https://linkedin.com' }
+];
+
 
 export default function Nav() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [navHeight, setNavHeight] = useState(80);
-  const [navScrolled, setNavScrolled] = useState(false);
   const navRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
   const router = useRouter();
   const isHome = pathname === '/';
   const { isPinned } = usePin();
 
-  /* Track scroll state via IntersectionObserver on the hero section.
-     Replaces the old FullscreenScroller's currentIndex > 0 check, with
-     the benefit of working on manual scroll too. */
+  /* navScrolled: always true off homepage (solid bg), toggles by scroll on homepage */
+  const [navScrolled, setNavScrolled] = useState(!isHome);
+
+  /* Track scroll state — transparent at top, glass bg on any scroll */
   useEffect(() => {
     if (!isHome) return;
-    const el = document.getElementById('hero-top');
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => setNavScrolled(!entry.isIntersecting),
-      { threshold: 0 },
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
+    function onScroll() {
+      setNavScrolled(window.scrollY > 10);
+    }
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, [isHome]);
 
-  useEffect(() => {
-    function measureNavBottom() {
-      if (navRef.current) {
-        setNavHeight(navRef.current.getBoundingClientRect().bottom);
-      }
-    }
-    measureNavBottom();
-    window.addEventListener('resize', measureNavBottom);
-    return () => window.removeEventListener('resize', measureNavBottom);
-  }, []);
-
   const handleNav = (id: string) => {
-    setMobileMenuOpen(false);
     if (isHome) {
       document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
     } else {
@@ -68,7 +68,9 @@ export default function Nav() {
     <>
       <nav
         ref={navRef}
-        className={`fixed z-50 flex justify-between items-center px-4 md:px-6 py-3 transition-all duration-500 bg-white/20 backdrop-blur-3xl border shadow-2xl shadow-black/5 ring-1 ring-inset top-0 left-0 w-full rounded-none border-transparent ring-transparent h-16 md:h-24 ${
+        className={`fixed z-50 flex justify-between items-center px-4 md:px-6 py-3 transition-all duration-500 top-0 left-0 w-full rounded-none h-16 md:h-24 ${
+          navScrolled ? 'bg-white/20 backdrop-blur-3xl border shadow-2xl shadow-black/5 ring-1 ring-inset border-transparent ring-transparent' : 'bg-transparent'
+        } ${
           isPinned ? '-translate-y-full' : 'translate-y-0'
         }`}
         id="main-nav"
@@ -76,8 +78,7 @@ export default function Nav() {
       >
         <Link
           href="/"
-          onClick={() => setMobileMenuOpen(false)}
-          className="font-mono text-xl md:text-3xl tracking-wide font-medium text-on-background cursor-pointer select-none flex items-center pl-2 md:pl-10 gap-2 overflow-hidden"
+          className={`font-mono text-xl md:text-3xl tracking-wide font-medium cursor-pointer select-none flex items-center pl-2 md:pl-10 gap-2 overflow-hidden transition-colors duration-500 ${navScrolled ? 'text-on-background' : 'text-white'}`}
         >
           <img
             src="/aceLogo.png"
@@ -92,16 +93,16 @@ export default function Nav() {
         <div className="hidden md:flex items-center gap-6 text-2xl">
           {/* Homepage section anchor links — always visible */}
           <div className="flex items-center gap-6">
-            <button type="button" onClick={() => handleNav('solutions')} className="link-underline text-on-surface-variant font-mono text-sm font-bold tracking-widest pb-0.5">
+            <button type="button" onClick={() => handleNav('solutions')} className={`link-underline font-mono text-sm font-bold tracking-widest pb-0.5 transition-colors duration-500 ${navScrolled ? 'text-on-surface-variant' : 'text-white/80'}`}>
               SOLUTIONS
             </button>
-            <button type="button" onClick={() => handleNav('contact')} className="link-underline text-on-surface-variant font-mono text-sm font-bold tracking-widest pb-0.5">
+            <button type="button" onClick={() => handleNav('contact')} className={`link-underline font-mono text-sm font-bold tracking-widest pb-0.5 transition-colors duration-500 ${navScrolled ? 'text-on-surface-variant' : 'text-white/80'}`}>
               CONTACT US
             </button>
           </div>
 
           {/* Divider between section links and page links */}
-          <div className="w-px h-4 bg-blueprint-line/60" aria-hidden="true" />
+          <div className={`w-px h-4 transition-colors duration-500 ${navScrolled ? 'bg-blueprint-line/60' : 'bg-white/30'}`} aria-hidden="true" />
 
           {/* Page links */}
           <div className="flex items-center gap-5 pr-10">
@@ -109,10 +110,10 @@ export default function Nav() {
               <Link
                 key={href}
                 href={href}
-                className={`font-mono text-sm font-bold tracking-widest pb-0.5 transition-colors duration-150 ${
+                className={`font-mono text-sm font-bold tracking-widest pb-0.5 transition-colors duration-500 ${
                   isActive(href)
                     ? 'text-primary'
-                    : 'text-on-surface-variant hover:text-primary'
+                    : navScrolled ? 'text-on-surface-variant hover:text-primary' : 'text-white/80 hover:text-white'
                 }`}
               >
                 {label}
@@ -125,87 +126,25 @@ export default function Nav() {
           </div>
 
         </div>
-
-        {/* Mobile hamburger */}
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden text-on-background p-1.5 focus:outline-none"
-          aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={mobileMenuOpen}
-          aria-controls="mobile-menu"
-        >
-          {mobileMenuOpen ? <X className="w-6 h-6" aria-hidden="true" /> : <Menu className="w-6 h-6" aria-hidden="true" />}
-        </button>
       </nav>
 
-      {/* Mobile menu */}
-      {mobileMenuOpen && (
-        <div
-          id="mobile-menu"
-          style={{ top: navHeight }}
-          className="fixed left-0 right-0 bottom-0 bg-surface z-40 flex flex-col p-6 overflow-y-auto border-b border-blueprint-line md:hidden shadow-lg"
-          role="menu"
-        >
-          {/* Section links (mobile) — always visible */}
-          <div className="space-y-0">
-            <p className="font-mono text-[10px] text-on-surface-variant/60 tracking-widest uppercase mb-1">
-              Sections
-            </p>
-            <button onClick={() => handleNav('solutions')} className="text-left py-2 font-mono text-sm tracking-wider hover:text-primary border-b border-blueprint-line/30 w-full">
-              [SOL_X] PORTFOLIO SERVICES
-            </button>
-            <button onClick={() => handleNav('contact')} className="text-left py-2 font-mono text-sm tracking-wider hover:text-primary border-b border-blueprint-line/30 w-full">
-              [CONTACT] GET IN TOUCH
-            </button>
-          </div>
-
-          {/* Divider */}
-          <div className="w-full h-px bg-blueprint-line/40 my-3" aria-hidden="true" />
-
-          {/* Page links (mobile) */}
-          <div className="space-y-0">
-            <p className="font-mono text-[10px] text-on-surface-variant/60 tracking-widest uppercase mb-1">
-              Pages
-            </p>
-            {PAGE_LINKS.map(({ href, shortLabel }) => (
-              <Link
-                key={href}
-                href={href}
-                onClick={() => setMobileMenuOpen(false)}
-                className={`block text-left py-2 font-mono text-sm tracking-wider border-b border-blueprint-line/30 transition-colors ${
-                  isActive(href) ? 'text-primary' : 'hover:text-primary'
-                }`}
-              >
-                {shortLabel}
-                {isActive(href) && (
-                  <span className="ml-2 text-[10px] tracking-widest">(ACTIVE)</span>
-                )}
-              </Link>
-            ))}
-          </div>
-
-          {/* Divider */}
-          <div className="w-full h-px bg-blueprint-line/40 my-3" aria-hidden="true" />
-
-          {/* Action buttons */}
-          <div className="space-y-3 pt-1">
-            <Link
-              href="/"
-              onClick={() => setMobileMenuOpen(false)}
-              className="bg-primary/20 text-primary border border-primary font-mono text-sm font-bold py-3 text-center uppercase tracking-widest block bracket-corners"
-            >
-              HOME
-            </Link>
-            <Link
-              href="/calculator"
-              onClick={() => setMobileMenuOpen(false)}
-              className="bg-primary text-white font-mono text-sm font-bold py-3 text-center uppercase tracking-widest block bracket-corners"
-            >
-              CALCULATOR
-            </Link>
-          </div>
-        </div>
-      )}
+      {/* StaggeredMenu — always mounted, self-contained open/close via its own toggle */}
+      <StaggeredMenu
+        position="right"
+        isFixed
+        className=""
+        items={menuItems as any}
+        socialItems={socialItems as any}
+        displaySocials
+        displayItemNumbering={true}
+        menuButtonColor={navScrolled ? '#0A0A0A' : '#ffffff'}
+        openMenuButtonColor="#0A0A0A"
+        changeMenuColorOnOpen={true}
+        colors={['#FF6B00', '#CC5500']}
+        accentColor="#FF6B00"
+        onMenuOpen={() => console.log('Menu opened')}
+        onMenuClose={() => console.log('Menu closed')}
+      />
     </>
   );
 }

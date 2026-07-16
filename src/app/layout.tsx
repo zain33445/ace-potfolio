@@ -230,6 +230,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
           rel="stylesheet"
         />
+        {/* Roboto Flex — used by TextPressure in Footer */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght@8..144,25..151,100..1000&display=swap"
+          rel="stylesheet"
+        />
 
         {/* Google Analytics 4 */}
         {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID && (

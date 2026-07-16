@@ -65,11 +65,12 @@ const getIcon = (id: string) => {
 interface SolutionAccordionProps {
   activeIndex: number;
   onCardClick: (index: number) => void;
+  mobile?: boolean;
 }
 
-export default function SolutionAccordion({ activeIndex, onCardClick }: SolutionAccordionProps) {
-  const activeId = SOLUTION_IDS[activeIndex] ?? SOLUTION_IDS[0];
-  const activeItem = solutions.find(s => s.id === activeId);
+export default function SolutionAccordion({ activeIndex, onCardClick, mobile = false }: SolutionAccordionProps) {
+  const activeId = activeIndex >= 0 ? SOLUTION_IDS[activeIndex] : null;
+  const activeItem = activeId ? solutions.find(s => s.id === activeId) : null;
 
   return (
     <div className="max-w-6xl mx-auto">
@@ -84,97 +85,134 @@ export default function SolutionAccordion({ activeIndex, onCardClick }: Solution
           {solutions.map((item, i) => {
             const isActive = activeId === item.id;
             return (
-              <div
-                key={item.id}
-                onClick={() => onCardClick(i)}
-                className={`border border-blueprint-line bg-surface overflow-hidden hover:border-primary transition-all duration-300 cursor-pointer bracket-corners group ${
-                  isActive ? 'ring-1 ring-primary border-primary shadow-sm' : ''
-                }`}
-              >
-                <div className="flex justify-between items-center py-5 px-5 relative select-none">
-                  <div 
-                    className={`absolute left-0 top-0 h-full w-1.5 bg-primary transition-transform duration-300 ${
-                      isActive ? 'scale-y-100' : 'scale-y-0 group-hover:scale-y-100'
-                    }`} 
-                  />
+              <div key={item.id}>
+                <div
+                  onClick={() => onCardClick(i)}
+                  className={`border border-blueprint-line bg-surface overflow-hidden hover:border-primary transition-all duration-300 cursor-pointer bracket-corners group ${
+                    isActive ? 'ring-1 ring-primary border-primary shadow-sm' : ''
+                  }`}
+                >
+                  <div className="flex justify-between items-center py-5 px-5 relative select-none">
+                    <div 
+                      className={`absolute left-0 top-0 h-full w-1.5 bg-primary transition-transform duration-300 ${
+                        isActive ? 'scale-y-100' : 'scale-y-0 group-hover:scale-y-100'
+                      }`} 
+                    />
 
-                  <div className="flex items-center gap-3">
-                    <div className="flex items-center justify-center w-9 h-9 border border-blueprint-line bg-background bracket-corners group-hover:border-primary transition-colors">
-                      {getIcon(item.id)}
+                    <div className="flex items-center gap-3">
+                      <div className="flex items-center justify-center w-9 h-9 border border-blueprint-line bg-background bracket-corners group-hover:border-primary transition-colors">
+                        {getIcon(item.id)}
+                      </div>
+                      <div>
+                        <span className="block font-mono text-xs text-primary tracking-widest mb-0.5 font-bold">
+                          {item.category}
+                        </span>
+                        <h3 className={`font-space font-bold text-xl transition-colors duration-200 ${
+                          isActive ? 'text-primary' : 'text-on-background group-hover:text-primary'
+                        }`}>
+                          {item.title}
+                        </h3>
+                      </div>
                     </div>
-                    <div>
-                      <span className="block font-mono text-xs text-primary tracking-widest mb-0.5 font-bold">
-                        {item.category}
-                      </span>
-                      <h3 className={`font-space font-bold text-xl transition-colors duration-200 ${
-                        isActive ? 'text-primary' : 'text-on-background group-hover:text-primary'
-                      }`}>
-                        {item.title}
-                      </h3>
-                    </div>
+
+                    <motion.div
+                      animate={{ rotate: isActive ? 90 : 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="text-on-surface-variant group-hover:text-primary"
+                    >
+                      <ChevronRight className="w-5 h-5" />
+                    </motion.div>
                   </div>
-
-                  <motion.div
-                    animate={{ rotate: isActive ? 90 : 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="text-on-surface-variant group-hover:text-primary"
-                  >
-                    <ChevronRight className="w-5 h-5" />
-                  </motion.div>
                 </div>
+
+                {/* Mobile: inline detail panel right after active card */}
+                {mobile && isActive && activeItem && (
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={activeItem.id}
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.25, ease: 'easeInOut' }}
+                      className="overflow-hidden"
+                    >
+                      <DetailPanel item={activeItem} />
+                    </motion.div>
+                  </AnimatePresence>
+                )}
               </div>
             );
           })}
         </div>
 
-        {/* Right: Detail Panel */}
-        <div className="w-full md:w-1/2">
-          <AnimatePresence mode="wait">
-            {activeItem && (
-              <motion.div
-                key={activeItem.id}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.25, ease: 'easeInOut' }}
-                className="border border-blueprint-line bg-surface p-6 bracket-corners h-full"
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="flex items-center justify-center w-10 h-10 border border-blueprint-line bg-background bracket-corners">
-                    {getIcon(activeItem.id)}
-                  </div>
-                  <div>
-                    <span className="block font-mono text-xs text-primary tracking-widest mb-0.5 font-bold">
-                      {activeItem.category}
-                    </span>
-                    <h3 className="font-space font-bold text-2xl text-on-background">
-                      {activeItem.title}
-                    </h3>
-                  </div>
-                </div>
+        {/* Desktop: Right Detail Panel */}
+        {!mobile && (
+          <div className="w-full md:w-1/2">
+            <AnimatePresence mode="wait">
+              {activeItem && (
+                <motion.div
+                  key={activeItem.id}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.25, ease: 'easeInOut' }}
+                  className="border border-blueprint-line bg-surface p-6 bracket-corners h-full"
+                >
+                  <DetailPanelContent item={activeItem} />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
 
-                <p className="font-sans text-on-surface-variant text-lg mb-6 font-medium leading-relaxed">
-                  {activeItem.description}
-                </p>
-
-                <div className="bg-background p-5 border border-blueprint-line bracket-corners">
-                  <h4 className="font-space font-semibold text-lg text-on-background uppercase tracking-wider mb-4">
-                    TECHNICAL SCOPE & VERIFICATIONS
-                  </h4>
-                  <ul className="space-y-3 font-sans text-lg text-on-surface-variant">
-                    {activeItem.details.map((detail, index) => (
-                      <li key={index} className="flex items-start gap-3">
-                        <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-primary mt-2" />
-                        <span>{detail}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+/* ── Shared detail panel content ── */
+function DetailPanelContent({ item }: { item: SolutionItem }) {
+  return (
+    <>
+      <div className="flex items-center gap-3 mb-4">
+        <div className="flex items-center justify-center w-10 h-10 border border-blueprint-line bg-background bracket-corners">
+          {getIcon(item.id)}
+        </div>
+        <div>
+          <span className="block font-mono text-xs text-primary tracking-widest mb-0.5 font-bold">
+            {item.category}
+          </span>
+          <h3 className="font-space font-bold text-2xl text-on-background">
+            {item.title}
+          </h3>
         </div>
       </div>
+
+      <p className="font-sans text-on-surface-variant text-lg mb-6 font-medium leading-relaxed">
+        {item.description}
+      </p>
+
+      <div className="bg-background p-5 border border-blueprint-line bracket-corners">
+        <h4 className="font-space font-semibold text-lg text-on-background uppercase tracking-wider mb-4">
+          TECHNICAL SCOPE & VERIFICATIONS
+        </h4>
+        <ul className="space-y-3 font-sans text-lg text-on-surface-variant">
+          {item.details.map((detail, index) => (
+            <li key={index} className="flex items-start gap-3">
+              <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-primary mt-2" />
+              <span>{detail}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
+  );
+}
+
+/* ── Mobile inline detail panel ── */
+function DetailPanel({ item }: { item: SolutionItem }) {
+  return (
+    <div className="border border-blueprint-line bg-surface p-6 bracket-corners mt-3">
+      <DetailPanelContent item={item} />
     </div>
   );
 }

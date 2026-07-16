@@ -19,9 +19,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
     const strip = stripRef.current;
     const taglineEl = taglineRef.current;
     const tagWords = taglineEl
-      ? ([...taglineEl.children].filter(
-          (c) => c.textContent?.trim() && c.textContent.trim() !== '\u2022',
-        ) as HTMLElement[])
+      ? ([...taglineEl.querySelectorAll<HTMLElement>('[data-word]')])
       : undefined;
 
     if (!overlay) return;
@@ -35,13 +33,13 @@ export default function Preloader({ onComplete }: PreloaderProps) {
       { opacity: 1, scale: 1, rotation: 0, duration: 0.8, ease: 'back.out(1.7)' }
     );
 
-    // 2. Counter reels from 0 to 100
+    // 2. Counter reels from 0 to 100 (starts immediately with logo)
     if (strip) {
       const totalDigits = strip.children.length;
       tl.to(
         strip,
         { y: -(totalDigits - 1) * 16, duration: 2, ease: 'steps(' + (totalDigits - 1) + ')' },
-        '-=0.3'
+        0
       );
     }
 
@@ -82,11 +80,9 @@ export default function Preloader({ onComplete }: PreloaderProps) {
       {/* Logo */}
       <div
         ref={logoRef}
-        className="opacity-0 w-[clamp(120px,18vw,200px)] h-[clamp(120px,18vw,200px)] border-2 border-primary/30 bg-surface rounded flex items-center justify-center shadow-lg"
+        className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 will-change-transform"
       >
-        <span className="font-space text-6xl md:text-7xl font-extrabold text-primary tracking-tighter">
-          ACE
-        </span>
+        <img src="/aceLogo.png" alt="ACE Logo" className="w-full h-full object-contain" />
       </div>
 
       {/* Slot counter */}
@@ -100,7 +96,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
             ))}
           </div>
         </div>
-        <span className="font-mono text-sm text-primary/80 ml-1">%</span>
+        <span className="font-mono text-base text-primary/80 ml-1">%</span>
       </div>
 
       {/* Tagline */}
@@ -108,11 +104,11 @@ export default function Preloader({ onComplete }: PreloaderProps) {
         ref={taglineRef}
         className="flex items-center gap-3 mt-6 font-mono text-sm font-bold uppercase tracking-[0.15em] text-on-surface-variant"
       >
-        <span>Precision</span>
+        <span data-word>Precision</span>
         <span className="text-primary/30">&bull;</span>
-        <span>Estimation</span>
+        <span data-word>Estimation</span>
         <span className="text-primary/30">&bull;</span>
-        <span>Engineered</span>
+        <span data-word>Engineered</span>
       </div>
     </div>
   );

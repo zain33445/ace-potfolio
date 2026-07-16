@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   motion,
   useScroll,
@@ -48,8 +48,11 @@ export const HeroParallax = ({
   const secondRow = products.slice(5, 10);
   const thirdRow = products.slice(10, 15);
   const ref = useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
   const { scrollYProgress } = useScroll({
-    target: ref,
+    target: mounted ? ref : undefined,
     offset: ["start start", "end start"],
   });
 
@@ -222,7 +225,7 @@ export const Header = ({
 }) => {
   const subhead = [h2, h3].filter(Boolean).join(' ');
   return (
-    <div className={`w-[92%] md:w-4/5 max-w-[900px] min-[2000px]:max-w-[1200px] mx-auto px-2 md:px-10 pt-6 md:pt-10 pb-8 md:pb-15 relative z-10 ${mobile ? '' : 'bg-[rgba(255,255,255,0.45)] border border-2 border-blueprint-line shadow-[0_20px_80px_-12px_rgba(0,0,0,0.08)] bracket-corners-lg liquid-glass'}`}>
+    <div className={`w-[92%] md:w-4/5 max-w-[900px] min-[2000px]:max-w-[1200px] mx-auto px-2 md:px-2 pt-6 md:pt-10 pb-8 md:pb-15 relative z-10 ${mobile ? '' : 'bg-[rgba(255,255,255,0.45)] border border-2 border-blueprint-line shadow-[0_20px_80px_-12px_rgba(0,0,0,0.08)] bracket-corners-lg liquid-glass'}`}>
       <h1 
         className={`font-sans text-base md:text-lg font-extrabold uppercase leading-[1.1] tracking-wider text-center mb-10 decoration-primary decoration-[6px] underline-offset-[10px] ${mobile ? 'text-white' : 'text-[#FF6B00]'}`}>
           <TextGenerateEffect words={ 'Top Construction Estimating Services in the US'} duration={5}/>

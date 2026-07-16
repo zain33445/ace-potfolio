@@ -3,7 +3,8 @@
 import { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ClipboardCheck } from 'lucide-react';
+import { motion } from 'motion/react';
+import { ClipboardCheck, ChevronLeft, ChevronRight } from 'lucide-react';
 
 import ThreeScene from './EstimationMachine/ThreeScene';
 import { usePin } from '../PinContext';
@@ -21,12 +22,24 @@ export default function ProcessFlow() {
   const [sceneReady, setSceneReady] = useState(false);
   const currentStepRef = useRef(0);
   const { setPinned } = usePin();
+  const [isMobile, setIsMobile] = useState(false);
+
+  /* ── Responsive detection ── */
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 767px)');
+    setIsMobile(mq.matches);
+    const h = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener('change', h);
+    return () => mq.removeEventListener('change', h);
+  }, []);
 
   /* ----------------------------------------------------------------
    * ScrollTrigger: pin the section when the heading reaches the
    * viewport top, then scrub through steps as the user scrolls.
+   * Disabled on mobile — stacked cards handle interaction instead.
    * ---------------------------------------------------------------- */
   useEffect(() => {
+    if (isMobile) return;
     const section = sectionRef.current;
     const heading = headingRef.current;
     if (!section || !heading) return;
@@ -64,7 +77,7 @@ const headingOffset = Math.round(headingTop - sectionTop) - pinOffset;
     return () => {
       st.kill();
     };
-  }, []);
+  }, [isMobile]);
 
   /* ----------------------------------------------------------------
    * Animate the active card indicator whenever activeStep changes
@@ -131,43 +144,123 @@ const headingOffset = Math.round(headingTop - sectionTop) - pinOffset;
     };
   }, [activeStep, sceneReady]);
 
+  /* ── Mobile: send card to back on tap ── */
+  const sendToBack = () => {
+    setActiveStep((prev) => (prev >= STEP_COUNT ? 1 : prev + 1));
+  };
+  const sendToFront = () => {
+    setActiveStep((prev) => (prev <= 1 ? STEP_COUNT : prev - 1));
+  };
+
+  /* ── Shared 3D scene ── */
+  const sceneBlock = (
+    <div className="h-[300px] md:h-[500px] border border-blueprint-line bg-surface relative p-4 bracket-corners cursor-move">
+      <div className="absolute top-4 left-4 font-mono text-sm text-on-surface-variant z-10 flex items-center gap-1.5 font-bold">
+        <ClipboardCheck className="w-4 h-4 text-primary" />
+        SYSTEM: PROCESS_CLIPBOARD_MESH
+      </div>
+      <div className="w-full h-full absolute inset-0">
+        <ThreeScene
+          ref={(node) => {
+            sceneRef.current = node;
+            if (node && !sceneReady) setSceneReady(true);
+          }}
+        />
+      </div>
+      <div className="absolute top-4 right-4 z-10 font-mono text-sm text-primary">
+        {activeStep}/{STEP_COUNT}
+      </div>
+    </div>
+  );
+
+  /* ── Mobile: stacked cards layout ── */
+  if (isMobile) {
+    return (
+      <div ref={sectionRef} className="px-6 py-16 space-y-8">
+        {/* Heading */}
+        <div>
+          <span className="font-mono text-sm text-primary block mb-2 font-bold">
+            [OPERATIONAL_FLOW]
+          </span>
+          <h2 className="font-space font-bold text-3xl text-on-background tracking-tight">
+            Schematic Methodology.
+          </h2>
+        </div>
+
+        {/* 3D Scene */}
+        {sceneBlock}
+
+        {/* Stacked cards */}
+        <div className="relative h-[180px] w-full">
+          {steps.map((step, i) => {
+            const offset = step.id - activeStep;
+            const normalised = offset < 0 ? offset + STEP_COUNT : offset;
+            const isFront = normalised === 0;
+
+            return (
+              <motion.div
+                key={step.id}
+                className="absolute inset-0"
+                animate={{
+                  y: normalised * -8,
+                  scale: 1 - normalised * 0.04,
+                  opacity: normalised > 3 ? 0 : 1 - normalised * 0.15,
+                  zIndex: STEP_COUNT - normalised,
+                  rotateZ: normalised === 0 ? 0 : (normalised % 2 === 0 ? 1.5 : -1.5),
+                }}
+                transition={{ type: 'spring', stiffness: 260, damping: 26 }}
+                onClick={isFront ? sendToBack : undefined}
+                style={{ cursor: isFront ? 'pointer' : 'default' }}
+              >
+                <div
+                  className={`h-full w-full border bracket-corners p-5 flex flex-col justify-center transition-colors duration-300 ${
+                    isFront
+                      ? 'bg-surface border-primary shadow-lg'
+                      : 'bg-surface/80 border-blueprint-line/40'
+                  }`}
+                >
+                  <span className="font-mono text-xs text-primary font-bold tracking-widest mb-1">
+                    STEP_{step.num}
+                  </span>
+                  <h3 className={`font-space font-bold text-xl ${isFront ? 'text-primary' : 'text-on-background/50'}`}>
+                    {step.title}
+                  </h3>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* Nav arrows */}
+        <div className="flex items-center justify-center gap-4">
+          <button
+            onClick={sendToFront}
+            className="w-10 h-10 border border-blueprint-line bg-surface bracket-corners flex items-center justify-center hover:border-primary transition-colors"
+          >
+            <ChevronLeft className="w-5 h-5 text-on-background" />
+          </button>
+          <span className="font-mono text-sm text-primary font-bold">
+            {activeStep} / {STEP_COUNT}
+          </span>
+          <button
+            onClick={sendToBack}
+            className="w-10 h-10 border border-blueprint-line bg-surface bracket-corners flex items-center justify-center hover:border-primary transition-colors"
+          >
+            <ChevronRight className="w-5 h-5 text-on-background" />
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  /* ── Desktop: pinned scroll layout ── */
   return (
     <div
       ref={sectionRef}
       className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
     >
-      <div className="order-2 lg:order-1 h-[500px] border border-blueprint-line bg-surface relative p-4 bracket-corners cursor-move">
-        <div className="absolute top-4 left-4 font-mono text-sm text-on-surface-variant z-10 flex items-center gap-1.5 font-bold">
-          <ClipboardCheck className="w-4 h-4 text-primary" />
-          SYSTEM: PROCESS_CLIPBOARD_MESH
-        </div>
-
-        <div className="w-full h-full absolute inset-0">
-          <ThreeScene
-            ref={(node) => {
-              sceneRef.current = node;
-              if (node && !sceneReady) setSceneReady(true);
-            }}
-          />
-        </div>
-
-        {/* <div className="absolute bottom-4 left-4 z-10 bg-background/95 border border-blueprint-line p-3 font-mono text-sm space-y-1 shadow-sm max-w-xs">
-          <span className="text-primary font-bold uppercase block">
-            [STATUS_ACTIVE_STAGES]
-          </span>
-
-          <span className="block text-on-background font-sans font-semibold">
-            Step {activeStep}: {steps[activeStep - 1]?.title}
-          </span>
-
-          <span className="block text-on-surface-variant leading-relaxed text-xs">
-            {steps[activeStep - 1]?.output}
-          </span>
-        </div> */}
-
-        <div className="absolute top-4 right-4 z-10 font-mono text-sm text-primary">
-          {activeStep}/{STEP_COUNT}
-        </div>
+      <div className="order-2 lg:order-1">
+        {sceneBlock}
       </div>
 
       <div className="order-1 lg:order-2 space-y-6">

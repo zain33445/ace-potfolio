@@ -4,16 +4,10 @@ import { useState, useLayoutEffect, type ReactNode } from 'react';
 import { usePathname } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import Nav from '../components/Nav';
+import Preloader from '../components/Preloader';
 import { PreloaderProvider } from '../PreloaderContext';
 import { PinProvider } from '../PinContext';
-
-/* Lazy-load the Preloader — it pulls in ~60KB of gsap and is only
-   meaningful on the homepage. Offloading it from the shared layout
-   chunk slashes the JS shipped to every other route. */
-const Preloader = dynamic(
-  () => import('../components/Preloader'),
-  { ssr: false },
-);
+import Footer from '../components/Footer';
 
 /* Lazy-load the CursorFollower — it also pulls in gsap. Keeping it
    out of the shared layout chunk saves ~50KB of JS on every page. */
@@ -27,6 +21,18 @@ export default function LayoutShell({ children }: { children: ReactNode }) {
   const isHome = pathname === '/';
   // Non-homepage routes skip the preloader entirely — start "done".
   const [preloaderDone, setPreloaderDone] = useState(!isHome);
+
+  /* Lock scroll at the top BEFORE paint while preloader is active.
+     useLayoutEffect fires synchronously after DOM mutation but before
+     the browser paints, so the user never sees a flash of the wrong section. */
+  useLayoutEffect(() => {
+    if (isHome && !preloaderDone) {
+      window.scrollTo(0, 0);
+      document.body.style.overflow = 'hidden';
+      return () => { document.body.style.overflow = ''; };
+    }
+    document.body.style.overflow = '';
+  }, [isHome, preloaderDone]);
 
   // Scroll to section after navigating from another page (via sessionStorage) or direct hash URL
   useLayoutEffect(() => {
@@ -66,7 +72,10 @@ export default function LayoutShell({ children }: { children: ReactNode }) {
           <header>
             <Nav />
           </header>
-          <main>{children}</main>
+          <main style={{ visibility: preloaderDone ? 'visible' : 'hidden' }}>{children}</main>
+          <Footer />
+          {/* <footer>
+          </footer> */}
         </div>
       </PinProvider>
     </PreloaderProvider>
