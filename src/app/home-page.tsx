@@ -2,12 +2,10 @@
 
 import dynamic from 'next/dynamic';
 import HeroSection from '@/src/components/Home/sections/HeroSection';
-import StatsSection from '@/src/components/Home/sections/StatsSection';
-import AboutSection from '@/src/components/Home/sections/AboutSection';
 import SolutionsSection from '@/src/components/Home/sections/SolutionsSection';
 import WhyChooseUsSection from '@/src/components/Home/sections/WhyChooseUsSection';
 import TestimonialsSection from '@/src/components/Home/sections/TestimonialsSection';
-import CalculatorSection from '@/src/components/Home/sections/CalculatorSection';
+import CalculatorStripBanner from '@/src/components/Home/sections/CalculatorStripBanner';
 import ProjectsSection from '@/src/components/Home/sections/ProjectsSection';
 import ProcessSection from '@/src/components/Home/sections/ProcessSection';
 import FAQSection from '@/src/components/Home/sections/FAQSection';
@@ -27,12 +25,10 @@ export default function HomePage({
     <>
       {/* <BackgroundShader /> */}
       <HeroSection products={products} />
-      <StatsSection />
       <SolutionsSection />
-      <AboutSection />
       <WhyChooseUsSection />
       <TestimonialsSection />
-      <CalculatorSection />
+      <CalculatorStripBanner />
       <ProjectsSection />
       <ProcessSection />
       <FAQSection />

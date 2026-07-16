@@ -84,7 +84,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
         ref={logoRef}
         className="opacity-0 w-[clamp(120px,18vw,200px)] h-[clamp(120px,18vw,200px)] border-2 border-primary/30 bg-surface rounded flex items-center justify-center shadow-lg"
       >
-        <span className="font-space text-5xl md:text-6xl font-extrabold text-primary tracking-tighter">
+        <span className="font-space text-6xl md:text-7xl font-extrabold text-primary tracking-tighter">
           ACE
         </span>
       </div>
@@ -100,13 +100,13 @@ export default function Preloader({ onComplete }: PreloaderProps) {
             ))}
           </div>
         </div>
-        <span className="font-mono text-xs text-primary/80 ml-1">%</span>
+        <span className="font-mono text-sm text-primary/80 ml-1">%</span>
       </div>
 
       {/* Tagline */}
       <div
         ref={taglineRef}
-        className="flex items-center gap-3 mt-6 font-mono text-xs font-bold uppercase tracking-[0.15em] text-on-surface-variant"
+        className="flex items-center gap-3 mt-6 font-mono text-sm font-bold uppercase tracking-[0.15em] text-on-surface-variant"
       >
         <span>Precision</span>
         <span className="text-primary/30">&bull;</span>

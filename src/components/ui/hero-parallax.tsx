@@ -93,73 +93,26 @@ export const HeroParallax = ({
 
   /* ── Mobile: header text on top, image marquee below ── */
   if (isMobile) {
-    const half = Math.ceil(products.length / 2);
-    const rowA = products.slice(0, half);
-    const rowB = products.slice(half);
-
-    const marqueeCard = (product: HeroParallaxProduct) => (
-      <a
-        href={product.link}
-        className="block relative rounded-none overflow-hidden h-36 w-44 shrink-0"
-      >
-        <img
-          src={product.thumbnail}
-          height="600"
-          width="600"
-          loading="lazy"
-          decoding="async"
-          className="object-cover object-left-top absolute h-full w-full inset-0 grayscale"
-          alt={product.title}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-        <div className="absolute bottom-2 left-2 right-2 z-10">
-          <h2 className="text-white font-bold text-[10px] font-space leading-tight">
-            {product.title}
-          </h2>
-          {product.subtitle && (
-            <p className="text-white/70 text-[10px] font-mono mt-0.5">
-              {product.subtitle}
-            </p>
-          )}
-        </div>
-      </a>
-    );
-
     return (
       <div className="antialiased relative">
         {/* Hero card — exactly viewport height, centered */}
-        <section className="h-screen grid place-items-center px-04">
-          <Header h1={headerH1} h2={headerH2} h3={headerH3} />
+        <section className="h-screen grid place-items-center px-4 relative overflow-hidden bg-black">
+          {/* Background video — mobile only */}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            className="absolute inset-0 w-full h-full object-cover z-0"
+            src="/mobile-video-header.mp4"
+          />
+          {/* Dark overlay for readability */}
+          <div className="absolute inset-0 bg-black/40 z-[1]" />
+          <div className="relative z-10">
+            <Header h1={headerH1} h2={headerH2} h3={headerH3} mobile />
+          </div>
         </section>
-        {/* Marquee rows — below viewport, visible on scroll */}
-        <div className="flex flex-col gap-3 pb-10 px-4">
-          {/* Row 1 — scrolls left */}
-          <div className="image-marquee-track">
-            <div className="image-marquee-content pr-3">
-              {rowA.map((p, i) => (
-                <span key={`a-${i}`}>{marqueeCard(p)}</span>
-              ))}
-            </div>
-            <div className="image-marquee-content pr-3" aria-hidden="true">
-              {rowA.map((p, i) => (
-                <span key={`ad-${i}`}>{marqueeCard(p)}</span>
-              ))}
-            </div>
-          </div>
-          {/* Row 2 — scrolls right */}
-          <div className="image-marquee-track">
-            <div className="image-marquee-content image-marquee-content--reverse pr-3">
-              {rowB.map((p, i) => (
-                <span key={`b-${i}`}>{marqueeCard(p)}</span>
-              ))}
-            </div>
-            <div className="image-marquee-content image-marquee-content--reverse pr-3" aria-hidden="true">
-              {rowB.map((p, i) => (
-                <span key={`bd-${i}`}>{marqueeCard(p)}</span>
-              ))}
-            </div>
-          </div>
-        </div>
       </div>
     );
   }
@@ -260,16 +213,18 @@ export const Header = ({
   h1,
   h2,
   h3,
+  mobile = false,
 }: {
   h1?: string;
   h2?: string;
   h3?: string;
+  mobile?: boolean;
 }) => {
   const subhead = [h2, h3].filter(Boolean).join(' ');
   return (
-    <div className="w-4/5 max-w-[900px] min-[2000px]:max-w-[1200px] mx-auto px-10 pt-10 pb-15 bg-[rgba(255, 255, 255, 0.45)] border border-2 border-blueprint-line relative z-10 shadow-[0_20px_80px_-12px_rgba(0,0,0,0.08)] bracket-corners-lg liquid-glass">
+    <div className={`w-[92%] md:w-4/5 max-w-[900px] min-[2000px]:max-w-[1200px] mx-auto px-5 md:px-10 pt-6 md:pt-10 pb-8 md:pb-15 relative z-10 ${mobile ? '' : 'bg-[rgba(255,255,255,0.45)] border border-2 border-blueprint-line shadow-[0_20px_80px_-12px_rgba(0,0,0,0.08)] bracket-corners-lg liquid-glass'}`}>
       <h1 
-        className="font-sans text-lg font-extrabold  uppercase leading-[1.1] tracking-wider text-[#FF6B00] text-center mb-10  decoration-primary decoration-[6px] underline-offset-[10px]">
+        className="font-sans text-base md:text-lg font-extrabold  uppercase leading-[1.1] tracking-wider text-[#FF6B00] text-center mb-10  decoration-primary decoration-[6px] underline-offset-[10px]">
           <TextGenerateEffect words={ 'Top Construction Estimating Services in the US'} duration={5}/>
       </h1>
       <h1 
@@ -279,7 +234,7 @@ export const Header = ({
       {subhead && (
         <div className="font-sans text-[clamp(1.1rem,2vw,1.35rem)] leading-relaxed text-[#4B5563] mx-auto px-5 text-center ">
           <br />
-          <span style={{ fontWeight: 'bold', fontSize: '1.40rem', color: '#111827' }}><TextGenerateEffect words={h2 ?? ''} sub={h3 ?? ''} /></span>
+          <span style={{ fontWeight: 'bold', color: '#111827' }}><TextGenerateEffect words={h2 ?? ''} sub={h3 ?? ''} /></span>
         </div>
       )}
 
@@ -308,10 +263,14 @@ export const Header = ({
         </button>
       </div>
       
-            <p className="text-center text-[#000] font-medium mt-11">
-        <span style={{background: '#1d1d1d6b', padding: '5px', color: 'white', fontWeight: 'bold', borderRadius: '.5rem'}}>✓ Trusted by 200+ Contractors</span> | 
-        <span style={{color: '#FF6B00', fontWeight: 'bold', fontSize: '1.2rem'}}> ✓ </span>Residential & Commercial Projects | 
-        <span style={{color: '#FF6B00', fontWeight: 'bold', fontSize: '1.2rem'}}> ✓ </span>24-48 Hour Turnaround
+            <p className="text-center text-[#000] font-medium mt-8 md:mt-11 text-xs md:text-sm leading-relaxed">
+        <span style={{background: '#1d1d1d6b', padding: '5px', color: 'white', fontWeight: 'bold', borderRadius: '.5rem'}}>✓ Trusted by 200+ Contractors</span>
+        <br className="md:hidden" />
+        <span className="hidden md:inline mx-2">|</span>
+        <span style={{color: '#FF6B00', fontWeight: 'bold'}}> ✓ </span>Residential & Commercial Projects
+        <br className="md:hidden" />
+        <span className="hidden md:inline mx-2">|</span>
+        <span style={{color: '#FF6B00', fontWeight: 'bold'}}> ✓ </span>24-48 Hour Turnaround
       </p>
     </div>
   );

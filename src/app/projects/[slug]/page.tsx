@@ -74,7 +74,7 @@ export default async function ProjectDetailPage({ params }: Props) {
           {/* ── Sidebar: Featured Projects ── */}
           <aside className="order-2 lg:order-1">
             <div className="sticky top-24">
-              <div className="mb-4 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-primary">
+              <div className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
                 [FEATURED_PROJECTS]
               </div>
               <div className="space-y-4">
@@ -84,7 +84,7 @@ export default async function ProjectDetailPage({ params }: Props) {
               </div>
               <Link
                 href="/projects"
-                className="mt-6 inline-flex items-center gap-2 font-mono text-[10px] font-bold uppercase tracking-wider text-on-surface-variant transition-colors hover:text-primary"
+                className="mt-6 inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-on-surface-variant transition-colors hover:text-primary"
               >
                 <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19 12H5m7-7l-7 7 7 7" />
@@ -147,7 +147,7 @@ function HeroSection({ project }: { project: ProjectDetail }) {
 
       <div className="relative mx-auto max-w-7xl px-[var(--spacing-margin-mobile)] py-16 md:px-[var(--spacing-margin-desktop)] md:py-24">
         {/* Breadcrumb */}
-        <div className="mb-8 flex items-center gap-2 font-mono text-[10px] font-bold uppercase tracking-wider text-on-surface-variant">
+        <div className="mb-8 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-on-surface-variant">
           <Link href="/projects" className="hover:text-primary transition-colors">
             PORTFOLIO
           </Link>
@@ -156,16 +156,16 @@ function HeroSection({ project }: { project: ProjectDetail }) {
         </div>
 
         {/* Tagline */}
-        <div className="mb-4 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-primary">
+        <div className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
           [SYS::PROJECT_DETAIL]
         </div>
 
-        <h1 className="font-[family-name:var(--font-space)] text-4xl font-bold leading-tight text-on-background md:text-6xl lg:text-7xl max-w-4xl">
+        <h1 className="font-[family-name:var(--font-space)] text-5xl font-bold leading-tight text-on-background md:text-7xl lg:text-7xl max-w-4xl">
           Accurate Estimates Behind{' '}
           <span className="text-primary">Successful Construction Bids</span>
         </h1>
 
-        <p className="mt-6 max-w-2xl font-sans text-base leading-relaxed text-on-surface-variant md:text-lg">
+        <p className="mt-6 max-w-2xl font-sans text-lg leading-relaxed text-on-surface-variant md:text-xl">
           {project.description}
         </p>
 
@@ -184,10 +184,10 @@ function HeroSection({ project }: { project: ProjectDetail }) {
 function QuickStat({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <div className="font-mono text-[10px] font-bold uppercase tracking-[0.15em] text-on-surface-variant">
+      <div className="font-mono text-xs font-bold uppercase tracking-[0.15em] text-on-surface-variant">
         {label}
       </div>
-      <div className="mt-1 font-[family-name:var(--font-space)] text-2xl font-bold text-on-background">
+      <div className="mt-1 font-[family-name:var(--font-space)] text-3xl font-bold text-on-background">
         {value}
       </div>
     </div>
@@ -210,10 +210,10 @@ function FeaturedProjectCard({ project }: { project: ProjectDetail }) {
         />
       </div>
       <div className="flex min-w-0 flex-col justify-center">
-        <h4 className="truncate font-[family-name:var(--font-space)] text-sm font-bold text-on-background transition-colors group-hover:text-primary">
+        <h4 className="truncate font-[family-name:var(--font-space)] text-base font-bold text-on-background transition-colors group-hover:text-primary">
           {project.title}
         </h4>
-        <p className="font-mono text-[10px] text-on-surface-variant">
+        <p className="font-mono text-xs text-on-surface-variant">
           {formatCurrency(project.estimatedCost)}
         </p>
       </div>
@@ -226,7 +226,7 @@ function FeaturedProjectCard({ project }: { project: ProjectDetail }) {
 function ProjectSummarySection({ project }: { project: ProjectDetail }) {
   return (
     <section>
-      <div className="mb-6 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-primary">
+      <div className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
         [PROJECT_SUMMARY]
       </div>
 
@@ -253,10 +253,10 @@ function ProjectSummarySection({ project }: { project: ProjectDetail }) {
         {/* Summary Info */}
         <div className="flex flex-col justify-center space-y-6">
           <div>
-            <h2 className="font-[family-name:var(--font-space)] text-2xl font-bold text-on-background md:text-3xl">
+            <h2 className="font-[family-name:var(--font-space)] text-3xl font-bold text-on-background md:text-4xl">
               {project.title}
             </h2>
-            <p className="mt-2 font-mono text-xs text-on-surface-variant">
+            <p className="mt-2 font-mono text-sm text-on-surface-variant">
               {project.location} &mdash; {project.category}
             </p>
           </div>
@@ -265,12 +265,12 @@ function ProjectSummarySection({ project }: { project: ProjectDetail }) {
 
           {/* Estimation Scope */}
           <div>
-            <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-primary">
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-primary">
               ESTIMATION SCOPE
             </span>
             <div className="mt-2 space-y-1.5">
               {project.scope.map((item) => (
-                <div key={item} className="flex items-center gap-2 font-sans text-sm text-on-background">
+                <div key={item} className="flex items-center gap-2 font-sans text-base text-on-background">
                   <svg className="h-3.5 w-3.5 flex-shrink-0 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
@@ -296,10 +296,10 @@ function ProjectSummarySection({ project }: { project: ProjectDetail }) {
 function MetricBox({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <div className="font-mono text-[10px] font-bold uppercase tracking-wider text-on-surface-variant">
+      <div className="font-mono text-xs font-bold uppercase tracking-wider text-on-surface-variant">
         {label}
       </div>
-      <div className="mt-0.5 font-[family-name:var(--font-space)] text-lg font-bold text-on-background">
+      <div className="mt-0.5 font-[family-name:var(--font-space)] text-xl font-bold text-on-background">
         {value}
       </div>
     </div>
@@ -314,7 +314,7 @@ function CostBreakdownSection({ project }: { project: ProjectDetail }) {
 
   return (
     <section>
-      <div className="mb-6 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-primary">
+      <div className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
         [MAJOR_COST_DISTRIBUTION]
       </div>
 
@@ -324,10 +324,10 @@ function CostBreakdownSection({ project }: { project: ProjectDetail }) {
 
         {/* Total */}
         <div className="mt-6 flex items-center justify-between border-t border-blueprint-line pt-4">
-          <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-primary">
+          <span className="font-mono text-xs font-bold uppercase tracking-wider text-primary">
             TOTAL DIVISIONS
           </span>
-          <span className="font-[family-name:var(--font-space)] text-xl font-bold text-on-background">
+          <span className="font-[family-name:var(--font-space)] text-2xl font-bold text-on-background">
             {formatCurrency(totalDisplayed)}
           </span>
         </div>
@@ -341,7 +341,7 @@ function CostBreakdownSection({ project }: { project: ProjectDetail }) {
 function CsiDivisionsSection({ project }: { project: ProjectDetail }) {
   return (
     <section>
-      <div className="mb-6 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-primary">
+      <div className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
         [CSI_MASTERFORMAT_DIVISIONS]
       </div>
 
@@ -350,7 +350,7 @@ function CsiDivisionsSection({ project }: { project: ProjectDetail }) {
           {project.csiDivisions.map((div) => (
             <div
               key={div}
-              className="flex items-center gap-3 border border-blueprint-line/50 bg-background/50 px-3 py-2 font-mono text-xs text-on-surface-variant transition-colors hover:border-primary/30 hover:text-primary"
+              className="flex items-center gap-3 border border-blueprint-line/50 bg-background/50 px-3 py-2 font-mono text-sm text-on-surface-variant transition-colors hover:border-primary/30 hover:text-primary"
             >
               <span className="h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
               <span>{div}</span>
@@ -368,11 +368,11 @@ function ProcessSection() {
   return (
     <section className="border-y border-blueprint-line">
       <div className="mx-auto max-w-7xl px-[var(--spacing-margin-mobile)] py-20 md:px-[var(--spacing-margin-desktop)] md:py-24">
-        <div className="mb-6 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-primary">
+        <div className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
           [OUR_PROCESS]
         </div>
 
-        <h2 className="font-[family-name:var(--font-space)] text-3xl font-bold text-on-background md:text-4xl mb-12">
+        <h2 className="font-[family-name:var(--font-space)] text-4xl font-bold text-on-background md:text-5xl mb-12">
           From Blueprint to Bid-Ready Estimate
         </h2>
 
@@ -381,16 +381,16 @@ function ProcessSection() {
             <div key={step.title} className="relative">
               {/* Step number */}
               <div className="mb-4 flex items-center gap-3">
-                <span className="flex h-10 w-10 items-center justify-center border border-primary bg-primary/10 font-mono text-sm font-bold text-primary">
+                <span className="flex h-10 w-10 items-center justify-center border border-primary bg-primary/10 font-mono text-base font-bold text-primary">
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <div className="h-px flex-1 bg-blueprint-line hidden md:block" />
               </div>
 
-              <h3 className="font-[family-name:var(--font-space)] text-lg font-bold text-on-background mb-2">
+              <h3 className="font-[family-name:var(--font-space)] text-xl font-bold text-on-background mb-2">
                 {step.title}
               </h3>
-              <p className="font-sans text-sm leading-relaxed text-on-surface-variant">
+              <p className="font-sans text-base leading-relaxed text-on-surface-variant">
                 {step.description}
               </p>
             </div>
@@ -430,15 +430,15 @@ function SampleReportSection({ project }: { project: ProjectDetail }) {
   return (
     <section className="border-b border-blueprint-line">
       <div className="mx-auto max-w-7xl px-[var(--spacing-margin-mobile)] py-20 md:px-[var(--spacing-margin-desktop)] md:py-24">
-        <div className="mb-6 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-primary">
+        <div className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
           [SAMPLE_ESTIMATE_REPORT]
         </div>
 
-        <h2 className="font-[family-name:var(--font-space)] text-3xl font-bold text-on-background md:text-4xl mb-4">
+        <h2 className="font-[family-name:var(--font-space)] text-4xl font-bold text-on-background md:text-5xl mb-4">
           View the Full Estimate PDF
         </h2>
 
-        <p className="max-w-2xl font-sans text-sm leading-relaxed text-on-surface-variant mb-8">
+        <p className="max-w-2xl font-sans text-base leading-relaxed text-on-surface-variant mb-8">
           Download the complete cost estimation report for {project.title}, including
           division-by-division cost breakdowns, material quantities, and bid recommendations.
         </p>
@@ -458,10 +458,10 @@ function SampleReportSection({ project }: { project: ProjectDetail }) {
 
           <div className="flex items-center justify-between border-t border-blueprint-line p-4 md:p-6">
             <div>
-              <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-primary">
+              <span className="font-mono text-xs font-bold uppercase tracking-wider text-primary">
                 REPORT
               </span>
-              <p className="font-[family-name:var(--font-space)] text-sm font-bold text-on-background mt-0.5">
+              <p className="font-[family-name:var(--font-space)] text-base font-bold text-on-background mt-0.5">
                 {project.title} — Complete Estimate
               </p>
             </div>
@@ -469,7 +469,7 @@ function SampleReportSection({ project }: { project: ProjectDetail }) {
               href={project.pdfUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group/btn inline-flex items-center gap-2 border border-primary bg-primary px-6 py-3 font-mono text-[10px] font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary"
+              className="group/btn inline-flex items-center gap-2 border border-primary bg-primary px-6 py-3 font-mono text-xs font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary"
             >
               <span>DOWNLOAD PDF</span>
               <svg
@@ -495,19 +495,19 @@ function CtaSection() {
   return (
     <section className="border-b border-blueprint-line">
       <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-[var(--spacing-margin-mobile)] py-20 text-center md:px-[var(--spacing-margin-desktop)] md:py-28">
-        <div className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-primary">
+        <div className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
           [SYS::INITIATE_ESTIMATE_REQUEST]
         </div>
-        <h2 className="font-[family-name:var(--font-space)] text-3xl font-bold text-on-background md:text-5xl max-w-3xl">
+        <h2 className="font-[family-name:var(--font-space)] text-4xl font-bold text-on-background md:text-6xl max-w-3xl">
           Need an Estimate for Your Next Project?
         </h2>
-        <p className="max-w-lg text-sm leading-relaxed text-on-surface-variant">
+        <p className="max-w-lg text-base leading-relaxed text-on-surface-variant">
           Submit your blueprints and receive a precision cost schedule within
           3–5 business days. Expedited turnaround available.
         </p>
         <Link
           href="/#contact"
-          className="group mt-4 inline-flex items-center gap-3 border border-primary bg-primary px-8 py-3.5 font-mono text-xs font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary"
+          className="group mt-4 inline-flex items-center gap-3 border border-primary bg-primary px-8 py-3.5 font-mono text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary"
         >
           <span>REQUEST ESTIMATE</span>
           <svg

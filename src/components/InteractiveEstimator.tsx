@@ -28,14 +28,14 @@ export default function InteractiveEstimator() {
       <div className="border-b border-blueprint-line px-6 py-4 bg-background/50 flex flex-col sm:flex-row justify-between items-center gap-4">
         <div className="flex items-center gap-2">
           <Calculator className="w-5 h-5 text-primary" />
-          <span className="font-space font-bold uppercase tracking-wider text-sm">
+          <span className="font-space font-bold uppercase tracking-wider text-base">
             Interactive Cost Takeoff Engine [V2.5]
           </span>
         </div>
         <div className="flex bg-background border border-blueprint-line p-1 bracket-corners">
           <button
             onClick={() => setActiveTab('calculator')}
-            className={`px-4 py-1.5 font-mono text-xs uppercase tracking-wider transition-all duration-200 ${
+            className={`px-4 py-1.5 font-mono text-sm uppercase tracking-wider transition-all duration-200 ${
               activeTab === 'calculator' ? 'bg-primary text-white font-bold' : 'text-on-surface-variant hover:text-primary'
             }`}
           >
@@ -43,7 +43,7 @@ export default function InteractiveEstimator() {
           </button>
           <button
             onClick={() => setActiveTab('analysis')}
-            className={`px-4 py-1.5 font-mono text-xs uppercase tracking-wider transition-all duration-200 ${
+            className={`px-4 py-1.5 font-mono text-sm uppercase tracking-wider transition-all duration-200 ${
               activeTab === 'analysis' ? 'bg-primary text-white font-bold' : 'text-on-surface-variant hover:text-primary'
             }`}
           >
@@ -60,7 +60,7 @@ export default function InteractiveEstimator() {
             {steps.map((s, i) => (
               <div key={s.id} className="flex items-center gap-2 flex-1">
                 <div
-                  className={`flex items-center justify-center w-7 h-7 border font-mono text-[10px] font-bold transition-all duration-300 ${
+                  className={`flex items-center justify-center w-7 h-7 border font-mono text-xs font-bold transition-all duration-300 ${
                     i === stepIndex
                       ? 'border-primary bg-primary text-white'
                       : i < stepIndex
@@ -72,7 +72,7 @@ export default function InteractiveEstimator() {
                   {i < stepIndex ? <Check className="w-3 h-3" /> : i + 1}
                 </div>
                 <div className="hidden md:block">
-                  <span className={`block font-mono text-[10px] uppercase tracking-widest ${
+                  <span className={`block font-mono text-xs uppercase tracking-widest ${
                     i <= stepIndex ? 'text-primary' : 'text-on-surface-variant'
                   }`}>{s.description}</span>
                 </div>
@@ -118,7 +118,7 @@ export default function InteractiveEstimator() {
                 {stepIndex > 0 && (
                   <button
                     onClick={prev}
-                    className="flex items-center gap-1.5 font-mono text-xs uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors"
+                    className="flex items-center gap-1.5 font-mono text-sm uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors"
                   >
                     <ArrowLeft className="w-3.5 h-3.5" /> Previous
                   </button>
@@ -126,7 +126,7 @@ export default function InteractiveEstimator() {
               </div>
               <button
                 onClick={next}
-                className="flex items-center gap-1.5 px-5 py-2.5 bg-primary text-white font-mono text-sm font-bold uppercase tracking-widest bracket-corners hover-brackets transition-all duration-200"
+                className="flex items-center gap-1.5 px-5 py-2.5 bg-primary text-white font-mono text-base font-bold uppercase tracking-widest bracket-corners hover-brackets transition-all duration-200"
               >
                 Continue <ChevronRight className="w-3.5 h-3.5" />
               </button>
@@ -139,19 +139,19 @@ export default function InteractiveEstimator() {
           <div>
             <div className="flex justify-between items-start mb-6">
               <div>
-                <span className="font-mono text-xs text-on-surface-variant block uppercase">
+                <span className="font-mono text-sm text-on-surface-variant block uppercase">
                   ESTIMATED CONSTRUCTION COST INTERVAL
                 </span>
-                <motion.h3 className="font-space font-bold text-4xl md:text-5xl text-on-background tracking-tighter mt-1">
+                <motion.h3 className="font-space font-bold text-5xl md:text-6xl text-on-background tracking-tighter mt-1">
                   ${displayTotal}
                 </motion.h3>
-                <span className="font-mono text-xs text-primary block mt-1 tracking-wider uppercase">
+                <span className="font-mono text-sm text-primary block mt-1 tracking-wider uppercase">
                   Class 3 Accuracy range: ${breakdown.lowRange.toLocaleString()} — ${breakdown.highRange.toLocaleString()} (99.8%)
                 </span>
               </div>
               <div className="p-2 border border-blueprint-line bg-surface bracket-corners font-mono text-center">
-                <span className="block text-[10px] text-primary">BID ENGINE</span>
-                <span className="block text-sm font-bold">ACTIVE</span>
+                <span className="block text-xs text-primary">BID ENGINE</span>
+                <span className="block text-base font-bold">ACTIVE</span>
               </div>
             </div>
 
@@ -171,7 +171,7 @@ export default function InteractiveEstimator() {
                     { key: 'permits', label: 'Municipal Permit Allocation', icon: FileText, value: breakdown.permits },
                   ] as const).map((item) => (
                     <div key={item.key} className="bg-surface p-3 border border-blueprint-line bracket-corners">
-                      <div className="flex justify-between font-mono text-[10px] uppercase tracking-wider mb-2">
+                      <div className="flex justify-between font-mono text-xs uppercase tracking-wider mb-2">
                         <span className="flex items-center gap-1.5 font-bold">
                           <item.icon className="w-3.5 h-3.5 text-primary" /> {item.label}
                         </span>
@@ -195,9 +195,9 @@ export default function InteractiveEstimator() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -8 }}
                   transition={{ duration: 0.2 }}
-                  className="bg-surface border border-blueprint-line p-4 font-mono text-xs space-y-4"
+                  className="bg-surface border border-blueprint-line p-4 font-mono text-sm space-y-4"
                 >
-                  <div className="border-b border-dashed border-blueprint-line pb-2 flex justify-between uppercase text-[10px] font-bold">
+                  <div className="border-b border-dashed border-blueprint-line pb-2 flex justify-between uppercase text-xs font-bold">
                     <span>ITEMIZED PARAMETRIC SCHEDULE</span>
                     <span>UNITS DETAILED</span>
                   </div>
@@ -216,10 +216,10 @@ export default function InteractiveEstimator() {
                     ))}
                   </div>
                   <div className="border-t border-dashed border-blueprint-line pt-2 space-y-2">
-                    <div className="flex items-center gap-2 text-green-700 bg-green-50 px-2 py-1 border border-green-200 uppercase text-[10px] font-bold">
+                    <div className="flex items-center gap-2 text-green-700 bg-green-50 px-2 py-1 border border-green-200 uppercase text-xs font-bold">
                       <Check className="w-3.5 h-3.5 flex-shrink-0" /> Dual-validation review protocol ready
                     </div>
-                    <p className="text-[10px] leading-normal text-on-surface-variant">
+                    <p className="text-xs leading-normal text-on-surface-variant">
                       *The above figures are representative estimates. ACE Services verifies every final project takeoff using manual quantity surveying procedures to guarantee a 99.8% precision rating to municipal departments.
                     </p>
                   </div>
@@ -233,7 +233,7 @@ export default function InteractiveEstimator() {
               <button
                 onClick={handleTransmit}
                 disabled={transmitted}
-                className="w-full bg-primary text-white font-mono text-xs font-bold uppercase tracking-widest py-3.5 bracket-corners hover-brackets transition-all duration-200 flex items-center justify-center gap-2 shadow-sm disabled:opacity-60"
+                className="w-full bg-primary text-white font-mono text-sm font-bold uppercase tracking-widest py-3.5 bracket-corners hover-brackets transition-all duration-200 flex items-center justify-center gap-2 shadow-sm disabled:opacity-60"
               >
                 {transmitted ? (
                   <><Sparkles className="w-4 h-4 text-yellow-300" /> Parameters Transmitted</>
@@ -242,7 +242,7 @@ export default function InteractiveEstimator() {
                 )}
               </button>
             ) : (
-              <p className="text-center font-mono text-[10px] text-on-surface-variant uppercase tracking-wider">
+              <p className="text-center font-mono text-xs text-on-surface-variant uppercase tracking-wider">
                 Complete all steps to transmit design parameters
               </p>
             )}

@@ -28,8 +28,8 @@ export default function CometCardDemo() {
           </div>
         </div>
         <div className="mt-2 flex flex-shrink-0 items-center justify-between p-4 font-mono text-white">
-          <div className="text-xs">Comet Invitation</div>
-          <div className="text-xs text-gray-300 opacity-50">#F7RA</div>
+          <div className="text-sm">Comet Invitation</div>
+          <div className="text-sm text-gray-300 opacity-50">#F7RA</div>
         </div>
       </button>
     </CometCard>

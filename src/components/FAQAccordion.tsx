@@ -59,12 +59,12 @@ function FAQCard({ item }: { item: FAQItem }) {
           <div className="flex items-center justify-center w-9 h-9 border border-blueprint-line bg-background bracket-corners group-hover:border-primary transition-colors flex-shrink-0">
             <HelpCircle className="w-4 h-4 text-primary" />
           </div>
-          <h3 className="font-[family-name:var(--font-space)] font-bold text-base leading-snug text-on-background group-hover:text-primary transition-colors duration-300">
+          <h3 className="font-[family-name:var(--font-space)] font-bold text-lg leading-snug text-on-background group-hover:text-primary transition-colors duration-300">
             {item.question}
           </h3>
         </div>
         <div className="mt-3 ml-12">
-          <p className="font-sans text-sm leading-relaxed text-on-surface-variant">
+          <p className="font-sans text-base leading-relaxed text-on-surface-variant">
             {item.answer}
           </p>
         </div>

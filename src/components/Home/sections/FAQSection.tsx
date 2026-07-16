@@ -7,11 +7,11 @@ export default function FAQSection() {
       <Reveal type="fadeUp">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-            <span className="font-mono text-xs text-primary font-bold block">[FAQ_INDEX]</span>
-            <h2 className="font-space text-3xl md:text-4xl font-extrabold text-on-background tracking-tighter">
+            <span className="font-mono text-sm text-primary font-bold block">[FAQ_INDEX]</span>
+            <h2 className="font-space text-4xl md:text-5xl font-extrabold text-on-background tracking-tighter">
               Frequently Asked Questions
             </h2>
-            <p className="font-sans text-base text-on-surface-variant">
+            <p className="font-sans text-lg text-on-surface-variant">
               Common questions about our estimating process, turnaround times, and how we can support your next project.
             </p>
           </div>

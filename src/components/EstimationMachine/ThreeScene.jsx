@@ -9,8 +9,8 @@ const ThreeScene = forwardRef(function ThreeScene(_, ref) {
     <div className="w-full h-full">
       <Canvas
         camera={{
-          position: [14, 12, 14],
-          fov: 45,
+          position: [0, 7, 8],
+          fov: 60,
           near: 0.1,
           far: 100,
         }}
@@ -53,7 +53,10 @@ const ThreeScene = forwardRef(function ThreeScene(_, ref) {
           color="#4466aa"
         />
 
+  <group position={[0, -2, 0]}>
         <SceneContent ref={ref} />
+  </group>
+
       </Canvas>
     </div>
   );

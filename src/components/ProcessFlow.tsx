@@ -35,7 +35,8 @@ export default function ProcessFlow() {
     // so we can delay pinning until the heading arrives at viewport top.
     const sectionTop = section.getBoundingClientRect().top;
     const headingTop = heading.getBoundingClientRect().top;
-    const headingOffset = Math.round(headingTop - sectionTop);
+    const pinOffset = 80; // 10rem
+const headingOffset = Math.round(headingTop - sectionTop) - pinOffset;
 
     // Create scroll distance for (STEP_COUNT - 1) viewport heights
     // so each step gets roughly 1vh of scroll travel
@@ -133,10 +134,10 @@ export default function ProcessFlow() {
   return (
     <div
       ref={sectionRef}
-      className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start"
+      className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
     >
-      <div className="order-2 lg:order-1 h-[450px] border border-blueprint-line bg-surface relative p-4 bracket-corners cursor-move">
-        <div className="absolute top-4 left-4 font-mono text-xs text-on-surface-variant z-10 flex items-center gap-1.5 font-bold">
+      <div className="order-2 lg:order-1 h-[500px] border border-blueprint-line bg-surface relative p-4 bracket-corners cursor-move">
+        <div className="absolute top-4 left-4 font-mono text-sm text-on-surface-variant z-10 flex items-center gap-1.5 font-bold">
           <ClipboardCheck className="w-4 h-4 text-primary" />
           SYSTEM: PROCESS_CLIPBOARD_MESH
         </div>
@@ -150,7 +151,7 @@ export default function ProcessFlow() {
           />
         </div>
 
-        <div className="absolute bottom-4 left-4 z-10 bg-background/95 border border-blueprint-line p-3 font-mono text-xs space-y-1 shadow-sm max-w-xs">
+        {/* <div className="absolute bottom-4 left-4 z-10 bg-background/95 border border-blueprint-line p-3 font-mono text-sm space-y-1 shadow-sm max-w-xs">
           <span className="text-primary font-bold uppercase block">
             [STATUS_ACTIVE_STAGES]
           </span>
@@ -159,23 +160,23 @@ export default function ProcessFlow() {
             Step {activeStep}: {steps[activeStep - 1]?.title}
           </span>
 
-          <span className="block text-on-surface-variant leading-relaxed text-[10px]">
+          <span className="block text-on-surface-variant leading-relaxed text-xs">
             {steps[activeStep - 1]?.output}
           </span>
-        </div>
+        </div> */}
 
-        <div className="absolute top-4 right-4 z-10 font-mono text-xs text-primary">
+        <div className="absolute top-4 right-4 z-10 font-mono text-sm text-primary">
           {activeStep}/{STEP_COUNT}
         </div>
       </div>
 
       <div className="order-1 lg:order-2 space-y-6">
         <div ref={headingRef}>
-          <span className="font-mono text-xs text-primary block mb-2 font-bold">
+          <span className="font-mono text-sm text-primary block mb-2 font-bold">
             [OPERATIONAL_FLOW]
           </span>
 
-          <h2 className="font-space font-bold text-3xl md:text-4xl text-on-background tracking-tight">
+          <h2 className="font-space font-bold text-4xl md:text-5xl text-on-background tracking-tight">
             Schematic Methodology.
           </h2>
         </div>
@@ -208,7 +209,7 @@ export default function ProcessFlow() {
                 )}
 
                 <div
-                  className={`flex-shrink-0 w-10 h-10 rounded-full border flex items-center justify-center font-mono text-xs font-bold transition-colors duration-300 ${
+                  className={`flex-shrink-0 w-10 h-10 rounded-full border flex items-center justify-center font-mono text-sm font-bold transition-colors duration-300 ${
                     isOpen
                       ? 'border-primary bg-primary/10 text-primary shadow-sm shadow-primary/25'
                       : isDone
@@ -221,7 +222,7 @@ export default function ProcessFlow() {
 
                 <div className="flex-1 min-w-0">
                   <h3
-                    className={`font-space font-bold text-lg transition-colors duration-300 ${
+                    className={`font-space font-bold text-xl transition-colors duration-300 ${
                       isOpen
                         ? 'text-primary'
                         : isDone
@@ -236,13 +237,13 @@ export default function ProcessFlow() {
                     className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-[500px]' : 'max-h-0'}`}
                   >
                     <div className="space-y-3 pt-2">
-                      <p className="font-sans text-sm text-on-surface-variant leading-relaxed">
+                      <p className="font-sans text-base text-on-surface-variant leading-relaxed">
                         {step.desc}
                       </p>
 
-                      <div className="border-t border-dashed border-blueprint-line/60 pt-2 grid grid-cols-1 sm:grid-cols-2 gap-2 font-sans text-xs font-semibold text-on-surface-variant">
+                      <div className="border-t border-dashed border-blueprint-line/60 pt-2 grid grid-cols-1 sm:grid-cols-2 gap-2 font-sans text-sm font-semibold text-on-surface-variant">
                         <div>
-                          <span className="block text-primary uppercase font-mono text-[10px] mb-1 font-bold">
+                          <span className="block text-primary uppercase font-mono text-xs mb-1 font-bold">
                             [VERIFICATIONS]
                           </span>
 
@@ -260,7 +261,7 @@ export default function ProcessFlow() {
                         </div>
 
                         <div>
-                          <span className="block text-primary uppercase font-mono text-[10px] mb-1 font-bold">
+                          <span className="block text-primary uppercase font-mono text-xs mb-1 font-bold">
                             [MILESTONE_DELIVERABLE]
                           </span>
 

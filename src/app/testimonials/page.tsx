@@ -81,7 +81,7 @@ const testimonials: Testimonial[] = [
 function Avatar({ initials, color }: { initials: string; color: string }) {
   return (
     <div
-      className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full font-[family-name:var(--font-space)] text-sm font-bold text-white"
+      className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full font-[family-name:var(--font-space)] text-base font-bold text-white"
       style={{ backgroundColor: color }}
       aria-hidden="true"
     >
@@ -97,7 +97,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
     <article className="bracket-corners hover-brackets relative flex flex-col rounded-lg border border-surface-variant bg-surface p-8 transition-all duration-300 hover:border-primary">
       {/* Decorative quotation mark */}
       <span
-        className="pointer-events-none absolute -top-3 left-6 font-[family-name:var(--font-space)] text-6xl leading-none text-primary/20 select-none"
+        className="pointer-events-none absolute -top-3 left-6 font-[family-name:var(--font-space)] text-7xl leading-none text-primary/20 select-none"
         aria-hidden="true"
       >
         &ldquo;
@@ -105,7 +105,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
 
       {/* Quote text */}
       <blockquote className="relative z-10 mb-6 flex-1">
-        <p className="text-base leading-relaxed text-on-surface-variant md:text-lg">
+        <p className="text-lg leading-relaxed text-on-surface-variant md:text-xl">
           &ldquo;{testimonial.quote}&rdquo;
         </p>
       </blockquote>
@@ -114,13 +114,13 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
       <div className="flex items-center gap-4 border-t border-surface-variant pt-5">
         <Avatar initials={testimonial.initials} color={testimonial.accentColor} />
         <div className="min-w-0">
-          <p className="font-[family-name:var(--font-space)] text-base font-bold text-on-surface">
+          <p className="font-[family-name:var(--font-space)] text-lg font-bold text-on-surface">
             {testimonial.author}
           </p>
-          <p className="text-xs text-on-surface-variant">
+          <p className="text-sm text-on-surface-variant">
             {testimonial.role}
           </p>
-          <p className="text-xs font-medium text-primary">
+          <p className="text-sm font-medium text-primary">
             {testimonial.company}
           </p>
         </div>
@@ -137,16 +137,16 @@ export default function TestimonialsPage() {
       {/* Header */}
       <div className="mx-auto mb-16 max-w-2xl text-center md:mb-20">
         {/* Decorative system label */}
-        <p className="mb-4 font-[family-name:var(--font-mono)] text-xs uppercase tracking-widest text-primary">
+        <p className="mb-4 font-[family-name:var(--font-mono)] text-sm uppercase tracking-widest text-primary">
           // Client Voices
         </p>
 
-        <h1 className="font-[family-name:var(--font-space)] text-3xl font-bold text-on-background md:text-5xl">
+        <h1 className="font-[family-name:var(--font-space)] text-4xl font-bold text-on-background md:text-6xl">
           Trusted by Industry{' '}
           <span className="text-primary">Leaders</span>
         </h1>
 
-        <p className="mt-5 text-base leading-relaxed text-on-surface-variant md:text-lg">
+        <p className="mt-5 text-lg leading-relaxed text-on-surface-variant md:text-xl">
           General contractors, developers, and project owners rely on ACE SERVICES
           for precise pre-construction estimation that drives smarter decisions.
         </p>
@@ -166,10 +166,10 @@ export default function TestimonialsPage() {
 
       {/* Bottom CTA */}
       <div className="mx-auto mt-20 max-w-2xl text-center md:mt-24">
-        <p className="font-[family-name:var(--font-mono)] text-xs uppercase tracking-widest text-on-surface-variant">
+        <p className="font-[family-name:var(--font-mono)] text-sm uppercase tracking-widest text-on-surface-variant">
           // Ready to experience the difference?
         </p>
-        <h2 className="mt-4 font-[family-name:var(--font-space)] text-2xl font-bold text-on-background md:text-3xl">
+        <h2 className="mt-4 font-[family-name:var(--font-space)] text-3xl font-bold text-on-background md:text-4xl">
           Join the companies that{' '}
           <span className="text-primary">trust ACE</span>
         </h2>
@@ -178,7 +178,7 @@ export default function TestimonialsPage() {
         </p>
         <Link
           href="/calculator"
-          className="bracket-corners hover-brackets mt-8 inline-block rounded bg-primary px-8 py-3 font-[family-name:var(--font-space)] text-sm font-bold text-white transition-colors hover:bg-[#E55A00]"
+          className="bracket-corners hover-brackets mt-8 inline-block rounded bg-primary px-8 py-3 font-[family-name:var(--font-space)] text-base font-bold text-white transition-colors hover:bg-[#E55A00]"
         >
           Get a Free Estimate
         </Link>

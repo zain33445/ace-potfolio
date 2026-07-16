@@ -139,20 +139,20 @@ export default function PricingPage() {
         />
 
         <div className="relative max-w-5xl mx-auto text-center">
-          <span className="font-mono text-xs text-primary font-bold tracking-widest block mb-4">
+          <span className="font-mono text-sm text-primary font-bold tracking-widest block mb-4">
             [PRICING_MODULE_v2]
           </span>
-          <h1 className="font-[family-name:var(--font-space)] text-4xl md:text-6xl font-extrabold text-on-background tracking-tighter leading-tight">
+          <h1 className="font-[family-name:var(--font-space)] text-5xl md:text-7xl font-extrabold text-on-background tracking-tighter leading-tight">
             Pre-Construction{' '}
             <span className="text-primary">Service Tiers</span>
           </h1>
-          <p className="mt-6 max-w-2xl mx-auto font-sans text-base text-on-surface-variant leading-relaxed">
+          <p className="mt-6 max-w-2xl mx-auto font-sans text-lg text-on-surface-variant leading-relaxed">
             Budgetary allocations for professional estimation, quantity surveying,
             and pre-construction advisory. All pricing is project-dependent — the
             figures below represent starting points for typical scope categories.
           </p>
 
-          <div className="mt-8 flex flex-wrap justify-center gap-6 font-mono text-[10px] text-on-surface-variant tracking-wider">
+          <div className="mt-8 flex flex-wrap justify-center gap-6 font-mono text-xs text-on-surface-variant tracking-wider">
             <span className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-primary" />
               AACE CERTIFIED
@@ -195,7 +195,7 @@ export default function PricingPage() {
                   {/* Featured badge */}
                   {service.featured && (
                     <div className="absolute -top-px right-6 bg-primary px-3 py-1">
-                      <span className="font-mono text-[10px] font-bold text-white tracking-widest">
+                      <span className="font-mono text-xs font-bold text-white tracking-widest">
                         MOST POPULAR
                       </span>
                     </div>
@@ -203,7 +203,7 @@ export default function PricingPage() {
 
                   {/* System ID + Icon */}
                   <div className="flex items-center justify-between mb-4">
-                    <span className="font-mono text-[10px] text-primary font-bold tracking-widest">
+                    <span className="font-mono text-xs text-primary font-bold tracking-widest">
                       [{service.id}]
                     </span>
                     <div className="flex items-center justify-center w-9 h-9 border border-surface-variant bg-background bracket-corners group-hover:border-primary transition-colors">
@@ -212,15 +212,15 @@ export default function PricingPage() {
                   </div>
 
                   {/* Title */}
-                  <span className="font-mono text-[10px] text-on-surface-variant tracking-widest block mb-1">
+                  <span className="font-mono text-xs text-on-surface-variant tracking-widest block mb-1">
                     {service.tagline}
                   </span>
-                  <h2 className="font-[family-name:var(--font-space)] font-bold text-lg text-on-background group-hover:text-primary transition-colors leading-tight">
+                  <h2 className="font-[family-name:var(--font-space)] font-bold text-xl text-on-background group-hover:text-primary transition-colors leading-tight">
                     {service.name}
                   </h2>
 
                   {/* Description */}
-                  <p className="mt-3 font-sans text-sm text-on-surface-variant leading-relaxed flex-grow">
+                  <p className="mt-3 font-sans text-base text-on-surface-variant leading-relaxed flex-grow">
                     {service.description}
                   </p>
 
@@ -229,7 +229,7 @@ export default function PricingPage() {
                     {service.features.map((feature, i) => (
                       <li key={i} className="flex items-start gap-2.5">
                         <Check className="w-3.5 h-3.5 text-primary mt-0.5 flex-shrink-0" />
-                        <span className="font-sans text-xs text-on-surface leading-snug">
+                        <span className="font-sans text-sm text-on-surface leading-snug">
                           {feature}
                         </span>
                       </li>
@@ -243,21 +243,21 @@ export default function PricingPage() {
                   <div className="mt-5 flex items-end justify-between">
                     <div>
                       <div className="flex items-baseline gap-1.5">
-                        <span className="font-[family-name:var(--font-space)] text-2xl font-extrabold text-on-background">
+                        <span className="font-[family-name:var(--font-space)] text-3xl font-extrabold text-on-background">
                           {service.startingPrice}
                         </span>
-                        <span className="font-sans text-[10px] text-on-surface-variant">
+                        <span className="font-sans text-xs text-on-surface-variant">
                           {service.priceUnit}
                         </span>
                       </div>
-                      <span className="font-mono text-[10px] text-on-surface-variant tracking-wider">
+                      <span className="font-mono text-xs text-on-surface-variant tracking-wider">
                         {service.turnaround}
                       </span>
                     </div>
                     <button
                       type="button"
                       className={[
-                        'flex items-center gap-1.5 font-mono text-xs font-bold px-4 py-2.5 transition-all duration-200 uppercase tracking-wider',
+                        'flex items-center gap-1.5 font-mono text-sm font-bold px-4 py-2.5 transition-all duration-200 uppercase tracking-wider',
                         service.featured
                           ? 'bg-primary text-white hover:bg-primary/90 shadow-[0_0_15px_rgba(255,107,0,0.3)]'
                           : 'bg-primary/10 text-primary border border-primary/30 hover:bg-primary hover:text-white',
@@ -276,13 +276,13 @@ export default function PricingPage() {
           <div className="mt-12 border border-surface-variant bg-gray-50 p-6 md:p-8">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
               <div className="flex-1">
-                <span className="font-mono text-[10px] text-primary font-bold tracking-widest block mb-2">
+                <span className="font-mono text-xs text-primary font-bold tracking-widest block mb-2">
                   [QUOTE_PROTOCOL]
                 </span>
-                <h3 className="font-[family-name:var(--font-space)] font-bold text-base text-on-background mb-1">
+                <h3 className="font-[family-name:var(--font-space)] font-bold text-lg text-on-background mb-1">
                   Need a custom scope?
                 </h3>
-                <p className="font-sans text-sm text-on-surface-variant leading-relaxed max-w-lg">
+                <p className="font-sans text-base text-on-surface-variant leading-relaxed max-w-lg">
                   Every project is unique. The prices above are starting points for
                   standard scope categories. Contact us for a detailed quote tailored
                   to your project&apos;s square footage, complexity, and documentation
@@ -291,7 +291,7 @@ export default function PricingPage() {
               </div>
               <Link
                 href="/#contact"
-                className="flex items-center gap-2 bg-primary text-white font-mono text-xs font-bold px-6 py-3 uppercase tracking-widest hover:bg-primary/90 transition-colors shadow-[0_0_20px_rgba(255,107,0,0.2)] flex-shrink-0 bracket-corners hover-brackets"
+                className="flex items-center gap-2 bg-primary text-white font-mono text-sm font-bold px-6 py-3 uppercase tracking-widest hover:bg-primary/90 transition-colors shadow-[0_0_20px_rgba(255,107,0,0.2)] flex-shrink-0 bracket-corners hover-brackets"
               >
                 Request Custom Quote
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -301,7 +301,7 @@ export default function PricingPage() {
 
           {/* ── FAQ Teaser ──────────────────────────────────── */}
           <div className="mt-12 text-center">
-            <p className="font-sans text-sm text-on-surface-variant">
+            <p className="font-sans text-base text-on-surface-variant">
               Have questions? See our{' '}
               <Link
                 href="/#faq"

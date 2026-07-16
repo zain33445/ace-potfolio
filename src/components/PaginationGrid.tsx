@@ -50,7 +50,7 @@ export default function PaginationGrid({
         <button
           onClick={() => setPage((p) => Math.max(1, p - 1))}
           disabled={safePage <= 1}
-          className="group inline-flex items-center gap-2 border border-blueprint-line bg-transparent px-5 py-2.5 font-mono text-[10px] font-bold uppercase tracking-wider text-on-surface-variant transition-all hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:opacity-30"
+          className="group inline-flex items-center gap-2 border border-blueprint-line bg-transparent px-5 py-2.5 font-mono text-xs font-bold uppercase tracking-wider text-on-surface-variant transition-all hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:opacity-30"
         >
           <svg
             className="h-3 w-3 transition-transform group-hover:-translate-x-0.5"
@@ -73,7 +73,7 @@ export default function PaginationGrid({
               <button
                 key={pageNum}
                 onClick={() => setPage(pageNum)}
-                className={`flex h-9 w-9 items-center justify-center border font-mono text-xs font-bold transition-all ${
+                className={`flex h-9 w-9 items-center justify-center border font-mono text-sm font-bold transition-all ${
                   isActive
                     ? 'border-primary bg-primary text-white'
                     : 'border-blueprint-line bg-transparent text-on-surface-variant hover:border-primary hover:text-primary'
@@ -90,7 +90,7 @@ export default function PaginationGrid({
         <button
           onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
           disabled={safePage >= totalPages}
-          className="group inline-flex items-center gap-2 border border-blueprint-line bg-transparent px-5 py-2.5 font-mono text-[10px] font-bold uppercase tracking-wider text-on-surface-variant transition-all hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:opacity-30"
+          className="group inline-flex items-center gap-2 border border-blueprint-line bg-transparent px-5 py-2.5 font-mono text-xs font-bold uppercase tracking-wider text-on-surface-variant transition-all hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:opacity-30"
         >
           <span>[NEXT]</span>
           <svg
@@ -105,7 +105,7 @@ export default function PaginationGrid({
         </button>
 
         {/* Record count */}
-        <span className="hidden font-mono text-[10px] text-on-surface-variant md:ml-4 md:inline-block">
+        <span className="hidden font-mono text-xs text-on-surface-variant md:ml-4 md:inline-block">
           [{String(startIndex + 1).padStart(2, '0')}–{String(Math.min(startIndex + itemsPerPage, allItems.length)).padStart(2, '0')} / {String(allItems.length).padStart(2, '0')}]
         </span>
       </nav>

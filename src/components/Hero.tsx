@@ -135,7 +135,7 @@ export default function Hero({
 
       {/* CSS-only marquee — pure GPU compositing, zero JS ticking */}
       <div className="bg-primary text-white py-3.5 border-y border-on-background overflow-hidden relative select-none shrink-0">
-        <div className="marquee-track font-mono text-xs font-bold tracking-widest uppercase">
+        <div className="marquee-track font-mono text-sm font-bold tracking-widest uppercase">
           <span className="marquee-content">
             &spades; 2,893+ PROJECTS COMPLETED &spades; 35 STATES SUPPORTED
             &spades; 89% BID WIN RATE &spades; PLANSWIFT &amp; BLUEBEAM

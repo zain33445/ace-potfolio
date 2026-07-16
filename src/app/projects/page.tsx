@@ -70,16 +70,16 @@ export default async function ProjectsPage() {
 
         <div className="relative mx-auto max-w-7xl px-[var(--spacing-margin-mobile)] py-20 md:px-[var(--spacing-margin-desktop)] md:py-28">
           {/* System label */}
-          <div className="mb-6 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-primary">
+          <div className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
             [SYS::PORTFOLIO_INDEX]
           </div>
 
-          <h1 className="font-[family-name:var(--font-space)] text-4xl font-bold leading-tight text-on-background md:text-6xl lg:text-7xl">
+          <h1 className="font-[family-name:var(--font-space)] text-5xl font-bold leading-tight text-on-background md:text-7xl lg:text-7xl">
             Our{' '}
             <span className="text-primary">Projects</span>
           </h1>
 
-          <p className="mt-6 max-w-2xl font-sans text-base leading-relaxed text-on-surface-variant md:text-lg">
+          <p className="mt-6 max-w-2xl font-sans text-lg leading-relaxed text-on-surface-variant md:text-xl">
             A portfolio of precision construction estimation work delivered across
             multiple sectors. Every project receives AACE Class 3 cost accuracy.
           </p>
@@ -99,7 +99,7 @@ export default async function ProjectsPage() {
           {CATEGORY_FILTERS.map((f, i) => (
             <span
               key={f.value}
-              className={`whitespace-nowrap rounded-sm border px-3 py-1.5 font-mono text-[10px] font-bold uppercase tracking-wider transition-colors ${
+              className={`whitespace-nowrap rounded-sm border px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-wider transition-colors ${
                 i === 0
                   ? 'border-primary bg-primary text-white'
                   : 'border-blueprint-line bg-transparent text-on-surface-variant hover:border-primary hover:text-primary'
@@ -109,10 +109,10 @@ export default async function ProjectsPage() {
             </span>
           ))}
           <div className="ml-auto hidden items-center gap-2 md:flex">
-            <span className="font-mono text-[10px] text-on-surface-variant">
+            <span className="font-mono text-xs text-on-surface-variant">
               RECORDS:
             </span>
-            <span className="font-mono text-[10px] font-bold text-primary">
+            <span className="font-mono text-xs font-bold text-primary">
               {String(projects.length).padStart(2, '0')}
             </span>
           </div>
@@ -134,19 +134,19 @@ export default async function ProjectsPage() {
       {/* ── Bottom CTA ───────────────────────────────────── */}
       <div className="border-t border-blueprint-line">
         <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-[var(--spacing-margin-mobile)] py-16 text-center md:px-[var(--spacing-margin-desktop)] md:py-24">
-          <div className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-primary">
+          <div className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
             [SYS::INITIATE_PROJECT_QUERY]
           </div>
-          <h2 className="font-[family-name:var(--font-space)] text-2xl font-bold text-on-background md:text-4xl">
+          <h2 className="font-[family-name:var(--font-space)] text-3xl font-bold text-on-background md:text-5xl">
             Ready to Start Your Project?
           </h2>
-          <p className="max-w-lg text-sm leading-relaxed text-on-surface-variant">
+          <p className="max-w-lg text-base leading-relaxed text-on-surface-variant">
             Submit your blueprints and receive a precision cost schedule within
             3–5 business days. Expedited turnaround available.
           </p>
           <Link
             href="/#contact"
-            className="group mt-4 inline-flex items-center gap-3 border border-primary bg-primary px-8 py-3.5 font-mono text-xs font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary"
+            className="group mt-4 inline-flex items-center gap-3 border border-primary bg-primary px-8 py-3.5 font-mono text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary"
           >
             <span>REQUEST ESTIMATE</span>
             <svg
@@ -170,10 +170,10 @@ export default async function ProjectsPage() {
 function StatBlock({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <div className="font-mono text-[10px] font-bold uppercase tracking-[0.15em] text-on-surface-variant">
+      <div className="font-mono text-xs font-bold uppercase tracking-[0.15em] text-on-surface-variant">
         {label}
       </div>
-      <div className="mt-1 font-[family-name:var(--font-space)] text-xl font-bold text-on-background">
+      <div className="mt-1 font-[family-name:var(--font-space)] text-2xl font-bold text-on-background">
         {value}
       </div>
     </div>
@@ -223,13 +223,13 @@ function ProjectCard({
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
               {/* Cost badge — top left */}
-              <div className="absolute left-3 top-3 border border-white/20 bg-black/50 px-2 py-1 font-mono text-[10px] font-bold tracking-wider text-white/80 backdrop-blur-sm">
+              <div className="absolute left-3 top-3 border border-white/20 bg-black/50 px-2 py-1 font-mono text-xs font-bold tracking-wider text-white/80 backdrop-blur-sm">
                 {formatCurrency(project.estimatedCost)}
               </div>
 
               {/* Category badge — top right */}
               <div
-                className={`absolute right-3 top-3 border px-2 py-1 font-mono text-[10px] font-bold tracking-wider backdrop-blur-sm ${colorClass}`}
+                className={`absolute right-3 top-3 border px-2 py-1 font-mono text-xs font-bold tracking-wider backdrop-blur-sm ${colorClass}`}
               >
                 {project.category}
               </div>
@@ -241,11 +241,11 @@ function ProjectCard({
         <div className="flex flex-1 flex-col px-5 py-6">
           {/* Title + Location */}
           <Link href={`/projects/${project.slug}`}>
-            <h3 className="font-[family-name:var(--font-space)] text-lg font-bold leading-snug text-on-background transition-colors group-hover:text-primary">
+            <h3 className="font-[family-name:var(--font-space)] text-xl font-bold leading-snug text-on-background transition-colors group-hover:text-primary">
               {project.title}
             </h3>
           </Link>
-          <p className="mt-1 font-mono text-[10px] text-on-surface-variant">
+          <p className="mt-1 font-mono text-xs text-on-surface-variant">
             {project.location}
           </p>
 
@@ -253,20 +253,20 @@ function ProjectCard({
 
           {/* Scope */}
           <div className="mb-2">
-            <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-primary">
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-primary">
               SCOPE:
             </span>
-            <p className="mt-0.5 font-sans text-xs text-on-surface-variant">
+            <p className="mt-0.5 font-sans text-sm text-on-surface-variant">
               {project.scope.join(' + ')}
             </p>
           </div>
 
           {/* Size */}
           <div className="mb-3">
-            <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-primary">
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-primary">
               SIZE:
             </span>
-            <p className="mt-0.5 font-sans text-xs text-on-surface-variant">
+            <p className="mt-0.5 font-sans text-sm text-on-surface-variant">
               {project.totalAreaSqFt.toLocaleString()} SF
             </p>
           </div>
@@ -274,7 +274,7 @@ function ProjectCard({
           {/* Services checklist */}
           <div className="mb-4 space-y-1">
             {project.scope.map((item: string) => (
-              <div key={item} className="flex items-center gap-2 font-sans text-xs text-on-surface-variant">
+              <div key={item} className="flex items-center gap-2 font-sans text-sm text-on-surface-variant">
                 <svg className="h-3 w-3 flex-shrink-0 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
@@ -282,7 +282,7 @@ function ProjectCard({
               </div>
             ))}
             {project.costDivisions.slice(0, 3).map((d: CostDivision) => (
-              <div key={d.csiCode} className="flex items-center gap-2 font-sans text-xs text-on-surface-variant">
+              <div key={d.csiCode} className="flex items-center gap-2 font-sans text-sm text-on-surface-variant">
                 <svg className="h-3 w-3 flex-shrink-0 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
@@ -298,7 +298,7 @@ function ProjectCard({
           <div className="flex items-center gap-2 border-t border-blueprint-line/40 pt-4">
             <Link
               href={`/projects/${project.slug}`}
-              className="group/btn inline-flex items-center gap-2 border border-primary bg-primary px-4 py-2.5 font-mono text-[10px] font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary"
+              className="group/btn inline-flex items-center gap-2 border border-primary bg-primary px-4 py-2.5 font-mono text-xs font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary"
             >
               <span>VIEW CASE STUDY</span>
               <svg
@@ -316,7 +316,7 @@ function ProjectCard({
               href={project.pdfUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group/btn inline-flex items-center gap-2 border border-blueprint-line bg-transparent px-4 py-2.5 font-mono text-[10px] font-bold uppercase tracking-wider text-on-surface-variant transition-all hover:border-primary hover:text-primary"
+              className="group/btn inline-flex items-center gap-2 border border-blueprint-line bg-transparent px-4 py-2.5 font-mono text-xs font-bold uppercase tracking-wider text-on-surface-variant transition-all hover:border-primary hover:text-primary"
               title="View sample estimate PDF"
             >
               <svg

@@ -25,14 +25,14 @@ export default function CostBreakdownChart({ divisions, maxCost }: Props) {
           <div key={div.csiCode} className="group">
             <div className="mb-1 flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <span className="font-mono text-[10px] font-bold text-primary">
+                <span className="font-mono text-xs font-bold text-primary">
                   {div.csiCode}
                 </span>
-                <span className="font-sans text-sm font-medium text-on-background">
+                <span className="font-sans text-base font-medium text-on-background">
                   {div.name}
                 </span>
               </div>
-              <span className="font-mono text-xs font-bold text-on-background">
+              <span className="font-mono text-sm font-bold text-on-background">
                 {formatCurrency(div.cost)}
               </span>
             </div>
@@ -48,7 +48,7 @@ export default function CostBreakdownChart({ divisions, maxCost }: Props) {
               />
               {/* Percentage label inside bar */}
               <div className="absolute inset-y-0 left-0 flex items-center px-2">
-                <span className="font-mono text-[10px] font-bold text-white mix-blend-difference">
+                <span className="font-mono text-xs font-bold text-white mix-blend-difference">
                   {pct.toFixed(1)}%
                 </span>
               </div>

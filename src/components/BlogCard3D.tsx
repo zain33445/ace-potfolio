@@ -54,7 +54,7 @@ export function BlogCard3D({
             <CardItem
               translateZ="50"
               as="h2"
-              className="font-[family-name:var(--font-space)] text-lg font-bold leading-snug text-on-surface transition-colors group-hover:text-primary md:text-xl"
+              className="font-[family-name:var(--font-space)] text-xl font-bold leading-snug text-on-surface transition-colors group-hover:text-primary md:text-2xl"
             >
               <Link href={`/blog/${slug}`} className="after:absolute after:inset-0">
                 {title}
@@ -66,7 +66,7 @@ export function BlogCard3D({
               as="p"
               translateZ="40"
               liftZ={20}
-              className="mt-3 flex-1 text-xs leading-relaxed text-on-surface-variant"
+              className="mt-3 flex-1 text-sm leading-relaxed text-on-surface-variant"
             >
               {truncate(excerpt, 150)}
             </CardItem>
@@ -83,7 +83,7 @@ export function BlogCard3D({
                   />
                 ) : (
                   <div className="flex h-full w-full items-center justify-center">
-                    <span className="font-[family-name:var(--font-mono)] text-xs uppercase tracking-widest text-on-surface-variant/50">
+                    <span className="font-[family-name:var(--font-mono)] text-sm uppercase tracking-widest text-on-surface-variant/50">
                       // No Image
                     </span>
                   </div>
@@ -93,7 +93,7 @@ export function BlogCard3D({
                 <div className="absolute bottom-0 left-0 bg-primary/90 px-3 py-1.5 backdrop-blur-sm">
                   <time
                     dateTime={date}
-                    className="font-[family-name:var(--font-mono)] text-xs font-medium text-white"
+                    className="font-[family-name:var(--font-mono)] text-sm font-medium text-white"
                   >
                     {formatDate(date)}
                   </time>
@@ -105,7 +105,7 @@ export function BlogCard3D({
             <CardItem translateZ={20} className="mt-4 text-right">
               <Link
                 href={`/blog/${slug}`}
-                className="link-underline inline-flex items-center gap-2 font-[family-name:var(--font-space)] text-sm font-semibold text-primary transition-colors hover:text-[#E55A00]"
+                className="link-underline inline-flex items-center gap-2 font-[family-name:var(--font-space)] text-base font-semibold text-primary transition-colors hover:text-[#E55A00]"
               >
                 {/* Read More  &rarr; */}
                 <svg

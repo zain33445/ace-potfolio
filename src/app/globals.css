@@ -115,6 +115,13 @@ body {
   border-left: none;
   border-top: none;
 }
+@media (max-width: 767px) {
+  .bracket-corners-lg::before, .bracket-corners-lg::after {
+    width: 14px;
+    height: 14px;
+    border-width: 3px;
+  }
+}
 
 .glass-card {
   width: auto;

@@ -94,7 +94,7 @@ export const FileUpload = ({
           <GridPattern />
         </div>
         <div className="flex flex-col items-center justify-center">
-          <p className="relative z-20 mt-0 font-sans text-base font-normal text-on-surface-variant">
+          <p className="relative z-20 mt-0 font-sans text-lg font-normal text-on-surface-variant">
             Drag or drop your files here or click to upload
           </p>
           <div className="relative mx-auto mt-10 w-full max-w-sm">
@@ -110,7 +110,7 @@ export const FileUpload = ({
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       layout
-                      className="max-w-xs truncate text-base text-on-background"
+                      className="max-w-xs truncate text-lg text-on-background"
                     >
                       {file.name}
                     </motion.p>
@@ -118,13 +118,13 @@ export const FileUpload = ({
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       layout
-                      className="shadow-input w-fit shrink-0 rounded-lg px-2 py-1 text-sm text-on-surface-variant bg-blueprint-line/10"
+                      className="shadow-input w-fit shrink-0 rounded-lg px-2 py-1 text-base text-on-surface-variant bg-blueprint-line/10"
                     >
                       {(file.size / (1024 * 1024)).toFixed(2)} MB
                     </motion.p>
                   </div>
 
-                  <div className="mt-2 flex w-full flex-col items-start justify-between text-sm text-on-surface-variant md:flex-row md:items-center">
+                  <div className="mt-2 flex w-full flex-col items-start justify-between text-base text-on-surface-variant md:flex-row md:items-center">
                     <motion.p
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}

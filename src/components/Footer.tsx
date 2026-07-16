@@ -30,21 +30,21 @@ export default function Footer() {
           <div className="lg:col-span-5 space-y-6">
             <TextRepel
               text="ACE SERVICES"
-              className="font-space text-3xl font-extrabold tracking-tighter text-on-background"
+              className="font-space text-4xl font-extrabold tracking-tighter text-on-background"
               radius={100}
               strength={50}
               mode="repel"
             />
             <TextRepel
               text="Parametric estimating precision for general builders, civil engineers, and trade specialists nationwide. Eliminating manual error thresholds."
-              className="font-sans text-base text-on-surface-variant max-w-sm leading-relaxed font-semibold"
+              className="font-sans text-lg text-on-surface-variant max-w-sm leading-relaxed font-semibold"
               radius={80}
               strength={50}
               mode="repel"
             />
             <TextRepel
               text="[EST_SYS_CORE_V.2.5.0_ACTIVE]"
-              className="font-mono text-[10px] text-primary uppercase tracking-widest font-bold"
+              className="font-mono text-xs text-primary uppercase tracking-widest font-bold"
               radius={60}
               strength={35}
               mode="repel"
@@ -57,7 +57,7 @@ export default function Footer() {
             <div className="flex flex-col gap-4">
               <TextRepel
                 text="[NAVIGATION]"
-                className="font-mono text-xs text-primary tracking-wider font-bold"
+                className="font-mono text-sm text-primary tracking-wider font-bold"
                 radius={60}
                 strength={35}
                 mode="repel"
@@ -66,7 +66,7 @@ export default function Footer() {
                 <TextRepel
                   key={item.id}
                   text={item.label}
-                  className="text-left font-sans text-xs font-semibold text-on-surface-variant hover:text-primary transition-colors link-underline w-fit cursor-pointer"
+                  className="text-left font-sans text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors link-underline w-fit cursor-pointer"
                   radius={60}
                   strength={35}
                   mode="repel"
@@ -79,7 +79,7 @@ export default function Footer() {
             <div className="flex flex-col gap-4">
               <TextRepel
                 text="[STANDARDS]"
-                className="font-mono text-xs text-primary tracking-wider font-bold"
+                className="font-mono text-sm text-primary tracking-wider font-bold"
                 radius={60}
                 strength={35}
                 mode="repel"
@@ -88,7 +88,7 @@ export default function Footer() {
                 <TextRepel
                   key={item}
                   text={item}
-                  className="font-sans text-xs text-on-surface-variant font-semibold"
+                  className="font-sans text-sm text-on-surface-variant font-semibold"
                   radius={60}
                   strength={35}
                   mode="repel"
@@ -100,7 +100,7 @@ export default function Footer() {
             <div className="flex flex-col gap-4">
               <TextRepel
                 text="[COMMUNICATION]"
-                className="font-mono text-xs text-primary tracking-wider font-bold"
+                className="font-mono text-sm text-primary tracking-wider font-bold"
                 radius={60}
                 strength={35}
                 mode="repel"
@@ -109,7 +109,7 @@ export default function Footer() {
                 <TextRepel
                   key={item}
                   text={item}
-                  className="font-sans text-xs text-on-surface-variant font-semibold"
+                  className="font-sans text-sm text-on-surface-variant font-semibold"
                   radius={60}
                   strength={35}
                   mode="repel"
@@ -123,14 +123,14 @@ export default function Footer() {
         <div className="pt-8 border-t border-blueprint-line flex flex-col md:flex-row justify-between items-center gap-4">
           <TextRepel
             text="©2026 ACE SERVICES. ALL CODES SECURED."
-            className="font-mono text-xs text-on-surface-variant font-bold"
+            className="font-mono text-sm text-on-surface-variant font-bold"
             radius={80}
             strength={35}
             mode="repel"
           />
           <TextRepel
             text="LAT: 32.7767° N | LONG: 96.7970° W | BLUEPRINT RECT_X_COORD"
-            className="font-mono text-[10px] text-on-surface-variant opacity-60"
+            className="font-mono text-xs text-on-surface-variant opacity-60"
             radius={80}
             strength={35}
             mode="repel"

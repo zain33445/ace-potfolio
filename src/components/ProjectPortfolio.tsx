@@ -100,7 +100,7 @@ export default function ProjectPortfolio() {
       {/* Draggable Card Stack */}
       <DraggableCardContainer className="relative min-h-[520px]">
         {filteredProjects.length === 0 ? (
-          <div className="text-center py-16 border border-blueprint-line bg-surface bracket-corners font-mono text-xs text-on-surface-variant">
+          <div className="text-center py-16 border border-blueprint-line bg-surface bracket-corners font-mono text-sm text-on-surface-variant">
             [ZERO_RECORDS_MATCH_SEARCH_CRITERIA]
           </div>
         ) : (
@@ -116,28 +116,28 @@ export default function ProjectPortfolio() {
                   className="w-72 border border-blueprint-line bg-surface p-6 bracket-corners flex flex-col justify-between hover:border-primary transition-all duration-300 cursor-pointer group"
                 >
                   <div>
-                    <div className="font-mono text-xs text-on-surface-variant mb-4 flex justify-between items-center">
+                    <div className="font-mono text-sm text-on-surface-variant mb-4 flex justify-between items-center">
                       <span className="bg-background px-2.5 py-1 border border-blueprint-line font-medium text-on-background">
                         ID: {p.id}
                       </span>
-                      <span className="text-primary font-bold text-[10px] tracking-widest uppercase">
+                      <span className="text-primary font-bold text-xs tracking-widest uppercase">
                         {p.category}
                       </span>
                     </div>
 
-                    <h3 className="font-space text-base font-bold text-on-background group-hover:text-primary transition-colors my-2">
+                    <h3 className="font-space text-lg font-bold text-on-background group-hover:text-primary transition-colors my-2">
                       {p.name}
                     </h3>
 
                     <div className="h-px w-full bg-blueprint-line my-3 group-hover:bg-primary transition-colors" />
 
-                    <div className="grid grid-cols-2 gap-3 font-mono text-[10px] text-on-surface-variant mb-3">
+                    <div className="grid grid-cols-2 gap-3 font-mono text-xs text-on-surface-variant mb-3">
                       <div>
-                        <span className="block text-primary uppercase font-bold text-[10px]">SCOPE OF WORK</span>
+                        <span className="block text-primary uppercase font-bold text-xs">SCOPE OF WORK</span>
                         <span className="text-on-background font-sans font-medium">{p.scope}</span>
                       </div>
                       <div>
-                        <span className="block text-primary uppercase font-bold text-[10px]">TURNAROUND</span>
+                        <span className="block text-primary uppercase font-bold text-xs">TURNAROUND</span>
                         <span className="text-on-background font-sans font-medium">{p.turnaroundHours} Hours</span>
                       </div>
                     </div>
@@ -149,10 +149,10 @@ export default function ProjectPortfolio() {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        className="overflow-hidden bg-background p-4 border border-dashed border-blueprint-line bracket-corners my-3 font-sans text-xs text-on-surface-variant space-y-2.5"
+                        className="overflow-hidden bg-background p-4 border border-dashed border-blueprint-line bracket-corners my-3 font-sans text-sm text-on-surface-variant space-y-2.5"
                       >
                         <p className="leading-relaxed font-medium">{p.description}</p>
-                        <div className="flex border-t border-dashed border-blueprint-line pt-2 justify-between font-mono text-[10px] text-on-surface-variant">
+                        <div className="flex border-t border-dashed border-blueprint-line pt-2 justify-between font-mono text-xs text-on-surface-variant">
                           <span>Area: {p.totalAreaSqFt.toLocaleString()} SF</span>
                           <span>Est. Volume: ${(p.estimatedCost / 1000000).toFixed(1)}M</span>
                         </div>
@@ -160,7 +160,7 @@ export default function ProjectPortfolio() {
                     )}
                   </AnimatePresence>
 
-                  <div className="mt-3 pt-2 border-t border-blueprint-line/40 flex justify-between items-center font-mono text-[10px] text-on-surface-variant group-hover:text-primary transition-colors">
+                  <div className="mt-3 pt-2 border-t border-blueprint-line/40 flex justify-between items-center font-mono text-xs text-on-surface-variant group-hover:text-primary transition-colors">
                     <span>{isExpanded ? 'COLLAPSE PARAMETERS' : 'EXPAND PROJECT SCHEMATIC'}</span>
                     <ChevronRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
                   </div>

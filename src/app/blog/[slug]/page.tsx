@@ -88,7 +88,7 @@ export default async function BlogPostPage({
           {/* Back link */}
           <Link
             href="/blog"
-            className="group mb-8 inline-flex items-center gap-2 font-mono text-[10px] font-bold uppercase tracking-wider text-on-surface-variant transition-colors hover:text-primary"
+            className="group mb-8 inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-on-surface-variant transition-colors hover:text-primary"
           >
             <svg
               className="h-3 w-3 transition-transform group-hover:-translate-x-1"
@@ -103,17 +103,17 @@ export default async function BlogPostPage({
           </Link>
 
           {/* System label */}
-          <div className="mb-4 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-primary">
+          <div className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
             [SYS::BLOG_POST]
           </div>
 
           {/* Title */}
-          <h1 className="font-[family-name:var(--font-space)] text-3xl font-bold leading-tight text-on-background md:text-5xl lg:text-6xl">
+          <h1 className="font-[family-name:var(--font-space)] text-4xl font-bold leading-tight text-on-background md:text-6xl lg:text-7xl">
             {post.title}
           </h1>
 
           {/* Meta row */}
-          <div className="mt-6 flex flex-wrap items-center gap-4 font-mono text-xs text-on-surface-variant">
+          <div className="mt-6 flex flex-wrap items-center gap-4 font-mono text-sm text-on-surface-variant">
             <time dateTime={post.date}>{formatDate(post.date)}</time>
             {post.modified !== post.date && (
               <span className="text-on-surface-variant/60">
@@ -161,7 +161,7 @@ export default async function BlogPostPage({
         <div className="flex items-center justify-between">
           <Link
             href="/blog"
-            className="group inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-on-surface-variant transition-colors hover:text-primary"
+            className="group inline-flex items-center gap-2 font-mono text-sm font-bold uppercase tracking-wider text-on-surface-variant transition-colors hover:text-primary"
           >
             <svg
               className="h-3 w-3 transition-transform group-hover:-translate-x-1"
@@ -177,7 +177,7 @@ export default async function BlogPostPage({
 
           <Link
             href="/"
-            className="group inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-on-surface-variant transition-colors hover:text-primary"
+            className="group inline-flex items-center gap-2 font-mono text-sm font-bold uppercase tracking-wider text-on-surface-variant transition-colors hover:text-primary"
           >
             HOME
             <svg
@@ -196,19 +196,19 @@ export default async function BlogPostPage({
       {/* ── Bottom CTA ─────────────────────────────────────── */}
       <div className="border-t border-blueprint-line">
         <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 px-[var(--spacing-margin-mobile)] py-16 text-center md:px-[var(--spacing-margin-desktop)] md:py-24">
-          <div className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-primary">
+          <div className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
             [SYS::INITIATE_PROJECT_QUERY]
           </div>
-          <h2 className="font-[family-name:var(--font-space)] text-2xl font-bold text-on-background md:text-4xl">
+          <h2 className="font-[family-name:var(--font-space)] text-3xl font-bold text-on-background md:text-5xl">
             Need a Precision Estimate?
           </h2>
-          <p className="max-w-lg text-sm leading-relaxed text-on-surface-variant">
+          <p className="max-w-lg text-base leading-relaxed text-on-surface-variant">
             Get a precise, AACE-compliant cost estimate for your next construction
             project. Turnaround in as little as 3–5 business days.
           </p>
           <Link
             href="/calculator"
-            className="group mt-4 inline-flex items-center gap-3 border border-primary bg-primary px-8 py-3.5 font-mono text-xs font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary"
+            className="group mt-4 inline-flex items-center gap-3 border border-primary bg-primary px-8 py-3.5 font-mono text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary"
           >
             <span>GET_ESTIMATE</span>
             <svg

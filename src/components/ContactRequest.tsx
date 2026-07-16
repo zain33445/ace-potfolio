@@ -146,7 +146,7 @@ export default function ContactRequest() {
               >
                 <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20">
                   <Zap className="w-3 h-3 text-primary" />
-                  <span className="font-mono text-[10px] text-primary tracking-[0.2em] uppercase font-bold">
+                  <span className="font-mono text-xs text-primary tracking-[0.2em] uppercase font-bold">
                     Quick Estimate
                   </span>
                 </span>
@@ -163,7 +163,7 @@ export default function ContactRequest() {
                       animate={{ opacity: 1 }}
                       transition={{ delay: 0.1 * s }}
                     >
-                      <span className={`font-mono text-[10px] tracking-[0.15em] uppercase ${
+                      <span className={`font-mono text-xs tracking-[0.15em] uppercase ${
                         s <= step ? 'text-on-background font-medium' : 'text-on-surface-variant/40'
                       }`}>
                         {['Type', 'Scale', 'Plans', 'Send'][s - 1]}
@@ -201,13 +201,13 @@ export default function ContactRequest() {
                     >
                       <div className="text-center mb-8">
                         <div className="inline-flex items-center gap-2 mb-3">
-                          <span className="font-mono text-[10px] text-primary/60 tracking-[0.2em]">01</span>
+                          <span className="font-mono text-xs text-primary/60 tracking-[0.2em]">01</span>
                           <span className="w-8 h-[1px] bg-blueprint-line/20" />
                         </div>
-                        <h3 className="font-space font-bold text-2xl md:text-3xl text-on-background mb-2">
+                        <h3 className="font-space font-bold text-3xl md:text-4xl text-on-background mb-2">
                           What are you building?
                         </h3>
-                        <p className="font-sans text-sm text-on-surface-variant">
+                        <p className="font-sans text-base text-on-surface-variant">
                           Select your project type
                         </p>
                       </div>
@@ -279,13 +279,13 @@ export default function ContactRequest() {
                     >
                       <div className="text-center mb-8">
                         <div className="inline-flex items-center gap-2 mb-3">
-                          <span className="font-mono text-[10px] text-primary/60 tracking-[0.2em]">02</span>
+                          <span className="font-mono text-xs text-primary/60 tracking-[0.2em]">02</span>
                           <span className="w-8 h-[1px] bg-blueprint-line/20" />
                         </div>
-                        <h3 className="font-space font-bold text-2xl md:text-3xl text-on-background mb-2">
+                        <h3 className="font-space font-bold text-3xl md:text-4xl text-on-background mb-2">
                           How large is the project?
                         </h3>
-                        <p className="font-sans text-sm text-on-surface-variant">
+                        <p className="font-sans text-base text-on-surface-variant">
                           This helps us allocate the right surveyor
                         </p>
                       </div>
@@ -324,10 +324,10 @@ export default function ContactRequest() {
                               ))}
                             </div>
 
-                            <div className="font-space font-semibold text-sm text-on-background mb-1">
+                            <div className="font-space font-semibold text-base text-on-background mb-1">
                               {option.label}
                             </div>
-                            <div className="font-mono text-[10px] text-on-surface-variant tracking-wider">
+                            <div className="font-mono text-xs text-on-surface-variant tracking-wider">
                               {option.range}
                             </div>
                           </motion.button>
@@ -344,7 +344,7 @@ export default function ContactRequest() {
                         <button
                           type="button"
                           onClick={() => setStep(1)}
-                          className="inline-flex items-center gap-1.5 font-mono text-[10px] text-on-surface-variant/60 hover:text-primary transition-colors duration-300 uppercase tracking-[0.15em]"
+                          className="inline-flex items-center gap-1.5 font-mono text-xs text-on-surface-variant/60 hover:text-primary transition-colors duration-300 uppercase tracking-[0.15em]"
                         >
                           <ArrowLeft className="w-3 h-3" />
                           Back
@@ -365,13 +365,13 @@ export default function ContactRequest() {
                     >
                       <div className="text-center mb-8">
                         <div className="inline-flex items-center gap-2 mb-3">
-                          <span className="font-mono text-[10px] text-primary/60 tracking-[0.2em]">03</span>
+                          <span className="font-mono text-xs text-primary/60 tracking-[0.2em]">03</span>
                           <span className="w-8 h-[1px] bg-blueprint-line/20" />
                         </div>
-                        <h3 className="font-space font-bold text-2xl md:text-3xl text-on-background mb-2">
+                        <h3 className="font-space font-bold text-3xl md:text-4xl text-on-background mb-2">
                           Upload your plans
                         </h3>
-                        <p className="font-sans text-sm text-on-surface-variant">
+                        <p className="font-sans text-base text-on-surface-variant">
                           Blueprints, drawings, or project documents
                         </p>
                       </div>
@@ -388,7 +388,7 @@ export default function ContactRequest() {
                         <button
                           type="button"
                           onClick={() => setStep(2)}
-                          className="inline-flex items-center gap-1.5 font-mono text-[10px] text-on-surface-variant/60 hover:text-primary transition-colors duration-300 uppercase tracking-[0.15em]"
+                          className="inline-flex items-center gap-1.5 font-mono text-xs text-on-surface-variant/60 hover:text-primary transition-colors duration-300 uppercase tracking-[0.15em]"
                         >
                           <ArrowLeft className="w-3 h-3" />
                           Back
@@ -397,7 +397,7 @@ export default function ContactRequest() {
                         <button
                           type="button"
                           onClick={() => setStep(4)}
-                          className="font-mono text-[10px] text-on-surface-variant hover:text-primary transition-colors duration-300 uppercase tracking-[0.15em]"
+                          className="font-mono text-xs text-on-surface-variant hover:text-primary transition-colors duration-300 uppercase tracking-[0.15em]"
                         >
                           Skip for now →
                         </button>
@@ -417,13 +417,13 @@ export default function ContactRequest() {
                       <form onSubmit={handleSubmit} className="space-y-6">
                         <div className="text-center mb-8">
                           <div className="inline-flex items-center gap-2 mb-3">
-                            <span className="font-mono text-[10px] text-primary/60 tracking-[0.2em]">04</span>
+                            <span className="font-mono text-xs text-primary/60 tracking-[0.2em]">04</span>
                             <span className="w-8 h-[1px] bg-blueprint-line/20" />
                           </div>
-                          <h3 className="font-space font-bold text-2xl md:text-3xl text-on-background mb-2">
+                          <h3 className="font-space font-bold text-3xl md:text-4xl text-on-background mb-2">
                             Where do we send the estimate?
                           </h3>
-                          <p className="font-sans text-sm text-on-surface-variant">
+                          <p className="font-sans text-base text-on-surface-variant">
                             We&apos;ll reach out within 24 hours
                           </p>
                         </div>
@@ -438,7 +438,7 @@ export default function ContactRequest() {
                                 required
                                 value={form.name}
                                 onChange={(e) => updateForm({ name: e.target.value })}
-                                className="w-full bg-transparent px-6 py-4 font-sans text-base text-on-background outline-none placeholder:text-on-surface-variant/40"
+                                className="w-full bg-transparent px-6 py-4 font-sans text-lg text-on-background outline-none placeholder:text-on-surface-variant/40"
                                 placeholder="Your name"
                                 autoFocus
                               />
@@ -453,7 +453,7 @@ export default function ContactRequest() {
                                 required
                                 value={form.email}
                                 onChange={(e) => updateForm({ email: e.target.value })}
-                                className="w-full bg-transparent px-6 py-4 font-sans text-base text-on-background outline-none placeholder:text-on-surface-variant/40"
+                                className="w-full bg-transparent px-6 py-4 font-sans text-lg text-on-background outline-none placeholder:text-on-surface-variant/40"
                                 placeholder="your@email.com"
                               />
                             </div>
@@ -467,7 +467,7 @@ export default function ContactRequest() {
                             disabled={form.isSubmitting || !form.email || !form.name}
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
-                            className="w-full group relative overflow-hidden rounded-full bg-on-background text-white font-mono text-sm font-bold py-4 px-8 uppercase tracking-[0.2em] transition-all duration-500 disabled:opacity-30 disabled:cursor-not-allowed"
+                            className="w-full group relative overflow-hidden rounded-full bg-on-background text-white font-mono text-base font-bold py-4 px-8 uppercase tracking-[0.2em] transition-all duration-500 disabled:opacity-30 disabled:cursor-not-allowed"
                           >
                             {/* Button glow */}
                             <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/20 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
@@ -501,12 +501,12 @@ export default function ContactRequest() {
                             <button
                               type="button"
                               onClick={() => setStep(3)}
-                              className="inline-flex items-center gap-1.5 font-mono text-[10px] text-on-surface-variant/60 hover:text-primary transition-colors duration-300 uppercase tracking-[0.15em]"
+                              className="inline-flex items-center gap-1.5 font-mono text-xs text-on-surface-variant/60 hover:text-primary transition-colors duration-300 uppercase tracking-[0.15em]"
                             >
                               <ArrowLeft className="w-3 h-3" />
                               Back
                             </button>
-                            <div className="flex items-center gap-4 font-mono text-[10px] text-on-surface-variant/50 uppercase tracking-wider">
+                            <div className="flex items-center gap-4 font-mono text-xs text-on-surface-variant/50 uppercase tracking-wider">
                               <span className="flex items-center gap-1.5">
                                 <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
                                 SSL
@@ -562,7 +562,7 @@ export default function ContactRequest() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
-                  className="font-space font-bold text-3xl text-on-background"
+                  className="font-space font-bold text-4xl text-on-background"
                 >
                   Estimate incoming.
                 </motion.h3>
@@ -570,7 +570,7 @@ export default function ContactRequest() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
-                  className="font-sans text-sm text-on-surface-variant max-w-sm mx-auto"
+                  className="font-sans text-base text-on-surface-variant max-w-sm mx-auto"
                 >
                   Thanks, <strong className="text-on-background">{form.name}</strong>. Check <strong className="text-on-background">{form.email}</strong> within 24 hours.
                 </motion.p>
@@ -583,10 +583,10 @@ export default function ContactRequest() {
                 transition={{ delay: 0.6 }}
                 className="inline-block p-5 rounded-[1.25rem] bg-background border border-blueprint-line/30"
               >
-                <div className="font-mono text-[10px] text-on-surface-variant mb-2 uppercase tracking-wider">
+                <div className="font-mono text-xs text-on-surface-variant mb-2 uppercase tracking-wider">
                   Reference
                 </div>
-                <div className="font-mono text-lg font-bold text-on-background tracking-wider">
+                <div className="font-mono text-xl font-bold text-on-background tracking-wider">
                   {form.referenceId}
                 </div>
               </motion.div>
@@ -597,7 +597,7 @@ export default function ContactRequest() {
                 transition={{ delay: 0.8 }}
                 type="button"
                 onClick={handleReset}
-                className="inline-flex items-center gap-2 font-mono text-[10px] text-on-surface-variant hover:text-primary transition-colors duration-300 uppercase tracking-[0.15em]"
+                className="inline-flex items-center gap-2 font-mono text-xs text-on-surface-variant hover:text-primary transition-colors duration-300 uppercase tracking-[0.15em]"
               >
                 <RefreshCw className="w-3.5 h-3.5" />
                 Start new estimate

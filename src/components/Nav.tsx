@@ -54,6 +54,7 @@ export default function Nav() {
   };
 
   const PAGE_LINKS = [
+  { href: '/about', label: 'ABOUT', shortLabel: 'About' },
   { href: '/blog', label: 'BLOG', shortLabel: 'Blog' },
   { href: '/pricing', label: 'PRICING', shortLabel: 'Pricing' },
   { href: '/projects', label: 'PROJECTS', shortLabel: 'Projects' },
@@ -67,7 +68,7 @@ export default function Nav() {
     <>
       <nav
         ref={navRef}
-        className={`fixed z-50 flex justify-between items-center px-4 md:px-6 py-3 transition-all duration-500 bg-white/20 backdrop-blur-3xl border shadow-2xl shadow-black/5 ring-1 ring-inset top-0 left-0 w-full rounded-none border-transparent ring-transparent h-24 ${
+        className={`fixed z-50 flex justify-between items-center px-4 md:px-6 py-3 transition-all duration-500 bg-white/20 backdrop-blur-3xl border shadow-2xl shadow-black/5 ring-1 ring-inset top-0 left-0 w-full rounded-none border-transparent ring-transparent h-16 md:h-24 ${
           isPinned ? '-translate-y-full' : 'translate-y-0'
         }`}
         id="main-nav"
@@ -76,12 +77,12 @@ export default function Nav() {
         <Link
           href="/"
           onClick={() => setMobileMenuOpen(false)}
-          className="font-mono text-3xl tracking-wide min-w-[400px] font-medium text-on-background cursor-pointer select-none flex items-center pl-10 gap-2"
+          className="font-mono text-xl md:text-3xl tracking-wide font-medium text-on-background cursor-pointer select-none flex items-center pl-2 md:pl-10 gap-2 overflow-hidden"
         >
           <img
             src="/aceLogo.png"
             alt=""
-            className='h-18 w-auto'
+            className='h-10 md:h-18 w-auto'
           />
 
           ACE SERVICES
@@ -91,13 +92,10 @@ export default function Nav() {
         <div className="hidden md:flex items-center gap-6 text-2xl">
           {/* Homepage section anchor links — always visible */}
           <div className="flex items-center gap-6">
-            <button type="button" onClick={() => handleNav('solutions')} className="link-underline text-on-surface-variant font-mono text-base font-bold tracking-widest pb-0.5">
+            <button type="button" onClick={() => handleNav('solutions')} className="link-underline text-on-surface-variant font-mono text-sm font-bold tracking-widest pb-0.5">
               SOLUTIONS
             </button>
-            <button type="button" onClick={() => handleNav('about')} className="link-underline text-on-surface-variant font-mono text-base font-bold tracking-widest pb-0.5">
-              ABOUT US
-            </button>
-            <button type="button" onClick={() => handleNav('contact')} className="link-underline text-on-surface-variant font-mono text-base font-bold tracking-widest pb-0.5">
+            <button type="button" onClick={() => handleNav('contact')} className="link-underline text-on-surface-variant font-mono text-sm font-bold tracking-widest pb-0.5">
               CONTACT US
             </button>
           </div>
@@ -111,7 +109,7 @@ export default function Nav() {
               <Link
                 key={href}
                 href={href}
-                className={`font-mono text-base font-bold tracking-widest pb-0.5 transition-colors duration-150 ${
+                className={`font-mono text-sm font-bold tracking-widest pb-0.5 transition-colors duration-150 ${
                   isActive(href)
                     ? 'text-primary'
                     : 'text-on-surface-variant hover:text-primary'
@@ -155,9 +153,6 @@ export default function Nav() {
             </p>
             <button onClick={() => handleNav('solutions')} className="text-left py-2 font-mono text-sm tracking-wider hover:text-primary border-b border-blueprint-line/30 w-full">
               [SOL_X] PORTFOLIO SERVICES
-            </button>
-            <button onClick={() => handleNav('about')} className="text-left py-2 font-mono text-sm tracking-wider hover:text-primary border-b border-blueprint-line/30 w-full">
-              [CORP_W] BIO DETAILS
             </button>
             <button onClick={() => handleNav('contact')} className="text-left py-2 font-mono text-sm tracking-wider hover:text-primary border-b border-blueprint-line/30 w-full">
               [CONTACT] GET IN TOUCH

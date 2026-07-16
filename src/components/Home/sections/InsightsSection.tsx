@@ -28,11 +28,11 @@ export default function InsightsSection({ insights }: InsightsSectionProps) {
       <Reveal type="fadeUp">
         <div className="max-w-7xl mx-auto">
           <div className="mb-12 space-y-3">
-            <span className="font-mono text-xs text-primary font-bold block">[FIELD_NOTES_STREAM]</span>
-            <h2 className="font-space text-3xl md:text-4xl font-extrabold text-on-background tracking-tight">
+            <span className="font-mono text-sm text-primary font-bold block">[FIELD_NOTES_STREAM]</span>
+            <h2 className="font-space text-4xl md:text-5xl font-extrabold text-on-background tracking-tight">
               Estimation Insights
             </h2>
-            <p className="font-sans text-base text-on-surface-variant max-w-xl">
+            <p className="font-sans text-lg text-on-surface-variant max-w-xl">
               Live briefings pulled from our editorial desk — pre-construction strategy, takeoff
               accuracy, and cost-control fieldwork.
             </p>
@@ -58,16 +58,16 @@ export default function InsightsSection({ insights }: InsightsSectionProps) {
                   </div>
                 )}
                 <div className="flex flex-col flex-1 p-5">
-                  <span className="font-mono text-[10px] text-on-surface-variant tracking-widest mb-3">
+                  <span className="font-mono text-xs text-on-surface-variant tracking-widest mb-3">
                     {formatDate(post.date)}
                   </span>
-                  <h3 className="font-space font-bold text-lg text-on-background leading-snug mb-3 group-hover:text-primary transition-colors">
+                  <h3 className="font-space font-bold text-xl text-on-background leading-snug mb-3 group-hover:text-primary transition-colors">
                     {post.title}
                   </h3>
-                  <p className="font-sans text-base text-on-surface-variant leading-relaxed flex-1">
+                  <p className="font-sans text-lg text-on-surface-variant leading-relaxed flex-1">
                     {post.excerpt}
                   </p>
-                  <span className="mt-5 inline-flex items-center gap-1.5 font-mono text-xs font-bold text-primary tracking-widest uppercase">
+                  <span className="mt-5 inline-flex items-center gap-1.5 font-mono text-sm font-bold text-primary tracking-widest uppercase">
                     Read Briefing
                     <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </span>
