@@ -137,6 +137,7 @@ export default function Nav() {
         socialItems={socialItems as any}
         displaySocials
         displayItemNumbering={true}
+        logoUrl="/aceLogo.png"
         menuButtonColor={navScrolled ? '#0A0A0A' : '#ffffff'}
         openMenuButtonColor="#0A0A0A"
         changeMenuColorOnOpen={true}
