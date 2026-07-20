@@ -1,5 +1,4 @@
 import Hero from '@/src/components/Hero';
-import RenderOnViewport from '@/src/components/RenderOnViewport';
 import LiquidGlassFilter from '@/src/components/ui/liquid-glass-filter';
 import type { HeroParallaxProduct } from '@/src/components/ui/hero-parallax';
 
@@ -18,9 +17,7 @@ export default function HeroSection({
           backdrop-filter: url(#liquid-refraction) to reference. */}
       <LiquidGlassFilter />
 
-      <RenderOnViewport>
-        <Hero products={products} />
-      </RenderOnViewport>
+      <Hero products={products} />
     </div>
   );
 }

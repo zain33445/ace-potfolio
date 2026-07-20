@@ -2,18 +2,16 @@
 
 import dynamic from 'next/dynamic';
 import HeroSection from '@/src/components/Home/sections/HeroSection';
-import SolutionsSection from '@/src/components/Home/sections/SolutionsSection';
-import WhyChooseUsSection from '@/src/components/Home/sections/WhyChooseUsSection';
-import TestimonialsSection from '@/src/components/Home/sections/TestimonialsSection';
-import CalculatorStripBanner from '@/src/components/Home/sections/CalculatorStripBanner';
-import ProjectsSection from '@/src/components/Home/sections/ProjectsSection';
-import ProcessSection from '@/src/components/Home/sections/ProcessSection';
-import FAQSection from '@/src/components/Home/sections/FAQSection';
-import ContactSection from '@/src/components/Home/sections/ContactSection';
 import type { HeroParallaxProduct } from '@/src/components/ui/hero-parallax';
-const BackgroundShader = dynamic(() => import('@/src/components/BackgroundShader'), {
-  ssr: false,
-});
+
+const SolutionsSection = dynamic(() => import('@/src/components/Home/sections/SolutionsSection'), { ssr: false });
+const WhyChooseUsSection = dynamic(() => import('@/src/components/Home/sections/WhyChooseUsSection'), { ssr: false });
+const TestimonialsSection = dynamic(() => import('@/src/components/Home/sections/TestimonialsSection'), { ssr: false });
+const CalculatorStripBanner = dynamic(() => import('@/src/components/Home/sections/CalculatorStripBanner'), { ssr: false });
+const ProjectsSection = dynamic(() => import('@/src/components/Home/sections/ProjectsSection'), { ssr: false });
+const ProcessSection = dynamic(() => import('@/src/components/Home/sections/ProcessSection'), { ssr: false });
+const FAQSection = dynamic(() => import('@/src/components/Home/sections/FAQSection'), { ssr: false });
+const ContactSection = dynamic(() => import('@/src/components/Home/sections/ContactSection'), { ssr: false });
 
 export default function HomePage({
   products,

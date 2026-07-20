@@ -78,7 +78,7 @@ export default function Nav() {
       >
         <Link
           href="/"
-          className={`font-mono text-xl md:text-3xl tracking-wide font-medium cursor-pointer select-none flex items-center pl-2 md:pl-10 gap-2 overflow-hidden transition-colors duration-500 ${navScrolled ? 'text-on-background' : 'text-white'}`}
+          className={`font-mono text-xl md:text-3xl tracking-wide font-medium cursor-pointer select-none flex items-center pl-2 md:pl-10 gap-2 overflow-hidden transition-colors duration-500 md:text-on-background ${navScrolled ? 'text-on-background' : 'text-white'}`}
         >
           <img
             src="/aceLogo.png"
@@ -89,20 +89,20 @@ export default function Nav() {
           ACE SERVICES
         </Link>
 
-        {/* Desktop nav */}
+        {/* Desktop nav — always dark text */}
         <div className="hidden md:flex items-center gap-6 text-2xl">
           {/* Homepage section anchor links — always visible */}
           <div className="flex items-center gap-6">
-            <button type="button" onClick={() => handleNav('solutions')} className={`link-underline font-mono text-sm font-bold tracking-widest pb-0.5 transition-colors duration-500 ${navScrolled ? 'text-on-surface-variant' : 'text-white/80'}`}>
+            <button type="button" onClick={() => handleNav('solutions')} className="link-underline font-mono text-sm font-bold tracking-widest pb-0.5 transition-colors duration-500 text-on-surface-variant">
               SOLUTIONS
             </button>
-            <button type="button" onClick={() => handleNav('contact')} className={`link-underline font-mono text-sm font-bold tracking-widest pb-0.5 transition-colors duration-500 ${navScrolled ? 'text-on-surface-variant' : 'text-white/80'}`}>
+            <button type="button" onClick={() => handleNav('contact')} className="link-underline font-mono text-sm font-bold tracking-widest pb-0.5 transition-colors duration-500 text-on-surface-variant">
               CONTACT US
             </button>
           </div>
 
           {/* Divider between section links and page links */}
-          <div className={`w-px h-4 transition-colors duration-500 ${navScrolled ? 'bg-blueprint-line/60' : 'bg-white/30'}`} aria-hidden="true" />
+          <div className="w-px h-4 bg-blueprint-line/60" aria-hidden="true" />
 
           {/* Page links */}
           <div className="flex items-center gap-5 pr-10">
@@ -111,9 +111,7 @@ export default function Nav() {
                 key={href}
                 href={href}
                 className={`font-mono text-sm font-bold tracking-widest pb-0.5 transition-colors duration-500 ${
-                  isActive(href)
-                    ? 'text-primary'
-                    : navScrolled ? 'text-on-surface-variant hover:text-primary' : 'text-white/80 hover:text-white'
+                  isActive(href) ? 'text-primary' : 'text-on-surface-variant hover:text-primary'
                 }`}
               >
                 {label}

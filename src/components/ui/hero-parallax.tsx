@@ -1,11 +1,10 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useMemo, useRef } from "react";
 import {
   motion,
   useScroll,
   useTransform,
   useSpring,
-  useMotionValueEvent,
   MotionValue,
 } from "motion/react";
 import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
@@ -31,6 +30,9 @@ function useMediaQuery(query: string): boolean {
   );
 }
 
+/* ── Shared spring config (stable reference, no per-render allocation) ── */
+const springConfig = { stiffness: 150, damping: 20, bounce: 0 };
+
 export const HeroParallax = ({
   products,
   headerH1,
@@ -47,16 +49,14 @@ export const HeroParallax = ({
   const firstRow = products.slice(0, 5);
   const secondRow = products.slice(5, 10);
   const thirdRow = products.slice(10, 15);
+  const reversedFirstRow = useMemo(() => [...firstRow].reverse(), [firstRow]);
+  const reversedThirdRow = useMemo(() => [...thirdRow].reverse(), [thirdRow]);
   const ref = useRef<HTMLDivElement>(null);
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
 
   const { scrollYProgress } = useScroll({
-    target: mounted ? ref : undefined,
+    target: typeof window !== 'undefined' ? ref : undefined,
     offset: ["start start", "end start"],
   });
-
-  const springConfig = { stiffness: 150, damping: 20, bounce: 0 };
 
   // 1. Adjusted translations to work better with the / slant
   const translateXDesktop = useSpring(
@@ -87,15 +87,6 @@ export const HeroParallax = ({
     springConfig
   );
 
-  const [isScrolling, setIsScrolling] = useState(false);
-  const scrollTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  useMotionValueEvent(scrollYProgress, 'change', () => {
-    setIsScrolling(true);
-    if (scrollTimer.current) clearTimeout(scrollTimer.current);
-    scrollTimer.current = setTimeout(() => setIsScrolling(false), 800);
-  });
-
   if (isMobile) {
     // ... (Mobile code remains the same)
     return (
@@ -114,7 +105,7 @@ export const HeroParallax = ({
   return (
     <section
       ref={ref}
-      className="relative h-[240vh] " // Slightly taller for better scroll feel
+      className="relative h-[240vh]" // Slightly taller for better scroll feel
     >
       <div className="sticky top-40 h-screen flex items-start justify-start z-20 px-20 pointer-events-none">
         <Header h1={headerH1} h2={headerH2} h3={headerH3} />
@@ -132,20 +123,18 @@ export const HeroParallax = ({
         >
           {/* Row 1 — visually reversed via array order, flex-row for correct marquee looping */}
           <div className="flex flex-row space-x-8 mb-8 marquee-desktop-content ">
-            {[...firstRow].reverse().map((product) => (
+            {reversedFirstRow.map((product) => (
               <ProductCard
                 product={product}
                 translate={translateXDesktop}
                 key={product.title}
-                // rotateZ={rotateZ}
               />
             ))}
-            {[...firstRow].reverse().map((product) => (
+            {reversedFirstRow.map((product) => (
               <ProductCard
                 product={product}
                 translate={translateXDesktop}
                 key={`${product.title}-dup`}
-                // rotateZ={rotateZ}
               />
             ))}
           </div>
@@ -172,20 +161,18 @@ export const HeroParallax = ({
 
           {/* Row 3 — visually reversed via array order, flex-row for correct marquee looping */}
           <div className="flex flex-row space-x-8 mb-8 marquee-desktop-content " >
-            {[...thirdRow].reverse().map((product) => (
+            {reversedThirdRow.map((product) => (
               <ProductCard
                 product={product}
                 translate={translateXDesktop}
                 key={product.title}
-                // rotateZ={rotateZ}
               />
             ))}
-            {[...thirdRow].reverse().map((product) => (
+            {reversedThirdRow.map((product) => (
               <ProductCard
                 product={product}
                 translate={translateXDesktop}
                 key={`${product.title}-dup`}
-                // rotateZ={rotateZ}
               />
             ))}
           </div>
@@ -323,8 +310,7 @@ export const ProductCard = ({
     <motion.div
       style={{
         x: translate,
-         rotateZ: counterRotate
-
+        rotateZ: counterRotate,
       }}
       whileHover={{
         y: -30,

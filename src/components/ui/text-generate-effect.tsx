@@ -38,7 +38,6 @@ export const TextGenerateEffect = ({
         </motion.span>
       ))}
       <br />
-      <br />
       { subArray && (
         subArray.map((word, idx) => (
           <motion.span
