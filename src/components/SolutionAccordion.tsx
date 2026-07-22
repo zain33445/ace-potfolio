@@ -11,7 +11,7 @@ const solutions: SolutionItem[] = [
     id: 'sol_01',
     title: 'Construction Estimation',
     category: 'RESIDENTIAL, COMMERCIAL, INDUSTRIAL',
-    description: 'We provide comprehensive cost analysis across all sectors, from single-family homes to complex industrial plants and public infrastructure.',
+    description: 'Our core construction estimation services provide comprehensive cost analysis across every sector, from single-family homes to complex industrial plants and public infrastructure. As a leading construction cost estimating company, we combine expert evaluation of architecture, framing layouts, concrete volumes, and site-prep overheads with a high-speed 24–48 hour turnaround, so you never miss a bid deadline. Contractors who partner with our estimating team see an 89% bid win rate, backed by professional-grade accuracy on every quote.',
     details: [
       'Contractor Benefit: Secure high-stakes contracts with an 89% success rate backed by professional-grade accuracy',
       'Expert evaluation of architecture, framing layouts, concrete volumes, and site-prep overheads.',
@@ -22,7 +22,7 @@ const solutions: SolutionItem[] = [
     id: 'sol_02',
     title: 'Quantity Surveyor Services & Material Lists',
     category: 'BILL OF QUANTITIES',
-    description: 'Detailed material takeoffs and procurement scheduling designed to streamline your supply chain and prevent on-site delays.',
+    description: 'Our quantity surveying company division delivers precise bills of quantities (BOQ) and material takeoff services built directly from your blueprints. Every quantity takeoff is verified for measurement accuracy, division-wise material volumes, and procurement-ready data, eliminating on-site waste and costly overordering before construction even begins.',
     details: [
       'Contractor Benefit: Eliminate material waste and mid-project budget spikes with precise procurement data',
       'CSI MasterFormat division pricing schedules matching regional rates.',
@@ -33,7 +33,7 @@ const solutions: SolutionItem[] = [
     id: 'sol_03',
     title: 'Permit Sets & 3D Renderings',
     category: 'MUNICIPAL SUBMISSION & RENDERS',
-    description: 'High-precision permit facilitation, architectural drafting, and stunning 3D renders that bring your vision to life before the first shovel hits the ground.',
+    description: 'Beyond estimating, The ACE Services prepares fully compliant permit sets and photorealistic 3D renderings for municipal submission. Our pre-construction documentation team ensures your architectural drawings meet local code requirements while giving stakeholders a clear visual of the finished project, streamlining approvals and reducing costly revision cycles.',
     details: [
       'Contractor Benefit: Fast-track your approval process and win stakeholder buy-in with meticulous shop drawings and visual sets',
       'Double-verified structural and architectural layouts matching local municipal codes.',
@@ -44,7 +44,7 @@ const solutions: SolutionItem[] = [
     id: 'sol_04',
     title: 'Project Management & Scheduling',
     category: 'LIFECYCLE CONTROL',
-    description: 'Seamless procurement and precise scheduling to ensure your project execution is as flawless as the initial bid.',
+    description: 'Our project management and scheduling division extends your pre-construction advantage into full lifecycle control. From procurement timelines to labor sequencing, our team keeps your project on budget and on schedule using ISO 9001-standard project controls, making The ACE Services a true end-to-end construction cost consultant, not just an estimating vendor.',
     details: [
       'Contractor Benefit: Protect your timeline and your reputation by implementing ideas with maximum efficiency',
       'Dynamic gantt workflows, critical path mapping, and logistics coordination buffer periods.',
@@ -73,7 +73,7 @@ export default function SolutionAccordion({ activeIndex, onCardClick, mobile = f
   const activeItem = activeId ? solutions.find(s => s.id === activeId) : null;
 
   return (
-    <div className="max-w-6xl mx-auto">
+    <div className="max-w-[85%] mx-auto">
       <div className="font-mono text-sm text-primary mb-8 border-b border-blueprint-line pb-4 flex items-center gap-2">
         <span className="w-2 h-2 rounded-full bg-primary animate-ping" />
         [CORE_CAPABILITIES_PORTAL_ACTIVE]
@@ -81,7 +81,7 @@ export default function SolutionAccordion({ activeIndex, onCardClick, mobile = f
 
       <div className="flex flex-col md:flex-row gap-6">
         {/* Left: Card List */}
-        <div className="w-full md:w-1/2 space-y-3">
+        <div className="w-1/2 md:w-1/2 space-y-3">
           {solutions.map((item, i) => {
             const isActive = activeId === item.id;
             return (

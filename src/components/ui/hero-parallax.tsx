@@ -87,6 +87,15 @@ export const HeroParallax = ({
     springConfig
   );
 
+  const headingOpacity = useSpring(
+    useTransform(scrollYProgress, [0.12, 0.35], [0, 1]),
+    springConfig
+  );
+  const headingY = useSpring(
+    useTransform(scrollYProgress, [0.12, 0.35], [30, 0]),
+    springConfig
+  );
+
   if (isMobile) {
     // ... (Mobile code remains the same)
     return (
@@ -110,6 +119,18 @@ export const HeroParallax = ({
       <div className="sticky top-40 h-screen flex items-start justify-start z-20 px-20 pointer-events-none">
         <Header h1={headerH1} h2={headerH2} h3={headerH3} />
       </div>
+
+      <motion.div
+        style={{ opacity: headingOpacity, y: headingY }}
+        className="sticky top-[30vh] z-10 flex flex-col items-center justify-center px-20 pointer-events-none text-center"
+      >
+        <h2 className="font-sans text-[clamp(2rem,4vw,3.5rem)] font-extrabold text-center text-[#111827] leading-tight">
+          Our Estimation Projects
+        </h2>
+        <p className="font-sans text-[clamp(0.9rem,1.5vw,1.1rem)] text-center text-[#4B5563] mt-4">
+          Click IMG to Open Project
+        </p>
+      </motion.div>
       
       <div className="absolute inset-[0px] z-0 overflow-hidden bg-[#F5F5F5] [perspective:500px] [transform-style:preserve-3d]">
         <motion.div
@@ -119,7 +140,7 @@ export const HeroParallax = ({
             translateY,
             opacity,
           }}
-          className="pt-[15vh]"
+          className="pt-[15vh] will-change-transform"
         >
           {/* Row 1 — visually reversed via array order, flex-row for correct marquee looping */}
           <div className="flex flex-row space-x-8 mb-8 marquee-desktop-content ">
@@ -318,7 +339,7 @@ export const ProductCard = ({
         transition: { type: "spring", stiffness: 200, damping: 20 },
       }}
       key={product.title}
-      className="group/product h-80 w-[26rem] relative shrink-0 z-10"
+      className="group/product h-80 w-[26rem] relative shrink-0 z-10 will-change-transform"
     >
       <a
         href={product.link}
@@ -331,7 +352,7 @@ export const ProductCard = ({
           loading="lazy"
           decoding="async"
           fetchPriority={fetchPriority}
-          className="object-cover object-left-top absolute h-full w-full inset-0 rounded-none  group-hover/product:grayscale-0 transition-all duration-300"
+          className="object-cover object-left-top absolute h-full w-full inset-0 rounded-none  group-hover/product:grayscale-0 transition-[filter,transform] duration-300"
           alt={product.title}
         />
       </a>

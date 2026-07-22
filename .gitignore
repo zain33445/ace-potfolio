@@ -37,3 +37,8 @@ build-log.txt
 *.jpg
 v3_analysis.json
 tsconfig.tsbuildinfo
+
+# Playwright test artifacts
+playwright-report/
+test-results/
+

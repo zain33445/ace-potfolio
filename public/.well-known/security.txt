@@ -1,0 +1,10 @@
+# Security Contact
+# If you discover a security vulnerability in this application,
+# please contact us at the email below.
+
+Contact: mailto:security@theaceservices.com
+Preferred-Languages: en
+Canonical: https://www.theaceservices.com/.well-known/security.txt
+Policy: https://www.theaceservices.com/security-policy
+
+# The ACE Services — https://www.theaceservices.com

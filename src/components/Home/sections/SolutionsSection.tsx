@@ -24,6 +24,7 @@ export default function SolutionsSection() {
   const isMobile = useMediaQuery("(max-width: 767px)");
   const [activeIndex, setActiveIndex] = useState(-1);
   const { setPinned } = usePin();
+  const pinnedLocked = useRef(false);
 
   /* ── Continuous scroll progress ── */
   const { scrollYProgress } = useScroll({
@@ -35,7 +36,15 @@ export default function SolutionsSection() {
 
   useMotionValueEvent(scrollYProgress, 'change', (v) => {
     setProgress(v);
-    if (!isMobile) setPinned(v > 0.05 && v < 0.95);
+    if (!isMobile) {
+      if (v > 0.05 && v < 0.95) {
+        pinnedLocked.current = true;
+        setPinned(true);
+      } else if (v >= 0.95) {
+        pinnedLocked.current = false;
+        setPinned(false);
+      }
+    }
   });
 
   /* ── Map scroll progress → active service index (desktop only) ── */
@@ -72,11 +81,11 @@ export default function SolutionsSection() {
       id="solutions"
       ref={wrapperRef}
       className={`relative bg-background border-b border-blueprint-line ${isMobile ? 'overflow-hidden' : ''}`}
-      style={isMobile ? {} : { height: `${(SERVICES_COUNT + 1) * 100}vh` }}
+      style={isMobile ? {} : { height: `${(SERVICES_COUNT + 1) * 150}vh` }}
     >
       {/* Sticky content — pins at top while parent scrolls through (desktop only) */}
       <div className={isMobile ? '' : 'sticky top-0 h-screen overflow-hidden'}>
-        <div className="w-full h-full max-w-7xl mx-auto px-6 md:px-16 py-24 flex flex-col">
+        <div className="w-full h-full max-w-8xl mx-auto px-6 md:px-16 py-12 flex flex-col">
           {/* Heading */}
           <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
             <span className="font-mono text-sm text-primary font-bold block">[CAPABILITY_INDEX]</span>
@@ -84,12 +93,12 @@ export default function SolutionsSection() {
               Core Service Solutions
             </h2>
             <p className="font-sans text-lg text-on-surface-variant">
-              Explore our specialized divisions engineered to provide highly reliable pricing models and architectural reviews.
+              As a top construction and estimation company, The ACE Services operates across four specialized divisions engineered to deliver highly reliable pricing models, architectural reviews, and full-lifecycle project support — all built to fit tight bid schedule pipelines.
             </p>
           </div>
 
           {/* Accordion (controlled) */}
-          <div className="flex-1 min-h-0">
+          <div className="min-h-0 max-w-8xl mx-auto w-full">
             <SolutionAccordion
               activeIndex={activeIndex}
               onCardClick={handleCardClick}

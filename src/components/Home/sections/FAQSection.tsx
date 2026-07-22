@@ -12,7 +12,7 @@ export default function FAQSection() {
               Frequently Asked Questions
             </h2>
             <p className="font-sans text-lg text-on-surface-variant">
-              Common questions about our estimating process, turnaround times, and how we can support your next project.
+              Common questions about our estimating process, turnaround times, and how the top construction and estimation company in the industry supports your next project.
             </p>
           </div>
           <FAQAccordion />

@@ -39,7 +39,7 @@ export default function CalculatorStripBanner() {
 
           <p className="font-sans text-base text-white/80 leading-relaxed max-w-xl">
             Use our parametric cost configurator to generate AACE Class&nbsp;3
-            budgetary allocations in seconds — no forms, no wait.
+            budgetary allocations in seconds, no forms, no wait. As the top construction and estimation company for fast, accurate pre-construction numbers, The ACE Services puts professional-grade cost estimating directly in your hands.
           </p>
         </div>
 

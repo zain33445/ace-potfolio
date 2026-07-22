@@ -9,19 +9,19 @@ export default function TestimonialsSection() {
           <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
             <span className="font-mono text-sm text-primary font-bold block">[VERIFIED_CLIENT_COMMUNICATION]</span>
             <h2 className="font-space text-4xl md:text-5xl font-extrabold text-on-background tracking-tighter">Trusted by the Industry Elite</h2>
-            <p className="font-sans text-lg text-on-surface-variant font-medium">Read how general contractors and trade subcontractors deploy our takeoff schemas to save costs and lock in healthy margins.</p>
+            <p className="font-sans text-lg text-on-surface-variant font-medium">See why general contractors and trade subcontractors across the country trust The ACE Services, the top construction and estimation company for takeoff schemas that protect margins and win bids.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
             <div className="border border-blueprint-line bg-background p-8 bracket-corners hover:border-primary transition-colors flex flex-col justify-between relative group">
               <div className="absolute top-4 right-4 font-mono text-xs text-[#FF6B00] font-bold border border-[#FF6B00]/40 px-1.5 py-0.5 whitespace-nowrap">GENERAL CONTRACTOR AUDIT</div>
               <div className="space-y-6">
                 <div className="text-4xl font-serif text-primary">&ldquo;</div>
-                <p className="font-sans text-lg text-on-surface-variant leading-relaxed font-semibold italic">The ACE Services changed our bidding strategy. Their use of PlanSwift and Bluebeam gave us the confidence to go after $10M+ commercial projects knowing our margins were protected.</p>
+                <p className="font-sans text-lg text-on-surface-variant leading-relaxed font-semibold italic">Working with The ACE Services reshaped how our team approaches bidding. Their PlanSwift and Bluebeam-based takeoffs gave us the confidence to pursue $10M+ commercial projects while protecting our margins.</p>
               </div>
               <div className="border-t border-dashed border-blueprint-line/60 pt-6 mt-8 flex justify-between items-center">
                 <div>
                   <h4 className="font-space font-bold text-lg text-on-background">Saunders General Builders</h4>
-                  <p className="font-mono text-xs text-on-surface-variant uppercase tracking-wider font-bold">Senior Estimating Advisor</p>
+                  <p className="font-mono text-xs text-on-surface-variant uppercase tracking-wider font-bold">Senior Estimating Advisor (Verified Bid Win)</p>
                 </div>
                 <div className="font-mono text-xs text-[#00A859] flex items-center gap-1 font-bold">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#00A859]" /> VERIFIED BID WIN
@@ -29,15 +29,15 @@ export default function TestimonialsSection() {
               </div>
             </div>
             <div className="border border-blueprint-line bg-background p-8 bracket-corners hover:border-primary transition-colors flex flex-col justify-between relative group">
-              <div className="absolute top-4 right-4 font-mono text-xs text-[#FF6B00] font-bold border border-[#FF6B00]/40 px-1.5 py-0.5 whitespace-nowrap">SPECIALTY ELECT_IND_TAKEOFF</div>
+              <div className="absolute top-4 right-4 font-mono text-xs text-[#FF6B00] font-bold border border-[#FF6B00]/40 px-1.5 py-0.5 whitespace-nowrap">SPECIALTY ELECTRICAL TAKEOFF</div>
               <div className="space-y-6">
                 <div className="text-4xl font-serif text-primary">&ldquo;</div>
-                <p className="font-sans text-lg text-on-surface-variant leading-relaxed font-semibold italic">We used to spend weekends on takeoffs. Now, we send our blueprints to ACE and get back a professional PDF and Excel estimate that&rsquo;s ready to submit. The two-stage QA process gives us total peace of mind.</p>
+                <p className="font-sans text-lg text-on-surface-variant leading-relaxed font-semibold italic">The ACE Services eliminated our weekend takeoff sessions entirely. We send blueprints in and receive a submission-ready PDF and Excel estimate. The two-stage QA process gives our team total peace of mind on every bid.</p>
               </div>
               <div className="border-t border-dashed border-blueprint-line/60 pt-6 mt-8 flex justify-between items-center">
                 <div>
                   <h4 className="font-space font-bold text-lg text-on-background">Apex Electrical Contractors</h4>
-                  <p className="font-mono text-xs text-on-surface-variant uppercase tracking-wider font-bold">Director of Operations</p>
+                  <p className="font-mono text-xs text-on-surface-variant uppercase tracking-wider font-bold">Director of Operations (Verified Bid Win)</p>
                 </div>
                 <div className="font-mono text-xs text-[#00A859] flex items-center gap-1 font-bold">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#00A859]" /> VERIFIED BID WIN

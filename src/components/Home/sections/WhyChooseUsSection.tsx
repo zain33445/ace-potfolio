@@ -9,22 +9,22 @@ const cards = [
   {
     label: '[WIN_OPTIMIZATION]',
     title: 'An 89% Bid Win Rate',
-    desc: "Our estimates aren't just accurate; they are strategically designed to win you the job in a competitive market.",
+    desc: "Our estimates aren't just accurate, they're strategically engineered to help general contractors and subcontractors win competitive bids in tight markets. This bid-win performance is the reason so many builders choose us as their pre-construction estimation partner.",
   },
   {
     label: '[EXPERT_REVIEW]',
     title: 'Senior Consultant Oversight',
-    desc: 'Every project undergoes a mandatory two-stage quality assurance process managed by our most experienced estimators.',
+    desc: 'Every project moves through a mandatory two-stage quality assurance process, reviewed by our most experienced estimators. This layered QA approach is what separates a professional estimating company from a generic takeoff service.',
   },
   {
     label: '[NATIONAL_GRID]',
     title: 'Proven National Reach',
-    desc: 'We have successfully delivered 2,893 estimates across 35 U.S. states, handling everything from bridges to healthcare facilities.',
+    desc: 'With 2,893 estimates delivered across 35 U.S. states, spanning bridges, healthcare facilities, retail builds, and industrial plants, The ACE Services has the national estimating footprint that general contractors, civil engineers, and trade specialists rely on coast to coast.',
   },
   {
     label: '[STANDARD_ISO]',
     title: 'ISO-Standard Precision',
-    desc: 'We follow international ISO standards of construction, ensuring your pre-construction data meets the highest global benchmarks.',
+    desc: 'We follow international ISO 9001 construction standards, ensuring every pre-construction estimate, material takeoff, and quantity survey meets the highest global benchmark for accuracy and consistency.',
   },
 ];
 
@@ -36,12 +36,12 @@ const PILLARS = [
   { x: 1050, h: 360 },
 ];
 
-/* ── Symmetrical valley card positions ── */
+/* ── Symmetrical valley card positions (1200/1000 viewBox) ── */
 const CARD_POSITIONS = [
-  { left: '12.50%', top: '84.2%' },
-  { left: '31.66%', top: '59.4%' },
-  { left: '68.33%', top: '59.4%' },
-  { left: '87.50%', top: '84.2%' },
+  { left: '12.50%', top: '70%' },
+  { left: '31.66%', top: '53.5%' },
+  { left: '68.33%', top: '53.5%' },
+  { left: '87.50%', top: '74%' },
 ];
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
@@ -62,6 +62,7 @@ export default function WhyChooseUsSection() {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const [activeStep, setActiveStep] = useState(0);
+  const pinnedLocked = useRef(false);
   const [isDesktop, setIsDesktop] = useState(true);
   const { setPinned } = usePin();
 
@@ -84,8 +85,15 @@ export default function WhyChooseUsSection() {
       const scrollable = w.offsetHeight - window.innerHeight;
       if (scrollable <= 0) return;
       const p = Math.max(0, Math.min(1, -rect.top / scrollable));
-      setActiveStep(Math.min(PILLARS.length + 1, Math.max(0, Math.floor(p * (PILLARS.length + 2)))));
-      setPinned(p > 0.05 && p < 0.95);
+      const step = Math.min(PILLARS.length + 1, Math.max(0, Math.floor(p * (PILLARS.length + 2))));
+      setActiveStep(prev => Math.max(prev, step));
+      if (p > 0.05 && p < 0.95) {
+        pinnedLocked.current = true;
+        setPinned(true);
+      } else if (p >= 0.95) {
+        pinnedLocked.current = false;
+        setPinned(false);
+      }
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
@@ -432,57 +440,40 @@ export default function WhyChooseUsSection() {
     svg.appendChild(pillarsG);
   }, [isDesktop]);
 
-  /* ── Drive active step ── */
+  /* ── Drive active step (monotonic — never reverses) ── */
   useEffect(() => {
     if (!isDesktop) return;
 
     // Bridge superstructure — clip-path sweep from top
     const rectBridge = document.getElementById('rect-bridge');
-    if (rectBridge) {
-      if (activeStep >= 1) {
-        rectBridge.setAttribute('height', '900');
-        rectBridge.style.transition = 'height 1.6s cubic-bezier(0.16, 1, 0.3, 1)';
-      } else {
-        rectBridge.setAttribute('height', '0');
-        rectBridge.style.transition = 'none';
-      }
+    if (rectBridge && activeStep >= 1) {
+      rectBridge.setAttribute('height', '1000');
+      rectBridge.style.transition = 'height 1.6s cubic-bezier(0.16, 1, 0.3, 1)';
     }
 
     // Callouts — appear after bridge is built
     const rectCallouts = document.getElementById('rect-callouts');
-    if (rectCallouts) {
-      if (activeStep >= 1) {
-        rectCallouts.setAttribute('height', '900');
-        rectCallouts.style.transition = 'height 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.8s';
-      } else {
-        rectCallouts.setAttribute('height', '0');
-        rectCallouts.style.transition = 'none';
-      }
+    if (rectCallouts && activeStep >= 1) {
+      rectCallouts.setAttribute('height', '1000');
+      rectCallouts.style.transition = 'height 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.8s';
     }
 
     // Pillars — shift by 1 (step 1 = bridge, steps 2–5 = pillars)
     PILLARS.forEach((_, idx) => {
       const group = document.getElementById(`pillar-${idx}`);
-      const card = document.getElementById(`card-${idx}`);
       const scan = document.getElementById(`scan-${idx}`) as SVGPolygonElement | null;
       if (!group) return;
 
       if (activeStep > idx + 1) {
         group.classList.add('active');
-        card?.classList.add('active');
         if (scan) scan.style.animation = 'none';
       } else if (activeStep === idx + 2) {
         group.classList.add('active');
-        card?.classList.add('active');
         if (scan) {
           scan.style.animation = 'none';
           void scan.getBoundingClientRect(); // reflow trigger
           scan.style.animation = 'scanSweep 1.2s ease-in-out forwards';
         }
-      } else {
-        group.classList.remove('active');
-        card?.classList.remove('active');
-        if (scan) scan.style.animation = 'none';
       }
     });
   }, [activeStep, isDesktop]);
@@ -508,20 +499,19 @@ export default function WhyChooseUsSection() {
               <div className="w-16 h-0.5 bg-primary rounded-full" />
             </div>
             <p className="font-sans text-base md:text-lg text-on-surface-variant font-medium">
-              We leverage elite mathematical modeling and multi-layered audit procedures to
-              deliver unmatched pre-construction confidence.
+              What makes The ACE Services the top construction and estimation company in the industry? Elite mathematical modeling, multi-layered audit procedures, and a national track record that speaks for itself.
             </p>
           </div>
 
           {isDesktop ? (
             <>
               <div
-                className="relative w-[95%] max-w-[1400px] translate-x-[15%]"
-                style={{ aspectRatio: '1200 / 900' }}
+                className="relative w-[75%] max-w-[1150px] translate-x-[25%]"
+                style={{ aspectRatio: '1200 / 1000' }}
               >
                 <svg
                   ref={svgRef}
-                  viewBox="0 0 1200 900"
+                  viewBox="0 0 1200 1000"
                   className="w-full h-full pointer-events-none"
                   preserveAspectRatio="xMidYMid meet"
                 />
@@ -535,8 +525,7 @@ export default function WhyChooseUsSection() {
                       style={{
                         left: CARD_POSITIONS[i].left,
                         top: CARD_POSITIONS[i].top,
-                        width: '20vw',
-                        maxWidth: '250px',
+                        width: '35%',
                         transform: 'translateX(-50%)',
                       }}
                     >

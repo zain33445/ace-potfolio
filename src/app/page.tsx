@@ -3,9 +3,9 @@ import { getSamples } from '@/src/services/wordpress/content';
 import { samplesToHeroCards } from '@/src/lib/map-projects-to-hero';
 
 export const metadata = {
-  title: 'ACE SERVICES — Pre-Construction Estimation',
+  title: 'The ACE Services — Top Construction and Estimation Company',
   description:
-    'Precision construction estimation and rapid quantity surveying platform. AACE Class 3 cost estimates, material takeoffs, permit sets, and project scheduling.',
+    'The ACE Services is a top construction and estimation company delivering AACE Class 3 cost estimates, material takeoffs, permit sets, and project scheduling for general contractors nationwide.',
 };
 
 export default async function Page() {

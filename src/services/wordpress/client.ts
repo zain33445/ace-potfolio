@@ -60,6 +60,17 @@ function extractPagination(res: Response): WPPaginationHeaders {
   return { total, totalPages };
 }
 
+/** Strip query parameters from a URL for safe logging (prevents credential leakage). */
+function sanitizeUrlForLog(url: string): string {
+  try {
+    const u = new URL(url);
+    u.search = '';
+    return u.origin + u.pathname;
+  } catch {
+    return url.replace(/\?.*$/, '');
+  }
+}
+
 /**
  * GET a `wp/v2` resource and parse JSON. `path` is relative to the base,
  * e.g. `'/posts'` or `'/pages/5095'`.
@@ -69,6 +80,7 @@ function extractPagination(res: Response): WPPaginationHeaders {
  */
 export async function wpGet<T>(path: string, query?: WPListQuery): Promise<T> {
   const url = `${wpBaseUrl()}${path}${buildQuery(query)}`;
+  const logSafeUrl = sanitizeUrlForLog(url);
 
   let res: Response;
   try {
@@ -77,17 +89,17 @@ export async function wpGet<T>(path: string, query?: WPListQuery): Promise<T> {
     });
   } catch (cause) {
     throw new WordPressError(
-      `Network error fetching ${url}: ${(cause as Error).message}`,
+      `Network error fetching ${logSafeUrl}: ${(cause as Error).message}`,
       0,
-      url,
+      logSafeUrl,
     );
   }
 
   if (!res.ok) {
     throw new WordPressError(
-      `WordPress responded ${res.status} ${res.statusText} for ${url}`,
+      `WordPress responded ${res.status} ${res.statusText} for ${logSafeUrl}`,
       res.status,
-      url,
+      logSafeUrl,
     );
   }
 
@@ -105,6 +117,7 @@ export async function wpGetList<T>(
   query?: WPListQuery,
 ): Promise<WPListResponse<T>> {
   const url = `${wpBaseUrl()}${path}${buildQuery(query)}`;
+  const logSafeUrl = sanitizeUrlForLog(url);
 
   let res: Response;
   try {
@@ -113,17 +126,17 @@ export async function wpGetList<T>(
     });
   } catch (cause) {
     throw new WordPressError(
-      `Network error fetching ${url}: ${(cause as Error).message}`,
+      `Network error fetching ${logSafeUrl}: ${(cause as Error).message}`,
       0,
-      url,
+      logSafeUrl,
     );
   }
 
   if (!res.ok) {
     throw new WordPressError(
-      `WordPress responded ${res.status} ${res.statusText} for ${url}`,
+      `WordPress responded ${res.status} ${res.statusText} for ${logSafeUrl}`,
       res.status,
-      url,
+      logSafeUrl,
     );
   }
 

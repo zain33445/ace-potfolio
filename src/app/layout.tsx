@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono, Space_Grotesk } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
 import LayoutShell from './layout-shell';
+import ClarityAnalytics from '@/src/components/ClarityAnalytics';
 
 /* ── next/font (self-hosted, no external render-blocking requests) ── */
 
@@ -30,11 +31,11 @@ const ogImage = 'https://www.theaceservices.com/og-image.png';
 export const metadata: Metadata = {
   metadataBase: new URL(url),
   title: {
-    default: 'ACE SERVICES — Pre-Construction Estimation',
-    template: '%s | ACE SERVICES',
+    default: 'The ACE Services — Top Construction and Estimation Company',
+    template: '%s | The ACE Services',
   },
   description:
-    'Precision construction estimation and rapid quantity surveying platform. AACE Class 3 cost estimates, material takeoffs, permit sets, and project scheduling.',
+    'The ACE Services is a top construction and estimation company delivering AACE Class 3 cost estimates, material takeoffs, permit sets, and project scheduling for general contractors nationwide.',
   keywords: [
     'construction estimation',
     'quantity surveying',
@@ -74,9 +75,9 @@ export const metadata: Metadata = {
 const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'ACE SERVICES',
+  name: 'The ACE Services',
   description:
-    'Precision construction estimation and rapid quantity surveying platform.',
+    'The ACE Services is a top construction and estimation company delivering AACE Class 3 cost estimates, material takeoffs, permit sets, and project scheduling for general contractors nationwide.',
   url,
   foundingDate: '2025',
   areaServed: 'US',
@@ -153,10 +154,18 @@ const faqSchema = {
     },
     {
       '@type': 'Question',
-      name: 'What tools does ACE use for estimating?',
+      name: 'What file formats do you accept for blueprints?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'ACE SERVICES utilizes PlanSwift and Bluebeam for digitized quantity takeoffs along with proprietary cost-multiplier databases calibrated to localized material standards and CSI MasterFormat divisions.',
+        text: 'We accept PDF, DWG, DXF, and raster image formats. Our digitization pipeline handles both digital-native files and scanned hard copies, with scale verification and alignment audits performed on scanned documents before quantity takeoffs begin.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do you work with subcontractors and small contractors?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes, The ACE Services supports general contractors, subcontractors, and independent developers across 35 U.S. states, with scalable engagement models ranging from single-trade material lists to full-spectrum pre-construction packages.',
       },
     },
   ],
@@ -277,6 +286,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         )}
       </head>
       <body className="min-h-screen antialiased selection:bg-primary selection:text-white" suppressHydrationWarning>
+        {process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID && (
+          <ClarityAnalytics projectId={process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID} />
+        )}
         <LayoutShell>{children}</LayoutShell>
       </body>
     </html>

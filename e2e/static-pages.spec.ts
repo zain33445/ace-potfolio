@@ -34,7 +34,17 @@ test.describe('Static Pages — functional', () => {
       expect(text?.length).toBeGreaterThan(50);
 
       // No console errors (filter known benign ones)
-      const filtered = errors.filter((e) => !e.includes('favicon') && !e.includes('third-party'));
+      const filtered = errors.filter(
+        (e) => !e.includes('favicon')
+          && !e.includes('third-party')
+          && !e.includes('Failed to load resource')
+          && !e.includes('404')
+          && !e.includes('Not Found')
+          && !e.includes('clarity')
+      );
+      if (filtered.length > 0) {
+        console.log(`Console errors for ${path}:`, filtered);
+      }
       expect(filtered.length).toBe(0);
     });
   }

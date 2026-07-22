@@ -147,6 +147,7 @@ export default function StatsSection() {
   const [sectionVisible, setSectionVisible] = useState(false);
   const [isDesktop, setIsDesktop] = useState(true);
   const { setPinned } = usePin();
+  const pinnedLocked = useRef(false);
 
   /* ── Continuous scroll progress, spring-smoothed ── */
   const { scrollYProgress } = useScroll({
@@ -176,7 +177,13 @@ export default function StatsSection() {
       }
     }
     /* Hide nav while this sticky section is actively scrolling */
-    setPinned(v > 0.05 && v < 0.95);
+    if (v > 0.05 && v < 0.95) {
+      pinnedLocked.current = true;
+      setPinned(true);
+    } else if (v >= 0.95) {
+      pinnedLocked.current = false;
+      setPinned(false);
+    }
   });
 
   /* ── IntersectionObserver to trigger count-up ── */

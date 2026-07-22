@@ -32,8 +32,23 @@ export const FileUpload = ({
   onChange?: (files: File[]) => void;
 }) => {
   const [files, setFiles] = useState<File[]>([]);
+  const [rejectionMessage, setRejectionMessage] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const ACCEPTED_TYPES = [
+    'application/pdf',
+    'image/png',
+    'image/jpeg',
+    'image/tiff',
+    'application/zip',
+    'application/x-zip-compressed',
+    'application/dwg',
+    'application/x-dwg',
+    'image/vnd.dwg',
+    'image/x-dwg',
+  ];
+  const MAX_SIZE_BYTES = 25 * 1024 * 1024; // 25 MB
 
   // Cursor-following spring values
   const mouseX = useMotionValue(0);
@@ -56,8 +71,29 @@ export const FileUpload = ({
   }, [mouseX, mouseY]);
 
   const handleFileChange = (newFiles: File[]) => {
-    setFiles((prevFiles) => [...prevFiles, ...newFiles]);
-    onChange && onChange(newFiles);
+    const valid: File[] = [];
+    let rejected = false;
+
+    for (const file of newFiles) {
+      if (file.size > MAX_SIZE_BYTES) {
+        setRejectionMessage(`"${file.name}" exceeds the 25 MB limit.`);
+        rejected = true;
+        continue;
+      }
+      if (!ACCEPTED_TYPES.includes(file.type)) {
+        setRejectionMessage(`"${file.name}" is not a supported file type. Accepted: PDF, PNG, JPG, TIFF, DWG.`);
+        rejected = true;
+        continue;
+      }
+      valid.push(file);
+    }
+
+    if (!rejected) setRejectionMessage(null);
+
+    if (valid.length > 0) {
+      setFiles((prevFiles) => [...prevFiles, ...valid]);
+      onChange && onChange(valid);
+    }
   };
 
   const handleClick = () => {
@@ -67,6 +103,8 @@ export const FileUpload = ({
   const { getRootProps, isDragActive } = useDropzone({
     multiple: false,
     noClick: true,
+    accept: ACCEPTED_TYPES.reduce((acc, type) => ({ ...acc, [type]: [] }), {} as Record<string, string[]>),
+    maxSize: MAX_SIZE_BYTES,
     onDrop: handleFileChange,
     onDropRejected: (error) => {
       console.log(error);
@@ -87,6 +125,7 @@ export const FileUpload = ({
           ref={fileInputRef}
           id="file-upload-handle"
           type="file"
+          accept=".pdf,.png,.jpg,.jpeg,.tiff,.tif,.dwg,.zip"
           onChange={(e) => handleFileChange(Array.from(e.target.files || []))}
           className="hidden"
         />
@@ -179,6 +218,21 @@ export const FileUpload = ({
               ></motion.div>
             )}
           </div>
+
+          {/* Rejection message */}
+          {rejectionMessage && (
+            <motion.p
+              initial={{ opacity: 0, y: 5 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mt-4 text-center font-mono text-xs text-red-500"
+            >
+              {rejectionMessage}
+            </motion.p>
+          )}
+
+          <p className="mt-3 text-center font-mono text-[10px] text-on-surface-variant/50 uppercase tracking-wider">
+            Accepted: PDF, PNG, JPG, TIFF, DWG, ZIP &middot; Max 25 MB
+          </p>
         </div>
       </motion.div>
     </div>

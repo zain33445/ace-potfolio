@@ -2,7 +2,7 @@
 
 import React, { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Send, CheckCircle2, RefreshCw, Building2, Factory, Home, Upload, ArrowRight, ArrowLeft, Zap } from 'lucide-react';
+import { RefreshCw, Building2, Factory, Home, ArrowRight, ArrowLeft, Zap } from 'lucide-react';
 import { FileUpload } from '@/src/components/ui/file-upload';
 
 const PROJECT_TYPES = [
@@ -44,15 +44,6 @@ export default function ContactRequest() {
     referenceId: '',
   });
 
-  const generateReference = () => {
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    let result = '';
-    for (let i = 0; i < 5; i++) {
-      result += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return `REF-${result}`;
-  };
-
   const updateForm = useCallback((updates: Partial<ContactFormState>) => {
     setForm((prev) => ({ ...prev, ...updates }));
   }, []);
@@ -76,19 +67,42 @@ export default function ContactRequest() {
     if (files.length > 0) autoAdvance(800);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.email || !form.name) return;
     setForm((prev) => ({ ...prev, isSubmitting: true }));
 
-    setTimeout(() => {
+    try {
+      const fd = new FormData();
+      fd.append('name', form.name);
+      fd.append('email', form.email);
+      fd.append('projectType', form.projectType);
+      fd.append('scale', form.scale);
+      if (form.files.length > 0) {
+        fd.append('file', form.files[0]);
+      }
+
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        body: fd,
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error ?? 'Failed to submit');
+      }
+
       setForm((prev) => ({
         ...prev,
         isSubmitting: false,
         hasSubmitted: true,
-        referenceId: generateReference(),
+        referenceId: `REF-${data.id}`,
       }));
-    }, 1500);
+    } catch (err) {
+      console.error('Failed to submit contact form:', err);
+      setForm((prev) => ({ ...prev, isSubmitting: false }));
+    }
   };
 
   const handleReset = () => {
@@ -554,7 +568,7 @@ export default function ContactRequest() {
                 transition={{ delay: 0.2, type: 'spring', stiffness: 200, damping: 15 }}
                 className="w-20 h-20 rounded-full bg-green-50 border border-green-200 mx-auto flex items-center justify-center"
               >
-                <CheckCircle2 className="w-10 h-10 text-green-500" />
+                <span className="text-4xl text-green-500">✓</span>
               </motion.div>
 
               <div className="space-y-3">

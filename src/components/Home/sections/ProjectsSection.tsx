@@ -27,8 +27,7 @@ export default function ProjectsSection() {
               </h2>
 
               <p className="font-sans text-lg text-on-surface-variant max-w-md">
-                Review certified schematics and bills of quantities delivered
-                across the nation. Click any project for the full cost breakdown.
+                Review certified schematics and bills of quantities delivered nationwide by our construction estimation and quantity surveying teams. Every listed project reflects the accuracy standard that makes The ACE Services a top construction and estimation company for general contractors across the U.S. Click any project below for the full cost breakdown.
               </p>
             </div>
 

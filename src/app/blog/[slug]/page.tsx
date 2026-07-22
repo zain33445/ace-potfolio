@@ -4,7 +4,13 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getPostBySlug, getPosts } from '@/src/services/wordpress/content';
 
-/* ── Static params for output: 'export' ──────────────────────── */
+/* ── Slug validation ──────────────────────────────────────────── */
+
+const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+
+function validateSlug(slug: string): void {
+  if (!SLUG_RE.test(slug)) notFound();
+}
 
 export async function generateStaticParams() {
   try {
@@ -23,6 +29,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
+  validateSlug(slug);
   const post = await getPostBySlug(slug);
 
   if (!post) {
@@ -60,6 +67,7 @@ export default async function BlogPostPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+  validateSlug(slug);
   const post = await getPostBySlug(slug);
 
   if (!post) {

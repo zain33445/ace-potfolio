@@ -7,32 +7,32 @@ const questions: FAQItem[] = [
   {
     id: 'faq_01',
     question: 'How long does a construction estimate take?',
-    answer: 'ACE SERVICES typically delivers detailed cost estimates within 3 to 5 business days depending on project complexity. Expedited 24-hour turnaround is available for select scope categories including material takeoffs for residential and light commercial projects.'
+    answer: 'The ACE Services typically delivers detailed cost estimates within 3 to 5 business days, depending on project complexity. Expedited 24-hour turnaround is available for select scope categories, including material takeoffs for residential and light commercial projects.'
   },
   {
     id: 'faq_02',
     question: 'What is a Class 3 construction estimate?',
-    answer: 'A Class 3 estimate, as defined by AACE International, provides a budgetary control level of accuracy suitable for project funding authorization — typically within ±10% to ±20% accuracy range. ACE SERVICES delivers all estimates to AACE Class 3 standards using localized material databases and CSI MasterFormat divisions.'
+    answer: 'A Class 3 estimate, as defined by AACE International, provides a budgetary control level of accuracy suitable for project funding authorization — typically within ±10% to ±20%. The ACE Services delivers every estimate to AACE Class 3 standards using localized material databases and CSI MasterFormat divisions.'
   },
   {
     id: 'faq_03',
     question: 'What is a quantity takeoff in construction?',
-    answer: 'A quantity takeoff is the process of measuring and calculating all materials, labor, and equipment quantities from architectural blueprints and specifications. ACE SERVICES uses algorithmic digitization platforms for division-wise material volume counts, ensuring precise procurement data and eliminating on-site waste.'
+    answer: 'A quantity takeoff is the process of measuring and calculating all materials, labor, and equipment quantities from architectural blueprints and specifications. The ACE Services uses algorithmic digitization platforms for division-wise material volume counts, ensuring precise procurement data and eliminating on-site waste.'
   },
   {
     id: 'faq_04',
     question: 'How much does a construction cost estimate cost?',
-    answer: 'ACE SERVICES provides free preliminary quotes. Full estimate pricing is project-dependent based on square footage, scope complexity, and documentation quality. Use our online calculator for an instant budgetary allocation or contact us for a custom quote tailored to your specific project requirements.'
+    answer: 'The ACE Services provides free preliminary quotes. Full estimate pricing depends on square footage, scope complexity, and documentation quality. Use our online calculator for an instant budgetary allocation, or contact us for a custom quote tailored to your project.'
   },
   {
     id: 'faq_05',
     question: 'What file formats do you accept for blueprints?',
-    answer: 'We accept PDF, DWG, DXF, and raster image formats. Our digitization pipeline handles both digital-native files and scanned hard copies. For scanned documents, we perform scale verification and alignment audits to guarantee measurement accuracy before proceeding with quantity takeoffs.'
+    answer: 'We accept PDF, DWG, DXF, and raster image formats. Our digitization pipeline handles both digital-native files and scanned hard copies, with scale verification and alignment audits performed on scanned documents before quantity takeoffs begin.'
   },
   {
     id: 'faq_06',
     question: 'Do you work with subcontractors and small contractors?',
-    answer: 'Yes — ACE SERVICES supports general contractors, subcontractors, and independent developers across 35 US states. We offer scalable engagement models from single-trade material lists to full-spectrum pre-construction packages, making professional estimating accessible to firms of any size.'
+    answer: 'Yes, The ACE Services supports general contractors, subcontractors, and independent developers across 35 U.S. states, with scalable engagement models ranging from single-trade material lists to full-spectrum pre-construction packages.'
   }
 ];
 
