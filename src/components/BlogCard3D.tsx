@@ -105,9 +105,9 @@ export function BlogCard3D({
             <CardItem translateZ={20} className="mt-4 text-right">
               <Link
                 href={`/blog/${slug}`}
+                aria-label={`Read more about ${title}`}
                 className="link-underline inline-flex items-center gap-2 font-[family-name:var(--font-space)] text-base font-semibold text-primary transition-colors hover:text-[#E55A00]"
               >
-                {/* Read More  &rarr; */}
                 <svg
                   className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
                   fill="none"

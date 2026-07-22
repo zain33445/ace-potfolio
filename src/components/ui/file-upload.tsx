@@ -2,7 +2,15 @@
 import { cn } from "@/src/lib/utils";
 import React, { useRef, useState, useCallback } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
-import { IconUpload } from "@tabler/icons-react";
+// Upload icon — inline SVG replaces @tabler/icons-react (saves ~2 MB)
+function UploadIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 5v14" />
+      <path d="m5 12 7-7 7 7" />
+    </svg>
+  );
+}
 import { useDropzone } from "react-dropzone";
 
 const mainVariant = {
@@ -203,10 +211,10 @@ export const FileUpload = ({
                     className="flex flex-col items-center text-on-surface-variant"
                   >
                     Drop it
-                    <IconUpload className="h-4 w-4 text-on-surface-variant" />
+                    <UploadIcon className="h-4 w-4 text-on-surface-variant" />
                   </motion.p>
                 ) : (
-                  <IconUpload className="h-4 w-4 text-on-surface-variant" />
+                  <UploadIcon className="h-4 w-4 text-on-surface-variant" />
                 )}
               </motion.div>
             )}

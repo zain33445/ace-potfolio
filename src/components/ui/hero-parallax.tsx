@@ -127,7 +127,7 @@ export const HeroParallax = ({
         <h2 className="font-sans text-[clamp(2rem,4vw,3.5rem)] font-extrabold text-center text-[#111827] leading-tight">
           Our Estimation Projects
         </h2>
-        <p className="font-sans text-[clamp(0.9rem,1.5vw,1.1rem)] text-center text-[#4B5563] mt-4">
+        <p className="font-sans text-[clamp(0.9rem,1.5vw,1.1rem)] text-center text-[#374151] mt-4">
           Click IMG to Open Project
         </p>
       </motion.div>
@@ -228,7 +228,7 @@ export const Header = ({
         {h1 ?? "Construction Pre-Estimation"}
       </h1>
       {subhead && (
-        <div className={`font-sans text-[clamp(1.1rem,2vw,1.35rem)] px-10 leading-relaxed mx-auto text-left ${mobile ? 'text-white/90' : 'text-[#4B5563]'}`}>
+        <div className={`font-sans text-[clamp(1.1rem,2vw,1.35rem)] px-10 leading-relaxed mx-auto text-left ${mobile ? 'text-white/90' : 'text-[#374151]'}`}>
           <br />
           <span style={{ fontWeight: 'bold', color: mobile ? 'white' : '#111827' }}><TextGenerateEffect words={h2 ?? ''} sub={h3 ?? ''} subColor={mobile ? 'white' : '#111827'} /></span>
         </div>

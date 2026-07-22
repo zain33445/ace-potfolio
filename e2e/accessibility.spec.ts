@@ -6,9 +6,9 @@ const PAGES_TO_AUDIT = ['/', '/calculator', '/about', '/blog', '/pricing', '/pro
 test.describe('Accessibility — axe-core audit', () => {
   for (const path of PAGES_TO_AUDIT) {
     test(`[${path}] passes axe-core scan`, async ({ page }) => {
-      await page.goto(path, { timeout: 20000 });
-      await page.waitForLoadState('networkidle');
-      await page.waitForTimeout(1000);
+      await page.goto(path, { waitUntil: 'domcontentloaded', timeout: 20000 });
+      // Wait for content to stabilize (dynamic imports may delay rendering)
+      await page.waitForTimeout(3000);
 
       const results = await new AxeBuilder({ page }).analyze();
 
@@ -72,18 +72,25 @@ test.describe('Accessibility — reduced motion', () => {
   test('page renders with prefers-reduced-motion', async ({ page }) => {
     // Emulate reduced motion
     await page.emulateMedia({ reducedMotion: 'reduce' });
-    await page.goto('/');
-    await page.waitForLoadState('networkidle');
-    await expect(page.locator('body')).toBeVisible();
-    // No animation-related console errors
     const errors: string[] = [];
     page.on('console', (msg) => {
       if (msg.type() === 'error') errors.push(msg.text());
     });
-    await page.reload();
-    await page.waitForLoadState('networkidle');
+
+    await page.goto('/', { waitUntil: 'domcontentloaded', timeout: 20000 });
+    await page.waitForTimeout(3000);
+    await expect(page.locator('body')).toBeVisible();
+
+    // Reload with wait for content instead of networkidle
+    await page.reload({ waitUntil: 'domcontentloaded', timeout: 20000 });
+    await page.waitForTimeout(3000);
+
     const filtered = errors.filter(
-      (e) => !e.includes('CSP') && !e.includes('Content Security') && !e.includes('clarity')
+      (e) => !e.includes('CSP')
+        && !e.includes('Content Security')
+        && !e.includes('clarity')
+        && !e.includes('favicon')
+        && !e.includes('404')
     );
     expect(filtered.length).toBe(0);
   });

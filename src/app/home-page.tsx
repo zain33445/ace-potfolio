@@ -1,9 +1,9 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import HeroSection from '@/src/components/Home/sections/HeroSection';
 import type { HeroParallaxProduct } from '@/src/components/ui/hero-parallax';
 
+const HeroSection = dynamic(() => import('@/src/components/Home/sections/HeroSection'), { ssr: false });
 const SolutionsSection = dynamic(() => import('@/src/components/Home/sections/SolutionsSection'), { ssr: false });
 const WhyChooseUsSection = dynamic(() => import('@/src/components/Home/sections/WhyChooseUsSection'), { ssr: false });
 const TestimonialsSection = dynamic(() => import('@/src/components/Home/sections/TestimonialsSection'), { ssr: false });

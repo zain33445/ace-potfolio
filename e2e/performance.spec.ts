@@ -70,15 +70,16 @@ test.describe('Performance', () => {
     }
 
     try {
-      const lighthouse = await import('lighthouse');
+      const lighthouseModule: Record<string, unknown> = await import('lighthouse');
+      const lighthouse = (lighthouseModule.default ?? lighthouseModule) as (url: string, opts: Record<string, unknown>) => Promise<{ lhr?: { categories?: { performance?: { score?: number } } } }>;
       const result = await lighthouse('http://localhost:3000', {
         port: 9222,
         output: 'json',
         onlyCategories: ['performance'],
       });
 
-      if (result && result.lhr) {
-        const score = result.lhr.categories.performance.score;
+      if (result && result.lhr?.categories?.performance) {
+        const score = result.lhr.categories.performance.score ?? 0;
         console.log(`Lighthouse Performance Score: ${(score * 100).toFixed(0)}`);
         // Informational — no hard threshold for dev server
         expect(score).toBeGreaterThan(0);

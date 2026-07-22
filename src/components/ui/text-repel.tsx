@@ -173,6 +173,7 @@ export function TextRepel({
                 mouseX.set(-9999);
                 mouseY.set(-9999);
             }}
+            role="text"
             aria-label={text}
         >
             {text.split("").map((letter, i) => (

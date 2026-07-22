@@ -2,6 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
 
+  experimental: {
+    optimizePackageImports: ['motion', 'lucide-react', 'three', '@react-three/fiber', '@react-three/drei'],
+  },
+
   transpilePackages: [
     'three',
     '@react-three/fiber',

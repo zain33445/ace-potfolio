@@ -20,7 +20,7 @@ export default function TestimonialsSection() {
               </div>
               <div className="border-t border-dashed border-blueprint-line/60 pt-6 mt-8 flex justify-between items-center">
                 <div>
-                  <h4 className="font-space font-bold text-lg text-on-background">Saunders General Builders</h4>
+                  <h3 className="font-space font-bold text-lg text-on-background">Saunders General Builders</h3>
                   <p className="font-mono text-xs text-on-surface-variant uppercase tracking-wider font-bold">Senior Estimating Advisor (Verified Bid Win)</p>
                 </div>
                 <div className="font-mono text-xs text-[#00A859] flex items-center gap-1 font-bold">
@@ -36,7 +36,7 @@ export default function TestimonialsSection() {
               </div>
               <div className="border-t border-dashed border-blueprint-line/60 pt-6 mt-8 flex justify-between items-center">
                 <div>
-                  <h4 className="font-space font-bold text-lg text-on-background">Apex Electrical Contractors</h4>
+                  <h3 className="font-space font-bold text-lg text-on-background">Apex Electrical Contractors</h3>
                   <p className="font-mono text-xs text-on-surface-variant uppercase tracking-wider font-bold">Director of Operations (Verified Bid Win)</p>
                 </div>
                 <div className="font-mono text-xs text-[#00A859] flex items-center gap-1 font-bold">
@@ -48,17 +48,17 @@ export default function TestimonialsSection() {
           <div className="border border-blueprint-line bg-primary text-white p-6 bracket-corners flex flex-col md:flex-row items-center justify-around gap-4 text-center select-none relative overflow-hidden">
             <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:16px_16px]" />
             <div className="space-y-1 relative z-10">
-              <div className="font-mono text-xs text-[#FFDFCC] tracking-widest font-bold">SECURED PORTFOLIO CERTIFICATE</div>
+              <div className="font-mono text-xs text-white/80 tracking-widest font-bold">SECURED PORTFOLIO CERTIFICATE</div>
               <div className="font-space font-bold text-xl md:text-2xl">2,893+ Projects Delivered</div>
             </div>
             <div className="hidden md:block w-px h-10 bg-white/20 relative z-10" />
             <div className="space-y-1 relative z-10">
-              <div className="font-mono text-xs text-[#FFDFCC] tracking-widest font-bold">OPERATIONAL COVERAGE AREA</div>
+              <div className="font-mono text-xs text-white/80 tracking-widest font-bold">OPERATIONAL COVERAGE AREA</div>
               <div className="font-space font-bold text-xl md:text-2xl">35 States Served</div>
             </div>
             <div className="hidden md:block w-px h-10 bg-white/20 relative z-10" />
             <div className="space-y-1 relative z-10">
-              <div className="font-mono text-xs text-[#FFDFCC] tracking-widest font-bold">BID ACQUISITION PERFORMANCE</div>
+              <div className="font-mono text-xs text-white/80 tracking-widest font-bold">BID ACQUISITION PERFORMANCE</div>
               <div className="font-space font-bold text-xl md:text-2xl">89% Win Rate</div>
             </div>
           </div>

@@ -7,12 +7,12 @@ import { usePin } from '../PinContext';
 import StaggeredMenu from '@/src/components/ui/StaggeredMenu';
 
 const menuItems = [
-  { label: 'Contact', ariaLabel: 'Go to home page', link: '/contact' },
+  { label: 'Contact', ariaLabel: 'Contact us', link: '/#contact' },
   { label: 'About', ariaLabel: 'Learn about us', link: '/about' },
-  { label: 'Services', ariaLabel: 'View our services', link: '/services' },
+  { label: 'Services', ariaLabel: 'View our services', link: '/#solutions' },
   { label: 'Projects', ariaLabel: 'View our projects', link: '/projects' },
   { label: 'Blog', ariaLabel: 'Read our blog', link: '/blog' },
-  { label: 'Calculator', ariaLabel: 'Get in touch', link: '/calculator' }
+  { label: 'Calculator', ariaLabel: 'Estimate costs', link: '/calculator' }
 ];
 
 const socialItems = [

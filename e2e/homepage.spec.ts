@@ -72,8 +72,8 @@ test.describe('Homepage — functional', () => {
   });
 
   test('structured data JSON-LD is in the page head', async ({ page }) => {
-    await page.goto('/', { timeout: 30000 });
-    await page.waitForLoadState('domcontentloaded');
+    await page.goto('/', { waitUntil: 'domcontentloaded', timeout: 20000 });
+    await page.waitForTimeout(2000);
 
     const scripts = page.locator('script[type="application/ld+json"]');
     const count = await scripts.count();

@@ -35,12 +35,16 @@ for (const viewport of VIEWPORTS) {
     }
 
     test(`Homepage sections stack vertically at ${viewport.name}`, async ({ page: p }) => {
-      await p.goto('/');
-      await p.waitForLoadState('networkidle');
-
-      // All major sections are in the DOM
-      const sections = p.locator('section, [class*="section"], [id]');
-      const count = await sections.count();
+      await p.goto('/', { waitUntil: 'domcontentloaded', timeout: 20000 });
+      // Sections are dynamically imported — wait for some to appear
+      await p.waitForTimeout(3000);
+      // Allow dynamic imports to settle — use a retry loop
+      let count = 0;
+      for (let attempt = 0; attempt < 10; attempt++) {
+        count = await p.locator('section, [class*="section"], [id]').count();
+        if (count > 3) break;
+        await p.waitForTimeout(1000);
+      }
       expect(count).toBeGreaterThan(3);
     });
   });
