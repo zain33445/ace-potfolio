@@ -48,6 +48,7 @@ export const services: Service[] = [
     id: 'SVC_CES',
     slug: 'cost-estimation',
     title: 'Construction Cost Estimation',
+    icon: 'SVC_CES',
     tagline: 'AACE Class 3 Standard',
     category: 'RESIDENTIAL, COMMERCIAL, INDUSTRIAL',
     description:
@@ -103,6 +104,7 @@ export const services: Service[] = [
     id: 'SVC_MTO',
     slug: 'material-takeoffs',
     title: 'Material Takeoffs & Quantity Surveying',
+    icon: 'SVC_MTO',
     tagline: 'Bill of Quantities',
     category: 'DIVISION-WIDE MATERIAL VOLUMES',
     description:
@@ -158,6 +160,7 @@ export const services: Service[] = [
     id: 'SVC_PRM',
     slug: 'permit-sets',
     title: 'Permit Set Preparation & 3D Renderings',
+    icon: 'SVC_PRM',
     tagline: 'Municipal Submission Package',
     category: 'MUNICIPAL SUBMISSION & RENDERS',
     description:
@@ -213,6 +216,7 @@ export const services: Service[] = [
     id: 'SVC_SCH',
     slug: 'project-scheduling',
     title: 'Project Management & Scheduling',
+    icon: 'SVC_SCH',
     tagline: 'Lifecycle Control',
     category: 'LIFECYCLE CONTROL',
     description:
