@@ -138,7 +138,8 @@ test.describe('SEO — Open Graph', () => {
 });
 
 test.describe('SEO — internal links', () => {
-  test('all internal links are valid', { timeout: 60000 }, async ({ page, request }) => {
+  test('all internal links are valid', async ({ page, request }) => {
+    test.setTimeout(60000);
     await page.goto('/', { waitUntil: 'domcontentloaded', timeout: 15000 });
 
     // Wait for nav (rendered in layout, not dynamically imported) to have links

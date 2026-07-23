@@ -70,14 +70,56 @@ export function htmlToArticle(html: string): string {
 }
 
 /**
+ * Strip Rank Math TOC and FAQ blocks from content HTML.
+ *
+ * The WordPress content includes an embedded table of contents generated
+ * by the Rank Math SEO plugin (e.g. `<div id="rank-math-toc">`). Since we
+ * render our own TOC sidebar, we strip these blocks to avoid duplication.
+ */
+function stripRankMathBlocks(html: string): string {
+  // Match opening <div id="rank-math-toc"> and balance nested <div> tags
+  // to find the matching </div>
+  const openRegex = /<div[^>]*\bid\s*=\s*["']rank-math-toc["'][^>]*>/i;
+  const match = openRegex.exec(html);
+  if (!match) return html;
+
+  const start = match.index;
+  let depth = 1;
+  let pos = start + match[0].length;
+
+  // Single regex for both open and close div tags — compare by prefix
+  const divTag = /<\/?div\b[^>]*>/gi;
+  divTag.lastIndex = pos;
+
+  while (depth > 0) {
+    const tagMatch = divTag.exec(html);
+    if (!tagMatch) break; // malformed HTML — stop
+
+    if (tagMatch[0].startsWith('</')) {
+      depth--;
+    } else {
+      depth++;
+    }
+    if (depth === 0) {
+      pos = tagMatch.index + tagMatch[0].length;
+    }
+  }
+
+  return html.slice(0, start) + html.slice(pos);
+}
+
+/**
  * Sanitize raw WordPress HTML for safe rendering with dangerouslySetInnerHTML.
  *
  * Uses the `sanitize-html` library for proper DOM-level parsing instead of
  * fragile regex-based sanitization. Blocks javascript:, data:, vbscript:
  * URL schemes, strips event handlers (`on*`), and removes dangerous elements.
+ *
+ * Also strips embedded Rank Math TOC blocks (redundant with our sidebar TOC).
  */
 export function sanitizeHtml(html: string): string {
-  return sanitize(html, {
+  const cleaned = stripRankMathBlocks(html);
+  return sanitize(cleaned, {
     allowedTags: [
       'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
       'ul', 'ol', 'li', 'dl', 'dt', 'dd',

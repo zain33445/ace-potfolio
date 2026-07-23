@@ -78,7 +78,7 @@ export default function Nav() {
       >
         <Link
           href="/"
-          className={`font-mono text-xl md:text-3xl tracking-wide font-medium cursor-pointer select-none flex items-center pl-2 md:pl-10 gap-2 overflow-hidden transition-colors duration-500 md:text-on-background ${navScrolled ? 'text-on-background' : 'text-white'}`}
+          className={`font-mono text-xl md:text-3xl tracking-wide font-bold cursor-pointer select-none flex items-center pl-2 md:pl-10 gap-2 overflow-hidden transition-colors duration-500 md:text-on-background ${navScrolled ? 'text-on-background' : 'text-white'}`}
         >
           <img
             src="/aceLogo.png"

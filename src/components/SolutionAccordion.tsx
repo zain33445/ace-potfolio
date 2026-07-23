@@ -1,7 +1,8 @@
 'use client';
 
 import { AnimatePresence, motion } from 'motion/react';
-import { ChevronRight, Layers, FileSpreadsheet, Compass, ShieldCheck } from 'lucide-react';
+import Link from 'next/link';
+import { ChevronRight, Layers, FileSpreadsheet, Compass, ShieldCheck, ArrowRight } from 'lucide-react';
 import { SolutionItem } from '../types';
 
 const SOLUTION_IDS = ['sol_01', 'sol_02', 'sol_03', 'sol_04'];
@@ -52,6 +53,13 @@ const solutions: SolutionItem[] = [
     ]
   }
 ];
+
+const SOLUTION_SLUGS: Record<string, string> = {
+  sol_01: '/services/cost-estimation',
+  sol_02: '/services/material-takeoffs',
+  sol_03: '/services/permit-sets',
+  sol_04: '/services/project-scheduling',
+};
 
 const getIcon = (id: string) => {
   switch (id) {
@@ -171,6 +179,7 @@ export default function SolutionAccordion({ activeIndex, onCardClick, mobile = f
 
 /* ── Shared detail panel content ── */
 function DetailPanelContent({ item }: { item: SolutionItem }) {
+  const serviceHref = SOLUTION_SLUGS[item.id] ?? '/services';
   return (
     <>
       <div className="flex items-center gap-3 mb-4">
@@ -204,6 +213,15 @@ function DetailPanelContent({ item }: { item: SolutionItem }) {
           ))}
         </ul>
       </div>
+
+      {/* Full service page link */}
+      <Link
+        href={serviceHref}
+        className="group mt-6 inline-flex items-center gap-2 border border-primary bg-primary px-6 py-3 font-mono text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary w-full justify-center"
+      >
+        <span>VIEW FULL SERVICE</span>
+        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+      </Link>
     </>
   );
 }

@@ -143,14 +143,14 @@ export default function ContactRequest() {
                 }}
               />
               {/* Bracket corners */}
-              <span className="absolute top-0 left-0 w-5 h-[1px] bg-primary/30" />
-              <span className="absolute top-0 left-0 w-[1px] h-5 bg-primary/30" />
-              <span className="absolute top-0 right-0 w-5 h-[1px] bg-primary/30" />
-              <span className="absolute top-0 right-0 w-[1px] h-5 bg-primary/30" />
-              <span className="absolute bottom-0 left-0 w-5 h-[1px] bg-primary/30" />
-              <span className="absolute bottom-0 left-0 w-[1px] h-5 bg-primary/30" />
-              <span className="absolute bottom-0 right-0 w-5 h-[1px] bg-primary/30" />
-              <span className="absolute bottom-0 right-0 w-[1px] h-5 bg-primary/30" />
+              <span className="absolute top-0 left-0 w-5 h-[2px] bg-primary" />
+              <span className="absolute top-0 left-0 w-[2px] h-5 bg-primary" />
+              <span className="absolute top-0 right-0 w-5 h-[2px] bg-primary" />
+              <span className="absolute top-0 right-0 w-[2px] h-5 bg-primary" />
+              <span className="absolute bottom-0 left-0 w-5 h-[2px] bg-primary" />
+              <span className="absolute bottom-0 left-0 w-[2px] h-5 bg-primary" />
+              <span className="absolute bottom-0 right-0 w-5 h-[2px] bg-primary" />
+              <span className="absolute bottom-0 right-0 w-[2px] h-5 bg-primary" />
               {/* Eyebrow */}
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
@@ -554,14 +554,14 @@ export default function ContactRequest() {
                 }}
               />
               {/* Bracket corners */}
-              <span className="absolute top-0 left-0 w-5 h-[1px] bg-primary/30" />
-              <span className="absolute top-0 left-0 w-[1px] h-5 bg-primary/30" />
-              <span className="absolute top-0 right-0 w-5 h-[1px] bg-primary/30" />
-              <span className="absolute top-0 right-0 w-[1px] h-5 bg-primary/30" />
-              <span className="absolute bottom-0 left-0 w-5 h-[1px] bg-primary/30" />
-              <span className="absolute bottom-0 left-0 w-[1px] h-5 bg-primary/30" />
-              <span className="absolute bottom-0 right-0 w-5 h-[1px] bg-primary/30" />
-              <span className="absolute bottom-0 right-0 w-[1px] h-5 bg-primary/30" />
+              <span className="absolute top-0 left-0 w-5 h-[2px] bg-primary" />
+              <span className="absolute top-0 left-0 w-[2px] h-5 bg-primary" />
+              <span className="absolute top-0 right-0 w-5 h-[2px] bg-primary" />
+              <span className="absolute top-0 right-0 w-[2px] h-5 bg-primary" />
+              <span className="absolute bottom-0 left-0 w-5 h-[2px] bg-primary" />
+              <span className="absolute bottom-0 left-0 w-[2px] h-5 bg-primary" />
+              <span className="absolute bottom-0 right-0 w-5 h-[2px] bg-primary" />
+              <span className="absolute bottom-0 right-0 w-[2px] h-5 bg-primary" />
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}

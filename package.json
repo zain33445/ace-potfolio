@@ -43,9 +43,14 @@
     "@types/node": "^22.14.0",
     "@types/sanitize-html": "^2.16.1",
     "lighthouse": "^13.4.1",
-    "lightningcss-linux-x64-gnu": "^1.33.0",
     "postcss": "^8.5.3",
     "tailwindcss": "^4.1.14",
     "typescript": "~5.8.2"
+  },
+  "optionalDependencies": {
+    "lightningcss-linux-x64-gnu": "^1.33.0",
+    "lightningcss-win32-x64-msvc": "^1.33.0",
+    "lightningcss-darwin-x64": "^1.33.0",
+    "lightningcss-darwin-arm64": "^1.33.0"
   }
 }

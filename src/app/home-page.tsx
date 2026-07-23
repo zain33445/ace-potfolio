@@ -20,7 +20,10 @@ export default function HomePage({
   products?: HeroParallaxProduct[];
 }) {
   return (
-    <>
+    /* min-h-screen reserves viewport height so the Footer (rendered
+       statically in LayoutShell) doesn't appear at the top of the page
+       before the dynamically-imported HeroSection has loaded. */
+    <div className="min-h-screen">
       {/* <BackgroundShader /> */}
       <HeroSection products={products} />
       <SolutionsSection />
@@ -31,6 +34,6 @@ export default function HomePage({
       <ProcessSection />
       <FAQSection />
       <ContactSection />
-    </>
+    </div>
   );
 }

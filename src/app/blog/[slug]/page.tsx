@@ -3,6 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getPostBySlug, getPosts } from '@/src/services/wordpress/content';
+import { extractHeadings } from '@/src/lib/extractHeadings';
+import TableOfContents from '@/src/components/TableOfContents';
 
 /* ── Slug validation ──────────────────────────────────────────── */
 
@@ -74,6 +76,12 @@ export default async function BlogPostPage({
     notFound();
   }
 
+  // Extract headings from content for table of contents
+  const tocResult = post.content ? extractHeadings(post.content) : null;
+  const tocItems = tocResult?.items ?? [];
+  const contentHtml = tocResult?.html ?? post.content;
+  const hasToc = tocItems.length > 0;
+
   return (
     <section className="w-full bg-background text-on-background">
 
@@ -91,113 +99,133 @@ export default async function BlogPostPage({
           }}
         />
 
-        <div className="relative mx-auto w-full px-[var(--spacing-margin-mobile)] py-20 md:px-[var(--spacing-margin-desktop)] md:py-28">
+        <div className="relative mx-auto w-full px-[var(--spacing-margin-mobile)] py-16 md:px-[var(--spacing-margin-desktop)] md:py-24">
+          <div className={post.image ? 'lg:flex lg:items-center lg:gap-12' : ''}>
 
-          {/* Back link */}
-          <Link
-            href="/blog"
-            className="group mb-8 inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-on-surface-variant transition-colors hover:text-primary"
-          >
-            <svg
-              className="h-3 w-3 transition-transform group-hover:-translate-x-1"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
-            BACK_TO_INDEX
-          </Link>
-
-          {/* System label */}
-          <div className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
-            [SYS::BLOG_POST]
-          </div>
-
-          {/* Title */}
-          <h1 className="font-[family-name:var(--font-space)] text-4xl font-bold leading-tight text-on-background md:text-6xl lg:text-7xl">
-            {post.title}
-          </h1>
-
-          {/* Meta row */}
-          <div className="mt-6 flex flex-wrap items-center gap-4 font-mono text-sm text-on-surface-variant">
-            <time dateTime={post.date}>{formatDate(post.date)}</time>
-            {post.modified !== post.date && (
-              <span className="text-on-surface-variant/60">
-                (updated {formatDate(post.modified)})
-              </span>
+            {/* Featured image (left on desktop, top on mobile) */}
+            {post.image && (
+              <div className="mb-10 lg:mb-0 lg:w-[35%] lg:shrink-0">
+                <div className="relative aspect-[16/10] overflow-hidden border border-blueprint-line">
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    priority
+                    sizes="(max-width: 768px) 100vw, 560px"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
             )}
+
+            {/* Title content (right on desktop, bottom on mobile) */}
+            <div className={post.image ? 'lg:flex-1' : ''}>
+              {/* Back link */}
+              <Link
+                href="/blog"
+                className="group mb-8 inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-on-surface-variant transition-colors hover:text-primary"
+              >
+                <svg
+                  className="h-3 w-3 transition-transform group-hover:-translate-x-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+                BACK_TO_INDEX
+              </Link>
+
+              {/* System label */}
+              <div className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
+                [SYS::BLOG_POST]
+              </div>
+
+              {/* Title */}
+              <h1 className="font-[family-name:var(--font-space)] text-4xl font-bold leading-tight text-on-background md:text-5xl lg:text-6xl">
+                {post.title}
+              </h1>
+
+              {/* Meta row */}
+              <div className="mt-6 flex flex-wrap items-center gap-4 font-mono text-sm text-on-surface-variant">
+                <time dateTime={post.date}>{formatDate(post.date)}</time>
+                {post.modified !== post.date && (
+                  <span className="text-on-surface-variant/60">
+                    (updated {formatDate(post.modified)})
+                  </span>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* ── Featured image ───────────────────────────────── */}
-      {post.image && (
-        <div className="mx-auto max-w-4xl px-[var(--spacing-margin-mobile)] pt-10 md:px-[var(--spacing-margin-desktop)]">
-          <div className="relative aspect-[21/9] overflow-hidden border border-blueprint-line">
-            <Image
-              src={post.image}
-              alt={post.title}
-              fill
-              priority
-              sizes="(max-width: 768px) 100vw, 896px"
-              className="object-cover"
-            />
+      {/* ── Content + Sidebar ────────────────────────────── */}
+      <div className="px-[var(--spacing-margin-mobile)] py-12 md:px-[var(--spacing-margin-desktop)] md:py-16">
+        <div className={hasToc ? 'lg:flex lg:gap-12' : ''}>
+
+          {/* Article */}
+          <div className={hasToc ? 'lg:flex-1 lg:min-w-0' : ''}>
+
+            {post.content ? (
+              <article
+                className="article-content"
+                dangerouslySetInnerHTML={{ __html: contentHtml }}
+              />
+            ) : (
+              <p className="text-on-surface-variant italic">
+                No content available for this post.
+              </p>
+            )}
+
+            {/* Divider */}
+            <div className="my-12 border-t border-blueprint-line" />
+
+            {/* Bottom nav */}
+            <div className="flex items-center justify-between">
+              <Link
+                href="/blog"
+                className="group inline-flex items-center gap-2 font-mono text-sm font-bold uppercase tracking-wider text-on-surface-variant transition-colors hover:text-primary"
+              >
+                <svg
+                  className="h-3 w-3 transition-transform group-hover:-translate-x-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+                ALL_INSIGHTS
+              </Link>
+
+              <Link
+                href="/"
+                className="group inline-flex items-center gap-2 font-mono text-sm font-bold uppercase tracking-wider text-on-surface-variant transition-colors hover:text-primary"
+              >
+                HOME
+                <svg
+                  className="h-3 w-3 transition-transform group-hover:translate-x-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
           </div>
-        </div>
-      )}
 
-      {/* ── Content ──────────────────────────────────────── */}
-      <div className="mx-auto max-w-2/3 px-[var(--spacing-margin-mobile)] py-12 md:px-[var(--spacing-margin-desktop)] md:py-16">
-
-        {post.content ? (
-          <article
-            className="article-content"
-            dangerouslySetInnerHTML={{ __html: post.content }}
-          />
-        ) : (
-          <p className="text-on-surface-variant italic">
-            No content available for this post.
-          </p>
-        )}
-
-        {/* Divider */}
-        <div className="my-12 border-t border-blueprint-line" />
-
-        {/* Bottom nav */}
-        <div className="flex items-center justify-between">
-          <Link
-            href="/blog"
-            className="group inline-flex items-center gap-2 font-mono text-sm font-bold uppercase tracking-wider text-on-surface-variant transition-colors hover:text-primary"
-          >
-            <svg
-              className="h-3 w-3 transition-transform group-hover:-translate-x-1"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
-            ALL_INSIGHTS
-          </Link>
-
-          <Link
-            href="/"
-            className="group inline-flex items-center gap-2 font-mono text-sm font-bold uppercase tracking-wider text-on-surface-variant transition-colors hover:text-primary"
-          >
-            HOME
-            <svg
-              className="h-3 w-3 transition-transform group-hover:translate-x-1"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
-          </Link>
+          {/* Sidebar: Table of contents (only when headings exist) */}
+          {hasToc && (
+            <aside className="mt-10 lg:mt-0 lg:w-[320px] lg:shrink-0">
+              <div className="lg:sticky lg:top-28 lg:max-h-[calc(100vh-9rem)] lg:overflow-y-auto toc-sidebar-scroll">
+                <TableOfContents items={tocItems} />
+              </div>
+            </aside>
+          )}
         </div>
       </div>
 

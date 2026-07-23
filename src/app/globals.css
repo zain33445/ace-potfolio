@@ -724,3 +724,30 @@ body {
   margin-top: 0;
   transition-delay: 1.1s;
 }
+
+/* ── Table of Contents Sidebar ──────────────────────────────── */
+
+/* Scroll margin for heading anchors (accounts for sticky nav ~80px) */
+.article-content h2[id],
+.article-content h3[id] {
+  scroll-margin-top: 96px;
+}
+
+/* TOC link base */
+.toc-link {
+  text-decoration: none;
+}
+
+.toc-link:hover {
+  text-decoration: none;
+}
+
+/* Hide sidebar scrollbar while keeping scroll functionality */
+.toc-sidebar-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.toc-sidebar-scroll::-webkit-scrollbar {
+  display: none;
+}
