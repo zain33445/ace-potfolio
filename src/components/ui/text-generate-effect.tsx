@@ -8,8 +8,19 @@ const boldWords = [
   'precise',
   'takeoffs',
   'reliable',
-
 ];
+
+const CHUNK_SIZE = 3; // Batch words into groups of 3 — reduces motion.span count by ~3x
+
+/** Split text into chunks of CHUNK_SIZE words for batched animation */
+function chunkWords(words: string): string[] {
+  const arr = words.split(" ");
+  const chunks: string[] = [];
+  for (let i = 0; i < arr.length; i += CHUNK_SIZE) {
+    chunks.push(arr.slice(i, i + CHUNK_SIZE).join(" "));
+  }
+  return chunks;
+}
 
 export const TextGenerateEffect = ({
   words='',
@@ -22,39 +33,41 @@ export const TextGenerateEffect = ({
   duration?: number;
   subColor?: string;
 }) => {
-  let wordsArray = words.split(" ");
-  let subArray = sub?.split(" ");
+  const wordChunks = chunkWords(words);
+  const subChunks = sub ? chunkWords(sub) : [];
+  const totalChunks = wordChunks.length;
 
   return (
     <div className={cn("inline")}>
-      {wordsArray.map((word, idx) => (
+      {wordChunks.map((chunk, idx) => (
         <motion.span
-          key={word + idx}
+          key={`w-${idx}`}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: idx * 0.15, duration }}
+          transition={{ delay: idx * 0.2, duration }}
+          style={{}}
         >
-          {word}{" "}
+          {chunk}{" "}
         </motion.span>
       ))}
       <br />
-      { subArray && (
-        subArray.map((word, idx) => (
-          <motion.span
-            key={word + idx}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: (wordsArray.length + idx) * 0.15, duration }}
+      {subChunks.map((chunk, idx) => (
+        <motion.span
+          key={`s-${idx}`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: (totalChunks + idx) * 0.2, duration }}
           style={{
             lineHeight: '1',
             fontSize: '1.2rem',
-            fontWeight: boldWords.includes(word.toLowerCase()) ? 700 : 400,
+            fontWeight: boldWords.some(w => chunk.toLowerCase().includes(w)) ? 700 : 400,
             color: subColor,
+            textAlign: 'justify',
           }}
         >
-          {word}{" "}
+          {chunk}{" "}
         </motion.span>
-      )))}
+      ))}
     </div>
   );
 }

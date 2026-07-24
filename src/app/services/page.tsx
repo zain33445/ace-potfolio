@@ -164,7 +164,7 @@ export default function ServicesPage() {
             new clients.
           </p>
           <Link
-            href="/#contact"
+            href="/contact"
             className="group mt-4 inline-flex items-center gap-3 border border-primary bg-primary px-8 py-3.5 font-mono text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary"
           >
             <span>CONTACT US</span>

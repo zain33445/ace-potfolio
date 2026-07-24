@@ -1,10 +1,9 @@
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useMemo } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
-import type { JSX } from 'react';
 
 /* ──────────────────────────────────────────────────────────────────
    Reusable primitive components
@@ -94,38 +93,35 @@ function TopColumn() {
 }
 
 function GridLines() {
-  const lines: JSX.Element[] = [];
-  const step = 0.5;
-  const range = 2.5;
+  // Batch all grid lines into a single lineSegments geometry —
+  // 1 draw call instead of 22 individual <line> elements
+  const geometry = useMemo(() => {
+    const step = 0.5;
+    const range = 2.5;
+    const positions: number[] = [];
 
-  for (let i = -range; i <= range; i += step) {
-    const hArray = new Float32Array([-range, 0, i, range, 0, i]);
-    const vArray = new Float32Array([i, 0, -range, i, 0, range]);
-    lines.push(
-      <line key={`h${i}`}>
-        <bufferGeometry>
-          <float32BufferAttribute
-            args={[hArray, 3]}
-            attach="attributes-position"
-          />
-        </bufferGeometry>
-        <lineBasicMaterial color={COLORS.charcoal} transparent opacity={0.08} />
-      </line>
-    );
-    lines.push(
-      <line key={`v${i}`}>
-        <bufferGeometry>
-          <float32BufferAttribute
-            args={[vArray, 3]}
-            attach="attributes-position"
-          />
-        </bufferGeometry>
-        <lineBasicMaterial color={COLORS.charcoal} transparent opacity={0.08} />
-      </line>
-    );
-  }
+    for (let i = -range; i <= range; i += step) {
+      // Horizontal line
+      positions.push(-range, 0, i, range, 0, i);
+      // Vertical line
+      positions.push(i, 0, -range, i, 0, range);
+    }
 
-  return <group position={[0, -1.55, 0]}>{lines}</group>;
+    const geom = new THREE.BufferGeometry();
+    geom.setAttribute(
+      'position',
+      new THREE.Float32BufferAttribute(positions, 3)
+    );
+    return geom;
+  }, []);
+
+  return (
+    <group position={[0, -1.55, 0]}>
+      <lineSegments geometry={geometry}>
+        <lineBasicMaterial color={COLORS.charcoal} transparent opacity={0.08} />
+      </lineSegments>
+    </group>
+  );
 }
 
 function FloatingParticles() {
@@ -133,8 +129,9 @@ function FloatingParticles() {
   const posRef = useRef<Float32Array | null>(null);
 
   useEffect(() => {
-    const pos = new Float32Array(100 * 3);
-    for (let i = 0; i < 100; i++) {
+    const count = 50; // Reduced from 100 — fewer particles, same visual density
+    const pos = new Float32Array(count * 3);
+    for (let i = 0; i < count; i++) {
       pos[i * 3] = (Math.random() - 0.5) * 10;
       pos[i * 3 + 1] = (Math.random() - 0.5) * 8;
       pos[i * 3 + 2] = (Math.random() - 0.5) * 10;
@@ -149,7 +146,8 @@ function FloatingParticles() {
   useFrame((_, delta) => {
     const pos = posRef.current;
     if (!pos) return;
-    for (let i = 0; i < 100; i++) {
+    const count = pos.length / 3;
+    for (let i = 0; i < count; i++) {
       pos[i * 3 + 1] += delta * 0.3;
       if (pos[i * 3 + 1] > 4) pos[i * 3 + 1] = -4;
     }
@@ -163,7 +161,7 @@ function FloatingParticles() {
     <points ref={meshRef}>
       <bufferGeometry>
         <float32BufferAttribute
-          args={[new Float32Array(100 * 3), 3]}
+          args={[new Float32Array(50 * 3), 3]}
           attach="attributes-position"
           usage={THREE.DynamicDrawUsage}
         />

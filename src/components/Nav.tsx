@@ -7,18 +7,19 @@ import { usePin } from '../PinContext';
 import StaggeredMenu from '@/src/components/ui/StaggeredMenu';
 
 const menuItems = [
-  { label: 'Contact', ariaLabel: 'Contact us', link: '/#contact' },
-  { label: 'About', ariaLabel: 'Learn about us', link: '/about' },
-  { label: 'Services', ariaLabel: 'View our services', link: '/#solutions' },
+  { label: 'Blogs', ariaLabel: 'Read our blog', link: '/blog' },
+  { label: 'Services', ariaLabel: 'View our services', link: '/services' },
+  { label: 'Pricing', ariaLabel: 'View our Pricing', link: '/pricing' },
   { label: 'Projects', ariaLabel: 'View our projects', link: '/projects' },
-  { label: 'Blog', ariaLabel: 'Read our blog', link: '/blog' },
+  { label: 'About Us', ariaLabel: 'Learn about us', link: '/about' },
+  { label: 'Contact', ariaLabel: 'Contact us', link: '/contact' },
   { label: 'Calculator', ariaLabel: 'Estimate costs', link: '/calculator' }
 ];
 
 const socialItems = [
   { label: 'Twitter', link: 'https://twitter.com' },
   { label: 'GitHub', link: 'https://github.com' },
-  { label: 'LinkedIn', link: 'https://linkedin.com' }
+  { label: 'LinkedIn', link: 'https://www.linkedin.com/company/aceservicesllc/' }
 ];
 
 
@@ -54,12 +55,14 @@ export default function Nav() {
   };
 
   const PAGE_LINKS = [
-  { href: '/about', label: 'ABOUT', shortLabel: 'About' },
   { href: '/blog', label: 'BLOG', shortLabel: 'Blog' },
+  { href: '/about', label: 'ABOUT', shortLabel: 'About' },
   { href: '/pricing', label: 'PRICING', shortLabel: 'Pricing' },
+  { href: '/services', label: 'SERVICES', shortLabel: 'Services' },
+  { href: '/contact', label: 'CONTACT', shortLabel: 'Contact' },
   { href: '/projects', label: 'PROJECTS', shortLabel: 'Projects' },
-  { href: '/testimonials', label: 'TESTIMONIALS', shortLabel: 'Testimonials' },
   { href: '/calculator', label: 'CALCULATOR', shortLabel: 'Calculator' },
+  { href: '/testimonials', label: 'TESTIMONIALS', shortLabel: 'Testimonials' },
 ]; 
 
   const isActive = (href: string) => pathname === href;
@@ -69,7 +72,11 @@ export default function Nav() {
       <nav
         ref={navRef}
         className={`fixed z-50 flex justify-between items-center px-4 md:px-6 py-3 transition-all duration-500 top-0 left-0 w-full rounded-none h-16 md:h-24 ${
-          navScrolled ? 'bg-white/20 backdrop-blur-3xl border shadow-2xl shadow-black/5 ring-1 ring-inset border-transparent ring-transparent' : 'bg-transparent'
+          !isHome
+            ? 'bg-white border-b border-blueprint-line/10 shadow-sm'
+            : navScrolled
+              ? 'bg-white/20 backdrop-blur-3xl border shadow-2xl shadow-black/5 ring-1 ring-inset border-transparent ring-transparent'
+              : 'bg-transparent'
         } ${
           isPinned ? '-translate-y-full' : 'translate-y-0'
         }`}
@@ -83,6 +90,8 @@ export default function Nav() {
           <img
             src="/aceLogo.png"
             alt=""
+            width={180}
+            height={45}
             className='h-10 md:h-18 w-auto'
           />
 

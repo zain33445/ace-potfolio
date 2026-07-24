@@ -139,13 +139,29 @@ export default function Footer() {
 </div>
         {/* Bottom bar */}
         <div className="pt-8 border-t border-blueprint-line flex flex-col md:flex-row justify-between items-center gap-4">
-          <TextRepel
-            text="©2026 ACE SERVICES. ALL CODES SECURED."
-            className="font-mono text-sm text-on-surface-variant font-bold"
-            radius={80}
-            strength={35}
-            mode="repel"
-          />
+          <div className="flex items-center gap-4">
+            <TextRepel
+              text="©2026 ACE SERVICES. ALL CODES SECURED."
+              className="font-mono text-sm text-on-surface-variant font-bold"
+              radius={80}
+              strength={35}
+              mode="repel"
+            />
+            <span className="hidden md:inline text-on-surface-variant opacity-40">|</span>
+            <a
+              href="/privacy-policy"
+              className="font-mono text-sm text-on-surface-variant hover:text-primary transition-colors"
+            >
+              PRIVACY POLICY
+            </a>
+            <span className="hidden md:inline text-on-surface-variant opacity-40">|</span>
+            <a
+              href="/terms-and-conditions"
+              className="font-mono text-sm text-on-surface-variant hover:text-primary transition-colors"
+            >
+              TERMS &amp; CONDITIONS
+            </a>
+          </div>
           <TextRepel
             text="LAT: 32.7767° N | LONG: 96.7970° W | BLUEPRINT RECT_X_COORD"
             className="font-mono text-xs text-on-surface-variant opacity-60"

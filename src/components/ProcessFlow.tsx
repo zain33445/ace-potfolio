@@ -1,27 +1,20 @@
 'use client';
 
 import { useRef, useEffect, useState } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { motion } from 'motion/react';
 import { ClipboardCheck, ChevronLeft, ChevronRight } from 'lucide-react';
 
 import ThreeScene from './EstimationMachine/ThreeScene';
-import { usePin } from '../PinContext';
 
 import { steps, STEP_COUNT } from '../constants/processSteps';
 
-gsap.registerPlugin(ScrollTrigger);
-
 export default function ProcessFlow() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const headingRef = useRef<HTMLDivElement>(null);
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [activeStep, setActiveStep] = useState(1);
   const sceneRef = useRef<any>(null);
   const [sceneReady, setSceneReady] = useState(false);
   const currentStepRef = useRef(0);
-  const { setPinned } = usePin();
   const [isMobile, setIsMobile] = useState(false);
 
   /* ── Responsive detection ── */
@@ -33,73 +26,32 @@ export default function ProcessFlow() {
     return () => mq.removeEventListener('change', h);
   }, []);
 
-  /* ----------------------------------------------------------------
-   * ScrollTrigger: pin the section when the heading reaches the
-   * viewport top, then scrub through steps as the user scrolls.
-   * Disabled on mobile — stacked cards handle interaction instead.
-   * ---------------------------------------------------------------- */
+  /* ── IntersectionObserver: highlight step when its card fills the viewport ── */
   useEffect(() => {
     if (isMobile) return;
-    const section = sectionRef.current;
-    const heading = headingRef.current;
-    if (!section || !heading) return;
 
-    // Measure how far the heading sits below the section's top edge
-    // so we can delay pinning until the heading arrives at viewport top.
-    const sectionTop = section.getBoundingClientRect().top;
-    const headingTop = heading.getBoundingClientRect().top;
-    const pinOffset = 80; // 10rem
-const headingOffset = Math.round(headingTop - sectionTop) - pinOffset;
-
-    // Create scroll distance for (STEP_COUNT - 1) viewport heights
-    // so each step gets roughly 1vh of scroll travel
-    const scrollDistance = window.innerHeight * (STEP_COUNT - 1);
-
-    const st = ScrollTrigger.create({
-      trigger: section,
-      start: `top+=${headingOffset} top`,
-      end: `+=${scrollDistance}`,
-      pin: true,
-      scrub: 0.5,
-      onEnter: () => setPinned(true),
-      onLeave: () => setPinned(false),
-      onEnterBack: () => setPinned(true),
-      onLeaveBack: () => setPinned(false),
-      onUpdate: (self) => {
-        const step = Math.min(
-          Math.floor(self.progress * STEP_COUNT) + 1,
-          STEP_COUNT,
-        );
-        setActiveStep(step);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            const idx = stepRefs.current.indexOf(entry.target as HTMLDivElement);
+            if (idx !== -1) {
+              setActiveStep(idx + 1);
+            }
+          }
+        }
       },
+      { rootMargin: '-45% 0px -45% 0px', threshold: 0 },
+    );
+
+    stepRefs.current.forEach((el) => {
+      if (el) observer.observe(el);
     });
 
-    return () => {
-      st.kill();
-    };
+    return () => observer.disconnect();
   }, [isMobile]);
 
-  /* ----------------------------------------------------------------
-   * Animate the active card indicator whenever activeStep changes
-   * ---------------------------------------------------------------- */
-  useEffect(() => {
-    const wrappers = cardRefs.current.filter(Boolean) as HTMLDivElement[];
-    if (!wrappers.length) return;
-
-    wrappers.forEach((card, i) => {
-      const isActive = i === activeStep - 1;
-      gsap.to(card, {
-        scale: isActive ? 1 : 0.99,
-        duration: 0.4,
-        ease: 'power2.out',
-        overwrite: true,
-      });
-    });
-  }, [activeStep]);
-
-  /* ----------------------------------------------------------------
-   * Play 3D scene step animations
-   * ---------------------------------------------------------------- */
+  /* ── Play 3D scene step animations ── */
   useEffect(() => {
     const scene = sceneRef.current;
     if (!scene) return;
@@ -121,16 +73,16 @@ const headingOffset = Math.round(headingTop - sectionTop) - pinOffset;
       if (target > current) {
         for (let i = current + 1; i <= target; i++) {
           if (cancelled) return;
-          await fns[i - 1](1.5);
+          await fns[i - 1](0.8);
           if (cancelled) return;
           currentStepRef.current = i;
         }
-      } else {
+      } else if (target < current) {
         scene.reset();
         currentStepRef.current = 0;
         for (let i = 1; i <= target; i++) {
           if (cancelled) return;
-          await fns[i - 1](3);
+          await fns[i - 1](1.5);
           if (cancelled) return;
           currentStepRef.current = i;
         }
@@ -143,6 +95,12 @@ const headingOffset = Math.round(headingTop - sectionTop) - pinOffset;
       cancelled = true;
     };
   }, [activeStep, sceneReady]);
+
+  /* ── Click step card → scroll to it ── */
+  const handleStepClick = (idx: number) => {
+    setActiveStep(idx + 1);
+    stepRefs.current[idx]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
 
   /* ── Mobile: send card to back on tap ── */
   const sendToBack = () => {
@@ -191,7 +149,7 @@ const headingOffset = Math.round(headingTop - sectionTop) - pinOffset;
         {sceneBlock}
 
         {/* Stacked cards */}
-        <div className="relative h-[180px] w-full">
+        <div className="relative h-[100px] w-full">
           {steps.map((step, i) => {
             const offset = step.id - activeStep;
             const normalised = offset < 0 ? offset + STEP_COUNT : offset;
@@ -213,13 +171,13 @@ const headingOffset = Math.round(headingTop - sectionTop) - pinOffset;
                 style={{ cursor: isFront ? 'pointer' : 'default' }}
               >
                 <div
-                  className={`h-full w-full border bracket-corners p-5 flex flex-col justify-center transition-colors duration-300 ${
+                  className={` w-full border bracket-corners p-3 flex flex-col justify-start transition-colors duration-300 ${
                     isFront
                       ? 'bg-surface border-primary shadow-lg'
                       : 'bg-surface/80 border-blueprint-line/40'
                   }`}
                 >
-                  <span className="font-mono text-xs text-primary font-bold tracking-widest mb-1">
+                  <span className="font-mono text-sm text-primary font-bold tracking-widest mb-1">
                     STEP_{step.num}
                   </span>
                   <h3 className={`font-space font-bold text-xl ${isFront ? 'text-primary' : 'text-on-background/50'}`}>
@@ -253,111 +211,107 @@ const headingOffset = Math.round(headingTop - sectionTop) - pinOffset;
     );
   }
 
-  /* ── Desktop: pinned scroll layout ── */
+  /* ── Desktop: sticky scene + one-card-at-a-time step cards ── */
   return (
-    <div
-      ref={sectionRef}
-      className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
-    >
-      <div className="order-2 lg:order-1">
-        {sceneBlock}
+    <div ref={sectionRef}>
+      {/* Heading */}
+      <div className="mb-12">
+        <span className="font-mono text-sm text-primary block mb-2 font-bold">
+          [OPERATIONAL_FLOW]
+        </span>
+        <h2 className="font-space font-bold text-4xl md:text-5xl text-on-background tracking-tight">
+          Schematic Methodology.
+        </h2>
       </div>
 
-      <div className="order-1 lg:order-2 space-y-6">
-        <div ref={headingRef}>
-          <span className="font-mono text-sm text-primary block mb-2 font-bold">
-            [OPERATIONAL_FLOW]
-          </span>
-
-          <h2 className="font-space font-bold text-4xl md:text-5xl text-on-background tracking-tight">
-            Schematic Methodology.
-          </h2>
+      <div className="flex flex-col md:flex-row gap-12">
+        {/* Left: 3D scene (sticky, centered) */}
+        <div className="w-full md:w-1/2">
+          <div className="md:sticky md:top-0 md:h-screen md:flex md:flex-col md:justify-center">
+            {sceneBlock}
+          </div>
         </div>
 
-        <div className="space-y-3">
-          {steps.map((step) => {
-            const idx = step.id - 1;
+        {/* Right: Step cards — each min-h-screen so only one is visible at a time */}
+        <div className="w-full md:w-1/2">
+          {steps.map((step, i) => {
             const isOpen = activeStep === step.id;
             const isDone = activeStep > step.id;
 
             return (
               <div
                 key={step.id}
-                ref={(el) => {
-                  cardRefs.current[idx] = el;
-                }}
-                onClick={() => setActiveStep(step.id)}
-                className={`flex gap-4 p-4 border rounded-sm bracket-corners relative overflow-hidden transition-colors duration-300 cursor-pointer ${
-                  isOpen
-                    ? 'bg-surface border-primary'
-                    : isDone
-                      ? 'bg-surface/60 border-primary/30'
-                      : 'bg-background/40 border-blueprint-line/20 hover:border-blueprint-line'
-                }`}
+                ref={(el) => { stepRefs.current[i] = el; }}
+                onClick={() => handleStepClick(i)}
+                className="min-h-screen flex items-center py-20"
               >
-                {(isOpen || isDone) && (
-                  <div
-                    className={`absolute left-0 top-0 h-full w-1 ${isOpen ? 'bg-primary' : 'bg-primary/30'}`}
-                  />
-                )}
-
-                <div
-                  className={`flex-shrink-0 w-10 h-10 rounded-full border flex items-center justify-center font-mono text-sm font-bold transition-colors duration-300 ${
+                <motion.div
+                  initial={{ opacity: 0, y: 60 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.5, ease: 'easeOut' }}
+                  className={`w-full flex gap-4 p-6 border rounded-sm bracket-corners relative overflow-hidden transition-colors duration-300 cursor-pointer ${
                     isOpen
-                      ? 'border-primary bg-primary/10 text-primary shadow-sm shadow-primary/25'
+                      ? 'bg-surface border-primary'
                       : isDone
-                        ? 'border-primary/30 bg-primary/5 text-primary/50'
-                        : 'border-blueprint-line bg-surface text-on-surface-variant'
+                        ? 'bg-surface/60 border-primary/30'
+                        : 'bg-background/40 border-blueprint-line/20 hover:border-blueprint-line'
                   }`}
                 >
-                  {step.num}
-                </div>
-
-                <div className="flex-1 min-w-0">
-                  <h3
-                    className={`font-space font-bold text-xl transition-colors duration-300 ${
-                      isOpen
-                        ? 'text-primary'
-                        : isDone
-                          ? 'text-on-background/60'
-                          : 'text-on-background/40'
-                    }`}
-                  >
-                    {step.title}
-                  </h3>
+                  {(isOpen || isDone) && (
+                    <div
+                      className={`absolute left-0 top-0  w-1 ${isOpen ? 'bg-primary' : 'bg-primary/30'}`}
+                    />
+                  )}
 
                   <div
-                    className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-[500px]' : 'max-h-0'}`}
+                    className={`flex-shrink-0 w-12 h-12 rounded-full border flex items-center justify-center font-mono text-sm font-bold transition-colors duration-300 ${
+                      isOpen
+                        ? 'border-primary bg-primary/10 text-primary shadow-sm shadow-primary/25'
+                        : isDone
+                          ? 'border-primary/30 bg-primary/5 text-primary/50'
+                          : 'border-blueprint-line bg-surface text-on-surface-variant'
+                    }`}
                   >
-                    <div className="space-y-3 pt-2">
-                      <p className="font-sans text-base text-on-surface-variant leading-relaxed">
+                    {step.num}
+                  </div>
+
+                  <div className="flex-1 min-w-0">
+                    <h3
+                      className={`font-space font-bold text-2xl transition-colors duration-300 ${
+                        isOpen
+                          ? 'text-primary'
+                          : isDone
+                            ? 'text-on-background/60'
+                            : 'text-on-background/40'
+                      }`}
+                    >
+                      {step.title}
+                    </h3>
+
+                    <div className="mt-3">
+                      <p className="font-sans text-lg text-on-surface-variant leading-relaxed">
                         {step.desc}
                       </p>
 
-                      <div className="border-t border-dashed border-blueprint-line/60 pt-2 grid grid-cols-1 sm:grid-cols-2 gap-2 font-sans text-sm font-semibold text-on-surface-variant">
+                      <div className="border-t border-dashed border-blueprint-line/60 pt-3 mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 font-sans text-sm font-semibold text-on-surface-variant">
                         <div>
                           <span className="block text-primary uppercase font-mono text-xs mb-1 font-bold">
                             [VERIFICATIONS]
                           </span>
-
-                          <ul className="space-y-1">
-                            {step.benchmarks.map((v, i) => (
-                              <li
-                                key={i}
-                                className="flex items-center gap-1.5"
-                              >
+                          <ul className="space-y-1.5">
+                            {step.benchmarks.map((v, j) => (
+                              <li key={j} className="flex items-center gap-1.5">
                                 <span className="w-1 h-1 rounded-full bg-primary" />
                                 <span>{v}</span>
                               </li>
                             ))}
                           </ul>
                         </div>
-
                         <div>
                           <span className="block text-primary uppercase font-mono text-xs mb-1 font-bold">
                             [MILESTONE_DELIVERABLE]
                           </span>
-
                           <span className="text-on-background bg-background px-2 py-0.5 border border-blueprint-line/60 block truncate">
                             {step.output}
                           </span>
@@ -365,7 +319,7 @@ const headingOffset = Math.round(headingTop - sectionTop) - pinOffset;
                       </div>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               </div>
             );
           })}

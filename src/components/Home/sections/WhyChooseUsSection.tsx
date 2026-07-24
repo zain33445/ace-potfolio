@@ -65,6 +65,7 @@ export default function WhyChooseUsSection() {
   const pinnedLocked = useRef(false);
   const [isDesktop, setIsDesktop] = useState(true);
   const { setPinned } = usePin();
+  const [isPinned, setIsPinned] = useState(false);
 
   /* ── Responsive ── */
   useEffect(() => {
@@ -75,24 +76,37 @@ export default function WhyChooseUsSection() {
     return () => mq.removeEventListener('change', h);
   }, []);
 
-  /* ── Scroll tracking (desktop only) ── */
+  /* ── Scroll tracking (desktop only) — forward only, reverse releases pin ── */
   useEffect(() => {
     if (!isDesktop) return;
     const w = wrapperRef.current;
     if (!w) return;
+    let lastP = 0;
     const onScroll = () => {
       const rect = w.getBoundingClientRect();
       const scrollable = w.offsetHeight - window.innerHeight;
       if (scrollable <= 0) return;
       const p = Math.max(0, Math.min(1, -rect.top / scrollable));
-      const step = Math.min(PILLARS.length + 1, Math.max(0, Math.floor(p * (PILLARS.length + 2))));
-      setActiveStep(prev => Math.max(prev, step));
-      if (p > 0.05 && p < 0.95) {
-        pinnedLocked.current = true;
-        setPinned(true);
-      } else if (p >= 0.95) {
+      const scrollingForward = p >= lastP;
+      lastP = p;
+
+      if (scrollingForward) {
+        const step = Math.min(PILLARS.length + 1, Math.max(0, Math.floor(p * (PILLARS.length + 2))));
+        setActiveStep(prev => Math.max(prev, step));
+        if (p > 0.05 && p < 0.95) {
+          pinnedLocked.current = true;
+          setPinned(true);
+          setIsPinned(true);
+        } else if (p >= 0.95) {
+          pinnedLocked.current = false;
+          setPinned(false);
+          setIsPinned(false);
+        }
+      } else {
+        // Reverse scroll — collapse height, release pin
         pinnedLocked.current = false;
         setPinned(false);
+        setIsPinned(false);
       }
     };
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -483,9 +497,9 @@ export default function WhyChooseUsSection() {
       id="why-choose-us"
       ref={wrapperRef}
       className={`relative bg-background border-b border-blueprint-line ${isDesktop ? '' : ''}`}
-      style={isDesktop ? { height: `${(PILLARS.length + 2) * 100}vh` } : {}}
+      style={isDesktop ? { height: isPinned ? `${(PILLARS.length + 2) * 100}vh` : 'auto' } : {}}
     >
-      <div className={isDesktop ? 'sticky top-0 h-screen overflow-hidden' : ''}>
+      <div className={isDesktop ? isPinned ? 'sticky top-0 h-screen overflow-hidden' : '' : ''}>
         <div className={`relative w-full h-full ${isDesktop ? 'flex items-center justify-center' : 'flex flex-col'}`}>
           {/* Heading — left corner on desktop, top on mobile */}
           <div className={`${isDesktop ? 'absolute top-20 left-16 z-20 max-w-lg' : 'relative px-6 pt-24 pb-8 z-20 max-w-lg mx-auto'} text-left space-y-3 pointer-events-none`}>

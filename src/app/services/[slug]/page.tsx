@@ -63,7 +63,7 @@ export default async function ServiceDetailPage({ params }: Props) {
           }}
         />
 
-        <div className="relative mx-auto max-w-7xl px-[var(--spacing-margin-mobile)] py-16 md:px-[var(--spacing-margin-desktop)] md:py-24">
+        <div className="relative mx-auto max-w-7xl px-5 px-[var(--spacing-margin-mobile)] pt-24 md:px-[var(--spacing-margin-desktop)] md:py-24">
           {/* Breadcrumb */}
           <div className="mb-8 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-on-surface-variant">
             <Link href="/services" className="hover:text-primary transition-colors">
@@ -73,12 +73,12 @@ export default async function ServiceDetailPage({ params }: Props) {
             <span className="text-primary">{service.slug}</span>
           </div>
 
-          {/* System label */}
+          {/* System label
           <div className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
             [{service.id}]
-          </div>
+          </div> */}
 
-          <div className="flex items-start gap-4 mb-4">
+          <div className="flex items-center gap-4 mb-4">
             <div className="flex items-center justify-center w-12 h-12 border border-blueprint-line bg-surface bracket-corners flex-shrink-0">
               <Icon className="w-5 h-5 text-primary" />
             </div>
@@ -86,29 +86,28 @@ export default async function ServiceDetailPage({ params }: Props) {
               <span className="font-mono text-xs text-on-surface-variant tracking-widest block mb-1">
                 {service.tagline}
               </span>
-              <h1 className="font-[family-name:var(--font-space)] text-5xl font-bold leading-tight text-on-background md:text-7xl">
+              <h1 className="font-[family-name:var(--font-space)] text-3xl font-bold leading-tight text-on-background md:text-7xl">
                 {service.title}
               </h1>
             </div>
           </div>
 
-          <p className="mt-6 max-w-2xl font-sans text-lg leading-relaxed text-on-surface-variant md:text-xl">
+          <p className="mt-6 max-w-2xl font-sans text-lg leading-relaxed text-on-surface-variant md:text-left md:text-xl text-justify">
             {service.description}
           </p>
 
           {/* Quick stats row */}
-          <div className="mt-10 flex flex-wrap gap-8 border-t border-blueprint-line pt-8">
+          <div className="mt-10 flex flex-wrap gap-8 border-t border-blueprint-line pt-8 items-center justify-center">
             {service.stats.map((stat) => (
               <QuickStat key={stat.label} label={stat.label} value={stat.value} />
             ))}
           </div>
         </div>
-      </section>
 
       {/* ════════════════════════════════════════════════════════
           MAIN CONTENT — SIDEBAR + DETAIL
           ════════════════════════════════════════════════════════ */}
-      <div className="mx-auto max-w-7xl px-[var(--spacing-margin-mobile)] py-16 md:px-[var(--spacing-margin-desktop)] md:py-20">
+      <div className="mx-auto max-w-7xl px-5 px-[10px] text-justify py-16 md:px-[var(--spacing-margin-desktop)] md:py-20">
         <div className="grid gap-12 lg:grid-cols-[300px_1fr]">
           {/* ── Sidebar: Featured Services ── */}
           <aside className="order-2 lg:order-1">
@@ -170,6 +169,8 @@ export default async function ServiceDetailPage({ params }: Props) {
           CTA BANNER
           ════════════════════════════════════════════════════════ */}
       <CtaSection service={service} />
+      </section>
+
     </main>
   );
 }
@@ -180,7 +181,7 @@ export default async function ServiceDetailPage({ params }: Props) {
 
 function QuickStat({ label, value }: { label: string; value: string }) {
   return (
-    <div>
+    <div className="text-center md:text-left">
       <div className="font-mono text-xs font-bold uppercase tracking-[0.15em] text-on-surface-variant">
         {label}
       </div>
@@ -258,7 +259,7 @@ function PricingFeaturesSection({
             </span>
           </div>
           <Link
-            href="/#contact"
+            href="/contact"
             className="inline-flex items-center gap-2 border border-primary bg-primary px-6 py-3 font-mono text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary"
           >
             <span>REQUEST QUOTE</span>
@@ -328,19 +329,19 @@ function CtaSection({
 }) {
   return (
     <section className="border-t border-blueprint-line">
-      <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-[var(--spacing-margin-mobile)] py-20 text-center md:px-[var(--spacing-margin-desktop)] md:py-28">
+      <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-5 px-[var(--spacing-margin-mobile)] py-20 text-center md:px-[var(--spacing-margin-desktop)] md:py-28">
         <div className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
           [SYS::INITIATE_ESTIMATE_REQUEST]
         </div>
         <h2 className="font-[family-name:var(--font-space)] text-4xl font-bold text-on-background md:text-6xl max-w-3xl">
           Need {service.title}?
         </h2>
-        <p className="max-w-lg text-base leading-relaxed text-on-surface-variant">
+        <p className="max-w-lg text-base leading-relaxed text-on-surface-variant md:text-center">
           Submit your blueprints and receive a precision cost schedule within
           3–5 business days. Expedited turnaround available.
         </p>
         <Link
-          href="/#contact"
+          href="/contact"
           className="group mt-4 inline-flex items-center gap-3 border border-primary bg-primary px-8 py-3.5 font-mono text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary"
         >
           <span>REQUEST ESTIMATE</span>

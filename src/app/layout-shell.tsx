@@ -58,7 +58,7 @@ export default function LayoutShell({ children }: { children: ReactNode }) {
         <header>
           <Nav />
         </header>
-        <main className="pt-16">{children}</main>
+        <main className="md:pt-16">{children}</main>
         <Footer />
       </div>
     </PinProvider>

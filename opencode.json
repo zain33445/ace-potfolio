@@ -9,6 +9,19 @@
       "headers": {
         "Authorization": "Bearer {file:.motion-token}"
       }
+    },
+    "openseo": {
+      "type": "remote",
+      "url": "https://app.openseo.so/mcp",
+      "enabled": true
+    },
+    "hostinger": {
+      "type": "local",
+      "command": ["hostinger-api-mcp"],
+      "enabled": true,
+      "env": {
+        "HOSTINGER_API_TOKEN": "zEGJ7g6EoD4zVuoRusT8gbyJQawdYdM3xGBd9ycBb9480726"
+      }
     }
   }
 }

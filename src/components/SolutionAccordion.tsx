@@ -1,6 +1,7 @@
 'use client';
 
-import { AnimatePresence, motion } from 'motion/react';
+import React, { useEffect, useRef, useState } from 'react';
+import { motion } from 'motion/react';
 import Link from 'next/link';
 import { ChevronRight, Layers, FileSpreadsheet, Compass, ShieldCheck, ArrowRight } from 'lucide-react';
 import { SolutionItem } from '../types';
@@ -77,9 +78,97 @@ interface SolutionAccordionProps {
 }
 
 export default function SolutionAccordion({ activeIndex, onCardClick, mobile = false }: SolutionAccordionProps) {
-  const activeId = activeIndex >= 0 ? SOLUTION_IDS[activeIndex] : null;
-  const activeItem = activeId ? solutions.find(s => s.id === activeId) : null;
+  const detailRefs = useRef<(HTMLDivElement | null)[]>([]);
 
+  /* ── Responsive: detect mobile viewport to hide detail cards ── */
+  const [isMobileViewport, setIsMobileViewport] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 767px)');
+    setIsMobileViewport(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobileViewport(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+
+  const isMobile = mobile || isMobileViewport;
+
+  /* ── IntersectionObserver: highlight name card when detail card enters viewport ── */
+  useEffect(() => {
+    if (isMobile) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            const idx = detailRefs.current.indexOf(entry.target as HTMLDivElement);
+            if (idx !== -1) {
+              onCardClick(idx);
+            }
+          }
+        }
+      },
+      { rootMargin: '-40% 0px -40% 0px', threshold: 0 },
+    );
+
+    detailRefs.current.forEach((el) => {
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, [isMobile, onCardClick]);
+
+  /* ── Click name card → scroll to detail card ── */
+  const handleNameClick = (idx: number) => {
+    onCardClick(idx);
+    detailRefs.current[idx]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
+
+  /* ── Mobile: title cards only → navigate to service page ── */
+  if (isMobile) {
+    return (
+      <div className="max-w-[85%] mx-auto">
+        <div className="font-mono text-sm text-primary mb-8 border-b border-blueprint-line pb-4 flex items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-primary animate-ping" />
+          [CORE_CAPABILITIES_PORTAL_ACTIVE]
+        </div>
+
+        <div className="space-y-3">
+          {solutions.map((item) => {
+            const serviceHref = SOLUTION_SLUGS[item.id] ?? '/services';
+            return (
+              <Link
+                key={item.id}
+                href={serviceHref}
+                className="block border border-blueprint-line bg-surface overflow-hidden hover:border-primary transition-all duration-300 cursor-pointer bracket-corners group"
+              >
+                <div className="flex justify-between items-center py-5 px-5 relative select-none">
+                  <div className="absolute left-0 top-0 h-full w-1.5 bg-primary scale-y-0 group-hover:scale-y-100 transition-transform duration-300" />
+                  <div className="flex items-center gap-3">
+                    <div className="flex items-center justify-center w-9 h-9 border border-blueprint-line bg-background bracket-corners group-hover:border-primary transition-colors">
+                      {getIcon(item.id)}
+                    </div>
+                    <div>
+                      <span className="block font-mono text-xs text-primary tracking-widest mb-0.5 font-bold">
+                        {item.category}
+                      </span>
+                      <h3 className="font-space font-bold text-xl text-on-background group-hover:text-primary transition-colors duration-200">
+                        {item.title}
+                      </h3>
+                    </div>
+                  </div>
+                  <div className="text-on-surface-variant group-hover:text-primary transition-colors">
+                    <ArrowRight className="w-5 h-5" />
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+
+  /* ── Desktop: sticky name cards + stacked detail cards ── */
   return (
     <div className="max-w-[85%] mx-auto">
       <div className="font-mono text-sm text-primary mb-8 border-b border-blueprint-line pb-4 flex items-center gap-2">
@@ -88,90 +177,76 @@ export default function SolutionAccordion({ activeIndex, onCardClick, mobile = f
       </div>
 
       <div className="flex flex-col md:flex-row gap-6">
-        {/* Left: Card List */}
-        <div className="w-1/2 md:w-1/2 space-y-3">
+        {/* Left: Sticky Name Cards */}
+        <div className="w-full md:w-1/2">
+          <div className="md:sticky md:top-0 md:h-screen md:flex md:flex-col md:justify-center space-y-3">
           {solutions.map((item, i) => {
-            const isActive = activeId === item.id;
+            const isActive = activeIndex === i;
             return (
-              <div key={item.id}>
-                <div
-                  onClick={() => onCardClick(i)}
-                  className={`border border-blueprint-line bg-surface overflow-hidden hover:border-primary transition-all duration-300 cursor-pointer bracket-corners group ${
-                    isActive ? 'ring-1 ring-primary border-primary shadow-sm' : ''
-                  }`}
-                >
-                  <div className="flex justify-between items-center py-5 px-5 relative select-none">
-                    <div 
-                      className={`absolute left-0 top-0 h-full w-1.5 bg-primary transition-transform duration-300 ${
-                        isActive ? 'scale-y-100' : 'scale-y-0 group-hover:scale-y-100'
-                      }`} 
-                    />
+              <div
+                key={item.id}
+                onClick={() => handleNameClick(i)}
+                className={`border border-blueprint-line bg-surface overflow-hidden hover:border-primary transition-all duration-300 cursor-pointer bracket-corners group ${
+                  isActive ? 'ring-1 ring-primary border-primary shadow-sm' : ''
+                }`}
+              >
+                <div className="flex justify-between items-center py-5 px-5 relative select-none">
+                  <div
+                    className={`absolute left-0 top-0 h-full w-1.5 bg-primary transition-transform duration-300 ${
+                      isActive ? 'scale-y-100' : 'scale-y-0 group-hover:scale-y-100'
+                    }`}
+                  />
 
-                    <div className="flex items-center gap-3">
-                      <div className="flex items-center justify-center w-9 h-9 border border-blueprint-line bg-background bracket-corners group-hover:border-primary transition-colors">
-                        {getIcon(item.id)}
-                      </div>
-                      <div>
-                        <span className="block font-mono text-xs text-primary tracking-widest mb-0.5 font-bold">
-                          {item.category}
-                        </span>
-                        <h3 className={`font-space font-bold text-xl transition-colors duration-200 ${
-                          isActive ? 'text-primary' : 'text-on-background group-hover:text-primary'
-                        }`}>
-                          {item.title}
-                        </h3>
-                      </div>
+                  <div className="flex items-center gap-3">
+                    <div className="flex items-center justify-center w-9 h-9 border border-blueprint-line bg-background bracket-corners group-hover:border-primary transition-colors">
+                      {getIcon(item.id)}
                     </div>
-
-                    <motion.div
-                      animate={{ rotate: isActive ? 90 : 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="text-on-surface-variant group-hover:text-primary"
-                    >
-                      <ChevronRight className="w-5 h-5" />
-                    </motion.div>
+                    <div>
+                      <span className="block font-mono text-xs text-primary tracking-widest mb-0.5 font-bold">
+                        {item.category}
+                      </span>
+                      <h3 className={`font-space font-bold text-xl transition-colors duration-200 ${
+                        isActive ? 'text-primary' : 'text-on-background group-hover:text-primary'
+                      }`}>
+                        {item.title}
+                      </h3>
+                    </div>
                   </div>
-                </div>
 
-                {/* Mobile: inline detail panel right after active card */}
-                {mobile && isActive && activeItem && (
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={activeItem.id}
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.25, ease: 'easeInOut' }}
-                      className="overflow-hidden"
-                    >
-                      <DetailPanel item={activeItem} />
-                    </motion.div>
-                  </AnimatePresence>
-                )}
+                  <motion.div
+                    animate={{ rotate: isActive ? 90 : 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="text-on-surface-variant group-hover:text-primary"
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </motion.div>
+                </div>
               </div>
             );
           })}
+          </div>
         </div>
 
-        {/* Desktop: Right Detail Panel */}
-        {!mobile && (
-          <div className="w-full md:w-1/2">
-            <AnimatePresence mode="wait">
-              {activeItem && (
-                <motion.div
-                  key={activeItem.id}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.25, ease: 'easeInOut' }}
-                  className="border border-blueprint-line bg-surface p-6 bracket-corners h-full"
-                >
-                  <DetailPanelContent item={activeItem} />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        )}
+        {/* Right: Detail Cards — each min-h-screen so only one is visible at a time */}
+        <div className="w-full md:w-1/2">
+          {solutions.map((item, i) => (
+            <div
+              key={item.id}
+              ref={(el) => { detailRefs.current[i] = el; }}
+              className="min-h-screen flex items-center py-20"
+            >
+              <motion.div
+                initial={{ opacity: 0, y: 60 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, ease: 'easeOut' }}
+                className="w-full border border-blueprint-line bg-surface p-6 bracket-corners"
+              >
+                <DetailPanelContent item={item} />
+              </motion.div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -214,7 +289,6 @@ function DetailPanelContent({ item }: { item: SolutionItem }) {
         </ul>
       </div>
 
-      {/* Full service page link */}
       <Link
         href={serviceHref}
         className="group mt-6 inline-flex items-center gap-2 border border-primary bg-primary px-6 py-3 font-mono text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary w-full justify-center"
@@ -223,14 +297,5 @@ function DetailPanelContent({ item }: { item: SolutionItem }) {
         <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
       </Link>
     </>
-  );
-}
-
-/* ── Mobile inline detail panel ── */
-function DetailPanel({ item }: { item: SolutionItem }) {
-  return (
-    <div className="border border-blueprint-line bg-surface p-6 bracket-corners mt-3">
-      <DetailPanelContent item={item} />
-    </div>
   );
 }

@@ -31,16 +31,18 @@ const ogImage = 'https://www.theaceservices.com/og-image.png';
 export const metadata: Metadata = {
   metadataBase: new URL(url),
   title: {
-    default: 'The ACE Services — Top Construction and Estimation Company',
-    template: '%s | The ACE Services',
+    default: 'Construction Estimating Services | Cost Estimation & Material Takeoffs — ACE Services',
+    template: '%s | ACE Services',
   },
   description:
-    'The ACE Services is a top construction and estimation company delivering AACE Class 3 cost estimates, material takeoffs, permit sets, and project scheduling for general contractors nationwide.',
+    'ACE Services delivers professional construction estimating services including AACE Class 3 cost estimates, material takeoffs, and permit sets for general contractors across 35 US states. Get accurate bids in 24-48 hours.',
   keywords: [
-    'construction estimation',
+    'construction estimating services',
+    'construction cost estimation',
+    'material takeoffs',
+    'building cost estimator',
     'quantity surveying',
     'cost estimating',
-    'material takeoffs',
     'pre-construction',
     'AACE',
     'CSI MasterFormat',
@@ -232,18 +234,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
         />
         
-        {/* Montserrat Google Font */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-          rel="stylesheet"
-        />
-        {/* Roboto Flex — used by TextPressure in Footer */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght@8..144,25..151,100..1000&display=swap"
-          rel="stylesheet"
-        />
+        {/* Preconnect to WordPress origin — first images are CMS-sourced (hero parallax, projects, etc.) */}
+        <link rel="preconnect" href="https://theaceservices.com" />
 
         {/* Google Analytics 4 */}
         {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID && (

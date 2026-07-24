@@ -34,7 +34,6 @@
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
   --font-space: var(--font-space), sans-serif;
-  --font-montserrat: 'Montserrat', sans-serif;
   
   --color-primary: #FF6B00;
   --color-primary-container: #FF6B00;
@@ -350,10 +349,7 @@ body {
   100% { transform: translateX(-100%); }
 }
 
-@keyframes marquee-desktop-scroll {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
+/* @keyframes marquee-desktop-scroll removed — framer-motion handles translation */
 
 /* ── Image marquee (mobile hero cards) ───────────────────── */
 .image-marquee-track {
@@ -374,17 +370,16 @@ body {
 }
 
 /* ── Desktop marquee (parallax hero cards) ──────────────── */
+/* NOTE: CSS marquee animation removed — framer-motion springs
+   (translateXDesktop / translateXReverseDesktop) handle all
+   horizontal translation. CSS animation conflicted with
+   framer-motion transforms causing jitter and double-paint. */
 .marquee-desktop-content {
   flex-shrink: 0;
   display: flex;
-  will-change: transform;
-  animation: marquee-desktop-scroll 55s linear infinite;
 }
 .marquee-desktop-content--reverse {
-  animation-direction: reverse;
-}
-.marquee-paused {
-  animation-play-state: paused;
+  /* direction handled by framer-motion translateXReverseDesktop */
 }
 
 /* ── Hero section typography (centered card) ──────────────── */

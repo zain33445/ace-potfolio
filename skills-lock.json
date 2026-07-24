@@ -7,6 +7,18 @@
       "skillPath": "skills/brandkit/SKILL.md",
       "computedHash": "735007879f5110aeae1e981a53fe74a12afde70347f9773dacd50e4697a091bf"
     },
+    "competitive-landscape": {
+      "source": "every-app/open-seo",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/competitive-landscape/SKILL.md",
+      "computedHash": "f5233c3e0f43b0bd4991d9115634e0b8e25417a280fd91d57d54ea4197f6a22b"
+    },
+    "competitor-analysis": {
+      "source": "every-app/open-seo",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/competitor-analysis/SKILL.md",
+      "computedHash": "8e8a5120c621adf3fc2230f99533dc53419cfb5a841e4bd2df3ed544bee52d2a"
+    },
     "design-taste-frontend": {
       "source": "Leonxlnx/taste-skill",
       "sourceType": "github",
@@ -61,17 +73,65 @@
       "skillPath": "skills/brutalist-skill/SKILL.md",
       "computedHash": "e66e5a2a8b73cef79ab6546459c665e8b983645689c5f3772f7eed8b9f1e8e0e"
     },
+    "keyword-clustering": {
+      "source": "every-app/open-seo",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/keyword-clustering/SKILL.md",
+      "computedHash": "021d79eb8c96ff34e659bef861532c8e4f5d0ea4bb745179a105336ac6c791e2"
+    },
+    "keyword-research": {
+      "source": "every-app/open-seo",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/keyword-research/SKILL.md",
+      "computedHash": "0f0bdd391281c1704e09735b74450c6cfc64b369f43678b64510b1e4e80a8a18"
+    },
+    "link-prospecting": {
+      "source": "every-app/open-seo",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/link-prospecting/SKILL.md",
+      "computedHash": "cc06c0b8d441c1720acd49e7bdd3ffe596380576f9e75c6bfbd102ca4f600ce0"
+    },
+    "maintain-greptile-rules": {
+      "source": "every-app/open-seo",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/maintain-greptile-rules/SKILL.md",
+      "computedHash": "c572a8fbdde97acbb940b3eb7c29f634f44b700b3b41b5af1506d22ae1841544"
+    },
+    "merge-ready": {
+      "source": "every-app/open-seo",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/merge-ready/SKILL.md",
+      "computedHash": "81783d1196d6e788b9e6ca1c800aa1a7d3ad3eb5bb8d49c0f332e3919eb0884d"
+    },
     "minimalist-ui": {
       "source": "Leonxlnx/taste-skill",
       "sourceType": "github",
       "skillPath": "skills/minimalist-skill/SKILL.md",
       "computedHash": "7e88897e0371184e97a82b8d9ef080323c13f21eb067b58ef71eb05173a08ac2"
     },
+    "openseo-release-notes": {
+      "source": "every-app/open-seo",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/openseo-release-notes/SKILL.md",
+      "computedHash": "0fbea391f7487be3573ad9be6dcc124576e3f0902580492e191e102a03c321dd"
+    },
     "redesign-existing-projects": {
       "source": "Leonxlnx/taste-skill",
       "sourceType": "github",
       "skillPath": "skills/redesign-skill/SKILL.md",
       "computedHash": "47eced3e960a2c961d3cbee11fa1216264f589344b586a5cbd03967cd6b9c54b"
+    },
+    "seo-coach": {
+      "source": "every-app/open-seo",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/seo-coach/SKILL.md",
+      "computedHash": "5f527d1cc0c9c621f69af66144fd28e9a763d5f9f55445f6f2b901c5faf06a2e"
+    },
+    "seo-project-setup": {
+      "source": "every-app/open-seo",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/seo-project-setup/SKILL.md",
+      "computedHash": "0d6ac9380ea259928e298163b583d887c27a19b48bbaa373f713577de973288f"
     },
     "stitch-design-taste": {
       "source": "Leonxlnx/taste-skill",
