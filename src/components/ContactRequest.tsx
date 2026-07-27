@@ -481,7 +481,7 @@ export default function ContactRequest() {
                             disabled={form.isSubmitting || !form.email || !form.name}
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
-                            className="w-full group relative overflow-hidden rounded-full bg-on-background text-white font-mono text-base font-bold py-4 px-8 uppercase tracking-[0.2em] transition-all duration-500 disabled:opacity-30 disabled:cursor-not-allowed"
+                            className="w-full group relative overflow-hidden rounded-full bg-primary text-white font-mono text-base font-bold py-4 px-8 uppercase tracking-[0.2em] shadow-lg shadow-primary/25 transition-all duration-500 disabled:opacity-30 disabled:cursor-not-allowed"
                           >
                             {/* Button glow */}
                             <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/20 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
