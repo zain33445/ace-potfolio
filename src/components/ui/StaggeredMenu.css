@@ -282,6 +282,7 @@
 
 .sm-panel-item:hover {
   color: var(--sm-accent, #5227ff);
+  background-color: #F2D8B8;
 }
 
 .sm-panel-list[data-numbering] {

@@ -1,7 +1,6 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import type { HeroParallaxProduct } from '@/src/components/ui/hero-parallax';
 
 const HeroSection = dynamic(() => import('@/src/components/Home/sections/HeroSection'));
 const WhyChooseUsSection = dynamic(() => import('@/src/components/Home/sections/WhyChooseUsSection'), { ssr: false });
@@ -15,22 +14,10 @@ const ProjectsSection = dynamic(() => import('@/src/components/Home/sections/Pro
 const FAQSection = dynamic(() => import('@/src/components/Home/sections/FAQSection'));
 const ContactSection = dynamic(() => import('@/src/components/Home/sections/ContactSection'));
 
-export default function HomePage({
-  products,
-}: {
-  /** Optional CMS product cards for the hero parallax. */
-  products?: HeroParallaxProduct[];
-}) {
+export default function HomePage() {
   return (
-    /* min-h-screen reserves viewport height so the Footer (rendered
-       statically in LayoutShell) doesn't appear at the top of the page
-       before the dynamically-imported HeroSection has loaded. */
     <div className="min-h-screen">
-      {/* <BackgroundShader /> */}
-      {/* Placeholder reserves SSR height so #solutions doesn't shift when hero hydrates — desktop 240vh matches HeroParallax height */}
-      <div className="min-h-screen md:min-h-[240vh]">
-        <HeroSection products={products} />
-      </div>
+      <HeroSection />
       <SolutionsSection />
       <div className="min-h-[400px]">
         <WhyChooseUsSection />

@@ -1,139 +1,114 @@
 'use client';
 
-import { HeroParallax } from '@/src/components/ui/hero-parallax';
-import type { HeroParallaxProduct } from '@/src/components/ui/hero-parallax';
+import { useRef } from 'react';
+import Image from 'next/image';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
-/* ──────────────────────────────────────────────────────────────────
-   Default construction service cards — title, link, thumbnail
-   Used as fallback when no CMS products are provided.
-   ────────────────────────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════════════
+   Fullscreen Blueprint Hero — scroll-driven zoom
+   Uses /Blueprint2.jpeg as a full-viewport background that gently
+   scales up as the user scrolls past the hero.
+   ═══════════════════════════════════════════════════════════════════ */
 
-const DEFAULT_PRODUCTS: HeroParallaxProduct[] = [
-  {
-    title: 'Material Takeoffs',
-    subtitle: 'PlanSwift + Bluebeam',
-    link: '#services',
-    thumbnail:
-      'https://images.unsplash.com/photo-1578991624414-276ef23a8e5a?w=600&h=600&fit=crop',
-  },
-  {
-    title: 'Cost Estimation',
-    subtitle: 'AACE Class 3',
-    link: '#services',
-    thumbnail:
-      'https://images.unsplash.com/photo-1554224154-26032dfc0dae?w=600&h=600&fit=crop',
-  },
-  {
-    title: 'Permit Sets',
-    subtitle: 'Full Compliance',
-    link: '#services',
-    thumbnail:
-      'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=600&fit=crop',
-  },
-  {
-    title: 'Project Scheduling',
-    subtitle: 'Critical Path Method',
-    link: '#services',
-    thumbnail:
-      'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&h=600&fit=crop',
-  },
-  {
-    title: 'Blueprint Analysis',
-    subtitle: '2D/3D Interpretation',
-    link: '#services',
-    thumbnail:
-      'https://images.unsplash.com/photo-1572072393749-3f65a3b12bd7?w=600&h=600&fit=crop',
-  },
-  {
-    title: 'Value Engineering',
-    subtitle: 'Cost Optimization',
-    link: '#services',
-    thumbnail:
-      'https://images.unsplash.com/photo-1541888946425-d81bb50b8f36?w=600&h=600&fit=crop',
-  },
-  {
-    title: 'Bid Preparation',
-    subtitle: 'Competitive Pricing',
-    link: '#services',
-    thumbnail:
-      'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=600&fit=crop',
-  },
-  {
-    title: 'Change Order Analysis',
-    subtitle: 'Impact Assessment',
-    link: '#services',
-    thumbnail:
-      'https://images.unsplash.com/photo-1565688534245-05d6b531be25?w=600&h=600&fit=crop',
-  },
-  {
-    title: 'Submittal Reviews',
-    subtitle: 'Quality Assurance',
-    link: '#services',
-    thumbnail:
-      'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=600&fit=crop',
-  },
-  {
-    title: 'LEED Documentation',
-    subtitle: 'Sustainability',
-    link: '#services',
-    thumbnail:
-      'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=600&fit=crop',
-  },
-  {
-    title: 'Scheduling Reports',
-    subtitle: 'Progress Tracking',
-    link: '#services',
-    thumbnail:
-      'https://images.unsplash.com/photo-1553877522-43269d4ea384?w=600&h=600&fit=crop',
-  },
-  {
-    title: 'Risk Analysis',
-    subtitle: 'Monte Carlo Simulation',
-    link: '#services',
-    thumbnail:
-      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=600&fit=crop',
-  },
-  {
-    title: 'Takeoff Services',
-    subtitle: 'Digital Blueprint Quantities',
-    link: '#services',
-    thumbnail:
-      'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=600&h=600&fit=crop',
-  },
-  {
-    title: 'Estimating',
-    subtitle: 'Precision Costing',
-    link: '#services',
-    thumbnail:
-      'https://images.unsplash.com/photo-1664575198308-3959d15e9e0c?w=600&h=600&fit=crop',
-  },
-  {
-    title: 'Project Controls',
-    subtitle: 'Budget & Schedule',
-    link: '#services',
-    thumbnail:
-      'https://images.unsplash.com/photo-1577412647305-991150c7d163?w=600&h=600&fit=crop',
-  },
-];
+export default function Hero() {
+  const sectionRef = useRef<HTMLDivElement>(null);
 
-export default function Hero({
-  products,
-}: {
-  /** Optional product cards from the CMS. Falls back to hardcoded defaults. */
-  products?: HeroParallaxProduct[];
-}) {
-  const cards = products ?? DEFAULT_PRODUCTS;
+  /* Track scroll progress within this section — 0 when hero is at the
+     top of the viewport, 1 when hero has fully scrolled past. */
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  });
+
+  /* Map scroll progress to a subtle zoom (1 → 1.15) */
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
 
   return (
     <>
-      <HeroParallax
-        products={cards}
-        headerH1="Top Pre-Construction and Estimation Services in the US"
-        headerH2="Stop Losing Bids."
-        headerH3="Get the numbers right, win more work, and protect your margins. We take care of your construction estimating, delivering precise takeoffs and reliable cost estimates that support competitive bids."
-      />
+      {/* ─── Fullscreen hero ─── */}
+      <section
+        ref={sectionRef}
+        className="relative h-svh w-full overflow-hidden bg-[#1a1a1a]"
+      >
+        {/* Scroll-driven background image — scales up as you scroll down */}
+        <motion.div
+          className="absolute inset-0 will-change-transform"
+          style={{ scale: imageScale }}
+        >
+          <Image
+            src="/Blueprint2.jpeg"
+            alt="Blueprint engineering plans — ACE Services"
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+        </motion.div>
 
-      {/* CSS-only marquee — pure GPU compositing, zero JS ticking */}
+        {/* Gradient overlay — darkens edges for text legibility */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/35 to-black/75" />
+
+        {/* Subtle vignette */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(0,0,0,0.45)_100%)]" />
+
+        {/* ─── Content stack ─── */}
+        <div className="relative z-10 flex h-full flex-col justify-center px-6 md:px-20 pt-20 md:pt-32">
+          <div className="max-w-3xl">
+            {/* Eyebrow label */}
+            <p className="font-sans text-primary text-sm md:text-base font-semibold tracking-[0.2em] uppercase mb-4">
+              Top Pre-Construction &amp; Estimation Services in the US
+            </p>
+
+            {/* Magazine-cover headline — two lines max */}
+            <h1 className="font-space text-white text-[clamp(2.75rem,11vw,7rem)] font-black leading-[0.9] tracking-tighter">
+              Stop Losing
+              <br />
+              Bids.
+            </h1>
+
+            {/* Supporting copy */}
+            <p className="font-sans text-white/80 text-[clamp(0.95rem,1.5vw,1.2rem)] max-w-xl mt-6 leading-relaxed">
+              Get the numbers right, win more work, and protect your margins.
+              We take care of your construction estimating, delivering precise
+              takeoffs and reliable cost estimates that support competitive bids.
+            </p>
+
+            {/* Trust badges */}
+            <p className="font-sans text-sm mt-8 text-white/70 leading-relaxed">
+              <span className="inline-block bg-white/15 backdrop-blur-sm px-3 py-1.5 rounded-md font-semibold text-white">
+                ✓ Trusted by 200+ Contractors
+              </span>
+              <span className="hidden md:inline mx-3 text-white/40">|</span>
+              <br className="md:hidden" />
+              <span className="text-primary font-bold">✓</span>{' '}
+              Residential &amp; Commercial
+              <span className="hidden md:inline mx-3 text-white/40">|</span>
+              <br className="md:hidden" />
+              <span className="text-primary font-bold">✓</span> 24–48 Hour
+              Turnaround
+            </p>
+
+            {/* CTAs */}
+            <div className="flex flex-col md:flex-row items-start gap-x-10 gap-y-4 mt-10">
+              <button
+                onClick={() =>
+                  document
+                    .getElementById('contact')
+                    ?.scrollIntoView({ behavior: 'smooth' })
+                }
+                className="bg-primary text-white font-bold px-10 py-4 rounded-lg text-lg hover:brightness-110 transition-all"
+              >
+                Bid Better
+              </button>
+              <button className="text-white/90 font-medium text-sm underline underline-offset-8 decoration-primary decoration-2 hover:text-white transition-colors">
+                See Our Work
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Marquee ticker ─── */}
       <div className="bg-primary text-white py-3.5 border-y border-on-background overflow-hidden relative select-none shrink-0">
         <div className="marquee-track font-mono text-sm font-bold tracking-widest uppercase">
           <span className="marquee-content">

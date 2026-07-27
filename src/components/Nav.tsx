@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { usePin } from '../PinContext';
 import StaggeredMenu from '@/src/components/ui/StaggeredMenu';
 
@@ -26,7 +26,6 @@ const socialItems = [
 export default function Nav() {
   const navRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
-  const router = useRouter();
   const isHome = pathname === '/';
   const { isPinned } = usePin();
 
@@ -43,16 +42,6 @@ export default function Nav() {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, [isHome]);
-
-  const handleNav = (id: string) => {
-    if (isHome) {
-      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      // Store target section, then client-navigate to homepage
-      sessionStorage.setItem('scrollToSection', id);
-      router.push('/');
-    }
-  };
 
   const PAGE_LINKS = [
   { href: '/blog', label: 'BLOG', shortLabel: 'Blog' },
@@ -85,7 +74,7 @@ export default function Nav() {
       >
         <Link
           href="/"
-          className={`font-mono text-xl md:text-3xl tracking-wide font-bold cursor-pointer select-none flex items-center pl-2 md:pl-10 gap-2 overflow-hidden transition-colors duration-500 md:text-on-background ${navScrolled ? 'text-on-background' : 'text-white'}`}
+          className={`flex items-center pl-2 md:pl-10 gap-2 overflow-hidden transition-colors duration-500 ${navScrolled ? 'text-on-background' : 'text-white'}`}
         >
           <img
             src="/aceLogo.png"
@@ -95,24 +84,13 @@ export default function Nav() {
             className='h-10 md:h-18 w-auto'
           />
 
-          ACE SERVICES
+          <span className="font-mono text-xl md:text-3xl font-bold tracking-tight whitespace-nowrap text-on-surface-variant">
+            THE ACE SERVICES
+          </span>
         </Link>
 
         {/* Desktop nav — always dark text */}
         <div className="hidden md:flex items-center gap-6 text-2xl">
-          {/* Homepage section anchor links — always visible */}
-          <div className="flex items-center gap-6">
-            <button type="button" onClick={() => handleNav('solutions')} className="link-underline font-mono text-sm font-bold tracking-widest pb-0.5 transition-colors duration-500 text-on-surface-variant">
-              SOLUTIONS
-            </button>
-            <button type="button" onClick={() => handleNav('contact')} className="link-underline font-mono text-sm font-bold tracking-widest pb-0.5 transition-colors duration-500 text-on-surface-variant">
-              CONTACT US
-            </button>
-          </div>
-
-          {/* Divider between section links and page links */}
-          <div className="w-px h-4 bg-blueprint-line/60" aria-hidden="true" />
-
           {/* Page links */}
           <div className="flex items-center gap-5 pr-10">
             {PAGE_LINKS.map(({ href, label }) => (

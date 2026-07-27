@@ -32,7 +32,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-surface relative border-t border-blueprint-line bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:48px_48px]">
+    <footer className="bg-primary relative border-t border-white/10 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:48px_48px]">
       <div className="w-full mx-auto md:px-5 py-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-16 align-center justify-items-center">
           {/* Left: Brand + tagline */}
@@ -41,14 +41,14 @@ export default function Footer() {
             <br />
             <TextRepel
               text="Parametric estimating precision for general builders, civil engineers, and trade specialists nationwide. Eliminating manual error thresholds."
-              className="font-sans text-lg text-on-surface-variant max-w-sm leading-relaxed font-semibold"
+              className="font-sans text-lg text-white/80 max-w-sm leading-relaxed font-semibold"
               radius={80}
               strength={50}
               mode="repel"
             /><br/>
             <TextRepel
               text="[EST_SYS_CORE_V.2.5.0_ACTIVE]"
-              className="font-mono text-xs text-primary m-auto text-center uppercase tracking-widest font-bold"
+              className="font-mono text-xs text-white/60 m-auto text-center uppercase tracking-widest font-bold"
               radius={60}
               strength={35}
               mode="repel"
@@ -61,7 +61,7 @@ export default function Footer() {
             <div className="flex flex-col gap-4">
               <TextRepel
                 text="[NAVIGATION]"
-                className="font-mono text-sm text-center text-primary tracking-wider font-bold"
+                className="font-mono text-sm text-center text-white tracking-wider font-bold"
                 radius={60}
                 strength={35}
                 mode="repel"
@@ -70,7 +70,7 @@ export default function Footer() {
                 <TextRepel
                   key={item.id}
                   text={item.label}
-                  className="text-left font-sans text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors link-underline w-fit cursor-pointer"
+                  className="text-left font-sans text-sm font-semibold text-white/70 hover:text-white transition-colors link-underline w-fit cursor-pointer"
                   radius={60}
                   strength={35}
                   mode="repel"
@@ -83,7 +83,7 @@ export default function Footer() {
             <div className="flex flex-col gap-4">
               <TextRepel
                 text="[STANDARDS]"
-                className="font-mono text-sm text-primary tracking-wider font-bold"
+                className="font-mono text-sm text-white tracking-wider font-bold"
                 radius={60}
                 strength={35}
                 mode="repel"
@@ -92,7 +92,7 @@ export default function Footer() {
                 <TextRepel
                   key={item}
                   text={item}
-                  className="font-sans text-sm text-on-surface-variant font-semibold"
+                  className="font-sans text-sm text-white/70 font-semibold"
                   radius={60}
                   strength={35}
                   mode="repel"
@@ -104,7 +104,7 @@ export default function Footer() {
             <div className="flex flex-col gap-4">
               <TextRepel
                 text="[COMMUNICATION]"
-                className="font-mono text-sm text-primary tracking-wider font-bold"
+                className="font-mono text-sm text-white tracking-wider font-bold"
                 radius={60}
                 strength={35}
                 mode="repel"
@@ -113,7 +113,7 @@ export default function Footer() {
                 <TextRepel
                   key={item}
                   text={item}
-                  className="font-sans text-sm text-on-surface-variant font-semibold"
+                  className="font-sans text-sm text-white/70 font-semibold"
                   radius={60}
                   strength={35}
                   mode="repel"
@@ -132,39 +132,39 @@ export default function Footer() {
     width
     weight
     italic={false}
-    textColor="#FF6B00"
+    textColor="#FFFFFF"
     strokeColor="#5227FF"
     minFontSize={36}
   />
 </div>
         {/* Bottom bar */}
-        <div className="pt-8 border-t border-blueprint-line flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-4">
             <TextRepel
               text="©2026 ACE SERVICES. ALL CODES SECURED."
-              className="font-mono text-sm text-on-surface-variant font-bold"
+              className="font-mono text-sm text-white/70 font-bold"
               radius={80}
               strength={35}
               mode="repel"
             />
-            <span className="hidden md:inline text-on-surface-variant opacity-40">|</span>
+            <span className="hidden md:inline text-white/30">|</span>
             <a
               href="/privacy-policy"
-              className="font-mono text-sm text-on-surface-variant hover:text-primary transition-colors"
+              className="font-mono text-sm text-white/70 hover:text-white transition-colors"
             >
               PRIVACY POLICY
             </a>
-            <span className="hidden md:inline text-on-surface-variant opacity-40">|</span>
+            <span className="hidden md:inline text-white/30">|</span>
             <a
               href="/terms-and-conditions"
-              className="font-mono text-sm text-on-surface-variant hover:text-primary transition-colors"
+              className="font-mono text-sm text-white/70 hover:text-white transition-colors"
             >
               TERMS &amp; CONDITIONS
             </a>
           </div>
           <TextRepel
             text="LAT: 32.7767° N | LONG: 96.7970° W | BLUEPRINT RECT_X_COORD"
-            className="font-mono text-xs text-on-surface-variant opacity-60"
+            className="font-mono text-xs text-white/40"
             radius={80}
             strength={35}
             mode="repel"

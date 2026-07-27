@@ -199,6 +199,8 @@ const TextPressure = ({
         background: 'transparent'
       }}
     >
+      {/* Load the variable font — React 19 deduplicates this automatically */}
+      {fontUrl && <link rel="stylesheet" href={fontUrl} />}
       {styleElement}
       <h1
         ref={titleRef}
