@@ -57,7 +57,7 @@ export function FloatingParticles({ count = 120 }) {
     if (!ref.current) return;
     const pos = ref.current.geometry.attributes.position;
     for (let i = 0; i < count; i++) {
-      pos.array[i * 3 + 1] += delta * speeds[i] * 0.4;
+      pos.array[i * 3 + 1] += delta * speeds[i] * 1.0;
       if (pos.array[i * 3 + 1] > 10) pos.array[i * 3 + 1] = 0;
     }
     pos.needsUpdate = true;
@@ -100,8 +100,8 @@ export function DataStream({ active }) {
     ref.current.children.forEach((child, i) => {
       child.position.y -= delta * meshData[i].speed;
       if (child.position.y < 0) child.position.y = 8 + Math.random() * 2;
-      child.rotation.x += delta * 2;
-      child.rotation.y += delta * 2;
+      child.rotation.x += delta * 5;
+      child.rotation.y += delta * 5;
     });
   });
 
@@ -185,7 +185,7 @@ export function ScanBeam({ active }) {
   const ref = useRef();
   useFrame((_, delta) => {
     if (!ref.current || !active) return;
-    ref.current.position.z += delta * 4;
+    ref.current.position.z += delta * 10;
     if (ref.current.position.z > 4) ref.current.position.z = -4;
   });
 
@@ -251,8 +251,8 @@ export function ComputationRings({ position, active }) {
 
   useFrame((_, delta) => {
     if (!active) return;
-    if (ref1.current) { ref1.current.rotation.x += delta * 1.5; ref1.current.rotation.y += delta * 2; }
-    if (ref2.current) { ref2.current.rotation.x -= delta * 1.2; ref2.current.rotation.z -= delta * 1.8; }
+    if (ref1.current) { ref1.current.rotation.x += delta * 4; ref1.current.rotation.y += delta * 5; }
+    if (ref2.current) { ref2.current.rotation.x -= delta * 3; ref2.current.rotation.z -= delta * 4; }
   });
 
   if (!active) return null;
@@ -273,7 +273,7 @@ export function ComputationRings({ position, active }) {
 
 export function DataColumn({ position, height = 1, color = '#FF6B00', scaleY = 1 }) {
   const [pulse, setPulse] = useState(0);
-  useFrame((_, delta) => setPulse(p => p + delta * 3));
+  useFrame((_, delta) => setPulse(p => p + delta * 7));
   const emissiveI = 0.4 + Math.sin(pulse) * 0.2;
 
   return (
@@ -332,8 +332,8 @@ export function AuditorDrone({ position, rotation = [0,0,0], active, color="#fff
   
   useFrame((_, delta) => {
     if (!ref.current) return;
-    ref.current.position.y = position[1] + Math.sin(Date.now() * 0.003) * 0.2;
-    ref.current.children[1].rotation.z += delta;
+    ref.current.position.y = position[1] + Math.sin(Date.now() * 0.006) * 0.2;
+    ref.current.children[1].rotation.z += delta * 3;
   });
 
   return (
@@ -380,8 +380,8 @@ export function DataCore({ position, visible, scale = 1 }) {
   const ref = useRef();
   useFrame((_, delta) => {
     if (ref.current) {
-      ref.current.rotation.y += delta;
-      ref.current.rotation.x += delta * 0.5;
+      ref.current.rotation.y += delta * 3;
+      ref.current.rotation.x += delta * 1.5;
     }
   });
 
@@ -404,7 +404,7 @@ export function DocIcon({ position, color, label, visible }) {
   if (!visible) return null;
   const tex = useMemo(() => makeTextCanvas(label, 256, 128, '#ffffff', 44), [label]);
   const [t, setT] = useState(0);
-  useFrame((_, delta) => setT(p => p + delta * 2));
+  useFrame((_, delta) => setT(p => p + delta * 5));
 
   return (
     <group position={position}>

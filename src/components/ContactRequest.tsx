@@ -13,8 +13,8 @@ const PROJECT_TYPES = [
 
 const SCALE_OPTIONS = [
   { id: 'small', label: 'Small', range: 'Under 5,000 SF', icon: '□' },
-  { id: 'medium', label: 'Medium', range: '5,000 – 25,000 SF', icon: '□□' },
-  { id: 'large', label: 'Large', range: '25,000 – 100,000 SF', icon: '□□□' },
+  { id: 'medium', label: 'Medium', range: '5,000 to 25,000 SF', icon: '□□' },
+  { id: 'large', label: 'Large', range: '25,000 to 100,000 SF', icon: '□□□' },
   { id: 'xlarge', label: 'X-Large', range: '100,000+ SF', icon: '□□□□' },
 ] as const;
 
@@ -263,7 +263,7 @@ export default function ContactRequest() {
                               className="absolute top-4 right-4 w-6 h-6 rounded-full border-2 flex items-center justify-center"
                               animate={{
                                 borderColor: form.projectType === type.id ? '#FF6B00' : 'rgba(0,0,0,0.1)',
-                                backgroundColor: form.projectType === type.id ? '#FF6B00' : 'transparent',
+                                backgroundColor: form.projectType === type.id ? '#FF6B00' : 'rgba(0,0,0,0)',
                               }}
                               transition={{ duration: 0.3 }}
                             >

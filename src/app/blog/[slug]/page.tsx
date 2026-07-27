@@ -41,10 +41,14 @@ export async function generateMetadata({
   return {
     title: post.title,
     description: post.excerpt.slice(0, 160),
+    alternates: {
+      canonical: `https://www.theaceservices.com/blog/${slug}`,
+    },
     openGraph: {
       title: `${post.title} | ACE SERVICES`,
       description: post.excerpt.slice(0, 160),
       ...(post.image ? { images: [{ url: post.image }] } : {}),
+      url: `https://www.theaceservices.com/blog/${slug}`,
     },
   };
 }
@@ -84,6 +88,22 @@ export default async function BlogPostPage({
 
   return (
     <section className="w-full bg-background text-on-background">
+
+      {/* BreadcrumbList structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.theaceservices.com' },
+              { '@type': 'ListItem', position: 2, name: 'Insights & Blog', item: 'https://www.theaceservices.com/blog' },
+              { '@type': 'ListItem', position: 3, name: post.title, item: `https://www.theaceservices.com/blog/${slug}` },
+            ],
+          }),
+        }}
+      />
 
       {/* ── Hero header ──────────────────────────────────── */}
       <div className="relative overflow-hidden border-b border-blueprint-line">

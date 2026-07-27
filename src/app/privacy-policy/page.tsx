@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     canonical: 'https://www.theaceservices.com/privacy-policy',
   },
   openGraph: {
-    title: 'Privacy Policy | ACE SERVICES',
+  title: 'Privacy Policy',
     description:
       'Privacy Policy for ACE Services. Learn how we collect, use, and protect your information.',
     url: 'https://www.theaceservices.com/privacy-policy',

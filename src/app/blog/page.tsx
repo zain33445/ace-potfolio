@@ -10,10 +10,14 @@ export const metadata: Metadata = {
   title: 'Insights & Blog',
   description:
     'Expert insights on construction estimation, quantity surveying, cost analysis, and pre-construction best practices from ACE SERVICES.',
+  alternates: {
+    canonical: 'https://www.theaceservices.com/blog',
+  },
   openGraph: {
     title: 'Insights & Blog | ACE SERVICES',
     description:
       'Expert insights on construction estimation, quantity surveying, cost analysis, and pre-construction best practices.',
+    url: 'https://www.theaceservices.com/blog',
   },
 };
 

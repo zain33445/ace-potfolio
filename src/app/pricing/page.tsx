@@ -15,13 +15,13 @@ export const metadata: Metadata = {
   description:
     'Transparent pricing for ACE SERVICES pre-construction estimation. Budgetary allocations for material takeoffs, AACE Class 3 cost estimates, permit sets, project scheduling, and feasibility studies.',
   alternates: {
-    canonical: 'https://ace2-six.vercel.app/pricing',
+    canonical: 'https://www.theaceservices.com/pricing',
   },
   openGraph: {
     title: 'Pricing — ACE SERVICES',
     description:
       'Transparent pricing for pre-construction estimation services. Material takeoffs, cost estimates, permit sets, scheduling, and feasibility studies.',
-    url: 'https://ace2-six.vercel.app/pricing',
+    url: 'https://www.theaceservices.com/pricing',
   },
 };
 
@@ -254,10 +254,10 @@ export default function PricingPage() {
                         {service.turnaround}
                       </span>
                     </div>
-                    <button
-                      type="button"
+                    <Link
+                href="/calculator"
                       className={[
-                        'flex items-center gap-1.5 font-mono text-sm font-bold px-4 py-2.5 transition-all duration-200 uppercase tracking-wider',
+                        'inline-flex items-center gap-1.5 font-mono text-sm font-bold px-4 py-2.5 transition-all duration-200 uppercase tracking-wider',
                         service.featured
                           ? 'bg-primary text-white hover:bg-primary/90 shadow-[0_0_15px_rgba(255,107,0,0.3)]'
                           : 'bg-primary/10 text-primary border border-primary/30 hover:bg-primary hover:text-white',
@@ -265,7 +265,7 @@ export default function PricingPage() {
                     >
                       {service.cta}
                       <ArrowRight className="w-3 h-3" />
-                    </button>
+                    </Link>
                   </div>
                 </div>
               );
@@ -290,7 +290,7 @@ export default function PricingPage() {
                 </p>
               </div>
               <Link
-                href="/#contact"
+                href="/contact"
                 className="flex items-center gap-2 bg-primary text-white font-mono text-sm font-bold px-6 py-3 uppercase tracking-widest hover:bg-primary/90 transition-colors shadow-[0_0_20px_rgba(255,107,0,0.2)] flex-shrink-0 bracket-corners hover-brackets"
               >
                 Request Custom Quote

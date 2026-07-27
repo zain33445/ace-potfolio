@@ -23,10 +23,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${project.title} | ACE SERVICES`,
     description: project.description,
+    alternates: {
+      canonical: `https://www.theaceservices.com/projects/${slug}`,
+    },
     openGraph: {
       title: `${project.title} | ACE SERVICES`,
       description: project.description,
       images: project.imageUrl ? [{ url: project.imageUrl }] : [],
+      url: `https://www.theaceservices.com/projects/${slug}`,
     },
   };
 }
@@ -61,6 +65,22 @@ export default async function ProjectDetailPage({ params }: Props) {
 
   return (
     <main className="min-h-screen bg-background">
+      {/* BreadcrumbList structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.theaceservices.com' },
+              { '@type': 'ListItem', position: 2, name: 'Projects', item: 'https://www.theaceservices.com/projects' },
+              { '@type': 'ListItem', position: 3, name: project.title, item: `https://www.theaceservices.com/projects/${slug}` },
+            ],
+          }),
+        }}
+      />
+
       {/* ════════════════════════════════════════════════════════
           HERO SECTION
           ════════════════════════════════════════════════════════ */}
@@ -443,16 +463,16 @@ function SampleReportSection({ project }: { project: ProjectDetail }) {
           division-by-division cost breakdowns, material quantities, and bid recommendations.
         </p>
 
-        <div className="border border-blueprint-line bg-surface overflow-hidden">
-          {/* PDF Preview — shows the PDF in an embed */}
+          <div className="border border-blueprint-line bg-surface overflow-hidden">
+          {/* PDF Preview — Google Docs Viewer for reliable cross-origin PDF rendering */}
           <div className="aspect-[16/10] w-full bg-background relative overflow-hidden">
             <iframe
-              src={`${project.pdfUrl}#view=FitH`}
+              src={`https://docs.google.com/viewer?url=${encodeURIComponent(project.pdfUrl)}&embedded=true`}
               className="h-full w-full"
               title={`${project.title} - Estimate Report`}
-              sandbox="allow-scripts allow-same-origin"
+              loading="lazy"
             />
-            {/* Fallback overlay if iframe fails */}
+            {/* Fallback overlay */}
             <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-background/20 to-transparent" />
           </div>
 
@@ -506,7 +526,7 @@ function CtaSection() {
           3–5 business days. Expedited turnaround available.
         </p>
         <Link
-          href="/#contact"
+          href="/contact"
           className="group mt-4 inline-flex items-center gap-3 border border-primary bg-primary px-8 py-3.5 font-mono text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary"
         >
           <span>REQUEST ESTIMATE</span>

@@ -22,7 +22,7 @@ const seedProjects: ProjectDetail[] = [
     imageUrl:
       'https://theaceservices.com/wp-content/uploads/2025/03/Denia-Teel.jpg',
     pdfUrl:
-      'http://theaceservices.com/wp-content/uploads/2024/10/GC-Sample-Daneil-Teel-All-Trade.pdf',
+      'https://theaceservices.com/wp-content/uploads/2024/10/GC-Sample-Daneil-Teel-All-Trade.pdf',
     scope: ['Complete Cost Estimation', 'Quantity Takeoff'],
     totalAreaSqFt: 5789,
     estimatedCost: 530035,
@@ -65,7 +65,7 @@ const seedProjects: ProjectDetail[] = [
     imageUrl:
       'https://theaceservices.com/wp-content/uploads/2025/03/Five-star-car-wash.png',
     pdfUrl:
-      'http://theaceservices.com/wp-content/uploads/2024/10/GC-Sample-NEW-AUTOMATED-CARWASH-FACILITY-All-Trade.pdf',
+      'https://theaceservices.com/wp-content/uploads/2024/10/GC-Sample-NEW-AUTOMATED-CARWASH-FACILITY-All-Trade.pdf',
     scope: ['Full Takeoff', 'Framing Survey'],
     totalAreaSqFt: 18500,
     estimatedCost: 2450000,
@@ -104,7 +104,7 @@ const seedProjects: ProjectDetail[] = [
     imageUrl:
       'https://theaceservices.com/wp-content/uploads/2025/03/Sauced-House.jpg',
     pdfUrl:
-      'http://theaceservices.com/wp-content/uploads/2024/10/Sauced-House-Restaurant-2.pdf',
+      'https://theaceservices.com/wp-content/uploads/2024/10/Sauced-House-Restaurant-2.pdf',
     scope: ['MEP Takeoff', 'Commercial HVAC'],
     totalAreaSqFt: 12000,
     estimatedCost: 1850000,
@@ -302,7 +302,7 @@ const seedProjects: ProjectDetail[] = [
     imageUrl:
       'https://theaceservices.com/wp-content/uploads/2025/03/Retail-Spaces.jpg',
     pdfUrl:
-      'http://theaceservices.com/wp-content/uploads/2024/10/GC-Sample-Corner-of-MD-RT-5-Golden-Beach-Rd-Charlotte-Hall-MD.pdf',
+      'https://theaceservices.com/wp-content/uploads/2024/10/GC-Sample-Corner-of-MD-RT-5-Golden-Beach-Rd-Charlotte-Hall-MD.pdf',
     scope: ['Complete Cost Estimation', 'Quantity Takeoff'],
     totalAreaSqFt: 120000,
     estimatedCost: 28500000,

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import AboutPageClient from '@/src/components/AboutPageClient';
 
 export const metadata: Metadata = {
-  title: 'About Us | ACE SERVICES — Top Construction & Estimation Company',
+  title: 'About Us — Top Construction & Estimation Company',
   description:
     'ACE SERVICES is a top pre-construction estimation firm with 2,893 projects estimated and an 89% bid win rate. Precision quantity surveying, AACE Class 3 cost estimates, and dual-stage QA across the US.',
   alternates: {

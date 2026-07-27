@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     canonical: 'https://www.theaceservices.com/contact',
   },
   openGraph: {
-    title: 'Contact Us | ACE SERVICES',
+  title: 'Contact Us',
     description:
       'Get in touch with ACE SERVICES for pre-construction estimation, material takeoffs, and cost estimation services.',
     url: 'https://www.theaceservices.com/contact',

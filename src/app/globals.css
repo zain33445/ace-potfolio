@@ -3,6 +3,8 @@
 @theme {
   /* ── Aceternity Ripple Animation ─────────────── */
   --animate-cell-ripple: cell-ripple var(--duration, 500ms) var(--delay, 0ms) ease-out;
+  /* ── Desktop navigation breakpoint ──────────── */
+  --breakpoint-desktop-nav: 1500px;
 }
 
 @keyframes cell-ripple {

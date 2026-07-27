@@ -304,24 +304,8 @@
   opacity: var(--sm-num-opacity, 0);
 }
 
-/* Mobile: full-width panel, z-index above fixed nav, centered toggle */
-@media (max-width: 1024px) {
-  .staggered-menu-panel {
-    width: 100%;
-    left: 0;
-    right: 0;
-  }
-
-  .staggered-menu-wrapper[data-open] .sm-logo-img {
-    filter: invert(100%);
-  }
-
-  .staggered-menu-wrapper.fixed-wrapper {
-    z-index: 60 !important;
-  }
-}
-
-@media (max-width: 767px) {
+/* Mobile+tablet: full-width panel, z-index above fixed nav, centered toggle */
+@media (max-width: 1499px) {
   .staggered-menu-panel {
     width: 100%;
     left: 0;
@@ -339,7 +323,7 @@
     justify-content: flex-end;
   }
 
-  /* Hide logo on mobile — nav already shows it */
+  /* Hide logo on all hamburger-visible widths — nav already shows it */
   .sm-logo {
     display: none !important;
   }
@@ -350,7 +334,7 @@
 }
 
 /* Desktop: hide StaggeredMenu entirely — desktop uses horizontal nav links */
-@media (min-width: 768px) {
+@media (min-width: 1500px) {
   .staggered-menu-wrapper {
     display: none !important;
   }

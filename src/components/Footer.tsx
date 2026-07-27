@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { TextRepel } from '@/src/components/ui/text-repel';
 // Component ported from https://codepen.io/JuanFuentes/full/rgXKGQ
 // Font used - https://compressa.preusstype.com/
@@ -12,15 +13,16 @@ import TextPressure from '@/src/components/ui/TextPressure';
 
 
 export default function Footer() {
-  const handleClick = (id: string) => {
-    window.location.hash = id;
-  };
+  const router = useRouter();
 
   const navItems = [
-    { label: 'SOLUTIONS', id: 'solutions' },
-    { label: 'PROJECTS', id: 'projects' },
-    { label: 'PROCESS', id: 'process' },
-    { label: 'ABOUT', id: 'about' },
+    { label: 'BLOGS', href: '/blog' },
+    { label: 'SERVICES', href: '/services' },
+    { label: 'PRICING', href: '/pricing' },
+    { label: 'PROJECTS', href: '/projects' },
+    { label: 'ABOUT', href: '/about' },
+    { label: 'CONTACT', href: '/contact' },
+    { label: 'CALCULATOR', href: '/calculator' },
   ];
 
   const standards = ['CSI MASTERFORMAT', 'AACE CLASS 3 INDEX', 'ISO 9001 METRICS'];
@@ -56,7 +58,7 @@ export default function Footer() {
           </div>
 
           {/* Right: 3-column grid */}
-          <div className="lg:col-span-7 grid grid-cols-3 md:grid-cols-3 gap-8 justify-items-center">
+          <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center">
             {/* Navigation */}
             <div className="flex flex-col gap-4">
               <TextRepel
@@ -68,13 +70,13 @@ export default function Footer() {
               />
               {navItems.map((item) => (
                 <TextRepel
-                  key={item.id}
+                  key={item.href}
                   text={item.label}
                   className="text-left font-sans text-sm font-semibold text-white/70 hover:text-white transition-colors link-underline w-fit cursor-pointer"
                   radius={60}
                   strength={35}
                   mode="repel"
-                  onClick={() => handleClick(item.id)}
+                  onClick={() => router.push(item.href)}
                 />
               ))}
             </div>

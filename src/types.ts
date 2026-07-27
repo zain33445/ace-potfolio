@@ -23,6 +23,7 @@ export interface EstimationInputs {
   complexity: 'simple' | 'medium' | 'high';
   turnaroundSpeed: 'standard' | 'expedited';
   zipCode: string;
+  email: string;
 }
 
 export interface FAQItem {

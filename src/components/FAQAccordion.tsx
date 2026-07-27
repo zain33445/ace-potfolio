@@ -12,7 +12,7 @@ const questions: FAQItem[] = [
   {
     id: 'faq_02',
     question: 'What is a Class 3 construction estimate?',
-    answer: 'A Class 3 estimate, as defined by AACE International, provides a budgetary control level of accuracy suitable for project funding authorization — typically within ±10% to ±20%. The ACE Services delivers every estimate to AACE Class 3 standards using localized material databases and CSI MasterFormat divisions.'
+    answer: 'A Class 3 estimate, as defined by AACE International, provides a budgetary control level of accuracy suitable for project funding authorization, typically within ±10% to ±20%. The ACE Services delivers every estimate to AACE Class 3 standards using localized material databases and CSI MasterFormat divisions.'
   },
   {
     id: 'faq_03',

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     canonical: 'https://www.theaceservices.com/terms-and-conditions',
   },
   openGraph: {
-    title: 'Terms and Conditions | ACE SERVICES',
+  title: 'Terms and Conditions',
     description:
       'Terms and Conditions for ACE Services. Learn about the rules governing your use of our website and SMS messaging services.',
     url: 'https://www.theaceservices.com/terms-and-conditions',

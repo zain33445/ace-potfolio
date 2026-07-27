@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useCallback } from 'react';
 import { motion } from 'motion/react';
 import { ClipboardCheck, ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -15,6 +15,7 @@ export default function ProcessFlow() {
   const sceneRef = useRef<any>(null);
   const [sceneReady, setSceneReady] = useState(false);
   const currentStepRef = useRef(0);
+  const targetRef = useRef(activeStep);
   const [isMobile, setIsMobile] = useState(false);
 
   /* ── Responsive detection ── */
@@ -51,7 +52,13 @@ export default function ProcessFlow() {
     return () => observer.disconnect();
   }, [isMobile]);
 
-  /* ── Play 3D scene step animations ── */
+  /* ── Stable callback ref (only fires on mount/unmount, not every render) ── */
+  const sceneRefCallback = useCallback((node: any) => {
+    sceneRef.current = node;
+    if (node) setSceneReady(true);
+  }, []);
+
+  /* ── Persistent 3D animation loop (starts once, never restarts) ── */
   useEffect(() => {
     const scene = sceneRef.current;
     if (!scene) return;
@@ -61,40 +68,53 @@ export default function ProcessFlow() {
       scene.playStep2,
       scene.playStep3,
       scene.playStep4,
-    ];
-
-    const target = activeStep;
-    const current = currentStepRef.current;
-    if (target === current) return;
+    ] as Array<((speed?: number) => Promise<void>) | undefined>;
 
     let cancelled = false;
 
-    const play = async () => {
-      if (target > current) {
-        for (let i = current + 1; i <= target; i++) {
-          if (cancelled) return;
-          await fns[i - 1](0.8);
-          if (cancelled) return;
-          currentStepRef.current = i;
+    const loop = async () => {
+      while (true) {
+        if (cancelled) return;
+
+        const current = currentStepRef.current;
+        const target = targetRef.current;
+
+        if (current === target) {
+          await new Promise((r) => setTimeout(r, 200));
+          continue;
         }
-      } else if (target < current) {
-        scene.reset();
-        currentStepRef.current = 0;
-        for (let i = 1; i <= target; i++) {
-          if (cancelled) return;
-          await fns[i - 1](1.5);
-          if (cancelled) return;
-          currentStepRef.current = i;
+
+        try {
+          if (target > current) {
+            const fn = fns[current];
+            if (typeof fn !== 'function') {
+              await new Promise((r) => setTimeout(r, 500));
+              continue;
+            }
+            await fn(1.5);
+            if (cancelled) return;
+            currentStepRef.current = current + 1;
+          } else {
+            scene.reset();
+            currentStepRef.current = 0;
+          }
+        } catch {
+          await new Promise((r) => setTimeout(r, 500));
         }
       }
     };
 
-    play();
+    loop();
 
     return () => {
       cancelled = true;
     };
-  }, [activeStep, sceneReady]);
+  }, [sceneReady]);
+
+  /* ── Just update the target ref (no restart!) ── */
+  useEffect(() => {
+    targetRef.current = activeStep;
+  }, [activeStep]);
 
   /* ── Click step card → scroll to it ── */
   const handleStepClick = (idx: number) => {
@@ -118,12 +138,7 @@ export default function ProcessFlow() {
         SYSTEM: PROCESS_CLIPBOARD_MESH
       </div>
       <div className="w-full h-full absolute inset-0">
-        <ThreeScene
-          ref={(node) => {
-            sceneRef.current = node;
-            if (node && !sceneReady) setSceneReady(true);
-          }}
-        />
+        <ThreeScene ref={sceneRefCallback} />
       </div>
       <div className="absolute top-4 right-4 z-10 font-mono text-sm text-primary">
         {activeStep}/{STEP_COUNT}
@@ -178,7 +193,7 @@ export default function ProcessFlow() {
                   }`}
                 >
                   <span className="font-mono text-sm text-primary font-bold tracking-widest mb-1">
-                    STEP_{step.num}
+                    PROCESS_STEP
                   </span>
                   <h3 className={`font-space font-bold text-xl ${isFront ? 'text-primary' : 'text-on-background/50'}`}>
                     {step.title}

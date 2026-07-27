@@ -13,7 +13,7 @@ const solutions: SolutionItem[] = [
     id: 'sol_01',
     title: 'Construction Estimation',
     category: 'RESIDENTIAL, COMMERCIAL, INDUSTRIAL',
-    description: 'Comprehensive cost analysis across every sector \u2014 from single-family homes to complex industrial plants and public infrastructure. Our estimating team delivers professional-grade accuracy that helps contractors achieve an 89% bid win rate.',
+    description: 'Comprehensive cost analysis across every sector, from single-family homes to complex industrial plants and public infrastructure. Our estimating team delivers professional-grade accuracy that helps contractors achieve an 89% bid win rate.',
     details: [
       'Contractor Benefit: Secure high-stakes contracts with an 89% success rate backed by professional-grade accuracy',
       'Expert evaluation of architecture, framing layouts, concrete volumes, and site-prep overheads.',
@@ -46,7 +46,7 @@ const solutions: SolutionItem[] = [
     id: 'sol_04',
     title: 'Project Management & Scheduling',
     category: 'LIFECYCLE CONTROL',
-    description: 'Full lifecycle control from procurement timelines to labor sequencing. Our ISO 9001-standard project controls keep your project on budget and on schedule \u2014 making The ACE Services a true end-to-end construction cost consultant, not just an estimating vendor.',
+    description: 'Full lifecycle control from procurement timelines to labor sequencing. Our ISO 9001-standard project controls keep your project on budget and on schedule, making The ACE Services a true end-to-end construction cost consultant, not just an estimating vendor.',
     details: [
       'Contractor Benefit: Protect your timeline and your reputation by implementing ideas with maximum efficiency',
       'Dynamic gantt workflows, critical path mapping, and logistics coordination buffer periods.',

@@ -61,10 +61,10 @@ export default function TrustSignalsSection() {
               </div>
               <ul className="space-y-2.5">
                 {[
-                  '3–5 day turnaround on takeoffs',
-                  'Full-time estimator salary: $75k–$120k/yr',
-                  'Limited to 1–2 bids per week',
-                  'Software license fees ($3k–$8k/yr)',
+                  '3 to 5 day turnaround on takeoffs',
+                  'Full-time estimator salary: $75k to $120k/yr',
+                  'Limited to 1 to 2 bids per week',
+                  'Software license fees ($3k to $8k/yr)',
                   'No built-in QA / peer review',
                   'Bid capacity shrinks during PTO or sick leave',
                 ].map((item) => (
@@ -93,10 +93,10 @@ export default function TrustSignalsSection() {
               </div>
               <ul className="space-y-2.5">
                 {[
-                  '24–48 hour turnaround guaranteed',
-                  'Flat per-project fee — no salary overhead',
+                  '24 to 48 hour turnaround guaranteed',
+                  'Flat per-project fee, no salary overhead',
                   'Unlimited bid volume capacity',
-                  'We use PlanSwift & Bluebeam — no license cost to you',
+                  'We use PlanSwift & Bluebeam, no license cost to you',
                   'Mandatory two-stage QA per project',
                   'Scales instantly with your bid pipeline',
                 ].map((item) => (

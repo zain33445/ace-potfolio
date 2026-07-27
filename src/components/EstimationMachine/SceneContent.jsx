@@ -76,7 +76,7 @@ const SceneContent = forwardRef(function SceneContent(_, ref) {
 
   useFrame((_, delta) => {
     if (sRef.current.idleActive) {
-      idlePhase.current += delta * 1.5;
+      idlePhase.current += delta * 3;
     } else {
       idlePhase.current = 0;
     }

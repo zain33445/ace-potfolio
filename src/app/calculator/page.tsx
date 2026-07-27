@@ -5,10 +5,14 @@ export const metadata: Metadata = {
   title: 'Cost Calculator',
   description:
     'Get an instant preliminary cost estimate for your construction project. Our interactive calculator provides AACE Class 3 budgetary allocations based on project type, square footage, complexity, and regional cost factors.',
+  alternates: {
+    canonical: 'https://www.theaceservices.com/calculator',
+  },
   openGraph: {
     title: 'Cost Calculator | ACE SERVICES',
     description:
       'Interactive construction cost estimation engine. Configure project parameters and receive instant budgetary allocations with material, labor, equipment, and permit breakdowns.',
+    url: 'https://www.theaceservices.com/calculator',
   },
 };
 

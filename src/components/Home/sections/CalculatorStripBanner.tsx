@@ -90,7 +90,7 @@ export default function CalculatorStripBanner() {
                   type="submit"
                   className="inline-flex items-center justify-center gap-2 border-2 border-white bg-white px-6 py-3 font-mono text-sm font-bold uppercase tracking-wider text-primary transition-all hover:bg-transparent hover:text-white flex-shrink-0 bracket-corners"
                 >
-                  <span>Get Estimate</span>
+                  <span>Send My Estimate</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </form>

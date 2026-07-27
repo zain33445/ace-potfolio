@@ -19,7 +19,7 @@ export default function SolutionsSection() {
             Core Service Solutions
           </h2>
           <p className="font-sans text-lg text-on-surface-variant">
-            As a top construction and estimation company, The ACE Services operates across four specialized divisions engineered to deliver highly reliable pricing models, architectural reviews, and full-lifecycle project support — all built to fit tight bid schedule pipelines.
+            As a top construction and estimation company, The ACE Services operates across four specialized divisions engineered to deliver highly reliable pricing models, architectural reviews, and full-lifecycle project support, all built to fit tight bid schedule pipelines.
           </p>
         </div>
 

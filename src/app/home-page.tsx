@@ -28,8 +28,8 @@ export default function HomePage() {
       <CalculatorStripBanner />
       <ProjectsSection />
       <ProcessSection />
-      <FAQSection />
       <ContactSection />
+      <FAQSection />
     </div>
   );
 }

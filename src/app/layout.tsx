@@ -3,7 +3,7 @@ import { Inter, JetBrains_Mono, Space_Grotesk } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
 import LayoutShell from './layout-shell';
-import ClarityAnalytics from '@/src/components/ClarityAnalytics';
+import ThirdPartyScripts from '@/src/components/ThirdPartyScripts';
 
 /* ── next/font (self-hosted, no external render-blocking requests) ── */
 
@@ -213,6 +213,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
+      data-scroll-behavior="smooth"
       className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable}`}
     >
       <head>
@@ -234,8 +235,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
         />
         
-        {/* Preconnect to WordPress origin — first images are CMS-sourced (hero parallax, projects, etc.) */}
+        {/* Preconnect to WordPress & third-party origins */}
         <link rel="preconnect" href="https://theaceservices.com" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://connect.facebook.net" />
+        <link rel="preconnect" href="https://cdn.botpress.cloud" />
+        <link rel="preconnect" href="https://files.bpcontent.cloud" />
 
         {/* Google Analytics 4 */}
         {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID && (
@@ -276,12 +281,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             }}
           />
         )}
+
       </head>
       <body className="min-h-screen antialiased selection:bg-primary selection:text-white" suppressHydrationWarning>
-        {process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID && (
-          <ClarityAnalytics projectId={process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID} />
-        )}
+        <ThirdPartyScripts />
         <LayoutShell>{children}</LayoutShell>
+
       </body>
     </html>
   );

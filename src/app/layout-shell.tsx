@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import Nav from '../components/Nav';
 import { PinProvider } from '../PinContext';
-import Footer from '../components/Footer';
+const Footer = dynamic(() => import('../components/Footer'), { ssr: false });
 
 /* Lazy-load the CursorFollower — it also pulls in gsap. Keeping it
    out of the shared layout chunk saves ~50KB of JS on every page. */

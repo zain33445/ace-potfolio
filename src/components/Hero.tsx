@@ -36,7 +36,7 @@ export default function Hero() {
           style={{ scale: imageScale }}
         >
           <Image
-            src="/Blueprint2.jpeg"
+            src="/Blueprint2.webp"
             alt="Blueprint engineering plans — ACE Services"
             fill
             priority
@@ -52,40 +52,25 @@ export default function Hero() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(0,0,0,0.45)_100%)]" />
 
         {/* ─── Content stack ─── */}
-        <div className="relative z-10 flex h-full flex-col justify-center px-6 md:px-20 pt-20 md:pt-32">
+        <div className="relative z-10 flex h-full flex-col justify-center px-6 md:px-20 pt-20 md:pt-24">
           <div className="max-w-3xl">
-            {/* Eyebrow label */}
-            <p className="font-sans text-primary text-sm md:text-base font-semibold tracking-[0.2em] uppercase mb-4">
-              Top Pre-Construction &amp; Estimation Services in the US
-            </p>
+            {/* Eyebrow tagline */}
+            <h1 className="font-mono text-md bg-black display-inline px-2 py-1 w-fit tracking-[0.25em] uppercase text-primary/80 mb-4">
+              Top Pre-Construction &amp; Estimation Firm
+            </h1>
 
             {/* Magazine-cover headline — two lines max */}
-            <h1 className="font-space text-white text-[clamp(2.75rem,11vw,7rem)] font-black leading-[0.9] tracking-tighter">
+            <h2 className="font-space text-white text-[clamp(2.75rem,11vw,7rem)] font-black leading-[0.9] tracking-tighter">
               Stop Losing
               <br />
               Bids
-            </h1>
+            </h2>
 
             {/* Supporting copy */}
             <p className="font-sans text-white/80 text-[clamp(0.95rem,1.5vw,1.2rem)] max-w-xl mt-6 leading-relaxed">
-              Accurate AACE Class&nbsp;3 estimates and material takeoffs &mdash;
-              delivered in 24&ndash;48 hours. Win more work with precise,
+              Accurate AACE Class&nbsp;3 estimates and material takeoffs,
+              delivered in 24 to 48 hours. Win more work with precise,
               professional-grade pre-construction numbers.
-            </p>
-
-            {/* Trust badges */}
-            <p className="font-sans text-sm mt-8 text-white/70 leading-relaxed">
-              <span className="inline-block bg-white/15 backdrop-blur-sm px-3 py-1.5 rounded-md font-semibold text-white">
-                ✓ Trusted by 200+ Contractors
-              </span>
-              <span className="hidden md:inline mx-3 text-white/40">|</span>
-              <br className="md:hidden" />
-              <span className="text-primary font-bold">✓</span>{' '}
-              Residential &amp; Commercial
-              <span className="hidden md:inline mx-3 text-white/40">|</span>
-              <br className="md:hidden" />
-              <span className="text-primary font-bold">✓</span> 24–48 Hour
-              Turnaround
             </p>
 
             {/* CTAs */}

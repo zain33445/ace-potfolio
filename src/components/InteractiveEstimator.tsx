@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'motion/react';
-import { Calculator, DollarSign, Hammer, Truck, FileText, ChevronRight, Check, ArrowLeft, Sparkles } from 'lucide-react';
+import { Calculator, DollarSign, Hammer, Truck, FileText, ChevronRight, Check, ArrowLeft, Sparkles, Loader2, AlertCircle } from 'lucide-react';
 import { useLerpedDisplay } from '../features/estimator/useLerpedDisplay';
 import { useEstimator, steps } from '../features/estimator/useEstimator';
 import StepProjectType from '../features/estimator/steps/StepProjectType';
@@ -12,7 +12,8 @@ import StepReview from '../features/estimator/steps/StepReview';
 export default function InteractiveEstimator() {
   const {
     currentStep, inputs, setInputs, breakdown, activeTab, setActiveTab,
-    transmitted, handleTransmit, stepIndex, next, prev,
+    transmitted, handleTransmit, uploadedFile, setUploadedFile, submitStatus,
+    stepIndex, next, prev,
   } = useEstimator();
 
   const displayTotal = useLerpedDisplay(breakdown.total);
@@ -105,7 +106,7 @@ export default function InteractiveEstimator() {
                   <StepParams inputs={inputs} setInputs={setInputs} />
                 )}
                 {currentStep === 'review' && (
-                  <StepReview inputs={inputs} breakdown={breakdown} transmitted={transmitted} onTransmit={handleTransmit} />
+                  <StepReview inputs={inputs} setInputs={setInputs} breakdown={breakdown} transmitted={transmitted} onTransmit={handleTransmit} uploadedFile={uploadedFile} setUploadedFile={setUploadedFile} submitStatus={submitStatus} />
                 )}
               </motion.div>
             </AnimatePresence>
@@ -232,18 +233,22 @@ export default function InteractiveEstimator() {
             {currentStep === 'review' ? (
               <button
                 onClick={handleTransmit}
-                disabled={transmitted}
+                disabled={transmitted || submitStatus === 'sending'}
                 className="w-full bg-primary text-white font-mono text-sm font-bold uppercase tracking-widest py-3.5 bracket-corners hover-brackets transition-all duration-200 flex items-center justify-center gap-2 shadow-sm disabled:opacity-60"
               >
-                {transmitted ? (
-                  <><Sparkles className="w-4 h-4 text-yellow-300" /> Parameters Transmitted</>
+                {submitStatus === 'sending' ? (
+                  <><Loader2 className="w-4 h-4 animate-spin" /> Submitting...</>
+                ) : submitStatus === 'success' || transmitted ? (
+                  <><Sparkles className="w-4 h-4 text-yellow-300" /> Estimate Submitted</>
+                ) : submitStatus === 'error' ? (
+                  <><AlertCircle className="w-4 h-4" /> Failed — Try Again</>
                 ) : (
-                  <>Transmit Design Parameters <ChevronRight className="w-4 h-4" /></>
+                  <>Get Human Estimate <ChevronRight className="w-4 h-4" /></>
                 )}
               </button>
             ) : (
               <p className="text-center font-mono text-xs text-on-surface-variant uppercase tracking-wider">
-                Complete all steps to transmit design parameters
+                Complete all steps to submit for a human estimate
               </p>
             )}
           </div>
