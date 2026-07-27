@@ -63,14 +63,14 @@ export default function Hero() {
             <h1 className="font-space text-white text-[clamp(2.75rem,11vw,7rem)] font-black leading-[0.9] tracking-tighter">
               Stop Losing
               <br />
-              Bids.
+              Bids
             </h1>
 
             {/* Supporting copy */}
             <p className="font-sans text-white/80 text-[clamp(0.95rem,1.5vw,1.2rem)] max-w-xl mt-6 leading-relaxed">
-              Get the numbers right, win more work, and protect your margins.
-              We take care of your construction estimating, delivering precise
-              takeoffs and reliable cost estimates that support competitive bids.
+              Accurate AACE Class&nbsp;3 estimates and material takeoffs &mdash;
+              delivered in 24&ndash;48 hours. Win more work with precise,
+              professional-grade pre-construction numbers.
             </p>
 
             {/* Trust badges */}
@@ -96,11 +96,19 @@ export default function Hero() {
                     .getElementById('contact')
                     ?.scrollIntoView({ behavior: 'smooth' })
                 }
-                className="bg-primary text-white font-bold px-10 py-4 rounded-lg text-lg hover:brightness-110 transition-all"
+                className="group inline-flex items-center gap-2 border-2 border-primary bg-primary px-10 py-4 font-mono text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary bracket-corners"
               >
-                Bid Better
+                <span>Bid Better</span>
+                <span className="inline-block transition-transform group-hover:translate-x-1">→</span>
               </button>
-              <button className="text-white/90 font-medium text-sm underline underline-offset-8 decoration-primary decoration-2 hover:text-white transition-colors">
+              <button
+                onClick={() =>
+                  document
+                    .getElementById('projects')
+                    ?.scrollIntoView({ behavior: 'smooth' })
+                }
+                className="group inline-flex items-center gap-2 border border-white/30 bg-transparent px-8 py-4 font-mono text-sm font-bold uppercase tracking-wider text-white/90 transition-all hover:border-white hover:text-white bracket-corners"
+              >
                 See Our Work
               </button>
             </div>

@@ -9,6 +9,7 @@ const ProcessSection = dynamic(() => import('@/src/components/Home/sections/Proc
 // Sections with no browser API usage — SSR for CLS prevention
 const SolutionsSection = dynamic(() => import('@/src/components/Home/sections/SolutionsSection'));
 const TestimonialsSection = dynamic(() => import('@/src/components/Home/sections/TestimonialsSection'));
+const TrustSignalsSection = dynamic(() => import('@/src/components/Home/sections/TrustSignalsSection'));
 const CalculatorStripBanner = dynamic(() => import('@/src/components/Home/sections/CalculatorStripBanner'));
 const ProjectsSection = dynamic(() => import('@/src/components/Home/sections/ProjectsSection'));
 const FAQSection = dynamic(() => import('@/src/components/Home/sections/FAQSection'));
@@ -23,6 +24,7 @@ export default function HomePage() {
         <WhyChooseUsSection />
       </div>
       <TestimonialsSection />
+      <TrustSignalsSection />
       <CalculatorStripBanner />
       <ProjectsSection />
       <ProcessSection />

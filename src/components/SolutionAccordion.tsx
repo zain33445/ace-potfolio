@@ -13,7 +13,7 @@ const solutions: SolutionItem[] = [
     id: 'sol_01',
     title: 'Construction Estimation',
     category: 'RESIDENTIAL, COMMERCIAL, INDUSTRIAL',
-    description: 'Our core construction estimation services provide comprehensive cost analysis across every sector, from single-family homes to complex industrial plants and public infrastructure. As a leading construction cost estimating company, we combine expert evaluation of architecture, framing layouts, concrete volumes, and site-prep overheads with a high-speed 24–48 hour turnaround, so you never miss a bid deadline. Contractors who partner with our estimating team see an 89% bid win rate, backed by professional-grade accuracy on every quote.',
+    description: 'Comprehensive cost analysis across every sector \u2014 from single-family homes to complex industrial plants and public infrastructure. Our estimating team delivers professional-grade accuracy that helps contractors achieve an 89% bid win rate.',
     details: [
       'Contractor Benefit: Secure high-stakes contracts with an 89% success rate backed by professional-grade accuracy',
       'Expert evaluation of architecture, framing layouts, concrete volumes, and site-prep overheads.',
@@ -24,7 +24,7 @@ const solutions: SolutionItem[] = [
     id: 'sol_02',
     title: 'Quantity Surveyor Services & Material Lists',
     category: 'BILL OF QUANTITIES',
-    description: 'Our quantity surveying company division delivers precise bills of quantities (BOQ) and material takeoff services built directly from your blueprints. Every quantity takeoff is verified for measurement accuracy, division-wise material volumes, and procurement-ready data, eliminating on-site waste and costly overordering before construction even begins.',
+    description: 'Precise bills of quantities (BOQ) and material takeoff services built directly from your blueprints. Every takeoff is verified for measurement accuracy and procurement-ready data, eliminating on-site waste and costly overordering before construction begins.',
     details: [
       'Contractor Benefit: Eliminate material waste and mid-project budget spikes with precise procurement data',
       'CSI MasterFormat division pricing schedules matching regional rates.',
@@ -35,7 +35,7 @@ const solutions: SolutionItem[] = [
     id: 'sol_03',
     title: 'Permit Sets & 3D Renderings',
     category: 'MUNICIPAL SUBMISSION & RENDERS',
-    description: 'Beyond estimating, The ACE Services prepares fully compliant permit sets and photorealistic 3D renderings for municipal submission. Our pre-construction documentation team ensures your architectural drawings meet local code requirements while giving stakeholders a clear visual of the finished project, streamlining approvals and reducing costly revision cycles.',
+    description: 'Fully compliant permit sets and photorealistic 3D renderings ready for municipal submission. Our pre-construction documentation team ensures your drawings meet local code requirements while giving stakeholders a clear visual of the finished project.',
     details: [
       'Contractor Benefit: Fast-track your approval process and win stakeholder buy-in with meticulous shop drawings and visual sets',
       'Double-verified structural and architectural layouts matching local municipal codes.',
@@ -46,7 +46,7 @@ const solutions: SolutionItem[] = [
     id: 'sol_04',
     title: 'Project Management & Scheduling',
     category: 'LIFECYCLE CONTROL',
-    description: 'Our project management and scheduling division extends your pre-construction advantage into full lifecycle control. From procurement timelines to labor sequencing, our team keeps your project on budget and on schedule using ISO 9001-standard project controls, making The ACE Services a true end-to-end construction cost consultant, not just an estimating vendor.',
+    description: 'Full lifecycle control from procurement timelines to labor sequencing. Our ISO 9001-standard project controls keep your project on budget and on schedule \u2014 making The ACE Services a true end-to-end construction cost consultant, not just an estimating vendor.',
     details: [
       'Contractor Benefit: Protect your timeline and your reputation by implementing ideas with maximum efficiency',
       'Dynamic gantt workflows, critical path mapping, and logistics coordination buffer periods.',
@@ -291,7 +291,7 @@ function DetailPanelContent({ item }: { item: SolutionItem }) {
 
       <Link
         href={serviceHref}
-        className="group mt-6 inline-flex items-center gap-2 border border-primary bg-primary px-6 py-3 font-mono text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary w-full justify-center"
+        className="group mt-6 inline-flex items-center gap-2 border border-blueprint-line bg-transparent px-6 py-3 font-mono text-sm font-bold uppercase tracking-wider text-on-surface-variant transition-all hover:border-primary hover:text-primary w-full justify-center bracket-corners"
       >
         <span>VIEW FULL SERVICE</span>
         <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
