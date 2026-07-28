@@ -286,7 +286,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-screen antialiased selection:bg-primary selection:text-white" suppressHydrationWarning>
         <ThirdPartyScripts />
         <LayoutShell>{children}</LayoutShell>
-
       </body>
     </html>
   );

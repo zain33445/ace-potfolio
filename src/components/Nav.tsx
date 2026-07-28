@@ -62,7 +62,7 @@ export default function Nav() {
     <>
       <nav
         ref={navRef}
-        className={`fixed z-50 flex justify-between items-center px-4 md:px-6 py-3 transition-all duration-500 top-0 left-0 w-full rounded-none h-16 md:h-24  ${
+        className={`fixed z-50 flex justify-between items-center px-4 md:px-6 py-3 transition-all duration-500 top-0 left-0 w-full rounded-none h-16 md:h-22  ${
           !isHome
             ? 'bg-white border-b border-blueprint-line/10 shadow-sm'
             : navScrolled
@@ -81,9 +81,9 @@ export default function Nav() {
           <img
             src="/aceLogo.png"
             alt=""
-            width={180}
-            height={45}
-            className='h-10 md:h-18 w-auto'
+            width={80}
+            height={30}
+            className='h-16 md:h-16 w-auto'
           />
 {/* 
           <span className="font-mono text-xl md:text-3xl font-bold tracking-tight whitespace-nowrap text-on-surface-variant">

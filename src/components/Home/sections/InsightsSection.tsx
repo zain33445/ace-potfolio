@@ -1,6 +1,7 @@
 'use client';
 
 import { ArrowUpRight } from 'lucide-react';
+import Link from 'next/link';
 import Reveal from '../../../components/Reveal';
 import type { Insight } from '../../../services/wordpress';
 
@@ -40,11 +41,9 @@ export default function InsightsSection({ insights }: InsightsSectionProps) {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {insights.map((post) => (
-              <a
+              <Link
                 key={post.id}
-                href={post.url}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={`/blog/${post.slug}`}
                 className="group flex flex-col border border-blueprint-line bg-background bracket-corners overflow-hidden hover:border-primary transition-all duration-300"
               >
                 {post.image && (
@@ -72,7 +71,7 @@ export default function InsightsSection({ insights }: InsightsSectionProps) {
                     <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </span>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </div>

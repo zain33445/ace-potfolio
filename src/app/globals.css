@@ -66,6 +66,12 @@
   scroll-behavior: smooth;
 }
 
+html {
+  font-size: 13px;
+}
+
+
+
 body {
   cursor: crosshair;
   background-color: var(--color-background);
@@ -753,4 +759,10 @@ body {
 
 .toc-sidebar-scroll::-webkit-scrollbar {
   display: none;
+}
+
+/* ── Hero image load animation ─────────────────────────────── */
+@keyframes hero-scale-in {
+  from { transform: scale(1.5); }
+  to   { transform: scale(1);    }
 }

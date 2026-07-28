@@ -62,10 +62,14 @@ export default function WhyChooseUsSection() {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const [activeStep, setActiveStep] = useState(0);
-  const pinnedLocked = useRef(false);
   const [isDesktop, setIsDesktop] = useState(true);
   const { setPinned } = usePin();
   const [isPinned, setIsPinned] = useState(false);
+  const [shouldExpand, setShouldExpand] = useState(false);
+  const [contentHeight, setContentHeight] = useState(0);
+  const lastStepTimeRef = useRef(0);
+  const activeStepRef = useRef(0);
+  const STEP_MIN_DURATION = 800;
 
   /* ── Responsive ── */
   useEffect(() => {
@@ -76,9 +80,32 @@ export default function WhyChooseUsSection() {
     return () => mq.removeEventListener('change', h);
   }, []);
 
-  /* ── Scroll tracking (desktop only) — forward only, reverse releases pin ── */
+  /* ── Measure content height for smooth expansion ── */
   useEffect(() => {
     if (!isDesktop) return;
+    requestAnimationFrame(() => {
+      if (wrapperRef.current) {
+        setContentHeight(wrapperRef.current.offsetHeight);
+      }
+    });
+  }, [isDesktop]);
+
+  /* ── IntersectionObserver: expand wrapper when section is near viewport ── */
+  useEffect(() => {
+    if (!isDesktop) return;
+    const w = wrapperRef.current;
+    if (!w) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setShouldExpand(entry.isIntersecting),
+      { rootMargin: '100% 0px 100% 0px' }
+    );
+    observer.observe(w);
+    return () => observer.disconnect();
+  }, [isDesktop]);
+
+  /* ── Scroll tracking (desktop only) — forward only, reverse releases pin ── */
+  useEffect(() => {
+    if (!isDesktop || !shouldExpand) return;
     const w = wrapperRef.current;
     if (!w) return;
     let lastP = 0;
@@ -91,20 +118,29 @@ export default function WhyChooseUsSection() {
       lastP = p;
 
       if (scrollingForward) {
-        const step = Math.min(PILLARS.length + 1, Math.max(0, Math.floor(p * (PILLARS.length + 2))));
-        setActiveStep(prev => Math.max(prev, step));
-        if (p > 0.05 && p < 0.95) {
-          pinnedLocked.current = true;
+        const now = Date.now();
+        const rawStep = Math.min(PILLARS.length + 1, Math.max(0, Math.floor(p * (PILLARS.length + 2))));
+        setActiveStep(prev => {
+          const canAdvance = prev === 0 || (now - lastStepTimeRef.current) >= STEP_MIN_DURATION;
+          if (canAdvance) {
+            const next = Math.min(rawStep, prev + 1);
+            if (next > prev) {
+              lastStepTimeRef.current = now;
+              activeStepRef.current = next;
+              return next;
+            }
+          }
+          return prev;
+        });
+        if (p > 0.05 && p < 0.99 && activeStepRef.current < PILLARS.length + 1) {
           setPinned(true);
           setIsPinned(true);
-        } else if (p >= 0.95) {
-          pinnedLocked.current = false;
+        } else {
           setPinned(false);
           setIsPinned(false);
         }
       } else {
-        // Reverse scroll — collapse height, release pin
-        pinnedLocked.current = false;
+        // Reverse scroll — release pin
         setPinned(false);
         setIsPinned(false);
       }
@@ -112,7 +148,7 @@ export default function WhyChooseUsSection() {
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener('scroll', onScroll);
-  }, [setPinned, isDesktop]);
+  }, [setPinned, isDesktop, shouldExpand]);
 
   /* ── Generate full SVG on mount ── */
   useEffect(() => {
@@ -452,6 +488,18 @@ export default function WhyChooseUsSection() {
       pillarsG.appendChild(genStrauss(idx, p.x, cy, p.h));
     });
     svg.appendChild(pillarsG);
+
+    // Set scanner sweep distance proportional to pillar height
+    const svgHeight = svg.clientHeight || svg.getBoundingClientRect().height;
+    if (svgHeight > 0) {
+      const scale = svgHeight / 1000;
+      PILLARS.forEach((p, idx) => {
+        const group = document.getElementById(`pillar-${idx}`);
+        if (group) {
+          group.style.setProperty('--scan-h', `${Math.round(p.h * scale)}px`);
+        }
+      });
+    }
   }, [isDesktop]);
 
   /* ── Drive active step (monotonic — never reverses) ── */
@@ -461,15 +509,15 @@ export default function WhyChooseUsSection() {
     // Bridge superstructure — clip-path sweep from top
     const rectBridge = document.getElementById('rect-bridge');
     if (rectBridge && activeStep >= 1) {
-      rectBridge.setAttribute('height', '1000');
       rectBridge.style.transition = 'height 1.6s cubic-bezier(0.16, 1, 0.3, 1)';
+      rectBridge.style.height = '1000px';
     }
 
     // Callouts — appear after bridge is built
     const rectCallouts = document.getElementById('rect-callouts');
     if (rectCallouts && activeStep >= 1) {
-      rectCallouts.setAttribute('height', '1000');
       rectCallouts.style.transition = 'height 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.8s';
+      rectCallouts.style.height = '1000px';
     }
 
     // Pillars — shift by 1 (step 1 = bridge, steps 2–5 = pillars)
@@ -480,7 +528,10 @@ export default function WhyChooseUsSection() {
 
       if (activeStep > idx + 1) {
         group.classList.add('active');
-        if (scan) scan.style.animation = 'none';
+        if (scan) {
+          scan.style.animation = 'none';
+          scan.style.opacity = '0';
+        }
       } else if (activeStep === idx + 2) {
         group.classList.add('active');
         if (scan) {
@@ -497,7 +548,12 @@ export default function WhyChooseUsSection() {
       id="why-choose-us"
       ref={wrapperRef}
       className={`relative bg-background border-b border-blueprint-line ${isDesktop ? '' : ''}`}
-      style={isDesktop ? { height: isPinned ? `${(PILLARS.length + 2) * 100}vh` : 'auto' } : {}}
+      style={isDesktop ? {
+        transition: 'height 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+        height: shouldExpand
+          ? `${(PILLARS.length + 2) * window.innerHeight}px`
+          : `${contentHeight || window.innerHeight}px`,
+      } : {}}
     >
       <div className={isDesktop ? isPinned ? 'sticky top-0 h-screen overflow-hidden' : '' : ''}>
         <div className={`relative w-full h-full ${isDesktop ? 'flex items-center justify-center' : 'flex flex-col'}`}>
@@ -520,7 +576,7 @@ export default function WhyChooseUsSection() {
           {isDesktop ? (
             <>
               <div
-                className="relative w-[75%] max-w-[1150px] translate-x-[25%]"
+                className="relative w-[65%] max-w-[997px] translate-x-[25%]"
                 style={{ aspectRatio: '1200 / 1000' }}
               >
                 <svg

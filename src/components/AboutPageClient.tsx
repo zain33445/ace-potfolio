@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { Shield, Heart, ShieldCheck, Compass, Check, ArrowRight } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import Reveal from '@/src/components/Reveal';
@@ -73,7 +74,7 @@ export default function AboutPageClient() {
       {/* ── Breadcrumb ── */}
       <div className="px-5 md:px-10 lg:px-[12.5%] mx-auto pt-8 pb-4">
         <nav className="font-mono text-xs text-on-surface-variant tracking-wider">
-          <span className="hover:text-primary cursor-pointer transition-colors">HOME</span>
+          <Link href="/" className="hover:text-primary transition-colors">HOME</Link>
           <span className="mx-2 opacity-40">/</span>
           <span className="text-primary font-bold">ABOUT</span>
         </nav>
@@ -113,12 +114,12 @@ export default function AboutPageClient() {
               </div>
 
               <div className="pt-4">
-                <a
+                <Link
                   href="/contact"
                   className="inline-flex items-center gap-2 bg-primary text-white font-bold px-8 py-3 rounded-lg text-lg hover:bg-primary/90 transition-colors"
                 >
                   Consult Now <ArrowRight className="w-5 h-5" />
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -197,12 +198,12 @@ export default function AboutPageClient() {
               </div>
 
               <div className="pt-4">
-                <a
+                <Link
                   href="/contact"
                   className="inline-flex items-center gap-2 bg-primary text-white font-bold px-8 py-3 rounded-lg text-lg hover:bg-primary/90 transition-colors"
                 >
                   Consult Now <ArrowRight className="w-5 h-5" />
-                </a>
+                </Link>
               </div>
             </div>
           </div>
