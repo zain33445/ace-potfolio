@@ -64,9 +64,9 @@ export default function Nav() {
         ref={navRef}
         className={`fixed z-50 flex justify-between items-center px-4 md:px-6 py-3 transition-all duration-500 top-0 left-0 w-full rounded-none h-16 md:h-22  ${
           !isHome
-            ? 'bg-white border-b border-blueprint-line/10 shadow-sm'
+            ? 'bg-white border-b border-primary shadow-sm'
             : navScrolled
-              ? 'bg-white/20 backdrop-blur-3xl border shadow-2xl shadow-black/5 ring-1 ring-inset border-transparent ring-transparent'
+              ? 'bg-white/20 backdrop-blur-3xl border shadow-2xl shadow-black/5 ring-1 ring-inset border-transparent border-b-primary ring-transparent'
               : 'bg-transparent'
         } ${
           isPinned ? '-translate-y-full' : 'translate-y-0 '
