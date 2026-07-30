@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { motion } from 'motion/react';
-import { usePin } from '../../../PinContext';
+import { motion, useScroll, useMotionValueEvent } from 'motion/react';
+import { ErrorBoundary } from '../../ui/ErrorBoundary';
 
 /* ── Card content (unchanged) ── */
 const cards = [
@@ -28,20 +28,20 @@ const cards = [
   },
 ];
 
-/* ── Pillar geometry (viewBox 1200×900) ── */
+/* ── Pillar geometry (viewBox 1200×1420) ── */
 const PILLARS = [
-  { x: 150, h: 360 },
-  { x: 380, h: 160 },
-  { x: 820, h: 160 },
-  { x: 1050, h: 360 },
+  { x: 200, h: 250 },
+  { x: 410, h: 500 },
+  { x: 650, h: 750 },
+  { x: 880, h: 1000 },
 ];
 
-/* ── Symmetrical valley card positions (1200/1000 viewBox) ── */
+/* ── Card positions (1200/1420 viewBox) ── */
 const CARD_POSITIONS = [
-  { left: '12.50%', top: '70%' },
-  { left: '31.66%', top: '53.5%' },
-  { left: '68.33%', top: '53.5%' },
-  { left: '87.50%', top: '74%' },
+  { left: '16.33%', top: '37%' },
+  { left: '35.67%', top: '55%' },
+  { left: '55.67%', top: '73%' },
+  { left: '73.83%', top: '91%' },
 ];
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
@@ -59,17 +59,11 @@ function elHTML(tag: string, attrs: Record<string, string> = {}, html: string) {
 }
 
 export default function WhyChooseUsSection() {
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const svgRef = useRef<SVGSVGElement>(null);
-  const [activeStep, setActiveStep] = useState(0);
+   const wrapperRef = useRef<HTMLDivElement>(null);
+   const svgRef = useRef<SVGSVGElement>(null);
+   const stepRef = useRef(0);
   const [isDesktop, setIsDesktop] = useState(true);
-  const { setPinned } = usePin();
-  const [isPinned, setIsPinned] = useState(false);
-  const [shouldExpand, setShouldExpand] = useState(false);
-  const [contentHeight, setContentHeight] = useState(0);
-  const lastStepTimeRef = useRef(0);
-  const activeStepRef = useRef(0);
-  const STEP_MIN_DURATION = 800;
+  const [activeStep, setActiveStep] = useState(0);
 
   /* ── Responsive ── */
   useEffect(() => {
@@ -80,75 +74,51 @@ export default function WhyChooseUsSection() {
     return () => mq.removeEventListener('change', h);
   }, []);
 
-  /* ── Measure content height for smooth expansion ── */
-  useEffect(() => {
+  /* ── Scroll-driven 5-step reveal ── */
+  const { scrollYProgress } = useScroll({
+    target: wrapperRef,
+    offset: ['start end', 'end start'],
+  });
+  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
     if (!isDesktop) return;
-    requestAnimationFrame(() => {
-      if (wrapperRef.current) {
-        setContentHeight(wrapperRef.current.offsetHeight);
-      }
+    // Explicit thresholds — step 5 fires at 0.65 so it's
+    // reliably reached even when the scroll range is limited.
+    const step =
+      latest >= 0.65 ? 5 :
+      latest >= 0.45 ? 4 :
+      latest >= 0.25 ? 3 :
+      latest >= 0.10 ? 2 :
+      latest >= 0.02 ? 1 : 0;
+    const clamped = Math.min(5, Math.max(0, step));
+    stepRef.current = clamped;
+    setActiveStep(clamped);
+  });
+
+  /* ── Apply step to SVG elements (synchronous, no re-render needed) ── */
+  const applyStepRef = useRef<(step: number) => void>(() => {});
+  applyStepRef.current = (step: number) => {
+    const bridge = document.getElementById('bridge-superstructure');
+    if (bridge) {
+      bridge.style.opacity = step >= 1 ? '1' : '0';
+      bridge.style.transform = step >= 1 ? 'translateY(0)' : 'translateY(20px)';
+    }
+    const callouts = document.getElementById('bridge-callouts');
+    if (callouts) {
+      callouts.style.opacity = step >= 1 ? '1' : '0';
+      callouts.style.transform = step >= 1 ? 'translateY(0)' : 'translateY(20px)';
+    }
+    PILLARS.forEach((_, idx) => {
+      const g = document.getElementById(`pillar-${idx}`);
+      if (!g) return;
+      const pStep = idx + 2;
+      g.style.opacity = step >= pStep ? '1' : '0';
+      g.style.transform = step >= pStep ? 'translateY(0)' : 'translateY(30px)';
     });
-  }, [isDesktop]);
+  };
 
-  /* ── IntersectionObserver: expand wrapper when section is near viewport ── */
   useEffect(() => {
-    if (!isDesktop) return;
-    const w = wrapperRef.current;
-    if (!w) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => setShouldExpand(entry.isIntersecting),
-      { rootMargin: '100% 0px 100% 0px' }
-    );
-    observer.observe(w);
-    return () => observer.disconnect();
-  }, [isDesktop]);
-
-  /* ── Scroll tracking (desktop only) — forward only, reverse releases pin ── */
-  useEffect(() => {
-    if (!isDesktop || !shouldExpand) return;
-    const w = wrapperRef.current;
-    if (!w) return;
-    let lastP = 0;
-    const onScroll = () => {
-      const rect = w.getBoundingClientRect();
-      const scrollable = w.offsetHeight - window.innerHeight;
-      if (scrollable <= 0) return;
-      const p = Math.max(0, Math.min(1, -rect.top / scrollable));
-      const scrollingForward = p >= lastP;
-      lastP = p;
-
-      if (scrollingForward) {
-        const now = Date.now();
-        const rawStep = Math.min(PILLARS.length + 1, Math.max(0, Math.floor(p * (PILLARS.length + 2))));
-        setActiveStep(prev => {
-          const canAdvance = prev === 0 || (now - lastStepTimeRef.current) >= STEP_MIN_DURATION;
-          if (canAdvance) {
-            const next = Math.min(rawStep, prev + 1);
-            if (next > prev) {
-              lastStepTimeRef.current = now;
-              activeStepRef.current = next;
-              return next;
-            }
-          }
-          return prev;
-        });
-        if (p > 0.05 && p < 0.99 && activeStepRef.current < PILLARS.length + 1) {
-          setPinned(true);
-          setIsPinned(true);
-        } else {
-          setPinned(false);
-          setIsPinned(false);
-        }
-      } else {
-        // Reverse scroll — release pin
-        setPinned(false);
-        setIsPinned(false);
-      }
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [setPinned, isDesktop, shouldExpand]);
+    applyStepRef.current(activeStep);
+  }, [activeStep]);
 
   /* ── Generate full SVG on mount ── */
   useEffect(() => {
@@ -164,17 +134,7 @@ export default function WhyChooseUsSection() {
     const pat = el('pattern', { id: 'grid', width: '30', height: '30', patternUnits: 'userSpaceOnUse' });
     pat.appendChild(el('path', { d: 'M 30 0 L 0 0 0 30', fill: 'none', stroke: 'rgba(30,41,59,0.04)', 'stroke-width': '0.5' }));
     defs.appendChild(pat);
-    svg.appendChild(el('rect', { width: '1200', height: '900', fill: 'url(#grid)' }));
-
-    // Clip-path for bridge construction sweep
-    const clipBridge = el('clipPath', { id: 'clip-bridge' });
-    clipBridge.appendChild(el('rect', { id: 'rect-bridge', x: '0', y: '0', width: '1200', height: '0' }));
-    defs.appendChild(clipBridge);
-
-    // Clip-path for callouts (delayed reveal)
-    const clipCallouts = el('clipPath', { id: 'clip-callouts' });
-    clipCallouts.appendChild(el('rect', { id: 'rect-callouts', x: '0', y: '0', width: '1200', height: '0' }));
-    defs.appendChild(clipCallouts);
+    svg.appendChild(el('rect', { width: '1200', height: '1420', fill: 'url(#grid)' }));
 
     // ── Hero focal point ──
     svg.appendChild(el('polygon', { points: '550,130 650,130 650,330 550,330', fill: 'rgba(180,83,9,0.08)' }));
@@ -183,7 +143,7 @@ export default function WhyChooseUsSection() {
     // ══════════════════════════════════════════════════════════════
     // 1. SUSPENSION BRIDGE SUPERSTRUCTURE
     // ══════════════════════════════════════════════════════════════
-    const superG = el('g', { id: 'bridge-superstructure', 'clip-path': 'url(#clip-bridge)' });
+    const superG = el('g', { id: 'bridge-superstructure' });
 
     const dx = 40;
     const dy = -25;
@@ -303,7 +263,7 @@ export default function WhyChooseUsSection() {
     // ══════════════════════════════════════════════════════════════
     // 2. CAD CALLOUT ANNOTATIONS
     // ══════════════════════════════════════════════════════════════
-    const calloutsG = el('g', { id: 'bridge-callouts', 'clip-path': 'url(#clip-callouts)' });
+    const calloutsG = el('g', { id: 'bridge-callouts' });
     const drawCallout = (sx: number, sy: number, ex: number, ey: number, title: string) => {
       calloutsG.appendChild(elHTML('line', {
         x1: String(sx), y1: String(sy), x2: String(ex), y2: String(ey),
@@ -473,150 +433,135 @@ export default function WhyChooseUsSection() {
         stroke: 'rgba(180,83,9,0.15)', 'stroke-width': '1',
       }));
 
-      // Scanner polygon
-      group.appendChild(el('polygon', {
-        id: `scan-${idx}`,
-        class: 'scanner',
-        points: `${cx - wTop - 4},${y0} ${cx + wTop + 4},${y0} ${cx + wTop + pdx + 4},${y0 + pdy} ${cx - wTop + pdx - 4},${y0 + pdy}`,
-      }));
-
       return group;
     };
 
     PILLARS.forEach((p, idx) => {
-      const cy = (p.x === 150 || p.x === 1050) ? 398 : 375;
-      pillarsG.appendChild(genStrauss(idx, p.x, cy, p.h));
+      const cy = (idx === 0 || idx === 3) ? 398 : 375;
+      const group = genStrauss(idx, p.x, cy, p.h);
+      group.style.opacity = '0';
+      group.style.transform = 'translateY(30px)';
+      group.style.transition = 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+      pillarsG.appendChild(group);
     });
     svg.appendChild(pillarsG);
 
-    // Set scanner sweep distance proportional to pillar height
-    const svgHeight = svg.clientHeight || svg.getBoundingClientRect().height;
-    if (svgHeight > 0) {
-      const scale = svgHeight / 1000;
-      PILLARS.forEach((p, idx) => {
-        const group = document.getElementById(`pillar-${idx}`);
-        if (group) {
-          group.style.setProperty('--scan-h', `${Math.round(p.h * scale)}px`);
-        }
-      });
-    }
+    /* ── Step-driven reveal handled by applyStepRef in a separate effect ── */
+    applyStepRef.current(0);
   }, [isDesktop]);
 
-  /* ── Drive active step (monotonic — never reverses) ── */
-  useEffect(() => {
-    if (!isDesktop) return;
-
-    // Bridge superstructure — clip-path sweep from top
-    const rectBridge = document.getElementById('rect-bridge');
-    if (rectBridge && activeStep >= 1) {
-      rectBridge.style.transition = 'height 1.6s cubic-bezier(0.16, 1, 0.3, 1)';
-      rectBridge.style.height = '1000px';
-    }
-
-    // Callouts — appear after bridge is built
-    const rectCallouts = document.getElementById('rect-callouts');
-    if (rectCallouts && activeStep >= 1) {
-      rectCallouts.style.transition = 'height 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.8s';
-      rectCallouts.style.height = '1000px';
-    }
-
-    // Pillars — shift by 1 (step 1 = bridge, steps 2–5 = pillars)
-    PILLARS.forEach((_, idx) => {
-      const group = document.getElementById(`pillar-${idx}`);
-      const scan = document.getElementById(`scan-${idx}`) as SVGPolygonElement | null;
-      if (!group) return;
-
-      if (activeStep > idx + 1) {
-        group.classList.add('active');
-        if (scan) {
-          scan.style.animation = 'none';
-          scan.style.opacity = '0';
-        }
-      } else if (activeStep === idx + 2) {
-        group.classList.add('active');
-        if (scan) {
-          scan.style.animation = 'none';
-          void scan.getBoundingClientRect(); // reflow trigger
-          scan.style.animation = 'scanSweep 1.2s ease-in-out forwards';
-        }
-      }
-    });
-  }, [activeStep, isDesktop]);
+  const cardAnimate = (idx: number) => {
+    // Cards 0-3 reveal at steps 1-4 (bridge first, then cards follow)
+    const revealAt = Math.min(idx + 2, 5);
+    return activeStep >= revealAt ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 30, scale: 1 };
+  };
 
   return (
-    <div
-      id="why-choose-us"
-      ref={wrapperRef}
-      className={`relative bg-background border-b border-blueprint-line ${isDesktop ? '' : ''}`}
-      style={isDesktop ? {
-        transition: 'height 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
-        height: shouldExpand
-          ? `${(PILLARS.length + 2) * window.innerHeight}px`
-          : `${contentHeight || window.innerHeight}px`,
-      } : {}}
-    >
-      <div className={isDesktop ? isPinned ? 'sticky top-0 h-screen overflow-hidden' : '' : ''}>
-        <div className={`relative w-full h-full ${isDesktop ? 'flex items-center justify-center' : 'flex flex-col'}`}>
-          {/* Heading — left corner on desktop, top on mobile */}
-          <div className={`${isDesktop ? 'absolute top-20 left-16 z-20 max-w-lg' : 'relative px-6 pt-24 pb-8 z-20 max-w-lg mx-auto'} text-left space-y-3 pointer-events-none`}>
-            <span className="font-mono text-sm text-primary font-bold block">
-              [DIFFERENTIATOR_MATRIX]
-            </span>
-            <h2 className="font-space text-3xl md:text-5xl font-extrabold text-on-background tracking-tighter">
-              Why Choose The ACE Services?
-            </h2>
-            <div className="pt-1">
-              <div className="w-16 h-0.5 bg-primary rounded-full" />
-            </div>
-            <p className="font-sans text-base md:text-lg text-on-surface-variant font-medium">
-              What makes The ACE Services the top construction and estimation company in the industry? Elite mathematical modeling, multi-layered audit procedures, and a national track record that speaks for itself.
-            </p>
-          </div>
+    <ErrorBoundary>
+      <section
+        id="why-choose-us"
+        ref={wrapperRef}
+        className="relative min-h-[190vh] bg-background border-b border-blueprint-line"
+        aria-label="Why Choose Us"
+      >
+           {isDesktop ? (
+             <div className="relative flex flex-row items-start pt-10 pb-12 w-full px-8">
+                {/* ── Text content (left column) ── */}
+                <div className="w-[30%] shrink-0 space-y-5 mt-50">
+                  <span className="font-mono text-sm text-primary font-bold block">
+                    [DIFFERENTIATOR_MATRIX]
+                  </span>
+                  <h2 className="font-space text-3xl md:text-4xl font-extrabold text-on-background tracking-tighter">
+                    Why Choose The ACE Services?
+                  </h2>
+                  <div className="pt-0.5">
+                    <div className="w-12 h-0.5 bg-primary rounded-full" />
+                  </div>
+                  <p className="font-sans text-sm md:text-lg text-on-surface-variant text-center font-medium max-w-md leading-relaxed">
+                    What makes The ACE Services the top construction and estimation company in the industry? Elite mathematical modeling, multi-layered audit procedures, and a national track record that speaks for itself.
+                  </p>
+                </div>
 
-          {isDesktop ? (
-            <>
-              <div
-                className="relative w-[65%] max-w-[997px] translate-x-[25%]"
-                style={{ aspectRatio: '1200 / 1000' }}
-              >
-                <svg
-                  ref={svgRef}
-                  viewBox="0 0 1200 1000"
-                  className="w-full h-full pointer-events-none"
-                  preserveAspectRatio="xMidYMid meet"
-                />
+                {/* ── Bridge illustration (right column, 30% bigger) ── */}
+                <div className="w-[70%] overflow-visible">
+                  <div
+                    className="relative w-full origin-top-left"
+                    style={{
+                      aspectRatio: '1200 / 1420',
+                      transform: 'scale(1)',
+                      transformOrigin: 'top left',
+                    }}
+                  >
+                    <svg
+                      ref={svgRef}
+                      viewBox="0 0 1200 1420"
+                      className="w-full h-full pointer-events-none"
+                      preserveAspectRatio="xMidYMid meet"
+                      role="img"
+                      aria-label="Suspension bridge illustration representing four foundational strengths of The ACE Services: bid win rate, expert oversight, national reach, and ISO-standard precision"
+                    />
 
-                {cards.map((card, i) => {
-                  const isActive = activeStep > i + 1 || activeStep === i + 2;
-                  return (
-                    <div
-                      key={card.label}
-                      className={`absolute pointer-events-auto bridge-card${isActive ? ' active' : ''}`}
-                      style={{
-                        left: CARD_POSITIONS[i].left,
-                        top: CARD_POSITIONS[i].top,
-                        width: '35%',
-                        transform: 'translateX(-50%)',
-                      }}
-                    >
-                      <div className="p-5 border border-blueprint-line bg-surface/95 backdrop-blur-md hover:border-primary transition-colors duration-300 bracket-corners border-t-[3px] border-t-primary rounded-md shadow-[0_20px_40px_rgba(0,0,0,0.04),0_1px_3px_rgba(0,0,0,0.02)]">
-                        <span className="font-mono text-xs text-[#FF6B00] font-bold tracking-widest block mb-2">
-                          {card.label}
-                        </span>
-                        <h3 className="font-space font-extrabold text-base text-on-background mb-2 uppercase leading-snug">
-                          {card.title}
-                        </h3>
-                        <p className="font-sans text-[13px] text-on-surface-variant leading-relaxed font-semibold">
-                          {card.desc}
-                        </p>
-                      </div>
-                    </div>
-                  );
-                })}
+                    {cards.map((card, i) => (
+                      <motion.div
+                        key={card.label}
+                        className="absolute pointer-events-auto"
+                        style={{
+                          left: CARD_POSITIONS[i].left,
+                          top: CARD_POSITIONS[i].top,
+                          width: '40%',
+                          marginLeft: '-17.5%',
+                        }}
+                        animate={cardAnimate(i)}
+                        transition={{ duration: 0.5, delay: 0.08 }}
+                      >
+                        <div className="p-5 border border-blueprint-line bg-surface/95 backdrop-blur-md hover:border-primary transition-colors duration-300 bracket-corners border-t-[3px] border-t-primary rounded-md shadow-[0_20px_40px_rgba(0,0,0,0.04),0_1px_3px_rgba(0,0,0,0.02)]">
+                          <span className="font-mono text-xs text-[#FF6B00] font-bold tracking-widest block mb-2">
+                            {card.label}
+                          </span>
+                          <h3 className="font-space font-extrabold text-base text-on-background mb-2 uppercase leading-snug">
+                            {card.title}
+                          </h3>
+                          <p className="font-sans text-[13px] text-on-surface-variant leading-relaxed font-semibold">
+                            {card.desc}
+                          </p>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+
+            {/* ── Scroll progress indicator ── */}
+            <div className="fixed bottom-8 right-8 z-20 flex items-center gap-2 font-mono text-xs text-primary">
+              <div className="flex gap-1.5">
+                {Array.from({ length: 6 }).map((_, s) => (
+                  <div
+                    key={s}
+                    className={`w-2 h-2 rounded-full transition-colors duration-300 ${
+                      activeStep >= s ? 'bg-primary' : 'bg-blueprint-line'
+                    }`}
+                  />
+                ))}
               </div>
-            </>
-          ) : (
-            <div className="relative z-10 grid grid-cols-1 gap-6 px-6 max-w-md mx-auto pb-16">
+              <span className="tabular-nums ml-1">{activeStep}/5</span>
+            </div>
+          </div>
+        ) : (
+          <div className="relative z-10 flex flex-col px-6 pt-24 pb-16 max-w-md mx-auto">
+            <div className="text-left space-y-3 mb-10">
+              <span className="font-mono text-sm text-primary font-bold block">
+                [DIFFERENTIATOR_MATRIX]
+              </span>
+              <h2 className="font-space text-3xl md:text-5xl font-extrabold text-on-background tracking-tighter">
+                Why Choose The ACE Services?
+              </h2>
+              <div className="pt-1">
+                <div className="w-16 h-0.5 bg-primary rounded-full" />
+              </div>
+              <p className="font-sans text-base md:text-lg text-on-surface-variant font-medium">
+                What makes The ACE Services the top construction and estimation company in the industry? Elite mathematical modeling, multi-layered audit procedures, and a national track record that speaks for itself.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 gap-6">
               {cards.map((card, i) => (
                 <motion.div
                   key={card.label}
@@ -638,9 +583,9 @@ export default function WhyChooseUsSection() {
                 </motion.div>
               ))}
             </div>
-          )}
-        </div>
-      </div>
-    </div>
+          </div>
+        )}
+      </section>
+    </ErrorBoundary>
   );
 }
