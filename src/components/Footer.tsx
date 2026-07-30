@@ -115,7 +115,7 @@ export default function Footer() {
                 <TextRepel
                   key={item}
                   text={item}
-                  className="font-sans text-sm text-white/70 font-semibold"
+                  className="font-sans text-sm text-white/70 font-semibold cursor-pointer"
                   radius={60}
                   strength={35}
                   mode="repel"
