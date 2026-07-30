@@ -2,7 +2,7 @@ import Reveal from '../../../components/Reveal';
 
 export default function TestimonialsSection() {
   return (
-    <div id="testimonials" className="py-24 px-6 md:px-16 border-b border-blueprint-line bg-surface relative">
+    <section id="testimonials" className="py-24 px-6 md:px-16 border-b border-blueprint-line bg-surface relative" aria-label="Client Testimonials">
       <Reveal type="fadeUp">
         <div className="absolute inset-0 bg-[radial-gradient(#f1f5f9_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none opacity-40" />
         <div className="max-w-5xl mx-auto relative z-10">
@@ -64,6 +64,6 @@ export default function TestimonialsSection() {
           </div>
         </div>
       </Reveal>
-    </div>
+    </section>
   );
 }

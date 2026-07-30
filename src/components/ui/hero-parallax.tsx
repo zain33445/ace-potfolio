@@ -17,19 +17,6 @@ export interface HeroParallaxProduct {
   thumbnail: string;
 }
 
-/* ── SSR-safe media query via useSyncExternalStore (React 18+) ── */
-function useMediaQuery(query: string): boolean {
-  return React.useSyncExternalStore(
-    (callback) => {
-      const mql = window.matchMedia(query);
-      mql.addEventListener("change", callback);
-      return () => mql.removeEventListener("change", callback);
-    },
-    () => window.matchMedia(query).matches,
-    () => false, // SSR snapshot — render desktop layout on server
-  );
-}
-
 /* ── Shared spring config (stable reference, no per-render allocation) ── */
 const springConfig = { stiffness: 150, damping: 20, bounce: 0 };
 
@@ -44,8 +31,6 @@ export const HeroParallax = ({
   headerH2?: string;
   headerH3?: string;
 }) => {
-  const isMobile = useMediaQuery("(max-width: 767px)");
-
   const firstRow = products.slice(0, 5);
   const secondRow = products.slice(5, 10);
   const thirdRow = products.slice(10, 15);
@@ -104,10 +89,10 @@ export const HeroParallax = ({
   // Shared counter-rotation — avoids 30 individual useTransform hooks in ProductCard
   const counterRotate = useTransform(rotateZ, (val) => -val);
 
-  if (isMobile) {
-    // ... (Mobile code remains the same)
-    return (
-      <div className="antialiased relative">
+  return (
+    <div className="antialiased relative">
+      {/* ── Mobile: video header (CSS-toggled, no React conditional) ── */}
+      <div className="md:hidden">
         <section className="h-screen grid place-items-center relative overflow-hidden bg-black">
           <video
             autoPlay
@@ -124,110 +109,111 @@ export const HeroParallax = ({
           </div>
         </section>
       </div>
-    );
-  }
 
-  return (
-    <section
-      ref={ref}
-      className="relative h-[240vh]" // Slightly taller for better scroll feel
-    >
-      <div className="sticky top-40 h-screen flex items-start justify-start z-20 px-20 pointer-events-none">
-        <Header h1={headerH1} h2={headerH2} h3={headerH3} />
-      </div>
-
-      <motion.div
-        style={{ opacity: headingOpacity, y: headingY }}
-        className="sticky top-[30vh] z-10 flex flex-col items-center justify-center px-20 pointer-events-none text-center"
-      >
-        <h2 className="font-sans text-[clamp(2rem,4vw,3.5rem)] font-extrabold text-center text-[#111827] leading-tight">
-          Our Estimation Projects
-        </h2>
-        <p className="font-sans text-[clamp(0.9rem,1.5vw,1.1rem)] text-center text-[#374151] mt-4">
-          Click IMG to Open Project
-        </p>
-      </motion.div>
-
-      <div className="absolute inset-[0px] z-0 overflow-hidden bg-[#F5F5F5] [perspective:500px] [transform-style:preserve-3d]">
-        <motion.div
-          style={{
-            rotateX,
-            rotateZ, // This now applies the "/" slant
-            translateY,
-            opacity,
-          }}
-          className="pt-[15vh] will-change-transform"
+      {/* ── Desktop: 240vh parallax section (CSS-toggled, no React conditional) ── */}
+      <div className="hidden md:block">
+        <section
+          ref={ref}
+          className="relative h-[240vh]" // Slightly taller for better scroll feel
         >
-          {/* Row 1 — first visible row: load with high priority (LCP driver) */}
-          <div className="flex flex-row space-x-8 mb-8 marquee-desktop-content ">
-            {reversedFirstRow.map((product) => (
-              <ProductCard
-                product={product}
-                translate={translateXDesktop}
-                scrollGrayscale={imageGrayscale}
-                fetchPriority="high"
-                loading="eager"
-                key={product.title}
-              />
-            ))}
-            {reversedFirstRow.map((product) => (
-              <ProductCard
-                product={product}
-                translate={translateXDesktop}
-                scrollGrayscale={imageGrayscale}
-                fetchPriority="high"
-                loading="eager"
-                key={`${product.title}-dup`}
-              />
-            ))}
+          <div className="sticky top-40 h-screen flex items-start justify-start z-20 px-20 pointer-events-none">
+            <Header h1={headerH1} h2={headerH2} h3={headerH3} />
           </div>
 
-          {/* Row 2 — midway, use low priority to avoid competing with LCP */}
-          <div className="flex flex-row space-x-8 mb-8 marquee-desktop-content marquee-desktop-content--reverse">
-            {secondRow.map((product) => (
-              <ProductCard
-                product={product}
-                translate={translateXReverseDesktop}
-                scrollGrayscale={imageGrayscale}
-                fetchPriority="low"
-                key={product.title}
-              />
-            ))}
-            {secondRow.map((product) => (
-              <ProductCard
-                product={product}
-                translate={translateXReverseDesktop}
-                scrollGrayscale={imageGrayscale}
-                fetchPriority="low"
-                key={`${product.title}-dup`}
-              />
-            ))}
-          </div>
+          <motion.div
+            style={{ opacity: headingOpacity, y: headingY }}
+            className="sticky top-[30vh] z-10 flex flex-col items-center justify-center px-20 pointer-events-none text-center"
+          >
+            <h2 className="font-sans text-[clamp(2rem,4vw,3.5rem)] font-extrabold text-center text-[#111827] leading-tight">
+              Our Estimation Projects
+            </h2>
+            <p className="font-sans text-[clamp(0.9rem,1.5vw,1.1rem)] text-center text-[#374151] mt-4">
+              Click IMG to Open Project
+            </p>
+          </motion.div>
 
-          {/* Row 3 — deepest scroll row, low priority */}
-          <div className="flex flex-row space-x-8 mb-8 marquee-desktop-content ">
-            {reversedThirdRow.map((product) => (
-              <ProductCard
-                product={product}
-                translate={translateXDesktop}
-                scrollGrayscale={imageGrayscale}
-                fetchPriority="low"
-                key={product.title}
-              />
-            ))}
-            {reversedThirdRow.map((product) => (
-              <ProductCard
-                product={product}
-                translate={translateXDesktop}
-                scrollGrayscale={imageGrayscale}
-                fetchPriority="low"
-                key={`${product.title}-dup`}
-              />
-            ))}
+          <div className="absolute inset-[0px] z-0 overflow-hidden bg-[#F5F5F5] [perspective:500px] [transform-style:preserve-3d]">
+            <motion.div
+              style={{
+                rotateX,
+                rotateZ, // This now applies the "/" slant
+                translateY,
+                opacity,
+              }}
+              className="pt-[15vh] will-change-transform"
+            >
+              {/* Row 1 — first visible row: load with high priority (LCP driver) */}
+              <div className="flex flex-row space-x-8 mb-8 marquee-desktop-content ">
+                {reversedFirstRow.map((product) => (
+                  <ProductCard
+                    product={product}
+                    translate={translateXDesktop}
+                    scrollGrayscale={imageGrayscale}
+                    fetchPriority="high"
+                    loading="eager"
+                    key={product.title}
+                  />
+                ))}
+                {reversedFirstRow.map((product) => (
+                  <ProductCard
+                    product={product}
+                    translate={translateXDesktop}
+                    scrollGrayscale={imageGrayscale}
+                    fetchPriority="high"
+                    loading="eager"
+                    key={`${product.title}-dup`}
+                  />
+                ))}
+              </div>
+
+              {/* Row 2 — midway, use low priority to avoid competing with LCP */}
+              <div className="flex flex-row space-x-8 mb-8 marquee-desktop-content marquee-desktop-content--reverse">
+                {secondRow.map((product) => (
+                  <ProductCard
+                    product={product}
+                    translate={translateXReverseDesktop}
+                    scrollGrayscale={imageGrayscale}
+                    fetchPriority="low"
+                    key={product.title}
+                  />
+                ))}
+                {secondRow.map((product) => (
+                  <ProductCard
+                    product={product}
+                    translate={translateXReverseDesktop}
+                    scrollGrayscale={imageGrayscale}
+                    fetchPriority="low"
+                    key={`${product.title}-dup`}
+                  />
+                ))}
+              </div>
+
+              {/* Row 3 — deepest scroll row, low priority */}
+              <div className="flex flex-row space-x-8 mb-8 marquee-desktop-content ">
+                {reversedThirdRow.map((product) => (
+                  <ProductCard
+                    product={product}
+                    translate={translateXDesktop}
+                    scrollGrayscale={imageGrayscale}
+                    fetchPriority="low"
+                    key={product.title}
+                  />
+                ))}
+                {reversedThirdRow.map((product) => (
+                  <ProductCard
+                    product={product}
+                    translate={translateXDesktop}
+                    scrollGrayscale={imageGrayscale}
+                    fetchPriority="low"
+                    key={`${product.title}-dup`}
+                  />
+                ))}
+              </div>
+            </motion.div>
           </div>
-        </motion.div>
+        </section>
       </div>
-    </section>
+    </div>
   );
 };
 

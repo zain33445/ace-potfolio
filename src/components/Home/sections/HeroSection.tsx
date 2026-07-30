@@ -1,30 +1,28 @@
-import { useSyncExternalStore } from 'react';
 import Hero from '@/src/components/Hero';
 import { HeroParallax } from '@/src/components/ui/hero-parallax';
-
-function useMediaQuery(query: string): boolean {
-  return useSyncExternalStore(
-    (callback) => {
-      const mql = window.matchMedia(query);
-      mql.addEventListener('change', callback);
-      return () => mql.removeEventListener('change', callback);
-    },
-    () => window.matchMedia(query).matches,
-    () => false,
-  );
-}
 
 const headerH1 = 'Top Pre-Construction & Estimation Firm';
 const headerH2 = 'Stop Losing Bids';
 const headerH3 =
   'Accurate AACE Class 3 estimates and material takeoffs, delivered in 24 to 48 hours. Win more work with precise, professional-grade pre-construction numbers.';
 
+/**
+ * Both desktop and mobile layouts are rendered into the DOM.
+ * CSS media queries (hidden md:block / block md:hidden) toggle visibility
+ * without swapping React nodes — zero hydration mismatch, zero CLS.
+ *
+ * The desktop Hero h2 is always present in the server HTML for LCP.
+ */
 export default function HeroSection() {
-  const isMobile = useMediaQuery('(max-width: 767px)');
+  return (
+    <div id="hero-top" className="relative flex flex-col items-stretch">
+      {/* Desktop hero — fullscreen h-svh with scroll zoom + parallax */}
+      <div className="hidden md:block">
+        <Hero />
+      </div>
 
-  if (isMobile) {
-    return (
-      <div id="hero-top" className="relative flex flex-col items-stretch">
+      {/* Mobile hero — video header + parallax cards */}
+      <div className="md:hidden">
         <HeroParallax
           products={[]}
           headerH1={headerH1}
@@ -46,12 +44,6 @@ export default function HeroSection() {
           </div>
         </div>
       </div>
-    );
-  }
-
-  return (
-    <div id="hero-top" className="relative flex flex-col items-stretch">
-      <Hero />
     </div>
   );
 }

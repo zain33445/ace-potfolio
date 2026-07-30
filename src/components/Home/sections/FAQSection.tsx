@@ -3,7 +3,7 @@ import FAQAccordion from '../../../components/FAQAccordion';
 
 export default function FAQSection() {
   return (
-    <div id="faq" className="py-24 px-6 md:px-16 border-b border-blueprint-line bg-surface relative">
+    <section id="faq" className="py-24 px-6 md:px-16 border-b border-blueprint-line bg-surface relative" aria-label="Frequently Asked Questions">
       <Reveal type="fadeUp">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
@@ -18,6 +18,6 @@ export default function FAQSection() {
           <FAQAccordion />
         </div>
       </Reveal>
-    </div>
+    </section>
   );
 }

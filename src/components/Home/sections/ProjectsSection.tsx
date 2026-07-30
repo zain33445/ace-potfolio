@@ -7,9 +7,10 @@ export default function ProjectsSection() {
   const projects = getAllProjects().slice(0, 4); // Show first 4 on homepage
 
   return (
-    <div
+    <section
       id="projects"
       className="py-18 bg-background border-b border-blueprint-line relative"
+      aria-label="Our Projects"
     >
       <Reveal type="fadeUp">
         <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none opacity-40" />
@@ -102,6 +103,6 @@ export default function ProjectsSection() {
           </div>
         </div>
       </Reveal>
-    </div>
+    </section>
   );
 }

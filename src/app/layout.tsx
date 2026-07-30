@@ -207,6 +207,105 @@ const howToSchema = {
   ],
 };
 
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'The ACE Services',
+  image: 'https://www.theaceservices.com/og-image.png',
+  url,
+  telephone: '+1-214-555-0123',
+  priceRange: '$$',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Dallas',
+    addressLocality: 'Dallas',
+    addressRegion: 'TX',
+    postalCode: '75001',
+    addressCountry: 'US',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 32.7767,
+    longitude: -96.797,
+  },
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens: '08:00',
+    closes: '18:00',
+  },
+  sameAs: [
+    'https://www.linkedin.com/company/aceservicesllc/',
+    'https://twitter.com',
+  ],
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Construction Estimating',
+  provider: {
+    '@type': 'Organization',
+    name: 'The ACE Services',
+    url,
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: 'United States',
+  },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Construction Estimating Services',
+    itemListElement: [
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'AACE Class 3 Cost Estimates',
+          description: 'Professional budgetary-level cost estimates with ±10% to ±20% accuracy range, suitable for project funding authorization.',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Material Takeoffs',
+          description: 'Detailed quantity surveys measuring all materials, labor, and equipment from architectural blueprints using algorithmic digitization.',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Permit Sets',
+          description: 'Complete permit-ready document packages including cost schedules and material specifications for municipal submission.',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Project Scheduling',
+          description: 'Professional project timeline development and scheduling services for pre-construction planning.',
+        },
+      },
+    ],
+  },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: `${url}/`,
+    },
+  ],
+};
+
 /* ── Root Layout ─────────────────────────────────────────────── */
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -234,6 +333,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        />
         
         {/* Preconnect to WordPress & third-party origins */}
         <link rel="preconnect" href="https://theaceservices.com" />
@@ -241,6 +352,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://connect.facebook.net" />
         <link rel="preconnect" href="https://cdn.botpress.cloud" />
         <link rel="preconnect" href="https://files.bpcontent.cloud" />
+
+        {/* Preload Roboto Flex variable font (used by TextPressure in footer) */}
+        <link
+          rel="preload"
+          href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght@8..144,25..151,100..1000&display=swap"
+          as="style"
+        />
 
         {/* Google Analytics 4 */}
         {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID && (

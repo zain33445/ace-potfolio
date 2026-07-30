@@ -16,11 +16,11 @@
 
 ## 2. Design Philosophy
 
-The brand presents as a **technical, engineering-grade, industrial tool** — not a traditional construction company website. The aesthetic merges:
+The brand looks like a **technical, engineering-grade, industrial tool** — not a typical construction company website. The design mixes:
 
-- **Blueprint/ schematic drafting** — grid overlays, bracket corners (`[ ]`), monochrome with orange accents, crosshair cursor
-- **Software / systems interface** — system IDs like `[TAKEOFF_ENGINE_DEMO]`, pseudo-terminal labels, blinking status indicators
-- **Precision instrumentation** — wireframe 3D models, oscillating scan lines, measurement tick marks
+- **Blueprint/ drawing look** — grid overlays, bracket corners (`[ ]`), monochrome with orange accents, crosshair cursor
+- **Software / systems feel** — system IDs like `[TAKEOFF_ENGINE_DEMO]`, pseudo-terminal labels, blinking status indicators
+- **Precision instruments** — wireframe 3D models, oscillating scan lines, measurement tick marks
 - **Industrial minimalism** — generous whitespace, monochromatic grays, single accent color
 
 The tone is authoritative and data-driven, speaking directly to construction professionals who value accuracy and speed over visual fluff.
@@ -114,7 +114,7 @@ All buttons use `tracking-wider` or `tracking-widest`, small monospace font, and
 
 ### Bracket corners (`bracket-corners` class)
 
-A signature visual element: small corner brackets (`┐ ┌ ┘ └`) drawn with CSS `::before`/`::after` pseudo-elements on cards, buttons, and input fields. The brackets are 8×8px, primary color, and expand to 12×12px on hover (`.hover-brackets`). This reinforces the blueprint/drafting theme.
+A signature visual element: small corner brackets (`┐ ┌ ┘ └`) drawn with CSS `::before`/`::after` pseudo-elements on cards, buttons, and input fields. The brackets are 8×8px, primary color, and expand to 12×12px on hover (`.hover-brackets`). This reinforces the blueprint/drawing look.
 
 ### Accordion (Solutions section)
 - Click-to-expand card list on left, detail panel with animated transition on right

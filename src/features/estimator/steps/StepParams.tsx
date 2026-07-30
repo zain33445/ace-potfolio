@@ -55,9 +55,10 @@ export default function StepParams({ inputs, setInputs }: { inputs: Inputs; setI
         </div>
       </div>
       <div className="space-y-2">
-        <label className="block font-mono text-xs text-primary tracking-widest uppercase font-bold">[TAX_LOCATION] Regional Cost Multiplier (Zip Code)</label>
+        <label htmlFor="zip-code" className="block font-mono text-xs text-primary tracking-widest uppercase font-bold">[TAX_LOCATION] Regional Cost Multiplier (Zip Code)</label>
         <div className="relative">
           <input
+            id="zip-code"
             type="text"
             maxLength={5}
             value={inputs.zipCode}

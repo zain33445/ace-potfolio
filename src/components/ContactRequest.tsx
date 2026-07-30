@@ -447,7 +447,11 @@ export default function ContactRequest() {
                           {/* Name input */}
                           <div className="relative p-[1px] rounded-[1.25rem] bg-gradient-to-b from-blueprint-line/20 to-transparent">
                             <div className="relative rounded-[calc(1.25rem-1px)] bg-background overflow-hidden">
+                              <label htmlFor="contact-name" className="sr-only">
+                                Your name
+                              </label>
                               <input
+                                id="contact-name"
                                 type="text"
                                 required
                                 value={form.name}
@@ -462,7 +466,11 @@ export default function ContactRequest() {
                           {/* Email input */}
                           <div className="relative p-[1px] rounded-[1.25rem] bg-gradient-to-b from-blueprint-line/20 to-transparent">
                             <div className="relative rounded-[calc(1.25rem-1px)] bg-background overflow-hidden">
+                              <label htmlFor="contact-email" className="sr-only">
+                                Email address
+                              </label>
                               <input
+                                id="contact-email"
                                 type="email"
                                 required
                                 value={form.email}

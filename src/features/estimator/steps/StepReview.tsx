@@ -62,10 +62,11 @@ export default function StepReview({
 
       {/* Email Input */}
       <div className="bg-background border border-blueprint-line p-4">
-        <p className="font-mono text-xs text-on-surface-variant uppercase tracking-wider font-bold mb-2">
+        <label htmlFor="review-email" className="font-mono text-xs text-on-surface-variant uppercase tracking-wider font-bold mb-2 block">
           Email Address <span className="text-red-500">*</span>
-        </p>
+        </label>
         <input
+          id="review-email"
           type="email"
           value={inputs.email}
           onChange={(e) => setInputs({ ...inputs, email: e.target.value })}
@@ -101,6 +102,7 @@ export default function StepReview({
           <button
             onClick={() => fileInputRef.current?.click()}
             className="w-full border-2 border-dashed border-blueprint-line p-4 text-center hover:border-primary hover:bg-surface/50 transition-all duration-200 cursor-pointer group"
+            aria-label="Upload plans or drawings"
           >
             <Upload className="w-5 h-5 text-on-surface-variant group-hover:text-primary mx-auto mb-1 transition-colors" />
             <span className="font-mono text-xs text-on-surface-variant group-hover:text-primary transition-colors">

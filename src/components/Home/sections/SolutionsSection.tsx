@@ -7,9 +7,10 @@ export default function SolutionsSection() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <div
+    <section
       id="solutions"
       className="relative bg-background border-b border-blueprint-line"
+      aria-label="Core Service Solutions"
     >
       <div className="w-full max-w-8xl mx-auto px-6 md:px-16 py-12 flex flex-col">
         {/* Heading */}
@@ -29,6 +30,6 @@ export default function SolutionsSection() {
           onCardClick={setActiveIndex}
         />
       </div>
-    </div>
+    </section>
   );
 }

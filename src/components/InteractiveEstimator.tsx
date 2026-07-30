@@ -85,7 +85,7 @@ export default function InteractiveEstimator() {
           </div>
 
           {/* Step content */}
-          <div className="relative flex-1 min-h-[280px]">
+          <div className="relative flex-1 min-h-[280px]" aria-live="polite" aria-atomic="true">
             <AnimatePresence mode="wait" custom={stepIndex}>
               <motion.div
                 key={currentStep}
@@ -136,7 +136,7 @@ export default function InteractiveEstimator() {
         </div>
 
         {/* RIGHT COLUMN: Persistent cost panel */}
-        <div className="lg:col-span-5 p-6 bg-background/30 flex flex-col justify-between">
+        <div className="lg:col-span-5 p-6 bg-background/30 flex flex-col justify-between" aria-live="polite" aria-atomic="true">
           <div>
             <div className="flex justify-between items-start mb-6">
               <div>

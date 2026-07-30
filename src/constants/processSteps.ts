@@ -18,53 +18,53 @@ export const steps: Step[] = [
   {
     id: 1,
     num: '01',
-    title: 'Structural Data Ingestion',
-    desc: 'Transmit your blueprints architectural layouts, site measurements, scope narratives, or custom municipal constraints through our bank-grade secure server channel.',
+    title: 'Send Us Your Files',
+    desc: 'Upload your blueprints, drawings, measurements, project details, or any local building requirements through our secure upload system.',
     icon: Database,
     benchmarks: [
-      'Zoning compliance check',
-      'Duplicate & missing document scan',
-      'Scale verification & alignment audit'
+      'Building code compliance check',
+      'Missing or duplicate file detection',
+      'Scale and alignment verification',
     ],
-    output: 'Validated CAD specifications & client scope constraints'
+    output: 'Verified drawings and project requirements',
   },
   {
     id: 2,
     num: '02',
-    title: 'Algorithmic Quantity Takeoff',
-    desc: 'Our quantity surveyors perform exhaustive computational dissection utilizing localized material standards-databases and professional digitization platforms.',
+    title: 'We Measure Everything',
+    desc: 'Our team counts every material you need using local pricing databases and professional measurement tools.',
     icon: Laptop,
     benchmarks: [
-      'Precise structural grid tracking',
-      'Division-wise material volume count',
-      'Zonal labor efficiency calculations'
+      'Accurate structural grid tracking',
+      'Material quantities by category',
+      'Labor cost estimates by area',
     ],
-    output: 'Raw cost-multipliers and takeoff draft schedule'
+    output: 'Material quantities and preliminary cost estimates',
   },
   {
     id: 3,
     num: '03',
-    title: 'Dual-Stage verification review',
-    desc: 'All programmatic estimates undergo parallel reviews by principal civil engineers to filter any variances or localized market rate fluctuations before compilation.',
+    title: 'Expert Review',
+    desc: 'Senior engineers review all estimates side-by-side to catch errors and adjust for local pricing before finalizing.',
     icon: ShieldAlert,
     benchmarks: [
-      'AACE Class 3 regulatory limits check',
-      'Localized vendor rate confirmation',
-      'Weather & timeline buffer alignment'
+      'AACE Class 3 standards compliance',
+      'Local supplier price verification',
+      'Weather and timeline adjustments',
     ],
-    output: 'Peer-reviewed, safety-certified estimate set'
+    output: 'Reviewed and approved cost estimates',
   },
   {
     id: 4,
     num: '04',
-    title: 'Delivery Protocol Transmission',
-    desc: 'Instant delivery of final cost-schedules including completely interactive Microsoft Excel spreadsheets and stamped PDF dossiers designed for presentation.',
+    title: 'Get Your Deliverables',
+    desc: 'Receive your final cost breakdown in editable Excel spreadsheets and professional PDF reports, ready to share with clients.',
     icon: BadgeCheck,
     benchmarks: [
-      'CSI Division format structure',
-      'Editable formula arrays unlocked',
-      'Drafting sheets metadata compilation'
+      'CSI Division format organization',
+      'Editable formulas included',
+      'Complete documentation package',
     ],
-    output: 'Excel BOQ matrix & architectural stamps'
-  }
+    output: 'Excel bill of quantities and stamped reports',
+  },
 ];

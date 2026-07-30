@@ -1,19 +1,19 @@
 'use client';
 
-import { useRef, useLayoutEffect } from 'react';
+import { useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import gsap from 'gsap';
+import { motion, useScroll, useTransform, useMotionValue } from 'motion/react';
 
 /* ═══════════════════════════════════════════════════════════════════
    Fullscreen Blueprint Hero — scroll-driven zoom, cursor parallax,
    and initial load scale (1.5 → 1)
+
+   Uses Framer Motion exclusively — no GSAP dependency.
    ═══════════════════════════════════════════════════════════════════ */
 
 export default function Hero() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const parallaxRef = useRef<HTMLDivElement>(null);
 
   /* Track scroll progress within this section */
   const { scrollYProgress } = useScroll({
@@ -24,72 +24,102 @@ export default function Hero() {
   /* Map scroll progress to a subtle zoom (1 → 1.15) */
   const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
 
-  /* ── Cursor parallax (translate only — scale is CSS @keyframes) ── */
-  useLayoutEffect(() => {
-    const el = parallaxRef.current;
-    if (!el) return;
-    if (!window.matchMedia('(min-width: 768px)').matches) return;
+  /* ── Cursor parallax via motion values (no GSAP) ── */
+  const cursorX = useRef(0);
+  const cursorY = useRef(0);
+  const rafId = useRef<number>(0);
+  const parallaxX = useRef(0);
+  const parallaxY = useRef(0);
+  const ticking = useRef(false);
 
-    const setX = gsap.quickTo(el, 'x', { ease: 'power3.out', duration: 0.6 });
-    const setY = gsap.quickTo(el, 'y', { ease: 'power3.out', duration: 0.6 });
+  const setParallaxX = useMotionValue(0);
+  const setParallaxY = useMotionValue(0);
 
-    const handleMouseMove = (e: MouseEvent) => {
-      const rect = el.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      const deltaX = (e.clientX - centerX) / rect.width;
-      const deltaY = (e.clientY - centerY) / rect.height;
-      setX(deltaX * 30);
-      setY(deltaY * 30);
-    };
+  /* Smooth interpolation loop — runs independently of React render */
+  const tick = () => {
+    const lerp = 0.12;
+    parallaxX.current += (cursorX.current - parallaxX.current) * lerp;
+    parallaxY.current += (cursorY.current - parallaxY.current) * lerp;
+    setParallaxX.set(parallaxX.current);
+    setParallaxY.set(parallaxY.current);
 
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    if (Math.abs(cursorX.current - parallaxX.current) > 0.01 ||
+        Math.abs(cursorY.current - parallaxY.current) > 0.01) {
+      rafId.current = requestAnimationFrame(tick);
+    } else {
+      ticking.current = false;
+    }
+  };
 
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      gsap.killTweensOf(el);
-    };
-  }, []);
+  /* Start / stop the animation loop based on pointer events */
+  const handlePointerMove = (e: React.PointerEvent) => {
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const dx = ((e.clientX - vw / 2) / vw) * 30;
+    const dy = ((e.clientY - vh / 2) / vh) * 30;
+
+    cursorX.current = dx;
+    cursorY.current = dy;
+
+    if (!ticking.current) {
+      ticking.current = true;
+      rafId.current = requestAnimationFrame(tick);
+    }
+  };
+
+  const handlePointerLeave = () => {
+    cursorX.current = 0;
+    cursorY.current = 0;
+    if (!ticking.current) {
+      ticking.current = true;
+      rafId.current = requestAnimationFrame(tick);
+    }
+  };
 
   return (
     <>
       {/* ─── Fullscreen hero ─── */}
       <section
         ref={sectionRef}
+        onPointerMove={handlePointerMove}
+        onPointerLeave={handlePointerLeave}
         className="relative h-svh w-full overflow-hidden bg-[#1a1a1a]"
+        aria-label="Hero"
       >
-        {/* CSS-animated scale layer — 1.5 → 1 on first paint, no JS needed */}
-        <div
+        {/* Scale-in layer — 1.5 → 1 on first paint */}
+        <motion.div
           className="absolute inset-0 will-change-transform"
-          style={{ animation: 'hero-scale-in 1.8s cubic-bezier(0.33, 1, 0.68, 1) forwards' }}
+          initial={{ scale: 1.5 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1.5, ease: [0.33, 1, 0.68, 1], delay: 0 }}
         >
-        {/* Parallax layer — GSAP tracks cursor (translate only) */}
-        <div
-          ref={parallaxRef}
-          className="absolute inset-0 will-change-transform"
-        >
-          {/* Scroll-driven background image — scales up as you scroll down */}
+          {/* Parallax layer — Framer Motion tracks cursor via motion values */}
           <motion.div
             className="absolute inset-0 will-change-transform"
-            style={{ scale: imageScale }}
+            style={{ x: setParallaxX, y: setParallaxY }}
           >
-            <Image
-              src="/Blueprint2.webp"
-              alt="Blueprint engineering plans — ACE Services"
-              fill
-              priority
-              className="object-cover"
-              sizes="100vw"
-            />
+            {/* Scroll-driven background image — scales up as you scroll down */}
+            <motion.div
+              className="absolute inset-0 will-change-transform"
+              style={{ scale: imageScale }}
+            >
+              <Image
+                src="/Blueprint2.webp"
+                alt="Blueprint engineering plans — ACE Services"
+                fill
+                priority
+                className="object-cover"
+                sizes="102vw"
+              />
+            </motion.div>
           </motion.div>
-        </div>
-        </div>
+        </motion.div>
 
         {/* Gradient overlay — darkens edges for text legibility */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/35 to-black/75" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/15 to-black/50" />
 
         {/* Subtle vignette */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(0,0,0,0.45)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_50%,rgba(0,0,0,0.25)_100%)]" />
 
         {/* ─── Content stack ─── */}
         <div className="relative z-10 flex h-full flex-col justify-center px-6 md:px-20 pt-20 md:pt-24">

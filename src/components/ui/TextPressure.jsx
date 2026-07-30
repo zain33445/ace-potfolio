@@ -48,12 +48,20 @@ const TextPressure = ({
   const mouseRef = useRef({ x: 0, y: 0 });
   const cursorRef = useRef({ x: 0, y: 0 });
 
+  // Cache for span bounding rects — recomputed only on resize, not every frame
+  const spanRectsRef = useRef([]);
+  const titleRectRef = useRef(null);
+
+  // Whether the component is visible in the viewport
+  const isVisibleRef = useRef(false);
+
   const [fontSize, setFontSize] = useState(minFontSize);
   const [scaleY, setScaleY] = useState(1);
   const [lineHeight, setLineHeight] = useState(1);
 
   const chars = text.split('');
 
+  // --- Mouse / touch tracking ---
   useEffect(() => {
     const handleMouseMove = e => {
       cursorRef.current.x = e.clientX;
@@ -82,6 +90,16 @@ const TextPressure = ({
     };
   }, []);
 
+  // --- Cache all span rects (called only on resize, not every frame) ---
+  const cacheSpanRects = useCallback(() => {
+    if (!titleRef.current) return;
+    titleRectRef.current = titleRef.current.getBoundingClientRect();
+    spanRectsRef.current = spansRef.current.map(span =>
+      span ? span.getBoundingClientRect() : null
+    );
+  }, []);
+
+  // --- Font / layout sizing ---
   const setSize = useCallback(() => {
     if (!containerRef.current || !titleRef.current) return;
 
@@ -103,8 +121,11 @@ const TextPressure = ({
         setScaleY(yRatio);
         setLineHeight(yRatio);
       }
+
+      // Recache rects after layout settles
+      cacheSpanRects();
     });
-  }, [chars.length, minFontSize, scale]);
+  }, [chars.length, minFontSize, scale, cacheSpanRects]);
 
   useEffect(() => {
     const debouncedSetSize = debounce(setSize, 100);
@@ -113,44 +134,79 @@ const TextPressure = ({
     return () => window.removeEventListener('resize', debouncedSetSize);
   }, [setSize]);
 
+  // Also recache on scroll (viewport positions shift)
+  useEffect(() => {
+    const handleScroll = debounce(cacheSpanRects, 200);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [cacheSpanRects]);
+
+  // --- IntersectionObserver: pause rAF when not visible ---
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisibleRef.current = entry.isIntersecting;
+        // Recache rects when becoming visible (positions may have shifted)
+        if (entry.isIntersecting) {
+          cacheSpanRects();
+        }
+      },
+      { threshold: 0.01 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [cacheSpanRects]);
+
+  // --- Animation loop: use CACHED rects, pause when off-screen ---
   useEffect(() => {
     let rafId;
+
     const animate = () => {
+      rafId = requestAnimationFrame(animate);
+
+      // Skip expensive work if not visible
+      if (!isVisibleRef.current) return;
+
       mouseRef.current.x += (cursorRef.current.x - mouseRef.current.x) / 15;
       mouseRef.current.y += (cursorRef.current.y - mouseRef.current.y) / 15;
 
-      if (titleRef.current) {
-        const titleRect = titleRef.current.getBoundingClientRect();
-        const maxDist = titleRect.width / 2;
+      const titleRect = titleRectRef.current;
+      if (!titleRect) return;
 
-        spansRef.current.forEach(span => {
-          if (!span) return;
+      const maxDist = titleRect.width / 2;
 
-          const rect = span.getBoundingClientRect();
-          const charCenter = {
-            x: rect.x + rect.width / 2,
-            y: rect.y + rect.height / 2
-          };
+      spansRef.current.forEach((span, i) => {
+        if (!span) return;
 
-          const d = dist(mouseRef.current, charCenter);
+        // Use cached rect — no getBoundingClientRect() here
+        const rect = spanRectsRef.current[i];
+        if (!rect) return;
 
-          const wdth = width ? Math.floor(getAttr(d, maxDist, 5, 200)) : 100;
-          const wght = weight ? Math.floor(getAttr(d, maxDist, 100, 900)) : 400;
-          const italVal = italic ? getAttr(d, maxDist, 0, 1).toFixed(2) : 0;
-          const alphaVal = alpha ? getAttr(d, maxDist, 0, 1).toFixed(2) : 1;
+        const charCenter = {
+          x: rect.x + rect.width / 2,
+          y: rect.y + rect.height / 2
+        };
 
-          const newFontVariationSettings = `'wght' ${wght}, 'wdth' ${wdth}, 'ital' ${italVal}`;
+        const d = dist(mouseRef.current, charCenter);
 
-          if (span.style.fontVariationSettings !== newFontVariationSettings) {
-            span.style.fontVariationSettings = newFontVariationSettings;
-          }
-          if (alpha && span.style.opacity !== alphaVal) {
-            span.style.opacity = alphaVal;
-          }
-        });
-      }
+        const wdth = width ? Math.floor(getAttr(d, maxDist, 5, 200)) : 100;
+        const wght = weight ? Math.floor(getAttr(d, maxDist, 100, 900)) : 400;
+        const italVal = italic ? getAttr(d, maxDist, 0, 1).toFixed(2) : 0;
+        const alphaVal = alpha ? getAttr(d, maxDist, 0, 1).toFixed(2) : 1;
 
-      rafId = requestAnimationFrame(animate);
+        const newFontVariationSettings = `'wght' ${wght}, 'wdth' ${wdth}, 'ital' ${italVal}`;
+
+        if (span.style.fontVariationSettings !== newFontVariationSettings) {
+          span.style.fontVariationSettings = newFontVariationSettings;
+        }
+        if (alpha && span.style.opacity !== alphaVal) {
+          span.style.opacity = alphaVal;
+        }
+      });
     };
 
     animate();
@@ -185,7 +241,7 @@ const TextPressure = ({
         }
       `}</style>
     );
-  }, [fontFamily, textColor, strokeColor]);
+  }, [textColor, strokeColor]);
 
   const dynamicClassName = [className, flex ? 'tp-flex' : '', stroke ? 'stroke' : ''].filter(Boolean).join(' ');
 
