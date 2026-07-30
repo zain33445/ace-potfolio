@@ -4,7 +4,9 @@ import { useRef, useEffect, useState, useCallback } from 'react';
 import { motion } from 'motion/react';
 import { ClipboardCheck, ChevronLeft, ChevronRight } from 'lucide-react';
 
-import ThreeScene from './EstimationMachine/ThreeScene';
+import React from 'react';
+
+const ThreeScene = React.lazy(() => import('./EstimationMachine/ThreeScene'));
 
 import { steps, STEP_COUNT } from '../constants/processSteps';
 
@@ -138,7 +140,13 @@ export default function ProcessFlow() {
         SYSTEM: PROCESS_CLIPBOARD_MESH
       </div>
       <div className="w-full h-full absolute inset-0">
-        <ThreeScene ref={sceneRefCallback} />
+        <React.Suspense fallback={
+          <div className="w-full h-full flex items-center justify-center bg-surface">
+            <span className="font-mono text-sm text-primary animate-pulse">Loading 3D scene…</span>
+          </div>
+        }>
+          <ThreeScene ref={sceneRefCallback} />
+        </React.Suspense>
       </div>
       <div className="absolute top-4 right-4 z-10 font-mono text-sm text-primary">
         {activeStep}/{STEP_COUNT}
@@ -156,7 +164,7 @@ export default function ProcessFlow() {
             [OPERATIONAL_FLOW]
           </span>
           <h2 className="font-space font-bold text-3xl text-on-background tracking-tight">
-            Schematic Methodology.
+            Our Process.
           </h2>
         </div>
 
@@ -230,16 +238,16 @@ export default function ProcessFlow() {
   return (
     <div ref={sectionRef}>
       {/* Heading */}
-      <div className="mb-12">
-        <span className="font-mono text-sm text-primary block mb-2 font-bold">
+      <div className="">
+        <span className="font-mono text-sm text-primary block mb-5 font-bold">
           [OPERATIONAL_FLOW]
         </span>
         <h2 className="font-space font-bold text-4xl md:text-5xl text-on-background tracking-tight">
-          Schematic Methodology.
+          Our Process.
         </h2>
       </div>
 
-      <div className="flex flex-col md:flex-row gap-12">
+      <div className="flex flex-col h-full md:flex-row gap-12">
         {/* Left: 3D scene (sticky, centered) */}
         <div className="w-full md:w-1/2">
           <div className="md:sticky md:top-0 md:h-screen md:flex md:flex-col md:justify-center">
