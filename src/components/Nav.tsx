@@ -111,7 +111,7 @@ export default function Nav() {
                               : 'border-white bg-transparent text-white hover:bg-primary hover:border-primary'
                         }`
                       : `font-mono text-sm font-bold tracking-widest pb-0.5 transition-colors duration-500 ${
-                          isActive(href) ? 'text-primary' : navScrolled || isPinned ? 'text-on-surface-variant hover:text-primary' : 'text-white hover:text-primary'
+                          isActive(href) ? 'text-primary' : navScrolled || isPinned ? 'text-black hover:text-primary' : 'text-white hover:text-primary'
                         }`
                   }
                 >
