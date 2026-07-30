@@ -8,37 +8,56 @@ export default function BotpressChat() {
   const isHome = pathname === '/';
   const bgRef = useRef<'white' | 'transparent'>('transparent');
 
-  /* Apply background to any existing or future botpress button elements */
-  function applyBg(color: 'white' | 'transparent') {
-    bgRef.current = color;
-    document
-      .querySelectorAll<HTMLElement>(
-        '[class*="bpw-floating"], [class*="bpw-widget-btn"], [class*="botpress-chat"], [id*="botpress-webchat"]',
-      )
-      .forEach((el) => {
-        el.style.setProperty('background', color, 'important');
-        el.style.setProperty('background-color', color, 'important');
-      });
+  /* Inject a <style> into Botpress's shadow root so it can style the fab */
+  function injectShadowStyle(color: 'white' | 'transparent') {
+    const host = document.getElementById('fab-root');
+    if (!host?.shadowRoot) return;
+    let styleEl = host.shadowRoot.getElementById('bp-custom-bg') as HTMLStyleElement | null;
+    if (!styleEl) {
+      styleEl = document.createElement('style');
+      styleEl.id = 'bp-custom-bg';
+      host.shadowRoot.appendChild(styleEl);
+    }
+    styleEl.textContent = `
+      .bpFab, .bpFabWrapper {
+        background: ${color} !important;
+      }
+    `;
   }
 
   /* Track scroll to detect when past hero section */
   useEffect(() => {
     function onScroll() {
       const pastHero = !isHome || window.scrollY > window.innerHeight * 0.6;
-      applyBg(pastHero ? 'white' : 'transparent');
+      const color = pastHero ? 'white' : 'transparent';
+      bgRef.current = color;
+      injectShadowStyle(color);
     }
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, [isHome]);
 
-  /* Watch for Botpress elements being injected into the DOM */
+  /* Watch for the Botpress shadow root to appear, then inject styles */
   useEffect(() => {
-    const observer = new MutationObserver(() => {
-      applyBg(bgRef.current);
-    });
-    observer.observe(document.body, { childList: true, subtree: true });
-    return () => observer.disconnect();
+    let interval: ReturnType<typeof setInterval>;
+    const waitForShadow = () => {
+      const host = document.getElementById('fab-root');
+      if (host?.shadowRoot) {
+        clearInterval(interval);
+        injectShadowStyle(bgRef.current);
+        /* also observe the shadow root for any re-renders */
+        const mo = new MutationObserver(() => injectShadowStyle(bgRef.current));
+        mo.observe(host.shadowRoot, { childList: true, subtree: true });
+        return true;
+      }
+      return false;
+    };
+    /* Retry until the shadow root appears */
+    interval = setInterval(() => {
+      if (waitForShadow()) clearInterval(interval);
+    }, 500);
+    return () => clearInterval(interval);
   }, []);
 
   /* Inject Botpress scripts after a short delay */
@@ -56,9 +75,6 @@ export default function BotpressChat() {
 
       document.body.appendChild(injectScript);
       document.body.appendChild(configScript);
-
-      /* Re-apply background after botpress has had time to render */
-      setTimeout(() => applyBg(bgRef.current), 2000);
     }, 4000);
 
     return () => {
@@ -66,9 +82,14 @@ export default function BotpressChat() {
       document
         .querySelectorAll('script[src*="botpress"], script[src*="bpcontent"]')
         .forEach((el) => el.remove());
-      document
-        .querySelectorAll('[class*="botpress"], [id*="botpress"], [class*="bpw-"]')
-        .forEach((el) => el.remove());
+      const host = document.getElementById('fab-root');
+      if (host?.shadowRoot) {
+        const styleEl = host.shadowRoot.getElementById('bp-custom-bg');
+        if (styleEl) styleEl.remove();
+      }
+      host?.remove();
+      document.getElementById('webchat-root')?.remove();
+      document.getElementById('message-preview-root')?.remove();
     };
   }, []);
 
