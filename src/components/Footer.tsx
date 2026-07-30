@@ -34,7 +34,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-primary relative border-t border-white/10 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:48px_48px]">
+    <footer className="bg-primary relative border-t border-white/10 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:48px_48px] cursor-pointer">
       <div className="w-full mx-auto md:px-5 py-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-16 align-center justify-items-center">
           {/* Left: Brand + tagline */}
