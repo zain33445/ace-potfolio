@@ -34,11 +34,12 @@ export default function Nav() {
   /* navScrolled: always true off homepage (solid bg), toggles by scroll on homepage */
   const [navScrolled, setNavScrolled] = useState(!isHome);
 
-  /* Track scroll state — transparent at top, glass bg on any scroll */
+  /* Track scroll state — transparent at top, glass bg on any scroll.
+     Off-homepage, the nav always has a solid white bg so links must stay dark.
+     Re-syncs on isHome change (client-side nav between pages does not remount). */
   useEffect(() => {
-    if (!isHome) return;
     function onScroll() {
-      setNavScrolled(window.scrollY > 10);
+      setNavScrolled(!isHome || window.scrollY > 10);
     }
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
