@@ -1,10 +1,6 @@
 'use client';
 
-import { useEffect, useRef, type ReactNode } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 
 type AnimationType = 'fadeUp' | 'scaleIn' | 'fadeIn';
 
@@ -16,16 +12,28 @@ interface RevealInnerProps {
   once?: boolean;
 }
 
-const fromMap: Record<AnimationType, gsap.TweenVars> = {
-  fadeUp: { opacity: 0, y: 64 },
-  scaleIn: { opacity: 0, scale: 0.8 },
-  fadeIn: { opacity: 0 },
+/* CSS animation keyframes — GPU-composited, no JS animation library needed */
+const animationStyles: Record<AnimationType, React.CSSProperties> = {
+  fadeUp: {
+    opacity: 0,
+    transform: 'translateY(64px)',
+    transition: 'opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1), transform 1.1s cubic-bezier(0.16, 1, 0.3, 1)',
+  },
+  scaleIn: {
+    opacity: 0,
+    transform: 'scale(0.8)',
+    transition: 'opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1)',
+  },
+  fadeIn: {
+    opacity: 0,
+    transition: 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
+  },
 };
 
-const toMap: Record<AnimationType, gsap.TweenVars> = {
-  fadeUp: { opacity: 1, y: 0, duration: 1.1, ease: 'power3.out' },
-  scaleIn: { opacity: 1, scale: 1, duration: 1, ease: 'power3.out' },
-  fadeIn: { opacity: 1, duration: 0.8, ease: 'power3.out' },
+const visibleStyles: Record<AnimationType, React.CSSProperties> = {
+  fadeUp: { opacity: 1, transform: 'translateY(0)' },
+  scaleIn: { opacity: 1, transform: 'scale(1)' },
+  fadeIn: { opacity: 1 },
 };
 
 export default function RevealInner({
@@ -36,27 +44,40 @@ export default function RevealInner({
   once = true,
 }: RevealInnerProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
 
-    const anim = gsap.fromTo(el, fromMap[type], {
-      ...toMap[type],
-      delay,
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 85%',
-        once,
-        invalidateOnRefresh: true,
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          /* Apply delay via setTimeout, then trigger the CSS transition */
+          setTimeout(() => setIsVisible(true), delay * 1000);
+          if (once) observer.disconnect();
+        } else if (!once) {
+          setIsVisible(false);
+        }
       },
-    });
+      { threshold: 0.15 }
+    );
 
-    return () => {
-      anim.kill();
-      anim.scrollTrigger?.kill();
-    };
-  }, [type, delay, once]);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [delay, once]);
 
-  return <div ref={ref} className={className}>{children}</div>;
+  return (
+    <div
+      ref={ref}
+      className={className}
+      style={{
+        willChange: isVisible ? 'auto' : 'opacity, transform',
+        ...animationStyles[type],
+        ...(isVisible ? visibleStyles[type] : {}),
+      }}
+    >
+      {children}
+    </div>
+  );
 }

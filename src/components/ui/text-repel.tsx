@@ -152,6 +152,24 @@ export function TextRepel({
     const containerRef = useRef<HTMLDivElement>(null);
     const mouseX = useMotionValue(-9999);
     const mouseY = useMotionValue(-9999);
+    // Cache container rect to avoid forced reflow on every mouse move
+    const cachedRectRef = useRef<DOMRect | null>(null);
+
+    // Update cached rect on mount, resize, and scroll
+    useEffect(() => {
+        const updateRect = () => {
+            if (containerRef.current) {
+                cachedRectRef.current = containerRef.current.getBoundingClientRect();
+            }
+        };
+        updateRect();
+        window.addEventListener("resize", updateRect);
+        window.addEventListener("scroll", updateRect, { passive: true });
+        return () => {
+            window.removeEventListener("resize", updateRect);
+            window.removeEventListener("scroll", updateRect);
+        };
+    }, []);
 
     return (
         <div
@@ -164,7 +182,8 @@ export function TextRepel({
             )}
             onClick={onClick}
             onMouseMove={(e) => {
-                const rect = containerRef.current?.getBoundingClientRect();
+                // Use cached rect to avoid forced reflow
+                const rect = cachedRectRef.current;
                 if (!rect) return;
                 mouseX.set(e.clientX - rect.left);
                 mouseY.set(e.clientY - rect.top);

@@ -35,6 +35,7 @@ const nextConfig = {
   async headers() {
     return [
       {
+        // Default: strict security headers for all routes
         source: '/(.*)',
         headers: [
           {
@@ -60,6 +61,26 @@ const nextConfig = {
           {
             key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), accelerometer=(), gyroscope=()',
+          },
+        ],
+      },
+      {
+        // Static pages: allow bfcache with must-revalidate
+        source: '/(about|services|pricing|blog|projects|testimonials|privacy-policy|terms-and-conditions|contact|calculator)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=0, must-revalidate',
+          },
+        ],
+      },
+      {
+        // Static API-like pages
+        source: '/(robots.txt|sitemap.xml)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=3600, stale-while-revalidate=86400',
           },
         ],
       },

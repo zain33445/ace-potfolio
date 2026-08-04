@@ -362,12 +362,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
         />
         
-        {/* Preconnect to WordPress & third-party origins */}
-        <link rel="preconnect" href="https://theaceservices.com" />
+        {/* Preconnect to critical third-party origins (max 4 per Lighthouse) */}
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://connect.facebook.net" />
-        <link rel="preconnect" href="https://cdn.botpress.cloud" />
-        <link rel="preconnect" href="https://files.bpcontent.cloud" />
 
         {/* Preload Roboto Flex variable font (used by TextPressure in footer) */}
         <link

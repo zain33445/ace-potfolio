@@ -81,10 +81,11 @@ const TextPressure = ({
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('touchmove', handleTouchMove, { passive: true });
 
+    // Batch geometry reads to avoid forced reflow
     if (containerRef.current) {
-      const { left, top, width, height } = containerRef.current.getBoundingClientRect();
-      mouseRef.current.x = left + width / 2;
-      mouseRef.current.y = top + height / 2;
+      const rect = containerRef.current.getBoundingClientRect();
+      mouseRef.current.x = rect.left + rect.width / 2;
+      mouseRef.current.y = rect.top + rect.height / 2;
       cursorRef.current.x = mouseRef.current.x;
       cursorRef.current.y = mouseRef.current.y;
     }
