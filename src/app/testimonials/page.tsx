@@ -5,7 +5,7 @@ import PaginationGrid from '../../components/PaginationGrid';
 export const metadata: Metadata = {
   title: 'Client Testimonials',
   description:
-    'See what our clients say about ACE SERVICES. Trusted by general contractors, developers, and project owners for precise pre-construction estimation.',
+    'See what our clients say about The ACE Services. Trusted by general contractors, developers, and project owners for precise pre-construction estimation.',
 };
 
 /* ── Hardcoded testimonial data ──────────────────────────────── */
@@ -22,7 +22,7 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     quote:
-      'ACE SERVICES provided incredibly accurate estimates that saved us over 15% on our commercial project. Their attention to detail is unmatched in the industry.',
+      'The ACE Services provided incredibly accurate estimates that saved us over 15% on our commercial project. Their attention to detail is unmatched in the industry.',
     author: 'Sarah Mitchell',
     company: 'BuildRight Construction',
     role: 'Project Director',
@@ -49,7 +49,7 @@ const testimonials: Testimonial[] = [
   },
   {
     quote:
-      'After working with five estimation firms, ACE SERVICES is the only one that delivered consistently AACE-compliant reports. They understand the rigor required for institutional projects.',
+      'After working with five estimation firms, The ACE Services is the only one that delivered consistently AACE-compliant reports. They understand the rigor required for institutional projects.',
     author: 'Marcus Webb',
     company: 'Tidewater Public Works',
     role: 'Program Manager',
@@ -67,7 +67,7 @@ const testimonials: Testimonial[] = [
   },
   {
     quote:
-      'Fast, precise, and communicative. ACE SERVICES turned a complex multifamily project into a manageable cost schedule within 72 hours. Absolutely worth every dollar.',
+      'Fast, precise, and communicative. The ACE Services turned a complex multifamily project into a manageable cost schedule within 72 hours. Absolutely worth every dollar.',
     author: 'James Okafor',
     company: 'Pinnacle Real Estate',
     role: 'Managing Director',
@@ -147,7 +147,7 @@ export default function TestimonialsPage() {
         </h1>
 
         <p className="mt-5 text-lg leading-relaxed text-on-surface-variant md:text-xl">
-          General contractors, developers, and project owners rely on ACE SERVICES
+          General contractors, developers, and project owners rely on The ACE Services
           for precise pre-construction estimation that drives smarter decisions.
         </p>
       </div>

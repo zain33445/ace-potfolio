@@ -19,8 +19,9 @@ const menuItems = [
 ];
 
 const socialItems = [
-  { label: 'Twitter', link: 'https://twitter.com' },
-  { label: 'GitHub', link: 'https://github.com' },
+  // { label: 'Twitter', link: 'https://twitter.com' },
+  { label: 'Facebook', link: 'https://www.facebook.com/theaceservicesllc/' },
+  { label: 'Instagram', link: 'https://www.instagram.com/aceservicesllc/' },
   { label: 'LinkedIn', link: 'https://www.linkedin.com/company/aceservicesllc/' }
 ];
 
@@ -34,6 +35,10 @@ export default function Nav() {
   /* navScrolled: always true off homepage (solid bg), toggles by scroll on homepage */
   const [navScrolled, setNavScrolled] = useState(!isHome);
 
+  /* overHero: true while the fixed nav still overlaps the hero section (white text).
+     False on any other page or once the hero has scrolled past the nav (primary text). */
+  const [overHero, setOverHero] = useState(isHome);
+
   /* Track scroll state — transparent at top, glass bg on any scroll.
      Off-homepage, the nav always has a solid white bg so links must stay dark.
      Re-syncs on isHome change (client-side nav between pages does not remount). */
@@ -44,6 +49,48 @@ export default function Nav() {
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
+  }, [isHome]);
+
+  /* Detect whether the nav is over the hero section via IntersectionObserver.
+     The hero is dynamically imported, so retry until #hero-top mounts.
+     rootMargin shrinks the viewport by the nav height: the nav is "over the hero"
+     as long as any part of the hero still extends below the nav's bottom edge. */
+  useEffect(() => {
+    if (!isHome) {
+      setOverHero(false);
+      return;
+    }
+
+    let observer: IntersectionObserver | null = null;
+    let raf = 0;
+
+    const observe = () => {
+      observer?.disconnect();
+      const heroEl = document.getElementById('hero-top');
+      if (!heroEl) {
+        raf = requestAnimationFrame(observe);
+        return;
+      }
+      const navHeight = navRef.current?.offsetHeight ?? 64;
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => setOverHero(entry.isIntersecting));
+        },
+        { root: null, rootMargin: `-${navHeight}px 0px 0px 0px`, threshold: 0 }
+      );
+      observer.observe(heroEl);
+    };
+
+    observe();
+
+    const onResize = () => observe();
+    window.addEventListener('resize', onResize);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      observer?.disconnect();
+      window.removeEventListener('resize', onResize);
+    };
   }, [isHome]);
 
   const PAGE_LINKS = [
@@ -79,17 +126,20 @@ export default function Nav() {
           href="/"
           className={`flex items-center pl-2 md:pl-10 gap-2 overflow-hidden transition-colors duration-500 ${navScrolled ? 'text-on-background' : 'text-white'}`}
         >
+          {/* LOGO img */}
           <img
             src="/aceLogo.png"
             alt=""
             width={80}
             height={30}
-            className='h-16 md:h-16 w-auto'
+            className='h-10 md:h-16 w-auto'
           />
-{/* 
-          <span className="font-mono text-xl md:text-3xl font-bold tracking-tight whitespace-nowrap text-on-surface-variant">
-            THE ACE SERVICES
-          </span> */}
+{/* LOGO text */}
+          <span className={`font-mono text-xl md:text-3xl font-thin tracking-tight whitespace-nowrap ${overHero ? 'text-white' : 'text-primary'}`}>
+            THE 
+            <span className='font-black'>ACE</span>
+            SERVICES
+          </span>
         </Link>
 
         {/* Desktop nav — always dark text */}
@@ -104,15 +154,21 @@ export default function Nav() {
                   href={href}
                   className={
                     isCalculator
-                      ? `font-mono text-sm font-bold uppercase tracking-wider px-5 py-2 border-2 transition-all duration-500 bracket-corners ${
+                      ? `font-mono text-lg font-bold uppercase tracking-wider px-5 py-2 border-2 transition-all duration-500 bracket-corners ${
                           isActive(href)
                             ? 'border-primary bg-primary text-white'
                             : navScrolled || isPinned
                               ? 'border-primary bg-primary text-white hover:bg-transparent hover:text-primary'
                               : 'border-white bg-transparent text-white hover:bg-primary hover:border-primary'
                         }`
-                      : `font-mono text-sm font-bold tracking-widest pb-0.5 transition-colors duration-500 ${
-                          isActive(href) ? 'text-primary' : navScrolled || isPinned ? 'text-black hover:text-primary' : 'text-white hover:text-primary'
+                      : `font-mono text-lg font-bold tracking-widest pb-0.5 transition-colors duration-500 ${
+                          isActive(href)
+                            ? overHero
+                              ? 'text-white'
+                              : 'text-primary'
+                            : overHero
+                              ? 'text-white hover:text-primary'
+                              : 'text-primary hover:text-[#E55A00]'
                         }`
                   }
                 >
@@ -139,13 +195,12 @@ export default function Nav() {
         displaySocials
         displayItemNumbering={true}
         logoUrl="/aceLogo.png"
-        menuButtonColor={navScrolled ? '#0A0A0A' : '#ffffff'}
-        openMenuButtonColor="#0A0A0A"
+        // menuButtonColor={navScrolled ? '#0A0A0A' : '#ffffff'}
+        menuButtonColor={overHero ? '#ffffff' : '#FF6B00'}
+        openMenuButtonColor={'#FF6B00'}
         changeMenuColorOnOpen={true}
         colors={['#FF6B00', '#CC5500']}
         accentColor="#FF6B00"
-        onMenuOpen={() => console.log('Menu opened')}
-        onMenuClose={() => console.log('Menu closed')}
       />
     </>
   );

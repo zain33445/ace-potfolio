@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     canonical: 'https://www.theaceservices.com/calculator',
   },
   openGraph: {
-    title: 'Cost Calculator | ACE SERVICES',
+    title: 'Cost Calculator | The ACE Services',
     description:
       'Interactive construction cost estimation engine. Configure project parameters and receive instant budgetary allocations with material, labor, equipment, and permit breakdowns.',
     url: 'https://www.theaceservices.com/calculator',
@@ -43,7 +43,7 @@ export default function CalculatorPage() {
         <p className="font-[family-name:var(--font-mono)] text-xs text-on-surface-variant leading-relaxed uppercase tracking-wider">
           * All estimates are preliminary budgetary allocations. Final project costs are determined
           through manual quantity surveying and may vary based on site conditions, material availability,
-          and municipal regulatory requirements. Contact ACE SERVICES for a certified Class 3 estimate.
+          and municipal regulatory requirements. Contact The ACE Services for a certified Class 3 estimate.
         </p>
       </div>
     </section>

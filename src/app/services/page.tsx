@@ -8,12 +8,12 @@ import { services, getServiceIcon } from '@/src/data/services';
 export const metadata: Metadata = {
   title: 'Services',
   description:
-    'ACE SERVICES delivers AACE Class 3 cost estimates, material takeoffs, permit sets, and project scheduling for general contractors nationwide.',
+    'The ACE Services delivers AACE Class 3 cost estimates, material takeoffs, permit sets, and project scheduling for general contractors nationwide.',
   alternates: {
     canonical: 'https://www.theaceservices.com/services',
   },
   openGraph: {
-    title: 'Services | ACE SERVICES — Pre-Construction Estimation',
+    title: 'Services | The ACE Services — Pre-Construction Estimation',
     description:
       'Professional pre-construction estimation services: cost estimating, quantity surveying, permit sets, and project scheduling.',
     url: 'https://www.theaceservices.com/services',

@@ -39,7 +39,8 @@ const TextPressure = ({
   strokeColor = '#FF0000',
   className = '',
 
-  minFontSize = 24
+  minFontSize = 24,
+  proximity = 0
 }) => {
   const containerRef = useRef(null);
   const titleRef = useRef(null);
@@ -47,6 +48,10 @@ const TextPressure = ({
 
   const mouseRef = useRef({ x: 0, y: 0 });
   const cursorRef = useRef({ x: 0, y: 0 });
+
+  // True while the pointer is hovering this container — the focus follows the
+  // mouse only then; otherwise it defaults back to the middle of the text.
+  const mouseInsideRef = useRef(false);
 
   // Cache for span bounding rects — recomputed only on resize, not every frame
   const spanRectsRef = useRef([]);
@@ -87,6 +92,27 @@ const TextPressure = ({
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('touchmove', handleTouchMove);
+    };
+  }, []);
+
+  // --- Track whether the pointer is inside the container ---
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const handleEnter = () => {
+      mouseInsideRef.current = true;
+    };
+    const handleLeave = () => {
+      mouseInsideRef.current = false;
+    };
+
+    el.addEventListener('mouseenter', handleEnter);
+    el.addEventListener('mouseleave', handleLeave);
+
+    return () => {
+      el.removeEventListener('mouseenter', handleEnter);
+      el.removeEventListener('mouseleave', handleLeave);
     };
   }, []);
 
@@ -171,11 +197,42 @@ const TextPressure = ({
       // Skip expensive work if not visible
       if (!isVisibleRef.current) return;
 
-      mouseRef.current.x += (cursorRef.current.x - mouseRef.current.x) / 15;
-      mouseRef.current.y += (cursorRef.current.y - mouseRef.current.y) / 15;
-
       const titleRect = titleRectRef.current;
       if (!titleRect) return;
+
+      // Focus target: follow the mouse while hovering the container,
+      // otherwise ease back to the middle of the text (default focus).
+      // When `proximity` is set, the influence blends in as the cursor
+      // approaches the container, so the text "catches" the pressure even
+      // before the pointer lands on it.
+      const cursor = cursorRef.current;
+      const centerX = titleRect.x + titleRect.width / 2;
+      const centerY = titleRect.y + titleRect.height / 2;
+
+      // Distance from the cursor to the container's bounding box (0 inside).
+      const outsideX = Math.max(
+        titleRect.left - cursor.x,
+        0,
+        cursor.x - titleRect.right
+      );
+      const outsideY = Math.max(
+        titleRect.top - cursor.y,
+        0,
+        cursor.y - titleRect.bottom
+      );
+      const outsideDist = Math.hypot(outsideX, outsideY);
+
+      // blend: 0 = default center focus, 1 = full cursor focus
+      let blend = mouseInsideRef.current ? 1 : 0;
+      if (proximity > 0 && blend < 1) {
+        blend = Math.max(blend, Math.min(1, 1 - outsideDist / proximity));
+      }
+
+      const targetX = centerX + (cursor.x - centerX) * blend;
+      const targetY = centerY + (cursor.y - centerY) * blend;
+
+      mouseRef.current.x += (targetX - mouseRef.current.x) / 15;
+      mouseRef.current.y += (targetY - mouseRef.current.y) / 15;
 
       const maxDist = titleRect.width / 2;
 
@@ -211,7 +268,7 @@ const TextPressure = ({
 
     animate();
     return () => cancelAnimationFrame(rafId);
-  }, [width, weight, italic, alpha]);
+  }, [width, weight, italic, alpha, proximity]);
 
   const styleElement = useMemo(() => {
     return (

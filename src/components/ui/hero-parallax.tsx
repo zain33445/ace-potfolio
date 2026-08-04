@@ -70,12 +70,9 @@ export const HeroParallax = ({
 
   // Grayscale: fully desaturated at top → full color by scrollYProgress ~0.3
   // Clamp so values stay within [0,1] — never produce grayscale(-N%)
-  const imageGrayscale = useTransform(
-    scrollYProgress,
-    [0, 0.3],
-    [1, 0],
-    { clamp: true },
-  );
+  const imageGrayscale = useTransform(scrollYProgress, [0, 0.3], [1, 0], {
+    clamp: true,
+  });
 
   const headingOpacity = useSpring(
     useTransform(scrollYProgress, [0.12, 0.35], [0, 1]),
@@ -90,49 +87,116 @@ export const HeroParallax = ({
   const counterRotate = useTransform(rotateZ, (val) => -val);
 
   return (
-    <div className="antialiased relative">
+    <div
+      className="
+        antialiased relative
+      "
+    >
       {/* ── Mobile: video header (CSS-toggled, no React conditional) ── */}
-      <div className="md:hidden">
-        <section className="h-screen grid place-items-center relative overflow-hidden bg-black">
+      <div
+        className="
+          md:hidden
+        "
+      >
+        <section
+          className="
+            grid overflow-hidden
+            h-screen
+            bg-black
+            place-items-center relative
+          "
+        >
           <video
             autoPlay
             loop
             muted
             playsInline
             preload="metadata"
-            className="absolute inset-0 w-full h-full object-cover z-0"
             src="/mobile-video-header.mp4"
+            className="
+              object-cover z-0
+              w-full h-full
+              absolute inset-0
+            "
           />
-          <div className="absolute inset-0 bg-black/40 z-[1]" />
-          <div className="relative z-10">
+          <div
+            className="
+              z-[1]
+              bg-black/40
+              absolute inset-0
+            "
+          />
+          <div
+            className="
+              z-10
+              relative
+            "
+          >
             <Header h1={headerH1} h2={headerH2} h3={headerH3} mobile />
           </div>
         </section>
       </div>
 
       {/* ── Desktop: 240vh parallax section (CSS-toggled, no React conditional) ── */}
-      <div className="hidden md:block">
+      <div
+        className="
+          hidden
+          md:block
+        "
+      >
         <section
           ref={ref}
-          className="relative h-[240vh]" // Slightly taller for better scroll feel
+          className="
+            h-[240vh]
+            relative
+          "
         >
-          <div className="sticky top-40 h-screen flex items-start justify-start z-20 px-20 pointer-events-none">
+          <div
+            className="
+              flex z-20
+              h-screen
+              px-20
+              pointer-events-none
+              sticky top-40 items-start justify-start
+            "
+          >
             <Header h1={headerH1} h2={headerH2} h3={headerH3} />
           </div>
 
           <motion.div
             style={{ opacity: headingOpacity, y: headingY }}
-            className="sticky top-[30vh] z-10 flex flex-col items-center justify-center px-20 pointer-events-none text-center"
+            className="
+              z-10 flex flex-col
+              px-20
+              text-center
+              pointer-events-none
+              sticky top-[30vh] items-center justify-center
+            "
           >
-            <h2 className="font-sans text-[clamp(2rem,4vw,3.5rem)] font-extrabold text-center text-[#111827] leading-tight">
+            <h2
+              className="
+                font-sans text-[clamp(2rem,4vw,3.5rem)] font-extrabold text-center text-[#111827] leading-tight
+              "
+            >
               Our Estimation Projects
             </h2>
-            <p className="font-sans text-[clamp(0.9rem,1.5vw,1.1rem)] text-center text-[#374151] mt-4">
+            <p
+              className="
+                mt-4
+                font-sans text-[clamp(0.9rem,1.5vw,1.1rem)] text-center text-[#374151]
+              "
+            >
               Click IMG to Open Project
             </p>
           </motion.div>
 
-          <div className="absolute inset-[0px] z-0 overflow-hidden bg-[#F5F5F5] [perspective:500px] [transform-style:preserve-3d]">
+          <div
+            className="
+              z-0 overflow-hidden
+              bg-[#F5F5F5]
+              absolute inset-[0px] [perspective:500px] [transform-style:preserve-3d]
+            "
+          >
             <motion.div
               style={{
                 rotateX,
@@ -140,10 +204,19 @@ export const HeroParallax = ({
                 translateY,
                 opacity,
               }}
-              className="pt-[15vh] will-change-transform"
+              className="
+                pt-[15vh]
+                will-change-transform
+              "
             >
               {/* Row 1 — first visible row: load with high priority (LCP driver) */}
-              <div className="flex flex-row space-x-8 mb-8 marquee-desktop-content ">
+              <div
+                className="
+                  flex flex-row
+                  space-x-8 mb-8
+                  marquee-desktop-content
+                "
+              >
                 {reversedFirstRow.map((product) => (
                   <ProductCard
                     product={product}
@@ -167,7 +240,13 @@ export const HeroParallax = ({
               </div>
 
               {/* Row 2 — midway, use low priority to avoid competing with LCP */}
-              <div className="flex flex-row space-x-8 mb-8 marquee-desktop-content marquee-desktop-content--reverse">
+              <div
+                className="
+                  flex flex-row
+                  space-x-8 mb-8
+                  marquee-desktop-content marquee-desktop-content--reverse
+                "
+              >
                 {secondRow.map((product) => (
                   <ProductCard
                     product={product}
@@ -189,7 +268,13 @@ export const HeroParallax = ({
               </div>
 
               {/* Row 3 — deepest scroll row, low priority */}
-              <div className="flex flex-row space-x-8 mb-8 marquee-desktop-content ">
+              <div
+                className="
+                  flex flex-row
+                  space-x-8 mb-8
+                  marquee-desktop-content
+                "
+              >
                 {reversedThirdRow.map((product) => (
                   <ProductCard
                     product={product}
@@ -230,31 +315,58 @@ export const Header = ({
 }) => {
   return (
     <div
-      // className={`w-[92%] md:w-4/5 max-w-[900px] px-2 md:px-2 pt-6 md:pt-10 pb-8 md:pb-15 relative z-10 ${mobile ? '' : 'bg-[rgba(255,255,255,0.45)] border border-2 border-blueprint-line shadow-[0_20px_80px_-12px_rgba(0,0,0,0.08)] bracket-corners-lg liquid-glass'}`}>
-      className={`w-[100%] md:w-4/5 max-w-[900px] md:px-2 md:pt-10 pb-8 md:pb-15 relative z-10 ${mobile ? "" : "bg-[rgba(255,255,255,0.45)] border border-2 border-blueprint-line shadow-[0_20px_80px_-12px_rgba(0,0,0,0.08)] bracket-corners-lg liquid-glass"}`}
+      className={`
+        z-10
+        relative
+        font-sans
+        pb-8 px-10
+        w-[100%] max-w-[900px]
+        display-flex flex-col items-center justify-center gap-y-2  m-auto
+        text-white
+        md:w-4/5 md:px-2 md:pt-10 md:pb-15
+      `}
     >
       <h1
-        className={`font-sans text-xl px-10 font-normal leading-[1.1]  text-left  decoration-primary decoration-[6px] underline-offset-[10px] ${mobile ? "text-white mt-1" : "text-[#FF6B00] mt-5"}`}
+        className={`
+          p-1
+          w-fit
+          text-white
+          rounded-md
+          bg-primary
+          text-md font-normal leading-[1.1] text-left
+          ${mobile ? "text-white mt-1" : "text-[#FF6B00] mt-5"}
+          decoration-primary decoration-[6px] underline-offset-[10px]
+        `}
       >
         {h1 ?? "Construction Pre-Estimation"}
-      </h1><br/>
-      {h2 && (<>
-        <h2
-          className={`font-sans text-[clamp(2.5rem,5vw,4rem)] px-10 font-extrabold leading-[1.1] tracking-tighter text-left mt-5 decoration-primary decoration-[6px] underline-offset-[10px] ${mobile ? "text-white" : "text-[#111827]"}`}
-        >
-          <TextGenerateEffect words={h2} duration={5} />
-        </h2><br/></>
-      )}
-      {h3 && (
+      </h1>
+
+          <h2
+            className={`
+              my-5
+              text-[clamp(2.5rem,5vw,4rem)] font-extrabold leading-[1.1] tracking-tighter text-left
+              decoration-primary decoration-[6px] underline-offset-[10px]
+            `}
+          >
+            <TextGenerateEffect words={h2 || 'heading'} duration={5} />
+          </h2>
+
         <div
-          className={`font-sans text-justified text-[clamp(1rem,1.5vw,1.25rem)] px-10 leading-relaxed mx-auto text-left mt-4 ${mobile ? "text-white/90" : "text-[#374151]"}`}
+          className={`
+            mx-auto mt-1
+            text-justified text-[clamp(1rem,1.5vw,1.25rem)] leading-relaxed text-left
+            text-white
+          `}
         >
-          <TextGenerateEffect words={h3} duration={5} />
+          <TextGenerateEffect words={h3 || 'description'} duration={5} />
         </div>
-      )}
 
       <p
-        className={`text-center font-medium mt-8 md:mt-11 px-6 md:px-10 text-xs md:text-sm leading-relaxed ${mobile ? "text-white" : "text-[#000]"}`}
+        className={`
+          mt-8 px-6
+          text-center font-medium text-xs leading-relaxed text-white
+          md:mt-11 md:px-10 md:text-sm
+        `}
       >
         <span
           style={{
@@ -268,17 +380,49 @@ export const Header = ({
         >
           ✓ Trusted by 200+ Contractors
         </span>
-        <br className="md:hidden" />
-        <span className="hidden md:inline mx-2">|</span>
+        <br
+          className="
+            md:hidden
+          "
+        />
+        <span
+          className="
+            hidden
+            mx-2
+            md:inline
+          "
+        >
+          |
+        </span>
         <span style={{ color: "#FF6B00", fontWeight: "bold" }}> ✓ </span>
         Residential & Commercial Projects
-        <br className="md:hidden" />
-        <span className="hidden md:inline mx-2">|</span>
+        <br
+          className="
+            md:hidden
+          "
+        />
+        <span
+          className="
+            hidden
+            mx-2
+            md:inline
+          "
+        >
+          |
+        </span>
         <span style={{ color: "#FF6B00", fontWeight: "bold" }}> ✓ </span>24-48
         Hour Turnaround
       </p>
 
-      <div className="flex flex-col md:flex-row items-center px-10 justify-start gap-x-10 gap-y-3 mt-10">
+      <div
+        className="
+          flex flex-col
+          px-10 mt-10
+          text-white
+          items-center justify-start gap-x-10 gap-y-3
+          md:flex-row
+        "
+      >
         {/* Bid Better — first on mobile (top), second on desktop (right) */}
         <button
           onClick={() =>
@@ -286,25 +430,50 @@ export const Header = ({
               .getElementById("contact")
               ?.scrollIntoView({ behavior: "smooth" })
           }
-          className="relative bg-primary text-white font-bold px-8 py-3 rounded-lg text-xl group order-1 md:order-2"
+          className="
+            order-1
+            px-8 py-3
+            text-white font-bold text-xl
+            bg-primary
+            rounded-lg
+            relative group
+            md:order-2
+          "
         >
           <img
             src="/bid_icon.png"
             alt=""
-            className="absolute top-1/2 left-1/2 w-8 h-8 brightness-0 invert z-10 pointer-events-none
-                       -translate-x-[calc(50%+100px)] -translate-y-1/2 opacity-0
-                       group-hover:-translate-x-1/2 group-hover:opacity-100
-                       transition-all duration-300"
+            className="
+              z-10
+              w-8 h-8
+              pointer-events-none opacity-0 transition-all
+              absolute top-1/2 left-1/2 brightness-0 invert -translate-x-[calc(50%+100px)] -translate-y-1/2 group-hover:-translate-x-1/2 group-hover:opacity-100 duration-300
+            "
           />
-          <span className="block overflow-hidden">
-            <span className="inline-block group-hover:translate-y-full group-hover:opacity-0 transition-all duration-300">
+          <span
+            className="
+              block overflow-hidden
+            "
+          >
+            <span
+              className="
+                inline-block
+                transition-all
+                group-hover:translate-y-full group-hover:opacity-0 duration-300
+              "
+            >
               Bid Better
             </span>
           </span>
         </button>
         {/* See Our Work — second on mobile (bottom), first on desktop (left) */}
         <button
-          className={`font-medium text-sm underline underline-offset-10 decoration-primary decoration-2 order-2 md:order-1 ${mobile ? "text-white" : "text-[#111827]"}`}
+          className={`
+            order-2
+            font-medium text-sm
+            underline underline-offset-10 decoration-primary decoration-2
+            md:order-1
+          `}
         >
           See Our Work
         </button>
@@ -352,7 +521,11 @@ export const ProductCard = ({
     return (
       <a
         href={product.link}
-        className="block relative rounded-none overflow-hidden aspect-[4/3]"
+        className="
+          block overflow-hidden
+          rounded-none
+          relative aspect-[4/3]
+        "
       >
         <img
           src={product.thumbnail}
@@ -361,16 +534,39 @@ export const ProductCard = ({
           loading={loading}
           decoding="async"
           fetchPriority={fetchPriority}
-          className="object-cover object-left-top absolute h-full w-full inset-0 grayscale"
           alt={product.title}
+          className="
+            object-cover object-left-top
+            h-full w-full
+            absolute inset-0 grayscale
+          "
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-        <div className="absolute bottom-2 left-2 right-2 z-10">
-          <h2 className="text-white font-bold text-[10px] font-space leading-tight">
+        <div
+          className="
+            bg-gradient-to-t from-black/60 via-black/10 to-transparent
+            absolute inset-0
+          "
+        />
+        <div
+          className="
+            z-10
+            absolute bottom-2 left-2 right-2
+          "
+        >
+          <h2
+            className="
+              text-white font-bold text-[10px] font-space leading-tight
+            "
+          >
             {product.title}
           </h2>
           {product.subtitle && (
-            <p className="text-white/70 text-[10px] font-mono mt-0.5">
+            <p
+              className="
+                mt-0.5
+                text-white/70 text-[10px] font-mono
+              "
+            >
               {product.subtitle}
             </p>
           )}
@@ -392,9 +588,19 @@ export const ProductCard = ({
         transition: { type: "spring", stiffness: 200, damping: 20 },
       }}
       key={product.title}
-      className="group/product h-80 w-[26rem] relative shrink-0 z-10 will-change-transform"
+      className="
+        z-10
+        h-80 w-[26rem]
+        group/product relative shrink-0 will-change-transform
+      "
     >
-      <a href={product.link} className="block group-hover/product:shadow-2xl">
+      <a
+        href={product.link}
+        className="
+          block
+          group-hover/product:shadow-2xl
+        "
+      >
         <motion.img
           src={product.thumbnail}
           height="600"
@@ -402,23 +608,48 @@ export const ProductCard = ({
           loading={loading}
           decoding="async"
           fetchPriority={fetchPriority}
-          // Scroll-driven grayscale: desaturated at top → full color on scroll
           style={{ filter: grayscaleFilter }}
           whileHover={{
             filter: "none",
             transition: { duration: 0.3 },
           }}
-          className="object-cover object-left-top absolute h-full w-full inset-0 rounded-none"
           alt={product.title}
+          className="
+            object-cover object-left-top
+            h-full w-full
+            rounded-none
+            absolute inset-0
+          "
         />
       </a>
-      <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-80 bg-black pointer-events-none transition-opacity duration-300" />
-      <div className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 transition-opacity duration-300">
-        <h2 className="text-white font-bold text-sm font-space">
+      <div
+        className="
+          h-full w-full
+          bg-black
+          opacity-0 pointer-events-none transition-opacity
+          absolute inset-0 group-hover/product:opacity-80 duration-300
+        "
+      />
+      <div
+        className="
+          opacity-0 transition-opacity
+          absolute bottom-4 left-4 group-hover/product:opacity-100 duration-300
+        "
+      >
+        <h2
+          className="
+            text-white font-bold text-sm font-space
+          "
+        >
           {product.title}
         </h2>
         {product.subtitle && (
-          <p className="text-white/70 text-xs font-mono mt-1">
+          <p
+            className="
+              mt-1
+              text-white/70 text-xs font-mono
+            "
+          >
             {product.subtitle}
           </p>
         )}

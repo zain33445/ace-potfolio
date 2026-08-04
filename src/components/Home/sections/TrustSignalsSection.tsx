@@ -76,7 +76,7 @@ export default function TrustSignalsSection() {
               </ul>
             </div>
 
-            {/* ACE Services */}
+            {/* The ACE Services */}
             <div className="border-2 border-primary bg-surface p-6 bracket-corners relative">
               <div className="absolute -top-3 left-4 bg-primary px-3 py-0.5">
                 <span className="font-mono text-xs font-bold text-white uppercase tracking-wider">

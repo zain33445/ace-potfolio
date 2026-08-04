@@ -47,17 +47,17 @@ const processSteps = [
   {
     num: '01',
     title: 'Total initial planning',
-    desc: 'ACE Services excels in total initial planning, providing a strategic foundation for seamless and successful project execution.',
+    desc: 'The ACE Services excels in total initial planning, providing a strategic foundation for seamless and successful project execution.',
   },
   {
     num: '02',
     title: 'First working process',
-    desc: 'At ACE Services, our first working process embodies precision and strategic planning, laying the foundation for successful project execution.',
+    desc: 'At The ACE Services, our first working process embodies precision and strategic planning, laying the foundation for successful project execution.',
   },
   {
     num: '03',
     title: 'Affordable price',
-    desc: 'ACE Services offers quality solutions at an affordable price, making excellence accessible to all.',
+    desc: 'The ACE Services offers quality solutions at an affordable price, making excellence accessible to all.',
   },
 ];
 
@@ -95,7 +95,7 @@ export default function AboutPageClient() {
                 the United States, we specialize in delivering precise, innovative, and reliable
                 services across multiple states. With a legacy built on expertise and cutting-edge
                 technology, our dedicated team is driven by a strong commitment to quality, safety,
-                and client satisfaction. At ACE Services, we consistently strive to exceed
+                and client satisfaction. At The ACE Services, we consistently strive to exceed
                 expectations, making us your trusted partner for seamless project execution and
                 successful outcomes across the U.S.
               </p>
@@ -177,10 +177,10 @@ export default function AboutPageClient() {
                 and high-quality solutions.
               </p>
               <p className="font-sans text-base text-on-surface-variant leading-relaxed">
-                Under his leadership, ACE Services thrives on a foundation of precision, excellence,
+                Under his leadership, The ACE Services thrives on a foundation of precision, excellence,
                 and client-centric values, shaping the company into a trusted name in the
                 pre-construction sector. His commitment to advancing the industry through innovation
-                and sustainable practices continues to drive ACE Services toward success.
+                and sustainable practices continues to drive The ACE Services toward success.
               </p>
 
               <div className="grid grid-cols-2 gap-3 pt-2">
@@ -251,7 +251,7 @@ export default function AboutPageClient() {
               through innovative construction and estimation solutions, prioritizing excellence,
               quality, and sustainability. Our vision is to reshape landscapes, crafting enduring
               structures and inspiring a future built on integrity. Committed to client satisfaction,
-              each project at ACE Services reflects our dedication to excellence, safety, and
+              each project at The ACE Services reflects our dedication to excellence, safety, and
               contributing to a resilient world.
             </p>
           </div>
@@ -335,7 +335,7 @@ export default function AboutPageClient() {
               Professional Building and Estimation Consultancy
             </h2>
             <p className="font-sans text-base text-on-surface-variant leading-relaxed max-w-3xl mx-auto mt-4">
-              The efficiency of our company at ACE Services is reflected in streamlined processes,
+              The efficiency of our company at The ACE Services is reflected in streamlined processes,
               prompt delivery, and a commitment to optimizing every aspect of our operations for
               client satisfaction.
             </p>

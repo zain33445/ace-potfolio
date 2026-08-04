@@ -14,6 +14,23 @@ export default function BotpressChat() {
     const fab = host?.shadowRoot?.querySelector<HTMLElement>('.bpFab');
     if (fab) {
       fab.style.setProperty('background', color, 'important');
+      fab.style.setProperty('box-shadow', `0 0 0 0`, 'important');
+      fab.style.setProperty('padding', `1px`, 'important');
+      fab.style.setProperty('height', `4rem`, 'important');
+      fab.style.setProperty('width', `4rem`, 'important');
+      fab.style.setProperty('border', `1px solid #FF6B00`, 'important');
+      fab.style.setProperty('display', `flex`, 'important');
+      fab.style.setProperty('align-items', `center`, 'important');
+      fab.style.setProperty('justify-content', `center`, 'important');
+
+      /* Shrink the logo image inside the fab so it fits the smaller button */
+      const logo = fab.querySelector<HTMLElement>('img, svg');
+      if (logo) {
+        logo.style.setProperty('width', `3rem`, 'important');
+        logo.style.setProperty('height', `3rem`, 'important');
+        logo.style.setProperty('object-fit', `contain`, 'important');
+        logo.style.setProperty('margin', `auto`, 'important');
+      }
     }
   }
 

@@ -21,13 +21,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: `${project.title} | ACE SERVICES`,
+    title: `${project.title} | The ACE Services`,
     description: project.description,
     alternates: {
       canonical: `https://www.theaceservices.com/projects/${slug}`,
     },
     openGraph: {
-      title: `${project.title} | ACE SERVICES`,
+      title: `${project.title} | The ACE Services`,
       description: project.description,
       images: project.imageUrl ? [{ url: project.imageUrl }] : [],
       url: `https://www.theaceservices.com/projects/${slug}`,

@@ -195,7 +195,7 @@ export default function AdminDashboard() {
     <div className="mx-auto min-h-screen max-w-7xl bg-gray-50 p-8">
       <div className="mb-8">
         <h1 className="font-mono text-3xl font-bold tracking-wider uppercase text-gray-900">Admin</h1>
-        <p className="mt-1 font-mono text-base text-gray-500">ACE Services dashboard</p>
+        <p className="mt-1 font-mono text-base text-gray-500">The ACE Services dashboard</p>
       </div>
 
       <div className="mb-8 flex gap-1 border-b border-gray-200">

@@ -22,13 +22,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!service) return { title: 'Service Not Found' };
 
   return {
-    title: `${service.title} | ACE SERVICES`,
+    title: `${service.title} | The ACE Services`,
     description: service.summary,
     alternates: {
       canonical: `https://www.theaceservices.com/services/${service.slug}`,
     },
     openGraph: {
-      title: `${service.title} | ACE SERVICES — Pre-Construction Estimation`,
+      title: `${service.title} | The ACE Services — Pre-Construction Estimation`,
       description: service.summary,
       url: `https://www.theaceservices.com/services/${service.slug}`,
     },

@@ -11,7 +11,7 @@
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   z-index: 40;
   overflow: hidden;
 }
@@ -294,7 +294,7 @@
   content: counter(smItem, decimal-leading-zero);
   position: absolute;
   top: 0.1em;
-  right: 2.2em;
+  right: 1.65em;
   font-size: 18px;
   font-weight: 400;
   color: var(--sm-accent, #5227ff);
@@ -316,10 +316,10 @@
     filter: invert(100%);
   }
 
-  /* Match nav bar height/padding so toggle button is vertically centered and right-aligned */
+  /* Match nav bar height (h-16 = 4rem @ root 13px) so toggle button is vertically centered and right-aligned */
   .staggered-menu-header {
     padding: 0 16px;
-    height: 64px;
+    height: 4rem;
     justify-content: flex-end;
   }
 
@@ -330,6 +330,13 @@
 
   .staggered-menu-wrapper.fixed-wrapper {
     z-index: 60 !important;
+  }
+}
+
+/* Tablet widths (768px–1499px): nav uses md:h-22 = 5.5rem, keep the toggle centered */
+@media (min-width: 768px) and (max-width: 1499px) {
+  .staggered-menu-header {
+    height: 5.5rem;
   }
 }
 

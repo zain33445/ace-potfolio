@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter, JetBrains_Mono, Space_Grotesk } from 'next/font/google';
+import localFont from 'next/font/local';
 import Script from 'next/script';
 import './globals.css';
 import LayoutShell from './layout-shell';
@@ -25,17 +26,32 @@ const spaceGrotesk = Space_Grotesk({
   weight: ['500', '600', '700'],
 });
 
+/* ── Nourd (self-hosted brand font for the logo) ── */
+
+const nourd = localFont({
+  src: [
+    { path: './fonts/nourd/nourd_light.ttf', weight: '300', style: 'normal' },
+    { path: './fonts/nourd/nourd_regular.ttf', weight: '400', style: 'normal' },
+    { path: './fonts/nourd/nourd_medium.ttf', weight: '500', style: 'normal' },
+    { path: './fonts/nourd/nourd_semi_bold.ttf', weight: '600', style: 'normal' },
+    { path: './fonts/nourd/nourd_bold.ttf', weight: '700', style: 'normal' },
+    { path: './fonts/nourd/nourd_heavy.ttf', weight: '800', style: 'normal' },
+  ],
+  variable: '--font-nourd',
+  display: 'swap',
+});
+
 const url = 'https://www.theaceservices.com';
 const ogImage = 'https://www.theaceservices.com/og-image.png';
 
 export const metadata: Metadata = {
   metadataBase: new URL(url),
   title: {
-    default: 'Construction Estimating Services | Cost Estimation & Material Takeoffs — ACE Services',
-    template: '%s | ACE Services',
+    default: 'Construction Estimating Services | Cost Estimation & Material Takeoffs — The ACE Services',
+    template: '%s | The ACE Services',
   },
   description:
-    'ACE Services delivers professional construction estimating services including AACE Class 3 cost estimates, material takeoffs, and permit sets for general contractors across 35 US states. Get accurate bids in 24-48 hours.',
+    'The ACE Services delivers professional construction estimating services including AACE Class 3 cost estimates, material takeoffs, and permit sets for general contractors across 35 US states. Get accurate bids in 24-48 hours.',
   keywords: [
     'construction estimating services',
     'construction cost estimation',
@@ -49,14 +65,14 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    siteName: 'ACE SERVICES',
+    siteName: 'The ACE Services',
     url: `${url}/`,
     images: [
       {
         url: ogImage,
         width: 1200,
         height: 630,
-        alt: 'ACE SERVICES',
+        alt: 'The ACE Services',
       },
     ],
   },
@@ -65,7 +81,7 @@ export const metadata: Metadata = {
     images: [ogImage],
   },
   icons: {
-    icon: '/favicon.svg',
+    icon: '/aceLogo.png',
   },
   alternates: {
     canonical: `${url}/`,
@@ -109,7 +125,7 @@ const organizationSchema = {
 const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: 'ACE SERVICES',
+  name: 'The ACE Services',
   url,
   potentialAction: {
     '@type': 'SearchAction',
@@ -127,7 +143,7 @@ const faqSchema = {
       name: 'How long does a construction estimate take?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'ACE SERVICES typically delivers detailed cost estimates within 3 to 5 business days depending on project complexity. Expedited 24-hour turnaround available for select scope categories.',
+        text: 'The ACE Services typically delivers detailed cost estimates within 3 to 5 business days depending on project complexity. Expedited 24-hour turnaround available for select scope categories.',
       },
     },
     {
@@ -135,7 +151,7 @@ const faqSchema = {
       name: 'What is a Class 3 construction estimate?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'A Class 3 estimate, as defined by AACE International, provides a budgetary control level of accuracy suitable for project funding authorization. ACE SERVICES delivers all estimates to AACE Class 3 standards with ±10% to ±20% accuracy range.',
+        text: 'A Class 3 estimate, as defined by AACE International, provides a budgetary control level of accuracy suitable for project funding authorization. The ACE Services delivers all estimates to AACE Class 3 standards with ±10% to ±20% accuracy range.',
       },
     },
     {
@@ -143,7 +159,7 @@ const faqSchema = {
       name: 'What is a quantity takeoff in construction?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'A quantity takeoff is the process of measuring and calculating all materials, labor, and equipment quantities from architectural blueprints and specifications. ACE SERVICES uses algorithmic digitization platforms for division-wise material volume counts.',
+        text: 'A quantity takeoff is the process of measuring and calculating all materials, labor, and equipment quantities from architectural blueprints and specifications. The ACE Services uses algorithmic digitization platforms for division-wise material volume counts.',
       },
     },
     {
@@ -151,7 +167,7 @@ const faqSchema = {
       name: 'How much does a construction cost estimate cost?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'ACE SERVICES provides free preliminary quotes. Full estimate pricing is project-dependent based on square footage, scope complexity, and documentation quality. Use our online calculator for an instant budgetary allocation or contact us for a custom quote.',
+        text: 'The ACE Services provides free preliminary quotes. Full estimate pricing is project-dependent based on square footage, scope complexity, and documentation quality. Use our online calculator for an instant budgetary allocation or contact us for a custom quote.',
       },
     },
     {
@@ -176,7 +192,7 @@ const faqSchema = {
 const howToSchema = {
   '@context': 'https://schema.org',
   '@type': 'HowTo',
-  name: 'ACE SERVICES Pre-Construction Process',
+  name: 'The ACE Services Pre-Construction Process',
   description:
     'Our four-step pre-construction pipeline converts raw blueprints into certified cost schedules.',
   step: [
@@ -313,7 +329,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable}`}
+      className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable} ${nourd.variable}`}
     >
       <head>
         {/* JSON-LD structured data */}

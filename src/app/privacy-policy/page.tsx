@@ -1,16 +1,16 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | ACE SERVICES',
+  title: 'Privacy Policy | The ACE Services',
   description:
-    'Privacy Policy for ACE Services. Learn how we collect, use, and protect your information, including SMS communication and data security practices.',
+    'Privacy Policy for The ACE Services. Learn how we collect, use, and protect your information, including SMS communication and data security practices.',
   alternates: {
     canonical: 'https://www.theaceservices.com/privacy-policy',
   },
   openGraph: {
   title: 'Privacy Policy',
     description:
-      'Privacy Policy for ACE Services. Learn how we collect, use, and protect your information.',
+      'Privacy Policy for The ACE Services. Learn how we collect, use, and protect your information.',
     url: 'https://www.theaceservices.com/privacy-policy',
   },
 };
@@ -28,7 +28,7 @@ export default function PrivacyPolicyPage() {
 
         <div className="space-y-10 font-sans text-[#374151] leading-relaxed">
           <p>
-            At ACE Services, your privacy is important to us. This policy explains
+            At The ACE Services, your privacy is important to us. This policy explains
             how we collect, use, and protect your information.
           </p>
 

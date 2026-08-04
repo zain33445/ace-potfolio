@@ -38,7 +38,7 @@ export default function AdminLogin() {
       <form onSubmit={handleSubmit} className="w-full space-y-6">
         <div>
           <h1 className="font-mono text-xl font-bold uppercase tracking-wider text-gray-900">Admin Login</h1>
-          <p className="mt-1 font-mono text-xs text-gray-500">ACE Services</p>
+          <p className="mt-1 font-mono text-xs text-gray-500">The ACE Services</p>
         </div>
         <div className="space-y-2">
           <input

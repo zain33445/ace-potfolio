@@ -1,9 +1,9 @@
 import HomePage from './home-page';
 
 export const metadata = {
-  title: 'Construction Estimating Services | Cost Estimation & Material Takeoffs — ACE Services',
+  title: { absolute: 'The ACE Services — Top Construction and Estimation Company' },
   description:
-    'ACE Services delivers professional construction estimating services including AACE Class 3 cost estimates, material takeoffs, and permit sets for general contractors across 35 US states. Get accurate bids in 24-48 hours.',
+    'The ACE Services is a top construction and estimation company delivering AACE Class 3 cost estimates, material takeoffs, permit sets, and project scheduling for general contractors nationwide.',
 };
 
 export default function Page() {

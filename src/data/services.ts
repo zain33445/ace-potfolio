@@ -69,8 +69,8 @@ export const services: Service[] = [
       'Excel & PDF delivery formats',
       '24–48 hour expedited turnaround available',
     ],
-    startingPrice: '$2,500',
-    turnaround: '3–5 business days',
+    startingPrice: '$45 - 50 per hour',
+    turnaround: '1–2 business days',
     stats: [
       { label: 'ACCURACY_RANGE', value: '±10-20%' },
       { label: 'TURNAROUND', value: '24-48h' },

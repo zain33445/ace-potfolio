@@ -221,7 +221,7 @@ export default function InteractiveEstimator() {
                       <Check className="w-3.5 h-3.5 flex-shrink-0" /> Dual-validation review protocol ready
                     </div>
                     <p className="text-xs leading-normal text-on-surface-variant">
-                      *The above figures are representative estimates. ACE Services verifies every final project takeoff using manual quantity surveying procedures to guarantee a 99.8% precision rating to municipal departments.
+                      *The above figures are representative estimates. The ACE Services verifies every final project takeoff using manual quantity surveying procedures to guarantee a 99.8% precision rating to municipal departments.
                     </p>
                   </div>
                 </motion.div>

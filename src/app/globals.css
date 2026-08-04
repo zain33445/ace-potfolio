@@ -42,6 +42,7 @@
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
   --font-space: var(--font-space), sans-serif;
+  --font-nourd: var(--font-nourd), ui-sans-serif, system-ui, sans-serif;
   
   --color-primary: #FF6B00;
   --color-primary-container: #FF6B00;
@@ -78,6 +79,14 @@ body {
   color: var(--color-on-background);
   overflow-x: hidden;
   font-family: var(--font-sans);
+}
+
+/* Touch devices (mobile/tablet) — use the normal cursor, not the custom crosshair */
+@media (pointer: coarse) {
+  body,
+  body * {
+    cursor: auto;
+  }
 }
 
 /* ── Skip to Content ───────────────────────── */

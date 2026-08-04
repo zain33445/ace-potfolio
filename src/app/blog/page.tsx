@@ -9,12 +9,12 @@ import PaginationGrid from '../../components/PaginationGrid';
 export const metadata: Metadata = {
   title: 'Insights & Blog',
   description:
-    'Expert insights on construction estimation, quantity surveying, cost analysis, and pre-construction best practices from ACE SERVICES.',
+    'Expert insights on construction estimation, quantity surveying, cost analysis, and pre-construction best practices from The ACE Services.',
   alternates: {
     canonical: 'https://www.theaceservices.com/blog',
   },
   openGraph: {
-    title: 'Insights & Blog | ACE SERVICES',
+    title: 'Insights & Blog | The ACE Services',
     description:
       'Expert insights on construction estimation, quantity surveying, cost analysis, and pre-construction best practices.',
     url: 'https://www.theaceservices.com/blog',
@@ -45,7 +45,7 @@ export default async function BlogPage() {
 
         <p className="mt-5 text-lg leading-relaxed text-on-surface-variant md:text-xl">
           Expert insights on construction estimation, quantity surveying, cost
-          analysis, and pre-construction best practices from ACE SERVICES.
+          analysis, and pre-construction best practices from The ACE Services.
         </p>
       </div>
 

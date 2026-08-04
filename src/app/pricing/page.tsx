@@ -13,12 +13,12 @@ import {
 export const metadata: Metadata = {
   title: 'Pricing',
   description:
-    'Transparent pricing for ACE SERVICES pre-construction estimation. Budgetary allocations for material takeoffs, AACE Class 3 cost estimates, permit sets, project scheduling, and feasibility studies.',
+    'Transparent pricing for The ACE Services pre-construction estimation. Budgetary allocations for material takeoffs, AACE Class 3 cost estimates, permit sets, project scheduling, and feasibility studies.',
   alternates: {
     canonical: 'https://www.theaceservices.com/pricing',
   },
   openGraph: {
-    title: 'Pricing — ACE SERVICES',
+    title: 'Pricing — The ACE Services',
     description:
       'Transparent pricing for pre-construction estimation services. Material takeoffs, cost estimates, permit sets, scheduling, and feasibility studies.',
     url: 'https://www.theaceservices.com/pricing',

@@ -111,8 +111,13 @@ export default function WhyChooseUsSection() {
       const g = document.getElementById(`pillar-${idx}`);
       if (!g) return;
       const pStep = idx + 2;
-      g.style.opacity = step >= pStep ? '1' : '0';
-      g.style.transform = step >= pStep ? 'translateY(0)' : 'translateY(30px)';
+      const isActive = step >= pStep;
+      // Toggle the CSS `.active` class — this is what drives the child
+      // reveals (.pillar-leg/.pillar-brace dash draw, face fills, shadow).
+      // Inline opacity/transform only animates the group itself.
+      g.classList.toggle('active', isActive);
+      g.style.opacity = isActive ? '1' : '0';
+      g.style.transform = isActive ? 'translateY(0)' : 'translateY(30px)';
     });
   };
 
@@ -530,20 +535,6 @@ export default function WhyChooseUsSection() {
                   </div>
                 </div>
 
-            {/* ── Scroll progress indicator ── */}
-            <div className="fixed bottom-8 right-8 z-20 flex items-center gap-2 font-mono text-xs text-primary">
-              <div className="flex gap-1.5">
-                {Array.from({ length: 6 }).map((_, s) => (
-                  <div
-                    key={s}
-                    className={`w-2 h-2 rounded-full transition-colors duration-300 ${
-                      activeStep >= s ? 'bg-primary' : 'bg-blueprint-line'
-                    }`}
-                  />
-                ))}
-              </div>
-              <span className="tabular-nums ml-1">{activeStep}/5</span>
-            </div>
           </div>
         ) : (
           <div className="relative z-10 flex flex-col px-6 pt-24 pb-16 max-w-md mx-auto">

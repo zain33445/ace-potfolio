@@ -45,7 +45,7 @@ export async function generateMetadata({
       canonical: `https://www.theaceservices.com/blog/${slug}`,
     },
     openGraph: {
-      title: `${post.title} | ACE SERVICES`,
+      title: `${post.title} | The ACE Services`,
       description: post.excerpt.slice(0, 160),
       ...(post.image ? { images: [{ url: post.image }] } : {}),
       url: `https://www.theaceservices.com/blog/${slug}`,

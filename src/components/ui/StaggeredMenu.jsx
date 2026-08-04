@@ -17,8 +17,8 @@ export const StaggeredMenu = ({
   changeMenuColorOnOpen = true,
   isFixed = false,
   closeOnClickAway = true,
-  onMenuOpen,
-  onMenuClose
+  onMenuOpen = () => {},
+  onMenuClose = () => {}
 }) => {
   const [open, setOpen] = useState(false);
   const openRef = useRef(false);

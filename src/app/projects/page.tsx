@@ -12,12 +12,12 @@ import { getAllProjects } from '../../data/projects';
 export const metadata: Metadata = {
   title: 'Projects',
   description:
-    'Explore the ACE SERVICES portfolio — precise construction estimation delivered across residential, commercial, and industrial projects nationwide.',
+    'Explore The ACE Services portfolio — precise construction estimation delivered across residential, commercial, and industrial projects nationwide.',
   alternates: {
     canonical: 'https://www.theaceservices.com/projects',
   },
   openGraph: {
-    title: 'Projects | ACE SERVICES',
+    title: 'Projects | The ACE Services',
     description:
       'A portfolio of construction estimation work spanning residential, commercial, and industrial sectors.',
     url: 'https://www.theaceservices.com/projects',

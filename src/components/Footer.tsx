@@ -1,180 +1,252 @@
-'use client';
+"use client";
 
-import { useRouter } from 'next/navigation';
-import { TextRepel } from '@/src/components/ui/text-repel';
-// Component ported from https://codepen.io/JuanFuentes/full/rgXKGQ
-// Font used - https://compressa.preusstype.com/
-  
-import TextPressure from '@/src/components/ui/TextPressure';
+import { useRouter } from "next/navigation";
+import { TextRepel } from "@/src/components/ui/text-repel";
+import TextPressure from "@/src/components/ui/TextPressure";
 
 // Note:
-// Make sure the font you're using supports all the variable properties. 
+// Make sure the font you're using supports all the variable properties.
 // React Bits does not take responsibility for the fonts used
-
 
 export default function Footer() {
   const router = useRouter();
 
   const navItems = [
-    { label: 'BLOGS', href: '/blog' },
-    { label: 'SERVICES', href: '/services' },
-    { label: 'PRICING', href: '/pricing' },
-    { label: 'PROJECTS', href: '/projects' },
-    { label: 'ABOUT', href: '/about' },
-    { label: 'CONTACT', href: '/contact' },
-    { label: 'CALCULATOR', href: '/calculator' },
+    { label: "ABOUT", href: "/about" },
+    { label: "BLOGS", href: "/blog" },
+    { label: "PRICING", href: "/pricing" },
+    { label: "SERVICES", href: "/services" },
+    { label: "CONTACT", href: "/contact" },
+    { label: "PROJECTS", href: "/projects" },
+    { label: "CALCULATOR", href: "/calculator" },
+    { label: "TESTIMONIALS", href: "/testimonials" },
+    { label: "privacy policy", href: "/privacy-policy" },
+    { label: "terms & conditions", href: "/terms-and-conditions" },
   ];
 
-  const standards = ['CSI MASTERFORMAT', 'AACE CLASS 3 INDEX', 'ISO 9001 METRICS'];
+  const standards = [
+    "ISO 9001 METRICS",
+    "CSI MASTERFORMAT",
+    "AACE CLASS 3 INDEX",
+  ];
 
   const communication = [
-    'est-control@ace-services.io',
-    '+1 (800) 555-QS77',
-    'Dallas Head Office',
+    "+1 (800) 555-QS77",
+    "Dallas Head Office",
+    "info@theaceservices.com",
   ];
 
   return (
-    <footer className="bg-primary relative border-t border-white/10 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:48px_48px] cursor-pointer">
-      <div className="w-full mx-auto md:px-5 py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-16 align-center justify-items-center">
+    <footer
+      className="
+        bg-primary bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:48px_48px]
+        border-t border-white/10
+        cursor-pointer
+        relative
+      "
+    >
+      <div
+        className="
+          w-full
+          mx-auto pt-20 pb-10
+          md:px-5
+        "
+      >
+        <div
+          className="
+            grid grid-cols-1
+            mb-16
+            align-center
+            gap-16 justify-items-center
+            lg:grid-cols-12
+          "
+        >
           {/* Left: Brand + tagline */}
-          <div className="lg:col-span-5 space-y-8 text-center lg:text-left">
+          <div
+            className="
+              space-y-8
+              text-center
+              lg:text-left lg:col-span-5
+            "
+          >
             <br />
             <br />
             <TextRepel
               text="Parametric estimating precision for general builders, civil engineers, and trade specialists nationwide. Eliminating manual error thresholds."
-              className="font-sans text-lg text-white/80 max-w-sm leading-relaxed font-semibold"
               radius={80}
               strength={50}
               mode="repel"
-            /><br/>
-            <TextRepel
-              text="[EST_SYS_CORE_V.2.5.0_ACTIVE]"
-              className="font-mono text-xs text-white/60 m-auto text-center uppercase tracking-widest font-bold"
-              radius={60}
-              strength={35}
-              mode="repel"
+              className="
+                max-w-md md:max-w-lg
+                font-sans text-xl md:text-2xl text-white/80 leading-relaxed font-semibold
+              "
             />
+            <br />
           </div>
 
           {/* Right: 3-column grid */}
-          <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center">
+          <div
+            className="
+              grid grid-cols-2
+              gap-5 justify-items-center
+              lg:col-span-7
+                md:gap-50
+
+            "
+          >
             {/* Navigation */}
-            <div className="flex flex-col gap-4">
+            <div
+              className="
+                flex flex-col
+                gap-1 items-start
+              "
+            >
               <TextRepel
                 text="[NAVIGATION]"
-                className="font-mono text-sm text-center text-white tracking-wider font-bold"
                 radius={60}
                 strength={35}
                 mode="repel"
+                className="
+                  mb-1
+                  font-mono text-base md:text-lg text-center text-white tracking-wider font-bold
+                "
               />
               {navItems.map((item) => (
                 <TextRepel
                   key={item.href}
                   text={item.label}
-                  className="text-left font-sans text-sm font-semibold text-white/70 hover:text-white transition-colors link-underline w-fit cursor-pointer"
                   radius={60}
                   strength={35}
                   mode="repel"
                   onClick={() => router.push(item.href)}
+                  className="
+                    w-fit
+                    text-left font-sans text-base md:text-lg font-semibold text-white/70
+                    transition-colors cursor-pointer
+                    hover:text-white link-underline uppercase
+                  "
                 />
               ))}
             </div>
 
-            {/* Standards */}
-            <div className="flex flex-col gap-4">
-              <TextRepel
-                text="[STANDARDS]"
-                className="font-mono text-sm text-white tracking-wider font-bold"
-                radius={60}
-                strength={35}
-                mode="repel"
-              />
-              {standards.map((item) => (
+            <div
+              className="
+                flex flex-col
+                mr-9
+                font-bold
+                justify-between
+              "
+            >
+              {/* Standards */}
+              <div
+                className="
+                  flex flex-col
+                  gap-1 items-end
+                "
+              >
                 <TextRepel
-                  key={item}
-                  text={item}
-                  className="font-sans text-sm text-white/70 font-semibold"
+                  text="[STANDARDS]"
                   radius={60}
                   strength={35}
                   mode="repel"
+                  className="
+                    mb-1
+                    font-mono text-base md:text-lg text-white tracking-wider font-bold
+                  "
                 />
-              ))}
-            </div>
+                {standards.map((item) => (
+                  <TextRepel
+                    key={item}
+                    text={item}
+                    radius={60}
+                    strength={35}
+                    mode="repel"
+                    className="
+                      font-sans text-base md:text-lg text-white/70 font-semibold
+                    "
+                  />
+                ))}
+              </div>
 
-            {/* Communication */}
-            <div className="flex flex-col gap-4">
-              <TextRepel
-                text="[COMMUNICATION]"
-                className="font-mono text-sm text-white tracking-wider font-bold"
-                radius={60}
-                strength={35}
-                mode="repel"
-              />
-              {communication.map((item) => (
+              {/* Communication */}
+              <div
+                className="
+                  flex flex-col
+                  text-left
+                  gap-1 items-end
+                "
+              >
                 <TextRepel
-                  key={item}
-                  text={item}
-                  className="font-sans text-sm text-white/70 font-semibold cursor-pointer"
+                  text="[COMMUNICATION]"
                   radius={60}
                   strength={35}
                   mode="repel"
+                  className="
+                    mb-1
+                    font-mono text-base md:text-lg text-white tracking-wider font-bold
+                  "
                 />
-              ))}
+                {communication.map((item) => (
+                  <TextRepel
+                    key={item}
+                    text={item}
+                    radius={60}
+                    strength={35}
+                    mode="repel"
+                    className="
+                      font-sans text-base md:text-lg text-white/70 font-semibold
+                      cursor-pointer
+                    "
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
 
-<div style={{position: 'relative', height: '300px'}}>
-  <TextPressure
-    text="THE ACE SERVICES"
-    flex
-    alpha={false}
-    stroke={false}
-    width
-    weight
-    italic={false}
-    textColor="#FFFFFF"
-    strokeColor="#5227FF"
-    minFontSize={36}
-  />
-</div>
+        <div
+          style={{ position: "relative"}}
+          className="
+            height-[200px]
+            md:height-[300px]
+            my-[5rem]
+          "
+        >
+          <TextPressure
+            text="THE ACE SERVICES"
+            flex
+            alpha={false}
+            stroke={false}
+            width
+            weight
+            italic={false}
+            textColor="#FFFFFF"
+            strokeColor="#5227FF"
+            minFontSize={36}
+            proximity={600}
+          />
+        </div>
         {/* Bottom bar */}
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex items-center gap-4">
-            <TextRepel
-              text="©2026 ACE SERVICES. ALL CODES SECURED."
-              className="font-mono text-sm text-white/70 font-bold"
-              radius={80}
-              strength={35}
-              mode="repel"
-            />
-            <span className="hidden md:inline text-white/30">|</span>
-            <a
-              href="/privacy-policy"
-              className="font-mono text-sm text-white/70 hover:text-white transition-colors"
-            >
-              PRIVACY POLICY
-            </a>
-            <span className="hidden md:inline text-white/30">|</span>
-            <a
-              href="/terms-and-conditions"
-              className="font-mono text-sm text-white/70 hover:text-white transition-colors"
-            >
-              TERMS &amp; CONDITIONS
-            </a>
-          </div>
+        <div
+          className="
+            pt-8
+            text-center
+            w-[75%]
+            m-auto
+            border-t border-white/50
+          "
+        >
           <TextRepel
-            text="LAT: 32.7767° N | LONG: 96.7970° W | BLUEPRINT RECT_X_COORD"
-            className="font-mono text-xs text-white/40"
+            text="©2026 THE ACE SERVICES. ALL CODES SECURED."
             radius={80}
             strength={35}
             mode="repel"
+            className="
+              font-mono text-base md:text-lg text-white/70 font-bold
+            "
           />
         </div>
       </div>
-
-
     </footer>
   );
 }

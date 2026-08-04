@@ -1,16 +1,16 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Terms and Conditions | ACE SERVICES',
+  title: 'Terms and Conditions | The ACE Services',
   description:
-    'Terms and Conditions for ACE Services. Learn about the rules governing your use of our website and SMS messaging services.',
+    'Terms and Conditions for The ACE Services. Learn about the rules governing your use of our website and SMS messaging services.',
   alternates: {
     canonical: 'https://www.theaceservices.com/terms-and-conditions',
   },
   openGraph: {
   title: 'Terms and Conditions',
     description:
-      'Terms and Conditions for ACE Services. Learn about the rules governing your use of our website and SMS messaging services.',
+      'Terms and Conditions for The ACE Services. Learn about the rules governing your use of our website and SMS messaging services.',
     url: 'https://www.theaceservices.com/terms-and-conditions',
   },
 };
@@ -102,7 +102,7 @@ export default function TermsAndConditionsPage() {
               4. Limitation of Liability
             </h2>
             <p>
-              ACE Services is not responsible for any indirect or consequential
+              The ACE Services is not responsible for any indirect or consequential
               damages resulting from the use of our services.
             </p>
           </section>
