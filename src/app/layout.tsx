@@ -376,14 +376,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           as="style"
         />
 
-        {/* Google Analytics 4 */}
+        {/* Google Analytics 4 — deferred to after interactive to reduce main-thread work */}
         {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID && (
           <>
             <Script
               src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}`}
-              strategy="afterInteractive"
+              strategy="lazyOnload"
             />
-            <Script id="google-analytics" strategy="afterInteractive">
+            <Script id="google-analytics" strategy="lazyOnload">
               {`
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
@@ -394,11 +394,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </>
         )}
         
-        {/* Meta Pixel */}
+        {/* Meta Pixel — deferred to after interactive */}
         {process.env.NEXT_PUBLIC_META_PIXEL_ID && (
           <Script
             id="meta-pixel"
-            strategy="afterInteractive"
+            strategy="lazyOnload"
             dangerouslySetInnerHTML={{
               __html: `
                 !function(f,b,e,v,n,t,s)

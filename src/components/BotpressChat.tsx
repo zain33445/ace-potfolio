@@ -62,14 +62,14 @@ export default function BotpressChat() {
       }
       return false;
     };
-    /* Retry until the shadow root appears */
+    /* Retry until the shadow root appears (poll every 2s to reduce main-thread work) */
     interval = setInterval(() => {
       if (waitForShadow()) clearInterval(interval);
-    }, 500);
+    }, 2000);
     return () => clearInterval(interval);
   }, []);
 
-  /* Inject Botpress scripts after a short delay */
+  /* Inject Botpress scripts after a longer delay to reduce main-thread work on load */
   useEffect(() => {
     const readyTimeout = setTimeout(() => {
       const injectScript = document.createElement('script');
@@ -84,7 +84,7 @@ export default function BotpressChat() {
 
       document.body.appendChild(injectScript);
       document.body.appendChild(configScript);
-    }, 4000);
+    }, 8000);
 
     return () => {
       clearTimeout(readyTimeout);
