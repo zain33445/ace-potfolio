@@ -7,10 +7,10 @@ import { calculateCost } from '../../services/costCalculator';
 type StepId = 'projectType' | 'area' | 'params' | 'review';
 
 const steps: { id: StepId; label: string; description: string }[] = [
-  { id: 'projectType', label: 'Structure Type', description: 'Select project category' },
-  { id: 'area', label: 'Floor Area', description: 'Define covered square footage' },
-  { id: 'params', label: 'Parameters', description: 'Complexity & regional factors' },
-  { id: 'review', label: 'Review', description: 'Confirm estimate parameters' },
+  { id: 'projectType', label: 'Structure Type', description: 'Select category' },
+  { id: 'area', label: 'Floor Area', description: 'provide area' },
+  { id: 'params', label: 'Parameters', description: 'Parameters' },
+  { id: 'review', label: 'Review', description: 'Review and Confirm' },
 ];
 
 type Inputs = EstimationInputs;

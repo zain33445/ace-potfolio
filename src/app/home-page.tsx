@@ -24,7 +24,7 @@ export default function HomePage() {
         <WhyChooseUsSection />
       </div>
       <TestimonialsSection />
-      {/* <TrustSignalsSection /> */}
+      <TrustSignalsSection />
       <CalculatorStripBanner />
       <ProjectsSection />
       <ProcessSection />

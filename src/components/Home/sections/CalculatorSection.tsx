@@ -19,7 +19,7 @@ export default function CalculatorSection() {
             Adjust parametric multipliers to generate class-3 budgetary allocations ready for estimation draft submission.
           </p>
         </div>
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-8xl mx-auto">
           <InteractiveEstimator />
         </div>
       </Reveal>

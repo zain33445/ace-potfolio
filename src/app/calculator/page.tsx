@@ -34,7 +34,7 @@ export default function CalculatorPage() {
       </div>
 
       {/* Interactive Estimator */}
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <EstimatorWrapper />
       </div>
 

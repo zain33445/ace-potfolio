@@ -285,8 +285,8 @@ export default function Hero() {
               "
             >
               Accurate AACE Class&nbsp;3 estimates and material takeoffs,
-              delivered in 24 to 48 hours. Win more work with precise,
-              professional-grade pre-construction numbers.
+              delivered in 24 to 48 hours. Win more work with precise, 
+              estimation numbers.
             </p>
 
             {/* CTAs */}

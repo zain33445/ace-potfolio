@@ -30,7 +30,7 @@ export default function InteractiveEstimator() {
         <div className="flex items-center gap-2">
           <Calculator className="w-5 h-5 text-primary" />
           <span className="font-space font-bold uppercase tracking-wider text-base">
-            Interactive Cost Takeoff Engine [V2.5]
+            Instant Bid Estimator
           </span>
         </div>
         <div className="flex bg-background border border-blueprint-line p-1 bracket-corners">
