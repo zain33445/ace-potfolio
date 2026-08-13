@@ -62,10 +62,10 @@ export default function HeroSection() {
           <div
             className="
               z-10
-              pt-16
+              px-10
               h-full
               relative
-              flex flex-col items-center justify-center
+              flex flex-col items-center justify-center gap-y-20
             "
           >
             <Header h1={headerH1} h2={headerH2} h3={headerH3} />

@@ -234,15 +234,6 @@ body {
   -webkit-backdrop-filter: url(#liquid-refraction) blur(8px);
 }
 
-/* Mobile/tablet: disable the SVG displacement (heavy on low-end GPUs)
-   and fall back to standard glassmorphism blur. */
-@media (max-width: 767px) {
-  .liquid-glass {
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-  }
-}
-
 .nav-scrolled {
   background-color: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(8px);

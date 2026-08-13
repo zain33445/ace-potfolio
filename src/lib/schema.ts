@@ -1,31 +1,41 @@
 export const SITE_URL = 'https://www.theaceservices.com';
 export const OG_IMAGE = `${SITE_URL}/og-image.png`;
 
+export const ORGANIZATION_ID = `${SITE_URL}/#organization`;
+export const WEBSITE_ID = `${SITE_URL}/#website`;
+export const BUSINESS_ID = `${SITE_URL}/#business`;
+export const SERVICE_ID = `${SITE_URL}/#construction-estimating`;
+
 export const organizationSchema = {
-  '@context': 'https://schema.org',
   '@type': 'Organization',
+  '@id': ORGANIZATION_ID,
   name: 'The ACE Services',
   description:
     'The ACE Services is a top construction and estimation company delivering AACE Class 3 cost estimates, material takeoffs, permit sets, and project scheduling for general contractors nationwide.',
   url: SITE_URL,
-  areaServed: 'US',
+  areaServed: {
+    '@type': 'Country',
+    name: 'United States',
+  },
 };
 
 export const websiteSchema = {
-  '@context': 'https://schema.org',
   '@type': 'WebSite',
+  '@id': WEBSITE_ID,
   name: 'The ACE Services',
   url: SITE_URL,
+  publisher: { '@id': ORGANIZATION_ID },
 };
 
 export const localBusinessSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
+  '@type': 'ProfessionalService',
+  '@id': BUSINESS_ID,
   name: 'The ACE Services',
   image: OG_IMAGE,
   url: SITE_URL,
   telephone: '+1-281-899-0250',
   email: 'info@theaceservices.com',
+  priceRange: '$$',
   address: {
     '@type': 'PostalAddress',
     streetAddress: '16319 Hillside Garden LN',
@@ -33,11 +43,6 @@ export const localBusinessSchema = {
     addressRegion: 'TX',
     postalCode: '77084',
     addressCountry: 'US',
-  },
-  geo: {
-    '@type': 'GeoCoordinates',
-    latitude: 29.7604,
-    longitude: -95.3698,
   },
   openingHoursSpecification: {
     '@type': 'OpeningHoursSpecification',
@@ -49,14 +54,11 @@ export const localBusinessSchema = {
 };
 
 export const serviceSchema = {
-  '@context': 'https://schema.org',
   '@type': 'Service',
+  '@id': SERVICE_ID,
+  name: 'Construction Estimating Service',
   serviceType: 'Construction Estimating',
-  provider: {
-    '@type': 'Organization',
-    name: 'The ACE Services',
-    url: SITE_URL,
-  },
+  provider: { '@id': ORGANIZATION_ID },
   areaServed: {
     '@type': 'Country',
     name: 'United States',
@@ -71,7 +73,7 @@ export const serviceSchema = {
           '@type': 'Service',
           name: 'AACE Class 3 Cost Estimates',
           description:
-            'Professional budgetary-level cost estimates with ±10% to ±20% accuracy range, suitable for project funding authorization.',
+            'Budgetary-level cost estimates delivered to AACE Class 3 standards using localized material databases and CSI MasterFormat divisions, typically within ±10% to ±20% accuracy and suitable for project funding authorization.',
         },
       },
       {
@@ -103,4 +105,9 @@ export const serviceSchema = {
       },
     ],
   },
+};
+
+export const websiteGraphSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [organizationSchema, websiteSchema, localBusinessSchema, serviceSchema],
 };

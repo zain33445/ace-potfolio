@@ -4,13 +4,11 @@ import Script from 'next/script';
 import './globals.css';
 import LayoutShell from './layout-shell';
 import ThirdPartyScripts from '@/src/components/ThirdPartyScripts';
+import LiquidGlassFilter from '@/src/components/ui/liquid-glass-filter';
 import {
   SITE_URL as url,
   OG_IMAGE as ogImage,
-  organizationSchema,
-  websiteSchema,
-  localBusinessSchema,
-  serviceSchema,
+  websiteGraphSchema,
 } from '../lib/schema';
 
 /* ── next/font (self-hosted woff2, no external build/runtime requests) ── */
@@ -115,22 +113,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable} ${nourd.variable}`}
     >
       <head>
-        {/* JSON-LD structured data */}
+        {/* JSON-LD structured data — single entity graph */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteGraphSchema) }}
         />
         
         {/* Preconnect to critical third-party origins (max 4 per Lighthouse) */}
@@ -187,6 +173,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="min-h-screen antialiased selection:bg-primary selection:text-white" suppressHydrationWarning>
         <ThirdPartyScripts />
+        <LiquidGlassFilter />
         <LayoutShell>{children}</LayoutShell>
       </body>
     </html>

@@ -321,9 +321,12 @@ export const Header = ({
         font-sans
         pb-8 px-10
         w-[100%] max-w-[900px]
-        display-flex flex-col items-center justify-center gap-y-2  m-auto
+        display-flex flex-col items-start justify-start gap-y-20
         text-white
+        liquid-glass bg-white/10 border border-white/20
         md:w-4/5 md:px-2 md:pt-10 md:pb-15
+              rounded-3xl
+
       `}
     >
       <h1
@@ -344,7 +347,7 @@ export const Header = ({
           <h2
             className={`
               my-5
-              text-[clamp(2.5rem,5vw,4rem)] font-extrabold leading-[1.1] tracking-tighter text-left
+              text-5xl font-extrabold leading-[1.1] tracking-tighter text-center
               decoration-primary decoration-[6px] underline-offset-[10px]
             `}
           >
@@ -354,7 +357,7 @@ export const Header = ({
         <div
           className={`
             mx-auto mt-1
-            text-justified text-[clamp(1rem,1.5vw,1.25rem)] leading-relaxed text-left
+            text-justified text-xl
             text-white
           `}
         >
@@ -364,7 +367,7 @@ export const Header = ({
       <p
         className={`
           mt-8 px-6
-          text-center font-medium text-xs leading-relaxed text-white
+          text-center font-medium text-sm leading-relaxed text-white
           md:mt-11 md:px-10 md:text-sm
         `}
       >
