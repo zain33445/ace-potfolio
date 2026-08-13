@@ -178,8 +178,8 @@ body {
 .glass-card {
   width: auto;
   background: rgba(255, 255, 255, 0.23);
-  backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 
@@ -226,12 +226,67 @@ body {
 /* ── Liquid Glass HUD — SVG feDisplacementMap water refraction ───── */
 
 /* Desktop: apply SVG displacement filter + blur for the water-glass effect.
-   The blur(8px) provides the frosted-glass finish on top of the warp.
-   Browsers that don't support url() in backdrop-filter will gracefully
-   fall back to just blur(8px). */
+   The blur(8px) layer is the fallback: browsers that don't support url() in
+   backdrop-filter (Firefox, Safari) keep the frosted glass. Chrome supports
+   url() and the last declaration wins.
+   NOTE: the unprefixed `backdrop-filter` MUST be declared after its
+   -webkit- counterpart, otherwise the production CSS minifier drops it and
+   the effect disappears in Chrome. */
 .liquid-glass {
-  backdrop-filter: url(#liquid-refraction) blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
   -webkit-backdrop-filter: url(#liquid-refraction) blur(8px);
+  backdrop-filter: url(#liquid-refraction) blur(8px);
+}
+
+/* ── Hero header entrance — compositor-only keyframes ────────────── */
+/* Pure CSS (no JS/hydration dependency): starts at first paint and runs
+   on the GPU, so the video hero never delays or janks the text reveal.
+   h1 fades DOWN from above; everything else fades UP from below. */
+@keyframes hero-enter-down {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -40px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes hero-enter-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 40px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.hero-enter-down {
+  animation: hero-enter-down 0.5s ease-out both;
+}
+
+.hero-enter-up {
+  animation: hero-enter-up 0.5s ease-out both;
+}
+
+.hero-enter-up-1 {
+  animation-delay: 0.1s;
+}
+
+.hero-enter-up-2 {
+  animation-delay: 0.2s;
+}
+
+.hero-enter-up-3 {
+  animation-delay: 0.3s;
+}
+
+.hero-enter-up-4 {
+  animation-delay: 0.4s;
 }
 
 .nav-scrolled {
@@ -781,6 +836,13 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  /* Hero header entrance: keep it — intentional one-time load reveal */
+  .hero-enter-down,
+  .hero-enter-up {
+    animation-duration: 0.5s !important;
+    animation-iteration-count: 1 !important;
   }
 
   /* Marquee: freeze scrolling */

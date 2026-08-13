@@ -339,36 +339,90 @@ export const Header = ({
           text-md font-normal leading-[1.1] text-left
           ${mobile ? "text-white mt-1" : "text-[#FF6B00] mt-5"}
           decoration-primary decoration-[6px] underline-offset-[10px]
+          hero-enter-down
         `}
       >
         {h1 ?? "Construction Pre-Estimation"}
       </h1>
 
-          <h2
-            className={`
+      {/* <TextGenerateEffect words={h2 || 'heading'} duration={5} /> */}
+      {/* <TextGenerateEffect
+          variants={{
+            hidden: {
+              opacity: 0,
+              y: 30,
+              rotate: 45,
+              scale: 0.5,
+            },
+            show: (i) => ({
+              opacity: 1,
+              y: 0,
+              rotate: 0,
+              scale: 1,
+              transition: {
+                delay: i * 0.1,
+                duration: 0.4,
+                y: {
+                  type: "spring",
+                  damping: 12,
+                  stiffness: 200,
+                  mass: 0.8,
+                },
+                rotate: {
+                  type: "spring",
+                  damping: 8,
+                  stiffness: 150,
+                },
+                scale: {
+                  type: "spring",
+                  damping: 10,
+                  stiffness: 300,
+                },
+              },
+            }),
+            exit: (i) => ({
+              opacity: 0,
+              y: 30,
+              rotate: 45,
+              scale: 0.5,
+              transition: {
+                delay: i * 0.1,
+                duration: 0.4,
+              },
+            }),
+          }}
+          by="character"
+        >
+          {h2}
+        </TextGenerateEffect> */}
+      <h2
+        className={`
               my-5
               text-5xl font-extrabold leading-[1.1] tracking-tighter text-center
               decoration-primary decoration-[6px] underline-offset-[10px]
+              hero-enter-up hero-enter-up-1
             `}
-          >
-            <TextGenerateEffect words={h2 || 'heading'} duration={5} />
-          </h2>
+      >
+        {h2}
+      </h2>
 
-        <div
-          className={`
+      <h3
+        className={`
             mx-auto mt-1
             text-justified text-xl
             text-white
+            hero-enter-up hero-enter-up-2
           `}
-        >
-          <TextGenerateEffect words={h3 || 'description'} duration={5} />
-        </div>
+      >
+        {h3}
+      </h3>
 
       <p
         className={`
           mt-8 px-6
           text-center font-medium text-sm leading-relaxed text-white
           md:mt-11 md:px-10 md:text-sm
+          hero-enter-up hero-enter-up-3
         `}
       >
         <span
@@ -413,7 +467,7 @@ export const Header = ({
         >
           |
         </span>
-        <span style={{ color: "#FF6B00", fontWeight: "bold" }}> ✓ </span>24-48
+        <span style={{ color: "#FF6B00", fontWeight: "bold" }}> ✓ </span>        24-48
         Hour Turnaround
       </p>
 
@@ -424,6 +478,7 @@ export const Header = ({
           text-white
           items-center justify-start gap-x-10 gap-y-3
           md:flex-row
+          hero-enter-up hero-enter-up-4
         "
       >
         {/* Bid Better — first on mobile (top), second on desktop (right) */}
