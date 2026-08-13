@@ -43,7 +43,7 @@ export default function InsightsSection({ insights }: InsightsSectionProps) {
             {insights.map((post) => (
               <Link
                 key={post.id}
-                href={`/blog/${post.slug}`}
+                href={`/${post.slug}`}
                 className="group flex flex-col border border-blueprint-line bg-background bracket-corners overflow-hidden hover:border-primary transition-all duration-300"
               >
                 {post.image && (

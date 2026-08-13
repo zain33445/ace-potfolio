@@ -1,10 +1,12 @@
 'use client';
 
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { Shield, Heart, ShieldCheck, Compass, Check, ArrowRight } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import Reveal from '@/src/components/Reveal';
 import RenderOnViewport from '@/src/components/RenderOnViewport';
+import { useCountUp } from '@/src/hooks/useCountUp';
 
 const About3D = dynamic(() => import('@/src/components/About3D'), {
   ssr: false,
@@ -68,6 +70,54 @@ const software = [
   'Bluebeam',
 ];
 
+/** Count-up number that starts when scrolled into view */
+function StatCounter({ end, suffix }: { end: number; suffix: string }) {
+  const ref = useRef<HTMLHeadingElement>(null);
+  const [started, setStarted] = useState(false);
+  const { formatted, startAnimation } = useCountUp({
+    end,
+    duration: 2,
+    start: 1,
+    easing: 'easeOut',
+    suffix,
+    decimals: 0,
+    startOnMount: false,
+  });
+
+  // Keep the latest `startAnimation` in a ref so the observer is set up once
+  // on mount. Its identity changes across renders, which would otherwise tear
+  // down and recreate the observer (and disconnect before it can fire).
+  const startAnimationRef = useRef(startAnimation);
+  startAnimationRef.current = startAnimation;
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          startAnimationRef.current();
+          setStarted(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.4 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return (
+    <h3
+      ref={ref}
+      className="font-space text-4xl md:text-5xl font-extrabold text-primary mb-2 font-mono tabular-nums tracking-tight"
+    >
+      {started ? formatted : `1${suffix}`}
+    </h3>
+  );
+}
+
 export default function AboutPageClient() {
   return (
     <section className="min-h-screen bg-background pt-20">
@@ -115,7 +165,7 @@ export default function AboutPageClient() {
 
               <div className="pt-4">
                 <Link
-                  href="/contact"
+                  href="/contact-us"
                   className="inline-flex items-center gap-2 bg-primary text-white font-bold px-8 py-3 rounded-lg text-lg hover:bg-primary/90 transition-colors"
                 >
                   Consult Now <ArrowRight className="w-5 h-5" />
@@ -123,8 +173,8 @@ export default function AboutPageClient() {
               </div>
             </div>
 
-            {/* 3D Model */}
-            <div className="lg:col-span-5 h-[400px] md:h-[480px] border border-blueprint-line bg-surface relative p-4 bracket-corners bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]">
+            {/* 3D Model — hidden on mobile, shown from md up */}
+            <div className="hidden md:block lg:col-span-5 h-[400px] md:h-[480px] border border-blueprint-line bg-surface relative p-4 bracket-corners bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]">
               <div className="absolute top-4 left-4 font-mono text-sm text-primary font-bold z-10 block">
                 [MASSING_MODEL: FLR_PLN_01]
               </div>
@@ -151,12 +201,15 @@ export default function AboutPageClient() {
         <Reveal type="fadeUp">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             <div className="lg:col-span-5 space-y-6 order-2 lg:order-1">
-              <div className="h-[350px] md:h-[420px] border border-blueprint-line bg-surface relative bracket-corners bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] flex items-center justify-center">
-                <div className="text-center px-8">
-                  <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-primary/10 border-2 border-primary flex items-center justify-center">
-                    <span className="font-space text-3xl font-extrabold text-primary">AM</span>
-                  </div>
-                  <div className="font-mono text-xs text-primary font-bold tracking-wider">[CEO_PORTRAIT]</div>
+              <div className="h-[400px] md:h-[500px] lg:h-[560px] border border-blueprint-line bg-surface relative bracket-corners bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]">
+                <img
+                  src="https://theaceservices.com/wp-content/uploads/2024/11/Engr._Abdul_Manan-removebg-preview.png"
+                  alt="Engr. Abdul Manan Zafar — CEO of The ACE Services"
+                  className="h-full w-full object-contain p-4"
+                  loading="lazy"
+                />
+                <div className="absolute bottom-3 left-4 font-mono text-xs text-primary font-bold tracking-wider bg-background/90 px-2 py-1 border border-blueprint-line">
+                  [CEO_PORTRAIT]
                 </div>
               </div>
             </div>
@@ -199,7 +252,7 @@ export default function AboutPageClient() {
 
               <div className="pt-4">
                 <Link
-                  href="/contact"
+                  href="/contact-us"
                   className="inline-flex items-center gap-2 bg-primary text-white font-bold px-8 py-3 rounded-lg text-lg hover:bg-primary/90 transition-colors"
                 >
                   Consult Now <ArrowRight className="w-5 h-5" />
@@ -221,14 +274,12 @@ export default function AboutPageClient() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
             {[
-              { value: '2,893+', label: 'Total Projects Estimated' },
-              { value: '35', label: '+ US States Served' },
-              { value: '89%', label: 'Bid Win Rate' },
+              { end: 2893, suffix: '+', label: 'Total Projects Estimated' },
+              { end: 35, suffix: '', label: '+ US States Served' },
+              { end: 89, suffix: '%', label: 'Bid Win Rate' },
             ].map((stat) => (
               <div key={stat.label} className="text-center p-8 border border-blueprint-line bg-surface bracket-corners">
-                <h3 className="font-space text-4xl md:text-5xl font-extrabold text-primary mb-2">
-                  {stat.value}
-                </h3>
+                <StatCounter end={stat.end} suffix={stat.suffix} />
                 <p className="font-sans text-base text-on-surface-variant font-semibold">
                   {stat.label}
                 </p>

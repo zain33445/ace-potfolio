@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { Check, ArrowRight } from 'lucide-react';
-import { services, getServiceBySlug, getFeaturedServices, getServiceIcon, type Service } from '@/src/data/services';
+import { Check, ArrowRight, ChevronDown } from 'lucide-react';
+import { services, getServiceIcon, type Service } from '@/src/data/services';
+import { getServiceEnriched, getFeaturedServicesEnriched } from '@/src/data/services-cms';
 
 /* ── Static paths for build ────────────────────────────────────── */
 
@@ -18,7 +19,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const service = getServiceBySlug(slug);
+  const service = await getServiceEnriched(slug);
   if (!service) return { title: 'Service Not Found' };
 
   return {
@@ -39,10 +40,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ServiceDetailPage({ params }: Props) {
   const { slug } = await params;
-  const service = getServiceBySlug(slug);
+  const service = await getServiceEnriched(slug);
   if (!service) notFound();
 
-  const featured = getFeaturedServices(slug);
+  const featured = await getFeaturedServicesEnriched(slug);
   const Icon = getServiceIcon(service.id);
 
   return (
@@ -63,10 +64,31 @@ export default async function ServiceDetailPage({ params }: Props) {
         }}
       />
 
+      {/* FAQPage structured data */}
+      {service.seoContent?.faqs && service.seoContent.faqs.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: service.seoContent.faqs.map(faq => ({
+                '@type': 'Question',
+                name: faq.question,
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: faq.answer
+                }
+              }))
+            }),
+          }}
+        />
+      )}
+
       {/* ════════════════════════════════════════════════════════
           HERO SECTION
           ════════════════════════════════════════════════════════ */}
-      <section className="relative overflow-hidden border-b border-blueprint-line">
+      <section className="relative overflow-hidden max-w-8xl border-b border-blueprint-line">
         {/* Blueprint grid pattern */}
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.03]"
@@ -79,9 +101,9 @@ export default async function ServiceDetailPage({ params }: Props) {
           }}
         />
 
-        <div className="relative mx-auto max-w-7xl px-5 px-[var(--spacing-margin-mobile)] pt-24 md:px-[var(--spacing-margin-desktop)] md:py-24">
+        <div className="relative mx-auto max-w-8xl px-5 px-[var(--spacing-margin-mobile)] pt-16 md:px-[var(--spacing-margin-desktop)] md:pt-16">
           {/* Breadcrumb */}
-          <div className="mb-8 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-on-surface-variant">
+          <div className="mb-8 flex items-center gap-2 font-mono text-SM font-bold uppercase tracking-wider text-on-surface-variant">
             <Link href="/services" className="hover:text-primary transition-colors">
               SERVICES
             </Link>
@@ -89,17 +111,12 @@ export default async function ServiceDetailPage({ params }: Props) {
             <span className="text-primary">{service.slug}</span>
           </div>
 
-          {/* System label
-          <div className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
-            [{service.id}]
-          </div> */}
-
           <div className="flex items-center gap-4 mb-4">
             <div className="flex items-center justify-center w-12 h-12 border border-blueprint-line bg-surface bracket-corners flex-shrink-0">
               <Icon className="w-5 h-5 text-primary" />
             </div>
             <div>
-              <span className="font-mono text-xs text-on-surface-variant tracking-widest block mb-1">
+              <span className="font-mono text-sm text-on-surface-variant tracking-widest block mb-1">
                 {service.tagline}
               </span>
               <h1 className="font-[family-name:var(--font-space)] text-3xl font-bold leading-tight text-on-background md:text-7xl">
@@ -108,8 +125,8 @@ export default async function ServiceDetailPage({ params }: Props) {
             </div>
           </div>
 
-          <p className="mt-6 max-w-2xl font-sans text-lg leading-relaxed text-on-surface-variant md:text-left md:text-xl text-justify">
-            {service.description}
+          <p className="mt-6 max-w-5xl bg-black font-sans text-lg leading-relaxed text-on-surface-variant md:text-left md:text-xl text-justify">
+            deskjkfdsjjdsjf{service.description}
           </p>
 
           {/* Quick stats row */}
@@ -123,7 +140,7 @@ export default async function ServiceDetailPage({ params }: Props) {
       {/* ════════════════════════════════════════════════════════
           MAIN CONTENT — SIDEBAR + DETAIL
           ════════════════════════════════════════════════════════ */}
-      <div className="mx-auto max-w-7xl px-5 px-[10px] text-justify py-16 md:px-[var(--spacing-margin-desktop)] md:py-20">
+      <div className="mx-auto max-w-8xl px-5 px-[10px] text-justify py-16 md:px-[var(--spacing-margin-desktop)] md:py-20">
         <div className="grid gap-12 lg:grid-cols-[300px_1fr]">
           {/* ── Sidebar: Featured Services ── */}
           <aside className="order-2 lg:order-1">
@@ -148,7 +165,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                           {s.title}
                         </h4>
                         <p className="font-mono text-xs text-on-surface-variant">
-                          {s.startingPrice}
+                          Custom pricing based on project scope
                         </p>
                       </div>
                     </Link>
@@ -177,6 +194,11 @@ export default async function ServiceDetailPage({ params }: Props) {
 
             {/* Process */}
             <ProcessSection service={service} />
+
+            {/* SEO Content Section */}
+            {service.seoContent && (
+              <SeoContentSection service={service} />
+            )}
           </div>
         </div>
       </div>
@@ -216,7 +238,7 @@ function ServiceOverviewSection({
   return (
     <section>
       <div className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
-        [SERVICE_OVERVIEW]
+        {service.slug === 'project-management' ? 'WHAT WE DELIVER' : 'OVERVIEW'}
       </div>
 
       <div className="space-y-8">
@@ -257,25 +279,22 @@ function PricingFeaturesSection({
 
       <div className="border border-blueprint-line bg-surface p-6 md:p-8">
         {/* Price row */}
-        <div className="flex flex-wrap items-end justify-between gap-4 pb-6 border-b border-blueprint-line">
+        <div className="mb-6 border-b border-blueprint-line pb-6 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <span className="font-mono text-xs text-on-surface-variant tracking-wider">
-              STARTING AT
-            </span>
-            <div className="flex items-baseline gap-2 mt-1">
-              <span className="font-[family-name:var(--font-space)] text-4xl font-extrabold text-on-background">
-                {service.startingPrice}
-              </span>
-              <span className="font-sans text-sm text-on-surface-variant">
-                per project
-              </span>
+            <div className="font-mono text-2xl font-extrabold uppercase tracking-[0.05em] text-primary mb-2">
+              {service.startingPrice.toLowerCase() === 'custom' 
+                ? 'CUSTOM PRICING' 
+                : `STARTING AT ${service.startingPrice}`}
             </div>
-            <span className="font-mono text-xs text-on-surface-variant tracking-wider">
+            <div className="text-sm text-on-surface-variant mb-2">
+              Based on project scope, complexity, and deliverables.
+            </div>
+            <div className="font-mono text-xs text-on-surface-variant tracking-wider">
               {service.turnaround} standard turnaround
-            </span>
+            </div>
           </div>
           <Link
-            href="/contact"
+            href="/contact-us"
             className="inline-flex items-center gap-2 border border-primary bg-primary px-6 py-3 font-mono text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary"
           >
             <span>REQUEST QUOTE</span>
@@ -294,6 +313,11 @@ function PricingFeaturesSection({
             </div>
           ))}
         </div>
+        {service.footnote && (
+          <p className="mt-4 font-mono text-xs text-on-surface-variant leading-relaxed">
+            {service.footnote}
+          </p>
+        )}
       </div>
     </section>
   );
@@ -353,12 +377,15 @@ function CtaSection({
           Need {service.title}?
         </h2>
         <p className="max-w-lg text-base leading-relaxed text-on-surface-variant md:text-center">
-          Submit your blueprints and receive a precision cost schedule within
-          3–5 business days. Expedited turnaround available.
+          {service.slug === 'project-management' ? (
+            'Send us your project plans, scope, or existing schedule for a preliminary review. We\'ll recommend the appropriate planning and project-control service.'
+          ) : (
+            'Submit your blueprints and receive a precision cost schedule within 3–5 business days. Expedited turnaround available.'
+          )}
         </p>
         <div className="flex flex-col sm:flex-row items-center gap-4">
           <Link
-            href="/contact"
+            href="/contact-us"
             className="group inline-flex items-center gap-3 border border-primary bg-primary px-8 py-3.5 font-mono text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary"
           >
             <span>REQUEST ESTIMATE</span>
@@ -372,23 +399,94 @@ function CtaSection({
               <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </Link>
-          <Link
-            href="/calculator"
-            className="group inline-flex items-center gap-3 border border-blueprint-line bg-surface px-8 py-3.5 font-mono text-sm font-bold uppercase tracking-wider text-on-surface-variant transition-all hover:border-primary hover:text-primary"
-          >
-            <span>TRY CALCULATOR</span>
-            <svg
-              className="h-4 w-4 transition-transform group-hover:translate-x-1"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
+          {service.slug !== 'project-management' && (
+            <Link
+              href="/calculator"
+              className="group inline-flex items-center gap-3 border border-blueprint-line bg-surface px-8 py-3.5 font-mono text-sm font-bold uppercase tracking-wider text-on-surface-variant transition-all hover:border-primary hover:text-primary"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </Link>
+              <span>TRY CALCULATOR</span>
+              <svg
+                className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
+          )}
         </div>
       </div>
+    </section>
+  );
+}
+
+function SeoContentSection({
+  service,
+}: {
+  service: Service;
+}) {
+  const { seoContent } = service;
+  if (!seoContent) return null;
+
+  return (
+    <section className="border-t border-blueprint-line pt-16">
+      <div className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
+        [DEEP_DIVE]
+      </div>
+
+      <h2 className="font-[family-name:var(--font-space)] text-3xl font-bold text-on-background md:text-4xl mb-8">
+        {seoContent.heading}
+      </h2>
+
+      <div className="space-y-6 mb-12">
+        {seoContent.body.map((paragraph, idx) => (
+          <p key={idx} className="font-sans text-base md:text-lg leading-relaxed text-on-surface-variant">
+            {paragraph}
+          </p>
+        ))}
+      </div>
+
+      <div className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
+        [KEY_BENEFITS]
+      </div>
+      
+      <div className="grid gap-6 md:grid-cols-3 mb-16">
+        {seoContent.benefits.map((benefit, idx) => (
+          <div key={idx} className="border border-blueprint-line bg-surface p-6 hover:border-primary transition-colors">
+            <h3 className="font-[family-name:var(--font-space)] text-xl font-bold text-on-background mb-3">
+              {benefit.title}
+            </h3>
+            <p className="font-sans text-sm leading-relaxed text-on-surface-variant">
+              {benefit.description}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      {seoContent.faqs && seoContent.faqs.length > 0 && (
+        <>
+          <div className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
+            [FREQUENTLY_ASKED_QUESTIONS]
+          </div>
+          <div className="space-y-4">
+            {seoContent.faqs.map((faq, idx) => (
+              <details key={idx} className="group border border-blueprint-line bg-surface [&_summary::-webkit-details-marker]:hidden">
+                <summary className="flex cursor-pointer items-center justify-between p-6 font-[family-name:var(--font-space)] text-lg font-bold text-on-background transition-colors hover:text-primary">
+                  {faq.question}
+                  <ChevronDown className="h-5 w-5 text-primary transition-transform group-open:rotate-180" />
+                </summary>
+                <div className="border-t border-blueprint-line px-6 pb-6 pt-4">
+                  <p className="font-sans text-base leading-relaxed text-on-surface-variant">
+                    {faq.answer}
+                  </p>
+                </div>
+              </details>
+            ))}
+          </div>
+        </>
+      )}
     </section>
   );
 }

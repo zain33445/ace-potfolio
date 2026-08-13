@@ -526,7 +526,7 @@ function CtaSection() {
           3–5 business days. Expedited turnaround available.
         </p>
         <Link
-          href="/contact"
+          href="/contact-us"
           className="group mt-4 inline-flex items-center gap-3 border border-primary bg-primary px-8 py-3.5 font-mono text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary"
         >
           <span>REQUEST ESTIMATE</span>

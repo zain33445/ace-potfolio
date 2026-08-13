@@ -86,6 +86,7 @@ export async function wpGet<T>(path: string, query?: WPListQuery): Promise<T> {
   try {
     res = await fetch(url, {
       headers: { Accept: 'application/json' },
+      next: { revalidate: 3600 },
     });
   } catch (cause) {
     throw new WordPressError(
@@ -123,6 +124,7 @@ export async function wpGetList<T>(
   try {
     res = await fetch(url, {
       headers: { Accept: 'application/json' },
+      next: { revalidate: 3600 },
     });
   } catch (cause) {
     throw new WordPressError(

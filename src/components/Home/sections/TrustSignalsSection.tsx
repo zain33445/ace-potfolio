@@ -15,27 +15,6 @@ export default function TrustSignalsSection() {
   return (
     <div className="py-18 bg-background border-b border-blueprint-line relative overflow-hidden">
       <Reveal type="fadeUp">
-        {/* ─── Client Logo Strip ─── */}
-        <div className="border-b border-blueprint-line pb-14 mb-14">
-          <div className="container mx-auto max-w-7xl px-6 md:px-16">
-            <p className="font-mono text-xs text-primary font-bold tracking-widest text-center mb-8">
-              TRUSTED BY GENERAL CONTRACTORS &amp; SUBCONTRACTORS NATIONWIDE
-            </p>
-
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-4xl mx-auto">
-              {CLIENTS.map((name) => (
-                <div
-                  key={name}
-                  className="flex items-center justify-center h-14 px-4 border border-blueprint-line bg-surface/50 bracket-corners"
-                >
-                  <span className="font-space font-bold text-sm text-on-surface-variant/60 uppercase tracking-wider text-center leading-tight">
-                    {name}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
 
         {/* ─── Comparison: In-House vs ACE ─── */}
         <div className="container mx-auto max-w-5xl px-6 md:px-16">

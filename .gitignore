@@ -42,3 +42,11 @@ tsconfig.tsbuildinfo
 playwright-report/
 test-results/
 
+
+# Scratch / dev artifacts
+junk/
+prototypes/
+lighthouse-*.json
+public/wp-content/
+src/data/extracted-projects.json
+src/services/extract-pdfs.mjs

@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
-const PAGES_TO_AUDIT = ['/', '/calculator', '/about', '/blog', '/pricing', '/projects', '/testimonials', '/admin-login'];
+const PAGES_TO_AUDIT = ['/', '/calculator', '/about-us', '/blog', '/projects', '/testimonials', '/admin-login'];
 
 test.describe('Accessibility — axe-core audit', () => {
   for (const path of PAGES_TO_AUDIT) {

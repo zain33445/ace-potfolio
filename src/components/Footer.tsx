@@ -12,11 +12,10 @@ export default function Footer() {
   const router = useRouter();
 
   const navItems = [
-    { label: "ABOUT", href: "/about" },
+    { label: "ABOUT", href: "/about-us" },
     { label: "BLOGS", href: "/blog" },
-    { label: "PRICING", href: "/pricing" },
     { label: "SERVICES", href: "/services" },
-    { label: "CONTACT", href: "/contact" },
+    { label: "CONTACT", href: "/contact-us" },
     { label: "PROJECTS", href: "/projects" },
     { label: "CALCULATOR", href: "/calculator" },
     { label: "TESTIMONIALS", href: "/testimonials" },

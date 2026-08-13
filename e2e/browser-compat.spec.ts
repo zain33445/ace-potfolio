@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 const PAGES = [
   { path: '/', name: 'Homepage' },
   { path: '/calculator', name: 'Calculator' },
-  { path: '/about', name: 'About' },
+  { path: '/about-us', name: 'About' },
   { path: '/blog', name: 'Blog' },
 ] as const;
 

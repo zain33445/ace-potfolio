@@ -1,10 +1,29 @@
-import { Layers, FileSpreadsheet, Compass, ShieldCheck, type LucideIcon } from 'lucide-react';
+import {
+  Calculator,
+  PenTool,
+  HardHat,
+  ClipboardList,
+  Layers,
+  type LucideIcon,
+} from 'lucide-react';
 
 /* ── Types ─────────────────────────────────────────────────────── */
 
 export interface ServiceProcess {
   title: string;
   description: string;
+}
+
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+export interface SeoContent {
+  heading: string;
+  body: string[]; 
+  benefits: { title: string; description: string }[];
+  faqs: FaqItem[];
 }
 
 export interface Service {
@@ -22,20 +41,25 @@ export interface Service {
   turnaround: string;
   stats: { label: string; value: string }[];
   process: ServiceProcess[];
+  ctaLabel: string;
+  footnote?: string;
+  seoContent?: SeoContent;
+  /** Full sanitized HTML from WordPress — only present for CMS-only services */
+  wpContent?: string;
 }
 
 /* ── Icon map ──────────────────────────────────────────────────── */
 
 export function getServiceIcon(id: string): LucideIcon {
   switch (id) {
-    case 'SVC_CES':
-      return Layers;
-    case 'SVC_MTO':
-      return FileSpreadsheet;
-    case 'SVC_PRM':
-      return Compass;
-    case 'SVC_SCH':
-      return ShieldCheck;
+    case 'SVC_EST':
+      return Calculator;
+    case 'SVC_ARC':
+      return PenTool;
+    case 'SVC_ENG':
+      return HardHat;
+    case 'SVC_PMG':
+      return ClipboardList;
     default:
       return Layers;
   }
@@ -45,228 +69,370 @@ export function getServiceIcon(id: string): LucideIcon {
 
 export const services: Service[] = [
   {
-    id: 'SVC_CES',
-    slug: 'cost-estimation',
-    title: 'Construction Cost Estimation',
-    icon: 'SVC_CES',
-    tagline: 'AACE Class 3 Standard',
-    category: 'RESIDENTIAL, COMMERCIAL, INDUSTRIAL',
+    id: 'SVC_EST',
+    slug: 'cost-estimating',
+    title: 'Cost Estimating',
+    icon: 'SVC_EST',
+    tagline: 'Budgeting & Bidding',
+    category: 'ESTIMATING',
     description:
-      'Our core construction estimation services provide comprehensive cost analysis across every sector, from single-family homes to complex industrial plants and public infrastructure. We combine expert evaluation of architecture, framing layouts, concrete volumes, and site-prep overheads with a high-speed 24–48 hour turnaround, so you never miss a bid deadline. All estimates meet AACE International Class 3 standards with ±10% to ±20% accuracy range — suitable for project funding authorization and contractor bid strategy.',
+      'Detailed construction estimates, quantity takeoffs, and cost analysis to support budgeting, bidding, and project decisions.',
     summary:
-      'Budgetary control level estimates meeting AACE Class 3 standards. Designed for project funding authorization and contractor bid strategy.',
+      'Detailed construction estimates, quantity takeoffs, and cost analysis to support budgeting, bidding, and project decisions.',
     details: [
-      'Expert evaluation of architecture, framing layouts, concrete volumes, and site-prep overheads.',
-      'High-speed 24-48h turnaround engineered to fit tight bid schedule pipelines.',
-      'Bid optimization strategy backed by an 89% bid win rate for partnering contractors.',
-      'Dual-stage QA peer review by principal civil engineers.',
+      'Estimate packages prepared across residential, commercial, and industrial sectors.',
+      'Quantity takeoffs and material lists built directly from your blueprints.',
+      'Cost analysis structured for budgeting, bidding, and project decisions.',
+      'Editable Excel spreadsheets and professional PDF reports included.',
     ],
     features: [
-      'AACE Class 3 certified accuracy (±10% to ±20%)',
-      'Localized cost multiplier databases',
-      'Bid optimization & strategy consulting',
-      'Dual-stage QA peer review process',
-      'Excel & PDF delivery formats',
-      '24–48 hour expedited turnaround available',
+      'Construction Cost Estimation',
+      'Material Takeoffs & Quantity Surveying',
+      'Commercial Estimating',
+      'Residential Estimating',
+      'Industrial Estimating',
+      'Electrical Estimating',
     ],
-    startingPrice: '$45 - 50 per hour',
+    startingPrice: 'Custom',
     turnaround: '1–2 business days',
     stats: [
-      { label: 'ACCURACY_RANGE', value: '±10-20%' },
+      { label: 'SECTORS', value: '3+' },
       { label: 'TURNAROUND', value: '24-48h' },
-      { label: 'BID_WIN_RATE', value: '89%' },
-      { label: 'STANDARD', value: 'AACE CLS 3' },
+      { label: 'SCOPE', value: 'Full-Service' },
+      { label: 'FORMAT', value: 'XLS + PDF' },
     ],
     process: [
       {
-        title: 'Structural Data Ingestion',
+        title: 'Blueprint Review',
         description:
-          'Transmit your blueprints, architectural layouts, site measurements, and scope narratives through our bank-grade secure server channel.',
+          'We review your blueprints, drawings, and project scope to confirm what is being estimated and flag any missing information.',
       },
       {
-        title: 'Algorithmic Quantity Takeoff',
+        title: 'Quantity Takeoff',
         description:
-          'Our quantity surveyors perform exhaustive computational dissection utilizing localized material standards databases and professional digitization platforms.',
+          'Materials and labor quantities are measured and itemized directly from your drawings.',
       },
       {
-        title: 'Dual-Stage Verification Review',
+        title: 'Cost Analysis & Rate Calibration',
         description:
-          'All programmatic estimates undergo parallel reviews by principal civil engineers to filter variances or localized market rate fluctuations before compilation.',
+          'Quantities are priced against current market rates and organized for budgeting or bidding.',
       },
       {
-        title: 'Delivery Protocol Transmission',
+        title: 'Delivery',
         description:
-          'Instant delivery of final cost-schedules including interactive Microsoft Excel spreadsheets and stamped PDF dossiers designed for presentation.',
+          'Final estimates delivered in editable Excel spreadsheets and professional PDF reports.',
       },
     ],
+    ctaLabel: 'EXPLORE ESTIMATING',
+    seoContent: {
+      heading: 'Precision Construction Cost Estimating Services Nationwide',
+      body: [
+        'In today\'s volatile material market, guesswork leads to lost bids and shrinking margins. At The ACE Services, our professional construction cost estimating services provide general contractors, subcontractors, developers, and architects across the USA with highly accurate, data-driven material takeoffs and labor pricing.',
+        'Whether you are bidding on a complex commercial build, managing a residential development, or planning an industrial facility, our expert estimators leverage industry-leading software and up-to-date pricing databases to ensure your bids are both competitive and profitable.',
+        'A precise estimate is only as good as the plans it is based on. If your current blueprints lack detail, our Architectural Services team can refine your shop drawings before we begin the quantity survey. Once your budget is locked, our Project Management experts can develop schedules to ensure your procurement aligns perfectly with the cash flow projections.'
+      ],
+      benefits: [
+        {
+          title: 'Win More Bids',
+          description: 'Accurate, detailed takeoffs mean you can bid with confidence, knowing your margins are protected.'
+        },
+        {
+          title: 'Save Valuable Time',
+          description: 'Free up your internal team to focus on project execution while we handle the time-consuming quantity surveying.'
+        },
+        {
+          title: 'Nationwide Accuracy',
+          description: 'We adjust labor and material rates based on your specific geographic location within the USA.'
+        }
+      ],
+      faqs: [
+        {
+          question: 'What is the turnaround time for a construction estimate?',
+          answer: 'Our standard turnaround time is 24 to 48 hours (1-2 business days), depending on the size and complexity of the project. Expedited services are also available for urgent bids.'
+        },
+        {
+          question: 'Do you provide editable Excel spreadsheets?',
+          answer: 'Yes, all of our cost estimates include fully editable Excel spreadsheets alongside professional PDF summary reports, allowing you to easily adjust margins and rates.'
+        },
+        {
+          question: 'Who can benefit from your estimating services?',
+          answer: 'We serve a wide range of professionals nationwide, including General Contractors, Subcontractors (electrical, plumbing, framing, etc.), Architects, and Real Estate Developers.'
+        }
+      ]
+    }
   },
   {
-    id: 'SVC_MTO',
-    slug: 'material-takeoffs',
-    title: 'Material Takeoffs & Quantity Surveying',
-    icon: 'SVC_MTO',
-    tagline: 'Bill of Quantities',
-    category: 'DIVISION-WIDE MATERIAL VOLUMES',
+    id: 'SVC_ARC',
+    slug: 'architectural-services',
+    title: 'Architectural Services',
+    icon: 'SVC_ARC',
+    tagline: 'Documentation & Visualization',
+    category: 'ARCHITECTURAL',
     description:
-      'Our quantity surveying division delivers precise bills of quantities (BOQ) and material takeoff services built directly from your blueprints. Every quantity takeoff is verified for measurement accuracy, division-wise material volumes, and procurement-ready data — eliminating on-site waste and costly overordering before construction even begins. We deliver CSI MasterFormat division pricing schedules matched to regional rates with scrap multiplier calculations for steel rebars, timber plates, and conduit structures.',
+      'Construction documentation and visualization designed to support permitting, coordination, and project presentation.',
     summary:
-      'Precise bills of quantities and material takeoff services with CSI MasterFormat division pricing schedules.',
+      'Construction documentation and visualization designed to support permitting, coordination, and project presentation.',
     details: [
-      'CSI MasterFormat division pricing schedules matching regional rates.',
-      'Accurate scrap multiplier calculation for steel rebars, timber plates, and conduit structures.',
-      'Eliminate material waste and mid-project budget spikes with precise procurement data.',
-      'Full Excel & PDF delivery with itemized quantity breakdowns.',
+      'Architectural shop drawings prepared for construction and coordination.',
+      'Permit and submission drawing sets organized for municipal review.',
+      'Submittal packages assembled for approval workflows.',
+      '3D rendering for stakeholder presentation.',
     ],
     features: [
-      'Full CSI MasterFormat division breakdown',
-      'Regional material rate calibration',
-      'Scrap & waste multiplier calculations',
-      'Excel & PDF delivery formats',
-      '3–5 business day standard turnaround',
-      '24h expedited option available',
+      'Architectural Shop Drawings',
+      'Permit Sets',
+      'Submission Drawing Sets',
+      'Submittals',
+      '3D Rendering',
     ],
-    startingPrice: '$1,200',
-    turnaround: '3–5 business days',
-    stats: [
-      { label: 'DIVISIONS', value: 'CSI Full' },
-      { label: 'TURNAROUND', value: '3-5 Days' },
-      { label: 'FORMATS', value: 'XLS + PDF' },
-      { label: 'ACCURACY', value: '±5%' },
-    ],
-    process: [
-      {
-        title: 'Blueprint Digitization',
-        description:
-          'Your blueprints are digitized and scale-verified using algorithmic platforms. Both digital-native files and scanned hard copies are processed with alignment audits.',
-      },
-      {
-        title: 'Division-Wide Quantity Survey',
-        description:
-          'Our surveyors perform exhaustive computational dissection across all CSI MasterFormat divisions, calculating material volumes, labor units, and equipment requirements.',
-      },
-      {
-        title: 'Rate Calibration & Scrap Calculation',
-        description:
-          'Material rates are calibrated against regional supplier databases. Scrap multipliers are applied to steel, timber, and conduit based on industry-standard waste factors.',
-      },
-      {
-        title: 'Delivery & Procurement Handoff',
-        description:
-          'Final BOQ delivered with itemized quantity breakdowns in both Excel and PDF formats, ready for procurement ordering and subcontractor bidding.',
-      },
-    ],
-  },
-  {
-    id: 'SVC_PRM',
-    slug: 'permit-sets',
-    title: 'Permit Set Preparation & 3D Renderings',
-    icon: 'SVC_PRM',
-    tagline: 'Municipal Submission Package',
-    category: 'MUNICIPAL SUBMISSION & RENDERS',
-    description:
-      'Beyond estimating, we prepare fully compliant permit sets and photorealistic 3D renderings for municipal submission. Our pre-construction documentation team ensures your architectural drawings meet local code requirements while giving stakeholders a clear visual of the finished project. Every set includes double-verified structural and architectural layouts matching local municipal codes, streamlining approvals and reducing costly revision cycles.',
-    summary:
-      'Fully compliant permit sets and photorealistic 3D renderings for municipal submission and stakeholder presentation.',
-    details: [
-      'Double-verified structural and architectural layouts matching local municipal codes.',
-      'Isometric interactive rendering matrices for visual stakeholder presentation and pre-sale marketing.',
-      'Fast-track your approval process with meticulous shop drawings and visual sets.',
-      'Revision support included to address plan review comments.',
-    ],
-    features: [
-      'Municipal code compliance check',
-      'Architectural & structural sheet sets',
-      '3D photorealistic rendering add-on',
-      'Revision support included',
-      '7–10 business day turnaround',
-      'Digital & print-ready delivery',
-    ],
-    startingPrice: '$3,800',
+    startingPrice: '$50',
     turnaround: '7–10 business days',
     stats: [
       { label: 'TURNAROUND', value: '7-10 Days' },
-      { label: 'COVERAGE', value: 'US Municipal' },
-      { label: 'RENDERINGS', value: '3D + ISO' },
-      { label: 'COMPLIANCE', value: 'Code-Verified' },
+      { label: 'DOCUMENTS', value: 'Shop + Permit' },
+      { label: 'RENDERING', value: '3D' },
+      { label: 'DELIVERY', value: 'DWG + PDF' },
     ],
     process: [
       {
-        title: 'Document Collection & Review',
+        title: 'Documentation Review',
         description:
-          'We collect your architectural drawings, site surveys, and scope documents. Our team reviews against target municipal code requirements to identify gaps.',
+          'Existing drawings and project requirements are reviewed to define the documentation scope.',
       },
       {
-        title: 'Permit Set Drafting',
+        title: 'Shop Drawing & Set Preparation',
         description:
-          'High-precision architectural and structural sheets are drafted, formatted for municipal plan review standards and local zoning ordinances.',
+          'Architectural shop drawings, permit sets, and submission sets are drafted for your project.',
       },
       {
-        title: 'Code Compliance Verification',
+        title: 'Coordination & Compliance Check',
         description:
-          'Every sheet undergoes a double-verification process against local building codes, zoning bylaws, and accessibility requirements.',
+          'Drawings are coordinated across disciplines and checked against applicable requirements.',
       },
       {
-        title: 'Final Package & Submission Support',
+        title: 'Presentation & Delivery',
         description:
-          'Completed permit sets are delivered in digital and print-ready formats. Optional 3D renderings are included for stakeholder presentation.',
+          'Final sets and renderings delivered in DWG and PDF formats for submission and presentation.',
       },
     ],
+    ctaLabel: 'EXPLORE ARCHITECTURAL',
+    seoContent: {
+      heading: 'Comprehensive Architectural Drafting & Shop Drawings',
+      body: [
+        'Clear, coordinated, and code-compliant documentation is the backbone of any successful construction project. The ACE Services provides top-tier architectural services, specializing in shop drawings, permit sets, and 3D visualization for contractors, developers, and architectural firms nationwide.',
+        'Our drafting team bridges the gap between conceptual design and physical construction. By producing meticulous architectural shop drawings, we help mitigate on-site errors and streamline the approval process with municipalities and stakeholders.',
+        'Proper documentation seamlessly integrates with our other disciplines. Detailed shop drawings allow our Structural & Engineering team to accurately assess load paths, while providing our Cost Estimating division with the exact specifications needed to generate pinpoint-accurate material takeoffs.'
+      ],
+      benefits: [
+        {
+          title: 'Accelerated Approvals',
+          description: 'Our permit and submission sets are tailored to meet municipal standards, reducing back-and-forth revisions.'
+        },
+        {
+          title: 'Enhanced Coordination',
+          description: 'Identify and resolve clashes early through precise drafting, preventing costly rework in the field.'
+        },
+        {
+          title: 'Stunning Visualizations',
+          description: 'High-quality 3D renderings help secure client buy-in and investment by bringing blueprints to life.'
+        }
+      ],
+      faqs: [
+        {
+          question: 'What file formats do you deliver for architectural drawings?',
+          answer: 'We deliver all final documents in both standard PDF format for easy viewing and DWG (AutoCAD) format for seamless integration into your existing workflows.'
+        },
+        {
+          question: 'Do you create architectural shop drawings from scratch?',
+          answer: 'We typically work from conceptual designs, sketches, or base architectural plans to develop fully detailed shop drawings ready for fabrication and installation.'
+        },
+        {
+          question: 'How long does a typical permit set take?',
+          answer: 'Standard turnaround for architectural documentation is 7 to 10 business days, though timelines may vary based on project scale and complexity.'
+        }
+      ]
+    }
   },
   {
-    id: 'SVC_SCH',
-    slug: 'project-scheduling',
-    title: 'Project Management & Scheduling',
-    icon: 'SVC_SCH',
-    tagline: 'Lifecycle Control',
-    category: 'LIFECYCLE CONTROL',
+    id: 'SVC_ENG',
+    slug: 'structural-engineering',
+    title: 'Structural & Engineering',
+    icon: 'SVC_ENG',
+    tagline: 'Design & Analysis',
+    category: 'STRUCTURAL & ENGINEERING',
     description:
-      'Our project management and scheduling division extends your pre-construction advantage into full lifecycle control. From procurement timelines to labor sequencing, we keep your project on budget and on schedule using ISO 9001-standard project controls. Dynamic Gantt workflows, critical path mapping, and logistics coordination buffer periods ensure every phase is sequenced for maximum efficiency. Continuous budget burn-rate analytics prevent unforeseen change-order financial leakages.',
+      'Technical design, analysis, and engineering documentation for safe and code-conscious construction.',
     summary:
-      'Full lifecycle project control with dynamic Gantt workflows, critical path mapping, and budget burn-rate analytics.',
+      'Technical design, analysis, and engineering documentation for safe and code-conscious construction.',
     details: [
-      'Dynamic Gantt workflows, critical path mapping, and logistics coordination buffer periods.',
-      'Continuous budget burn-rate analytics preventing unforeseen change-order financial leakages.',
-      'Protect your timeline and reputation by implementing ideas with maximum efficiency.',
-      'ISO 9001-standard project controls for consistent quality management.',
+      'Structural design and analysis for safe, code-conscious construction.',
+      'MEP shop drawings coordinated with architectural sets.',
+      'Engineering documentation prepared for review and permitting.',
+      'PE review and sealing available where required.',
     ],
     features: [
-      'Critical path method (CPM) scheduling',
-      'Dynamic Gantt chart delivery',
-      'Burn-rate monitoring & analytics',
-      'Resource allocation planning',
-      'Milestone tracking & reporting',
-      '3–5 business day initial schedule',
+      'Structural Design',
+      'Structural Analysis',
+      'MEP Shop Drawings',
+      'Engineering Documentation',
+      'PE Review & Sealing*',
     ],
-    startingPrice: '$1,800',
-    turnaround: '3–5 business days',
+    startingPrice: '$50',
+    turnaround: '7–10 business days',
     stats: [
-      { label: 'METHOD', value: 'CPM + Gantt' },
-      { label: 'TURNAROUND', value: '3-5 Days' },
-      { label: 'STANDARD', value: 'ISO 9001' },
-      { label: 'REPORTING', value: 'Real-Time' },
+      { label: 'DISCIPLINES', value: 'Structural + MEP' },
+      { label: 'ANALYSIS', value: 'Load Path' },
+      { label: 'REVIEW', value: 'PE Sealing' },
+      { label: 'DOCUMENTS', value: 'DWG + PDF' },
     ],
     process: [
       {
-        title: 'Scope Definition & Milestone Mapping',
+        title: 'Scope & Requirements Review',
         description:
-          'We define the full project scope, identify key milestones, and map dependencies between procurement, labor, and construction phases.',
+          'Project scope, loads, and applicable requirements are reviewed to define engineering deliverables.',
       },
       {
-        title: 'Critical Path & Gantt Development',
+        title: 'Structural & MEP Engineering',
         description:
-          'Critical path method analysis is performed to identify the longest sequence of dependent activities. Dynamic Gantt charts are built for stakeholder review.',
+          'Structural design, analysis, and MEP shop drawings are developed for the project.',
       },
       {
-        title: 'Resource & Budget Integration',
+        title: 'Documentation & PE Review',
         description:
-          'Resource allocation plans and budget burn-rate analytics are integrated into the schedule, providing real-time visibility into cost vs. progress.',
+          'Engineering documentation is compiled and reviewed by licensed professionals where applicable.',
       },
       {
-        title: 'Ongoing Monitoring & Adjustments',
+        title: 'Delivery & Coordination',
         description:
-          'The schedule is continuously monitored against actual progress. Adjustments and re-forecasting are provided to keep the project on track.',
+          'Final documents delivered in DWG and PDF formats, coordinated with other disciplines.',
       },
     ],
+    ctaLabel: 'EXPLORE ENGINEERING',
+    footnote: '*Subject to applicable licensing and jurisdictional requirements.',
+    seoContent: {
+      heading: 'Expert Structural Design and MEP Engineering Services',
+      body: [
+        'Safety, stability, and code compliance are non-negotiable in construction. The ACE Services delivers robust structural engineering and MEP (Mechanical, Electrical, Plumbing) design solutions for commercial, residential, and industrial projects across the USA.',
+        'Our engineering team provides comprehensive structural analysis, load path calculations, and coordinated MEP shop drawings. We ensure that every beam, column, and conduit is designed for optimal performance and safety, meeting rigorous local and national building codes.',
+        'We work hand-in-hand with our Architectural Services division to ensure that aesthetic visions are structurally viable. By resolving engineering challenges during the pre-construction phase, we provide a solid foundation for our Project Management team to schedule activities without fear of design-related delays.'
+      ],
+      benefits: [
+        {
+          title: 'Code-Conscious Design',
+          description: 'Our designs strictly adhere to IBC and local building codes, ensuring smooth permitting and safe construction.'
+        },
+        {
+          title: 'PE Sealing Available',
+          description: 'We offer Professional Engineer (PE) review and sealing services where required by jurisdiction.'
+        },
+        {
+          title: 'Clash-Free MEP Integration',
+          description: 'Coordinated MEP shop drawings prevent spatial conflicts between mechanical systems and structural elements.'
+        }
+      ],
+      faqs: [
+        {
+          question: 'Do you offer PE stamping/sealing?',
+          answer: 'Yes, we provide PE review and sealing services for engineering documents, subject to applicable licensing and jurisdictional requirements in your specific state.'
+        },
+        {
+          question: 'Can you coordinate MEP designs with existing architectural plans?',
+          answer: 'Absolutely. We specialize in coordinating MEP shop drawings directly with your existing architectural sets to ensure seamless integration and prevent clashes.'
+        }
+      ]
+    }
+  },
+  {
+    id: 'SVC_PMG',
+    slug: 'project-management',
+    title: 'Construction Project Management & Scheduling',
+    icon: 'SVC_PMG',
+    tagline: 'Planning & Controls',
+    category: 'PROJECT MANAGEMENT',
+    description:
+      'Construction scheduling, procurement coordination, and project controls designed to keep activities, milestones, and resources aligned.',
+    summary:
+      'Construction scheduling, procurement coordination, and project controls designed to keep activities, milestones, and resources aligned.',
+    details: [
+      'Construction Scheduling — CPM and Gantt schedules aligned with project milestones, dependencies, and construction sequencing.',
+      'Project Planning — Scope definition, activity sequencing, milestone planning, and schedule development.',
+      'Procurement Coordination — Procurement activities integrated with the construction schedule to support timely delivery.',
+      'Project Controls — Progress tracking, milestone monitoring, and schedule reporting throughout the project.',
+    ],
+    features: [
+      'Project Management',
+      'Project Scheduling',
+      'Procurement Services',
+      'CPM Scheduling',
+      'Gantt Scheduling',
+    ],
+    startingPrice: 'Custom',
+    turnaround: '3–5 Business Days',
+    stats: [
+      { label: 'METHOD', value: 'CPM + Gantt' },
+      { label: 'DELIVERY', value: '3–5 Business Days' },
+      { label: 'PLANNING', value: 'Milestone-Based' },
+      { label: 'REPORTING', value: 'Progress Tracking' },
+    ],
+    process: [
+      {
+        title: 'Define Scope & Milestones',
+        description:
+          'Establish project activities, dependencies, deliverables, and key milestones.',
+      },
+      {
+        title: 'Build the Schedule',
+        description:
+          'Develop CPM and Gantt schedules around construction sequencing and project requirements.',
+      },
+      {
+        title: 'Integrate Procurement',
+        description:
+          'Coordinate procurement activities with the schedule to identify critical materials and potential delays.',
+      },
+      {
+        title: 'Track & Report',
+        description:
+          'Monitor progress against planned milestones and provide clear schedule reporting.',
+      },
+    ],
+    ctaLabel: 'EXPLORE PROJECT MANAGEMENT',
+    seoContent: {
+      heading: 'Construction Project Management & CPM Scheduling',
+      body: [
+        'Time is money in construction, and project delays can decimate profitability. The ACE Services provides elite construction project management, CPM scheduling, and project controls for general contractors and developers nationwide.',
+        'We specialize in developing highly detailed Critical Path Method (CPM) and Gantt schedules that align with project milestones, resource availability, and construction sequencing. By integrating procurement activities directly into the schedule, we help you foresee and mitigate supply chain bottlenecks before they impact the critical path.',
+        'Effective project management ties all our services together. Our schedules rely on the accurate budgets generated by our Cost Estimating team and the precise timelines required to execute the designs finalized by our Architectural and Structural Engineering divisions.'
+      ],
+      benefits: [
+        {
+          title: 'Mitigate Delays',
+          description: 'Identify the critical path and potential bottlenecks early to keep your project moving forward on time.'
+        },
+        {
+          title: 'Optimize Procurement',
+          description: 'Coordinate material deliveries with installation schedules to prevent site congestion and material shortages.'
+        },
+        {
+          title: 'Clear Stakeholder Communication',
+          description: 'Professional Gantt charts and progress reports keep owners, investors, and subcontractors aligned.'
+        }
+      ],
+      faqs: [
+        {
+          question: 'What scheduling methods do you use?',
+          answer: 'We primarily utilize the Critical Path Method (CPM) and Gantt charts to visually map dependencies, milestones, and project durations.'
+        },
+        {
+          question: 'How long does it take to build a construction schedule?',
+          answer: 'A comprehensive preliminary schedule typically takes 3 to 5 business days to develop, depending on the availability of project scope and documentation.'
+        },
+        {
+          question: 'Do you track progress after the initial schedule is built?',
+          answer: 'Yes, we offer ongoing project controls and progress tracking to update schedules as conditions change in the field, ensuring you always have an accurate completion forecast.'
+        }
+      ]
+    }
   },
 ];
 

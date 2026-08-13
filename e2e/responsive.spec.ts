@@ -10,8 +10,7 @@ const VIEWPORTS = [
 const PAGES = [
   { path: '/', name: 'Homepage' },
   { path: '/calculator', name: 'Calculator' },
-  { path: '/about', name: 'About' },
-  { path: '/pricing', name: 'Pricing' },
+  { path: '/about-us', name: 'About' },
   { path: '/projects', name: 'Projects' },
   { path: '/testimonials', name: 'Testimonials' },
   { path: '/blog', name: 'Blog' },

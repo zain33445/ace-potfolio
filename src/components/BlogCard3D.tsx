@@ -56,7 +56,7 @@ export function BlogCard3D({
               as="h2"
               className="font-[family-name:var(--font-space)] text-xl font-bold leading-snug text-on-surface transition-colors group-hover:text-primary md:text-2xl"
             >
-              <Link href={`/blog/${slug}`} className="after:absolute after:inset-0">
+              <Link href={`/${slug}`} className="after:absolute after:inset-0">
                 {title}
               </Link>
             </CardItem>
@@ -104,7 +104,7 @@ export function BlogCard3D({
             {/* Read more — under image, single line */}
             <CardItem translateZ={20} className="mt-4 text-right">
               <Link
-                href={`/blog/${slug}`}
+                href={`/${slug}`}
                 aria-label={`Read more about ${title}`}
                 className="link-underline inline-flex items-center gap-2 font-[family-name:var(--font-space)] text-base font-semibold text-primary transition-colors hover:text-[#E55A00]"
               >

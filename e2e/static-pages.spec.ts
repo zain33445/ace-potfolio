@@ -1,8 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 const STATIC_PAGES = [
-  { path: '/about', title: /About/i },
-  { path: '/pricing', title: /Pricing|Cost/i },
+  { path: '/about-us', title: /About/i },
   { path: '/projects', title: /Projects|Portfolio/i },
   { path: '/testimonials', title: /Testimonial|Review/i },
 ] as const;

@@ -3,9 +3,8 @@ import { test, expect } from '@playwright/test';
 const PAGES = [
   { path: '/', title: /ACE|Services/i },
   { path: '/calculator', title: /Calculator|Estimator/i },
-  { path: '/about', title: /About/i },
+  { path: '/about-us', title: /About/i },
   { path: '/blog', title: /Blog|Insights/i },
-  { path: '/pricing', title: /Pricing|Cost/i },
   { path: '/projects', title: /Projects|Portfolio/i },
   { path: '/testimonials', title: /Testimonial|Review/i },
 ] as const;

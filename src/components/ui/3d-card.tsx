@@ -67,7 +67,7 @@ export const CardContainer = ({
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
           className={cn(
-            "relative transition-all duration-200 ease-linear",
+            "relative transition-all duration-1000 ease-out",
             isMouseEntered && "z-10 shadow-2xl shadow-primary/10",
             className
           )}
@@ -136,7 +136,7 @@ export const CardItem = ({
   return (
     <Component
       ref={ref}
-      className={cn("transition-all duration-200 ease-linear", className)}
+      className={cn("transition-all duration-1000 ease-out", className)}
       style={{ transform }}
       {...rest}
     >

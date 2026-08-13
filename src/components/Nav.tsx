@@ -11,10 +11,9 @@ const StaggeredMenu = dynamic(() => import('@/src/components/ui/StaggeredMenu'),
 const menuItems = [
   { label: 'Blogs', ariaLabel: 'Read our blog', link: '/blog' },
   { label: 'Services', ariaLabel: 'View our services', link: '/services' },
-  { label: 'Pricing', ariaLabel: 'View our Pricing', link: '/pricing' },
   { label: 'Projects', ariaLabel: 'View our projects', link: '/projects' },
-  { label: 'About Us', ariaLabel: 'Learn about us', link: '/about' },
-  { label: 'Contact', ariaLabel: 'Contact us', link: '/contact' },
+  { label: 'About Us', ariaLabel: 'Learn about us', link: '/about-us' },
+  { label: 'Contact', ariaLabel: 'Contact us', link: '/contact-us' },
   { label: 'Calculator', ariaLabel: 'Estimate costs', link: '/calculator' }
 ];
 
@@ -95,10 +94,9 @@ export default function Nav() {
 
   const PAGE_LINKS = [
   { href: '/blog', label: 'BLOG', shortLabel: 'Blog' },
-  { href: '/about', label: 'ABOUT', shortLabel: 'About' },
-  { href: '/pricing', label: 'PRICING', shortLabel: 'Pricing' },
+  { href: '/about-us', label: 'ABOUT', shortLabel: 'About' },
   { href: '/services', label: 'SERVICES', shortLabel: 'Services' },
-  { href: '/contact', label: 'CONTACT', shortLabel: 'Contact' },
+  { href: '/contact-us', label: 'CONTACT', shortLabel: 'Contact' },
   { href: '/projects', label: 'PROJECTS', shortLabel: 'Projects' },
   { href: '/testimonials', label: 'TESTIMONIALS', shortLabel: 'Testimonials' },
   { href: '/calculator', label: 'CALCULATOR', shortLabel: 'Calculator' },
@@ -161,7 +159,7 @@ export default function Nav() {
                               ? 'border-primary bg-primary text-white hover:bg-transparent hover:text-primary'
                               : 'border-white bg-transparent text-white hover:bg-primary hover:border-primary'
                         }`
-                      : `font-mono text-lg font-bold tracking-widest pb-0.5 transition-colors duration-500 ${
+                      : `font-mono text-base font-bold tracking-widest pb-0.5 transition-colors duration-500 ${
                           isActive(href)
                             ? overHero
                               ? 'text-white'

@@ -25,6 +25,36 @@ const nextConfig = {
     ],
   },
 
+  async redirects() {
+    return [
+      {
+        // Blog posts moved from /blog/:slug to root-level /:slug
+        source: '/blog/:slug',
+        destination: '/:slug',
+        permanent: true,
+      },
+      {
+        // /about renamed to /about-us
+        source: '/about',
+        destination: '/about-us',
+        permanent: true,
+      },
+      {
+        // /contact renamed to /contact-us
+        source: '/contact',
+        destination: '/contact-us',
+        permanent: true,
+      },
+      {
+        // Portfolio moved from /samples (single WP page with tabs) to /projects
+        // The WP site has no /samples/:slug URLs, so a single 301 covers it.
+        source: '/samples',
+        destination: '/projects',
+        permanent: true,
+      },
+    ];
+  },
+
   output: 'standalone',
   productionBrowserSourceMaps: true,
   poweredByHeader: false,
@@ -66,7 +96,7 @@ const nextConfig = {
       },
       {
         // Static pages: allow bfcache with must-revalidate
-        source: '/(about|services|pricing|blog|projects|testimonials|privacy-policy|terms-and-conditions|contact|calculator)',
+        source: '/(about-us|services|blog|projects|testimonials|privacy-policy|terms-and-conditions|contact-us|calculator)',
         headers: [
           {
             key: 'Cache-Control',

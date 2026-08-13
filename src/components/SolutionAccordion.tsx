@@ -15,7 +15,8 @@ import { SolutionItem } from "../types";
 
 const SOLUTION_IDS = ["sol_01", "sol_02", "sol_03", "sol_04"];
 
-const solutions: SolutionItem[] = [
+// Default hardcoded solutions — used as fallback if WP fetch fails/returns empty
+const defaultSolutions: SolutionItem[] = [
   {
     id: "sol_01",
     title: "Construction Estimation",
@@ -73,11 +74,27 @@ const solutions: SolutionItem[] = [
   },
 ];
 
+// Solutions shown in the accordion. These are the single source of truth.
+//
+// NOTE ON WORDPRESS EDITING:
+// The WP content layer (src/services/wordpress/content.ts) exposes
+// getServicePages() and getSolutions(), but NEITHER currently matches this
+// accordion's 4 solution categories:
+//   - getServicePages() -> ServicePage { summary, contentHtml } for slugs
+//     like "commercial-construction" (project TYPES, not solution categories).
+//   - getSolutions()    -> Solution { ... } for slugs prefixed "solution-".
+// The 4 hardcoded items below don't map 1:1 to either, and ServicePage's
+// shape (summary/contentHtml) differs from SolutionItem (description/details[]).
+// To let a non-coder edit these, we first need a deliberate mapping + WP
+// pages created with the right slugs/fields. Until that is designed, the
+// hardcoded defaults render so the app builds and runs.
+const solutions = defaultSolutions;
+
 const SOLUTION_SLUGS: Record<string, string> = {
-  sol_01: "/services/cost-estimation",
-  sol_02: "/services/material-takeoffs",
-  sol_03: "/services/permit-sets",
-  sol_04: "/services/project-scheduling",
+  sol_01: "/cost-estimating",
+  sol_02: "/cost-estimating",
+  sol_03: "/architectural-services",
+  sol_04: "/project-management",
 };
 
 const getIcon = (id: string) => {
@@ -91,7 +108,7 @@ const getIcon = (id: string) => {
     default:
       return <ShieldCheck className="w-5 h-5 text-primary" />;
   }
-};
+}
 
 interface SolutionAccordionProps {
   activeIndex: number;
