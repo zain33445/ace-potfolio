@@ -88,7 +88,7 @@ export default async function ServiceDetailPage({ params }: Props) {
       {/* ════════════════════════════════════════════════════════
           HERO SECTION
           ════════════════════════════════════════════════════════ */}
-      <section className="relative overflow-hidden max-w-8xl border-b border-blueprint-line">
+      <section className="relative overflow-clip max-w-8xl border-b border-blueprint-line">
         {/* Blueprint grid pattern */}
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.03]"

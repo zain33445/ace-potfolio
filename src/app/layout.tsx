@@ -1,31 +1,48 @@
 import type { Metadata } from 'next';
-import { Inter, JetBrains_Mono, Space_Grotesk } from 'next/font/google';
 import localFont from 'next/font/local';
 import Script from 'next/script';
 import './globals.css';
 import LayoutShell from './layout-shell';
 import ThirdPartyScripts from '@/src/components/ThirdPartyScripts';
+import {
+  SITE_URL as url,
+  OG_IMAGE as ogImage,
+  organizationSchema,
+  websiteSchema,
+  localBusinessSchema,
+  serviceSchema,
+} from '../lib/schema';
 
-/* ── next/font (self-hosted, no external render-blocking requests) ── */
+/* ── next/font (self-hosted woff2, no external build/runtime requests) ── */
 
-const inter = Inter({
-  subsets: ['latin'],
+const inter = localFont({
+  src: [
+    { path: './fonts/google/inter/400.woff2', weight: '400', style: 'normal' },
+    { path: './fonts/google/inter/500.woff2', weight: '500', style: 'normal' },
+    { path: './fonts/google/inter/600.woff2', weight: '600', style: 'normal' },
+  ],
   variable: '--font-inter',
-  weight: ['400', '500', '600'],
   display: 'swap',
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
+const jetbrainsMono = localFont({
+  src: [
+    { path: './fonts/google/jetbrains-mono/400.woff2', weight: '400', style: 'normal' },
+    { path: './fonts/google/jetbrains-mono/500.woff2', weight: '500', style: 'normal' },
+    { path: './fonts/google/jetbrains-mono/700.woff2', weight: '700', style: 'normal' },
+    { path: './fonts/google/jetbrains-mono/800.woff2', weight: '800', style: 'normal' },
+  ],
   variable: '--font-jetbrains-mono',
-  weight: ['400', '500', '700', '800'],
   display: 'swap',
 });
 
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
+const spaceGrotesk = localFont({
+  src: [
+    { path: './fonts/google/space-grotesk/500.woff2', weight: '500', style: 'normal' },
+    { path: './fonts/google/space-grotesk/600.woff2', weight: '600', style: 'normal' },
+    { path: './fonts/google/space-grotesk/700.woff2', weight: '700', style: 'normal' },
+  ],
   variable: '--font-space',
-  weight: ['500', '600', '700'],
   display: 'swap',
 });
 
@@ -43,9 +60,6 @@ const nourd = localFont({
   variable: '--font-nourd',
   display: 'swap',
 });
-
-const url = 'https://www.theaceservices.com';
-const ogImage = 'https://www.theaceservices.com/og-image.png';
 
 export const metadata: Metadata = {
   metadataBase: new URL(url),
@@ -91,240 +105,6 @@ export const metadata: Metadata = {
   },
 };
 
-/* ── JSON-LD structured data ─────────────────────────────────── */
-
-const organizationSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: 'The ACE Services',
-  description:
-    'The ACE Services is a top construction and estimation company delivering AACE Class 3 cost estimates, material takeoffs, permit sets, and project scheduling for general contractors nationwide.',
-  url,
-  foundingDate: '2025',
-  areaServed: 'US',
-  numberOfEmployees: {
-    '@type': 'QuantitativeValue',
-    minValue: 1,
-    maxValue: 10,
-  },
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Dallas',
-    addressRegion: 'TX',
-    addressCountry: 'US',
-  },
-  hasOfferCatalog: {
-    '@type': 'OfferCatalog',
-    name: 'Pre-Construction Services',
-    itemListElement: [
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Cost Estimating' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Material Takeoffs' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Permit Sets' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Project Scheduling' } },
-    ],
-  },
-};
-
-const websiteSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  name: 'The ACE Services',
-  url,
-  potentialAction: {
-    '@type': 'SearchAction',
-    target: `${url}/?s={search_term_string}`,
-    'query-input': 'required name=search_term_string',
-  },
-};
-
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: 'How long does a construction estimate take?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'The ACE Services typically delivers detailed cost estimates within 3 to 5 business days depending on project complexity. Expedited 24-hour turnaround available for select scope categories.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What is a Class 3 construction estimate?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'A Class 3 estimate, as defined by AACE International, provides a budgetary control level of accuracy suitable for project funding authorization. The ACE Services delivers all estimates to AACE Class 3 standards with ±10% to ±20% accuracy range.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What is a quantity takeoff in construction?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'A quantity takeoff is the process of measuring and calculating all materials, labor, and equipment quantities from architectural blueprints and specifications. The ACE Services uses algorithmic digitization platforms for division-wise material volume counts.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'How much does a construction cost estimate cost?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'The ACE Services provides free preliminary quotes. Full estimate pricing is project-dependent based on square footage, scope complexity, and documentation quality. Use our online calculator for an instant budgetary allocation or contact us for a custom quote.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What file formats do you accept for blueprints?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'We accept PDF, DWG, DXF, and raster image formats. Our digitization pipeline handles both digital-native files and scanned hard copies, with scale verification and alignment audits performed on scanned documents before quantity takeoffs begin.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Do you work with subcontractors and small contractors?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes, The ACE Services supports general contractors, subcontractors, and independent developers across 35 U.S. states, with scalable engagement models ranging from single-trade material lists to full-spectrum pre-construction packages.',
-      },
-    },
-  ],
-};
-
-const howToSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'HowTo',
-  name: 'The ACE Services Pre-Construction Process',
-  description:
-    'Our four-step pre-construction pipeline converts raw blueprints into certified cost schedules.',
-  step: [
-    {
-      '@type': 'HowToStep',
-      position: 1,
-      name: 'Structural Data Ingestion',
-      text: 'Transmit your blueprints, architectural layouts, site measurements, scope narratives, or custom municipal constraints through our bank-grade secure server channel.',
-    },
-    {
-      '@type': 'HowToStep',
-      position: 2,
-      name: 'Algorithmic Quantity Takeoff',
-      text: 'Our quantity surveyors perform exhaustive computational dissection utilizing localized material standards databases and professional digitization platforms.',
-    },
-    {
-      '@type': 'HowToStep',
-      position: 3,
-      name: 'Dual-Stage Verification Review',
-      text: 'All programmatic estimates undergo parallel reviews by principal civil engineers to filter variances or localized market rate fluctuations before compilation.',
-    },
-    {
-      '@type': 'HowToStep',
-      position: 4,
-      name: 'Delivery Protocol Transmission',
-      text: 'Instant delivery of final cost-schedules including completely interactive Microsoft Excel spreadsheets and stamped PDF dossiers designed for presentation.',
-    },
-  ],
-};
-
-const localBusinessSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
-  name: 'The ACE Services',
-  image: 'https://www.theaceservices.com/og-image.png',
-  url,
-  telephone: '+1-214-555-0123',
-  priceRange: '$$',
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: 'Dallas',
-    addressLocality: 'Dallas',
-    addressRegion: 'TX',
-    postalCode: '75001',
-    addressCountry: 'US',
-  },
-  geo: {
-    '@type': 'GeoCoordinates',
-    latitude: 32.7767,
-    longitude: -96.797,
-  },
-  openingHoursSpecification: {
-    '@type': 'OpeningHoursSpecification',
-    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-    opens: '08:00',
-    closes: '18:00',
-  },
-  sameAs: [
-    'https://www.linkedin.com/company/aceservicesllc/',
-    'https://twitter.com',
-  ],
-};
-
-const serviceSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Service',
-  serviceType: 'Construction Estimating',
-  provider: {
-    '@type': 'Organization',
-    name: 'The ACE Services',
-    url,
-  },
-  areaServed: {
-    '@type': 'Country',
-    name: 'United States',
-  },
-  hasOfferCatalog: {
-    '@type': 'OfferCatalog',
-    name: 'Construction Estimating Services',
-    itemListElement: [
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
-          name: 'AACE Class 3 Cost Estimates',
-          description: 'Professional budgetary-level cost estimates with ±10% to ±20% accuracy range, suitable for project funding authorization.',
-        },
-      },
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
-          name: 'Material Takeoffs',
-          description: 'Detailed quantity surveys measuring all materials, labor, and equipment from architectural blueprints using algorithmic digitization.',
-        },
-      },
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
-          name: 'Permit Sets',
-          description: 'Complete permit-ready document packages including cost schedules and material specifications for municipal submission.',
-        },
-      },
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
-          name: 'Project Scheduling',
-          description: 'Professional project timeline development and scheduling services for pre-construction planning.',
-        },
-      },
-    ],
-  },
-};
-
-const breadcrumbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    {
-      '@type': 'ListItem',
-      position: 1,
-      name: 'Home',
-      item: `${url}/`,
-    },
-  ],
-};
-
 /* ── Root Layout ─────────────────────────────────────────────── */
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -346,23 +126,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-        />
-        <script
-          type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
         />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
         />
         
         {/* Preconnect to critical third-party origins (max 4 per Lighthouse) */}

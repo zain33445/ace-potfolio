@@ -183,7 +183,7 @@ export async function getServicePages(
   slugs: string[],
 ): Promise<(ServicePageCopy & { slug: string })[]> {
   const { data } = await wpGetList<WPPage>('/pages', {
-    slug: slugs,
+    slug__in: slugs,
     _fields: ['slug', 'title', 'excerpt', 'content'],
   });
 

@@ -6,10 +6,9 @@ import { Suspense } from 'react';
 import { Check, ArrowRight, ChevronDown } from 'lucide-react';
 
 // Blog Imports
-import { getPostBySlug, getPosts } from '@/src/services/wordpress/content';
+import { getPostBySlug, getPosts, type BlogPost } from '@/src/services/wordpress/content';
 import { extractHeadings } from '@/src/lib/extractHeadings';
 import TableOfContents from '@/src/components/TableOfContents';
-import type { WPPost } from '@/src/services/wordpress/types';
 
 // Service Imports
 import { services, getServiceIcon, type Service } from '@/src/data/services';
@@ -115,7 +114,7 @@ export default async function SlugRoutePage({
   // Route to Blog Post if it exists
   const post = await getPostBySlug(slug);
   if (post) {
-    return <BlogPostView post={post as unknown as WPPost & { content: string }} slug={slug} />;
+    return <BlogPostView post={post} slug={slug} />;
   }
 
   notFound();
@@ -165,7 +164,7 @@ async function ServiceView({ service, slug }: { service: Service; slug: string }
         />
       )}
 
-      <section className="relative overflow-hidden max-w-8xl border-b border-blueprint-line">
+      <section className="relative overflow-clip max-w-8xl border-b border-blueprint-line">
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.03]"
           style={{
@@ -186,10 +185,12 @@ async function ServiceView({ service, slug }: { service: Service; slug: string }
             <span className="text-primary">{slug}</span>
           </div>
 
-          <div className="flex items-center gap-4 mb-4">
-            <div className="flex items-center justify-center w-12 h-12 border border-blueprint-line bg-surface bracket-corners flex-shrink-0">
-              <Icon className="w-5 h-5 text-primary" />
+          <div className="flex items-center gap-4 md:gap-10 mb-4">
+            {/* icon */}
+            <div className="flex items-center justify-center w-20 h-20 border border-blueprint-line bg-surface bracket-corners flex-shrink-0">
+              <Icon className="w-10 h-10 text-primary" />
             </div>
+            {/* title and tagline */}
             <div>
               <span className="font-mono text-sm text-on-surface-variant tracking-widest block mb-1">
                 {service.tagline}
@@ -200,12 +201,8 @@ async function ServiceView({ service, slug }: { service: Service; slug: string }
             </div>
           </div>
 
-          <p className="mt-6 max-w-8xl font-sans text-lg leading-relaxed text-on-surface-variant md:text-left md:text-xl text-justify">
-            {service.description || service.summary}
-          </p>
-
           {service.stats && service.stats.length > 0 && (
-            <div className="mt-10 flex flex-wrap gap-8 border-t border-blueprint-line pt-8 items-center justify-center">
+            <div className="mt-10 flex flex-wrap gap-20 border-t border-blueprint-line pt-8 items-center justify-center">
               {service.stats.map((stat) => (
                 <QuickStat key={stat.label} label={stat.label} value={stat.value} />
               ))}
@@ -214,16 +211,16 @@ async function ServiceView({ service, slug }: { service: Service; slug: string }
         </div>
 
       <div className="mx-auto max-w-8xl px-5 px-[10px] text-justify py-16 md:px-[var(--spacing-margin-desktop)] md:py-20">
-        <div className="grid gap-12 lg:grid-cols-[300px_1fr]">
+        <div className="grid gap-12 lg:grid-cols-12">
           {/* ── Sidebar: Sub-Services ── */}
-          <aside className="order-2 lg:order-2">
+          <aside className="order-2 col-span-3 lg:order-2 lg:sticky lg:top-24 lg:self-start">
             <Suspense fallback={<SidebarSkeleton />}>
               <SubServicesSidebar service={service} />
             </Suspense>
           </aside>
 
-          {/* ── Main Content ── */}
-          <div className="order-1 lg:order-2 space-y-16">
+          {/* ── Main Content ── */} 
+          <div className="order-1 lg:order-1 space-y-16 col-span-9">
             <ServiceOverviewSection service={service} />
             <PricingFeaturesSection service={service} />
             {service.process && service.process.length > 0 && (
@@ -246,7 +243,7 @@ async function SubServicesSidebar({ service }: { service: Service }) {
   const subServices = await getSubServices(service);
 
   return (
-    <div className="sticky top-24">
+    <div className="">
       {subServices.length > 0 && (
         <>
           <div className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
@@ -293,7 +290,7 @@ async function SubServicesSidebar({ service }: { service: Service }) {
 
 function SidebarSkeleton() {
   return (
-    <div className="sticky top-24 animate-pulse">
+    <div className="animate-pulse">
       <div className="mb-4 h-4 w-32 bg-surface-variant rounded"></div>
       <div className="space-y-4 mb-8">
         {[1, 2, 3].map((i) => (
@@ -313,11 +310,14 @@ function SidebarSkeleton() {
 function QuickStat({ label, value }: { label: string; value: string }) {
   return (
     <div className="text-center md:text-left">
-      <div className="font-mono text-xs font-bold uppercase tracking-[0.15em] text-on-surface-variant">
-        {label}
-      </div>
+      {/* values */}
       <div className="mt-1 font-[family-name:var(--font-space)] text-3xl font-bold text-on-background">
         {value}
+      </div>
+
+      {/* label */}
+      <div className="font-mono text-sm font-bold uppercase tracking-[0.15em] text-on-surface-variant">
+        {label}
       </div>
     </div>
   );
@@ -326,7 +326,7 @@ function QuickStat({ label, value }: { label: string; value: string }) {
 function ServiceOverviewSection({ service }: { service: Service }) {
   return (
     <section>
-      <div className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
+      <div className="mb-6 font-mono text-base font-bold uppercase tracking-[0.1em] text-primary">
         {service.slug === 'project-management' ? 'WHAT WE DELIVER' : 'OVERVIEW'}
       </div>
       <div className="space-y-8">
@@ -338,16 +338,16 @@ function ServiceOverviewSection({ service }: { service: Service }) {
           />
         ) : (
           <>
-            <p className="font-sans text-lg leading-relaxed text-on-surface-variant">
+            <p className="font-sans text-xl leading-relaxed text-on-surface">
               {service.description || service.summary}
             </p>
             {service.details && service.details.length > 0 && (
-              <div className="grid gap-4 md:grid-cols-2">
+              <div className="">
                 {service.details.map((detail, i) => (
-                  <div key={i} className="flex items-start gap-3 border border-blueprint-line bg-surface p-4">
+                  <div key={i} className="flex items-start gap-3 pb-4 pl-8">
                     <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-primary mt-2" />
-                    <span className="font-sans text-base text-on-surface leading-relaxed">
-                      {detail}
+                    <span className="font-sans text-lg text-on-surface-varient leading-relaxed">
+                      {detail} this is 
                     </span>
                   </div>
                 ))}
@@ -363,21 +363,19 @@ function ServiceOverviewSection({ service }: { service: Service }) {
 function PricingFeaturesSection({ service }: { service: Service }) {
   return (
     <section>
-      <div className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
-        [PRICING_AND_FEATURES]
+      <div className="mb-6 font-mono text-base font-bold uppercase tracking-[0.1em] text-primary">
+        PRICING AND FEATURES
       </div>
-      <div className="border border-blueprint-line bg-surface p-6 md:p-8">
+      <div className="border border-blueprint-line bg-surface p-16 md:p-8">
         <div className="mb-6 border-b border-blueprint-line pb-6 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <div className="font-mono text-2xl font-extrabold uppercase tracking-[0.05em] text-primary mb-2">
-              {service.startingPrice.toLowerCase() === 'custom' 
-                ? 'CUSTOM PRICING' 
-                : `STARTING AT ${service.startingPrice}`}
+            <div className="font-mono text-3xl font-extrabold uppercase tracking-[0.05em] text-primary mb-2">
+               CUSTOM PRICING
             </div>
-            <div className="text-sm text-on-surface-variant mb-2">
+            <div className="text-md text-on-surface-variant mb-2">
               Based on project scope, complexity, and deliverables.
             </div>
-            <div className="font-mono text-xs text-on-surface-variant tracking-wider">
+            <div className="font-mono text-md text-on-surface-variant tracking-wider">
               {service.turnaround} standard turnaround
             </div>
           </div>
@@ -393,14 +391,14 @@ function PricingFeaturesSection({ service }: { service: Service }) {
           {service.features.map((feature, i) => (
             <div key={i} className="flex items-start gap-3">
               <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-              <span className="font-sans text-sm text-on-surface leading-snug">
+              <span className="font-sans text-base text-on-surface leading-snug">
                 {feature}
               </span>
             </div>
           ))}
         </div>
         {service.footnote && (
-          <p className="mt-4 font-mono text-xs text-on-surface-variant leading-relaxed">
+          <p className="mt-4 font-mono text-sm text-on-surface-variant leading-relaxed">
             {service.footnote}
           </p>
         )}
@@ -548,7 +546,7 @@ function SeoContentSection({ service }: { service: Service }) {
 /*  BLOG POST VIEW COMPONENT                                      */
 /* ═══════════════════════════════════════════════════════════════ */
 
-function BlogPostView({ post, slug }: { post: WPPost & { content: string }; slug: string }) {
+function BlogPostView({ post, slug }: { post: BlogPost; slug: string }) {
   const tocResult = post.content ? extractHeadings(post.content) : null;
   const tocItems = tocResult?.items ?? [];
   const contentHtml = tocResult?.html ?? post.content;
@@ -567,6 +565,31 @@ function BlogPostView({ post, slug }: { post: WPPost & { content: string }; slug
               { '@type': 'ListItem', position: 2, name: 'Insights & Blog', item: 'https://www.theaceservices.com/blog' },
               { '@type': 'ListItem', position: 3, name: post.title, item: `https://www.theaceservices.com/${toUrlSlug(slug)}` },
             ],
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            headline: post.title,
+            description: post.excerpt,
+            datePublished: post.date,
+            dateModified: post.modified,
+            image: post.image,
+            author: {
+              '@type': 'Organization',
+              name: 'The ACE Services',
+              url: 'https://www.theaceservices.com',
+            },
+            publisher: {
+              '@type': 'Organization',
+              name: 'The ACE Services',
+              url: 'https://www.theaceservices.com',
+            },
+            mainEntityOfPage: `https://www.theaceservices.com/${toUrlSlug(slug)}`,
           }),
         }}
       />
