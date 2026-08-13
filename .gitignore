@@ -6,30 +6,24 @@ coverage/
 *.log
 .env*
 !.env.example
-
 # Next.js
 .next/
 out/
-
 .vercel
-
 # Development tooling
 .opencode/
 .claude/
 .agents/
 .planning/
 skills/
-
 # Blender source assets
 *.blend
 *.blend1
 *.glb
 *.gltf
 *.py
-
 # Build artifacts
 build-log.txt
-
 # Motion MCP OAuth token
 .motion-token.json
 .motion-token
@@ -37,16 +31,12 @@ build-log.txt
 *.jpg
 v3_analysis.json
 tsconfig.tsbuildinfo
-
 # Playwright test artifacts
 playwright-report/
 test-results/
-
-
 # Scratch / dev artifacts
 junk/
 prototypes/
 lighthouse-*.json
 public/wp-content/
-src/data/extracted-projects.json
 src/services/extract-pdfs.mjs

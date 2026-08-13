@@ -1,0 +1,3240 @@
+{
+  "_meta": {
+    "extracted": "2026-07-14T14:24:19.073Z",
+    "total": 58,
+    "success": 38,
+    "fallback": 20
+  },
+  "projects": [
+    {
+      "id": "P-001",
+      "slug": "mechanical-shop",
+      "title": "Mechanical Shop",
+      "category": "GENERAL CONTRACTOR",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2024/10/Daniel-Teel.jpg",
+      "pdfUrl": "http://theaceservices.com/wp-content/uploads/2024/10/GC-Sample-Mechanical-Shop-All-Trade-Rev00-1.pdf",
+      "scope": [
+        "Complete Cost Estimation",
+        "Quantity Takeoff"
+      ],
+      "totalAreaSqFt": 5789,
+      "estimatedCost": 642960,
+      "suggestedBid": 851922,
+      "costPerSf": 144.18,
+      "costDivisions": [
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 44600
+        },
+        {
+          "csiCode": "2000",
+          "name": "CONCRETE",
+          "cost": 178534
+        },
+        {
+          "csiCode": "5000",
+          "name": "METALS",
+          "cost": 52718
+        },
+        {
+          "csiCode": "6000",
+          "name": "WOOD, PLASTIC & COMPONENTS",
+          "cost": 61888
+        },
+        {
+          "csiCode": "7000",
+          "name": "THERMAL AND MOISTURE PROTECTION",
+          "cost": 43658
+        },
+        {
+          "csiCode": "8000",
+          "name": "OPENINGS",
+          "cost": 108171
+        },
+        {
+          "csiCode": "9000",
+          "name": "FINISHES",
+          "cost": 47088
+        },
+        {
+          "csiCode": "11000",
+          "name": "SPECIALITIES",
+          "cost": 2692
+        },
+        {
+          "csiCode": "22000",
+          "name": "PLUMBING",
+          "cost": 21501
+        },
+        {
+          "csiCode": "23000",
+          "name": "HVAC",
+          "cost": 21271
+        },
+        {
+          "csiCode": "26000",
+          "name": "ELECTRICAL",
+          "cost": 22137
+        },
+        {
+          "csiCode": "31000",
+          "name": "EARTHWORK",
+          "cost": 25668
+        },
+        {
+          "csiCode": "32000",
+          "name": "EXTERIOR IMPROVEMENTS",
+          "cost": 13035
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENTS",
+        "11000 SPECIALITIES",
+        "2000 CONCRETE",
+        "22000 PLUMBING",
+        "23000 HVAC",
+        "26000 ELECTRICAL",
+        "31000 EARTHWORK",
+        "32000 EXTERIOR IMPROVEMENTS",
+        "5000 METALS",
+        "6000 WOOD, PLASTIC & COMPONENTS",
+        "7000 THERMAL AND MOISTURE PROTECTION",
+        "8000 OPENINGS",
+        "9000 FINISHES"
+      ],
+      "description": "Complete cost estimation for Mechanical Shop spanning 5,789 SF across 13 trade divisions including GENERAL REQUIREMENTS, CONCRETE, METALS. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-002",
+      "slug": "sauce-d-house",
+      "title": "Sauce'd House",
+      "category": "GENERAL CONTRACTOR",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Sauced-House.jpg",
+      "pdfUrl": "http://theaceservices.com/wp-content/uploads/2024/10/Sauced-House-Restaurant-2.pdf",
+      "scope": [
+        "Complete Cost Estimation",
+        "Quantity Takeoff"
+      ],
+      "totalAreaSqFt": 3000,
+      "estimatedCost": 189184,
+      "suggestedBid": 263912,
+      "costPerSf": 87.97,
+      "costDivisions": [
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 15800
+        },
+        {
+          "csiCode": "6000",
+          "name": "EXISTING CONDITION",
+          "cost": 389
+        },
+        {
+          "csiCode": "8000",
+          "name": "OPENING",
+          "cost": 3377
+        },
+        {
+          "csiCode": "9000",
+          "name": "FINISHES",
+          "cost": 27646
+        },
+        {
+          "csiCode": "10000",
+          "name": "FURNISHES",
+          "cost": 102776
+        },
+        {
+          "csiCode": "22000",
+          "name": "PLUMBING",
+          "cost": 2866
+        },
+        {
+          "csiCode": "26000",
+          "name": "ELECTRICAL",
+          "cost": 36330
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENTS",
+        "10000 FURNISHES",
+        "22000 PLUMBING",
+        "26000 ELECTRICAL",
+        "6000 EXISTING CONDITION",
+        "8000 OPENING",
+        "9000 FINISHES"
+      ],
+      "description": "Complete cost estimation for Sauce'd House spanning 3,000 SF across 7 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITION, OPENING. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-003",
+      "slug": "paris-baquette",
+      "title": "Paris Baquette",
+      "category": "GENERAL CONTRACTOR",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Paris-Bagatue.jpeg",
+      "pdfUrl": "http://theaceservices.com/wp-content/uploads/2024/10/GC-Sample-Paris-Baquette-All-Trade-Rev00-2.pdf",
+      "scope": [
+        "Complete Cost Estimation",
+        "Quantity Takeoff"
+      ],
+      "totalAreaSqFt": 3000,
+      "estimatedCost": 517602,
+      "suggestedBid": 696174,
+      "costPerSf": 232.06,
+      "costDivisions": [
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 36450
+        },
+        {
+          "csiCode": "6000",
+          "name": "WOOD, PLASTIC & COMPOSITES",
+          "cost": 10160
+        },
+        {
+          "csiCode": "8000",
+          "name": "OPENING",
+          "cost": 20605
+        },
+        {
+          "csiCode": "9000",
+          "name": "FINISHES",
+          "cost": 94672
+        },
+        {
+          "csiCode": "10000",
+          "name": "SPECIALITIES",
+          "cost": 16081
+        },
+        {
+          "csiCode": "10000",
+          "name": "FURNISHES",
+          "cost": 51408
+        },
+        {
+          "csiCode": "22000",
+          "name": "PLUMBING",
+          "cost": 61615
+        },
+        {
+          "csiCode": "23000",
+          "name": "HVAC",
+          "cost": 147865
+        },
+        {
+          "csiCode": "26000",
+          "name": "ELECTRICAL",
+          "cost": 78746
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENTS",
+        "10000 FURNISHES",
+        "10000 SPECIALITIES",
+        "22000 PLUMBING",
+        "23000 HVAC",
+        "26000 ELECTRICAL",
+        "6000 WOOD, PLASTIC & COMPOSITES",
+        "8000 OPENING",
+        "9000 FINISHES"
+      ],
+      "description": "Complete cost estimation for Paris Baquette spanning 3,000 SF across 9 trade divisions including GENERAL REQUIREMENTS, WOOD, PLASTIC & COMPOSITES, OPENING. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-004",
+      "slug": "daniel-teel",
+      "title": "DANIEL Teel",
+      "category": "GENERAL CONTRACTOR",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Denia-Teel.jpg",
+      "pdfUrl": "http://theaceservices.com/wp-content/uploads/2024/10/GC-Sample-Daneil-Teel-All-Trade.pdf",
+      "scope": [
+        "Complete Cost Estimation",
+        "Quantity Takeoff"
+      ],
+      "totalAreaSqFt": 5789,
+      "estimatedCost": 530035,
+      "suggestedBid": 702296,
+      "costPerSf": 121.32,
+      "costDivisions": [
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 15700
+        },
+        {
+          "csiCode": "2000",
+          "name": "CONCRETE",
+          "cost": 39443
+        },
+        {
+          "csiCode": "6000",
+          "name": "WOOD, PLASTIC & COMPONENTS",
+          "cost": 30287
+        },
+        {
+          "csiCode": "7000",
+          "name": "THERMAL AND MOISTURE PROTECTION",
+          "cost": 59952
+        },
+        {
+          "csiCode": "8000",
+          "name": "OPENINGS",
+          "cost": 82354
+        },
+        {
+          "csiCode": "9000",
+          "name": "FINISHES",
+          "cost": 169959
+        },
+        {
+          "csiCode": "11000",
+          "name": "SPECIALITIES",
+          "cost": 33855
+        },
+        {
+          "csiCode": "12000",
+          "name": "FURNISHES",
+          "cost": 25846
+        },
+        {
+          "csiCode": "22000",
+          "name": "PLUMBING",
+          "cost": 36839
+        },
+        {
+          "csiCode": "23000",
+          "name": "HVAC",
+          "cost": 4284
+        },
+        {
+          "csiCode": "26000",
+          "name": "ELECTRICAL",
+          "cost": 24878
+        },
+        {
+          "csiCode": "32000",
+          "name": "EARTHWORK",
+          "cost": 6639
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENTS",
+        "11000 SPECIALITIES",
+        "12000 FURNISHES",
+        "2000 CONCRETE",
+        "22000 PLUMBING",
+        "23000 HVAC",
+        "26000 ELECTRICAL",
+        "32000 EARTHWORK",
+        "6000 WOOD, PLASTIC & COMPONENTS",
+        "7000 THERMAL AND MOISTURE PROTECTION",
+        "8000 OPENINGS",
+        "9000 FINISHES"
+      ],
+      "description": "Complete cost estimation for DANIEL Teel spanning 5,789 SF across 12 trade divisions including GENERAL REQUIREMENTS, CONCRETE, WOOD, PLASTIC & COMPONENTS. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-005",
+      "slug": "weis-retail-spaces",
+      "title": "WEIS Retail Spaces",
+      "category": "GENERAL CONTRACTOR",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Retail-Spaces.jpg",
+      "pdfUrl": "http://theaceservices.com/wp-content/uploads/2024/10/GC-Sample-Corner-of-MD-RT-5-Golden-Beach-Rd-Charlotte-Hall-MD.pdf",
+      "scope": [
+        "Complete Cost Estimation",
+        "Quantity Takeoff"
+      ],
+      "totalAreaSqFt": 0,
+      "estimatedCost": 0,
+      "suggestedBid": 0,
+      "costPerSf": 0,
+      "costDivisions": [],
+      "csiDivisions": [],
+      "description": "WEIS Retail Spaces — general contractor cost estimation project.",
+      "_fallback": true
+    },
+    {
+      "id": "P-006",
+      "slug": "five-star-car-wash",
+      "title": "Five Star Car Wash",
+      "category": "GENERAL CONTRACTOR",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Five-star-car-wash.png",
+      "pdfUrl": "http://theaceservices.com/wp-content/uploads/2024/10/GC-Sample-NEW-AUTOMATED-CARWASH-FACILITY-All-Trade.pdf",
+      "scope": [
+        "Complete Cost Estimation",
+        "Quantity Takeoff"
+      ],
+      "totalAreaSqFt": 5148,
+      "estimatedCost": 1613637,
+      "suggestedBid": 1871819,
+      "costPerSf": 363.6,
+      "costDivisions": [
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 69000
+        },
+        {
+          "csiCode": "3000",
+          "name": "CONCRETE",
+          "cost": 228332
+        },
+        {
+          "csiCode": "4000",
+          "name": "MASONRY",
+          "cost": 213939
+        },
+        {
+          "csiCode": "5000",
+          "name": "METAL",
+          "cost": 167985
+        },
+        {
+          "csiCode": "6000",
+          "name": "WOOD, PLASTIC & COMPONENTS",
+          "cost": 6443
+        },
+        {
+          "csiCode": "7000",
+          "name": "THERMAL AND MOISTURE PROTECTION",
+          "cost": 318553
+        },
+        {
+          "csiCode": "8000",
+          "name": "OPENINGS",
+          "cost": 195010
+        },
+        {
+          "csiCode": "9000",
+          "name": "FINISHES",
+          "cost": 164175
+        },
+        {
+          "csiCode": "11000",
+          "name": "SPECIALITIES",
+          "cost": 6727
+        },
+        {
+          "csiCode": "32000",
+          "name": "EARTHWORK",
+          "cost": 61116
+        },
+        {
+          "csiCode": "33000",
+          "name": "EXTERIOR IMPROVEMENTS",
+          "cost": 182355
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENTS",
+        "11000 SPECIALITIES",
+        "3000 CONCRETE",
+        "32000 EARTHWORK",
+        "33000 EXTERIOR IMPROVEMENTS",
+        "4000 MASONRY",
+        "5000 METAL",
+        "6000 WOOD, PLASTIC & COMPONENTS",
+        "7000 THERMAL AND MOISTURE PROTECTION",
+        "8000 OPENINGS",
+        "9000 FINISHES"
+      ],
+      "description": "Complete cost estimation for Five Star Car Wash spanning 5,148 SF across 11 trade divisions including GENERAL REQUIREMENTS, CONCRETE, MASONRY. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-007",
+      "slug": "freshman-hill",
+      "title": "Freshman Hill",
+      "category": "GENERAL CONTRACTOR",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Freshmen-Hill.jpg",
+      "pdfUrl": "http://theaceservices.com/wp-content/uploads/2024/10/GC-Sample-Student-Life-Improvements-Freshman-Hill-Sunset-Terrace-Troy-NY-12180-1.pdf",
+      "scope": [
+        "Complete Cost Estimation",
+        "Quantity Takeoff"
+      ],
+      "totalAreaSqFt": 2650,
+      "estimatedCost": 1551278,
+      "suggestedBid": 2016661,
+      "costPerSf": 585.39,
+      "costDivisions": [
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 75000
+        },
+        {
+          "csiCode": "2000",
+          "name": "EXISTING CONDITIONS",
+          "cost": 60661
+        },
+        {
+          "csiCode": "3000",
+          "name": "CONCRETE",
+          "cost": 112399
+        },
+        {
+          "csiCode": "4000",
+          "name": "MASONRY",
+          "cost": 29650
+        },
+        {
+          "csiCode": "5000",
+          "name": "METALS",
+          "cost": 268221
+        },
+        {
+          "csiCode": "6000",
+          "name": "WOOD, PLASTIC & COMPONENTS",
+          "cost": 24314
+        },
+        {
+          "csiCode": "7000",
+          "name": "THERMAL AND MOISTURE PROTECTION",
+          "cost": 8494
+        },
+        {
+          "csiCode": "8000",
+          "name": "OPENINGS",
+          "cost": 9503
+        },
+        {
+          "csiCode": "9000",
+          "name": "FINISHES",
+          "cost": 116651
+        },
+        {
+          "csiCode": "10000",
+          "name": "SPECIALITIES",
+          "cost": 2397
+        },
+        {
+          "csiCode": "31000",
+          "name": "EARTHWORK",
+          "cost": 138272
+        },
+        {
+          "csiCode": "32000",
+          "name": "SITE IMRPOVEMENTS",
+          "cost": 563509
+        },
+        {
+          "csiCode": "33000",
+          "name": "UTILITIES",
+          "cost": 142208
+        },
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 57375
+        },
+        {
+          "csiCode": "2000",
+          "name": "EXISTING CONDITIONS",
+          "cost": 16683
+        },
+        {
+          "csiCode": "3000",
+          "name": "CONCRETE",
+          "cost": 96991
+        },
+        {
+          "csiCode": "4000",
+          "name": "MASONRY",
+          "cost": 35830
+        },
+        {
+          "csiCode": "5000",
+          "name": "METALS",
+          "cost": 261935
+        },
+        {
+          "csiCode": "6000",
+          "name": "WOOD, PLASTIC & COMPONENTS",
+          "cost": 21772
+        },
+        {
+          "csiCode": "7000",
+          "name": "THERMAL AND MOISTURE PROTECTION",
+          "cost": 9999
+        },
+        {
+          "csiCode": "8000",
+          "name": "OPENINGS",
+          "cost": 9503
+        },
+        {
+          "csiCode": "9000",
+          "name": "FINISHES",
+          "cost": 123151
+        },
+        {
+          "csiCode": "10000",
+          "name": "SPECIALITIES",
+          "cost": 2397
+        },
+        {
+          "csiCode": "31000",
+          "name": "EARTHWORK",
+          "cost": 45244
+        },
+        {
+          "csiCode": "32000",
+          "name": "SITE IMRPOVEMENTS",
+          "cost": 425976
+        },
+        {
+          "csiCode": "33000",
+          "name": "UTILITIES",
+          "cost": 51779
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENTS",
+        "1000 GENERAL REQUIREMENTS",
+        "10000 SPECIALITIES",
+        "10000 SPECIALITIES",
+        "2000 EXISTING CONDITIONS",
+        "2000 EXISTING CONDITIONS",
+        "3000 CONCRETE",
+        "3000 CONCRETE",
+        "31000 EARTHWORK",
+        "31000 EARTHWORK",
+        "32000 SITE IMRPOVEMENTS",
+        "32000 SITE IMRPOVEMENTS",
+        "33000 UTILITIES",
+        "33000 UTILITIES",
+        "4000 MASONRY",
+        "4000 MASONRY",
+        "5000 METALS",
+        "5000 METALS",
+        "6000 WOOD, PLASTIC & COMPONENTS",
+        "6000 WOOD, PLASTIC & COMPONENTS",
+        "7000 THERMAL AND MOISTURE PROTECTION",
+        "7000 THERMAL AND MOISTURE PROTECTION",
+        "8000 OPENINGS",
+        "8000 OPENINGS",
+        "9000 FINISHES",
+        "9000 FINISHES"
+      ],
+      "description": "Complete cost estimation for Freshman Hill spanning 2,650 SF across 26 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITIONS, CONCRETE. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-008",
+      "slug": "pinnacle-montessori-school",
+      "title": "Pinnacle Montessori School",
+      "category": "GENERAL CONTRACTOR",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Pinnacle.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Takeoff-Pinnacle-Montessori-School-Building-1400-FM-407-Northlake-Texas-76247.pdf",
+      "scope": [
+        "Complete Cost Estimation",
+        "Quantity Takeoff"
+      ],
+      "totalAreaSqFt": 17366,
+      "estimatedCost": 3050942,
+      "suggestedBid": 3600112,
+      "costPerSf": 207.31,
+      "costDivisions": [
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 144400
+        },
+        {
+          "csiCode": "3000",
+          "name": "CONCRETE",
+          "cost": 351083
+        },
+        {
+          "csiCode": "4000",
+          "name": "MASONRY",
+          "cost": 131641
+        },
+        {
+          "csiCode": "5000",
+          "name": "METAL",
+          "cost": 28522
+        },
+        {
+          "csiCode": "6000",
+          "name": "WOOD, PLASTIC & COMPONENTS",
+          "cost": 257521
+        },
+        {
+          "csiCode": "7000",
+          "name": "THERMAL AND MOISTURE PROTECTION",
+          "cost": 163678
+        },
+        {
+          "csiCode": "8000",
+          "name": "OPENINGS",
+          "cost": 226266
+        },
+        {
+          "csiCode": "9000",
+          "name": "FINISHES",
+          "cost": 365387
+        },
+        {
+          "csiCode": "10000",
+          "name": "SPECIALITIES",
+          "cost": 40912
+        },
+        {
+          "csiCode": "11000",
+          "name": "EQUIPMENTS",
+          "cost": 2343
+        },
+        {
+          "csiCode": "12000",
+          "name": "FURNISHING",
+          "cost": 22778
+        },
+        {
+          "csiCode": "22000",
+          "name": "PLUMBING",
+          "cost": 109264
+        },
+        {
+          "csiCode": "23000",
+          "name": "HVAC",
+          "cost": 360509
+        },
+        {
+          "csiCode": "26000",
+          "name": "ELECTRICAL",
+          "cost": 135181
+        },
+        {
+          "csiCode": "28000",
+          "name": "ELECTRONIC SAFETY AND SECURITY",
+          "cost": 13368
+        },
+        {
+          "csiCode": "31000",
+          "name": "EARTHWORK",
+          "cost": 5281
+        },
+        {
+          "csiCode": "32000",
+          "name": "EXTERIOR IMPROVEMENTS",
+          "cost": 606595
+        },
+        {
+          "csiCode": "33000",
+          "name": "UTILITIES",
+          "cost": 86213
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENTS",
+        "10000 SPECIALITIES",
+        "11000 EQUIPMENTS",
+        "12000 FURNISHING",
+        "22000 PLUMBING",
+        "23000 HVAC",
+        "26000 ELECTRICAL",
+        "28000 ELECTRONIC SAFETY AND SECURITY",
+        "3000 CONCRETE",
+        "31000 EARTHWORK",
+        "32000 EXTERIOR IMPROVEMENTS",
+        "33000 UTILITIES",
+        "4000 MASONRY",
+        "5000 METAL",
+        "6000 WOOD, PLASTIC & COMPONENTS",
+        "7000 THERMAL AND MOISTURE PROTECTION",
+        "8000 OPENINGS",
+        "9000 FINISHES"
+      ],
+      "description": "Complete cost estimation for Pinnacle Montessori School spanning 17,366 SF across 18 trade divisions including GENERAL REQUIREMENTS, CONCRETE, MASONRY. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-009",
+      "slug": "watermill-express-city",
+      "title": "Watermill Express City",
+      "category": "GENERAL CONTRACTOR",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Watermill-express.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Estimate-Watermill-Express-City-Of-Arlington-Tarrant-County-Texas.pdf",
+      "scope": [
+        "Complete Cost Estimation",
+        "Quantity Takeoff"
+      ],
+      "totalAreaSqFt": 0,
+      "estimatedCost": 0,
+      "suggestedBid": 0,
+      "costPerSf": 0,
+      "costDivisions": [],
+      "csiDivisions": [],
+      "description": "Watermill Express City — general contractor cost estimation project.",
+      "_fallback": true
+    },
+    {
+      "id": "P-010",
+      "slug": "college-ave-adu-san-diego",
+      "title": "College Ave Adu San Diego",
+      "category": "GENERAL CONTRACTOR",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Collge-Avenue.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Estimate-_4768_College_Ave_Adu_San_Diego_CA_921151.pdf",
+      "scope": [
+        "Complete Cost Estimation",
+        "Quantity Takeoff"
+      ],
+      "totalAreaSqFt": 1196,
+      "estimatedCost": 261375,
+      "suggestedBid": 329332,
+      "costPerSf": 275.36,
+      "costDivisions": [
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 18250
+        },
+        {
+          "csiCode": "2000",
+          "name": "EXISTING CONDITION",
+          "cost": 2606
+        },
+        {
+          "csiCode": "3000",
+          "name": "CONCRETE",
+          "cost": 10975
+        },
+        {
+          "csiCode": "5000",
+          "name": "METALS",
+          "cost": 1999
+        },
+        {
+          "csiCode": "6000",
+          "name": "WOOD, PLASTIC & COMPONENTS",
+          "cost": 34501
+        },
+        {
+          "csiCode": "7000",
+          "name": "THERMAL AND MOISTURE PROTECTION",
+          "cost": 20205
+        },
+        {
+          "csiCode": "8000",
+          "name": "OPENINGS",
+          "cost": 26403
+        },
+        {
+          "csiCode": "9000",
+          "name": "FINISHES",
+          "cost": 68585
+        },
+        {
+          "csiCode": "10000",
+          "name": "SPECIALITIES",
+          "cost": 5071
+        },
+        {
+          "csiCode": "11000",
+          "name": "EQUIPMENTS",
+          "cost": 5215
+        },
+        {
+          "csiCode": "12000",
+          "name": "FURNISHING",
+          "cost": 7372
+        },
+        {
+          "csiCode": "22000",
+          "name": "PLUMBING",
+          "cost": 12028
+        },
+        {
+          "csiCode": "23000",
+          "name": "HVAC",
+          "cost": 21440
+        },
+        {
+          "csiCode": "26000",
+          "name": "ELECTRICAL",
+          "cost": 19516
+        },
+        {
+          "csiCode": "28000",
+          "name": "ELECTRONIC SAFETY AND SECURITY",
+          "cost": 1451
+        },
+        {
+          "csiCode": "32000",
+          "name": "EXTERIOR IMPROVEMENTS",
+          "cost": 5758
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENTS",
+        "10000 SPECIALITIES",
+        "11000 EQUIPMENTS",
+        "12000 FURNISHING",
+        "2000 EXISTING CONDITION",
+        "22000 PLUMBING",
+        "23000 HVAC",
+        "26000 ELECTRICAL",
+        "28000 ELECTRONIC SAFETY AND SECURITY",
+        "3000 CONCRETE",
+        "32000 EXTERIOR IMPROVEMENTS",
+        "5000 METALS",
+        "6000 WOOD, PLASTIC & COMPONENTS",
+        "7000 THERMAL AND MOISTURE PROTECTION",
+        "8000 OPENINGS",
+        "9000 FINISHES"
+      ],
+      "description": "Complete cost estimation for College Ave Adu San Diego spanning 1,196 SF across 16 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITION, CONCRETE. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-011",
+      "slug": "light-church",
+      "title": "Light Church",
+      "category": "GENERAL CONTRACTOR",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Light-Church.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Estimate-LIGHT_CHURCH_2606_JOHN_WEST_ROAD_MESQUITE_TEXAS.pdf",
+      "scope": [
+        "Complete Cost Estimation",
+        "Quantity Takeoff"
+      ],
+      "totalAreaSqFt": 6383,
+      "estimatedCost": 1106874,
+      "suggestedBid": 1339317,
+      "costPerSf": 209.83,
+      "costDivisions": [
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENT",
+          "cost": 53600
+        },
+        {
+          "csiCode": "3000",
+          "name": "CONCRETE",
+          "cost": 117911
+        },
+        {
+          "csiCode": "4000",
+          "name": "MASONRY",
+          "cost": 842
+        },
+        {
+          "csiCode": "6000",
+          "name": "WOOD, PLASTIC & COMPONENTS",
+          "cost": 16263
+        },
+        {
+          "csiCode": "7000",
+          "name": "THERMAL AND MOISTURE PROTECTION",
+          "cost": 95925
+        },
+        {
+          "csiCode": "8000",
+          "name": "OPENINGS",
+          "cost": 50432
+        },
+        {
+          "csiCode": "9000",
+          "name": "FINISHES",
+          "cost": 144810
+        },
+        {
+          "csiCode": "10000",
+          "name": "SPECIALITIES",
+          "cost": 12374
+        },
+        {
+          "csiCode": "11000",
+          "name": "EQUIPMENTS",
+          "cost": 294
+        },
+        {
+          "csiCode": "12000",
+          "name": "FURNISHING",
+          "cost": 7338
+        },
+        {
+          "csiCode": "13000",
+          "name": "SPECIAL CONSTRUCTION",
+          "cost": 348921
+        },
+        {
+          "csiCode": "21000",
+          "name": "FIRE SUPPRESSION",
+          "cost": 8798
+        },
+        {
+          "csiCode": "22000",
+          "name": "PLUMBING",
+          "cost": 37084
+        },
+        {
+          "csiCode": "23000",
+          "name": "HVAC",
+          "cost": 98364
+        },
+        {
+          "csiCode": "26000",
+          "name": "ELECTRICAL",
+          "cost": 63669
+        },
+        {
+          "csiCode": "28000",
+          "name": "ELECTRONIC SAFETY AND SECURITY",
+          "cost": 9640
+        },
+        {
+          "csiCode": "32000",
+          "name": "EXTERIOR IMPROVEMENTS",
+          "cost": 40609
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENT",
+        "10000 SPECIALITIES",
+        "11000 EQUIPMENTS",
+        "12000 FURNISHING",
+        "13000 SPECIAL CONSTRUCTION",
+        "21000 FIRE SUPPRESSION",
+        "22000 PLUMBING",
+        "23000 HVAC",
+        "26000 ELECTRICAL",
+        "28000 ELECTRONIC SAFETY AND SECURITY",
+        "3000 CONCRETE",
+        "32000 EXTERIOR IMPROVEMENTS",
+        "4000 MASONRY",
+        "6000 WOOD, PLASTIC & COMPONENTS",
+        "7000 THERMAL AND MOISTURE PROTECTION",
+        "8000 OPENINGS",
+        "9000 FINISHES"
+      ],
+      "description": "Complete cost estimation for Light Church spanning 6,383 SF across 17 trade divisions including GENERAL REQUIREMENT, CONCRETE, MASONRY. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-012",
+      "slug": "comstock-san-diego",
+      "title": "Comstock San Diego",
+      "category": "GENERAL CONTRACTOR",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Cosmotic-SAN-Diego.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Estimate-2325-Comstock-San-Diego-CA-921111.pdf",
+      "scope": [
+        "Complete Cost Estimation",
+        "Quantity Takeoff"
+      ],
+      "totalAreaSqFt": 3326,
+      "estimatedCost": 913080,
+      "suggestedBid": 1150481,
+      "costPerSf": 345.91,
+      "costDivisions": [
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 45000
+        },
+        {
+          "csiCode": "2000",
+          "name": "EXISTING CONDITION",
+          "cost": 1857
+        },
+        {
+          "csiCode": "3000",
+          "name": "CONCRETE",
+          "cost": 30178
+        },
+        {
+          "csiCode": "5000",
+          "name": "METAL",
+          "cost": 15345
+        },
+        {
+          "csiCode": "6000",
+          "name": "WOOD, PLASTIC & COMPONENTS",
+          "cost": 70464
+        },
+        {
+          "csiCode": "7000",
+          "name": "THERMAL AND MOISTURE PROTECTION",
+          "cost": 48811
+        },
+        {
+          "csiCode": "8000",
+          "name": "OPENINGS",
+          "cost": 92368
+        },
+        {
+          "csiCode": "9000",
+          "name": "FINISHES",
+          "cost": 201657
+        },
+        {
+          "csiCode": "10000",
+          "name": "SPECIALITIES",
+          "cost": 22017
+        },
+        {
+          "csiCode": "11000",
+          "name": "EQUIPMENTS",
+          "cost": 28425
+        },
+        {
+          "csiCode": "12000",
+          "name": "FURNISHING",
+          "cost": 30490
+        },
+        {
+          "csiCode": "22000",
+          "name": "PLUMBING",
+          "cost": 119675
+        },
+        {
+          "csiCode": "23000",
+          "name": "HVAC",
+          "cost": 47601
+        },
+        {
+          "csiCode": "26000",
+          "name": "ELECTRICAL",
+          "cost": 146085
+        },
+        {
+          "csiCode": "28000",
+          "name": "ELECTRONIC SAFETY AND SECURITY",
+          "cost": 5308
+        },
+        {
+          "csiCode": "32000",
+          "name": "EXTERIOR IMPROVEMENTS",
+          "cost": 7258
+        },
+        {
+          "csiCode": "33000",
+          "name": "UTILITIES",
+          "cost": 540
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENTS",
+        "10000 SPECIALITIES",
+        "11000 EQUIPMENTS",
+        "12000 FURNISHING",
+        "2000 EXISTING CONDITION",
+        "22000 PLUMBING",
+        "23000 HVAC",
+        "26000 ELECTRICAL",
+        "28000 ELECTRONIC SAFETY AND SECURITY",
+        "3000 CONCRETE",
+        "32000 EXTERIOR IMPROVEMENTS",
+        "33000 UTILITIES",
+        "5000 METAL",
+        "6000 WOOD, PLASTIC & COMPONENTS",
+        "7000 THERMAL AND MOISTURE PROTECTION",
+        "8000 OPENINGS",
+        "9000 FINISHES"
+      ],
+      "description": "Complete cost estimation for Comstock San Diego spanning 3,326 SF across 17 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITION, CONCRETE. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-013",
+      "slug": "e-avenue-j-grand-prairie",
+      "title": "E Avenue J Grand Prairie",
+      "category": "GENERAL CONTRACTOR",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/South-Lofy-2.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Estimate-Southloft-1101-E-Avenue-J-Grand-Prairie-TX-75050.pdf",
+      "scope": [
+        "Complete Cost Estimation",
+        "Quantity Takeoff"
+      ],
+      "totalAreaSqFt": 14210,
+      "estimatedCost": 2391945,
+      "suggestedBid": 2966011,
+      "costPerSf": 208.73,
+      "costDivisions": [
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 114000
+        },
+        {
+          "csiCode": "2000",
+          "name": "EXISTING CONDITIONS",
+          "cost": 30482
+        },
+        {
+          "csiCode": "3000",
+          "name": "CONCRETE",
+          "cost": 273902
+        },
+        {
+          "csiCode": "6000",
+          "name": "WOOD, PLASTIC & COMPONENTS",
+          "cost": 4285
+        },
+        {
+          "csiCode": "8000",
+          "name": "OPENINGS",
+          "cost": 150709
+        },
+        {
+          "csiCode": "9000",
+          "name": "FINISHES",
+          "cost": 150961
+        },
+        {
+          "csiCode": "10000",
+          "name": "SPECIALITIES",
+          "cost": 9112
+        },
+        {
+          "csiCode": "11000",
+          "name": "EQUIPMENTS",
+          "cost": 1544
+        },
+        {
+          "csiCode": "12000",
+          "name": "FURNISHING",
+          "cost": 11883
+        },
+        {
+          "csiCode": "13000",
+          "name": "SPECIAL CONSTRUCTION",
+          "cost": 767298
+        },
+        {
+          "csiCode": "21000",
+          "name": "FIRE SUPPRESSION",
+          "cost": 21007
+        },
+        {
+          "csiCode": "22000",
+          "name": "PLUMBING",
+          "cost": 52634
+        },
+        {
+          "csiCode": "23000",
+          "name": "HVAC",
+          "cost": 114878
+        },
+        {
+          "csiCode": "26000",
+          "name": "ELECTRICAL",
+          "cost": 141734
+        },
+        {
+          "csiCode": "27000",
+          "name": "COMMUNICATIONS",
+          "cost": 1620
+        },
+        {
+          "csiCode": "28000",
+          "name": "ELECTRONIC SAFETY AND SECURITY",
+          "cost": 3112
+        },
+        {
+          "csiCode": "31000",
+          "name": "EARTHWORK",
+          "cost": 46238
+        },
+        {
+          "csiCode": "32000",
+          "name": "EXTERIOR IMPROVEMENTS",
+          "cost": 459779
+        },
+        {
+          "csiCode": "33000",
+          "name": "UTILITIES",
+          "cost": 36768
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENTS",
+        "10000 SPECIALITIES",
+        "11000 EQUIPMENTS",
+        "12000 FURNISHING",
+        "13000 SPECIAL CONSTRUCTION",
+        "2000 EXISTING CONDITIONS",
+        "21000 FIRE SUPPRESSION",
+        "22000 PLUMBING",
+        "23000 HVAC",
+        "26000 ELECTRICAL",
+        "27000 COMMUNICATIONS",
+        "28000 ELECTRONIC SAFETY AND SECURITY",
+        "3000 CONCRETE",
+        "31000 EARTHWORK",
+        "32000 EXTERIOR IMPROVEMENTS",
+        "33000 UTILITIES",
+        "6000 WOOD, PLASTIC & COMPONENTS",
+        "8000 OPENINGS",
+        "9000 FINISHES"
+      ],
+      "description": "Complete cost estimation for E Avenue J Grand Prairie spanning 14,210 SF across 19 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITIONS, CONCRETE. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-014",
+      "slug": "wildlife-pickleball-park",
+      "title": "Wildlife Pickleball Park",
+      "category": "GENERAL CONTRACTOR",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Wildlife-.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Estimate-Wildlife-Pickleball-Park-Grand-Prairie-Texas.pdf",
+      "scope": [
+        "Complete Cost Estimation",
+        "Quantity Takeoff"
+      ],
+      "totalAreaSqFt": 299,
+      "estimatedCost": 1056720,
+      "suggestedBid": 1225795,
+      "costPerSf": 528.4,
+      "costDivisions": [
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 50400
+        },
+        {
+          "csiCode": "3000",
+          "name": "CONCRETE",
+          "cost": 6919
+        },
+        {
+          "csiCode": "4000",
+          "name": "MASONRY",
+          "cost": 14294
+        },
+        {
+          "csiCode": "5000",
+          "name": "METALS",
+          "cost": 3565
+        },
+        {
+          "csiCode": "6000",
+          "name": "WOOD, PLASTIC & COMPONENTS",
+          "cost": 78
+        },
+        {
+          "csiCode": "7000",
+          "name": "THERMAL AND MOISTURE PROTECTION",
+          "cost": 4780
+        },
+        {
+          "csiCode": "8000",
+          "name": "OPENINGS",
+          "cost": 7577
+        },
+        {
+          "csiCode": "9000",
+          "name": "FINISHES",
+          "cost": 4067
+        },
+        {
+          "csiCode": "10000",
+          "name": "SPECIALITIES",
+          "cost": 2813
+        },
+        {
+          "csiCode": "22000",
+          "name": "PLUMBING",
+          "cost": 18079
+        },
+        {
+          "csiCode": "23000",
+          "name": "HVAC",
+          "cost": 17547
+        },
+        {
+          "csiCode": "26000",
+          "name": "ELECTRICAL",
+          "cost": 4775
+        },
+        {
+          "csiCode": "31000",
+          "name": "EARTHWORK",
+          "cost": 213325
+        },
+        {
+          "csiCode": "32000",
+          "name": "EXTERIOR IMPROVEMENTS",
+          "cost": 708500
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENTS",
+        "10000 SPECIALITIES",
+        "22000 PLUMBING",
+        "23000 HVAC",
+        "26000 ELECTRICAL",
+        "3000 CONCRETE",
+        "31000 EARTHWORK",
+        "32000 EXTERIOR IMPROVEMENTS",
+        "4000 MASONRY",
+        "5000 METALS",
+        "6000 WOOD, PLASTIC & COMPONENTS",
+        "7000 THERMAL AND MOISTURE PROTECTION",
+        "8000 OPENINGS",
+        "9000 FINISHES"
+      ],
+      "description": "Complete cost estimation for Wildlife Pickleball Park spanning 299 SF across 14 trade divisions including GENERAL REQUIREMENTS, CONCRETE, MASONRY. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-015",
+      "slug": "shane-pl-san-diego",
+      "title": "Shane PL San Diego",
+      "category": "GENERAL CONTRACTOR",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Shane-PL.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Estimate-6404-6206-Shane-PL-San-Diego-CA-92115.pdf",
+      "scope": [
+        "Complete Cost Estimation",
+        "Quantity Takeoff"
+      ],
+      "totalAreaSqFt": 4083,
+      "estimatedCost": 512895,
+      "suggestedBid": 646248,
+      "costPerSf": 158.28,
+      "costDivisions": [
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 33750
+        },
+        {
+          "csiCode": "2000",
+          "name": "EXISTING CONDITION",
+          "cost": 10437
+        },
+        {
+          "csiCode": "3000",
+          "name": "CONCRETE",
+          "cost": 11685
+        },
+        {
+          "csiCode": "6000",
+          "name": "WOOD, PLASTIC & COMPONENTS",
+          "cost": 59690
+        },
+        {
+          "csiCode": "7000",
+          "name": "THERMAL AND MOISTURE PROTECTION",
+          "cost": 38079
+        },
+        {
+          "csiCode": "8000",
+          "name": "OPENINGS",
+          "cost": 51778
+        },
+        {
+          "csiCode": "9000",
+          "name": "FINISHES",
+          "cost": 114327
+        },
+        {
+          "csiCode": "10000",
+          "name": "SPECIALITIES",
+          "cost": 17323
+        },
+        {
+          "csiCode": "11000",
+          "name": "EQUIPMENTS",
+          "cost": 15646
+        },
+        {
+          "csiCode": "12000",
+          "name": "FURNISHING",
+          "cost": 16960
+        },
+        {
+          "csiCode": "22000",
+          "name": "PLUMBING",
+          "cost": 40099
+        },
+        {
+          "csiCode": "23000",
+          "name": "HVAC",
+          "cost": 43885
+        },
+        {
+          "csiCode": "26000",
+          "name": "ELECTRICAL",
+          "cost": 50616
+        },
+        {
+          "csiCode": "28000",
+          "name": "ELECTRONIC SAFETY AND SECURITY",
+          "cost": 4694
+        },
+        {
+          "csiCode": "32000",
+          "name": "EXTERIOR IMPROVEMENTS",
+          "cost": 3925
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENTS",
+        "10000 SPECIALITIES",
+        "11000 EQUIPMENTS",
+        "12000 FURNISHING",
+        "2000 EXISTING CONDITION",
+        "22000 PLUMBING",
+        "23000 HVAC",
+        "26000 ELECTRICAL",
+        "28000 ELECTRONIC SAFETY AND SECURITY",
+        "3000 CONCRETE",
+        "32000 EXTERIOR IMPROVEMENTS",
+        "6000 WOOD, PLASTIC & COMPONENTS",
+        "7000 THERMAL AND MOISTURE PROTECTION",
+        "8000 OPENINGS",
+        "9000 FINISHES"
+      ],
+      "description": "Complete cost estimation for Shane PL San Diego spanning 4,083 SF across 15 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITION, CONCRETE. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-016",
+      "slug": "tristar-drive",
+      "title": "TriStar Drive",
+      "category": "GENERAL CONTRACTOR",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Tristar.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Estimate-8200-Tristar-Drive-Irving-Texas.pdf",
+      "scope": [
+        "Complete Cost Estimation",
+        "Quantity Takeoff"
+      ],
+      "totalAreaSqFt": 1262,
+      "estimatedCost": 90205,
+      "suggestedBid": 113658,
+      "costPerSf": 90.06,
+      "costDivisions": [
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 6400
+        },
+        {
+          "csiCode": "2000",
+          "name": "EXISTING CONDITION",
+          "cost": 632
+        },
+        {
+          "csiCode": "6000",
+          "name": "WOOD, PLASTIC & COMPONENTS",
+          "cost": 4292
+        },
+        {
+          "csiCode": "7000",
+          "name": "THERMAL AND MOISTURE PROTECTION",
+          "cost": 3347
+        },
+        {
+          "csiCode": "8000",
+          "name": "OPENINGS",
+          "cost": 16502
+        },
+        {
+          "csiCode": "9000",
+          "name": "FINISHES",
+          "cost": 44039
+        },
+        {
+          "csiCode": "12000",
+          "name": "FURNISHING",
+          "cost": 2111
+        },
+        {
+          "csiCode": "22000",
+          "name": "PLUMBING",
+          "cost": 2614
+        },
+        {
+          "csiCode": "26000",
+          "name": "ELECTRICAL",
+          "cost": 10268
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENTS",
+        "12000 FURNISHING",
+        "2000 EXISTING CONDITION",
+        "22000 PLUMBING",
+        "26000 ELECTRICAL",
+        "6000 WOOD, PLASTIC & COMPONENTS",
+        "7000 THERMAL AND MOISTURE PROTECTION",
+        "8000 OPENINGS",
+        "9000 FINISHES"
+      ],
+      "description": "Complete cost estimation for TriStar Drive spanning 1,262 SF across 9 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITION, WOOD, PLASTIC & COMPONENTS. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-017",
+      "slug": "w-arkansas-ln",
+      "title": "W Arkansas LN",
+      "category": "GENERAL CONTRACTOR",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/W-SANS.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Estimate-2317-W-ARKANSAS-LN-PANTEGO-TX-76013.pdf",
+      "scope": [
+        "Complete Cost Estimation",
+        "Quantity Takeoff"
+      ],
+      "totalAreaSqFt": 5550,
+      "estimatedCost": 966678,
+      "suggestedBid": 1121347,
+      "costPerSf": 202.04,
+      "costDivisions": [
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 46600
+        },
+        {
+          "csiCode": "2000",
+          "name": "EXISTING CONDITIONS",
+          "cost": 1811
+        },
+        {
+          "csiCode": "3000",
+          "name": "CONCRETE",
+          "cost": 158763
+        },
+        {
+          "csiCode": "5000",
+          "name": "METAL",
+          "cost": 1720
+        },
+        {
+          "csiCode": "6000",
+          "name": "WOOD, PLASTIC & COMPONENTS",
+          "cost": 4594
+        },
+        {
+          "csiCode": "8000",
+          "name": "OPENINGS",
+          "cost": 88640
+        },
+        {
+          "csiCode": "9000",
+          "name": "FINISHES",
+          "cost": 46288
+        },
+        {
+          "csiCode": "10000",
+          "name": "SPECIALITIES",
+          "cost": 8180
+        },
+        {
+          "csiCode": "12000",
+          "name": "FURNISHING",
+          "cost": 5080
+        },
+        {
+          "csiCode": "13000",
+          "name": "SPECIAL CONSTRUCTION",
+          "cost": 287988
+        },
+        {
+          "csiCode": "22000",
+          "name": "PLUMBING",
+          "cost": 50599
+        },
+        {
+          "csiCode": "23000",
+          "name": "HVAC",
+          "cost": 25787
+        },
+        {
+          "csiCode": "26000",
+          "name": "ELECTRICAL",
+          "cost": 36550
+        },
+        {
+          "csiCode": "31000",
+          "name": "EARTHWORK",
+          "cost": 26771
+        },
+        {
+          "csiCode": "32000",
+          "name": "EXTERIOR IMPROVEMENTS",
+          "cost": 170229
+        },
+        {
+          "csiCode": "33000",
+          "name": "UTILITIES",
+          "cost": 7078
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENTS",
+        "10000 SPECIALITIES",
+        "12000 FURNISHING",
+        "13000 SPECIAL CONSTRUCTION",
+        "2000 EXISTING CONDITIONS",
+        "22000 PLUMBING",
+        "23000 HVAC",
+        "26000 ELECTRICAL",
+        "3000 CONCRETE",
+        "31000 EARTHWORK",
+        "32000 EXTERIOR IMPROVEMENTS",
+        "33000 UTILITIES",
+        "5000 METAL",
+        "6000 WOOD, PLASTIC & COMPONENTS",
+        "8000 OPENINGS",
+        "9000 FINISHES"
+      ],
+      "description": "Complete cost estimation for W Arkansas LN spanning 5,550 SF across 16 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITIONS, CONCRETE. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-018",
+      "slug": "will-residence",
+      "title": "Will Residence",
+      "category": "GENERAL CONTRACTOR",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Will-Residence.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/03/1021-02-WILLIS-RESIDENCE-V1-final-updated.pdf",
+      "scope": [
+        "Complete Cost Estimation",
+        "Quantity Takeoff"
+      ],
+      "totalAreaSqFt": 11180,
+      "estimatedCost": 1007318,
+      "suggestedBid": 1168489,
+      "costPerSf": 104.52,
+      "costDivisions": [
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 51722
+        },
+        {
+          "csiCode": "3000",
+          "name": "CONCRETE",
+          "cost": 101531
+        },
+        {
+          "csiCode": "4000",
+          "name": "MASONRY",
+          "cost": 12813
+        },
+        {
+          "csiCode": "5000",
+          "name": "METALS",
+          "cost": 8210
+        },
+        {
+          "csiCode": "6000",
+          "name": "WOOD, PLASTIC & COMPONENTS",
+          "cost": 154908
+        },
+        {
+          "csiCode": "6000",
+          "name": "THERMAL AND MOISTURE PROTECTION",
+          "cost": 92922
+        },
+        {
+          "csiCode": "8000",
+          "name": "OPENINGS",
+          "cost": 66971
+        },
+        {
+          "csiCode": "9000",
+          "name": "FINISHES",
+          "cost": 319537
+        },
+        {
+          "csiCode": "10000",
+          "name": "SPECIALITIES",
+          "cost": 3964
+        },
+        {
+          "csiCode": "11000",
+          "name": "EQUIPMENTS",
+          "cost": 7672
+        },
+        {
+          "csiCode": "12000",
+          "name": "FURNISHING",
+          "cost": 13701
+        },
+        {
+          "csiCode": "22000",
+          "name": "PLUMBING",
+          "cost": 72710
+        },
+        {
+          "csiCode": "26000",
+          "name": "ELECTRICAL",
+          "cost": 100655
+        },
+        {
+          "csiCode": "26000",
+          "name": "ELECTRICAL",
+          "cost": 89046
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENTS",
+        "10000 SPECIALITIES",
+        "11000 EQUIPMENTS",
+        "12000 FURNISHING",
+        "22000 PLUMBING",
+        "26000 ELECTRICAL",
+        "26000 ELECTRICAL",
+        "3000 CONCRETE",
+        "4000 MASONRY",
+        "5000 METALS",
+        "6000 THERMAL AND MOISTURE PROTECTION",
+        "6000 WOOD, PLASTIC & COMPONENTS",
+        "8000 OPENINGS",
+        "9000 FINISHES"
+      ],
+      "description": "Complete cost estimation for Will Residence spanning 11,180 SF across 14 trade divisions including GENERAL REQUIREMENTS, CONCRETE, MASONRY. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-019",
+      "slug": "heinzsman-residence",
+      "title": "Heinzsman Residence",
+      "category": "GENERAL CONTRACTOR",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Heizsman-Residence.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/03/1017-04-Estimate-_Heinszman_Residence_1519_Galveston_ST_San-DiegoCA-92110.pdf",
+      "scope": [
+        "Complete Cost Estimation",
+        "Quantity Takeoff"
+      ],
+      "totalAreaSqFt": 1196,
+      "estimatedCost": 703668,
+      "suggestedBid": 816255,
+      "costPerSf": 682.49,
+      "costDivisions": [
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 44500
+        },
+        {
+          "csiCode": "2000",
+          "name": "EXISTING CONDITION",
+          "cost": 1033
+        },
+        {
+          "csiCode": "3000",
+          "name": "CONCRETE",
+          "cost": 25066
+        },
+        {
+          "csiCode": "5000",
+          "name": "METALS",
+          "cost": 17390
+        },
+        {
+          "csiCode": "6000",
+          "name": "WOOD, PLASTIC & COMPONENTS",
+          "cost": 115642
+        },
+        {
+          "csiCode": "7000",
+          "name": "THERMAL AND MOISTURE PROTECTION",
+          "cost": 35524
+        },
+        {
+          "csiCode": "8000",
+          "name": "OPENINGS",
+          "cost": 49390
+        },
+        {
+          "csiCode": "9000",
+          "name": "FINISHES",
+          "cost": 160696
+        },
+        {
+          "csiCode": "10000",
+          "name": "SPECIALITIES",
+          "cost": 16310
+        },
+        {
+          "csiCode": "11000",
+          "name": "EQUIPMENTS",
+          "cost": 24304
+        },
+        {
+          "csiCode": "12000",
+          "name": "FURNISHING",
+          "cost": 24856
+        },
+        {
+          "csiCode": "22000",
+          "name": "PLUMBING",
+          "cost": 41289
+        },
+        {
+          "csiCode": "23000",
+          "name": "HVAC",
+          "cost": 61351
+        },
+        {
+          "csiCode": "26000",
+          "name": "ELECTRICAL",
+          "cost": 65190
+        },
+        {
+          "csiCode": "28000",
+          "name": "ELECTRONIC SAFETY AND SECURITY",
+          "cost": 4105
+        },
+        {
+          "csiCode": "31000",
+          "name": "EARTHWORK",
+          "cost": 241
+        },
+        {
+          "csiCode": "32000",
+          "name": "EXTERIOR IMPROVEMENTS",
+          "cost": 16780
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENTS",
+        "10000 SPECIALITIES",
+        "11000 EQUIPMENTS",
+        "12000 FURNISHING",
+        "2000 EXISTING CONDITION",
+        "22000 PLUMBING",
+        "23000 HVAC",
+        "26000 ELECTRICAL",
+        "28000 ELECTRONIC SAFETY AND SECURITY",
+        "3000 CONCRETE",
+        "31000 EARTHWORK",
+        "32000 EXTERIOR IMPROVEMENTS",
+        "5000 METALS",
+        "6000 WOOD, PLASTIC & COMPONENTS",
+        "7000 THERMAL AND MOISTURE PROTECTION",
+        "8000 OPENINGS",
+        "9000 FINISHES"
+      ],
+      "description": "Complete cost estimation for Heinzsman Residence spanning 1,196 SF across 17 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITION, CONCRETE. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-020",
+      "slug": "amicable-ct",
+      "title": "Amicable CT",
+      "category": "GENERAL CONTRACTOR",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Amicable.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/03/1005-23-Estimate-6101-Amicable-CT-Arlington-TX-76016.pdf",
+      "scope": [
+        "Complete Cost Estimation",
+        "Quantity Takeoff"
+      ],
+      "totalAreaSqFt": 1148,
+      "estimatedCost": 140895,
+      "suggestedBid": 177528,
+      "costPerSf": 154.64,
+      "costDivisions": [
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 12600
+        },
+        {
+          "csiCode": "2000",
+          "name": "EXISTING CONDITION",
+          "cost": 4926
+        },
+        {
+          "csiCode": "4000",
+          "name": "MASONRY",
+          "cost": 1316
+        },
+        {
+          "csiCode": "6000",
+          "name": "WOOD, PLASTIC & COMPONENTS",
+          "cost": 26075
+        },
+        {
+          "csiCode": "8000",
+          "name": "OPENINGS",
+          "cost": 14923
+        },
+        {
+          "csiCode": "9000",
+          "name": "FINISHES",
+          "cost": 22788
+        },
+        {
+          "csiCode": "12000",
+          "name": "FURNISHING",
+          "cost": 15376
+        },
+        {
+          "csiCode": "22000",
+          "name": "PLUMBING",
+          "cost": 8445
+        },
+        {
+          "csiCode": "23000",
+          "name": "HVAC",
+          "cost": 7403
+        },
+        {
+          "csiCode": "26000",
+          "name": "ELECTRICAL",
+          "cost": 27043
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENTS",
+        "12000 FURNISHING",
+        "2000 EXISTING CONDITION",
+        "22000 PLUMBING",
+        "23000 HVAC",
+        "26000 ELECTRICAL",
+        "4000 MASONRY",
+        "6000 WOOD, PLASTIC & COMPONENTS",
+        "8000 OPENINGS",
+        "9000 FINISHES"
+      ],
+      "description": "Complete cost estimation for Amicable CT spanning 1,148 SF across 10 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITION, MASONRY. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-021",
+      "slug": "parker-henderson-project",
+      "title": "Parker Henderson Project",
+      "category": "GENERAL CONTRACTOR",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Parker-Henderson.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/03/1005-27-Estimate-4800__4900_PARKER_HENDERSON_RESIDENTIAL_DEVELOPMENT_TARRANT_COUNTY_TEXAS1-.pdf",
+      "scope": [
+        "Complete Cost Estimation",
+        "Quantity Takeoff"
+      ],
+      "totalAreaSqFt": 162076,
+      "estimatedCost": 529261,
+      "suggestedBid": 640406,
+      "costPerSf": 3.95,
+      "costDivisions": [
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 22750
+        },
+        {
+          "csiCode": "31000",
+          "name": "EARTHWORK",
+          "cost": 148663
+        },
+        {
+          "csiCode": "32000",
+          "name": "EXTERIOR IMPROVEMENTS",
+          "cost": 248538
+        },
+        {
+          "csiCode": "33000",
+          "name": "UTILITIES",
+          "cost": 109310
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENTS",
+        "31000 EARTHWORK",
+        "32000 EXTERIOR IMPROVEMENTS",
+        "33000 UTILITIES"
+      ],
+      "description": "Complete cost estimation for Parker Henderson Project spanning 162,076 SF across 4 trade divisions including GENERAL REQUIREMENTS, EARTHWORK, EXTERIOR IMPROVEMENTS. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-022",
+      "slug": "planet-fitness",
+      "title": "PLANET FITNESS",
+      "category": "GENERAL CONTRACTOR",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Pinnacle.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/05/TAKEOFF-PLANET-FITNESS-901-MOUNTAIN-AVE-SPRINGFIELD-NJ-07081.pdf",
+      "scope": [
+        "Complete Cost Estimation",
+        "Quantity Takeoff"
+      ],
+      "totalAreaSqFt": 0,
+      "estimatedCost": 0,
+      "suggestedBid": 0,
+      "costPerSf": 0,
+      "costDivisions": [],
+      "csiDivisions": [],
+      "description": "PLANET FITNESS — general contractor cost estimation project.",
+      "_fallback": true
+    },
+    {
+      "id": "P-023",
+      "slug": "fortox-retail",
+      "title": "Fortox Retail",
+      "category": "GENERAL CONTRACTOR",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/South-Lofy-2.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/05/1005-29-FOXTROT-RETAIL.pdf",
+      "scope": [
+        "Complete Cost Estimation",
+        "Quantity Takeoff"
+      ],
+      "totalAreaSqFt": 0,
+      "estimatedCost": 0,
+      "suggestedBid": 0,
+      "costPerSf": 0,
+      "costDivisions": [],
+      "csiDivisions": [],
+      "description": "Fortox Retail — general contractor cost estimation project.",
+      "_fallback": true
+    },
+    {
+      "id": "P-024",
+      "slug": "lucky-hair-salloon",
+      "title": "Lucky Hair Salloon",
+      "category": "GENERAL CONTRACTOR",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Amicable.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/05/1005-34-Takeoff-LUCKY-HAIR-SALOON-8990-COIT-ROAD-FRISCO-TX-75035.pdf",
+      "scope": [
+        "Complete Cost Estimation",
+        "Quantity Takeoff"
+      ],
+      "totalAreaSqFt": 1004,
+      "estimatedCost": 266524,
+      "suggestedBid": 363805,
+      "costPerSf": 362.36,
+      "costDivisions": [
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 20600
+        },
+        {
+          "csiCode": "6000",
+          "name": "WOOD, PLASTIC & COMPONENTS",
+          "cost": 18280
+        },
+        {
+          "csiCode": "8000",
+          "name": "OPENINGS",
+          "cost": 5934
+        },
+        {
+          "csiCode": "9000",
+          "name": "FINISHES",
+          "cost": 52383
+        },
+        {
+          "csiCode": "10000",
+          "name": "SPECIALITIES",
+          "cost": 4023
+        },
+        {
+          "csiCode": "11000",
+          "name": "EQUIPMENTS",
+          "cost": 12857
+        },
+        {
+          "csiCode": "12000",
+          "name": "FURNISHING",
+          "cost": 4450
+        },
+        {
+          "csiCode": "22000",
+          "name": "PLUMBING",
+          "cost": 25631
+        },
+        {
+          "csiCode": "23000",
+          "name": "HVAC",
+          "cost": 58340
+        },
+        {
+          "csiCode": "26000",
+          "name": "ELECTRICAL",
+          "cost": 64026
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENTS",
+        "10000 SPECIALITIES",
+        "11000 EQUIPMENTS",
+        "12000 FURNISHING",
+        "22000 PLUMBING",
+        "23000 HVAC",
+        "26000 ELECTRICAL",
+        "6000 WOOD, PLASTIC & COMPONENTS",
+        "8000 OPENINGS",
+        "9000 FINISHES"
+      ],
+      "description": "Complete cost estimation for Lucky Hair Salloon spanning 1,004 SF across 10 trade divisions including GENERAL REQUIREMENTS, WOOD, PLASTIC & COMPONENTS, OPENINGS. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-025",
+      "slug": "new-community-living-center",
+      "title": "New Community Living Center",
+      "category": "SUB CONTRACTORS",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/New-Community-living-e1744215757671.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/03/1023-01-NEW-COMMUNITY-LIVING-CENTER-2094-ALBANY-POST-ROAD-MONTROSE-NY-10548.pdf",
+      "scope": [
+        "MEP Takeoff",
+        "Trade-Specific Estimate"
+      ],
+      "totalAreaSqFt": 28900,
+      "estimatedCost": 154271,
+      "suggestedBid": 178954,
+      "costPerSf": 6.19,
+      "costDivisions": [
+        {
+          "csiCode": "6000",
+          "name": "WOOD, PLASTICS, AND COMPOSITES",
+          "cost": 106653
+        },
+        {
+          "csiCode": "12000",
+          "name": "FURNISHINGS",
+          "cost": 47618
+        }
+      ],
+      "csiDivisions": [
+        "12000 FURNISHINGS",
+        "6000 WOOD, PLASTICS, AND COMPOSITES"
+      ],
+      "description": "Complete cost estimation for New Community Living Center spanning 28,900 SF across 2 trade divisions including WOOD, PLASTICS, AND COMPOSITES, FURNISHINGS. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-026",
+      "slug": "regency-parkway-mansfield",
+      "title": "Regency Parkway Mansfield",
+      "category": "SUB CONTRACTORS",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/305-Regency.jpg",
+      "pdfUrl": "http://theaceservices.com/wp-content/uploads/2024/10/Concrete-Sample-305-Regency-Parkway-Mansfield-TX.pdf",
+      "scope": [
+        "MEP Takeoff",
+        "Trade-Specific Estimate"
+      ],
+      "totalAreaSqFt": 3138,
+      "estimatedCost": 67651,
+      "suggestedBid": 78813,
+      "costPerSf": 25.12,
+      "costDivisions": [
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 5000
+        },
+        {
+          "csiCode": "3000",
+          "name": "CONCRETE",
+          "cost": 62651
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENTS",
+        "3000 CONCRETE"
+      ],
+      "description": "Complete cost estimation for Regency Parkway Mansfield spanning 3,138 SF across 2 trade divisions including GENERAL REQUIREMENTS, CONCRETE. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-027",
+      "slug": "lake-arlington-branch",
+      "title": "Lake Arlington Branch",
+      "category": "SUB CONTRACTORS",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/LAKE-ARLINGTON-.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/03/1005-24-LAKE-ARLINGTON-BRANCH-LIBRARY-GREEN-OAKS-BLVD-Arlington-TX-76016.pdf",
+      "scope": [
+        "MEP Takeoff",
+        "Trade-Specific Estimate"
+      ],
+      "totalAreaSqFt": 961,
+      "estimatedCost": 18243,
+      "suggestedBid": 22987,
+      "costPerSf": 23.92,
+      "costDivisions": [
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 1600
+        },
+        {
+          "csiCode": "2000",
+          "name": "EXISTING CONDITIONS",
+          "cost": 3357
+        },
+        {
+          "csiCode": "3000",
+          "name": "CONCRETE",
+          "cost": 8883
+        },
+        {
+          "csiCode": "31000",
+          "name": "EARTHWORK",
+          "cost": 1389
+        },
+        {
+          "csiCode": "32000",
+          "name": "EXTERIOR IMPROVEMENTS",
+          "cost": 3015
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENTS",
+        "2000 EXISTING CONDITIONS",
+        "3000 CONCRETE",
+        "31000 EARTHWORK",
+        "32000 EXTERIOR IMPROVEMENTS"
+      ],
+      "description": "Complete cost estimation for Lake Arlington Branch spanning 961 SF across 5 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITIONS, CONCRETE. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-028",
+      "slug": "first-chinies-baptist-church",
+      "title": "First Chinies Baptist Church",
+      "category": "SUB CONTRACTORS",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2024/10/First-Bapist-Church.png",
+      "pdfUrl": "http://theaceservices.com/wp-content/uploads/2024/10/Plumbing-Sample-First-Chinies-Baptist-Church-Plumbing-Rev00.pdf",
+      "scope": [
+        "MEP Takeoff",
+        "Trade-Specific Estimate"
+      ],
+      "totalAreaSqFt": 650,
+      "estimatedCost": 77500,
+      "suggestedBid": 106563,
+      "costPerSf": 163.94,
+      "costDivisions": [
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 7888
+        },
+        {
+          "csiCode": "2200",
+          "name": "PLUMBING",
+          "cost": 69612
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENTS",
+        "2200 PLUMBING"
+      ],
+      "description": "Complete cost estimation for First Chinies Baptist Church spanning 650 SF across 2 trade divisions including GENERAL REQUIREMENTS, PLUMBING. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-029",
+      "slug": "capital-grill-3500-west-olive",
+      "title": "Capital Grill 3500 West Olive",
+      "category": "SUB CONTRACTORS",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2024/10/Untitled-12.png",
+      "pdfUrl": "http://theaceservices.com/wp-content/uploads/2024/10/Plumbing-Sample-First-Chinies-Baptist-Church-Plumbing-Rev00.pdf",
+      "scope": [
+        "MEP Takeoff",
+        "Trade-Specific Estimate"
+      ],
+      "totalAreaSqFt": 650,
+      "estimatedCost": 77500,
+      "suggestedBid": 106563,
+      "costPerSf": 163.94,
+      "costDivisions": [
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 7888
+        },
+        {
+          "csiCode": "2200",
+          "name": "PLUMBING",
+          "cost": 69612
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENTS",
+        "2200 PLUMBING"
+      ],
+      "description": "Complete cost estimation for Capital Grill 3500 West Olive spanning 650 SF across 2 trade divisions including GENERAL REQUIREMENTS, PLUMBING. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-030",
+      "slug": "detroit-mi-2nd-ave",
+      "title": "Detroit MI, 2nd Ave",
+      "category": "SUB CONTRACTORS",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2024/10/Untitled-9.png",
+      "pdfUrl": "http://theaceservices.com/wp-content/uploads/2024/10/Concrete-Sample-305-Regency-Parkway-Mansfield-TX.pdf",
+      "scope": [
+        "MEP Takeoff",
+        "Trade-Specific Estimate"
+      ],
+      "totalAreaSqFt": 3138,
+      "estimatedCost": 67651,
+      "suggestedBid": 78813,
+      "costPerSf": 25.12,
+      "costDivisions": [
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 5000
+        },
+        {
+          "csiCode": "3000",
+          "name": "CONCRETE",
+          "cost": 62651
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENTS",
+        "3000 CONCRETE"
+      ],
+      "description": "Complete cost estimation for Detroit MI, 2nd Ave spanning 3,138 SF across 2 trade divisions including GENERAL REQUIREMENTS, CONCRETE. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-031",
+      "slug": "aquazzurra-drywall",
+      "title": "AQUAZZURRA, Drywall",
+      "category": "SUB CONTRACTORS",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2024/10/Untitled-13.png",
+      "pdfUrl": "http://theaceservices.com/wp-content/uploads/2024/10/Concrete-Sample-305-Regency-Parkway-Mansfield-TX.pdf",
+      "scope": [
+        "MEP Takeoff",
+        "Trade-Specific Estimate"
+      ],
+      "totalAreaSqFt": 3138,
+      "estimatedCost": 67651,
+      "suggestedBid": 78813,
+      "costPerSf": 25.12,
+      "costDivisions": [
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 5000
+        },
+        {
+          "csiCode": "3000",
+          "name": "CONCRETE",
+          "cost": 62651
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENTS",
+        "3000 CONCRETE"
+      ],
+      "description": "Complete cost estimation for AQUAZZURRA, Drywall spanning 3,138 SF across 2 trade divisions including GENERAL REQUIREMENTS, CONCRETE. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-032",
+      "slug": "project-norris",
+      "title": "Project Norris",
+      "category": "SUB CONTRACTORS",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2024/10/Untitled-10.png",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Estimate-Project-NORRIS.pdf",
+      "scope": [
+        "MEP Takeoff",
+        "Trade-Specific Estimate"
+      ],
+      "totalAreaSqFt": 2124,
+      "estimatedCost": 59723,
+      "suggestedBid": 75251,
+      "costPerSf": 35.43,
+      "costDivisions": [
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 4050
+        },
+        {
+          "csiCode": "6000",
+          "name": "WOOD, PLASTIC & COMPONENTS",
+          "cost": 29125
+        },
+        {
+          "csiCode": "9000",
+          "name": "FINISHES",
+          "cost": 26548
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENTS",
+        "6000 WOOD, PLASTIC & COMPONENTS",
+        "9000 FINISHES"
+      ],
+      "description": "Complete cost estimation for Project Norris spanning 2,124 SF across 3 trade divisions including GENERAL REQUIREMENTS, WOOD, PLASTIC & COMPONENTS, FINISHES. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-033",
+      "slug": "cardin-place-eagleville",
+      "title": "Cardin Place Eagleville",
+      "category": "SUB CONTRACTORS",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Cardin-Place-Eagleville.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Estimate-Reconstruction-Of-Residences-4043-4047-Cardin-Place-Eagleville-PA-19043.pdf",
+      "scope": [
+        "MEP Takeoff",
+        "Trade-Specific Estimate"
+      ],
+      "totalAreaSqFt": 3572,
+      "estimatedCost": 45596,
+      "suggestedBid": 57451,
+      "costPerSf": 16.08,
+      "costDivisions": [
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 2925
+        },
+        {
+          "csiCode": "6000",
+          "name": "WOOD, PLASTIC & COMPONENTS",
+          "cost": 36539
+        },
+        {
+          "csiCode": "7000",
+          "name": "THERMAL AND MOISTURE PROTECTION",
+          "cost": 6132
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENTS",
+        "6000 WOOD, PLASTIC & COMPONENTS",
+        "7000 THERMAL AND MOISTURE PROTECTION"
+      ],
+      "description": "Complete cost estimation for Cardin Place Eagleville spanning 3,572 SF across 3 trade divisions including GENERAL REQUIREMENTS, WOOD, PLASTIC & COMPONENTS, THERMAL AND MOISTURE PROTECTION. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-034",
+      "slug": "mcculloh-st-baltimore",
+      "title": "McCulloh St Baltimore",
+      "category": "SUB CONTRACTORS",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Baltimor.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/03/1022-02-1401-McCulloh-ST-Baltimore-MD-212171.pdf",
+      "scope": [
+        "MEP Takeoff",
+        "Trade-Specific Estimate"
+      ],
+      "totalAreaSqFt": 4777,
+      "estimatedCost": 75330,
+      "suggestedBid": 91150,
+      "costPerSf": 19.08,
+      "costDivisions": [
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 4750
+        },
+        {
+          "csiCode": "2000",
+          "name": "EXISTING CONDITIONS",
+          "cost": 12260
+        },
+        {
+          "csiCode": "6000",
+          "name": "WOOD, PLASTICS, AND COMPOSITES",
+          "cost": 401
+        },
+        {
+          "csiCode": "9000",
+          "name": "FINISHES",
+          "cost": 57920
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENTS",
+        "2000 EXISTING CONDITIONS",
+        "6000 WOOD, PLASTICS, AND COMPOSITES",
+        "9000 FINISHES"
+      ],
+      "description": "Complete cost estimation for McCulloh St Baltimore spanning 4,777 SF across 4 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITIONS, WOOD, PLASTICS, AND COMPOSITES. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-035",
+      "slug": "scc-evans-building",
+      "title": "SCC EVANS BUILDING",
+      "category": "SUB CONTRACTORS",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/SCC-EVANS-BUILDING.jpg",
+      "pdfUrl": "http://theaceservices.com/wp-content/uploads/2024/10/Paint-Estimate-SCC-EVANS-BUILDING-220-E-Kennedy-St-Spartanburg-SC-29302.pdf",
+      "scope": [
+        "MEP Takeoff",
+        "Trade-Specific Estimate"
+      ],
+      "totalAreaSqFt": 0,
+      "estimatedCost": 0,
+      "suggestedBid": 0,
+      "costPerSf": 0,
+      "costDivisions": [],
+      "csiDivisions": [],
+      "description": "SCC EVANS BUILDING — sub contractors cost estimation project.",
+      "_fallback": true
+    },
+    {
+      "id": "P-036",
+      "slug": "doubletree-by-hilton",
+      "title": "Doubletree By Hilton",
+      "category": "SUB CONTRACTORS",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Double-Tree-by-Hilton-300x200-1.jpg",
+      "pdfUrl": "http://theaceservices.com/wp-content/uploads/2024/10/Estimate-Doubletree-By-Hilton-Bradley-International-Airport.pdf",
+      "scope": [
+        "MEP Takeoff",
+        "Trade-Specific Estimate"
+      ],
+      "totalAreaSqFt": 0,
+      "estimatedCost": 0,
+      "suggestedBid": 0,
+      "costPerSf": 0,
+      "costDivisions": [],
+      "csiDivisions": [],
+      "description": "Doubletree By Hilton — sub contractors cost estimation project.",
+      "_fallback": true
+    },
+    {
+      "id": "P-037",
+      "slug": "mornington-rd-dundalk",
+      "title": "Mornington Rd Dundalk",
+      "category": "SUB CONTRACTORS",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Morington.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/03/1022-03.pdf",
+      "scope": [
+        "MEP Takeoff",
+        "Trade-Specific Estimate"
+      ],
+      "totalAreaSqFt": 0,
+      "estimatedCost": 0,
+      "suggestedBid": 0,
+      "costPerSf": 0,
+      "costDivisions": [],
+      "csiDivisions": [],
+      "description": "Mornington Rd Dundalk — sub contractors cost estimation project.",
+      "_fallback": true
+    },
+    {
+      "id": "P-038",
+      "slug": "automated-carwash-facility",
+      "title": "AUTOMATED CARWASH FACILITY",
+      "category": "SUB CONTRACTORS",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2024/10/Untitled-4.png",
+      "pdfUrl": "http://theaceservices.com/wp-content/uploads/2024/10/Openings-Estimate-NEW-AUTOMATED-CARWASH-FACILITY-1.pdf",
+      "scope": [
+        "MEP Takeoff",
+        "Trade-Specific Estimate"
+      ],
+      "totalAreaSqFt": 5148,
+      "estimatedCost": 195010,
+      "suggestedBid": 253513,
+      "costPerSf": 37.88,
+      "costDivisions": [
+        {
+          "csiCode": "8000",
+          "name": "OPENINGS",
+          "cost": 195010
+        }
+      ],
+      "csiDivisions": [
+        "8000 OPENINGS"
+      ],
+      "description": "Complete cost estimation for AUTOMATED CARWASH FACILITY spanning 5,148 SF across 1 trade divisions including OPENINGS. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-039",
+      "slug": "polytechnic-institute",
+      "title": "Polytechnic Institute",
+      "category": "SUB CONTRACTORS",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2024/10/WhatsApp-Image-2024-10-21-at-9.44.07-PM-1.jpeg",
+      "pdfUrl": "http://theaceservices.com/wp-content/uploads/2024/10/Asphalt-Work-Student-Life-Improvements-Freshman-Hill-Sunset-Terrace-Troy-NY-12180.pdf",
+      "scope": [
+        "MEP Takeoff",
+        "Trade-Specific Estimate"
+      ],
+      "totalAreaSqFt": 2650,
+      "estimatedCost": 904650,
+      "suggestedBid": 1153428,
+      "costPerSf": 56.44,
+      "costDivisions": [
+        {
+          "csiCode": "2000",
+          "name": "EXISTING CONDITIONS",
+          "cost": 60661
+        },
+        {
+          "csiCode": "31000",
+          "name": "EARTHWORK",
+          "cost": 138272
+        },
+        {
+          "csiCode": "32000",
+          "name": "SITE IMRPOVEMENTS",
+          "cost": 563509
+        },
+        {
+          "csiCode": "33000",
+          "name": "UTILITIES",
+          "cost": 142208
+        },
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 57375
+        },
+        {
+          "csiCode": "2000",
+          "name": "EXISTING CONDITIONS",
+          "cost": 16683
+        },
+        {
+          "csiCode": "31000",
+          "name": "EARTHWORK",
+          "cost": 45244
+        },
+        {
+          "csiCode": "32000",
+          "name": "SITE IMRPOVEMENTS",
+          "cost": 425976
+        },
+        {
+          "csiCode": "33000",
+          "name": "UTILITIES",
+          "cost": 51779
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENTS",
+        "2000 EXISTING CONDITIONS",
+        "2000 EXISTING CONDITIONS",
+        "31000 EARTHWORK",
+        "31000 EARTHWORK",
+        "32000 SITE IMRPOVEMENTS",
+        "32000 SITE IMRPOVEMENTS",
+        "33000 UTILITIES",
+        "33000 UTILITIES"
+      ],
+      "description": "Complete cost estimation for Polytechnic Institute spanning 2,650 SF across 9 trade divisions including EXISTING CONDITIONS, EARTHWORK, SITE IMRPOVEMENTS. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-040",
+      "slug": "sundial-dr",
+      "title": "SUNDIAL DR",
+      "category": "SUB CONTRACTORS",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2024/10/WhatsApp-Image-2024-10-21-at-9.44.07-PM-1.jpeg",
+      "pdfUrl": "http://theaceservices.com/wp-content/uploads/2024/10/Estimate-2950-SUNDIAL-DR-Dallas-TX-75229-Block-18-6597.pdf",
+      "scope": [
+        "MEP Takeoff",
+        "Trade-Specific Estimate"
+      ],
+      "totalAreaSqFt": 0,
+      "estimatedCost": 0,
+      "suggestedBid": 0,
+      "costPerSf": 0,
+      "costDivisions": [],
+      "csiDivisions": [],
+      "description": "SUNDIAL DR — sub contractors cost estimation project.",
+      "_fallback": true
+    },
+    {
+      "id": "P-041",
+      "slug": "pause-southlake",
+      "title": "PAUSE SOUTHLAKE",
+      "category": "SUB CONTRACTORS",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2024/10/WhatsApp-Image-2024-10-21-at-9.44.07-PM-1.jpeg",
+      "pdfUrl": "http://theaceservices.com/wp-content/uploads/2024/10/Estimate-PAUSE-SOUTHLAKE-TX-CARROL-POINTE-1241-E.STATE-HIGHWAY-114-SUITE-180-SOUTHLAKE-TX-76092.pdf",
+      "scope": [
+        "MEP Takeoff",
+        "Trade-Specific Estimate"
+      ],
+      "totalAreaSqFt": 0,
+      "estimatedCost": 0,
+      "suggestedBid": 0,
+      "costPerSf": 0,
+      "costDivisions": [],
+      "csiDivisions": [],
+      "description": "PAUSE SOUTHLAKE — sub contractors cost estimation project.",
+      "_fallback": true
+    },
+    {
+      "id": "P-042",
+      "slug": "pauma-travel-center",
+      "title": "Pauma Travel Center",
+      "category": "SUB CONTRACTORS",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/WhatsApp-Image-2025-03-22-at-01.11.12_b152bc7c.jpg",
+      "pdfUrl": "http://theaceservices.com/wp-content/uploads/2024/10/Tiles-Countertops-Estimate-Pauma-Travel-Center-Pauma-Valley-California-1.pdf",
+      "scope": [
+        "MEP Takeoff",
+        "Trade-Specific Estimate"
+      ],
+      "totalAreaSqFt": 0,
+      "estimatedCost": 0,
+      "suggestedBid": 0,
+      "costPerSf": 0,
+      "costDivisions": [],
+      "csiDivisions": [],
+      "description": "Pauma Travel Center — sub contractors cost estimation project.",
+      "_fallback": true
+    },
+    {
+      "id": "P-043",
+      "slug": "pauma-travel-center",
+      "title": "Pauma Travel Center",
+      "category": "SUB CONTRACTORS",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/WhatsApp-Image-2025-03-22-at-01.11.12_b152bc7c-1.jpg",
+      "pdfUrl": "http://theaceservices.com/wp-content/uploads/2024/10/Tiles-Countertops-Estimate-Pauma-Travel-Center-Pauma-Valley-California-1.pdf",
+      "scope": [
+        "MEP Takeoff",
+        "Trade-Specific Estimate"
+      ],
+      "totalAreaSqFt": 0,
+      "estimatedCost": 0,
+      "suggestedBid": 0,
+      "costPerSf": 0,
+      "costDivisions": [],
+      "csiDivisions": [],
+      "description": "Pauma Travel Center — sub contractors cost estimation project.",
+      "_fallback": true
+    },
+    {
+      "id": "P-044",
+      "slug": "estimate-1014",
+      "title": "Estimate-1014",
+      "category": "SUB CONTRACTORS",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/WhatsApp-Image-2025-03-22-at-01.11.12_b152bc7c-1.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/05/Estimate-1014-021.pdf",
+      "scope": [
+        "MEP Takeoff",
+        "Trade-Specific Estimate"
+      ],
+      "totalAreaSqFt": 0,
+      "estimatedCost": 0,
+      "suggestedBid": 0,
+      "costPerSf": 0,
+      "costDivisions": [],
+      "csiDivisions": [],
+      "description": "Estimate-1014 — sub contractors cost estimation project.",
+      "_fallback": true
+    },
+    {
+      "id": "P-045",
+      "slug": "aghanabi-residence",
+      "title": "Aghanabi Residence",
+      "category": "SUB CONTRACTORS",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/WhatsApp-Image-2025-03-22-at-00.51.09_a94e8e85.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Updated-Takeoff-Aghanabi-Residence-21-Lemans-Newport-Coast-CA-92657-1.pdf",
+      "scope": [
+        "MEP Takeoff",
+        "Trade-Specific Estimate"
+      ],
+      "totalAreaSqFt": 0,
+      "estimatedCost": 0,
+      "suggestedBid": 0,
+      "costPerSf": 0,
+      "costDivisions": [],
+      "csiDivisions": [],
+      "description": "Aghanabi Residence — sub contractors cost estimation project.",
+      "_fallback": true
+    },
+    {
+      "id": "P-046",
+      "slug": "willowdale-drive",
+      "title": "Willowdale Drive",
+      "category": "SUB CONTRACTORS",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/WhatsApp-Image-2025-03-22-at-00.53.34_c8ca6c7e.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Estimate-35-S.-Willowdale-Drive-Suite-506-Lancaster-Pennsylvania-17-602.pdf",
+      "scope": [
+        "MEP Takeoff",
+        "Trade-Specific Estimate"
+      ],
+      "totalAreaSqFt": 2520,
+      "estimatedCost": 22204,
+      "suggestedBid": 29087,
+      "costPerSf": 11.54,
+      "costDivisions": [
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 2700
+        },
+        {
+          "csiCode": "9000",
+          "name": "FINISHES",
+          "cost": 19504
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENTS",
+        "9000 FINISHES"
+      ],
+      "description": "Complete cost estimation for Willowdale Drive spanning 2,520 SF across 2 trade divisions including GENERAL REQUIREMENTS, FINISHES. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-047",
+      "slug": "rose-tree-media-school",
+      "title": "Rose Tree Media School",
+      "category": "SUB CONTRACTORS",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/WhatsApp-Image-2025-03-22-at-00.56.31_b08cd973.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Estimate-ROSE-TREE-MEDIA-SCHOOL-DISTRICT.pdf",
+      "scope": [
+        "MEP Takeoff",
+        "Trade-Specific Estimate"
+      ],
+      "totalAreaSqFt": 11670,
+      "estimatedCost": 29550,
+      "suggestedBid": 37233,
+      "costPerSf": 3.19,
+      "costDivisions": [
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 2025
+        },
+        {
+          "csiCode": "9000",
+          "name": "FINISHES",
+          "cost": 27525
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENTS",
+        "9000 FINISHES"
+      ],
+      "description": "Complete cost estimation for Rose Tree Media School spanning 11,670 SF across 2 trade divisions including GENERAL REQUIREMENTS, FINISHES. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-048",
+      "slug": "power-river-ct-evanston",
+      "title": "Power River Ct  Evanston",
+      "category": "SUB CONTRACTORS",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/WhatsApp-Image-2025-03-22-at-00.59.55_ddc9e867.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Roofing-Estimate.pdf",
+      "scope": [
+        "MEP Takeoff",
+        "Trade-Specific Estimate"
+      ],
+      "totalAreaSqFt": 18967,
+      "estimatedCost": 102407,
+      "suggestedBid": 123913,
+      "costPerSf": 6.53,
+      "costDivisions": [
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 5050
+        },
+        {
+          "csiCode": "7000",
+          "name": "THERMAL AND MOISTURE PROTECTION",
+          "cost": 97357
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENTS",
+        "7000 THERMAL AND MOISTURE PROTECTION"
+      ],
+      "description": "Complete cost estimation for Power River Ct  Evanston spanning 18,967 SF across 2 trade divisions including GENERAL REQUIREMENTS, THERMAL AND MOISTURE PROTECTION. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-049",
+      "slug": "renaldi-plant",
+      "title": "Renaldi Plant",
+      "category": "SUB CONTRACTORS",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/WhatsApp-Image-2025-03-22-at-01.02.40_5e237c16.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Estimate-For-901-RENALDI-PLAN1.pdf",
+      "scope": [
+        "MEP Takeoff",
+        "Trade-Specific Estimate"
+      ],
+      "totalAreaSqFt": 2502,
+      "estimatedCost": 81409,
+      "suggestedBid": 102576,
+      "costPerSf": 41,
+      "costDivisions": [
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 5400
+        },
+        {
+          "csiCode": "4000",
+          "name": "MASONRY",
+          "cost": 2899
+        },
+        {
+          "csiCode": "6000",
+          "name": "WOOD, PLASTIC & COMPONENTS",
+          "cost": 29219
+        },
+        {
+          "csiCode": "7000",
+          "name": "THERMAL AND MOISTURE PROTECTION",
+          "cost": 21063
+        },
+        {
+          "csiCode": "9000",
+          "name": "FINISHES",
+          "cost": 22829
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENTS",
+        "4000 MASONRY",
+        "6000 WOOD, PLASTIC & COMPONENTS",
+        "7000 THERMAL AND MOISTURE PROTECTION",
+        "9000 FINISHES"
+      ],
+      "description": "Complete cost estimation for Renaldi Plant spanning 2,502 SF across 5 trade divisions including GENERAL REQUIREMENTS, MASONRY, WOOD, PLASTIC & COMPONENTS. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-050",
+      "slug": "jacob-stoeckel",
+      "title": "Jacob Stoeckel",
+      "category": "SUB CONTRACTORS",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/WhatsApp-Image-2025-03-22-at-01.05.52_5b7f3a17.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Estimate-JACOB-STOECKEL.pdf",
+      "scope": [
+        "MEP Takeoff",
+        "Trade-Specific Estimate"
+      ],
+      "totalAreaSqFt": 2614,
+      "estimatedCost": 46052,
+      "suggestedBid": 58026,
+      "costPerSf": 22.2,
+      "costDivisions": [
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 3150
+        },
+        {
+          "csiCode": "4000",
+          "name": "MASONRY",
+          "cost": 8309
+        },
+        {
+          "csiCode": "6000",
+          "name": "WOOD, PLASTIC & COMPONENTS",
+          "cost": 23841
+        },
+        {
+          "csiCode": "7000",
+          "name": "THERMAL AND MOISTURE PROTECTION",
+          "cost": 10753
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENTS",
+        "4000 MASONRY",
+        "6000 WOOD, PLASTIC & COMPONENTS",
+        "7000 THERMAL AND MOISTURE PROTECTION"
+      ],
+      "description": "Complete cost estimation for Jacob Stoeckel spanning 2,614 SF across 4 trade divisions including GENERAL REQUIREMENTS, MASONRY, WOOD, PLASTIC & COMPONENTS. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-051",
+      "slug": "hanover-st-baltimore-md",
+      "title": "Hanover St. Baltimore Md",
+      "category": "SUB CONTRACTORS",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/WhatsApp-Image-2025-03-22-at-01.07.43_0dc74889.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/03/1022-01-TPO-Roof-Replacement-.pdf",
+      "scope": [
+        "MEP Takeoff",
+        "Trade-Specific Estimate"
+      ],
+      "totalAreaSqFt": 750,
+      "estimatedCost": 10870,
+      "suggestedBid": 13696,
+      "costPerSf": 18.26,
+      "costDivisions": [
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 1010
+        },
+        {
+          "csiCode": "2000",
+          "name": "EXISTING CONDITION",
+          "cost": 1114
+        },
+        {
+          "csiCode": "7000",
+          "name": "THERMAL AND MOISTURE PROTECTION",
+          "cost": 8746
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENTS",
+        "2000 EXISTING CONDITION",
+        "7000 THERMAL AND MOISTURE PROTECTION"
+      ],
+      "description": "Complete cost estimation for Hanover St. Baltimore Md spanning 750 SF across 3 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITION, THERMAL AND MOISTURE PROTECTION. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+    },
+    {
+      "id": "P-052",
+      "slug": "hteao",
+      "title": "HTeaO",
+      "category": "3D RENDERS",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/HTEO-e1744297427648.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/03/HTeao-3D-Renders.pdf",
+      "scope": [
+        "3D Visualization",
+        "Design Review"
+      ],
+      "totalAreaSqFt": 0,
+      "estimatedCost": 0,
+      "suggestedBid": 0,
+      "costPerSf": 0,
+      "costDivisions": [],
+      "csiDivisions": [],
+      "description": "HTeaO — 3d renders cost estimation project.",
+      "_fallback": true
+    },
+    {
+      "id": "P-053",
+      "slug": "fellas-car-wash",
+      "title": "Fellas Car Wash",
+      "category": "3D RENDERS",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Fellas.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Fellas-Car-Wash-3D-Render.pdf",
+      "scope": [
+        "3D Visualization",
+        "Design Review"
+      ],
+      "totalAreaSqFt": 0,
+      "estimatedCost": 0,
+      "suggestedBid": 0,
+      "costPerSf": 0,
+      "costDivisions": [],
+      "csiDivisions": [],
+      "description": "Fellas Car Wash — 3d renders cost estimation project.",
+      "_fallback": true
+    },
+    {
+      "id": "P-054",
+      "slug": "ergola-main-street-conklin",
+      "title": "Ergola Main Street & Conklin",
+      "category": "3D RENDERS",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Ergola.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/03/ergola-Main-Street-Conklin.pdf",
+      "scope": [
+        "3D Visualization",
+        "Design Review"
+      ],
+      "totalAreaSqFt": 0,
+      "estimatedCost": 0,
+      "suggestedBid": 0,
+      "costPerSf": 0,
+      "costDivisions": [],
+      "csiDivisions": [],
+      "description": "Ergola Main Street & Conklin — 3d renders cost estimation project.",
+      "_fallback": true
+    },
+    {
+      "id": "P-055",
+      "slug": "fella-carwash",
+      "title": "Fella Carwash",
+      "category": "PERMIT SETS",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Fellas-Car-Wash.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Fellas-Car-Wash-Permit-Set.pdf.pdf",
+      "scope": [
+        "Permit Drawing Check",
+        "Structural Stamping"
+      ],
+      "totalAreaSqFt": 0,
+      "estimatedCost": 0,
+      "suggestedBid": 0,
+      "costPerSf": 0,
+      "costDivisions": [],
+      "csiDivisions": [],
+      "description": "Fella Carwash — permit sets cost estimation project.",
+      "_fallback": true
+    },
+    {
+      "id": "P-056",
+      "slug": "my-urgentcare-center",
+      "title": "My Urgentcare Center",
+      "category": "PERMIT SETS",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Urgent-Care-Centre.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Urgent-Care.pdf",
+      "scope": [
+        "Permit Drawing Check",
+        "Structural Stamping"
+      ],
+      "totalAreaSqFt": 0,
+      "estimatedCost": 0,
+      "suggestedBid": 0,
+      "costPerSf": 0,
+      "costDivisions": [],
+      "csiDivisions": [],
+      "description": "My Urgentcare Center — permit sets cost estimation project.",
+      "_fallback": true
+    },
+    {
+      "id": "P-057",
+      "slug": "special-laterals-replacement",
+      "title": "Special Laterals Replacement",
+      "category": "SHOP DRAWINGS",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Laterals.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Infrastructure-Shopdrawing-1.pdf",
+      "scope": [
+        "Shop Drawing Review",
+        "Fabrication Detailing"
+      ],
+      "totalAreaSqFt": 0,
+      "estimatedCost": 0,
+      "suggestedBid": 0,
+      "costPerSf": 0,
+      "costDivisions": [],
+      "csiDivisions": [],
+      "description": "Special Laterals Replacement — shop drawings cost estimation project.",
+      "_fallback": true
+    },
+    {
+      "id": "P-058",
+      "slug": "ladder-shop-drawing",
+      "title": "LADDER SHOP DRAWING",
+      "category": "SHOP DRAWINGS",
+      "location": "USA",
+      "imageUrl": "https://theaceservices.com/wp-content/uploads/2025/03/Laterals.jpg",
+      "pdfUrl": "https://theaceservices.com/wp-content/uploads/2025/05/LADDER-SHOP-DRAWING_250506.pdf",
+      "scope": [
+        "Shop Drawing Review",
+        "Fabrication Detailing"
+      ],
+      "totalAreaSqFt": 0,
+      "estimatedCost": 0,
+      "suggestedBid": 0,
+      "costPerSf": 0,
+      "costDivisions": [],
+      "csiDivisions": [],
+      "description": "LADDER SHOP DRAWING — shop drawings cost estimation project.",
+      "_fallback": true
+    }
+  ]
+}
