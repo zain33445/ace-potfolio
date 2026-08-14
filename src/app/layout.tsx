@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import Script from 'next/script';
+import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 import LayoutShell from './layout-shell';
 import ThirdPartyScripts from '@/src/components/ThirdPartyScripts';
@@ -172,6 +173,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
       </head>
       <body className="min-h-screen antialiased selection:bg-primary selection:text-white" suppressHydrationWarning>
+        <Analytics />
         <ThirdPartyScripts />
         <LiquidGlassFilter />
         <LayoutShell>{children}</LayoutShell>
