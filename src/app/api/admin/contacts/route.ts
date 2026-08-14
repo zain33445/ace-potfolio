@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const WP_BASE = (process.env.WORDPRESS_API_URL ?? 'https://theaceservices.com/wp-json/wp/v2')
+const WP_BASE = (process.env.WORDPRESS_API_URL ?? 'https://cms.theaceservices.com/wp-json/wp/v2')
   .replace(/\/+$/, '')
   .replace('/wp/v2', '');
 

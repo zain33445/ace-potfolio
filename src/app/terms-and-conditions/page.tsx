@@ -5,13 +5,13 @@ export const metadata: Metadata = {
   description:
     'Terms and Conditions for The ACE Services. Learn about the rules governing your use of our website and SMS messaging services.',
   alternates: {
-    canonical: 'https://www.theaceservices.com/terms-and-conditions',
+    canonical: 'https://theaceservices.com/terms-and-conditions',
   },
   openGraph: {
   title: 'Terms and Conditions',
     description:
       'Terms and Conditions for The ACE Services. Learn about the rules governing your use of our website and SMS messaging services.',
-    url: 'https://www.theaceservices.com/terms-and-conditions',
+    url: 'https://theaceservices.com/terms-and-conditions',
   },
 };
 

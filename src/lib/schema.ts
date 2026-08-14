@@ -1,4 +1,4 @@
-export const SITE_URL = 'https://www.theaceservices.com';
+export const SITE_URL = 'https://theaceservices.com';
 export const OG_IMAGE = `${SITE_URL}/og-image.png`;
 
 export const ORGANIZATION_ID = `${SITE_URL}/#organization`;

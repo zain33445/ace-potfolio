@@ -12,7 +12,7 @@
 
 import type { WPListQuery, WPListResponse, WPPaginationHeaders } from './types';
 
-const FALLBACK_BASE = 'https://theaceservices.com/wp-json/wp/v2';
+const FALLBACK_BASE = 'https://cms.theaceservices.com/wp-json/wp/v2';
 
 /** Resolve the `wp/v2` base URL, trimming any trailing slash. */
 export function wpBaseUrl(): string {

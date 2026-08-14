@@ -4,7 +4,7 @@
 
 Contact: mailto:security@theaceservices.com
 Preferred-Languages: en
-Canonical: https://www.theaceservices.com/.well-known/security.txt
-Policy: https://www.theaceservices.com/security-policy
+Canonical: https://theaceservices.com/.well-known/security.txt
+Policy: https://theaceservices.com/security-policy
 
-# The ACE Services — https://www.theaceservices.com
+# The ACE Services — https://theaceservices.com

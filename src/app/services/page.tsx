@@ -12,13 +12,13 @@ export const metadata: Metadata = {
   description:
     'Cost estimating, architectural services, structural & engineering, and project management for contractors nationwide.',
   alternates: {
-    canonical: 'https://www.theaceservices.com/services',
+    canonical: 'https://theaceservices.com/services',
   },
   openGraph: {
     title: 'Services | The ACE Services — Pre-Construction',
     description:
       'Professional pre-construction services: cost estimating, architectural services, structural & engineering, and project management.',
-    url: 'https://www.theaceservices.com/services',
+    url: 'https://theaceservices.com/services',
   },
 };
 

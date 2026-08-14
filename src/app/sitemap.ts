@@ -3,7 +3,7 @@ import { services } from '@/src/data/services';
 import { getAllProjects } from '@/src/data/projects';
 import { getPosts } from '@/src/services/wordpress/content';
 
-const BASE_URL = 'https://www.theaceservices.com';
+const BASE_URL = 'https://theaceservices.com';
 
 // Regenerate the sitemap in the background at most hourly (ISR).
 // New blog posts / projects appear here without a redeploy; if

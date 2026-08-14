@@ -5,13 +5,13 @@ export const metadata: Metadata = {
   description:
     'Privacy Policy for The ACE Services. Learn how we collect, use, and protect your information, including SMS communication and data security practices.',
   alternates: {
-    canonical: 'https://www.theaceservices.com/privacy-policy',
+    canonical: 'https://theaceservices.com/privacy-policy',
   },
   openGraph: {
   title: 'Privacy Policy',
     description:
       'Privacy Policy for The ACE Services. Learn how we collect, use, and protect your information.',
-    url: 'https://www.theaceservices.com/privacy-policy',
+    url: 'https://theaceservices.com/privacy-policy',
   },
 };
 

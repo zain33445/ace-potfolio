@@ -54,12 +54,12 @@ export async function generateMetadata({
       title: `${service.title} | The ACE Services`,
       description: service.summary.slice(0, 160),
       alternates: {
-        canonical: `https://www.theaceservices.com/${toUrlSlug(slug)}`,
+        canonical: `https://theaceservices.com/${toUrlSlug(slug)}`,
       },
       openGraph: {
         title: `${service.title} | The ACE Services — Pre-Construction Estimation`,
         description: service.summary.slice(0, 160),
-        url: `https://www.theaceservices.com/${toUrlSlug(slug)}`,
+        url: `https://theaceservices.com/${toUrlSlug(slug)}`,
       },
     };
   }
@@ -71,13 +71,13 @@ export async function generateMetadata({
       title: post.title,
       description: post.excerpt.slice(0, 160),
       alternates: {
-        canonical: `https://www.theaceservices.com/${toUrlSlug(slug)}`,
+        canonical: `https://theaceservices.com/${toUrlSlug(slug)}`,
       },
       openGraph: {
         title: `${post.title} | The ACE Services`,
         description: post.excerpt.slice(0, 160),
         ...(post.image ? { images: [{ url: post.image }] } : {}),
-        url: `https://www.theaceservices.com/${toUrlSlug(slug)}`,
+        url: `https://theaceservices.com/${toUrlSlug(slug)}`,
       },
     };
   }
@@ -136,9 +136,9 @@ async function ServiceView({ service, slug }: { service: Service; slug: string }
             '@context': 'https://schema.org',
             '@type': 'BreadcrumbList',
             itemListElement: [
-              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.theaceservices.com' },
-              { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://www.theaceservices.com/services' },
-              { '@type': 'ListItem', position: 3, name: service.title, item: `https://www.theaceservices.com/${toUrlSlug(slug)}` },
+              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://theaceservices.com' },
+              { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://theaceservices.com/services' },
+              { '@type': 'ListItem', position: 3, name: service.title, item: `https://theaceservices.com/${toUrlSlug(slug)}` },
             ],
           }),
         }}
@@ -561,9 +561,9 @@ function BlogPostView({ post, slug }: { post: BlogPost; slug: string }) {
             '@context': 'https://schema.org',
             '@type': 'BreadcrumbList',
             itemListElement: [
-              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.theaceservices.com' },
-              { '@type': 'ListItem', position: 2, name: 'Insights & Blog', item: 'https://www.theaceservices.com/blog' },
-              { '@type': 'ListItem', position: 3, name: post.title, item: `https://www.theaceservices.com/${toUrlSlug(slug)}` },
+              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://theaceservices.com' },
+              { '@type': 'ListItem', position: 2, name: 'Insights & Blog', item: 'https://theaceservices.com/blog' },
+              { '@type': 'ListItem', position: 3, name: post.title, item: `https://theaceservices.com/${toUrlSlug(slug)}` },
             ],
           }),
         }}
@@ -582,14 +582,14 @@ function BlogPostView({ post, slug }: { post: BlogPost; slug: string }) {
             author: {
               '@type': 'Organization',
               name: 'The ACE Services',
-              url: 'https://www.theaceservices.com',
+              url: 'https://theaceservices.com',
             },
             publisher: {
               '@type': 'Organization',
               name: 'The ACE Services',
-              url: 'https://www.theaceservices.com',
+              url: 'https://theaceservices.com',
             },
-            mainEntityOfPage: `https://www.theaceservices.com/${toUrlSlug(slug)}`,
+            mainEntityOfPage: `https://theaceservices.com/${toUrlSlug(slug)}`,
           }),
         }}
       />

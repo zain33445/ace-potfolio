@@ -24,13 +24,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${project.title} | The ACE Services`,
     description: project.description,
     alternates: {
-      canonical: `https://www.theaceservices.com/projects/${slug}`,
+      canonical: `https://theaceservices.com/projects/${slug}`,
     },
     openGraph: {
       title: `${project.title} | The ACE Services`,
       description: project.description,
       images: project.imageUrl ? [{ url: project.imageUrl }] : [],
-      url: `https://www.theaceservices.com/projects/${slug}`,
+      url: `https://theaceservices.com/projects/${slug}`,
     },
   };
 }
@@ -73,9 +73,9 @@ export default async function ProjectDetailPage({ params }: Props) {
             '@context': 'https://schema.org',
             '@type': 'BreadcrumbList',
             itemListElement: [
-              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.theaceservices.com' },
-              { '@type': 'ListItem', position: 2, name: 'Projects', item: 'https://www.theaceservices.com/projects' },
-              { '@type': 'ListItem', position: 3, name: project.title, item: `https://www.theaceservices.com/projects/${slug}` },
+              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://theaceservices.com' },
+              { '@type': 'ListItem', position: 2, name: 'Projects', item: 'https://theaceservices.com/projects' },
+              { '@type': 'ListItem', position: 3, name: project.title, item: `https://theaceservices.com/projects/${slug}` },
             ],
           }),
         }}

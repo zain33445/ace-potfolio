@@ -203,7 +203,7 @@ export default function AboutPageClient() {
             <div className="lg:col-span-5 space-y-6 order-2 lg:order-1">
               <div className="h-[400px] md:h-[500px] lg:h-[560px] border border-blueprint-line bg-surface relative bracket-corners bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]">
                 <img
-                  src="https://theaceservices.com/wp-content/uploads/2024/11/Engr._Abdul_Manan-removebg-preview.png"
+                  src="https://cms.theaceservices.com/wp-content/uploads/2024/11/Engr._Abdul_Manan-removebg-preview.png"
                   alt="Engr. Abdul Manan Zafar — CEO of The ACE Services"
                   className="h-full w-full object-contain p-4"
                   loading="lazy"

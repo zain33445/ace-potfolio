@@ -50,6 +50,7 @@ export default function HeroSection() {
             muted
             loop
             playsInline
+            poster="/mobile-poster.jpg"
             className="
               object-cover
               w-full h-full

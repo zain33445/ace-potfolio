@@ -112,6 +112,7 @@ export const HeroParallax = ({
             muted
             playsInline
             preload="metadata"
+            poster="/mobile-poster.jpg"
             src="/mobile-video-header.mp4"
             className="
               object-cover z-0

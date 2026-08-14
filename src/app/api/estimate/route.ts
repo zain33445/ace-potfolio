@@ -102,7 +102,7 @@ export async function POST(request: Request) {
 
   // Attempt to forward to WordPress (fire-and-forget)
   try {
-    const WP_BASE = (process.env.WORDPRESS_API_URL ?? 'https://theaceservices.com/wp-json/wp/v2')
+    const WP_BASE = (process.env.WORDPRESS_API_URL ?? 'https://cms.theaceservices.com/wp-json/wp/v2')
       .replace(/\/+$/, '')
       .replace('/wp/v2', '');
     const wpFd = new FormData();
