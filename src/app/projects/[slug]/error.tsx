@@ -13,7 +13,7 @@ export default function ProjectDetailError({
     <main className="flex min-h-screen flex-col items-center justify-center bg-background px-6">
       <div className="max-w-md text-center">
         <div className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
-          [SYS::ERROR_LOADING_PROJECT]
+          Error Loading Project
         </div>
         <h1 className="font-[family-name:var(--font-space)] text-4xl font-bold text-on-background md:text-5xl">
           Failed to Load Project

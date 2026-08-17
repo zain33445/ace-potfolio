@@ -177,7 +177,7 @@ export default function SolutionAccordion({
       <div className="max-w-[100%] mx-auto">
         <div className="font-mono text-sm text-primary mb-8 border-b border-blueprint-line pb-4 flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-primary animate-ping" />
-          [CORE_CAPABILITIES_PORTAL_ACTIVE]
+          Core Capabilities
         </div>
 
         <div className="space-y-3">
@@ -221,7 +221,7 @@ export default function SolutionAccordion({
     <div className="max-w-[85%] mx-auto">
       <div className="font-mono text-sm text-primary mb-8 border-b border-blueprint-line pb-4 flex items-center gap-2">
         <span className="w-2 h-2 rounded-full bg-primary animate-ping" />
-        [CORE_CAPABILITIES_PORTAL_ACTIVE]
+        Core Capabilities
       </div>
 
       <div className="flex flex-col md:flex-row gap-6">

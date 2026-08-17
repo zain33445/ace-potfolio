@@ -20,7 +20,7 @@ export default function TrustSignalsSection() {
         <div className="container mx-auto max-w-5xl px-6 md:px-16">
           <div className="text-center space-y-3 mb-10">
             <span className="font-mono text-sm text-primary font-bold block">
-              [COST_COMPARISON]
+              Cost Comparison
             </span>
             <h2 className="font-space text-3xl md:text-4xl font-extrabold text-on-background tracking-tight">
               In-House Estimating vs. The ACE Services

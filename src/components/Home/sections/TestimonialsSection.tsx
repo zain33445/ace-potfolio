@@ -7,7 +7,7 @@ export default function TestimonialsSection() {
         <div className="absolute inset-0 bg-[radial-gradient(#f1f5f9_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none opacity-40" />
         <div className="max-w-5xl mx-auto relative z-10">
           <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-            <span className="font-mono text-sm text-primary font-bold block">[VERIFIED_CLIENT_COMMUNICATION]</span>
+            <span className="font-mono text-sm text-primary font-bold block">Client Testimonials</span>
             <h2 className="font-space text-4xl md:text-5xl font-extrabold text-on-background tracking-tighter">Trusted by the Industry Elite</h2>
             <p className="font-sans text-lg text-on-surface-variant font-medium">See why general contractors and trade subcontractors across the country trust The ACE Services, the top construction and estimation company for takeoff schemas that protect margins and win bids.</p>
           </div>

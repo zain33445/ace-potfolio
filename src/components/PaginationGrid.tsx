@@ -61,7 +61,7 @@ export default function PaginationGrid({
           >
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
           </svg>
-          <span>[PREV]</span>
+          <span>Prev</span>
         </button>
 
         {/* Page numbers */}
@@ -92,7 +92,7 @@ export default function PaginationGrid({
           disabled={safePage >= totalPages}
           className="group inline-flex items-center gap-2 border border-blueprint-line bg-transparent px-5 py-2.5 font-mono text-xs font-bold uppercase tracking-wider text-on-surface-variant transition-all hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:opacity-30"
         >
-          <span>[NEXT]</span>
+          <span>Next</span>
           <svg
             className="h-3 w-3 transition-transform group-hover:translate-x-0.5"
             fill="none"

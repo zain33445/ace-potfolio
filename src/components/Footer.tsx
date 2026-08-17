@@ -101,7 +101,7 @@ export default function Footer() {
               "
             >
               <TextRepel
-                text="[NAVIGATION]"
+                text="Navigation"
                 radius={60}
                 strength={35}
                 mode="repel"
@@ -144,7 +144,7 @@ export default function Footer() {
                 "
               >
                 <TextRepel
-                  text="[STANDARDS]"
+                  text="Standards"
                   radius={60}
                   strength={35}
                   mode="repel"
@@ -176,7 +176,7 @@ export default function Footer() {
                 "
               >
                 <TextRepel
-                  text="[COMMUNICATION]"
+                  text="Communication"
                   radius={60}
                   strength={35}
                   mode="repel"

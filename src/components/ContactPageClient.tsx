@@ -45,7 +45,7 @@ export default function ContactPageClient() {
       <div className="px-5 md:px-10 lg:px-[12.5%] py-10 md:py-20">
         <Reveal type="fadeUp">
           <div className="max-w-3xl space-y-4">
-            <span className="font-mono text-sm text-primary font-bold tracking-wider">[GET_IN_TOUCH]</span>
+            <span className="font-mono text-sm text-primary font-bold tracking-wider">Get in Touch</span>
             <h1 className="font-sans text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#111827] tracking-tight leading-tight">
               Let&apos;s Build Something Great Together
             </h1>
@@ -62,7 +62,7 @@ export default function ContactPageClient() {
         <Reveal type="fadeUp">
           <div className="border border-[#E5E7EB] bg-white bracket-corners overflow-hidden">
             <div className="p-6 md:p-8 lg:p-12 border-b border-[#E5E7EB]">
-              <span className="font-mono text-sm text-[#FF6B00] font-bold tracking-wider">[SUBMIT_REQUEST]</span>
+              <span className="font-mono text-sm text-[#FF6B00] font-bold tracking-wider">Submit Request</span>
               <h2 className="font-sans text-xl sm:text-2xl md:text-3xl font-extrabold text-[#111827] mt-2">
                 Send Us Your Project Details
               </h2>

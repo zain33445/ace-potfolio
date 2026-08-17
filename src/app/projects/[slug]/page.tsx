@@ -95,7 +95,7 @@ export default async function ProjectDetailPage({ params }: Props) {
           <aside className="order-2 lg:order-1">
             <div className="sticky top-24">
               <div className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
-                [FEATURED_PROJECTS]
+                Featured Projects
               </div>
               <div className="space-y-4">
                 {featuredProjects.map((fp) => (
@@ -177,7 +177,7 @@ function HeroSection({ project }: { project: ProjectDetail }) {
 
         {/* Tagline */}
         <div className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
-          [SYS::PROJECT_DETAIL]
+          Project Detail
         </div>
 
         <h1 className="font-[family-name:var(--font-space)] text-5xl font-bold leading-tight text-on-background md:text-7xl lg:text-7xl max-w-4xl">
@@ -247,7 +247,7 @@ function ProjectSummarySection({ project }: { project: ProjectDetail }) {
   return (
     <section>
       <div className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
-        [PROJECT_SUMMARY]
+        Project Summary
       </div>
 
       <div className="grid gap-8 md:grid-cols-2">
@@ -335,7 +335,7 @@ function CostBreakdownSection({ project }: { project: ProjectDetail }) {
   return (
     <section>
       <div className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
-        [MAJOR_COST_DISTRIBUTION]
+        Major Cost Distribution
       </div>
 
       <div className="border border-blueprint-line bg-surface p-6 md:p-8">
@@ -362,7 +362,7 @@ function CsiDivisionsSection({ project }: { project: ProjectDetail }) {
   return (
     <section>
       <div className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
-        [CSI_MASTERFORMAT_DIVISIONS]
+        CSI MasterFormat Divisions
       </div>
 
       <div className="border border-blueprint-line bg-surface p-6 md:p-8">
@@ -389,7 +389,7 @@ function ProcessSection() {
     <section className="border-y border-blueprint-line">
       <div className="mx-auto max-w-7xl px-[var(--spacing-margin-mobile)] py-20 md:px-[var(--spacing-margin-desktop)] md:py-24">
         <div className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
-          [OUR_PROCESS]
+          Our Process
         </div>
 
         <h2 className="font-[family-name:var(--font-space)] text-4xl font-bold text-on-background md:text-5xl mb-12">
@@ -451,7 +451,7 @@ function SampleReportSection({ project }: { project: ProjectDetail }) {
     <section className="border-b border-blueprint-line">
       <div className="mx-auto max-w-7xl px-[var(--spacing-margin-mobile)] py-20 md:px-[var(--spacing-margin-desktop)] md:py-24">
         <div className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
-          [SAMPLE_ESTIMATE_REPORT]
+          Sample Estimate Report
         </div>
 
         <h2 className="font-[family-name:var(--font-space)] text-4xl font-bold text-on-background md:text-5xl mb-4">
@@ -516,7 +516,7 @@ function CtaSection() {
     <section className="border-b border-blueprint-line">
       <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-[var(--spacing-margin-mobile)] py-20 text-center md:px-[var(--spacing-margin-desktop)] md:py-28">
         <div className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
-          [SYS::INITIATE_ESTIMATE_REQUEST]
+          Request an Estimate
         </div>
         <h2 className="font-[family-name:var(--font-space)] text-4xl font-bold text-on-background md:text-6xl max-w-3xl">
           Need an Estimate for Your Next Project?

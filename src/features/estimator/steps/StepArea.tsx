@@ -13,7 +13,7 @@ export default function StepArea({ inputs, setInputs }: { inputs: Inputs; setInp
         <p className="font-mono text-xs text-on-surface-variant mt-1">Slide to specify the approximate square footage for your project. Adjustments cascade into all line items.</p>
       </div>
       <div className="flex justify-between items-center">
-        <label htmlFor="area-sqft" className="block font-mono text-xs text-primary tracking-widest uppercase font-bold">[GRID_AREA] Total Covered Floor Area</label>
+        <label htmlFor="area-sqft" className="block font-mono text-xs text-primary tracking-widest uppercase font-bold">Total Covered Floor Area</label>
         <span className="font-mono text-sm text-on-background bg-background px-2 py-0.5 border border-blueprint-line font-bold">
           {inputs.areaSqFt.toLocaleString()} sq ft
         </span>

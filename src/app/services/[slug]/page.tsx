@@ -146,7 +146,7 @@ export default async function ServiceDetailPage({ params }: Props) {
           <aside className="order-2 lg:order-1">
             <div className="sticky top-24">
               <div className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
-                [RELATED_SERVICES]
+                Related Services
               </div>
               <div className="space-y-4">
                 {featured.map((s) => {
@@ -274,7 +274,7 @@ function PricingFeaturesSection({
   return (
     <section>
       <div className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
-        [PRICING_AND_FEATURES]
+        Pricing & Features
       </div>
 
       <div className="border border-blueprint-line bg-surface p-6 md:p-8">
@@ -331,7 +331,7 @@ function ProcessSection({
   return (
     <section className="border-t border-blueprint-line pt-16">
       <div className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
-        [OUR_PROCESS]
+        Our Process
       </div>
 
       <h2 className="font-[family-name:var(--font-space)] text-4xl font-bold text-on-background md:text-5xl mb-12">
@@ -371,7 +371,7 @@ function CtaSection({
     <section className="border-t border-blueprint-line">
       <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-5 px-[var(--spacing-margin-mobile)] py-20 text-center md:px-[var(--spacing-margin-desktop)] md:py-28">
         <div className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
-          [SYS::INITIATE_ESTIMATE_REQUEST]
+          Request an Estimate
         </div>
         <h2 className="font-[family-name:var(--font-space)] text-4xl font-bold text-on-background md:text-6xl max-w-3xl">
           Need {service.title}?
@@ -433,7 +433,7 @@ function SeoContentSection({
   return (
     <section className="border-t border-blueprint-line pt-16">
       <div className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
-        [DEEP_DIVE]
+        Deep Dive
       </div>
 
       <h2 className="font-[family-name:var(--font-space)] text-3xl font-bold text-on-background md:text-4xl mb-8">
@@ -449,7 +449,7 @@ function SeoContentSection({
       </div>
 
       <div className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
-        [KEY_BENEFITS]
+        Key Benefits
       </div>
       
       <div className="grid gap-6 md:grid-cols-3 mb-16">
@@ -468,7 +468,7 @@ function SeoContentSection({
       {seoContent.faqs && seoContent.faqs.length > 0 && (
         <>
           <div className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
-            [FREQUENTLY_ASKED_QUESTIONS]
+            FAQ
           </div>
           <div className="space-y-4">
             {seoContent.faqs.map((faq, idx) => (

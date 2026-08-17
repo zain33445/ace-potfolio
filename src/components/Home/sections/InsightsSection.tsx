@@ -29,7 +29,7 @@ export default function InsightsSection({ insights }: InsightsSectionProps) {
       <Reveal type="fadeUp">
         <div className="max-w-7xl mx-auto">
           <div className="mb-12 space-y-3">
-            <span className="font-mono text-sm text-primary font-bold block">[FIELD_NOTES_STREAM]</span>
+            <span className="font-mono text-sm text-primary font-bold block">Field Notes</span>
             <h2 className="font-space text-4xl md:text-5xl font-extrabold text-on-background tracking-tight">
               Estimation Insights
             </h2>

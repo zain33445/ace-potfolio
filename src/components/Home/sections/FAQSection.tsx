@@ -7,7 +7,7 @@ export default function FAQSection() {
       <Reveal type="fadeUp">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-            <span className="font-mono text-sm text-primary font-bold block">[FAQ_INDEX]</span>
+            <span className="font-mono text-sm text-primary font-bold block">FAQ</span>
             <h2 className="font-space text-4xl md:text-5xl font-extrabold text-on-background tracking-tighter">
               Frequently Asked Questions
             </h2>

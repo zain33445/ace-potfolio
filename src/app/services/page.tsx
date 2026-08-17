@@ -174,7 +174,7 @@ export default async function ServicesPage() {
       <div className="border-t border-blueprint-line">
         <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 px-[var(--spacing-margin-mobile)] py-16 text-center md:px-[var(--spacing-margin-desktop)] md:py-24">
           <div className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
-            [SYS::INITIATE_ENGAGEMENT]
+            Get Started
           </div>
           <h2 className="font-[family-name:var(--font-space)] text-3xl font-bold text-on-background md:text-5xl">
             Not Sure Which Service Fits?

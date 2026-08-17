@@ -29,7 +29,6 @@ const jetbrainsMono = localFont({
     { path: './fonts/google/jetbrains-mono/400.woff2', weight: '400', style: 'normal' },
     { path: './fonts/google/jetbrains-mono/500.woff2', weight: '500', style: 'normal' },
     { path: './fonts/google/jetbrains-mono/700.woff2', weight: '700', style: 'normal' },
-    { path: './fonts/google/jetbrains-mono/800.woff2', weight: '800', style: 'normal' },
   ],
   variable: '--font-jetbrains-mono',
   display: 'swap',
@@ -49,7 +48,6 @@ const spaceGrotesk = localFont({
 
 const nourd = localFont({
   src: [
-    { path: './fonts/nourd/nourd_light.ttf', weight: '300', style: 'normal' },
     { path: './fonts/nourd/nourd_regular.ttf', weight: '400', style: 'normal' },
     { path: './fonts/nourd/nourd_medium.ttf', weight: '500', style: 'normal' },
     { path: './fonts/nourd/nourd_semi_bold.ttf', weight: '600', style: 'normal' },
@@ -119,17 +117,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteGraphSchema) }}
         />
-        
+
         {/* Preconnect to critical third-party origins (max 4 per Lighthouse) */}
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://connect.facebook.net" />
-
-        {/* Preload Roboto Flex variable font (used by TextPressure in footer) */}
-        <link
-          rel="preload"
-          href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght@8..144,25..151,100..1000&display=swap"
-          as="style"
-        />
 
         {/* Google Analytics 4 — deferred to after interactive to reduce main-thread work */}
         {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID && (

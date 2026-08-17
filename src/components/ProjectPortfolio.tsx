@@ -101,7 +101,7 @@ export default function ProjectPortfolio() {
       <DraggableCardContainer className="relative min-h-[520px]">
         {filteredProjects.length === 0 ? (
           <div className="text-center py-16 border border-blueprint-line bg-surface bracket-corners font-mono text-sm text-on-surface-variant">
-            [ZERO_RECORDS_MATCH_SEARCH_CRITERIA]
+            No Results Found
           </div>
         ) : (
           filteredProjects.map((p, idx) => {

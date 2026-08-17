@@ -75,7 +75,7 @@ export default async function ProjectsPage() {
         <div className="relative mx-auto max-w-7xl px-[var(--spacing-margin-mobile)] py-20 md:px-[var(--spacing-margin-desktop)] md:py-28">
           {/* System label */}
           <div className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
-            [SYS::PORTFOLIO_INDEX]
+            Portfolio
           </div>
 
           <h1 className="font-[family-name:var(--font-space)] text-5xl font-bold leading-tight text-on-background md:text-7xl lg:text-7xl">
@@ -139,7 +139,7 @@ export default async function ProjectsPage() {
       <div className="border-t border-blueprint-line">
         <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-[var(--spacing-margin-mobile)] py-16 text-center md:px-[var(--spacing-margin-desktop)] md:py-24">
           <div className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
-            [SYS::INITIATE_PROJECT_QUERY]
+            Project Inquiry
           </div>
           <h2 className="font-[family-name:var(--font-space)] text-3xl font-bold text-on-background md:text-5xl">
             Ready to Start Your Project?

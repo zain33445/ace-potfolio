@@ -127,7 +127,7 @@ export default function Nav() {
           {/* LOGO img */}
           <img
             src="/aceLogo.png"
-            alt=""
+            alt="The Ace Services logo"
             width={80}
             height={30}
             className='h-10 md:h-16 w-auto'

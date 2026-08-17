@@ -161,7 +161,7 @@ export default function ProcessFlow() {
         {/* Heading */}
         <div>
           <span className="font-mono text-sm text-primary block mb-2 font-bold">
-            [OPERATIONAL_FLOW]
+            Operational Flow
           </span>
           <h2 className="font-space font-bold text-3xl text-on-background tracking-tight">
             Our Process.
@@ -240,7 +240,7 @@ export default function ProcessFlow() {
       {/* Heading */}
       <div className="">
         <span className="font-mono text-sm text-primary block mb-5 font-bold">
-          [OPERATIONAL_FLOW]
+          Operational Flow
         </span>
         <h2 className="font-space font-bold text-4xl md:text-5xl text-on-background tracking-tight">
           Our Process.
@@ -320,7 +320,7 @@ export default function ProcessFlow() {
                       <div className="border-t border-dashed border-blueprint-line/60 pt-3 mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 font-sans text-sm font-semibold text-on-surface-variant">
                         <div>
                           <span className="block text-primary uppercase font-mono text-xs mb-1 font-bold">
-                            [VERIFICATIONS]
+                            Verifications
                           </span>
                           <ul className="space-y-1.5">
                             {step.benchmarks.map((v, j) => (
@@ -333,7 +333,7 @@ export default function ProcessFlow() {
                         </div>
                         <div>
                           <span className="block text-primary uppercase font-mono text-xs mb-1 font-bold">
-                            [MILESTONE_DELIVERABLE]
+                            Milestone Deliverable
                           </span>
                           <span className="text-on-background bg-background px-2 py-0.5 border border-blueprint-line/60 block truncate">
                             {step.output}

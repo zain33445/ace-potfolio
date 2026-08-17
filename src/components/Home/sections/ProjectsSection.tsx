@@ -20,7 +20,7 @@ export default function ProjectsSection() {
             {/* Header */}
             <div className="flex flex-col space-y-3">
               <span className="font-mono text-sm text-primary block font-bold">
-                [PORTFOLIO]
+                Portfolio
               </span>
 
               <h2 className="font-space text-4xl md:text-5xl font-extrabold text-on-background tracking-tight">

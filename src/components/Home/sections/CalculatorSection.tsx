@@ -11,7 +11,7 @@ export default function CalculatorSection() {
     <div id="calculator-sec" className="py-24 px-6 md:px-16 border-b border-blueprint-line bg-background relative">
       <Reveal type="fadeUp">
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-          <span className="font-mono text-sm text-primary font-bold block">[TAKEOFF_ENGINE_DEMO]</span>
+          <span className="font-mono text-sm text-primary font-bold block">Takeoff Engine Demo</span>
           <h2 className="font-space text-4xl md:text-5xl font-extrabold text-on-background tracking-tighter">
             Instant Bid Cost Configurator
           </h2>

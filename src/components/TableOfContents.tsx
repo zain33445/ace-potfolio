@@ -88,7 +88,7 @@ export default function TableOfContents({ items }: TableOfContentsProps) {
     >
       {/* System label */}
       <div className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
-        [SYS::TABLE_OF_CONTENTS]
+        Table of Contents
       </div>
 
       {/* Desktop: sticky sidebar */}

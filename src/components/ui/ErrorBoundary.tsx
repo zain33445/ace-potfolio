@@ -40,7 +40,7 @@ export class ErrorBoundary extends Component<Props, State> {
         >
           <div className="max-w-lg mx-auto text-center space-y-4">
             <span className="font-mono text-sm text-primary font-bold block">
-              [SECTION_UNAVAILABLE]
+              Section Unavailable
             </span>
             <h2 className="font-space text-2xl font-extrabold text-on-background">
               This section encountered an error

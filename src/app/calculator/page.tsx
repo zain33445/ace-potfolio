@@ -22,7 +22,7 @@ export default function CalculatorPage() {
       {/* Page Header */}
       <div className="max-w-5xl mx-auto mb-10">
         <p className="font-[family-name:var(--font-mono)] text-xs text-primary tracking-[0.2em] uppercase font-bold mb-3">
-          [SYS_MODULE] Estimation Engine
+          Estimation Engine
         </p>
         <h1 className="font-[family-name:var(--font-space)] text-4xl font-bold md:text-6xl tracking-tight">
           Cost <span className="text-primary">Calculator</span>

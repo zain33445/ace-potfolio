@@ -5,7 +5,7 @@ export default function ServiceNotFound() {
     <section className="min-h-screen bg-background">
       <div className="mx-auto flex max-w-2xl flex-col items-center justify-center px-[var(--spacing-margin-mobile)] py-32 text-center md:px-[var(--spacing-margin-desktop)]">
         <div className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary mb-4">
-          [SYS::ERROR_404]
+          Error 404
         </div>
         <h1 className="font-[family-name:var(--font-space)] text-5xl font-bold text-on-background md:text-7xl">
           Service Not Found

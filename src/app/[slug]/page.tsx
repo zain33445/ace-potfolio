@@ -247,7 +247,7 @@ async function SubServicesSidebar({ service }: { service: Service }) {
       {subServices.length > 0 && (
         <>
           <div className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
-            [SUB_SERVICES]
+            Sub Services
           </div>
           <div className="space-y-4 mb-8">
             {subServices.map((s) => {
@@ -411,7 +411,7 @@ function ProcessSection({ service }: { service: Service }) {
   return (
     <section className="border-t border-blueprint-line pt-16">
       <div className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
-        [OUR_PROCESS]
+        Our Process
       </div>
       <h2 className="font-[family-name:var(--font-space)] text-4xl font-bold text-on-background md:text-5xl mb-12">
         How It Works
@@ -443,7 +443,7 @@ function CtaSection({ service }: { service: Service }) {
     <section className="border-t border-blueprint-line">
       <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-5 px-[var(--spacing-margin-mobile)] py-20 text-center md:px-[var(--spacing-margin-desktop)] md:py-28">
         <div className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
-          [SYS::INITIATE_ESTIMATE_REQUEST]
+          Request an Estimate
         </div>
         <h2 className="font-[family-name:var(--font-space)] text-4xl font-bold text-on-background md:text-6xl max-w-3xl">
           Need {service.title}?
@@ -489,7 +489,7 @@ function SeoContentSection({ service }: { service: Service }) {
   return (
     <section className="border-t border-blueprint-line pt-16">
       <div className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
-        [DEEP_DIVE]
+        Deep Dive
       </div>
       <h2 className="font-[family-name:var(--font-space)] text-3xl font-bold text-on-background md:text-4xl mb-8">
         {seoContent.heading}
@@ -502,7 +502,7 @@ function SeoContentSection({ service }: { service: Service }) {
         ))}
       </div>
       <div className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
-        [KEY_BENEFITS]
+        Key Benefits
       </div>
       <div className="grid gap-6 md:grid-cols-3 mb-16">
         {seoContent.benefits.map((benefit, idx) => (
@@ -519,7 +519,7 @@ function SeoContentSection({ service }: { service: Service }) {
       {seoContent.faqs && seoContent.faqs.length > 0 && (
         <>
           <div className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
-            [FREQUENTLY_ASKED_QUESTIONS]
+            FAQ
           </div>
           <div className="space-y-4">
             {seoContent.faqs.map((faq, idx) => (
@@ -628,10 +628,10 @@ function BlogPostView({ post, slug }: { post: BlogPost; slug: string }) {
                 <svg className="h-3 w-3 transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
                 </svg>
-                BACK_TO_INDEX
+                Back to Blog
               </Link>
               <div className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
-                [SYS::BLOG_POST]
+                Blog Post
               </div>
               <h1 className="font-[family-name:var(--font-space)] text-4xl font-bold leading-tight text-on-background md:text-5xl lg:text-6xl">
                 {post.title}
@@ -695,7 +695,7 @@ function BlogPostView({ post, slug }: { post: BlogPost; slug: string }) {
       <div className="border-t border-blueprint-line">
         <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 px-[var(--spacing-margin-mobile)] py-16 text-center md:px-[var(--spacing-margin-desktop)] md:py-24">
           <div className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
-            [SYS::INITIATE_PROJECT_QUERY]
+            Project Inquiry
           </div>
           <h2 className="font-[family-name:var(--font-space)] text-3xl font-bold text-on-background md:text-5xl">
             Need a Precision Estimate?

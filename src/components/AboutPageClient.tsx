@@ -135,7 +135,7 @@ export default function AboutPageClient() {
         <Reveal type="fadeUp">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             <div className="lg:col-span-7 space-y-6">
-              <span className="font-mono text-sm text-primary font-bold block">[ABOUT_US]</span>
+              <span className="font-mono text-sm text-primary font-bold block">About Us</span>
               <h1 className="font-space text-4xl md:text-5xl lg:text-6xl font-extrabold text-on-background tracking-tighter leading-tight">
                 Bringing Your Ideas and Innovations to Life
               </h1>
@@ -209,13 +209,13 @@ export default function AboutPageClient() {
                   loading="lazy"
                 />
                 <div className="absolute bottom-3 left-4 font-mono text-xs text-primary font-bold tracking-wider bg-background/90 px-2 py-1 border border-blueprint-line">
-                  [CEO_PORTRAIT]
+                  CEO Portrait
                 </div>
               </div>
             </div>
 
             <div className="lg:col-span-7 space-y-6 order-1 lg:order-2">
-              <span className="font-mono text-sm text-primary font-bold block">[LEADERSHIP]</span>
+              <span className="font-mono text-sm text-primary font-bold block">Leadership</span>
               <h2 className="font-space text-3xl md:text-4xl font-extrabold text-on-background tracking-tighter">
                 Meet Our CEO
               </h2>
@@ -267,7 +267,7 @@ export default function AboutPageClient() {
       <div className="px-5 md:px-10 lg:px-[12.5%] mx-auto py-16 md:py-24 border-t border-blueprint-line">
         <Reveal type="fadeUp">
           <div className="text-center mb-12">
-            <span className="font-mono text-sm text-primary font-bold tracking-wider">[PROVEN_RESULTS]</span>
+            <span className="font-mono text-sm text-primary font-bold tracking-wider">Proven Results</span>
             <h2 className="font-space text-3xl md:text-4xl font-extrabold text-on-background tracking-tighter mt-2">
               Proven Results
             </h2>
@@ -293,7 +293,7 @@ export default function AboutPageClient() {
       <div className="px-5 md:px-10 lg:px-[12.5%] mx-auto py-16 md:py-24 border-t border-blueprint-line">
         <Reveal type="fadeUp">
           <div className="max-w-4xl mx-auto text-center space-y-6">
-            <span className="font-mono text-sm text-primary font-bold tracking-wider">[VISION_AND_PURPOSE]</span>
+            <span className="font-mono text-sm text-primary font-bold tracking-wider">Vision & Purpose</span>
             <h2 className="font-space text-3xl md:text-4xl font-extrabold text-on-background tracking-tighter">
               Company Vision and Purpose
             </h2>
@@ -330,7 +330,7 @@ export default function AboutPageClient() {
       <div className="px-5 md:px-10 lg:px-[12.5%] mx-auto py-16 md:py-24 border-t border-blueprint-line">
         <Reveal type="fadeUp">
           <div className="text-center mb-12">
-            <span className="font-mono text-sm text-primary font-bold tracking-wider">[PILLARS_OF_EXCELLENCE]</span>
+            <span className="font-mono text-sm text-primary font-bold tracking-wider">Pillars of Excellence</span>
             <h2 className="font-space text-3xl md:text-4xl font-extrabold text-on-background tracking-tighter mt-2">
               Our Working Philosophy
             </h2>
@@ -381,7 +381,7 @@ export default function AboutPageClient() {
       <div className="px-5 md:px-10 lg:px-[12.5%] mx-auto py-16 md:py-24 border-t border-blueprint-line">
         <Reveal type="fadeUp">
           <div className="text-center mb-12">
-            <span className="font-mono text-sm text-primary font-bold tracking-wider">[OUR_SKILLS]</span>
+            <span className="font-mono text-sm text-primary font-bold tracking-wider">Our Skills</span>
             <h2 className="font-space text-3xl md:text-4xl font-extrabold text-on-background tracking-tighter mt-2">
               Professional Building and Estimation Consultancy
             </h2>

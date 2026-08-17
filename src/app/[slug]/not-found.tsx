@@ -6,7 +6,7 @@ export default function BlogPostNotFound() {
       <div className="mx-auto flex max-w-2xl flex-col items-center justify-center px-[var(--spacing-margin-mobile)] py-32 text-center md:px-[var(--spacing-margin-desktop)]">
         {/* System label */}
         <div className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
-          [SYS::ERROR_404]
+          Error 404
         </div>
 
         <h1 className="font-[family-name:var(--font-space)] text-5xl font-bold text-on-background md:text-7xl">
@@ -32,7 +32,7 @@ export default function BlogPostNotFound() {
           >
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
           </svg>
-          BACK_TO_INSIGHTS
+          Back to Insights
         </Link>
       </div>
     </section>

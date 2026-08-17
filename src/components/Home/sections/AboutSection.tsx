@@ -15,7 +15,7 @@ export default function AboutSection() {
       <Reveal type="fadeUp">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           <div className="lg:col-span-7 space-y-6">
-            <span className="font-mono text-sm text-primary font-bold block">[ABOUT_US]</span>
+            <span className="font-mono text-sm text-primary font-bold block">About Us</span>
             <h2 className="font-space text-4xl md:text-5xl font-extrabold text-on-background tracking-tighter">
               Who We Are
             </h2>
@@ -24,7 +24,7 @@ export default function AboutSection() {
             </p>
 
             <div className="border-t border-b border-blueprint-line/40 py-5 my-2">
-              <span className="font-mono text-xs text-[#FF6B00] font-bold tracking-wider block uppercase mb-1.5">[DIFFERENTIATOR_REPORT]</span>
+              <span className="font-mono text-xs text-[#FF6B00] font-bold tracking-wider block uppercase mb-1.5">Differentiator Report</span>
               <p className="font-sans text-base md:text-lg text-on-surface-variant leading-relaxed">
                 <strong>What Makes Us Different:</strong> We eliminate human error through a robust two-stage checking process. Every takeoff and estimate is scrutinized by a dedicated team and finalized by Senior Consultants before it ever reaches your desk. We combine this rigorous oversight with international ISO standards of construction to deliver a level of precision that &ldquo;freelance&rdquo; estimators cannot match.
               </p>

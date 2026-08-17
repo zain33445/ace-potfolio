@@ -7,22 +7,22 @@ import { ErrorBoundary } from '../../ui/ErrorBoundary';
 /* ── Card content (unchanged) ── */
 const cards = [
   {
-    label: '[WIN_OPTIMIZATION]',
+    label: 'Bid Win Rate',
     title: 'An 89% Bid Win Rate',
     desc: "Our estimates aren't just accurate, they're strategically engineered to help general contractors and subcontractors win competitive bids in tight markets. This bid-win performance is the reason so many builders choose us as their pre-construction estimation partner.",
   },
   {
-    label: '[EXPERT_REVIEW]',
+    label: 'Expert Review',
     title: 'Senior Consultant Oversight',
     desc: 'Every project moves through a mandatory two-stage quality assurance process, reviewed by our most experienced estimators. This layered QA approach is what separates a professional estimating company from a generic takeoff service.',
   },
   {
-    label: '[NATIONAL_GRID]',
+    label: 'National Reach',
     title: 'Proven National Reach',
     desc: 'With 2,893 estimates delivered across 35 U.S. states, spanning bridges, healthcare facilities, retail builds, and industrial plants, The ACE Services has the national estimating footprint that general contractors, civil engineers, and trade specialists rely on coast to coast.',
   },
   {
-    label: '[STANDARD_ISO]',
+    label: 'ISO Standard',
     title: 'ISO-Standard Precision',
     desc: 'We follow international ISO 9001 construction standards, ensuring every pre-construction estimate, material takeoff, and quantity survey meets the highest global benchmark for accuracy and consistency.',
   },
@@ -474,7 +474,7 @@ export default function WhyChooseUsSection() {
                 {/* ── Text content (left column) ── */}
                 <div className="w-[30%] shrink-0 space-y-5 mt-50">
                   <span className="font-mono text-sm text-primary font-bold block">
-                    [DIFFERENTIATOR_MATRIX]
+                    Differentiator Matrix
                   </span>
                   <h2 className="font-space text-3xl md:text-4xl font-extrabold text-on-background tracking-tighter">
                     Why Choose The ACE Services?
@@ -540,7 +540,7 @@ export default function WhyChooseUsSection() {
           <div className="relative z-10 flex flex-col px-6 pt-24 pb-16 max-w-md mx-auto">
             <div className="text-left space-y-3 mb-10">
               <span className="font-mono text-sm text-primary font-bold block">
-                [DIFFERENTIATOR_MATRIX]
+                Differentiator Matrix
               </span>
               <h2 className="font-space text-3xl md:text-5xl font-extrabold text-on-background tracking-tighter">
                 Why Choose The ACE Services?

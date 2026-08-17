@@ -24,7 +24,7 @@ const debounce = (func, delay) => {
 const TextPressure = ({
   text = 'Compressa',
   fontFamily = 'Roboto Flex',
-  fontUrl = 'https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght@8..144,25..151,100..1000&display=swap',
+  fontUrl = '/fonts/roboto-flex/roboto-flex.css',
 
   width = true,
   weight = true,

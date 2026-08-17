@@ -14,7 +14,7 @@ export default function StepParams({ inputs, setInputs }: { inputs: Inputs; setI
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="space-y-2">
-          <label className="block font-mono text-xs text-primary tracking-widest uppercase font-bold">[COMPLEXITY_COEF] Site & Materials Index</label>
+          <label className="block font-mono text-xs text-primary tracking-widest uppercase font-bold">Site & Materials Index</label>
           <div className="flex border border-blueprint-line p-1 bg-background bracket-corners">
             {(['simple', 'medium', 'high'] as const).map((level) => (
               <button
@@ -31,7 +31,7 @@ export default function StepParams({ inputs, setInputs }: { inputs: Inputs; setI
           </div>
         </div>
         <div className="space-y-2">
-          <label className="block font-mono text-xs text-primary tracking-widest uppercase font-bold">[SCHEDULE_VELOCITY] Output Turnaround</label>
+          <label className="block font-mono text-xs text-primary tracking-widest uppercase font-bold">Output Turnaround</label>
           <div className="flex border border-blueprint-line p-1 bg-background bracket-corners">
             <button
               type="button"
@@ -55,7 +55,7 @@ export default function StepParams({ inputs, setInputs }: { inputs: Inputs; setI
         </div>
       </div>
       <div className="space-y-2">
-        <label htmlFor="zip-code" className="block font-mono text-xs text-primary tracking-widest uppercase font-bold">[TAX_LOCATION] Regional Cost Multiplier (Zip Code)</label>
+        <label htmlFor="zip-code" className="block font-mono text-xs text-primary tracking-widest uppercase font-bold">Regional Cost Multiplier (Zip Code)</label>
         <div className="relative">
           <input
             id="zip-code"
