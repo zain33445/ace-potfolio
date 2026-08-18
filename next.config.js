@@ -29,6 +29,17 @@ const nextConfig = {
     ],
   },
 
+  async rewrites() {
+    return [
+      {
+        // Legacy /wp-content/uploads/* URLs (from OLD WP install era) proxy
+        // to cms subdomain so search-indexed image links continue to resolve.
+        source: '/wp-content/uploads/:path*',
+        destination: 'https://cms.theaceservices.com/wp-content/uploads/:path*',
+      },
+    ];
+  },
+
   async redirects() {
     return [
       {
