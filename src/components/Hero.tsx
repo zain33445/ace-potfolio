@@ -367,9 +367,7 @@ export default function Hero() {
               marquee-content
             "
           >
-            &spades; 2,893+ PROJECTS DELIVERED &spades; 35 STATES SERVED
-            &spades; 89% BID WIN RATE &spades; PLANSWIFT &amp; BLUEBEAM
-            INTEGRATION &spades;
+            &spades; 2,893+ Projects Delivered &spades; 35 States Served &spades; 89% Bid Win Rate &spades; Two-Stage QA Process &spades; Submission-Ready Estimates &spades;
           </span>
           <span
             aria-hidden="true"
@@ -377,9 +375,7 @@ export default function Hero() {
               marquee-content
             "
           >
-            &spades; 2,893+ PROJECTS DELIVERED &spades; 35 STATES SERVED
-            &spades; 89% BID WIN RATE &spades; PLANSWIFT &amp; BLUEBEAM
-            INTEGRATION &spades;
+            &spades; 2,893+ Projects Delivered &spades; 35 States Served &spades; 89% Bid Win Rate &spades; Two-Stage QA Process &spades; Submission-Ready Estimates &spades;
           </span>
         </div>
       </div>

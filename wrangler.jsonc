@@ -1,0 +1,36 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"main": ".open-next/worker.js",
+	"name": "ace-services",
+	"compatibility_date": "2026-08-17",
+	"compatibility_flags": [
+		"nodejs_compat",
+		"global_fetch_strictly_public"
+	],
+	"assets": {
+		"directory": ".open-next/assets",
+		"binding": "ASSETS"
+	},
+	"services": [
+		{
+			"binding": "WORKER_SELF_REFERENCE",
+			"service": "ace-services"
+		}
+	],
+	"r2_buckets": [
+		{
+			"binding": "NEXT_INC_CACHE_R2_BUCKET",
+			"bucket_name": "ace-services-opennext-cache"
+		}
+	],
+	"kv_namespaces": [
+		{
+			"binding": "ESTIMATES_KV",
+			"id": "8bfefc7f85d44a5a98aa9348465f95ef",
+			"preview_id": "8bfefc7f85d44a5a98aa9348465f95ef"
+		}
+	],
+	"images": {
+		"binding": "IMAGES"
+	}
+}

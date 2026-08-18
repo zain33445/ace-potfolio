@@ -59,7 +59,6 @@ const nextConfig = {
     ];
   },
 
-  output: 'standalone',
   productionBrowserSourceMaps: true,
   poweredByHeader: false,
   compiler: {

@@ -87,7 +87,7 @@ export default function ContactRequest() {
         body: fd,
       });
 
-      const data = await res.json();
+      const data = await res.json() as { error?: string; id?: number };
 
       if (!res.ok) {
         throw new Error(data.error ?? 'Failed to submit');

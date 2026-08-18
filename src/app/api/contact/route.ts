@@ -49,7 +49,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Failed to save' }, { status: 502 });
     }
 
-    const data = await res.json();
+    const data = await res.json() as { id?: number; message?: string };
     return NextResponse.json({ success: true, id: data.id, message: data.message ?? 'We will contact you within 24 hours.' });
   } catch (err) {
     console.error('[api/contact] Network error:', (err as Error).message);

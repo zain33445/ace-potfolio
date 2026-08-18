@@ -76,7 +76,7 @@ export default function AdminDashboard() {
     try {
       const r = await fetch('/api/estimate');
       if (!r.ok) throw new Error('Failed to fetch');
-      const data = await r.json();
+      const data = await r.json() as EstimateEntry[];
       setEstimates(data);
     } catch (e) {
       setEstError((e as Error).message);
@@ -91,7 +91,7 @@ export default function AdminDashboard() {
     try {
       const r = await fetch('/api/admin/contacts');
       if (!r.ok) throw new Error('Failed to fetch');
-      const data = await r.json();
+      const data = await r.json() as Contact[];
       setContacts(data);
     } catch (e) {
       setError((e as Error).message);

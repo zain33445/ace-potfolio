@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import Script from 'next/script';
-import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 import LayoutShell from './layout-shell';
 import ThirdPartyScripts from '@/src/components/ThirdPartyScripts';
@@ -65,7 +64,7 @@ export const metadata: Metadata = {
     template: '%s | The ACE Services',
   },
   description:
-    'The ACE Services delivers professional construction estimating services including AACE Class 3 cost estimates, material takeoffs, and permit sets for general contractors across 35 US states. Get accurate bids in 24-48 hours.',
+    'The ACE Services delivers AACE Class 3 cost estimates, material takeoffs, and permit sets for general contractors across 35 US states. Bids in 24-48 hours.',
   keywords: [
     'construction estimating services',
     'construction cost estimation',
@@ -164,7 +163,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
       </head>
       <body className="min-h-screen antialiased selection:bg-primary selection:text-white" suppressHydrationWarning>
-        <Analytics />
+
         <ThirdPartyScripts />
         <LiquidGlassFilter />
         <LayoutShell>{children}</LayoutShell>

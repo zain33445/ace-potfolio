@@ -23,7 +23,7 @@ export default function PaginationGrid({
   const totalPages = Math.max(1, Math.ceil(allItems.length / itemsPerPage));
   const safePage = Math.min(page, totalPages);
   const startIndex = (safePage - 1) * itemsPerPage;
-  const visibleItems = allItems.slice(startIndex, startIndex + itemsPerPage);
+  const endIndex = startIndex + itemsPerPage;
 
   /* If there's only one page, render the grid with no pagination chrome */
   if (totalPages <= 1) {
@@ -36,9 +36,18 @@ export default function PaginationGrid({
 
   return (
     <div>
-      {/* Grid — only items for the current page */}
+      {/*
+        Every item stays in the DOM (with a real <a href>) regardless of the
+        current page — only visibility is toggled. Slicing items out entirely
+        removed their links from the crawlable HTML, which orphaned them for
+        search engines (nothing else linked to posts/projects past page 1).
+      */}
       <div className={`grid ${gridCols} gap-6`}>
-        {visibleItems}
+        {allItems.map((item, i) => (
+          <div key={i} className={i >= startIndex && i < endIndex ? '' : 'hidden'}>
+            {item}
+          </div>
+        ))}
       </div>
 
       {/* Pagination controls */}
