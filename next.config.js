@@ -67,6 +67,24 @@ const nextConfig = {
         destination: '/projects',
         permanent: true,
       },
+      {
+        // Duplicate blog post consolidated — WP created "-2" variants when the
+        // same post was published twice. Deleted the -2 versions from CMS and
+        // redirect any lingering inbound links here.
+        source: '/industrial-estimation-the-complete-guide-for-us-contractors-2',
+        destination: '/industrial-estimation-the-complete-guide-for-us-contractors',
+        permanent: true,
+      },
+      {
+        source: '/exploring-the-top-construction-and-estimation-services-in-usa-a-complete-guide-for-builders-and-developers-2',
+        destination: '/exploring-the-top-construction-and-estimation-services-in-usa-a-complete-guide-for-builders-and-developers',
+        permanent: true,
+      },
+      {
+        source: '/residential-construction-estimation-save-thousands-2',
+        destination: '/residential-construction-estimation-save-thousands',
+        permanent: true,
+      },
     ];
   },
 
