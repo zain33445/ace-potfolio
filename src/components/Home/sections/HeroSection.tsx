@@ -1,7 +1,7 @@
 import Hero from "@/src/components/Hero";
 import { Header } from "@/src/components/ui/hero-parallax";
 
-const headerH1 = "Top Pre-Construction and Cost Estimation Firm in US";
+const headerH1 = "Construction Estimating Services — Top Pre-Construction Firm in US";
 const headerH2 = "Stop Losing Bids";
 const headerH3 =
   "Accurate AACE Class 3 estimates and material takeoffs, delivered in 24 to 48 hours. Win more work with precise, professional cost estimation numbers.";

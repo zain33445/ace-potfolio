@@ -264,7 +264,7 @@ export default function Hero() {
                 rounded-lg
               "
             >
-              Top Construction and Cost Estimation Firm in US
+              Construction Estimating Services — Top Firm in the US
             </h1>
 
             {/* Magazine-cover headline — two lines max */}

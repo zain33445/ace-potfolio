@@ -261,9 +261,9 @@ export const services: Service[] = [
     tagline: 'Design & Analysis',
     category: 'STRUCTURAL & ENGINEERING',
     description:
-      'Technical design, analysis, and engineering documentation for safe and code-conscious construction.',
+      'PE-sealed structural engineering and MEP design for commercial, residential, and industrial construction. Code-compliant documentation by The ACE Services.',
     summary:
-      'Technical design, analysis, and engineering documentation for safe and code-conscious construction.',
+      'PE-sealed structural engineering and MEP design for commercial, residential, and industrial construction. Code-compliant documentation by The ACE Services.',
     details: [
       'Structural design and analysis for safe, code-conscious construction.',
       'MEP shop drawings coordinated with architectural sets.',
