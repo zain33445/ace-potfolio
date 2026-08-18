@@ -51,7 +51,7 @@ export async function generateMetadata({
   const service = await getServiceEnriched(slug);
   if (service) {
     return {
-      title: `${service.title} | The ACE Services`,
+      title: service.title,
       description: service.summary.slice(0, 160),
       alternates: {
         canonical: `https://theaceservices.com/${toUrlSlug(slug)}`,

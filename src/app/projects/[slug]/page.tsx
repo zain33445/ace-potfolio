@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: `${project.title} | The ACE Services`,
+    title: project.title,
     description: project.description,
     alternates: {
       canonical: `https://theaceservices.com/projects/${slug}`,

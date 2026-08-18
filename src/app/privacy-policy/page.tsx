@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | The ACE Services',
+  title: 'Privacy Policy',
   description:
     'Privacy Policy for The ACE Services. Learn how we collect, use, and protect your information, including SMS communication and data security practices.',
   alternates: {

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Terms and Conditions | The ACE Services',
+  title: 'Terms and Conditions',
   description:
     'Terms and Conditions for The ACE Services. Learn about the rules governing your use of our website and SMS messaging services.',
   alternates: {

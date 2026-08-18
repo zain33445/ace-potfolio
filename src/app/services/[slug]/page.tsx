@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!service) return { title: 'Service Not Found' };
 
   return {
-    title: `${service.title} | The ACE Services`,
+    title: service.title,
     description: service.summary,
     alternates: {
       canonical: `https://theaceservices.com/services/${service.slug}`,
