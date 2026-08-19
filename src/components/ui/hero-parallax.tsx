@@ -308,12 +308,20 @@ export const Header = ({
   h2,
   h3,
   mobile = false,
+  /** Semantic tag for the eyebrow label — defaults to h1. Pass a
+   * non-heading tag when another element on the page already owns the
+   * page's single <h1> (e.g. a CSS-toggled desktop/mobile hero pair
+   * that both stay mounted in the DOM), so the page doesn't end up
+   * with multiple <h1> elements. */
+  as = "h1",
 }: {
   h1?: string;
   h2?: string;
   h3?: string;
   mobile?: boolean;
+  as?: "h1" | "div" | "p";
 }) => {
+  const EyebrowTag = as;
   return (
     <div
       className={`
@@ -330,7 +338,7 @@ export const Header = ({
 
       `}
     >
-      <h1
+      <EyebrowTag
         className={`
           p-1
           w-fit
@@ -344,7 +352,7 @@ export const Header = ({
         `}
       >
         {h1 ?? "Construction Pre-Estimation"}
-      </h1>
+      </EyebrowTag>
 
       {/* <TextGenerateEffect words={h2 || 'heading'} duration={5} /> */}
       {/* <TextGenerateEffect

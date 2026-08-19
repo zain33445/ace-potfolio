@@ -30,9 +30,9 @@ export default function Footer() {
   ];
 
   const communication = [
-    "+1 (800) 555-QS77",
-    "Dallas Head Office",
-    "info@theaceservices.com",
+    { text: "+1-281-899-0250", href: "tel:+12818990250" },
+    { text: "Houston, TX 77084", href: null },
+    { text: "info@theaceservices.com", href: "mailto:info@theaceservices.com" },
   ];
 
   return (
@@ -185,19 +185,31 @@ export default function Footer() {
                     font-mono text-base md:text-lg text-white tracking-wider font-bold
                   "
                 />
-                {communication.map((item) => (
-                  <TextRepel
-                    key={item}
-                    text={item}
-                    radius={60}
-                    strength={35}
-                    mode="repel"
-                    className="
-                      font-sans text-base md:text-lg text-white/70 font-semibold
-                      cursor-pointer
-                    "
-                  />
-                ))}
+                {communication.map((item) => {
+                  const repel = (
+                    <TextRepel
+                      text={item.text}
+                      radius={60}
+                      strength={35}
+                      mode="repel"
+                      className="
+                        font-sans text-base md:text-lg text-white/70 font-semibold
+                        cursor-pointer
+                      "
+                    />
+                  );
+                  return item.href ? (
+                    <a
+                      key={item.text}
+                      href={item.href}
+                      className="hover:text-white transition-colors"
+                    >
+                      {repel}
+                    </a>
+                  ) : (
+                    <div key={item.text}>{repel}</div>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -212,6 +224,7 @@ export default function Footer() {
           "
         >
           <TextPressure
+            as="p"
             text="THE ACE SERVICES"
             flex
             alpha={false}

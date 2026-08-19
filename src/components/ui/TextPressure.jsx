@@ -40,7 +40,13 @@ const TextPressure = ({
   className = '',
 
   minFontSize = 24,
-  proximity = 0
+  proximity = 0,
+
+  /** Semantic tag for the rendered heading — defaults to h1. Pass a
+   * non-heading tag (e.g. 'p' or 'div') when this is decorative brand
+   * text rather than the page's actual title, so pages don't end up
+   * with multiple <h1> elements (e.g. one per Footer render). */
+  as: Tag = 'h1'
 }) => {
   const containerRef = useRef(null);
   const titleRef = useRef(null);
@@ -316,7 +322,7 @@ const TextPressure = ({
       {/* Load the variable font — React 19 deduplicates this automatically */}
       {fontUrl && <link rel="stylesheet" href={fontUrl} />}
       {styleElement}
-      <h1
+      <Tag
         ref={titleRef}
         className={`text-pressure-title ${dynamicClassName}`}
         style={{
@@ -349,7 +355,7 @@ const TextPressure = ({
             {char}
           </span>
         ))}
-      </h1>
+      </Tag>
     </div>
   );
 };

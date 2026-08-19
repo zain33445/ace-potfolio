@@ -1,7 +1,7 @@
 import Hero from "@/src/components/Hero";
 import { Header } from "@/src/components/ui/hero-parallax";
 
-const headerH1 = "Construction Estimating Services — Top Pre-Construction Firm in US";
+const headerH1 = "Construction Estimating Services — Top Firm in the US";
 const headerH2 = "Stop Losing Bids";
 const headerH3 =
   "Accurate AACE Class 3 estimates and material takeoffs, delivered in 24 to 48 hours. Win more work with precise, professional cost estimation numbers.";
@@ -12,6 +12,12 @@ const headerH3 =
  * without swapping React nodes — zero hydration mismatch, zero CLS.
  *
  * The desktop Hero h2 is always present in the server HTML for LCP.
+ *
+ * Only the desktop <Hero /> owns the page's single <h1> (its "eyebrow"
+ * label, which already matches the primary target keyword). The mobile
+ * Header below renders the same copy as a <div> — both stay mounted in
+ * the DOM simultaneously (see above), so if both were <h1> the page
+ * would ship two competing H1 tags to every crawler.
  */
 export default function HeroSection() {
   return (
@@ -69,7 +75,7 @@ export default function HeroSection() {
               flex flex-col items-center justify-center gap-y-20
             "
           >
-            <Header h1={headerH1} h2={headerH2} h3={headerH3} />
+            <Header h1={headerH1} h2={headerH2} h3={headerH3} as="div" />
           </div>
         </div>
         <div
