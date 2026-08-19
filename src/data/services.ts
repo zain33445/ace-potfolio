@@ -71,14 +71,14 @@ export const services: Service[] = [
   {
     id: 'SVC_EST',
     slug: 'cost-estimating',
-    title: 'Cost Estimating',
+    title: 'Construction Cost Estimating Services',
     icon: 'SVC_EST',
     tagline: 'Budgeting & Bidding',
     category: 'ESTIMATING',
     description:
-      'Detailed construction estimates, quantity takeoffs, and cost analysis to support budgeting, bidding, and project decisions.',
+      'Construction cost estimating services for general contractors — AACE Class 3 estimates, material takeoffs, and CSI cost breakdowns delivered in 24-48 hours.',
     summary:
-      'Detailed construction estimates, quantity takeoffs, and cost analysis to support budgeting, bidding, and project decisions.',
+      'Construction cost estimating services for general contractors — AACE Class 3 estimates, material takeoffs, and CSI cost breakdowns delivered in 24-48 hours.',
     details: [
       'Estimate packages prepared across residential, commercial, and industrial sectors.',
       'Quantity takeoffs and material lists built directly from your blueprints.',
@@ -127,6 +127,7 @@ export const services: Service[] = [
     seoContent: {
       heading: 'Precision Construction Cost Estimating Services Nationwide',
       body: [
+        'AACE Class 3 Construction Cost Estimating for Every Project Type. Our construction cost estimating services cover the full pre-construction workflow: quantity takeoffs from architectural blueprints, material and labor pricing against current localized rates, CSI MasterFormat-organized cost breakdowns, and delivery in editable Excel plus stamped PDF. Whether you\'re preparing a competitive bid on a commercial build or budgeting a residential development, our cost estimating team delivers precision you can defend to owners, lenders, and permitting authorities.',
         'In today\'s volatile material market, guesswork leads to lost bids and shrinking margins. At The ACE Services, our professional construction cost estimating services provide general contractors, subcontractors, developers, and architects across the USA with highly accurate, data-driven material takeoffs and labor pricing.',
         'Whether you are bidding on a complex commercial build, managing a residential development, or planning an industrial facility, our expert estimators leverage industry-leading software and up-to-date pricing databases to ensure your bids are both competitive and profitable.',
         'A precise estimate is only as good as the plans it is based on. If your current blueprints lack detail, our Architectural Services team can refine your shop drawings before we begin the quantity survey. Once your budget is locked, our Project Management experts can develop schedules to ensure your procurement aligns perfectly with the cash flow projections.'

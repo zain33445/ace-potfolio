@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import EstimatorWrapper from './EstimatorWrapper';
 
 export const metadata: Metadata = {
@@ -25,11 +26,17 @@ export default function CalculatorPage() {
           Estimation Engine
         </p>
         <h1 className="font-[family-name:var(--font-space)] text-4xl font-bold md:text-6xl tracking-tight">
-          Cost <span className="text-primary">Calculator</span>
+          Construction Cost Estimating <span className="text-primary">Calculator</span>
         </h1>
         <p className="mt-4 max-w-2xl text-on-surface-variant font-[family-name:var(--font-sans)] text-lg leading-relaxed">
-          Configure your project parameters below to receive an instant preliminary cost estimate.
-          All figures are AACE Class 3 accuracy — suitable for budget authorization and preliminary funding allocation.
+          Get a preliminary construction cost estimating calculation instantly.
+          Configure your project parameters below to receive an AACE Class 3
+          budgetary allocation covering materials, labor, equipment, and permit
+          fees — or explore{' '}
+          <Link href="/services" className="text-primary font-semibold hover:underline">
+            our construction estimating services
+          </Link>{' '}
+          for a full custom quote.
         </p>
       </div>
 

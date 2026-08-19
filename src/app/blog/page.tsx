@@ -7,16 +7,16 @@ import PaginationGrid from '../../components/PaginationGrid';
 /* ── SEO metadata ─────────────────────────────────────────────── */
 
 export const metadata: Metadata = {
-  title: 'Insights & Blog',
+  title: 'Construction Estimating Insights & Blog',
   description:
-    'Expert insights on construction estimation, quantity surveying, cost analysis, and pre-construction best practices from The ACE Services.',
+    'Expert insights on construction estimating services, quantity surveying, material takeoffs, cost analysis, and pre-construction best practices from The ACE Services team.',
   alternates: {
     canonical: 'https://theaceservices.com/blog',
   },
   openGraph: {
-    title: 'Insights & Blog | The ACE Services',
+    title: 'Construction Estimating Insights & Blog | The ACE Services',
     description:
-      'Expert insights on construction estimation, quantity surveying, cost analysis, and pre-construction best practices.',
+      'Expert insights on construction estimating services, quantity surveying, material takeoffs, cost analysis, and pre-construction best practices.',
     url: 'https://theaceservices.com/blog',
   },
 };
@@ -44,8 +44,9 @@ export default async function BlogPage() {
         </h1>
 
         <p className="mt-5 text-lg leading-relaxed text-on-surface-variant md:text-xl">
-          Expert insights on construction estimation, quantity surveying, cost
-          analysis, and pre-construction best practices from The ACE Services.
+          Expert insights on construction estimating services, quantity
+          surveying, material takeoffs, cost analysis, and pre-construction
+          best practices from The ACE Services team.
         </p>
       </div>
 

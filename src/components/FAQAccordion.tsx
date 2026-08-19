@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { HelpCircle } from 'lucide-react';
 import { FAQItem } from '../types';
 
@@ -33,13 +34,20 @@ const questions: FAQItem[] = [
     id: 'faq_06',
     question: 'Do you work with subcontractors and small contractors?',
     answer: 'Yes, The ACE Services supports general contractors, subcontractors, and independent developers across 35 U.S. states, with scalable engagement models ranging from single-trade material lists to full-spectrum pre-construction packages.'
+  },
+  {
+    id: 'faq_07',
+    question: 'What are construction estimating services?',
+    answer: 'Construction estimating services are professional pre-construction analyses that measure quantities, price materials and labor, and produce detailed cost reports contractors use to bid projects and manage budgets. The ACE Services delivers accurate, defensible estimates for projects across residential, commercial, and industrial sectors.',
+    linkHref: '/cost-estimating',
+    linkLabel: 'See our AACE Class 3 construction estimates',
   }
 ];
 
-/* Split into 3 columns: 2 — 2 — 2 */
-const col1 = questions.slice(0, 2);
-const col2 = questions.slice(2, 4);
-const col3 = questions.slice(4, 6);
+/* Split into 3 columns: 3 — 2 — 2 */
+const col1 = questions.slice(0, 3);
+const col2 = questions.slice(3, 5);
+const col3 = questions.slice(5, 7);
 
 /* Curated random heights for the bento masonry effect */
 const CARD_HEIGHTS: Record<string, string> = {
@@ -49,6 +57,7 @@ const CARD_HEIGHTS: Record<string, string> = {
   faq_04: 'min-h-[180px]',
   faq_05: 'min-h-[200px]',
   faq_06: 'min-h-[257px]',
+  faq_07: 'min-h-[200px]',
 };
 
 function FAQCard({ item }: { item: FAQItem }) {
@@ -67,6 +76,14 @@ function FAQCard({ item }: { item: FAQItem }) {
           <p className="font-sans text-base leading-relaxed text-on-surface-variant">
             {item.answer}
           </p>
+          {item.linkHref && item.linkLabel && (
+            <Link
+              href={item.linkHref}
+              className="mt-2 inline-block font-sans text-sm font-semibold text-primary hover:underline"
+            >
+              {item.linkLabel} &rarr;
+            </Link>
+          )}
         </div>
       </div>
     </div>

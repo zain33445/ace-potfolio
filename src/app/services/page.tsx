@@ -8,14 +8,14 @@ import { CardBody, CardContainer, CardItem } from "@/src/components/ui/3d-card";
 /* ── Page metadata ────────────────────────────────────────────── */
 
 export const metadata: Metadata = {
-  title: 'Services',
+  title: 'Construction Estimating Company',
   description:
     'Cost estimating, architectural services, structural & engineering, and project management for contractors nationwide.',
   alternates: {
     canonical: 'https://theaceservices.com/services',
   },
   openGraph: {
-    title: 'Services | The ACE Services — Pre-Construction',
+    title: 'Construction Estimating Company | The ACE Services',
     description:
       'Professional pre-construction services: cost estimating, architectural services, structural & engineering, and project management.',
     url: 'https://theaceservices.com/services',
@@ -47,14 +47,16 @@ export default async function ServicesPage() {
         <div className="relative mx-auto max-w-7xl px-[var(--spacing-margin-mobile)] py-10 md:px-[var(--spacing-margin-desktop)] md:py-20">
           {/* System label */}
           <h1 className="font-[family-name:var(--font-space)] text-5xl font-bold leading-tight text-on-background md:text-7xl lg:text-7xl">
-            Pre-Construction{' '}
-            <span className="text-primary">Services</span>
+            Construction Estimating{' '}
+            <span className="text-primary">Company</span>
           </h1>
 
           <p className="mt-6 max-w-2xl font-sans text-lg leading-relaxed text-on-surface-variant md:text-xl">
-            Cost estimating, architectural documentation, engineering design,
-            and project management — delivered with fast, reliable turnarounds
-            from our pre-construction team.
+            The ACE Services is a nationwide construction estimating company
+            delivering cost estimating, architectural documentation,
+            engineering design, and project management. Our pre-construction
+            team turns around AACE Class 3 estimates and material takeoffs in
+            24-48 hours for contractors across 35 US states.
           </p>
 
           {/* Stats strip */}
@@ -156,13 +158,15 @@ export default async function ServicesPage() {
           </h2>
           <div className="space-y-6 font-sans text-base md:text-lg leading-relaxed text-on-surface-variant">
             <p>
-              Successful construction projects are won before ground is ever broken. At The ACE Services, our integrated suite of <strong>pre-construction services</strong> ensures that every phase of your build is meticulously planned, accurately budgeted, and structurally sound. We serve a diverse clientele across the USA, including general contractors, subcontractors, architects, and real estate developers.
+              As a full-service <strong>construction estimating company</strong>, successful construction projects are won before ground is ever broken. At The ACE Services, our integrated suite of <strong>pre-construction services</strong> ensures that every phase of your build is meticulously planned, accurately budgeted, and structurally sound. We serve a diverse clientele across the USA, including general contractors, subcontractors, architects, and real estate developers.
             </p>
             <p>
-              By combining precision <Link href="/cost-estimating" className="text-primary hover:underline font-semibold">Cost Estimating</Link> with detailed <Link href="/architectural-services" className="text-primary hover:underline font-semibold">Architectural Documentation</Link>, we eliminate the communication silos that often cause delays and budget overruns. When your estimators, drafters, and project managers work from the same reliable data pool, your bids become sharper and your margins more secure.
+              By combining precision <Link href="/cost-estimating" className="text-primary hover:underline font-semibold">construction cost estimating</Link> with detailed <Link href="/architectural-services" className="text-primary hover:underline font-semibold">Architectural Documentation</Link>, we eliminate the communication silos that often cause delays and budget overruns. When your estimators, drafters, and project managers work from the same reliable data pool, your bids become sharper and your margins more secure. Compare us to any other construction estimating firm and you'll find the same team handling your estimate, drawings, and schedule from day one.
             </p>
             <p>
-              Whether you require PE-sealed <Link href="/structural-engineering" className="text-primary hover:underline font-semibold">Structural Engineering</Link> designs for complex commercial builds or comprehensive <Link href="/project-management" className="text-primary hover:underline font-semibold">Construction Project Management</Link> to orchestrate procurement and CPM scheduling, our nationwide team delivers the blueprints and schedules you need to bid competitively and build confidently.
+              Whether you require PE-sealed <Link href="/structural-engineering" className="text-primary hover:underline font-semibold">Structural Engineering</Link> designs for complex commercial builds or comprehensive <Link href="/project-management" className="text-primary hover:underline font-semibold">Construction Project Management</Link> to orchestrate procurement and CPM scheduling, our nationwide team delivers the blueprints and schedules you need to bid competitively and build confidently. Trusted construction cost estimating services since 2019 — browse{' '}
+              <Link href="/projects" className="text-primary hover:underline font-semibold">our construction estimating portfolio</Link>{' '}
+              to see the depth of work behind that track record.
             </p>
           </div>
         </div>

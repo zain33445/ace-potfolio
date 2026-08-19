@@ -30,6 +30,8 @@ export interface FAQItem {
   id: string;
   question: string;
   answer: string;
+  linkHref?: string;
+  linkLabel?: string;
 }
 
 export interface CostBreakdown {

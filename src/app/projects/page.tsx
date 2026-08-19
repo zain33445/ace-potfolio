@@ -12,7 +12,7 @@ import { getAllProjects } from '../../data/projects';
 export const metadata: Metadata = {
   title: 'Projects',
   description:
-    'Explore The ACE Services portfolio — precise construction estimation delivered across residential, commercial, and industrial projects nationwide.',
+    'Portfolio of construction estimating company projects — AACE Class 3 cost estimates delivered across residential, commercial, industrial, and municipal builds nationwide.',
   alternates: {
     canonical: 'https://theaceservices.com/projects',
   },
@@ -95,6 +95,22 @@ export default async function ProjectsPage() {
             <StatBlock label="AVG_COST_ACCURACY" value="±15%" />
           </div>
         </div>
+      </div>
+
+      {/* ── Intro paragraph ─────────────────────────────── */}
+      <div className="mx-auto max-w-4xl px-[var(--spacing-margin-mobile)] py-10 text-center md:px-[var(--spacing-margin-desktop)]">
+        <p className="font-sans text-lg leading-relaxed text-on-surface-variant">
+          As a nationwide construction estimating company, The ACE Services
+          has delivered pre-construction estimates and material takeoffs on
+          2,893+ projects spanning residential, commercial, industrial,
+          hospitality, and municipal sectors. Every project below represents
+          a complete{' '}
+          <Link href="/cost-estimating" className="font-semibold text-primary hover:underline">
+            construction cost estimating
+          </Link>{' '}
+          engagement — browse the portfolio to see the depth of trade
+          divisions, sizes, and locations we support.
+        </p>
       </div>
 
       {/* ── Filter bar ───────────────────────────────────── */}

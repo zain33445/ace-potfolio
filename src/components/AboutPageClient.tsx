@@ -140,14 +140,18 @@ export default function AboutPageClient() {
                 Bringing Your Ideas and Innovations to Life
               </h1>
               <p className="font-sans text-lg text-on-surface-variant leading-relaxed font-medium">
-                The ACE Services is a renowned and forward-thinking solutions provider committed to
-                excellence across various domains. As a top construction &amp; estimation company in
-                the United States, we specialize in delivering precise, innovative, and reliable
-                services across multiple states. With a legacy built on expertise and cutting-edge
-                technology, our dedicated team is driven by a strong commitment to quality, safety,
-                and client satisfaction. At The ACE Services, we consistently strive to exceed
-                expectations, making us your trusted partner for seamless project execution and
-                successful outcomes across the U.S.
+                The ACE Services is a US{' '}
+                <Link href="/services" className="font-semibold text-primary hover:underline">
+                  construction estimating company
+                </Link>{' '}
+                delivering pre-construction estimates, material takeoffs, and cost planning for
+                general contractors and developers nationwide. Since 2019, our team has completed{' '}
+                <Link href="/projects" className="font-semibold text-primary hover:underline">
+                  2,893+ construction estimating projects
+                </Link>{' '}
+                across 35 states with an 89% bid win rate for our clients. With a legacy built on
+                expertise and cutting-edge technology, our dedicated team is driven by a strong
+                commitment to quality, safety, and client satisfaction.
               </p>
 
               {/* Feature pills */}
@@ -339,7 +343,9 @@ export default function AboutPageClient() {
               innovation, and client satisfaction. We believe in precision, integrity, and continuous
               improvement, ensuring that every project reflects our dedication to quality. With a
               forward-thinking mindset, we embrace cutting-edge technology and industry best
-              practices, aiming to exceed expectations and create lasting value for our clients.
+              practices, aiming to exceed expectations and create lasting value for our clients. As a
+              construction estimating company, we deliver AACE Class 3 accuracy on every estimate —
+              because winning bids requires numbers you can defend.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
