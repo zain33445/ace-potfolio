@@ -51,7 +51,7 @@ export default function LayoutShell({ children }: { children: ReactNode }) {
         <header>
           <Nav />
         </header>
-        <main className={isHome ? '' : 'md:pt-16'}>{children}</main>
+        <main className={isHome ? '' : 'pt-20 md:pt-16'}>{children}</main>
         <Footer />
       </div>
     </PinProvider>

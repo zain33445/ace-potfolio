@@ -375,16 +375,17 @@ export default function ChromaticHero() {
 
           <div
             className="
-              z-10 px-10 h-full relative
-              flex flex-col items-center justify-center gap-y-20
+              z-10 px-4 h-full relative
+              flex flex-col items-center justify-center gap-y-6
+              pt-20 pb-8
             "
           >
             <div
               className="
                 z-10 relative font-sans
-                pb-8 px-10
+                py-7 px-6
                 w-[100%] max-w-[900px]
-                flex flex-col items-start justify-start gap-y-20
+                flex flex-col items-center justify-start gap-y-5
                 text-white
                 bg-white/10 border border-white/20 backdrop-blur-md
                 md:w-4/5 md:px-2 md:pt-10 md:pb-15
@@ -405,8 +406,8 @@ export default function ChromaticHero() {
 
               <h2
                 className="
-                  my-5
-                  text-5xl font-extrabold leading-[1.1] tracking-tighter text-center
+                  my-0
+                  text-4xl font-extrabold leading-[1.1] tracking-tighter text-center
                   decoration-primary decoration-[6px] underline-offset-[10px]
                   hero-enter-up hero-enter-up-1
                 "
