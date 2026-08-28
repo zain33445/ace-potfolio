@@ -3,7 +3,7 @@ import Link from 'next/link';
 import EstimatorWrapper from './EstimatorWrapper';
 
 export const metadata: Metadata = {
-  title: 'Cost Calculator',
+  title: 'Instant Construction Cost Calculator',
   description:
     'Get an instant preliminary cost estimate for your construction project — AACE Class 3 budgetary allocations based on type, square footage, and complexity.',
   alternates: {

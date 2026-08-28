@@ -49,6 +49,21 @@ const nextConfig = {
         permanent: true,
       },
       {
+        // /services/:slug duplicates the canonical /:slug service route
+        // ([slug]/page.tsx) — same content, two indexable URLs. Nothing on
+        // the site links to /services/:slug except itself; consolidate.
+        source: '/services/:slug',
+        destination: '/:slug',
+        permanent: true,
+      },
+      {
+        // "Pauma Travel Center" was entered twice in the CMS during
+        // extraction (same PDF, same content) — collapse into one page.
+        source: '/projects/pauma-travel-center-2',
+        destination: '/projects/pauma-travel-center',
+        permanent: true,
+      },
+      {
         // /about renamed to /about-us
         source: '/about',
         destination: '/about-us',
@@ -65,6 +80,21 @@ const nextConfig = {
         // The WP site has no /samples/:slug URLs, so a single 301 covers it.
         source: '/samples',
         destination: '/projects',
+        permanent: true,
+      },
+      {
+        // WP page slug "home" is a second, fully indexable, self-canonical
+        // homepage competing with the real one at "/" — direct duplicate
+        // content on the site's single most important URL. Collapse it.
+        source: '/home',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        // WP page slug "terms-conditions" duplicates "/terms-and-conditions",
+        // which is the version actually linked and in the sitemap.
+        source: '/terms-conditions',
+        destination: '/terms-and-conditions',
         permanent: true,
       },
       {
@@ -85,10 +115,20 @@ const nextConfig = {
         destination: '/residential-construction-estimation-save-thousands',
         permanent: true,
       },
+      {
+        // /test-post is a leftover WP test artifact (empty meta description,
+        // no real content) that was live and indexed. next.config.js
+        // redirects() can't emit 410 Gone (preferred for intentional
+        // removal), so send it to /blog as the closest relevant page — a
+        // 301 still gets it deindexed and out of the sitemap (see sitemap.ts).
+        source: '/test-post',
+        destination: '/blog',
+        permanent: true,
+      },
     ];
   },
 
-  productionBrowserSourceMaps: true,
+  productionBrowserSourceMaps: false,
   poweredByHeader: false,
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production' ? { exclude: ['error', 'warn'] } : false,

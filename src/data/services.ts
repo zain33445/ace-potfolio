@@ -46,6 +46,12 @@ export interface Service {
   seoContent?: SeoContent;
   /** Full sanitized HTML from WordPress — only present for CMS-only services */
   wpContent?: string;
+  /**
+   * Slug of the parent main service. Set on sub-services (e.g. 3D rendering under
+   * architectural-services). Sub-services are hidden from the /services index and
+   * surfaced only as internal links on their parent's page.
+   */
+  parent?: string;
 }
 
 /* ── Icon map ──────────────────────────────────────────────────── */
@@ -94,7 +100,7 @@ export const services: Service[] = [
       'Electrical Estimating',
     ],
     startingPrice: 'Custom',
-    turnaround: '1–2 business days',
+    turnaround: '24-48 hours',
     stats: [
       { label: 'SECTORS', value: '3+' },
       { label: 'TURNAROUND', value: '24-48h' },
@@ -165,7 +171,7 @@ export const services: Service[] = [
   {
     id: 'SVC_ARC',
     slug: 'architectural-services',
-    title: 'Architectural Services',
+    title: 'Architectural Drafting & Permit Services',
     icon: 'SVC_ARC',
     tagline: 'Documentation & Visualization',
     category: 'ARCHITECTURAL',
@@ -257,7 +263,7 @@ export const services: Service[] = [
   {
     id: 'SVC_ENG',
     slug: 'structural-engineering',
-    title: 'Structural & Engineering',
+    title: 'Structural Engineering & MEP Design',
     icon: 'SVC_ENG',
     tagline: 'Design & Analysis',
     category: 'STRUCTURAL & ENGINEERING',
@@ -346,7 +352,7 @@ export const services: Service[] = [
   {
     id: 'SVC_PMG',
     slug: 'project-management',
-    title: 'Construction Project Management & Scheduling',
+    title: 'Construction Project Management Services',
     icon: 'SVC_PMG',
     tagline: 'Planning & Controls',
     category: 'PROJECT MANAGEMENT',
@@ -434,6 +440,288 @@ export const services: Service[] = [
         }
       ]
     }
+  },
+  {
+    id: 'SVC_3DR',
+    slug: '3d-rendering-services',
+    parent: 'architectural-services',
+    title: '3D Architectural Rendering Services',
+    icon: 'SVC_ARC',
+    tagline: 'Visualization & Presentation',
+    category: 'ARCHITECTURAL',
+    description:
+      '3D architectural rendering services — photorealistic exterior and interior renderings for permitting, coordination, marketing, and stakeholder sign-off.',
+    summary:
+      '3D architectural rendering services — photorealistic exterior and interior renderings for permitting, coordination, marketing, and stakeholder sign-off.',
+    details: [
+      '3D exterior renderings that show a building in its real site context before construction begins.',
+      '3D interior renderings for space planning, material selection, and client presentations.',
+      'Floor plan and site-plan renderings that make layouts readable to non-technical stakeholders.',
+      'Delivered as high-resolution stills ready for permitting packets, marketing, and investor decks.',
+    ],
+    features: [
+      '3D Exterior Rendering',
+      '3D Interior Rendering',
+      'Architectural Visualization',
+      '3D Floor Plan Rendering',
+      'Photorealistic Renders',
+      'Marketing & Presentation Renders',
+    ],
+    startingPrice: 'Custom',
+    turnaround: '3–5 Business Days',
+    stats: [
+      { label: 'OUTPUT', value: 'Photoreal' },
+      { label: 'TURNAROUND', value: '3–5 Days' },
+      { label: 'VIEWS', value: 'Exterior + Interior' },
+      { label: 'FORMAT', value: 'High-Res Stills' },
+    ],
+    process: [
+      {
+        title: 'Brief & Reference Review',
+        description:
+          'We review your plans, elevations, material selections, and reference imagery to lock the look before rendering.',
+      },
+      {
+        title: '3D Modeling',
+        description:
+          'Your design is built as an accurate 3D model — massing, openings, finishes, and site context.',
+      },
+      {
+        title: 'Lighting, Materials & Render',
+        description:
+          'We apply real materials, natural lighting, and landscaping, then render photorealistic exterior and interior views.',
+      },
+      {
+        title: 'Review & Delivery',
+        description:
+          'You review a draft, we apply revisions, and final high-resolution renderings are delivered for permitting, marketing, or approvals.',
+      },
+    ],
+    ctaLabel: 'EXPLORE 3D RENDERING',
+    seoContent: {
+      heading: 'Photorealistic 3D Architectural Rendering Services',
+      body: [
+        'Our 3D architectural rendering services turn drawings into images stakeholders can actually understand. From 3D exterior renderings that place a building in its real site context to detailed interior visualizations, we help owners, review boards, and buyers sign off on what they can see — long before ground is broken.',
+        'Photorealistic renderings do more than look good. They accelerate permitting and design review, resolve questions about materials and massing early, and give developers and marketing teams the assets they need to pre-sell and fund a project. Every render is built from an accurate 3D model, so what you present is what gets built.',
+        'Renderings work best as part of a coordinated pre-construction package. Pair them with our Architectural drafting and permit sets to move from concept to approval, or with our Cost Estimating team so the design you visualize is priced accurately from day one.',
+      ],
+      benefits: [
+        {
+          title: 'Win Approvals Faster',
+          description: 'Give review boards and clients a clear, photorealistic picture so decisions happen sooner and with fewer revisions.',
+        },
+        {
+          title: 'Sell & Fund Projects',
+          description: 'Marketing-grade exterior and interior renders help developers pre-sell units and secure investor buy-in.',
+        },
+        {
+          title: 'Catch Issues Early',
+          description: 'Seeing the design in 3D surfaces material and spatial problems while they are still cheap to fix.',
+        },
+      ],
+      faqs: [
+        {
+          question: 'What do I need to provide for a 3D rendering?',
+          answer: 'Floor plans, elevations, and any material or finish selections are ideal. We can also work from sketches or a set of reference images if drawings are still in progress.',
+        },
+        {
+          question: 'Do you provide both exterior and interior renderings?',
+          answer: 'Yes. We produce 3D exterior renderings, interior visualizations, and floor-plan renders — for permitting, coordination, or marketing use.',
+        },
+        {
+          question: 'How long does a rendering take?',
+          answer: 'Most renderings are delivered in 3 to 5 business days depending on complexity and the number of views, with a draft review before final delivery.',
+        },
+      ],
+    },
+  },
+  {
+    id: 'SVC_SHD',
+    slug: 'shop-drawing-services',
+    parent: 'architectural-services',
+    title: 'Shop Drawing Services',
+    icon: 'SVC_ENG',
+    tagline: 'Fabrication & Detailing',
+    category: 'DRAFTING',
+    description:
+      'Shop drawing services — fabrication-ready MEP, structural, rebar, and millwork shop drawings coordinated to eliminate clashes before fabrication and installation.',
+    summary:
+      'Shop drawing services — fabrication-ready MEP, structural, rebar, and millwork shop drawings coordinated to eliminate clashes before fabrication and installation.',
+    details: [
+      'MEP, structural, rebar, and millwork shop drawings prepared to fabrication standards.',
+      'Design intent translated into dimensioned, buildable details for the shop and the field.',
+      'Cross-trade coordination that resolves spatial conflicts before anything is fabricated.',
+      'Delivered in DWG and PDF, ready for fabricator and reviewer sign-off.',
+    ],
+    features: [
+      'MEP Shop Drawings',
+      'Structural Shop Drawings',
+      'Rebar Shop Drawings',
+      'Millwork Shop Drawings',
+      'Fabrication Detailing',
+      'Clash Coordination',
+    ],
+    startingPrice: 'Custom',
+    turnaround: '3–7 Business Days',
+    stats: [
+      { label: 'TRADES', value: 'MEP + Struct' },
+      { label: 'TURNAROUND', value: '3–7 Days' },
+      { label: 'STANDARD', value: 'Fabrication-Ready' },
+      { label: 'FORMAT', value: 'DWG + PDF' },
+    ],
+    process: [
+      {
+        title: 'Documentation Review',
+        description:
+          'We review contract drawings, specs, and design intent to confirm scope and flag missing information.',
+      },
+      {
+        title: 'Shop Drawing Preparation',
+        description:
+          'Fabrication-ready shop drawings are detailed for each trade — MEP, structural, rebar, or millwork.',
+      },
+      {
+        title: 'Coordination & Clash Check',
+        description:
+          'Trades are coordinated against one another to resolve spatial conflicts before fabrication or installation.',
+      },
+      {
+        title: 'Delivery & Revisions',
+        description:
+          'Drawings are delivered in DWG and PDF, with fast revision cycles to clear fabricator and reviewer comments.',
+      },
+    ],
+    ctaLabel: 'EXPLORE SHOP DRAWINGS',
+    seoContent: {
+      heading: 'Fabrication-Ready Shop Drawing Services',
+      body: [
+        'Our shop drawing services turn design intent into buildable, fabrication-ready documentation. We prepare MEP, structural, rebar, and millwork shop drawings that give fabricators and field crews the exact dimensions, connections, and details they need — with no ambiguity and no guesswork.',
+        'Most costly rework starts as a clash on paper. We coordinate shop drawings across trades before anything is fabricated, catching spatial conflicts between ductwork, piping, structure, and finishes while they are still a line on a drawing rather than a change order in the field.',
+        'Shop drawings connect design and construction. They build directly on the architectural and structural sets our drafting teams produce, and they feed the accurate quantities our Cost Estimating team relies on — so your documentation, pricing, and fabrication all speak the same language.',
+      ],
+      benefits: [
+        {
+          title: 'No Clashes, No Rework',
+          description: 'Cross-trade coordination resolves conflicts on the drawing board instead of in the field, protecting your schedule and budget.',
+        },
+        {
+          title: 'Fabrication-Ready Detail',
+          description: 'Dimensioned, buildable drawings let fabricators and installers work without back-and-forth or interpretation.',
+        },
+        {
+          title: 'Faster Approvals',
+          description: 'Clean, standards-compliant submittals clear reviewer and fabricator comments in fewer cycles.',
+        },
+      ],
+      faqs: [
+        {
+          question: 'What types of shop drawings do you produce?',
+          answer: 'We prepare MEP (mechanical, electrical, plumbing), structural, rebar, and millwork shop drawings, along with fabrication and installation details.',
+        },
+        {
+          question: 'Do you coordinate shop drawings across trades?',
+          answer: 'Yes. Cross-trade clash coordination is a core part of our service — we resolve spatial conflicts between disciplines before anything reaches the shop or the field.',
+        },
+        {
+          question: 'What formats do you deliver in?',
+          answer: 'Shop drawings are delivered in editable DWG and review-ready PDF, prepared to fabrication standards for sign-off.',
+        },
+      ],
+    },
+  },
+  {
+    id: 'SVC_PMT',
+    slug: 'permit-set-services',
+    parent: 'architectural-services',
+    title: 'Permit Set & Drawing Services',
+    icon: 'SVC_ARC',
+    tagline: 'Approvals & Compliance',
+    category: 'DOCUMENTATION',
+    description:
+      'Permit set services — complete, code-compliant permit drawings and stamped document packages assembled to the reviewer\'s checklist for faster municipal approval.',
+    summary:
+      'Permit set services — complete, code-compliant permit drawings and stamped document packages assembled to the reviewer\'s checklist for faster municipal approval.',
+    details: [
+      'Complete permit sets and permit drawings prepared for municipal plan-review submission.',
+      'Architectural, structural, and MEP sheets assembled into one coordinated, code-compliant package.',
+      'Documents built to the jurisdiction\'s checklist to minimize review comments and resubmittals.',
+      'Delivered print-ready in PDF, with revision support through the approval process.',
+    ],
+    features: [
+      'Permit Drawings',
+      'Permit Set Preparation',
+      'Building Permit Drawings',
+      'Code Compliance Review',
+      'Plan Review Support',
+      'Resubmittal & Markups',
+    ],
+    startingPrice: 'Custom',
+    turnaround: '3–7 Business Days',
+    stats: [
+      { label: 'SCOPE', value: 'Full Set' },
+      { label: 'TURNAROUND', value: '3–7 Days' },
+      { label: 'BUILT FOR', value: 'Plan Review' },
+      { label: 'FORMAT', value: 'Print-Ready PDF' },
+    ],
+    process: [
+      {
+        title: 'Requirements Review',
+        description:
+          'We confirm the jurisdiction\'s submission checklist, applicable codes, and the scope your permit set must cover.',
+      },
+      {
+        title: 'Set Preparation',
+        description:
+          'Architectural, structural, and MEP sheets are drafted and assembled into one coordinated, code-compliant package.',
+      },
+      {
+        title: 'Compliance Check',
+        description:
+          'The set is reviewed against local code and the reviewer\'s checklist to head off comments before submission.',
+      },
+      {
+        title: 'Submission & Revisions',
+        description:
+          'We deliver print-ready permit drawings and turn around any reviewer markups quickly to keep approval on schedule.',
+      },
+    ],
+    ctaLabel: 'EXPLORE PERMIT SETS',
+    seoContent: {
+      heading: 'Complete, Code-Compliant Permit Set Services',
+      body: [
+        'Our permit set services assemble complete, code-compliant permit drawings into a single package built for plan review. We coordinate architectural, structural, and MEP sheets to the jurisdiction\'s checklist — not ours — so your submission clears review with fewer comments and fewer costly resubmittals.',
+        'A rejected permit set can stall a project for weeks. By preparing building permit drawings that anticipate what reviewers look for and flag code issues before submission, we help general contractors and developers move from design to approval faster and keep the schedule intact.',
+        'Permit sets are the approval layer of your documentation. They build directly on our architectural drafting and shop drawing work and align with the budgets our Cost Estimating team prepares — so what you submit, price, and build all stay in sync.',
+      ],
+      benefits: [
+        {
+          title: 'Approved Faster',
+          description: 'Sets assembled to the reviewer\'s checklist clear plan review with fewer comments and resubmittals.',
+        },
+        {
+          title: 'Code-Compliant',
+          description: 'Drawings are checked against applicable local codes before submission to prevent avoidable rejections.',
+        },
+        {
+          title: 'One Coordinated Package',
+          description: 'Architectural, structural, and MEP sheets arrive as a single, consistent, print-ready permit set.',
+        },
+      ],
+      faqs: [
+        {
+          question: 'What is a permit set?',
+          answer: 'A permit set is the coordinated package of drawings and documents a jurisdiction requires for plan review and building-permit approval, covering architectural, structural, and MEP scope as applicable.',
+        },
+        {
+          question: 'Do you prepare drawings to our local code requirements?',
+          answer: 'Yes. We build each permit set to the specific jurisdiction\'s submission checklist and applicable codes, and we review for compliance before submission to reduce review comments.',
+        },
+        {
+          question: 'Can you help with reviewer comments and resubmittals?',
+          answer: 'Absolutely. We turn around markups and revisions quickly to address plan-review comments and keep your approval moving without losing schedule.',
+        },
+      ],
+    },
   },
 ];
 

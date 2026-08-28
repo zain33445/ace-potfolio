@@ -12,6 +12,17 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
+/**
+ * Google truncates meta descriptions around 155-160 characters. Cut on a
+ * word boundary (never mid-word) and only append the ellipsis when we
+ * actually trimmed something, mirroring the equivalent helper in
+ * src/app/[slug]/page.tsx.
+ */
+function truncate(text: string, max: number): string {
+  if (text.length <= max) return text;
+  return text.slice(0, max).replace(/\s+\S*$/, '') + '…';
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const project = getProjectBySlug(slug);
@@ -20,18 +31,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: 'Project Not Found' };
   }
 
+  // Extraction produced entries with no real stats (area/cost both 0) —
+  // keep them reachable for visitors but keep them out of the index until
+  // they carry real data.
+  const hasData = project.totalAreaSqFt > 0 || project.estimatedCost > 0;
+  const description = truncate(project.description, 155);
+
   return {
     title: project.title,
-    description: project.description,
+    description,
     alternates: {
       canonical: `https://theaceservices.com/projects/${slug}`,
     },
     openGraph: {
       title: `${project.title} | The ACE Services`,
-      description: project.description,
+      description,
       images: project.imageUrl ? [{ url: project.imageUrl }] : [],
       url: `https://theaceservices.com/projects/${slug}`,
     },
+    ...(hasData ? {} : { robots: { index: false, follow: true } }),
   };
 }
 
@@ -41,6 +59,33 @@ export function generateStaticParams() {
   return getAllProjects().map((p) => ({ slug: p.slug }));
 }
 
+/**
+ * Every valid slug comes from getAllProjects() — static repo data, fully
+ * known at build time. With dynamicParams left at its default (true), a
+ * slug that isn't in that set still falls through to an on-demand render of
+ * this page, which calls notFound() below — but this route segment has a
+ * loading.tsx, so Next.js treats the render as streamable and commits a 200
+ * status before notFound()'s digest resolves (this is documented Next.js
+ * behavior, not an OpenNext/Cloudflare bug: https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming#status-codes).
+ * The result is a soft 404 that Google keeps indexed and keeps recrawling.
+ * Setting dynamicParams=false makes Next.js reject any unknown slug at the
+ * router level instead — a real framework-level 404 dispatched before the
+ * page component (and its Suspense boundary) ever runs, so no streaming
+ * commitment happens and the correct status is sent.
+ */
+export const dynamicParams = false;
+
+/**
+ * PDFs known to be attached to more than one project. Until each project
+ * has its own document, showing a shared one is worse than showing none —
+ * a prospect downloading the "Detroit MI" estimate would receive a
+ * Mansfield TX document. Remove entries here as real PDFs are attached.
+ */
+const SHARED_PDFS = new Set([
+  'https://cms.theaceservices.com/wp-content/uploads/2024/10/Concrete-Sample-305-Regency-Parkway-Mansfield-TX.pdf',
+  'https://cms.theaceservices.com/wp-content/uploads/2024/10/Plumbing-Sample-First-Chinies-Baptist-Church-Plumbing-Rev00.pdf',
+]);
+
 /* ── Helpers ───────────────────────────────────────────────────── */
 
 function formatCurrency(n: number): string {
@@ -49,6 +94,30 @@ function formatCurrency(n: number): string {
 
 function formatCurrencyPrecise(n: number): string {
   return `$${n.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
+}
+
+/**
+ * Per-project H1. Falls back cleanly when data is thin:
+ * "USA" is the placeholder location on every extracted project, so it is
+ * treated as absent — appending it would add noise, not a local signal.
+ * Once real city/state values are backfilled into the CMS, this starts
+ * emitting them with no template change.
+ */
+function buildProjectH1(project: ProjectDetail): string {
+  const hasRealLocation =
+    project.location &&
+    project.location.trim().toUpperCase() !== 'USA' &&
+    project.location.trim() !== '';
+
+  const trade = project.scope?.[0];
+
+  const parts = [
+    `${project.title} Cost Estimate`,
+    trade ? `— ${trade}` : '',
+    hasRealLocation ? `in ${project.location}` : '',
+  ];
+
+  return parts.filter(Boolean).join(' ').replace(/\s+/g, ' ').trim();
 }
 
 /* ── Page Component ────────────────────────────────────────────── */
@@ -61,7 +130,7 @@ export default async function ProjectDetailPage({ params }: Props) {
     notFound();
   }
 
-  const featuredProjects = getFeaturedProjects(slug);
+  const featuredProjects = getFeaturedProjects(slug).slice(0, 4);
 
   return (
     <main className="min-h-screen bg-background">
@@ -89,7 +158,7 @@ export default async function ProjectDetailPage({ params }: Props) {
       {/* ════════════════════════════════════════════════════════
           MAIN CONTENT — SIDEBAR + DETAIL
           ════════════════════════════════════════════════════════ */}
-      <div className="mx-auto max-w-7xl px-[var(--spacing-margin-mobile)] py-16 md:px-[var(--spacing-margin-desktop)] md:py-20">
+      <div className="mx-auto max-w-8xl px-[var(--spacing-margin-mobile)] py-16 md:px-[var(--spacing-margin-desktop)] md:py-20">
         <div className="grid gap-12 lg:grid-cols-[300px_1fr]">
           {/* ── Sidebar: Featured Projects ── */}
           <aside className="order-2 lg:order-1">
@@ -136,7 +205,9 @@ export default async function ProjectDetailPage({ params }: Props) {
       {/* ════════════════════════════════════════════════════════
           SAMPLE ESTIMATE REPORT
           ════════════════════════════════════════════════════════ */}
-      <SampleReportSection project={project} />
+      {project.pdfUrl && !SHARED_PDFS.has(project.pdfUrl) && (
+        <SampleReportSection project={project} />
+      )}
 
       {/* ════════════════════════════════════════════════════════
           CTA BANNER
@@ -152,7 +223,7 @@ export default async function ProjectDetailPage({ params }: Props) {
 
 function HeroSection({ project }: { project: ProjectDetail }) {
   return (
-    <section className="relative overflow-hidden border-b border-blueprint-line">
+    <section className="relative overflow-hidden border-b border-blueprint-line pt-16 md:pt-0">
       {/* Grid overlay */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.03]"
@@ -180,9 +251,8 @@ function HeroSection({ project }: { project: ProjectDetail }) {
           Project Detail
         </div>
 
-        <h1 className="font-[family-name:var(--font-space)] text-5xl font-bold leading-tight text-on-background md:text-7xl lg:text-7xl max-w-4xl">
-          Accurate Estimates Behind{' '}
-          <span className="text-primary">Successful Construction Bids</span>
+        <h1 className="font-[family-name:var(--font-space)] text-3xl font-bold leading-tight text-on-background md:text-7xl lg:text-5xl max-w-4xl">
+          {buildProjectH1(project)}
         </h1>
 
         <p className="mt-6 max-w-2xl font-sans text-lg leading-relaxed text-on-surface-variant md:text-xl">
@@ -230,9 +300,9 @@ function FeaturedProjectCard({ project }: { project: ProjectDetail }) {
         />
       </div>
       <div className="flex min-w-0 flex-col justify-center">
-        <h4 className="truncate font-[family-name:var(--font-space)] text-base font-bold text-on-background transition-colors group-hover:text-primary">
+        <span className="block truncate font-[family-name:var(--font-space)] text-base font-bold text-on-background transition-colors group-hover:text-primary">
           {project.title}
-        </h4>
+        </span>
         <p className="font-mono text-xs text-on-surface-variant">
           {formatCurrency(project.estimatedCost)}
         </p>
@@ -274,7 +344,7 @@ function ProjectSummarySection({ project }: { project: ProjectDetail }) {
         <div className="flex flex-col justify-center space-y-6">
           <div>
             <h2 className="font-[family-name:var(--font-space)] text-3xl font-bold text-on-background md:text-4xl">
-              {project.title}
+              Project Overview
             </h2>
             <p className="mt-2 font-mono text-sm text-on-surface-variant">
               {project.location} &mdash; {project.category}
@@ -334,9 +404,9 @@ function CostBreakdownSection({ project }: { project: ProjectDetail }) {
 
   return (
     <section>
-      <div className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
+      <h2 className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
         Major Cost Distribution
-      </div>
+      </h2>
 
       <div className="border border-blueprint-line bg-surface p-6 md:p-8">
         {/* Cost bar chart — client animated */}
@@ -361,9 +431,9 @@ function CostBreakdownSection({ project }: { project: ProjectDetail }) {
 function CsiDivisionsSection({ project }: { project: ProjectDetail }) {
   return (
     <section>
-      <div className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
+      <h2 className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
         CSI MasterFormat Divisions
-      </div>
+      </h2>
 
       <div className="border border-blueprint-line bg-surface p-6 md:p-8">
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3">
@@ -423,24 +493,24 @@ function ProcessSection() {
 
 const processSteps = [
   {
-    title: 'Structural Data Ingestion',
+    title: 'Send Us Your Plans',
     description:
-      'Transmit your blueprints, architectural layouts, and site measurements through our secure server channel.',
+      'Upload your blueprints, drawings, and site measurements through our secure portal. We accept PDF, DWG, DXF, and scanned documents.',
   },
   {
-    title: 'Algorithmic Quantity Takeoff',
+    title: 'We Measure Every Quantity',
     description:
-      'Our surveyors perform exhaustive computational dissection using localized material standards databases.',
+      'Our estimators measure materials and labor from your drawings using current regional pricing data.',
   },
   {
-    title: 'Dual-Stage Verification Review',
+    title: 'Two Engineers Check the Numbers',
     description:
-      'All estimates undergo parallel reviews by principal civil engineers to filter variances before compilation.',
+      'A second senior estimator reviews every line before it reaches you, so errors are caught before you bid.',
   },
   {
-    title: 'Delivery Protocol Transmission',
+    title: 'You Get Bid-Ready Files',
     description:
-      'Final cost-schedules delivered with interactive spreadsheets and stamped PDF dossiers.',
+      'You receive an editable Excel cost breakdown and a formatted PDF report, ready to submit with your bid.',
   },
 ];
 
@@ -523,7 +593,7 @@ function CtaSection() {
         </h2>
         <p className="max-w-lg text-base leading-relaxed text-on-surface-variant">
           Submit your blueprints and receive a precision cost schedule within
-          3–5 business days. Expedited turnaround available.
+          24-48 hours. Rush turnaround available.
         </p>
         <Link
           href="/contact-us"

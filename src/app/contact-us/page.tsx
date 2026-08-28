@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import ContactPageClient from '@/src/components/ContactPageClient';
 
 export const metadata: Metadata = {
-  title: 'Contact Us',
+  title: 'Contact Houston Construction Estimators',
   description:
     'Get in touch with The ACE Services for pre-construction estimation, material takeoffs, and cost estimation services. We respond within 24 hours.',
   alternates: {

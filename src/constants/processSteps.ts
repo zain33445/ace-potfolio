@@ -1,15 +1,22 @@
-'use client';
-
-import { Database, Laptop, ShieldAlert, BadgeCheck } from 'lucide-react';
+import {
+  Database,
+  Laptop,
+  ShieldAlert,
+  BadgeCheck,
+  type LucideIcon,
+} from 'lucide-react';
 
 export interface Step {
   id: number;
   num: string;
   title: string;
   desc: string;
-  icon: any;
+  icon: LucideIcon;
   benchmarks: string[];
   output: string;
+  image: string;
+  /** Optional object-position override for full-bleed crops. */
+  position?: string;
 }
 
 export const STEP_COUNT = 4;
@@ -27,6 +34,8 @@ export const steps: Step[] = [
       'Scale and alignment verification',
     ],
     output: 'Verified drawings and project requirements',
+    image: '/step1.jpg',
+    position: '62% center',
   },
   {
     id: 2,
@@ -40,6 +49,7 @@ export const steps: Step[] = [
       'Labor cost estimates by area',
     ],
     output: 'Material quantities and preliminary cost estimates',
+    image: '/step2.jpg',
   },
   {
     id: 3,
@@ -53,6 +63,7 @@ export const steps: Step[] = [
       'Weather and timeline adjustments',
     ],
     output: 'Reviewed and approved cost estimates',
+    image: '/step3.jpg',
   },
   {
     id: 4,
@@ -66,5 +77,6 @@ export const steps: Step[] = [
       'Complete documentation package',
     ],
     output: 'Excel bill of quantities and stamped reports',
+    image: '/step4.jpg',
   },
 ];

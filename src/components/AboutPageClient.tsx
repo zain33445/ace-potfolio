@@ -77,7 +77,7 @@ function StatCounter({ end, suffix }: { end: number; suffix: string }) {
   const { formatted, startAnimation } = useCountUp({
     end,
     duration: 2,
-    start: 1,
+    start: 0,
     easing: 'easeOut',
     suffix,
     decimals: 0,
@@ -113,7 +113,7 @@ function StatCounter({ end, suffix }: { end: number; suffix: string }) {
       ref={ref}
       className="font-space text-4xl md:text-5xl font-extrabold text-primary mb-2 font-mono tabular-nums tracking-tight"
     >
-      {started ? formatted : `1${suffix}`}
+      {started ? formatted : `0${suffix}`}
     </h3>
   );
 }
@@ -193,7 +193,7 @@ export default function AboutPageClient() {
                 <About3D />
               </RenderOnViewport>
               <div className="absolute bottom-4 left-4 font-mono text-xs text-on-surface-variant opacity-75 z-10 bg-background/90 px-2 py-1 border border-blueprint-line">
-                Active volumetric viewport tracking
+                Interactive 3D model
               </div>
             </div>
           </div>

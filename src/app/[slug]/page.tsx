@@ -26,6 +26,42 @@ function toUrlSlug(slug: string): string {
   return encodeURIComponent(slug);
 }
 
+function truncate(text: string, max: number): string {
+  if (text.length <= max) return text;
+  return text.slice(0, max).replace(/\s+\S*$/, '') + '…';
+}
+
+/**
+ * Resolve a slug against services and blog posts in parallel.
+ *
+ * `getServiceEnriched`/`getPostBySlug` only return `null` for a confirmed
+ * "no match" — a real CMS/network failure now throws instead of being
+ * swallowed to null (see wpGetListSafe / getPostBySlug). If either lookup
+ * rejects here, we must NOT fall through to notFound(): that would let a
+ * transient WordPress outage get permanently cached as a 404 page by this
+ * route's ISR cache. Only report not-found when both lookups genuinely
+ * completed with no match.
+ */
+async function resolveSlug(
+  slug: string,
+): Promise<{ service: Service } | { post: BlogPost } | null> {
+  const [serviceResult, postResult] = await Promise.allSettled([
+    getServiceEnriched(slug),
+    getPostBySlug(slug),
+  ]);
+
+  if (serviceResult.status === 'fulfilled' && serviceResult.value) {
+    return { service: serviceResult.value };
+  }
+  if (postResult.status === 'fulfilled' && postResult.value) {
+    return { post: postResult.value };
+  }
+  if (serviceResult.status === 'rejected') throw serviceResult.reason;
+  if (postResult.status === 'rejected') throw postResult.reason;
+
+  return null;
+}
+
 export async function generateStaticParams() {
   try {
     const result = await getPosts({ per_page: 100 });
@@ -47,35 +83,35 @@ export async function generateMetadata({
   const { slug } = await params;
   validateSlug(slug);
 
-  // Check if it's a service first
-  const service = await getServiceEnriched(slug);
-  if (service) {
+  const resolved = await resolveSlug(slug);
+
+  if (resolved && 'service' in resolved) {
+    const { service } = resolved;
     return {
       title: service.title,
-      description: service.summary.slice(0, 160),
+      description: truncate(service.summary, 160),
       alternates: {
         canonical: `https://theaceservices.com/${toUrlSlug(slug)}`,
       },
       openGraph: {
         title: `${service.title} | The ACE Services — Pre-Construction Estimation`,
-        description: service.summary.slice(0, 160),
+        description: truncate(service.summary, 160),
         url: `https://theaceservices.com/${toUrlSlug(slug)}`,
       },
     };
   }
 
-  // Otherwise, try blog post
-  const post = await getPostBySlug(slug);
-  if (post) {
+  if (resolved && 'post' in resolved) {
+    const { post } = resolved;
     return {
       title: post.title,
-      description: post.excerpt.slice(0, 160),
+      description: truncate(post.excerpt, 160),
       alternates: {
         canonical: `https://theaceservices.com/${toUrlSlug(slug)}`,
       },
       openGraph: {
         title: `${post.title} | The ACE Services`,
-        description: post.excerpt.slice(0, 160),
+        description: truncate(post.excerpt, 160),
         ...(post.image ? { images: [{ url: post.image }] } : {}),
         url: `https://theaceservices.com/${toUrlSlug(slug)}`,
       },
@@ -105,16 +141,13 @@ export default async function SlugRoutePage({
   const { slug } = await params;
   validateSlug(slug);
 
-  // Route to Service if it exists
-  const service = await getServiceEnriched(slug);
-  if (service) {
-    return <ServiceView service={service} slug={slug} />;
-  }
+  const resolved = await resolveSlug(slug);
 
-  // Route to Blog Post if it exists
-  const post = await getPostBySlug(slug);
-  if (post) {
-    return <BlogPostView post={post} slug={slug} />;
+  if (resolved && 'service' in resolved) {
+    return <ServiceView service={resolved.service} slug={slug} />;
+  }
+  if (resolved && 'post' in resolved) {
+    return <BlogPostView post={resolved.post} slug={slug} />;
   }
 
   notFound();
@@ -347,7 +380,7 @@ function ServiceOverviewSection({ service }: { service: Service }) {
                   <div key={i} className="flex items-start gap-3 pb-4 pl-8">
                     <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-primary mt-2" />
                     <span className="font-sans text-lg text-on-surface-varient leading-relaxed">
-                      {detail} this is 
+                      {detail}
                     </span>
                   </div>
                 ))}
@@ -452,7 +485,7 @@ function CtaSection({ service }: { service: Service }) {
           {service.slug === 'project-management' ? (
             'Send us your project plans, scope, or existing schedule for a preliminary review. We\'ll recommend the appropriate planning and project-control service.'
           ) : (
-            'Submit your blueprints and receive a precision cost schedule within 3–5 business days. Expedited turnaround available.'
+            'Submit your blueprints and receive a precision cost schedule within 24-48 hours. Rush turnaround available.'
           )}
         </p>
         <div className="flex flex-col sm:flex-row items-center gap-4">
@@ -702,7 +735,7 @@ function BlogPostView({ post, slug }: { post: BlogPost; slug: string }) {
           </h2>
           <p className="max-w-lg text-base leading-relaxed text-on-surface-variant">
             Get a precise, AACE-compliant cost estimate for your next construction
-            project. Turnaround in as little as 3–5 business days.
+            project. Turnaround in as little as 24-48 hours.
           </p>
           <div className="mt-4 flex flex-col items-center gap-4 sm:flex-row">
             <Link

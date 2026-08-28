@@ -18,9 +18,21 @@ const SCALE_OPTIONS = [
   { id: 'xlarge', label: 'X-Large', range: '100,000+ SF', icon: '□□□□' },
 ] as const;
 
+const SERVICE_OPTIONS = [
+  'Cost Estimating',
+  'Material Takeoffs',
+  '3D Rendering',
+  'Shop Drawings',
+  'Permit Sets',
+  'Structural & MEP Engineering',
+  'Project Management',
+  'Not sure / General inquiry',
+] as const;
+
 interface ContactFormState {
   projectType: string;
   scale: string;
+  service: string;
   files: File[];
   name: string;
   email: string;
@@ -36,6 +48,7 @@ export default function ContactRequest() {
   const [form, setForm] = useState<ContactFormState>({
     projectType: '',
     scale: '',
+    service: '',
     files: [],
     name: '',
     email: '',
@@ -78,6 +91,7 @@ export default function ContactRequest() {
       fd.append('email', form.email);
       fd.append('projectType', form.projectType);
       fd.append('scale', form.scale);
+      fd.append('service', form.service);
       if (form.files.length > 0) {
         fd.append('file', form.files[0]);
       }
@@ -110,6 +124,7 @@ export default function ContactRequest() {
     setForm({
       projectType: '',
       scale: '',
+      service: '',
       files: [],
       name: '',
       email: '',
@@ -444,6 +459,26 @@ export default function ContactRequest() {
 
                         {/* Narrowed form fields */}
                         <div className="max-w-md mx-auto space-y-4">
+                          {/* Service select */}
+                          <div className="relative p-[1px] rounded-[1.25rem] bg-gradient-to-b from-blueprint-line/20 to-transparent">
+                            <div className="relative rounded-[calc(1.25rem-1px)] bg-background overflow-hidden">
+                              <label htmlFor="contact-service" className="sr-only">
+                                Service of interest
+                              </label>
+                              <select
+                                id="contact-service"
+                                value={form.service}
+                                onChange={(e) => updateForm({ service: e.target.value })}
+                                className="w-full cursor-pointer appearance-none bg-transparent px-6 py-4 font-sans text-lg text-on-background outline-none"
+                              >
+                                <option value="">Service of interest (optional)</option>
+                                {SERVICE_OPTIONS.map((s) => (
+                                  <option key={s} value={s}>{s}</option>
+                                ))}
+                              </select>
+                            </div>
+                          </div>
+
                           {/* Name input */}
                           <div className="relative p-[1px] rounded-[1.25rem] bg-gradient-to-b from-blueprint-line/20 to-transparent">
                             <div className="relative rounded-[calc(1.25rem-1px)] bg-background overflow-hidden">

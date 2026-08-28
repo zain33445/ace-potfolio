@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: 'Client Testimonials',
   description:
     'See what our clients say about The ACE Services. Trusted by general contractors, developers, and project owners for precise pre-construction estimation.',
+  alternates: {
+    canonical: 'https://theaceservices.com/testimonials',
+  },
 };
 
 /* ── Hardcoded testimonial data ──────────────────────────────── */

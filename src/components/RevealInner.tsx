@@ -44,16 +44,29 @@ export default function RevealInner({
   once = true,
 }: RevealInnerProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  /* Default VISIBLE: the server renders real, painted text (no white space,
+     LCP-safe) and content can never get stranded invisible if JS is slow or
+     fails. On mount we only hide elements that are still BELOW the fold, so
+     they can animate in on scroll — anything already on screen just stays. */
+  const [isVisible, setIsVisible] = useState(true);
+  /* Tracks whether we've committed to the animated path (client-only). */
+  const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
 
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const belowFold = el.getBoundingClientRect().top > window.innerHeight * 0.85;
+    if (reduceMotion || !belowFold) return; // already visible; leave it
+
+    /* Hide, then reveal on scroll-in. */
+    setAnimate(true);
+    setIsVisible(false);
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          /* Apply delay via setTimeout, then trigger the CSS transition */
           setTimeout(() => setIsVisible(true), delay * 1000);
           if (once) observer.disconnect();
         } else if (!once) {
@@ -71,11 +84,15 @@ export default function RevealInner({
     <div
       ref={ref}
       className={className}
-      style={{
-        willChange: isVisible ? 'auto' : 'opacity, transform',
-        ...animationStyles[type],
-        ...(isVisible ? visibleStyles[type] : {}),
-      }}
+      style={
+        animate
+          ? {
+              willChange: isVisible ? 'auto' : 'opacity, transform',
+              ...animationStyles[type],
+              ...(isVisible ? visibleStyles[type] : {}),
+            }
+          : undefined
+      }
     >
       {children}
     </div>

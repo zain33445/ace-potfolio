@@ -8,6 +8,7 @@ interface Contact {
   id: number;
   name: string;
   email: string;
+  service: string;
   projectType: string;
   scale: string;
   fileUrl: string;
@@ -277,6 +278,7 @@ export default function AdminDashboard() {
                   <th className="border-2 border-gray-300 px-5 py-4">Date</th>
                   <th className="border-2 border-gray-300 px-5 py-4">Name</th>
                   <th className="border-2 border-gray-300 px-5 py-4">Email</th>
+                  <th className="border-2 border-gray-300 px-5 py-4">Service</th>
                   <th className="border-2 border-gray-300 px-5 py-4">Project</th>
                   <th className="border-2 border-gray-300 px-5 py-4">Scale</th>
                   <th className="border-2 border-gray-300 px-5 py-4">File</th>
@@ -286,7 +288,7 @@ export default function AdminDashboard() {
                 {loading ? (
                   Array.from({ length: 10 }).map((_, i) => (
                     <tr key={i}>
-                      {Array.from({ length: 7 }).map((_, j) => (
+                      {Array.from({ length: 8 }).map((_, j) => (
                         <td key={j} className="border-2 border-gray-200 px-5 py-4">
                           <div className="h-4 w-full max-w-[100px] animate-pulse rounded bg-gray-200" />
                         </td>
@@ -296,13 +298,13 @@ export default function AdminDashboard() {
                 ) : filtered.length === 0 ? (
                   <>
                     <tr>
-                      <td colSpan={7} className="border-2 border-gray-200 px-5 py-12 text-center font-mono text-base text-gray-400">
+                      <td colSpan={8} className="border-2 border-gray-200 px-5 py-12 text-center font-mono text-base text-gray-400">
                         No submissions match the filters.
                       </td>
                     </tr>
                     {Array.from({ length: 9 }).map((_, i) => (
                       <tr key={`empty-${i}`}>
-                        {Array.from({ length: 7 }).map((_, j) => (
+                        {Array.from({ length: 8 }).map((_, j) => (
                           <td key={j} className="border-2 border-gray-200 px-5 py-4">&nbsp;</td>
                         ))}
                       </tr>
@@ -316,6 +318,7 @@ export default function AdminDashboard() {
                         <td className="border-2 border-gray-200 whitespace-nowrap px-5 py-4 text-gray-500">{formatDate(c.date)}</td>
                         <td className="border-2 border-gray-200 px-5 py-4 font-semibold text-gray-900">{c.name}</td>
                         <td className="border-2 border-gray-200 px-5 py-4 text-gray-700">{c.email}</td>
+                        <td className="border-2 border-gray-200 px-5 py-4 text-gray-700">{c.service || '-'}</td>
                         <td className="border-2 border-gray-200 px-5 py-4 capitalize text-gray-700">{c.projectType || '-'}</td>
                         <td className="border-2 border-gray-200 px-5 py-4 text-gray-700">{c.scale || '-'}</td>
                         <td className="border-2 border-gray-200 px-5 py-4">
@@ -329,7 +332,7 @@ export default function AdminDashboard() {
                     ))}
                     {paginated.length < 10 && Array.from({ length: 10 - paginated.length }).map((_, i) => (
                       <tr key={`fill-${i}`}>
-                        {Array.from({ length: 7 }).map((_, j) => (
+                        {Array.from({ length: 8 }).map((_, j) => (
                           <td key={j} className="border-2 border-gray-200 px-5 py-4">&nbsp;</td>
                         ))}
                       </tr>

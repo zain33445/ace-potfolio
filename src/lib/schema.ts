@@ -11,8 +11,10 @@ export const organizationSchema = {
   '@id': ORGANIZATION_ID,
   name: 'The ACE Services',
   description:
-    'The ACE Services is a top construction and estimation company delivering AACE Class 3 cost estimates, material takeoffs, permit sets, and project scheduling for general contractors nationwide.',
+    'The ACE Services is a pre-construction services firm delivering AACE Class 3 cost estimates, material takeoffs, MEP shop drawings, 3D architectural renderings, and permit sets for general contractors nationwide.',
   url: SITE_URL,
+  logo: `${SITE_URL}/aceLogo.webp`,
+  sameAs: ['https://www.linkedin.com/company/aceservicesllc/'],
   areaServed: {
     '@type': 'Country',
     name: 'United States',
@@ -92,6 +94,24 @@ export const serviceSchema = {
           name: 'Permit Sets',
           description:
             'Complete permit-ready document packages including cost schedules and material specifications for municipal submission.',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Shop Drawings',
+          description:
+            'Fabrication-ready MEP, structural, millwork, and architectural shop drawings coordinated to resolve spatial conflicts before fabrication and installation.',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: '3D Architectural Rendering',
+          description:
+            'Photorealistic 3D exterior and interior architectural renderings that support permitting, stakeholder sign-off, and marketing presentation.',
         },
       },
       {

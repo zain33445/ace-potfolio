@@ -25,7 +25,9 @@ export const metadata: Metadata = {
 /* ── Page component ───────────────────────────────────────────── */
 
 export default async function ServicesPage() {
-  const services = await getServicesEnriched();
+  // Only main services on the index — sub-services (3D rendering, shop drawings,
+  // permit sets) are surfaced as internal links on their parent's page instead.
+  const services = (await getServicesEnriched()).filter((s) => !s.parent);
   return (
     <section className="min-h-screen bg-background">
       {/* ════════════════════════════════════════════════════════
@@ -63,7 +65,7 @@ export default async function ServicesPage() {
           <div className="mt-10 flex flex-wrap gap-20 border-t border-blueprint-line pt-8">
             <StatBlock label="SERVICES" value={`0${services.length}`} />
             <StatBlock label="DISCIPLINES" value="04" />
-            <StatBlock label="TURNAROUND" value="24–48 hrs" />
+            <StatBlock label="EST. TURNAROUND" value="24–48 hrs" />
             <StatBlock label="SECTORS" value="3+" />
           </div>
         </div>

@@ -68,7 +68,7 @@ export default function AboutSection() {
               <About3D />
             </RenderOnViewport>
             <div className="absolute bottom-4 left-4 font-mono text-xs text-on-surface-variant opacity-75 z-10 bg-background/90 px-2 py-1 border border-blueprint-line">
-              Active volumetric viewport tracking
+              Interactive 3D model
             </div>
           </div>
         </div>

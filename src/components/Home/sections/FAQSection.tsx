@@ -1,9 +1,26 @@
 import Reveal from '../../../components/Reveal';
-import FAQAccordion from '../../../components/FAQAccordion';
+import FAQAccordion, { questions } from '../../../components/FAQAccordion';
 
 export default function FAQSection() {
   return (
     <section id="faq" className="py-24 px-6 md:px-16 border-b border-blueprint-line bg-surface relative" aria-label="Frequently Asked Questions">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: questions.map((q) => ({
+              '@type': 'Question',
+              name: q.question,
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: q.answer,
+              },
+            })),
+          }),
+        }}
+      />
       <Reveal type="fadeUp">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">

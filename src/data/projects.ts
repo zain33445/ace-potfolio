@@ -42,7 +42,12 @@ export function getAllProjects(): ProjectDetail[] {
 }
 
 export function getFeaturedProjects(currentSlug: string): ProjectDetail[] {
-  return projects.filter((p) => p.slug !== currentSlug).slice(0, 4);
+  return projects.filter((p) => p.slug !== currentSlug).slice(0, 9);
+}
+
+export function getProjectCategories(): string[] {
+  const cats = new Set(projects.map((p) => p.category));
+  return ['ALL','Estimates', ...Array.from(cats).sort().filter((c) => (c.toLocaleLowerCase() !== 'general contractor' && c.toLocaleLowerCase() !== 'sub contractors'))];
 }
 
 export type { ProjectDetail };

@@ -37,6 +37,7 @@ export default function Footer() {
 
   return (
     <footer
+      id="main-footer"
       className="
         bg-primary bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:48px_48px]
         border-t border-white/10
@@ -71,7 +72,7 @@ export default function Footer() {
             <br />
             <br />
             <TextRepel
-              text="Parametric estimating precision for general builders, civil engineers, and trade specialists nationwide. Eliminating manual error thresholds."
+              text="Accurate construction cost estimating for general builders, civil engineers, and trade specialists nationwide. Fewer errors, better bids."
               radius={80}
               strength={50}
               mode="repel"

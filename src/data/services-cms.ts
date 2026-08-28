@@ -93,8 +93,14 @@ export async function getServiceEnriched(
     }
 
     return null;
-  } catch {
-    return baseService || null;
+  } catch (err) {
+    // A known static service has good hardcoded fallback content — safe to
+    // degrade to it on a CMS error. An unknown slug has no fallback, so a
+    // CMS error here must NOT be swallowed into "not a service" — that's
+    // indistinguishable from a real not-found and would let the [slug]
+    // route wrongly cache a 404 for a page that may genuinely exist.
+    if (baseService) return baseService;
+    throw err;
   }
 }
 
@@ -138,9 +144,12 @@ const PRIMARY_SERVICE_SLUGS = new Set(services.map(s => s.slug));
  * Fetch WP pages and rank them based on keyword overlap with the parent service.
  */
 export async function getSubServices(parentService: Service): Promise<Service[]> {
+  // Hardcoded sub-services declared as children of this parent (via `parent`).
+  // Always shown first, even when the CMS returns nothing.
+  const children = services.filter((s) => s.parent === parentService.slug);
   try {
     const pages = await getAllServicePages();
-    if (pages.length === 0) return [];
+    if (pages.length === 0) return children;
 
     // Build parent keyword set from title, slug, summary AND each feature string
     const parentKeywords = new Set([
@@ -174,7 +183,7 @@ export async function getSubServices(parentService: Service): Promise<Service[]>
       .sort((a, b) => b.score - a.score)
       .slice(0, cap);
 
-    return scoredServices.map(({ page }) => {
+    const wpSubs = scoredServices.map(({ page }) => {
       // Check if it exists in hardcoded
       const baseService = getServiceBySlug(page.slug);
       return baseService 
@@ -201,7 +210,10 @@ export async function getSubServices(parentService: Service): Promise<Service[]>
             ctaLabel: 'EXPLORE',
           };
     });
+    // Children first, then any CMS-derived sub-services (deduped by slug).
+    const seen = new Set(children.map((c) => c.slug));
+    return [...children, ...wpSubs.filter((s) => !seen.has(s.slug))];
   } catch {
-    return [];
+    return children;
   }
 }

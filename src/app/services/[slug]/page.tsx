@@ -11,6 +11,20 @@ export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
 }
 
+/**
+ * Every valid slug comes from the local `services` array — fully known at
+ * build time, no CMS dependency. With dynamicParams left at its default
+ * (true), an unknown slug still falls through to an on-demand render that
+ * calls notFound() below; because this route has a loading.tsx, Next.js
+ * treats that render as streamable and commits a 200 status before
+ * notFound()'s digest can take effect (documented Next.js behavior, not an
+ * OpenNext/Cloudflare bug: https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming#status-codes).
+ * dynamicParams=false makes Next.js reject unknown slugs at the router
+ * level instead, before the page (and its Suspense boundary) ever renders,
+ * so the correct 404 status is sent.
+ */
+export const dynamicParams = false;
+
 /* ── Dynamic metadata ─────────────────────────────────────────── */
 
 interface Props {
@@ -380,7 +394,7 @@ function CtaSection({
           {service.slug === 'project-management' ? (
             'Send us your project plans, scope, or existing schedule for a preliminary review. We\'ll recommend the appropriate planning and project-control service.'
           ) : (
-            'Submit your blueprints and receive a precision cost schedule within 3–5 business days. Expedited turnaround available.'
+            'Submit your blueprints and receive a precision cost schedule within 24-48 hours. Rush turnaround available.'
           )}
         </p>
         <div className="flex flex-col sm:flex-row items-center gap-4">

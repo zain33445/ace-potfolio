@@ -4,11 +4,11 @@ import Link from 'next/link';
 import { HelpCircle } from 'lucide-react';
 import { FAQItem } from '../types';
 
-const questions: FAQItem[] = [
+export const questions: FAQItem[] = [
   {
     id: 'faq_01',
     question: 'How long does a construction estimate take?',
-    answer: 'The ACE Services typically delivers detailed cost estimates within 3 to 5 business days, depending on project complexity. Expedited 24-hour turnaround is available for select scope categories, including material takeoffs for residential and light commercial projects.'
+    answer: 'The ACE Services typically delivers detailed cost estimates within 24-48 hours, with larger or more complex scopes taking longer. Rush 24-hour turnaround is available for select scope categories, including material takeoffs for residential and light commercial projects.'
   },
   {
     id: 'faq_02',

@@ -9,6 +9,7 @@ export async function POST(request: Request) {
   let email: string;
   let projectType = '';
   let scale = '';
+  let service = '';
   let file: File | null = null;
 
   try {
@@ -17,6 +18,7 @@ export async function POST(request: Request) {
     email = (fd.get('email') as string) ?? '';
     projectType = (fd.get('projectType') as string) ?? '';
     scale = (fd.get('scale') as string) ?? '';
+    service = (fd.get('service') as string) ?? '';
     file = fd.get('file') as File | null;
   } catch {
     return NextResponse.json({ error: 'Invalid form data' }, { status: 400 });
@@ -36,6 +38,7 @@ export async function POST(request: Request) {
     wpFd.append('email', email);
     wpFd.append('projectType', projectType);
     wpFd.append('scale', scale);
+    wpFd.append('service', service);
     if (file) wpFd.append('file', file);
 
     const res = await fetch(`${WP_BASE}/ace/v1/contact`, {

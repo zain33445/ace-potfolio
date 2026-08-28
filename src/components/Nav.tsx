@@ -107,43 +107,49 @@ export default function Nav() {
   return (
     <>
       <nav
-        ref={navRef}
-        className={`fixed z-50 flex justify-between items-center px-4 md:px-6 py-3 transition-all duration-500 top-0 left-0 w-full rounded-none h-16 md:h-22  ${
-          !isHome
-            ? 'bg-white border-b border-primary shadow-sm'
-            : navScrolled
-              ? 'bg-white/20 backdrop-blur-3xl border shadow-2xl shadow-black/5 ring-1 ring-inset border-transparent border-b-primary ring-transparent'
-              : 'bg-transparent'
-        } ${
-          isPinned ? '-translate-y-full' : 'translate-y-0 '
-        }`}
-        id="main-nav"
-        aria-label="Main navigation"
-      >
+  ref={navRef}
+  className={`fixed z-50 flex justify-between lg:justify-around items-center
+    px-4 md:px-6 py-3
+    transition-[width,left,transform,background-color,box-shadow,border-radius] duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]
+    top-0
+    h-16
+
+    left-1/2 -translate-x-1/2
+    ${
+      navScrolled
+        ? 'w-[95%] lg:w-[75%] rounded-full border-primary bg-white/20 backdrop-blur-3xl shadow-2xl shadow-black/30 ring-1 ring-inset ring-white/20 md:h-18'
+        : 'w-full bg-transparent md:h-20'
+    }
+
+    ${isPinned ? '-translate-y-full' : 'translate-y-3'}
+  `}
+  id="main-nav"
+  aria-label="Main navigation"
+>
         <Link
           href="/"
-          className={`flex items-center pl-2 md:pl-10 gap-2 overflow-hidden transition-colors duration-500 ${navScrolled ? 'text-on-background' : 'text-white'}`}
+          className={`flex items-center pl-2  gap-2 overflow-hidden transition-colors duration-500 ${navScrolled ? 'text-on-background md:pl-0' : 'text-white md:pl-10'}`}
         >
           {/* LOGO img */}
           <img
-            src="/aceLogo.png"
+            src="/aceLogo.webp"
             alt="The Ace Services logo"
             width={80}
             height={30}
-            className='h-10 md:h-16 w-auto'
+            className='h-10 md:h-14 w-auto'
           />
 {/* LOGO text */}
-          <span className={`font-mono text-xl md:text-3xl font-thin tracking-tight whitespace-nowrap ${overHero ? 'text-white' : 'text-primary'}`}>
-            THE 
-            <span className='font-black'>ACE</span>
+          <span className={`font-mono text-xl md:text-2xl font-thin tracking-tight whitespace-nowrap ${navScrolled ? "text-black" : "text-white"}`}>
+            THE
+            <span className='text-primary text-2xl md:text-3xl font-bold'>ACE</span>
             SERVICES
           </span>
         </Link>
 
         {/* Desktop nav — always dark text */}
-        <div className="hidden desktop-nav:flex items-center gap-6 text-2xl">
+        <div className={`hidden desktop-nav:flex items-center  text-xl `}>
           {/* Page links */}
-          <div className="flex items-center gap-5 pr-10">
+          <div className={`flex items-center ${navScrolled ? 'gap-3' : 'gap-2'}`}>
             {PAGE_LINKS.map(({ href, label }) => {
               const isCalculator = href === '/calculator';
               return (
@@ -152,21 +158,15 @@ export default function Nav() {
                   href={href}
                   className={
                     isCalculator
-                      ? `font-mono text-lg font-bold uppercase tracking-wider px-5 py-2 border-2 transition-all duration-500 bracket-corners ${
+                      ? `font-mono text-sm font-bold uppercase tracking-wider px-5 py-2 ${navScrolled ? 'lg:rounded-full' : ''} border-2 transition-all duration-500 ${
                           isActive(href)
                             ? 'border-primary bg-primary text-white'
-                            : navScrolled || isPinned
-                              ? 'border-primary bg-primary text-white hover:bg-transparent hover:text-primary'
-                              : 'border-white bg-transparent text-white hover:bg-primary hover:border-primary'
+                            :  'border-primary bg-primary text-white hover:bg-transparent hover:text-primary'
                         }`
-                      : `font-mono text-base font-bold tracking-widest pb-0.5 transition-colors duration-500 ${
+                      : `font-mono text-sm font-bold border-transparent px-1 tracking-widest pb-0.5 ${navScrolled ? "text-black" : "text-white"} transition-colors duration-500 hover:border-b-primary hover:border-b-2 ${
                           isActive(href)
-                            ? overHero
-                              ? 'text-white'
-                              : 'text-primary'
-                            : overHero
-                              ? 'text-white hover:text-primary'
-                              : 'text-primary hover:text-[#E55A00]'
+                              ? 'border-b-primary'
+                              : ''
                         }`
                   }
                 >
@@ -192,7 +192,7 @@ export default function Nav() {
         socialItems={socialItems as any}
         displaySocials
         displayItemNumbering={true}
-        logoUrl="/aceLogo.png"
+        logoUrl="/aceLogo.webp"
         // menuButtonColor={navScrolled ? '#0A0A0A' : '#ffffff'}
         menuButtonColor={overHero ? '#ffffff' : '#FF6B00'}
         openMenuButtonColor={'#FF6B00'}

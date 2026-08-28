@@ -2,7 +2,7 @@
 /**
  * Plugin Name: ACE Contact Endpoint
  * Description: Custom REST endpoints for ACE Services contact form submissions
- * Version: 1.1
+ * Version: 1.2
  */
 
 if (!defined('ABSPATH')) exit;
@@ -57,6 +57,7 @@ function ace_handle_contact(WP_REST_Request $request) {
     $phone       = sanitize_text_field($request->get_param('phone'));
     $projectType = sanitize_text_field($request->get_param('projectType'));
     $scale       = sanitize_text_field($request->get_param('scale'));
+    $service     = sanitize_text_field($request->get_param('service'));
     $details     = sanitize_textarea_field($request->get_param('details'));
 
     if (empty($name) || empty($email)) {
@@ -101,6 +102,7 @@ function ace_handle_contact(WP_REST_Request $request) {
             'ace_phone'       => $phone,
             'ace_project_type'=> $projectType,
             'ace_scale'       => $scale,
+            'ace_service'     => $service,
             'ace_details'     => $details,
             'ace_file_url'    => $file_url,
         ],
@@ -118,7 +120,7 @@ function ace_handle_contact(WP_REST_Request $request) {
     $to = get_option('admin_email');
     $subject = sprintf('[ACE Services] New contact from %s', $name);
     $message = "Name: $name\nEmail: $email\nPhone: $phone\n";
-    $message .= "Project: $projectType\nScale: $scale\nDetails: $details\n";
+    $message .= "Service: $service\nProject: $projectType\nScale: $scale\nDetails: $details\n";
     if ($file_url) $message .= "File: $file_url\n";
     wp_mail($to, $subject, $message);
 
@@ -149,6 +151,7 @@ function ace_get_contacts() {
             'email'       => get_post_meta($post->ID, 'ace_email', true),
             'projectType' => get_post_meta($post->ID, 'ace_project_type', true),
             'scale'       => get_post_meta($post->ID, 'ace_scale', true),
+            'service'     => get_post_meta($post->ID, 'ace_service', true),
             'fileUrl'     => get_post_meta($post->ID, 'ace_file_url', true),
             'date'        => $post->post_date,
         ];

@@ -16,7 +16,7 @@ export default function CalculatorSection() {
             Instant Bid Cost Configurator
           </h2>
           <p className="font-sans text-lg text-on-surface-variant">
-            Adjust parametric multipliers to generate class-3 budgetary allocations ready for estimation draft submission.
+            Adjust the inputs to generate an AACE Class 3 budget estimate, ready for your draft bid.
           </p>
         </div>
         <div className="max-w-8xl mx-auto">

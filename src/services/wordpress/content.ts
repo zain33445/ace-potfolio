@@ -447,19 +447,19 @@ export function toBlogPost(post: WPPost): BlogPost {
  * post page. Returns `null` when the slug doesn't match any post.
  */
 export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
-  try {
-    const posts = await wpGet<WPPost[]>('/posts', {
-      slug,
-      _embed: true,
-      per_page: 1,
-      categories: INSIGHT_CATEGORY_IDS,
-    });
-    if (!posts.length) return null;
-    return toBlogPost(posts[0]);
-  } catch (err) {
-    console.warn(`[getPostBySlug] Failed to fetch post "${slug}":`, (err as Error).message);
-    return null;
-  }
+  // WordPress returns 200 + [] for a genuine "no post with this slug" —
+  // that's the only case that means not-found. A thrown error here is a
+  // real fetch/network/server failure and must propagate rather than be
+  // swallowed to null, or a transient WordPress outage gets permanently
+  // cached as a 404 page by the [slug] route's ISR cache.
+  const posts = await wpGet<WPPost[]>('/posts', {
+    slug,
+    _embed: true,
+    per_page: 1,
+    categories: INSIGHT_CATEGORY_IDS,
+  });
+  if (!posts.length) return null;
+  return toBlogPost(posts[0]);
 }
 
 /* ------------------------------------------------------------------ */

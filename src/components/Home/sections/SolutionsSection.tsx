@@ -1,34 +1,30 @@
-'use client';
-
-import React, { useState } from 'react';
-import SolutionAccordion from '../../../components/SolutionAccordion';
+import Reveal from "../../Reveal";
+import ServicesDashboard from "./ServicesDashboard";
 
 export default function SolutionsSection() {
-  const [activeIndex, setActiveIndex] = useState(0);
-
   return (
     <section
       id="solutions"
       className="relative bg-background border-b border-blueprint-line"
       aria-label="Core Service Solutions"
     >
-      <div className="w-full max-w-8xl mx-auto px-6 md:px-16 py-12 flex flex-col">
+      <div className="w-full max-w-8xl mx-auto px-6 md:px-16 py-24 flex flex-col">
         {/* Heading */}
-        <div className="text-center max-w-2xl mx-auto mb-16 space-y-1">
-          <span className="font-mono text-sm text-primary font-bold block">Our Capabilities</span>
+        <Reveal type="fadeUp" className="text-left space-y-2 mb-6 m-auto w-7xl">
           <h2 className="font-space text-4xl md:text-5xl font-extrabold text-on-background tracking-tighter">
-            Core Service Solutions
+            Core Service
           </h2>
-          <p className="font-sans text-lg text-on-surface-variant">
-            As a top construction and estimation company, The ACE Services operates across four specialized divisions engineered to deliver highly reliable pricing models, architectural reviews, and full-lifecycle project support, all built to fit tight bid schedule pipelines.
+          <p className="font-sans text-lg text-on-surface-variant max-w-2xl">
+            As a top construction and estimation company, The ACE Services
+            operates across four specialized divisions engineered to deliver
+            highly reliable pricing models, architectural reviews, and
+            full-lifecycle project support, all built to fit tight bid schedule
+            pipelines.
           </p>
-        </div>
-
-        {/* Accordion */}
-        <SolutionAccordion
-          activeIndex={activeIndex}
-          onCardClick={setActiveIndex}
-        />
+        </Reveal>
+        <Reveal type="fadeUp" delay={0.15}>
+          <ServicesDashboard />
+        </Reveal>
       </div>
     </section>
   );

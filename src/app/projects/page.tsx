@@ -10,7 +10,7 @@ import { getAllProjects } from '../../data/projects';
 /* ── Page metadata ────────────────────────────────────────────── */
 
 export const metadata: Metadata = {
-  title: 'Projects',
+  title: 'Construction Estimating Portfolio',
   description:
     'Portfolio of construction estimating company projects — AACE Class 3 cost estimates delivered across residential, commercial, industrial, and municipal builds nationwide.',
   alternates: {
@@ -90,7 +90,7 @@ export default async function ProjectsPage() {
 
           {/* Stats strip */}
           <div className="mt-10 flex flex-wrap gap-8 border-t border-blueprint-line pt-8">
-            <StatBlock label="PROJECTS_COMPLETED" value={`${projects.length}`} />
+            <StatBlock label="FEATURED_PROJECTS" value={`${projects.length}`} />
             <StatBlock label="CATEGORIES" value="5" />
             <StatBlock label="AVG_COST_ACCURACY" value="±15%" />
           </div>
@@ -103,8 +103,8 @@ export default async function ProjectsPage() {
           As a nationwide construction estimating company, The ACE Services
           has delivered pre-construction estimates and material takeoffs on
           2,893+ projects spanning residential, commercial, industrial,
-          hospitality, and municipal sectors. Every project below represents
-          a complete{' '}
+          hospitality, and municipal sectors since 2019. The {projects.length}{' '}
+          featured below are a curated sample — each represents a complete{' '}
           <Link href="/cost-estimating" className="font-semibold text-primary hover:underline">
             construction cost estimating
           </Link>{' '}
@@ -162,7 +162,7 @@ export default async function ProjectsPage() {
           </h2>
           <p className="max-w-lg text-base leading-relaxed text-on-surface-variant">
             Submit your blueprints and receive a precision cost schedule within
-            3–5 business days. Expedited turnaround available.
+            24-48 hours. Rush turnaround available.
           </p>
           <Link
             href="/contact-us"

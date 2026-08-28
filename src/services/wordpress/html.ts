@@ -11,6 +11,29 @@
 
 import sanitize from 'sanitize-html';
 
+/**
+ * Rewrite an internal link that points at the CMS domain to the equivalent
+ * public-site URL.
+ *
+ * Elementor authors internal links against `cms.theaceservices.com` because
+ * that's the domain the WYSIWYG editor runs on — but that domain is the
+ * headless WordPress backend (`Disallow: /` in its robots.txt, `noindex`),
+ * never meant to be browsed directly. A reader who clicks one of these
+ * in-content links lands on the raw, unstyled backend instead of the public
+ * Next.js site, and any link equity flows to a domain Google won't index.
+ *
+ * `/wp-content/uploads/*` links are the one legitimate exception — those are
+ * real asset files (PDFs, images) that only exist on the CMS host and must
+ * keep pointing there.
+ */
+function rewriteCmsPageLink(href: string): string {
+  const match = /^https?:\/\/cms\.theaceservices\.com(\/.*)?$/i.exec(href);
+  if (!match) return href;
+  const path = match[1] ?? '/';
+  if (path.startsWith('/wp-content/')) return href;
+  return `https://theaceservices.com${path}`;
+}
+
 const NAMED_ENTITIES: Record<string, string> = {
   amp: '&',
   lt: '<',
@@ -121,7 +144,7 @@ export function sanitizeHtml(html: string): string {
   const cleaned = stripRankMathBlocks(html);
   return sanitize(cleaned, {
     allowedTags: [
-      'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+      'p', 'h2', 'h3', 'h4', 'h5', 'h6',
       'ul', 'ol', 'li', 'dl', 'dt', 'dd',
       'blockquote', 'pre', 'hr', 'br',
       'strong', 'em', 'b', 'i', 'u', 's', 'code', 'sup', 'sub',
@@ -129,6 +152,24 @@ export function sanitizeHtml(html: string): string {
       'table', 'thead', 'tbody', 'tfoot', 'tr', 'th', 'td', 'caption',
       'a', 'img',
     ],
+    // The post page renders its own <h1> for the title outside this content
+    // blob, so any <h1> inside the body is always a duplicate — Elementor
+    // sources sometimes wrap dozens of paragraphs in <h1> (heading soup).
+    // Demote to <p>, not <h2>: extractHeadings() turns every h2/h3 into a
+    // TOC entry, so retagging as h2 would flood the sidebar TOC with
+    // paragraph-length "headings". The content is plain prose, so <p> is
+    // also the semantically correct tag.
+    transformTags: {
+      h1: 'p',
+      // Send in-content internal links to the public site instead of the
+      // headless CMS backend — see rewriteCmsPageLink() above.
+      a: (tagName, attribs) => {
+        if (attribs.href) {
+          attribs.href = rewriteCmsPageLink(attribs.href);
+        }
+        return { tagName, attribs };
+      },
+    },
     allowedAttributes: {
       'a': ['href'],
       'img': ['src', 'alt'],
@@ -147,6 +188,12 @@ export function sanitizeHtml(html: string): string {
       lowerCaseTags: true,
       lowerCaseAttributeNames: true,
     },
+    // Rewrite the internal CMS hostname when it appears as visible body
+    // text (e.g. "(cms.theaceservices.com)" typed into a paragraph by
+    // mistake) so readers/crawlers never see the headless backend's
+    // hostname. This only touches text nodes — `src`/`href` attribute
+    // values (legitimate asset URLs on the CMS host) are untouched.
+    textFilter: (text) => text.replace(/cms\.theaceservices\.com/gi, 'theaceservices.com'),
   });
 }
 

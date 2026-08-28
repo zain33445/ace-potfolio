@@ -2,17 +2,11 @@
 
 import { useLayoutEffect, type ReactNode } from 'react';
 import { usePathname } from 'next/navigation';
-import dynamic from 'next/dynamic';
 import Nav from '../components/Nav';
 import { PinProvider } from '../PinContext';
-const Footer = dynamic(() => import('../components/Footer'), { ssr: false });
+import dynamic from 'next/dynamic';
 
-/* Lazy-load the CursorFollower — it also pulls in gsap. Keeping it
-   out of the shared layout chunk saves ~50KB of JS on every page. */
-const CursorFollower = dynamic(
-  () => import('../components/CursorFollower'),
-  { ssr: false },
-);
+const Footer = dynamic(() => import('../components/Footer'), { ssr: false });
 
 export default function LayoutShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
@@ -54,7 +48,6 @@ export default function LayoutShell({ children }: { children: ReactNode }) {
   return (
     <PinProvider>
       <div className="min-h-screen relative antialiased selection:bg-primary selection:text-white">
-        <CursorFollower />
         <header>
           <Nav />
         </header>

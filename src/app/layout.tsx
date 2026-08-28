@@ -4,7 +4,6 @@ import Script from 'next/script';
 import './globals.css';
 import LayoutShell from './layout-shell';
 import ThirdPartyScripts from '@/src/components/ThirdPartyScripts';
-import LiquidGlassFilter from '@/src/components/ui/liquid-glass-filter';
 import {
   SITE_URL as url,
   OG_IMAGE as ogImage,
@@ -13,49 +12,33 @@ import {
 
 /* ── next/font (self-hosted woff2, no external build/runtime requests) ── */
 
-const inter = localFont({
+const raleway = localFont({
   src: [
-    { path: './fonts/google/inter/400.woff2', weight: '400', style: 'normal' },
-    { path: './fonts/google/inter/500.woff2', weight: '500', style: 'normal' },
-    { path: './fonts/google/inter/600.woff2', weight: '600', style: 'normal' },
+    { path: './fonts/google/raleway/300.woff2', weight: '300', style: 'normal' },
+    { path: './fonts/google/raleway/400.woff2', weight: '400', style: 'normal' },
+    { path: './fonts/google/raleway/500.woff2', weight: '500', style: 'normal' },
+    { path: './fonts/google/raleway/600.woff2', weight: '600', style: 'normal' },
+    { path: './fonts/google/raleway/700.woff2', weight: '700', style: 'normal' },
   ],
-  variable: '--font-inter',
+  variable: '--font-raleway',
   display: 'swap',
 });
 
-const jetbrainsMono = localFont({
+const montserrat = localFont({
   src: [
-    { path: './fonts/google/jetbrains-mono/400.woff2', weight: '400', style: 'normal' },
-    { path: './fonts/google/jetbrains-mono/500.woff2', weight: '500', style: 'normal' },
-    { path: './fonts/google/jetbrains-mono/700.woff2', weight: '700', style: 'normal' },
+    { path: './fonts/google/montserrat/400.woff2', weight: '400', style: 'normal' },
+    { path: './fonts/google/montserrat/500.woff2', weight: '500', style: 'normal' },
+    { path: './fonts/google/montserrat/600.woff2', weight: '600', style: 'normal' },
+    { path: './fonts/google/montserrat/700.woff2', weight: '700', style: 'normal' },
+    { path: './fonts/google/montserrat/800.woff2', weight: '800', style: 'normal' },
   ],
-  variable: '--font-jetbrains-mono',
+  variable: '--font-montserrat',
   display: 'swap',
 });
 
-const spaceGrotesk = localFont({
-  src: [
-    { path: './fonts/google/space-grotesk/500.woff2', weight: '500', style: 'normal' },
-    { path: './fonts/google/space-grotesk/600.woff2', weight: '600', style: 'normal' },
-    { path: './fonts/google/space-grotesk/700.woff2', weight: '700', style: 'normal' },
-  ],
-  variable: '--font-space',
-  display: 'swap',
-});
+/* ── Nourd (brand font — used on ServicesDashboard1, unused on homepage) ── */
 
-/* ── Nourd (self-hosted brand font for the logo) ── */
-
-const nourd = localFont({
-  src: [
-    { path: './fonts/nourd/nourd_regular.ttf', weight: '400', style: 'normal' },
-    { path: './fonts/nourd/nourd_medium.ttf', weight: '500', style: 'normal' },
-    { path: './fonts/nourd/nourd_semi_bold.ttf', weight: '600', style: 'normal' },
-    { path: './fonts/nourd/nourd_bold.ttf', weight: '700', style: 'normal' },
-    { path: './fonts/nourd/nourd_heavy.ttf', weight: '800', style: 'normal' },
-  ],
-  variable: '--font-nourd',
-  display: 'swap',
-});
+/* ── Wosker (card title display font — unused) ── */
 
 export const metadata: Metadata = {
   metadataBase: new URL(url),
@@ -64,18 +47,7 @@ export const metadata: Metadata = {
     template: '%s | The ACE Services',
   },
   description:
-    'The ACE Services delivers AACE Class 3 cost estimates, material takeoffs, and permit sets for general contractors across 35 US states. Bids in 24-48 hours.',
-  keywords: [
-    'construction estimating services',
-    'construction cost estimation',
-    'material takeoffs',
-    'building cost estimator',
-    'quantity surveying',
-    'cost estimating',
-    'pre-construction',
-    'AACE',
-    'CSI MasterFormat',
-  ],
+    'The ACE Services delivers AACE Class 3 cost estimates, material takeoffs, and permit sets for general contractors across 35 US states. Cost estimates in 24-48 hours.',
   openGraph: {
     type: 'website',
     siteName: 'The ACE Services',
@@ -94,7 +66,7 @@ export const metadata: Metadata = {
     images: [ogImage],
   },
   icons: {
-    icon: '/aceLogo.png',
+    icon: '/aceLogo.webp',
   },
   alternates: {
     canonical: `${url}/`,
@@ -108,7 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable} ${nourd.variable}`}
+      className={`${raleway.variable} ${montserrat.variable}`}
     >
       <head>
         {/* JSON-LD structured data — single entity graph */}
@@ -165,7 +137,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-screen antialiased selection:bg-primary selection:text-white" suppressHydrationWarning>
 
         <ThirdPartyScripts />
-        <LiquidGlassFilter />
         <LayoutShell>{children}</LayoutShell>
       </body>
     </html>

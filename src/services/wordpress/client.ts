@@ -149,9 +149,12 @@ export async function wpGetList<T>(
 }
 
 /**
- * Safely fetch a list, returning an empty array on 404/network errors
- * instead of throwing. Useful for optional content (projects, testimonials)
- * that may not exist in the CMS yet.
+ * Safely fetch a list, returning an empty array only when WordPress
+ * confirms there's genuinely nothing there (404). Network failures and
+ * server errors (status 0 / 5xx) are rethrown — they are NOT "not found"
+ * and must not be cached as such by an ISR route that calls notFound()
+ * on an empty result. Swallowing them here previously caused transient
+ * WordPress outages to get permanently cached as 404 pages.
  */
 export async function wpGetListSafe<T>(
   path: string,
@@ -160,13 +163,9 @@ export async function wpGetListSafe<T>(
   try {
     return await wpGetList<T>(path, query);
   } catch (err) {
-    // WordPress returns 404 when a resource type doesn't exist or
-    // the query returns zero results. Both are non-fatal for us.
-    if (err instanceof WordPressError && (err.status === 404 || err.status === 0)) {
+    if (err instanceof WordPressError && err.status === 404) {
       return { data: [], pagination: { total: 0, totalPages: 0 } };
     }
-    // For other errors, log and return empty rather than crashing the build.
-    console.warn(`[wpGetListSafe] ${path} failed:`, (err as Error).message);
-    return { data: [], pagination: { total: 0, totalPages: 0 } };
+    throw err;
   }
 }

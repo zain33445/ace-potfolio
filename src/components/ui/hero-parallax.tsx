@@ -112,7 +112,7 @@ export const HeroParallax = ({
             muted
             playsInline
             preload="metadata"
-            poster="/mobile-poster.jpg"
+            poster="/mobile-poster.webp"
             src="/mobile-video-header.mp4"
             className="
               object-cover z-0
@@ -332,7 +332,7 @@ export const Header = ({
         w-[100%] max-w-[900px]
         display-flex flex-col items-start justify-start gap-y-20
         text-white
-        liquid-glass bg-white/10 border border-white/20
+        bg-white/10 border border-white/20 backdrop-blur-md
         md:w-4/5 md:px-2 md:pt-10 md:pb-15
               rounded-3xl
 
@@ -508,7 +508,7 @@ export const Header = ({
           "
         >
           <img
-            src="/bid_icon.png"
+            src="/bid_icon.webp"
             alt=""
             className="
               z-10
