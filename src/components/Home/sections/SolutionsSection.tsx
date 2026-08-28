@@ -10,7 +10,7 @@ export default function SolutionsSection() {
     >
       <div className="w-full max-w-8xl mx-auto px-6 md:px-16 py-24 flex flex-col">
         {/* Heading */}
-        <Reveal type="fadeUp" className="text-left space-y-2 mb-6 m-auto w-7xl">
+        <Reveal type="fadeUp" className="text-left space-y-2 mb-6 m-auto w-full max-w-7xl">
           <h2 className="font-space text-4xl md:text-5xl font-extrabold text-on-background tracking-tighter">
             Core Service
           </h2>

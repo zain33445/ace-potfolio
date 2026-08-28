@@ -316,11 +316,13 @@
     filter: invert(100%);
   }
 
-  /* Match nav bar height (h-16 = 4rem @ root 13px) so toggle button is vertically centered and right-aligned */
+  /* Match nav bar height (h-16 = 4rem @ root 13px) so toggle button is vertically centered and right-aligned.
+     The nav content is nudged down by translate-y-3 (0.75rem); mirror it so the toggle lines up with the logo. */
   .staggered-menu-header {
     padding: 0 16px;
     height: 4rem;
     justify-content: flex-end;
+    transform: translateY(0.75rem);
   }
 
   /* Hide logo on all hamburger-visible widths — nav already shows it */
@@ -337,6 +339,7 @@
 @media (min-width: 768px) and (max-width: 1499px) {
   .staggered-menu-header {
     height: 5.5rem;
+    transform: translateY(0.75rem);
   }
 }
 
