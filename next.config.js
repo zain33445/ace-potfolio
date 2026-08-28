@@ -4,6 +4,13 @@ const nextConfig = {
 
   experimental: {
     optimizePackageImports: ['motion', 'lucide-react', 'three', '@react-three/fiber'],
+    // The blog/pages content is prerendered from shared WordPress hosting that
+    // throws sporadic 500s under a burst of concurrent build requests. Cap how
+    // many pages generate at once so we don't hammer the CMS, and let Next retry
+    // a page whose data fetch still transiently fails (on top of the fetch-level
+    // retry in services/wordpress/client.ts).
+    staticGenerationMaxConcurrency: 4,
+    staticGenerationRetryCount: 3,
   },
 
   transpilePackages: [

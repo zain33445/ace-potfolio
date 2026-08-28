@@ -72,6 +72,44 @@ function sanitizeUrlForLog(url: string): string {
 }
 
 /**
+ * Fetch a WP URL, retrying transient failures (network errors and 5xx) with
+ * backoff before giving up. The CMS is shared WordPress hosting that sporadically
+ * throws 500s under the burst of concurrent requests a full prerender fires; a
+ * single un-retried 500 would abort the entire build. 4xx (incl. 404) is NOT
+ * retried — it's a definitive answer, and wpGetListSafe relies on 404 surfacing.
+ * ponytail: fixed 3 attempts / linear backoff; fine for a build-time burst.
+ */
+async function fetchWithRetry(url: string, logSafeUrl: string): Promise<Response> {
+  const delays = [500, 1200, 2500, 5000, 8000];
+  let lastErr: WordPressError | null = null;
+
+  for (let attempt = 0; attempt <= delays.length; attempt++) {
+    try {
+      const res = await fetch(url, {
+        headers: { Accept: 'application/json' },
+        next: { revalidate: 3600 },
+      });
+      if (res.ok || res.status < 500) return res; // success or non-retryable (4xx)
+      lastErr = new WordPressError(
+        `WordPress responded ${res.status} ${res.statusText} for ${logSafeUrl}`,
+        res.status,
+        logSafeUrl,
+      );
+    } catch (cause) {
+      lastErr = new WordPressError(
+        `Network error fetching ${logSafeUrl}: ${(cause as Error).message}`,
+        0,
+        logSafeUrl,
+      );
+    }
+    if (attempt < delays.length) {
+      await new Promise((r) => setTimeout(r, delays[attempt]));
+    }
+  }
+  throw lastErr!;
+}
+
+/**
  * GET a `wp/v2` resource and parse JSON. `path` is relative to the base,
  * e.g. `'/posts'` or `'/pages/5095'`.
  *
@@ -82,19 +120,7 @@ export async function wpGet<T>(path: string, query?: WPListQuery): Promise<T> {
   const url = `${wpBaseUrl()}${path}${buildQuery(query)}`;
   const logSafeUrl = sanitizeUrlForLog(url);
 
-  let res: Response;
-  try {
-    res = await fetch(url, {
-      headers: { Accept: 'application/json' },
-      next: { revalidate: 3600 },
-    });
-  } catch (cause) {
-    throw new WordPressError(
-      `Network error fetching ${logSafeUrl}: ${(cause as Error).message}`,
-      0,
-      logSafeUrl,
-    );
-  }
+  const res = await fetchWithRetry(url, logSafeUrl);
 
   if (!res.ok) {
     throw new WordPressError(
@@ -120,19 +146,7 @@ export async function wpGetList<T>(
   const url = `${wpBaseUrl()}${path}${buildQuery(query)}`;
   const logSafeUrl = sanitizeUrlForLog(url);
 
-  let res: Response;
-  try {
-    res = await fetch(url, {
-      headers: { Accept: 'application/json' },
-      next: { revalidate: 3600 },
-    });
-  } catch (cause) {
-    throw new WordPressError(
-      `Network error fetching ${logSafeUrl}: ${(cause as Error).message}`,
-      0,
-      logSafeUrl,
-    );
-  }
+  const res = await fetchWithRetry(url, logSafeUrl);
 
   if (!res.ok) {
     throw new WordPressError(
