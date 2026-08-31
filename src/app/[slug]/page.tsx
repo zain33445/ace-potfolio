@@ -14,6 +14,15 @@ import TableOfContents from '@/src/components/TableOfContents';
 import { services, getServiceIcon, type Service } from '@/src/data/services';
 import { getServiceEnriched, getSubServices } from '@/src/data/services-cms';
 
+/**
+ * Serve prerendered/ISR pages for this route rather than rendering on-demand
+ * against the slow shared-WP CMS on every hit. Without this the route had no
+ * revalidate (unlike every other content route) so any page that missed the
+ * build prerender paid the full CMS round-trip each request — the 2.5–6.6s
+ * TTFB Site Audit flagged. One-hour ISR caches the render at the edge.
+ */
+export const revalidate = 3600;
+
 /* ── Slug validation ──────────────────────────────────────────── */
 
 const SLUG_RE = /^[\p{L}\p{N}\p{M}\p{So}]+(?:-[\p{L}\p{N}\p{M}\p{So}]+)*$/u;

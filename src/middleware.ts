@@ -1,4 +1,20 @@
 import { NextResponse, type NextRequest } from 'next/server';
+import { CANONICAL_TO_WP } from './services/wordpress/slug-aliases';
+
+// Clean canonical slugs that the app serves aliased malformed-slug posts under.
+// An emoji/percent-encoded URL is only redirected here when its stripped form
+// is one of these (i.e. the target is known to resolve) — anything else stays a
+// hard 404 so we never 301 into a soft-404.
+const KNOWN_CANONICAL_SLUGS = new Set(Object.keys(CANONICAL_TO_WP));
+
+/** Strip everything but [a-z0-9-] to recover a clean slug from a junk one. */
+function toAsciiSlug(decoded: string): string {
+  return decoded
+    .replace(/[^a-z0-9-]/gi, '')
+    .replace(/-{2,}/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .toLowerCase();
+}
 
 /**
  * Middleware — request-level interception before any route handler.
@@ -28,11 +44,13 @@ import { NextResponse, type NextRequest } from 'next/server';
  *    The only slugs that have ever failed that pattern are three
  *    percent-encoded emoji slugs WordPress produced from posts with emoji
  *    in the title — a known symptom of this WP install's spam/junk-content
- *    problem (see src/services/wordpress/content.ts). Rejecting anything
- *    that doesn't match at the edge, before Next.js routing runs, gives a
- *    true HTTP 404 for this entire bug class — including any similar junk
- *    slug WordPress produces in the future — without touching the
- *    loading.tsx/Suspense architecture that made an in-route fix unsafe.
+ *    problem (see src/services/wordpress/content.ts). Those three posts are
+ *    real and published, so the app serves them under clean canonical slugs
+ *    (see slug-aliases.ts) and we 301 the junk URL there. Any OTHER slug that
+ *    fails the pattern has no known-good target, so it gets a true edge 404 —
+ *    resolving the whole bug class before Next.js routing runs, without
+ *    touching the loading.tsx/Suspense architecture that made an in-route fix
+ *    unsafe (and never 301-ing into a soft-404).
  *
  *    This does NOT make well-formed-but-nonexistent slugs (e.g.
  *    /some-deleted-post) 404 — that residual case is still bounded by the
@@ -114,6 +132,17 @@ export function middleware(request: NextRequest) {
   if (isSingleSegment && !KNOWN_TOP_LEVEL_ROUTES.has(segment)) {
     const decoded = decodeURIComponent(segment);
     if (!VALID_SLUG_RE.test(decoded)) {
+      // WordPress baked an emoji from the post title into the slug
+      // (e.g. "🏗️-warehouse-development-…"). The post is real but only
+      // reachable under a clean canonical slug the app now serves it at
+      // (see slug-aliases.ts). If stripping the junk yields one of those
+      // known-good slugs, 301 there so the indexed URL keeps its equity.
+      const clean = toAsciiSlug(decoded);
+      if (KNOWN_CANONICAL_SLUGS.has(clean)) {
+        const url = request.nextUrl.clone();
+        url.pathname = `/${clean}`;
+        return NextResponse.redirect(url, 301);
+      }
       return new NextResponse(
         '<!doctype html><title>404 Not Found</title><h1>404 Not Found</h1><p>The page you are looking for does not exist.</p>',
         {

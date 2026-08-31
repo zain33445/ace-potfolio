@@ -16,6 +16,7 @@
  */
 
 import { wpGet, wpGetList, wpGetListSafe } from './client';
+import { canonicalSlugFor, wpSlugFor } from './slug-aliases';
 import { cleanExcerpt, cleanTitle, decodeEntities, htmlToArticle, htmlToText, sanitizeHtml } from './html';
 import type { WPMedia, WPPage, WPPageQuery, WPPost, WPPostQuery, WPListResponse } from './types';
 
@@ -224,7 +225,7 @@ function extractMetaNumber(
 export function toInsight(post: WPPost): Insight {
   return {
     id: post.id,
-    slug: post.slug,
+    slug: canonicalSlugFor(post.slug),
     title: cleanTitle(post.title.rendered),
     excerpt: cleanExcerpt(post.excerpt.rendered),
     date: post.date,
@@ -429,7 +430,7 @@ export async function getInsights(limit = 6): Promise<Insight[]> {
 export function toBlogPost(post: WPPost): BlogPost {
   return {
     id: post.id,
-    slug: post.slug,
+    slug: canonicalSlugFor(post.slug),
     title: cleanTitle(post.title.rendered),
     excerpt: cleanExcerpt(post.excerpt.rendered),
     content: sanitizeHtml(post.content.rendered),
@@ -452,14 +453,27 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
   // real fetch/network/server failure and must propagate rather than be
   // swallowed to null, or a transient WordPress outage gets permanently
   // cached as a 404 page by the [slug] route's ISR cache.
-  const posts = await wpGet<WPPost[]>('/posts', {
-    slug,
-    _embed: true,
-    per_page: 1,
-    categories: INSIGHT_CATEGORY_IDS,
-  });
-  if (!posts.length) return null;
-  return toBlogPost(posts[0]);
+  // Try the slug exactly as requested first. A few posts have malformed WP
+  // slugs (an emoji percent-encoded into the slug); those are exposed under a
+  // clean canonical slug, so if the clean lookup finds nothing AND we hold an
+  // alias for it, retry with the real WP slug. Trying clean-first means that
+  // once such a post is renamed to its clean slug in WordPress, the first query
+  // resolves and the (now stale) alias is never used — so a rename can't break
+  // it, and neither can a leftover alias entry.
+  const candidates = [slug];
+  const aliased = wpSlugFor(slug);
+  if (aliased !== slug) candidates.push(aliased);
+
+  for (const candidate of candidates) {
+    const posts = await wpGet<WPPost[]>('/posts', {
+      slug: candidate,
+      _embed: true,
+      per_page: 1,
+      categories: INSIGHT_CATEGORY_IDS,
+    });
+    if (posts.length) return toBlogPost(posts[0]);
+  }
+  return null;
 }
 
 /* ------------------------------------------------------------------ */

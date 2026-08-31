@@ -24,6 +24,13 @@ const nextConfig = {
   },
 
   images: {
+    // The CMS origin (shared WP hosting) is slow — a single source PNG can take
+    // ~4s to serve. Without a long cache TTL the optimizer re-fetches that slow
+    // origin on every cache miss, which under crawl load returned 504 (timeout)
+    // and 403 (rate-limit) for /_next/image and showed up as "broken images" in
+    // Site Audit. Cache each optimized variant for 31 days so a given image hits
+    // the origin at most once per month per size.
+    minimumCacheTTL: 2678400,
     remotePatterns: [
       {
         protocol: 'https',
