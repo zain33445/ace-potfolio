@@ -61,7 +61,25 @@ export default async function ServiceDetailPage({ params }: Props) {
   const Icon = getServiceIcon(service.id);
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-background overflow-x-hidden">
+      {/* Service structured data — page-specific @id prevents cross-page mismatch */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            '@id': `https://theaceservices.com/services/${service.slug}#service`,
+            name: service.title,
+            serviceType: service.title,
+            description: service.summary,
+            provider: { '@id': 'https://theaceservices.com/#organization' },
+            url: `https://theaceservices.com/services/${service.slug}`,
+            areaServed: { '@type': 'Country', name: 'United States' },
+          }),
+        }}
+      />
+
       {/* BreadcrumbList structured data */}
       <script
         type="application/ld+json"
@@ -139,8 +157,8 @@ export default async function ServiceDetailPage({ params }: Props) {
             </div>
           </div>
 
-          <p className="mt-6 max-w-5xl bg-black font-sans text-lg leading-relaxed text-on-surface-variant md:text-left md:text-xl text-justify">
-            deskjkfdsjjdsjf{service.description}
+          <p className="mt-6 max-w-5xl font-sans text-lg leading-relaxed text-on-surface-variant md:text-xl">
+            {service.description}
           </p>
 
           {/* Quick stats row */}
@@ -154,7 +172,7 @@ export default async function ServiceDetailPage({ params }: Props) {
       {/* ════════════════════════════════════════════════════════
           MAIN CONTENT — SIDEBAR + DETAIL
           ════════════════════════════════════════════════════════ */}
-      <div className="mx-auto max-w-8xl px-5 px-[10px] text-justify py-16 md:px-[var(--spacing-margin-desktop)] md:py-20">
+      <div className="mx-auto max-w-8xl px-[var(--spacing-margin-mobile)] py-16 md:px-[var(--spacing-margin-desktop)] md:py-20">
         <div className="grid gap-12 lg:grid-cols-[300px_1fr]">
           {/* ── Sidebar: Featured Services ── */}
           <aside className="order-2 lg:order-1">
@@ -162,14 +180,14 @@ export default async function ServiceDetailPage({ params }: Props) {
               <div className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
                 Related Services
               </div>
-              <div className="space-y-4">
+              <div className="flex flex-wrap gap-3 lg:flex-col lg:gap-0 lg:space-y-4">
                 {featured.map((s) => {
                   const SvgIcon = getServiceIcon(s.id);
                   return (
                     <Link
                       key={s.id}
                       href={`/services/${s.slug}`}
-                      className="group flex gap-3 border border-blueprint-line bg-surface p-3 transition-all duration-300 hover:border-primary hover:shadow-[0_0_20px_rgba(255,107,0,0.06)]"
+                      className="group flex min-w-[240px] flex-1 gap-3 border border-blueprint-line bg-surface p-3 transition-all duration-300 hover:border-primary hover:shadow-[0_0_20px_rgba(255,107,0,0.06)] lg:min-w-0 lg:flex-none"
                     >
                       <div className="flex items-center justify-center w-12 h-12 border border-blueprint-line bg-background bracket-corners flex-shrink-0 group-hover:border-primary transition-colors">
                         <SvgIcon className="w-4 h-4 text-primary" />

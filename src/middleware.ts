@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { CANONICAL_TO_WP } from './services/wordpress/slug-aliases';
+import { getValidSlugs } from './lib/valid-slugs';
 
 // Clean canonical slugs that the app serves aliased malformed-slug posts under.
 // An emoji/percent-encoded URL is only redirected here when its stripped form
@@ -52,10 +53,12 @@ function toAsciiSlug(decoded: string): string {
  *    touching the loading.tsx/Suspense architecture that made an in-route fix
  *    unsafe (and never 301-ing into a soft-404).
  *
- *    This does NOT make well-formed-but-nonexistent slugs (e.g.
- *    /some-deleted-post) 404 — that residual case is still bounded by the
- *    same Suspense limitation and would need a real existence check to
- *    close, which is a separate, larger change.
+ *    Well-formed-but-nonexistent slugs (e.g. /some-deleted-post, or any
+ *    invented `/electrical-estimating` typo before that page exists) are
+ *    closed by the second check in the same block: lib/valid-slugs.ts holds
+ *    a static + WP-derived slug set (10-min TTL, fail-open on CMS outage);
+ *    a well-formed slug not in that set gets an edge 404 before the Suspense
+ *    boundary can commit 200.
  *
  * 3. `X-Robots-Tag: noindex` for pages that must stay reachable (a real
  *    audience still needs the URL) but must not be indexed — e.g. an
@@ -70,6 +73,35 @@ const GONE_URLS = new Set<string>([
   '/sample-page',
   '/sample-page/',
 ]);
+
+// Legacy URLs → 301 permanent redirect to the canonical consolidated target.
+// Sources: the 15 cannibalizing blog posts identified in
+// seo/orphan-and-consolidation-plan-2026-08-24.md (Ahrefs confirmed zero
+// referring domains on any source, so no equity at risk), plus the slug
+// collision reserving /outsource-construction-estimation for the canonical
+// /outsourced-construction-estimating.
+const LEGACY_301: Record<string, string> = {
+  // Cluster A — Warehouse development → /warehouses-development
+  '/end-to-end-warehouse-development-services-for-modern-businesses': '/warehouses-development',
+  '/warehouse-development-services-how-warehouses-are-planned-designed-and-built': '/warehouses-development',
+  '/why-your-business-needs-a-professional-warehouse-development-company': '/warehouses-development',
+  '/warehouse-development-services-in-usa-building-efficient-scalable-and-modern-storage-solutions': '/warehouses-development',
+  '/warehouse-development-services-in-usa-building-efficient-spaces-for-modern-businesses': '/warehouses-development',
+  '/warehouse-development-services-in-usa': '/warehouses-development',
+  // Cluster B — Blueprint estimation → /blueprint-estimation
+  '/blueprint-estimation-cut-costs-before-you-break-ground': '/blueprint-estimation',
+  '/blueprint-estimation-services-explained-a-step-by-step-construction-guide': '/blueprint-estimation',
+  '/reliable-estimating-services-for-u-s-contractors-from-blueprint-to-completion': '/blueprint-estimation',
+  '/blueprint-estimation-services-usa-the-foundation-of-accurate-construction-planning': '/blueprint-estimation',
+  '/blueprint-estimation-services-in-usa-the-foundation-of-cost-effective-construction': '/blueprint-estimation',
+  '/best-blueprint-estimation-services-in-usa': '/blueprint-estimation',
+  // Cluster C — Quantity surveyor → /quantity-surveyor-services
+  '/what-is-a-quantity-surveyor-service-a-complete-construction-guide': '/quantity-surveyor-services',
+  '/quantity-surveyor-services-ensuring-accuracy-and-efficiency-in-construction-projects': '/quantity-surveyor-services',
+  '/quantity-surveyor-services-in-usa-ensuring-precision-and-profitability-in-construction-projects': '/quantity-surveyor-services',
+  // Slug collision — reserve the loser for the canonical outsourced page.
+  '/outsource-construction-estimation': '/outsourced-construction-estimating',
+};
 
 // Reachable, but must never rank or be indexed.
 const NOINDEX_URLS = new Set<string>([
@@ -103,8 +135,28 @@ const KNOWN_TOP_LEVEL_ROUTES = new Set<string>([
 // Anything else reaching /[slug] is malformed CMS output, not real content.
 const VALID_SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
-export function middleware(request: NextRequest) {
+function notFoundResponse(): NextResponse {
+  return new NextResponse(
+    '<!doctype html><title>404 Not Found</title><h1>404 Not Found</h1><p>The page you are looking for does not exist.</p>',
+    {
+      status: 404,
+      headers: {
+        'Content-Type': 'text/html; charset=utf-8',
+        'X-Robots-Tag': 'noindex, nofollow',
+      },
+    },
+  );
+}
+
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  const legacyTarget = LEGACY_301[pathname] ?? LEGACY_301[pathname.replace(/\/$/, '')];
+  if (legacyTarget) {
+    const url = request.nextUrl.clone();
+    url.pathname = legacyTarget;
+    return NextResponse.redirect(url, 301);
+  }
 
   if (GONE_URLS.has(pathname)) {
     return new NextResponse(
@@ -143,16 +195,18 @@ export function middleware(request: NextRequest) {
         url.pathname = `/${clean}`;
         return NextResponse.redirect(url, 301);
       }
-      return new NextResponse(
-        '<!doctype html><title>404 Not Found</title><h1>404 Not Found</h1><p>The page you are looking for does not exist.</p>',
-        {
-          status: 404,
-          headers: {
-            'Content-Type': 'text/html; charset=utf-8',
-            'X-Robots-Tag': 'noindex, nofollow',
-          },
-        },
-      );
+      return notFoundResponse();
+    }
+
+    // Well-formed ASCII slug but not a known top-level route: check whether
+    // any real service or WP post uses it. `/[slug]` will otherwise render
+    // its 659-word soft-404 template at HTTP 200 because loading.tsx +
+    // Suspense commits status before notFound() can flip it (see block
+    // comment above). Fail-open on `null` so a CMS outage never 404s a
+    // real page — a transient soft-404 is the acceptable degradation.
+    const validSlugs = await getValidSlugs();
+    if (validSlugs && !validSlugs.has(decoded)) {
+      return notFoundResponse();
     }
   }
 

@@ -3,10 +3,14 @@
 import { useLayoutEffect, type ReactNode } from 'react';
 import { usePathname } from 'next/navigation';
 import Nav from '../components/Nav';
+import Footer from '../components/Footer';
 import { PinProvider } from '../PinContext';
-import dynamic from 'next/dynamic';
 
-const Footer = dynamic(() => import('../components/Footer'), { ssr: false });
+// ponytail: Footer was dynamic with `ssr: false` — client-only.
+// That meant its links never landed in SSR HTML, so Google's internal-link
+// graph never saw the footer nav (search-console verifiable: pre-fix HTML
+// had zero `href` for footer items). Enabled SSR here so the anchor tags
+// (and the orphan-target links we just added) actually count.
 
 export default function LayoutShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();

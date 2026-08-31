@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { TextRepel } from "@/src/components/ui/text-repel";
 import TextPressure from "@/src/components/ui/TextPressure";
 
@@ -9,8 +9,6 @@ import TextPressure from "@/src/components/ui/TextPressure";
 // React Bits does not take responsibility for the fonts used
 
 export default function Footer() {
-  const router = useRouter();
-
   const navItems = [
     { label: "ABOUT", href: "/about-us" },
     { label: "BLOGS", href: "/blog" },
@@ -19,6 +17,10 @@ export default function Footer() {
     { label: "PROJECTS", href: "/projects" },
     { label: "CALCULATOR", href: "/calculator" },
     { label: "TESTIMONIALS", href: "/testimonials" },
+    // Solutions — internal links so these pages stop being sitemap orphans.
+    { label: "WAREHOUSE DEVELOPMENT", href: "/warehouses-development" },
+    { label: "BLUEPRINT ESTIMATION", href: "/blueprint-estimation" },
+    { label: "QUANTITY SURVEYOR", href: "/quantity-surveyor-services" },
     { label: "privacy policy", href: "/privacy-policy" },
     { label: "terms & conditions", href: "/terms-and-conditions" },
   ];
@@ -31,8 +33,13 @@ export default function Footer() {
 
   const communication = [
     { text: "+1-281-899-0250", href: "tel:+12818990250" },
+    { text: "16319 Hillside Garden LN", href: null },
     { text: "Houston, TX 77084", href: null },
     { text: "info@theaceservices.com", href: "mailto:info@theaceservices.com" },
+    {
+      text: "Find us on Google Maps",
+      href: "https://www.google.com/maps/place/The+ACE+Services/@29.8730417,-95.6557672,17z/data=!3m1!4b1!4m6!3m5!1s0x8640d74886712a23:0xfe66afe536f5553a!8m2!3d29.8730417!4d-95.6557672!16s%2Fg%2F11ybg9t9m0",
+    },
   ];
 
   return (
@@ -112,20 +119,27 @@ export default function Footer() {
                 "
               />
               {navItems.map((item) => (
-                <TextRepel
+                // Wrap in <Link> so the footer nav renders real <a href> tags
+                // for crawlers (Google's internal-link graph, not just visual
+                // clicks). Next.js Link intercepts clicks for client-side nav.
+                <Link
                   key={item.href}
-                  text={item.label}
-                  radius={60}
-                  strength={35}
-                  mode="repel"
-                  onClick={() => router.push(item.href)}
-                  className="
-                    w-fit
-                    text-left font-sans text-base md:text-lg font-semibold text-white/70
-                    transition-colors cursor-pointer
-                    hover:text-white link-underline uppercase
-                  "
-                />
+                  href={item.href}
+                  className="w-fit hover:text-white transition-colors"
+                >
+                  <TextRepel
+                    text={item.label}
+                    radius={60}
+                    strength={35}
+                    mode="repel"
+                    className="
+                      w-fit
+                      text-left font-sans text-base md:text-lg font-semibold text-white/70
+                      transition-colors cursor-pointer
+                      hover:text-white link-underline uppercase
+                    "
+                  />
+                </Link>
               ))}
             </div>
 

@@ -92,22 +92,39 @@ function FAQCard({ item }: { item: FAQItem }) {
 
 export default function FAQAccordion() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-start">
-      <div className="flex flex-col">
-        {col1.map((item) => (
-          <FAQCard key={item.id} item={item} />
+    <>
+      {/* Mobile: collapsed accordion */}
+      <div className="block md:hidden space-y-2">
+        {questions.map((item) => (
+          <details key={item.id} className="group border border-blueprint-line bg-surface">
+            <summary className="flex cursor-pointer list-none items-center justify-between px-5 py-4 font-[family-name:var(--font-space)] font-bold text-base text-on-background [&::-webkit-details-marker]:hidden">
+              {item.question}
+              <span className="ml-4 flex-shrink-0 text-primary transition-transform duration-200 group-open:rotate-180">▾</span>
+            </summary>
+            <div className="border-t border-blueprint-line px-5 pb-5 pt-4">
+              <p className="font-sans text-sm leading-relaxed text-on-surface-variant">{item.answer}</p>
+              {item.linkHref && item.linkLabel && (
+                <Link href={item.linkHref} className="mt-2 inline-block font-sans text-sm font-semibold text-primary hover:underline">
+                  {item.linkLabel} &rarr;
+                </Link>
+              )}
+            </div>
+          </details>
         ))}
       </div>
-      <div className="flex flex-col">
-        {col2.map((item) => (
-          <FAQCard key={item.id} item={item} />
-        ))}
+
+      {/* Desktop: bento card grid */}
+      <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 items-start">
+        <div className="flex flex-col">
+          {col1.map((item) => <FAQCard key={item.id} item={item} />)}
+        </div>
+        <div className="flex flex-col">
+          {col2.map((item) => <FAQCard key={item.id} item={item} />)}
+        </div>
+        <div className="flex flex-col">
+          {col3.map((item) => <FAQCard key={item.id} item={item} />)}
+        </div>
       </div>
-      <div className="flex flex-col">
-        {col3.map((item) => (
-          <FAQCard key={item.id} item={item} />
-        ))}
-      </div>
-    </div>
+    </>
   );
 }

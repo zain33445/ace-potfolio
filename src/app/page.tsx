@@ -3,6 +3,7 @@ import HomePage from './home-page';
 // client HomePage tree) so it renders as plain, visible, crawlable HTML with no
 // client Suspense boundary. Sits above the footer.
 import ServicesOverviewSection from '@/src/components/Home/sections/ServicesOverviewSection';
+import { serviceSchema } from '@/src/lib/schema';
 
 // Statically render + revalidate hourly so Cloudflare can cache the homepage
 // (marketing content changes rarely) instead of serving it dynamically.
@@ -22,6 +23,10 @@ export const metadata = {
 export default function Page() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', ...serviceSchema }) }}
+      />
       <HomePage />
       <ServicesOverviewSection />
     </>

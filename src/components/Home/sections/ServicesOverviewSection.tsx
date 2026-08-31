@@ -1,8 +1,11 @@
 /**
  * SEO / content section — server-rendered (no "use client"), so the copy
- * ships in the initial HTML and is fully crawlable. Adds substantive,
- * human-written prose describing every service line, the process, and the
- * industries served — the homepage's primary indexable-content block.
+ * ships in the initial HTML and is fully crawlable.
+ *
+ * Structure:
+ *  - Services / Why ACE / Trades: hidden on mobile (hidden md:block) to keep UI clean
+ *  - FAQ: always visible; uses <details>/<summary> accordion so mobile users can
+ *    expand questions they care about without the section looking cluttered
  */
 
 const services = [
@@ -28,77 +31,108 @@ const services = [
   },
 ];
 
+const reasons = [
+  {
+    title: "AACE Class 3 Accuracy",
+    body: "Every estimate is built to AACE Class 3 standards — ±10% to ±20% accuracy — using current RSMeans pricing and regionally adjusted labor rates. Your number is defensible to owners, lenders, and plan reviewers.",
+  },
+  {
+    title: "24–48 Hour Turnaround",
+    body: "Send us plans in PDF, DWG, or a shared drive link. We return a detailed, line-item estimate ready to bid from. Addendum revisions are turned around the same day so your number is never stale when the deadline hits.",
+  },
+  {
+    title: "No Fixed Overhead",
+    body: "You get senior estimator output without salary, benefits, or software licenses. Pay per project, scale up during busy season, and step back when the pipeline quiets — the ACE team flexes with your workload.",
+  },
+  {
+    title: "Full-Service Under One Roof",
+    body: "Estimating, takeoffs, shop drawings, renderings, and permit sets are all handled by the same team. One point of contact, consistent documentation standards, and zero coordination gaps between disciplines.",
+  },
+];
+
+
 export default function ServicesOverviewSection() {
   return (
-    <section
-      aria-labelledby="services-overview-heading"
-      className="relative hidden md:block w-full bg-white py-24 px-6 md:px-12 lg:px-20 text-slate-900"
-    >
-      <div className="max-w-5xl mx-auto">
-        <h2
-          id="services-overview-heading"
-          className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900"
-        >
-          Pre-Construction Services, Delivered Nationwide
-        </h2>
-        <p className="mt-5 text-lg leading-relaxed text-slate-600">
-          The ACE Services is a pre-construction partner for general
-          contractors, subcontractors, and developers across 35 US states. We
-          combine construction estimating, material takeoffs, shop drawings,
-          3D architectural rendering, and permit sets under one roof — so you
-          can bid more work, win more of it, and build with fewer surprises. By
-          outsourcing your estimating and drafting to a dedicated team, you get
-          senior-level output in 24 to 48 hours without carrying the fixed cost
-          of an in-house department.
-        </p>
+    <>
+      {/* ── Desktop-only: full prose block ──────────────────────── */}
+      <section
+        aria-labelledby="services-overview-heading"
+        className="hidden md:block w-full bg-white py-20 px-6 md:px-12 lg:px-20 text-slate-900"
+      >
+        <div className="max-w-5xl mx-auto">
+          <h2
+            id="services-overview-heading"
+            className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900"
+          >
+            Pre-Construction Services, Delivered Nationwide
+          </h2>
+          <p className="mt-5 text-lg leading-relaxed text-slate-600">
+            The ACE Services is a pre-construction partner for general
+            contractors, subcontractors, and developers across 35 US states. We
+            combine construction estimating, material takeoffs, shop drawings,
+            3D architectural rendering, and permit sets under one roof — so you
+            can bid more work, win more of it, and build with fewer surprises.
+            By outsourcing your estimating and drafting to a dedicated team, you
+            get senior-level output in 24 to 48 hours without carrying the fixed
+            cost of an in-house department.
+          </p>
 
-        <div className="mt-14 grid gap-10 md:grid-cols-2">
-          {services.map((s) => (
-            <div key={s.title}>
-              <h3 className="text-xl font-bold text-slate-900">
-                <span
-                  aria-hidden="true"
-                  className="mr-2 inline-block h-2.5 w-2.5 rounded-full bg-[#FF6B00] align-middle"
-                />
-                {s.title}
-              </h3>
-              <p className="mt-3 leading-relaxed text-slate-600">{s.body}</p>
+          <div className="mt-12 grid gap-8 sm:grid-cols-2">
+            {services.map((s) => (
+              <div key={s.title}>
+                <h3 className="text-xl font-bold text-slate-900">
+                  <span
+                    aria-hidden="true"
+                    className="mr-2 inline-block h-2.5 w-2.5 rounded-full bg-[#FF6B00] align-middle"
+                  />
+                  {s.title}
+                </h3>
+                <p className="mt-3 leading-relaxed text-slate-600">{s.body}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-16 border-t border-slate-200 pt-12">
+            <h2 className="text-2xl font-bold text-slate-900">
+              Why General Contractors Choose The ACE Services
+            </h2>
+            <p className="mt-4 leading-relaxed text-slate-600">
+              Accurate pre-construction numbers determine whether you win the
+              bid, protect your margin, and finish on budget. Our estimating
+              team has priced projects across residential, commercial, and
+              industrial sectors — from single-trade subcontractor bids to
+              multi-million dollar ground-up builds. Here is what sets us apart.
+            </p>
+            <div className="mt-8 grid gap-8 sm:grid-cols-2">
+              {reasons.map((r) => (
+                <div key={r.title}>
+                  <h3 className="text-lg font-bold text-slate-900">{r.title}</h3>
+                  <p className="mt-2 leading-relaxed text-slate-600">{r.body}</p>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
 
-        <div className="mt-16 border-t border-slate-200 pt-12">
-          <h3 className="text-2xl font-bold text-slate-900">
-            How Our Estimating Process Works
-          </h3>
-          <p className="mt-4 leading-relaxed text-slate-600">
-            Send us your plans in any common format — PDF, DWG, or a shared
-            drive link. Our estimators perform the quantity takeoff, apply
-            current regional pricing, and return a detailed, line-item estimate
-            you can bid from immediately. Need a revision after an addendum or a
-            scope change? We turn markups around quickly so your number is never
-            out of date when the bid is due. Every deliverable is reviewed by a
-            senior estimator before it reaches you.
-          </p>
+          <div className="mt-12">
+            <h2 className="text-2xl font-bold text-slate-900">
+              Trades &amp; Project Types We Serve
+            </h2>
+            <p className="mt-4 leading-relaxed text-slate-600">
+              We support commercial, residential, and industrial construction
+              across the full range of trades — including electrical, HVAC,
+              mechanical, plumbing, concrete, masonry, drywall, insulation,
+              roofing, sitework, millwork, and flooring. Whether you are a
+              general contractor pricing a ground-up commercial build or a
+              specialty subcontractor bidding a single scope, our estimating and
+              drafting teams scale to the job. From warehouses and hotels to
+              schools and multi-family residences, contractors nationwide rely on
+              The ACE Services to price, draw, and document their projects
+              accurately.
+            </p>
+          </div>
         </div>
+      </section>
 
-        <div className="mt-12">
-          <h3 className="text-2xl font-bold text-slate-900">
-            Trades & Project Types We Serve
-          </h3>
-          <p className="mt-4 leading-relaxed text-slate-600">
-            We support commercial, residential, and industrial construction
-            across the full range of trades — including electrical, HVAC,
-            mechanical, plumbing, concrete, masonry, drywall, insulation,
-            roofing, sitework, millwork, and flooring. Whether you are a general
-            contractor pricing a ground-up commercial build or a specialty
-            subcontractor bidding a single scope, our estimating and drafting
-            teams scale to the job. From warehouses and hotels to schools and
-            multi-family residences, contractors nationwide rely on The ACE
-            Services to price, draw, and document their projects accurately.
-          </p>
-        </div>
-      </div>
-    </section>
+    </>
   );
 }

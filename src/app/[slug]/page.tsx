@@ -1,18 +1,22 @@
-import type { Metadata } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
-import { notFound } from 'next/navigation';
-import { Suspense } from 'react';
-import { Check, ArrowRight, ChevronDown } from 'lucide-react';
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { Suspense } from "react";
+import { Check, ArrowRight, ChevronDown } from "lucide-react";
 
 // Blog Imports
-import { getPostBySlug, getPosts, type BlogPost } from '@/src/services/wordpress/content';
-import { extractHeadings } from '@/src/lib/extractHeadings';
-import TableOfContents from '@/src/components/TableOfContents';
+import {
+  getPostBySlug,
+  getPosts,
+  type BlogPost,
+} from "@/src/services/wordpress/content";
+import { extractHeadings } from "@/src/lib/extractHeadings";
+import TableOfContents from "@/src/components/TableOfContents";
 
 // Service Imports
-import { services, getServiceIcon, type Service } from '@/src/data/services';
-import { getServiceEnriched, getSubServices } from '@/src/data/services-cms';
+import { services, getServiceIcon, type Service } from "@/src/data/services";
+import { getServiceEnriched, getSubServices } from "@/src/data/services-cms";
 
 /**
  * Serve prerendered/ISR pages for this route rather than rendering on-demand
@@ -37,7 +41,7 @@ function toUrlSlug(slug: string): string {
 
 function truncate(text: string, max: number): string {
   if (text.length <= max) return text;
-  return text.slice(0, max).replace(/\s+\S*$/, '') + '…';
+  return text.slice(0, max).replace(/\s+\S*$/, "") + "…";
 }
 
 /**
@@ -59,14 +63,14 @@ async function resolveSlug(
     getPostBySlug(slug),
   ]);
 
-  if (serviceResult.status === 'fulfilled' && serviceResult.value) {
+  if (serviceResult.status === "fulfilled" && serviceResult.value) {
     return { service: serviceResult.value };
   }
-  if (postResult.status === 'fulfilled' && postResult.value) {
+  if (postResult.status === "fulfilled" && postResult.value) {
     return { post: postResult.value };
   }
-  if (serviceResult.status === 'rejected') throw serviceResult.reason;
-  if (postResult.status === 'rejected') throw postResult.reason;
+  if (serviceResult.status === "rejected") throw serviceResult.reason;
+  if (postResult.status === "rejected") throw postResult.reason;
 
   return null;
 }
@@ -94,7 +98,7 @@ export async function generateMetadata({
 
   const resolved = await resolveSlug(slug);
 
-  if (resolved && 'service' in resolved) {
+  if (resolved && "service" in resolved) {
     const { service } = resolved;
     return {
       title: service.title,
@@ -110,7 +114,7 @@ export async function generateMetadata({
     };
   }
 
-  if (resolved && 'post' in resolved) {
+  if (resolved && "post" in resolved) {
     const { post } = resolved;
     return {
       title: post.title,
@@ -127,16 +131,16 @@ export async function generateMetadata({
     };
   }
 
-  return { title: 'Not Found' };
+  return { title: "Not Found" };
 }
 
 /* ── Helpers ──────────────────────────────────────────────────── */
 
 function formatDate(iso: string): string {
-  return new Date(iso).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+  return new Date(iso).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
 }
 
@@ -152,10 +156,10 @@ export default async function SlugRoutePage({
 
   const resolved = await resolveSlug(slug);
 
-  if (resolved && 'service' in resolved) {
+  if (resolved && "service" in resolved) {
     return <ServiceView service={resolved.service} slug={slug} />;
   }
-  if (resolved && 'post' in resolved) {
+  if (resolved && "post" in resolved) {
     return <BlogPostView post={resolved.post} slug={slug} />;
   }
 
@@ -166,7 +170,13 @@ export default async function SlugRoutePage({
 /*  SERVICE VIEW COMPONENTS                                       */
 /* ═══════════════════════════════════════════════════════════════ */
 
-async function ServiceView({ service, slug }: { service: Service; slug: string }) {
+async function ServiceView({
+  service,
+  slug,
+}: {
+  service: Service;
+  slug: string;
+}) {
   const Icon = getServiceIcon(service.id);
 
   return (
@@ -175,12 +185,27 @@ async function ServiceView({ service, slug }: { service: Service; slug: string }
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
             itemListElement: [
-              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://theaceservices.com' },
-              { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://theaceservices.com/services' },
-              { '@type': 'ListItem', position: 3, name: service.title, item: `https://theaceservices.com/${toUrlSlug(slug)}` },
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://theaceservices.com",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Services",
+                item: "https://theaceservices.com/services",
+              },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: service.title,
+                item: `https://theaceservices.com/${toUrlSlug(slug)}`,
+              },
             ],
           }),
         }}
@@ -191,16 +216,16 @@ async function ServiceView({ service, slug }: { service: Service; slug: string }
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'FAQPage',
-              mainEntity: service.seoContent.faqs.map(faq => ({
-                '@type': 'Question',
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: service.seoContent.faqs.map((faq) => ({
+                "@type": "Question",
                 name: faq.question,
                 acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: faq.answer
-                }
-              }))
+                  "@type": "Answer",
+                  text: faq.answer,
+                },
+              })),
             }),
           }}
         />
@@ -214,13 +239,16 @@ async function ServiceView({ service, slug }: { service: Service; slug: string }
               linear-gradient(var(--color-blueprint-line) 1px, transparent 1px),
               linear-gradient(90deg, var(--color-blueprint-line) 1px, transparent 1px)
             `,
-            backgroundSize: '48px 48px',
+            backgroundSize: "48px 48px",
           }}
         />
 
         <div className="relative  max-w-7xl px-5 px-[var(--spacing-margin-mobile)] pt-16 md:px-[var(--spacing-margin-desktop)] md:pt-16">
           <div className="mb-8 flex items-center gap-2 font-mono text-SM font-bold uppercase tracking-wider text-on-surface-variant">
-            <Link href="/services" className="hover:text-primary transition-colors">
+            <Link
+              href="/services"
+              className="hover:text-primary transition-colors"
+            >
               SERVICES
             </Link>
             <span>/</span>
@@ -246,36 +274,38 @@ async function ServiceView({ service, slug }: { service: Service; slug: string }
           {service.stats && service.stats.length > 0 && (
             <div className="mt-10 flex flex-wrap gap-20 border-t border-blueprint-line pt-8 items-center justify-center">
               {service.stats.map((stat) => (
-                <QuickStat key={stat.label} label={stat.label} value={stat.value} />
+                <QuickStat
+                  key={stat.label}
+                  label={stat.label}
+                  value={stat.value}
+                />
               ))}
             </div>
           )}
         </div>
 
-      <div className="mx-auto max-w-8xl px-5 px-[10px] text-justify py-16 md:px-[var(--spacing-margin-desktop)] md:py-20">
-        <div className="grid gap-12 lg:grid-cols-12">
-          {/* ── Sidebar: Sub-Services ── */}
-          <aside className="order-2 col-span-3 lg:order-2 lg:sticky lg:top-24 lg:self-start">
-            <Suspense fallback={<SidebarSkeleton />}>
-              <SubServicesSidebar service={service} />
-            </Suspense>
-          </aside>
+        <div className="mx-auto max-w-8xl px-5 px-[10px] text-justify py-16 md:px-[var(--spacing-margin-desktop)] md:py-20">
+          <div className="grid gap-12 lg:grid-cols-12">
+            {/* ── Sidebar: Sub-Services ── */}
+            <aside className="order-2 md:col-span-3 col-span-12 lg:sticky lg:top-24 lg:self-start">
+              <Suspense fallback={<SidebarSkeleton />}>
+                <SubServicesSidebar service={service} />
+              </Suspense>
+            </aside>
 
-          {/* ── Main Content ── */} 
-          <div className="order-1 lg:order-1 space-y-16 col-span-9">
-            <ServiceOverviewSection service={service} />
-            <PricingFeaturesSection service={service} />
-            {service.process && service.process.length > 0 && (
-              <ProcessSection service={service} />
-            )}
-            {service.seoContent && (
-              <SeoContentSection service={service} />
-            )}
+            {/* ── Main Content ── */}
+            <div className="order-1 lg:order-1 space-y-16 col-span-12 md:col-span-9  px-[5%] md:px-[0%]">
+              <ServiceOverviewSection service={service} />
+              <PricingFeaturesSection service={service} />
+              {service.process && service.process.length > 0 && (
+                <ProcessSection service={service} />
+              )}
+              {service.seoContent && <SeoContentSection service={service} />}
+            </div>
           </div>
         </div>
-      </div>
 
-      <CtaSection service={service} />
+        <CtaSection service={service} />
       </section>
     </main>
   );
@@ -288,26 +318,26 @@ async function SubServicesSidebar({ service }: { service: Service }) {
     <div className="">
       {subServices.length > 0 && (
         <>
-          <div className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
+          <div className="mb-4 font-mono text-sm font-bold uppercase tracking-[0.2em] text-primary">
             Sub Services
           </div>
-          <div className="space-y-4 mb-8">
+          <div className="mb-8 grid grid-cols-2 w-full gap-2 md:block md:space-y-2">
             {subServices.map((s) => {
               const SvgIcon = getServiceIcon(s.id);
               return (
                 <Link
                   key={s.slug}
                   href={`/${s.slug}`}
-                  className="group flex gap-3 border border-blueprint-line bg-surface p-3 transition-all duration-300 hover:border-primary hover:shadow-[0_0_20px_rgba(255,107,0,0.06)]"
+                  className="group w-full flex flex-col items-center text-center gap-2 border border-blueprint-line bg-surface p-3 transition-all duration-300 hover:border-primary hover:shadow-[0_0_20px_rgba(255,107,0,0.06)] md:flex-row md:text-left md:items-start"
                 >
-                  <div className="flex items-center justify-center w-12 h-12 border border-blueprint-line bg-background bracket-corners flex-shrink-0 group-hover:border-primary transition-colors">
-                    <SvgIcon className="w-4 h-4 text-primary" />
+                  <div className="flex items-center justify-center w-10 h-10 border border-blueprint-line bg-background bracket-corners flex-shrink-0 group-hover:border-primary transition-colors">
+                    <SvgIcon className="w-5 h-5 text-primary" />
                   </div>
                   <div className="flex min-w-0 flex-col justify-center">
-                    <h4 className="truncate font-[family-name:var(--font-space)] text-base font-bold text-on-background transition-colors group-hover:text-primary">
+                    <h4 className="font-[family-name:var(--font-space)] text-base font-bold text-on-background transition-colors group-hover:text-primary line-clamp-2 md:truncate">
                       {s.title}
                     </h4>
-                    <p className="font-mono text-xs text-on-surface-variant truncate">
+                    <p className="font-mono text-[10px] text-on-surface-variant hidden md:block">
                       Related Service
                     </p>
                   </div>
@@ -319,12 +349,24 @@ async function SubServicesSidebar({ service }: { service: Service }) {
       )}
       <Link
         href="/services"
-        className="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-on-surface-variant transition-colors hover:text-primary"
+        className="inline-flex justify-center md:justify-start items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-on-surface-variant transition-colors hover:text-primary"
       >
-        <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19 12H5m7-7l-7 7 7 7" />
+        <svg
+          className="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={2}
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M19 12H5m7-7l-7 7 7 7"
+          />
         </svg>
-        <span>VIEW ALL SERVICES</span>
+        <span className="font-[family-name:var(--font-space)] block text-center text-base font-bold text-on-background transition-colors group-hover:text-primary line-clamp-2 md:truncate">
+          VIEW ALL SERVICES
+        </span>
       </Link>
     </div>
   );
@@ -336,7 +378,10 @@ function SidebarSkeleton() {
       <div className="mb-4 h-4 w-32 bg-surface-variant rounded"></div>
       <div className="space-y-4 mb-8">
         {[1, 2, 3].map((i) => (
-          <div key={i} className="flex gap-3 border border-blueprint-line bg-surface p-3">
+          <div
+            key={i}
+            className="flex gap-3 border border-blueprint-line bg-surface p-3"
+          >
             <div className="w-12 h-12 bg-surface-variant"></div>
             <div className="flex flex-col justify-center gap-2 flex-1">
               <div className="h-4 bg-surface-variant w-3/4 rounded"></div>
@@ -369,7 +414,7 @@ function ServiceOverviewSection({ service }: { service: Service }) {
   return (
     <section>
       <div className="mb-6 font-mono text-base font-bold uppercase tracking-[0.1em] text-primary">
-        {service.slug === 'project-management' ? 'WHAT WE DELIVER' : 'OVERVIEW'}
+        {service.slug === "project-management" ? "WHAT WE DELIVER" : "OVERVIEW"}
       </div>
       <div className="space-y-8">
         {/* If we have full WP content, render it richly */}
@@ -412,7 +457,7 @@ function PricingFeaturesSection({ service }: { service: Service }) {
         <div className="mb-6 border-b border-blueprint-line pb-6 flex flex-wrap items-end justify-between gap-4">
           <div>
             <div className="font-mono text-3xl font-extrabold uppercase tracking-[0.05em] text-primary mb-2">
-               CUSTOM PRICING
+              CUSTOM PRICING
             </div>
             <div className="text-md text-on-surface-variant mb-2">
               Based on project scope, complexity, and deliverables.
@@ -452,7 +497,7 @@ function PricingFeaturesSection({ service }: { service: Service }) {
 function ProcessSection({ service }: { service: Service }) {
   return (
     <section className="border-t border-blueprint-line pt-16">
-      <div className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
+      <div className="mb-6 font-mono text-sm font-bold uppercase tracking-[0.2em] text-primary">
         Our Process
       </div>
       <h2 className="font-[family-name:var(--font-space)] text-4xl font-bold text-on-background md:text-5xl mb-12">
@@ -461,15 +506,16 @@ function ProcessSection({ service }: { service: Service }) {
       <div className="grid gap-8 md:grid-cols-4">
         {service.process.map((step, i) => (
           <div key={step.title} className="relative">
-            <div className="mb-4 flex items-center gap-3">
-              <span className="flex h-10 w-10 items-center justify-center border border-primary bg-primary/10 font-mono text-base font-bold text-primary">
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <div className="h-px flex-1 bg-blueprint-line hidden md:block" />
+            <div className="flex items-center gap-2 ">
+              <div className="mb-4 flex items-center gap-3">
+                <span className="font-mono text-xl font-bold text-primary">
+                  {String(i + 1).padStart(2, "0")}.
+                </span>
+              </div>
+              <h3 className="font-[family-name:var(--font-space)] text-xl font-bold text-on-background mb-2">
+                {step.title}
+              </h3>
             </div>
-            <h3 className="font-[family-name:var(--font-space)] text-xl font-bold text-on-background mb-2">
-              {step.title}
-            </h3>
             <p className="font-sans text-base leading-relaxed text-on-surface-variant">
               {step.description}
             </p>
@@ -491,11 +537,9 @@ function CtaSection({ service }: { service: Service }) {
           Need {service.title}?
         </h2>
         <p className="max-w-lg text-base leading-relaxed text-on-surface-variant md:text-center">
-          {service.slug === 'project-management' ? (
-            'Send us your project plans, scope, or existing schedule for a preliminary review. We\'ll recommend the appropriate planning and project-control service.'
-          ) : (
-            'Submit your blueprints and receive a precision cost schedule within 24-48 hours. Rush turnaround available.'
-          )}
+          {service.slug === "project-management"
+            ? "Send us your project plans, scope, or existing schedule for a preliminary review. We'll recommend the appropriate planning and project-control service."
+            : "Submit your blueprints and receive a precision cost schedule within 24-48 hours. Rush turnaround available."}
         </p>
         <div className="flex flex-col sm:flex-row items-center gap-4">
           <Link
@@ -503,18 +547,38 @@ function CtaSection({ service }: { service: Service }) {
             className="group inline-flex items-center gap-3 border border-primary bg-primary px-8 py-3.5 font-mono text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary"
           >
             <span>REQUEST ESTIMATE</span>
-            <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            <svg
+              className="h-4 w-4 transition-transform group-hover:translate-x-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              />
             </svg>
           </Link>
-          {service.slug !== 'project-management' && (
+          {service.slug !== "project-management" && (
             <Link
               href="/calculator"
               className="group inline-flex items-center gap-3 border border-blueprint-line bg-surface px-8 py-3.5 font-mono text-sm font-bold uppercase tracking-wider text-on-surface-variant transition-all hover:border-primary hover:text-primary"
             >
               <span>TRY CALCULATOR</span>
-              <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              <svg
+                className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
               </svg>
             </Link>
           )}
@@ -530,25 +594,31 @@ function SeoContentSection({ service }: { service: Service }) {
 
   return (
     <section className="border-t border-blueprint-line pt-16">
-      <div className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
+      <div className="mb-6 font-mono text-sm font-bold uppercase tracking-[0.2em] text-primary">
         Deep Dive
       </div>
-      <h2 className="font-[family-name:var(--font-space)] text-3xl font-bold text-on-background md:text-4xl mb-8">
+      <h2 className="font-[family-name:var(--font-space)] text-3xl text-left font-bold text-on-background md:text-4xl mb-8">
         {seoContent.heading}
       </h2>
       <div className="space-y-6 mb-12">
         {seoContent.body.map((paragraph, idx) => (
-          <p key={idx} className="font-sans text-base md:text-lg leading-relaxed text-on-surface-variant">
+          <p
+            key={idx}
+            className="font-sans text-base md:text-lg leading-relaxed text-on-surface-variant"
+          >
             {paragraph}
           </p>
         ))}
       </div>
-      <div className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
+      <div className="mb-6 font-mono text-sm font-bold uppercase tracking-[0.2em] text-primary">
         Key Benefits
       </div>
-      <div className="grid gap-6 md:grid-cols-3 mb-16">
+      <div className="grid gap-3 md:gap-6 md:grid-cols-3 mb-8">
         {seoContent.benefits.map((benefit, idx) => (
-          <div key={idx} className="border border-blueprint-line bg-surface p-6 hover:border-primary transition-colors">
+          <div
+            key={idx}
+            className="border border-blueprint-line bg-surface rounded-xl p-6 hover:border-primary transition-colors"
+          >
             <h3 className="font-[family-name:var(--font-space)] text-xl font-bold text-on-background mb-3">
               {benefit.title}
             </h3>
@@ -560,15 +630,18 @@ function SeoContentSection({ service }: { service: Service }) {
       </div>
       {seoContent.faqs && seoContent.faqs.length > 0 && (
         <>
-          <div className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
+          <div className="mb-6 font-mono text-sm font-bold uppercase tracking-[0.2em] text-primary">
             FAQ
           </div>
           <div className="space-y-4">
             {seoContent.faqs.map((faq, idx) => (
-              <details key={idx} className="group border border-blueprint-line bg-surface [&_summary::-webkit-details-marker]:hidden">
-                <summary className="flex cursor-pointer items-center justify-between p-6 font-[family-name:var(--font-space)] text-lg font-bold text-on-background transition-colors hover:text-primary">
+              <details
+                key={idx}
+                className="group border-b border-b-blueprint-line bg-transparent [&_summary::-webkit-details-marker]:hidden"
+              >
+                <summary className="flex cursor-pointer items-center gap-10 justify-between p-6 font-[family-name:var(--font-space)] text-lg font-bold text-on-background transition-colors hover:text-primary">
                   {faq.question}
-                  <ChevronDown className="h-5 w-5 text-primary transition-transform group-open:rotate-180" />
+                  <ChevronDown className="h-7 w-7 text-primary transition-transform group-open:rotate-180" />
                 </summary>
                 <div className="border-t border-blueprint-line px-6 pb-6 pt-4">
                   <p className="font-sans text-base leading-relaxed text-on-surface-variant">
@@ -600,12 +673,27 @@ function BlogPostView({ post, slug }: { post: BlogPost; slug: string }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
             itemListElement: [
-              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://theaceservices.com' },
-              { '@type': 'ListItem', position: 2, name: 'Insights & Blog', item: 'https://theaceservices.com/blog' },
-              { '@type': 'ListItem', position: 3, name: post.title, item: `https://theaceservices.com/${toUrlSlug(slug)}` },
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://theaceservices.com",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Insights & Blog",
+                item: "https://theaceservices.com/blog",
+              },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: post.title,
+                item: `https://theaceservices.com/${toUrlSlug(slug)}`,
+              },
             ],
           }),
         }}
@@ -614,22 +702,22 @@ function BlogPostView({ post, slug }: { post: BlogPost; slug: string }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Article',
+            "@context": "https://schema.org",
+            "@type": "Article",
             headline: post.title,
             description: post.excerpt,
             datePublished: post.date,
             dateModified: post.modified,
             image: post.image,
             author: {
-              '@type': 'Organization',
-              name: 'The ACE Services',
-              url: 'https://theaceservices.com',
+              "@type": "Organization",
+              name: "The ACE Services",
+              url: "https://theaceservices.com",
             },
             publisher: {
-              '@type': 'Organization',
-              name: 'The ACE Services',
-              url: 'https://theaceservices.com',
+              "@type": "Organization",
+              name: "The ACE Services",
+              url: "https://theaceservices.com",
             },
             mainEntityOfPage: `https://theaceservices.com/${toUrlSlug(slug)}`,
           }),
@@ -643,11 +731,13 @@ function BlogPostView({ post, slug }: { post: BlogPost; slug: string }) {
               linear-gradient(var(--color-blueprint-line) 1px, transparent 1px),
               linear-gradient(90deg, var(--color-blueprint-line) 1px, transparent 1px)
             `,
-            backgroundSize: '48px 48px',
+            backgroundSize: "48px 48px",
           }}
         />
         <div className="relative mx-auto w-full px-[var(--spacing-margin-mobile)] py-16 md:px-[var(--spacing-margin-desktop)] md:py-24">
-          <div className={post.image ? 'lg:flex lg:items-center lg:gap-12' : ''}>
+          <div
+            className={post.image ? "lg:flex lg:items-center lg:gap-12" : ""}
+          >
             {post.image && (
               <div className="mb-10 lg:mb-0 lg:w-[35%] lg:shrink-0">
                 <div className="relative aspect-[16/10] overflow-hidden border border-blueprint-line">
@@ -662,13 +752,23 @@ function BlogPostView({ post, slug }: { post: BlogPost; slug: string }) {
                 </div>
               </div>
             )}
-            <div className={post.image ? 'lg:flex-1' : ''}>
+            <div className={post.image ? "lg:flex-1" : ""}>
               <Link
                 href="/blog"
                 className="group mb-8 inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-on-surface-variant transition-colors hover:text-primary"
               >
-                <svg className="h-3 w-3 transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                <svg
+                  className="h-3 w-3 transition-transform group-hover:-translate-x-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15 19l-7-7 7-7"
+                  />
                 </svg>
                 Back to Blog
               </Link>
@@ -691,8 +791,8 @@ function BlogPostView({ post, slug }: { post: BlogPost; slug: string }) {
         </div>
       </div>
       <div className="px-[var(--spacing-margin-mobile)] py-12 md:px-[var(--spacing-margin-desktop)] md:py-16">
-        <div className={hasToc ? 'lg:flex lg:gap-12' : ''}>
-          <div className={hasToc ? 'lg:flex-1 lg:min-w-0' : ''}>
+        <div className={hasToc ? "lg:flex lg:gap-12" : ""}>
+          <div className={hasToc ? "lg:flex-1 lg:min-w-0" : ""}>
             {post.content ? (
               <article
                 className="article-content"
@@ -709,8 +809,18 @@ function BlogPostView({ post, slug }: { post: BlogPost; slug: string }) {
                 href="/blog"
                 className="group inline-flex items-center gap-2 font-mono text-sm font-bold uppercase tracking-wider text-on-surface-variant transition-colors hover:text-primary"
               >
-                <svg className="h-3 w-3 transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                <svg
+                  className="h-3 w-3 transition-transform group-hover:-translate-x-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15 19l-7-7 7-7"
+                  />
                 </svg>
                 ALL_INSIGHTS
               </Link>
@@ -719,8 +829,18 @@ function BlogPostView({ post, slug }: { post: BlogPost; slug: string }) {
                 className="group inline-flex items-center gap-2 font-mono text-sm font-bold uppercase tracking-wider text-on-surface-variant transition-colors hover:text-primary"
               >
                 HOME
-                <svg className="h-3 w-3 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                <svg
+                  className="h-3 w-3 transition-transform group-hover:translate-x-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9 5l7 7-7 7"
+                  />
                 </svg>
               </Link>
             </div>
@@ -743,8 +863,8 @@ function BlogPostView({ post, slug }: { post: BlogPost; slug: string }) {
             Need a Precision Estimate?
           </h2>
           <p className="max-w-lg text-base leading-relaxed text-on-surface-variant">
-            Get a precise, AACE-compliant cost estimate for your next construction
-            project. Turnaround in as little as 24-48 hours.
+            Get a precise, AACE-compliant cost estimate for your next
+            construction project. Turnaround in as little as 24-48 hours.
           </p>
           <div className="mt-4 flex flex-col items-center gap-4 sm:flex-row">
             <Link
@@ -752,8 +872,18 @@ function BlogPostView({ post, slug }: { post: BlogPost; slug: string }) {
               className="group inline-flex items-center gap-3 border border-primary bg-primary px-8 py-3.5 font-mono text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary"
             >
               <span>GET_ESTIMATE</span>
-              <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              <svg
+                className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
               </svg>
             </Link>
             <Link

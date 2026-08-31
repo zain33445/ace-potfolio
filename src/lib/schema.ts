@@ -5,6 +5,7 @@ export const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 export const WEBSITE_ID = `${SITE_URL}/#website`;
 export const BUSINESS_ID = `${SITE_URL}/#business`;
 export const SERVICE_ID = `${SITE_URL}/#construction-estimating`;
+export const GBP_URL = 'https://www.google.com/maps/place/The+ACE+Services/@29.8730417,-95.6557672,17z/data=!3m1!4b1!4m6!3m5!1s0x8640d74886712a23:0xfe66afe536f5553a!8m2!3d29.8730417!4d-95.6557672!16s%2Fg%2F11ybg9t9m0';
 
 export const organizationSchema = {
   '@type': 'Organization',
@@ -14,7 +15,7 @@ export const organizationSchema = {
     'The ACE Services is a pre-construction services firm delivering AACE Class 3 cost estimates, material takeoffs, MEP shop drawings, 3D architectural renderings, and permit sets for general contractors nationwide.',
   url: SITE_URL,
   logo: `${SITE_URL}/aceLogo.webp`,
-  sameAs: ['https://www.linkedin.com/company/aceservicesllc/'],
+  sameAs: ['https://www.linkedin.com/company/aceservicesllc/', GBP_URL],
   areaServed: {
     '@type': 'Country',
     name: 'United States',
@@ -52,7 +53,7 @@ export const localBusinessSchema = {
     opens: '09:00',
     closes: '18:00',
   },
-  sameAs: ['https://www.linkedin.com/company/aceservicesllc/'],
+  sameAs: ['https://www.linkedin.com/company/aceservicesllc/', GBP_URL],
 };
 
 export const serviceSchema = {
@@ -129,5 +130,5 @@ export const serviceSchema = {
 
 export const websiteGraphSchema = {
   '@context': 'https://schema.org',
-  '@graph': [organizationSchema, websiteSchema, localBusinessSchema, serviceSchema],
+  '@graph': [organizationSchema, websiteSchema, localBusinessSchema],
 };
