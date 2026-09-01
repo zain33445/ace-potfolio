@@ -88,7 +88,7 @@ export default function ContactPageClient() {
               </p>
             </div>
             <a
-              href="/calculator"
+              href="/calculator/"
               className="inline-flex items-center gap-2 bg-[#FF6B00] text-white font-bold px-6 md:px-8 py-3 rounded-lg text-sm md:text-base hover:bg-[#FF6B00]/90 transition-colors shrink-0"
             >
               Try Calculator <ArrowRight className="w-4 h-4" />

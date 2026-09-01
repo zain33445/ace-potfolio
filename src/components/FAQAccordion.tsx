@@ -39,7 +39,7 @@ export const questions: FAQItem[] = [
     id: 'faq_07',
     question: 'What are construction estimating services?',
     answer: 'Construction estimating services are professional pre-construction analyses that measure quantities, price materials and labor, and produce detailed cost reports contractors use to bid projects and manage budgets. The ACE Services delivers accurate, defensible estimates for projects across residential, commercial, and industrial sectors.',
-    linkHref: '/cost-estimating',
+    linkHref: '/cost-estimating/',
     linkLabel: 'See our AACE Class 3 construction estimates',
   }
 ];

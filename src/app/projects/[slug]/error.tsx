@@ -29,7 +29,7 @@ export default function ProjectDetailError({
             TRY AGAIN
           </button>
           <Link
-            href="/projects"
+            href="/projects/"
             className="border border-blueprint-line bg-transparent px-6 py-3 font-mono text-xs font-bold uppercase tracking-wider text-on-surface-variant transition-all hover:border-primary hover:text-primary"
           >
             BACK TO PROJECTS

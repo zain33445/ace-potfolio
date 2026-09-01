@@ -9,12 +9,12 @@ import dynamic from 'next/dynamic';
 const StaggeredMenu = dynamic(() => import('@/src/components/ui/StaggeredMenu'), { ssr: false });
 
 const menuItems = [
-  { label: 'Blogs', ariaLabel: 'Read our blog', link: '/blog' },
-  { label: 'Services', ariaLabel: 'View our services', link: '/services' },
-  { label: 'Projects', ariaLabel: 'View our projects', link: '/projects' },
-  { label: 'About Us', ariaLabel: 'Learn about us', link: '/about-us' },
-  { label: 'Contact', ariaLabel: 'Contact us', link: '/contact-us' },
-  { label: 'Calculator', ariaLabel: 'Estimate costs', link: '/calculator' }
+  { label: 'Blogs', ariaLabel: 'Read our blog', link: '/blog/' },
+  { label: 'Services', ariaLabel: 'View our services', link: '/services/' },
+  { label: 'Projects', ariaLabel: 'View our projects', link: '/projects/' },
+  { label: 'About Us', ariaLabel: 'Learn about us', link: '/about-us/' },
+  { label: 'Contact', ariaLabel: 'Contact us', link: '/contact-us/' },
+  { label: 'Calculator', ariaLabel: 'Estimate costs', link: '/calculator/' }
 ];
 
 const socialItems = [
@@ -93,13 +93,13 @@ export default function Nav() {
   }, [isHome]);
 
   const PAGE_LINKS = [
-  { href: '/blog', label: 'BLOG', shortLabel: 'Blog' },
-  { href: '/about-us', label: 'ABOUT', shortLabel: 'About' },
-  { href: '/services', label: 'SERVICES', shortLabel: 'Services' },
-  { href: '/contact-us', label: 'CONTACT', shortLabel: 'Contact' },
-  { href: '/projects', label: 'PROJECTS', shortLabel: 'Projects' },
-  { href: '/testimonials', label: 'TESTIMONIALS', shortLabel: 'Testimonials' },
-  { href: '/calculator', label: 'CALCULATOR', shortLabel: 'Calculator' },
+  { href: '/blog/', label: 'BLOG', shortLabel: 'Blog' },
+  { href: '/about-us/', label: 'ABOUT', shortLabel: 'About' },
+  { href: '/services/', label: 'SERVICES', shortLabel: 'Services' },
+  { href: '/contact-us/', label: 'CONTACT', shortLabel: 'Contact' },
+  { href: '/projects/', label: 'PROJECTS', shortLabel: 'Projects' },
+  { href: '/testimonials/', label: 'TESTIMONIALS', shortLabel: 'Testimonials' },
+  { href: '/calculator/', label: 'CALCULATOR', shortLabel: 'Calculator' },
 ]; 
 
   const isActive = (href: string) => pathname === href;
@@ -151,7 +151,7 @@ export default function Nav() {
           {/* Page links */}
           <div className={`flex items-center ${navScrolled ? 'gap-3' : 'gap-2'}`}>
             {PAGE_LINKS.map(({ href, label }) => {
-              const isCalculator = href === '/calculator';
+              const isCalculator = href === '/calculator/';
               return (
                 <Link
                   key={href}

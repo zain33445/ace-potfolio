@@ -14,7 +14,7 @@ export default function ServiceNotFound() {
           The service page you&apos;re looking for doesn&apos;t exist or may have been moved.
         </p>
         <Link
-          href="/services"
+          href="/services/"
           className="group mt-8 inline-flex items-center gap-3 border border-primary bg-primary px-8 py-3.5 font-mono text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary"
         >
           <svg

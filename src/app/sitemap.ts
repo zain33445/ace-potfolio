@@ -48,26 +48,26 @@ const BLOG_SLUG_DENYLIST = new Set([
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
-    { url: BASE_URL, lastModified: new Date(), changeFrequency: 'monthly', priority: 1 },
-    { url: `${BASE_URL}/services`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${BASE_URL}/`, lastModified: new Date(), changeFrequency: 'monthly', priority: 1 },
+    { url: `${BASE_URL}/services/`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     // JS widget with ~100 words of indexable content — not worth a top-3 priority.
-    { url: `${BASE_URL}/calculator`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.4 },
-    { url: `${BASE_URL}/projects`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
-    { url: `${BASE_URL}/about-us`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
-    { url: `${BASE_URL}/contact-us`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
-    { url: `${BASE_URL}/testimonials`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
-    { url: `${BASE_URL}/blog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
+    { url: `${BASE_URL}/calculator/`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.4 },
+    { url: `${BASE_URL}/projects/`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
+    { url: `${BASE_URL}/about-us/`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${BASE_URL}/contact-us/`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${BASE_URL}/testimonials/`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${BASE_URL}/blog/`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
     // Consolidated orphan targets (rich content, previously not linked
     // from the site — 15 duplicate blog posts 301 into them via middleware).
-    { url: `${BASE_URL}/warehouses-development`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${BASE_URL}/blueprint-estimation`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${BASE_URL}/quantity-surveyor-services`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${BASE_URL}/privacy-policy`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.1 },
-    { url: `${BASE_URL}/terms-and-conditions`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.1 },
+    { url: `${BASE_URL}/warehouses-development/`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/blueprint-estimation/`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/quantity-surveyor-services/`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/privacy-policy/`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.1 },
+    { url: `${BASE_URL}/terms-and-conditions/`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.1 },
   ];
 
   const serviceRoutes: MetadataRoute.Sitemap = services.map((s) => ({
-    url: `${BASE_URL}/${s.slug}`,
+    url: `${BASE_URL}/${s.slug}/`,
     lastModified: new Date(),
     changeFrequency: 'monthly',
     priority: 0.7,
@@ -78,7 +78,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const projectRoutes: MetadataRoute.Sitemap = getAllProjects()
     .filter((p) => p.totalAreaSqFt > 0 || p.estimatedCost > 0)
     .map((p) => ({
-      url: `${BASE_URL}/projects/${p.slug}`,
+      url: `${BASE_URL}/projects/${p.slug}/`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.6,
@@ -90,7 +90,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     blogRoutes = result.data
       .filter((post) => REAL_SLUG_RE.test(post.slug) && !BLOG_SLUG_DENYLIST.has(post.slug))
       .map((post) => ({
-        url: `${BASE_URL}/${post.slug}`,
+        url: `${BASE_URL}/${post.slug}/`,
         lastModified: new Date(post.date),
         changeFrequency: 'monthly',
         priority: 0.6,

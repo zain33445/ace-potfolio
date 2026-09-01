@@ -40,12 +40,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: service.title,
     description: service.summary,
     alternates: {
-      canonical: `https://theaceservices.com/services/${service.slug}`,
+      canonical: `https://theaceservices.com/services/${service.slug}/`,
     },
     openGraph: {
       title: `${service.title} | The ACE Services — Pre-Construction Estimation`,
       description: service.summary,
-      url: `https://theaceservices.com/services/${service.slug}`,
+      url: `https://theaceservices.com/services/${service.slug}/`,
     },
   };
 }
@@ -69,12 +69,12 @@ export default async function ServiceDetailPage({ params }: Props) {
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'Service',
-            '@id': `https://theaceservices.com/services/${service.slug}#service`,
+            '@id': `https://theaceservices.com/services/${service.slug}/#service`,
             name: service.title,
             serviceType: service.title,
             description: service.summary,
             provider: { '@id': 'https://theaceservices.com/#organization' },
-            url: `https://theaceservices.com/services/${service.slug}`,
+            url: `https://theaceservices.com/services/${service.slug}/`,
             areaServed: { '@type': 'Country', name: 'United States' },
           }),
         }}
@@ -89,8 +89,8 @@ export default async function ServiceDetailPage({ params }: Props) {
             '@type': 'BreadcrumbList',
             itemListElement: [
               { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://theaceservices.com' },
-              { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://theaceservices.com/services' },
-              { '@type': 'ListItem', position: 3, name: service.title, item: `https://theaceservices.com/services/${service.slug}` },
+              { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://theaceservices.com/services/' },
+              { '@type': 'ListItem', position: 3, name: service.title, item: `https://theaceservices.com/services/${service.slug}/` },
             ],
           }),
         }}
@@ -136,7 +136,7 @@ export default async function ServiceDetailPage({ params }: Props) {
         <div className="relative mx-auto max-w-8xl px-5 px-[var(--spacing-margin-mobile)] pt-16 md:px-[var(--spacing-margin-desktop)] md:pt-16">
           {/* Breadcrumb */}
           <div className="mb-8 flex items-center gap-2 font-mono text-SM font-bold uppercase tracking-wider text-on-surface-variant">
-            <Link href="/services" className="hover:text-primary transition-colors">
+            <Link href="/services/" className="hover:text-primary transition-colors">
               SERVICES
             </Link>
             <span>/</span>
@@ -186,7 +186,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                   return (
                     <Link
                       key={s.id}
-                      href={`/services/${s.slug}`}
+                      href={`/services/${s.slug}/`}
                       className="group flex min-w-[240px] flex-1 gap-3 border border-blueprint-line bg-surface p-3 transition-all duration-300 hover:border-primary hover:shadow-[0_0_20px_rgba(255,107,0,0.06)] lg:min-w-0 lg:flex-none"
                     >
                       <div className="flex items-center justify-center w-12 h-12 border border-blueprint-line bg-background bracket-corners flex-shrink-0 group-hover:border-primary transition-colors">
@@ -205,7 +205,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                 })}
               </div>
               <Link
-                href="/services"
+                href="/services/"
                 className="mt-6 inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-on-surface-variant transition-colors hover:text-primary"
               >
                 <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -326,7 +326,7 @@ function PricingFeaturesSection({
             </div>
           </div>
           <Link
-            href="/contact-us"
+            href="/contact-us/"
             className="inline-flex items-center gap-2 border border-primary bg-primary px-6 py-3 font-mono text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary"
           >
             <span>REQUEST QUOTE</span>
@@ -417,7 +417,7 @@ function CtaSection({
         </p>
         <div className="flex flex-col sm:flex-row items-center gap-4">
           <Link
-            href="/contact-us"
+            href="/contact-us/"
             className="group inline-flex items-center gap-3 border border-primary bg-primary px-8 py-3.5 font-mono text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary"
           >
             <span>REQUEST ESTIMATE</span>
@@ -433,7 +433,7 @@ function CtaSection({
           </Link>
           {service.slug !== 'project-management' && (
             <Link
-              href="/calculator"
+              href="/calculator/"
               className="group inline-flex items-center gap-3 border border-blueprint-line bg-surface px-8 py-3.5 font-mono text-sm font-bold uppercase tracking-wider text-on-surface-variant transition-all hover:border-primary hover:text-primary"
             >
               <span>TRY CALCULATOR</span>

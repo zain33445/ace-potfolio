@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     'See what our clients say about The ACE Services. Trusted by general contractors, developers, and project owners for precise pre-construction estimation.',
   alternates: {
-    canonical: 'https://theaceservices.com/testimonials',
+    canonical: 'https://theaceservices.com/testimonials/',
   },
 };
 
@@ -180,7 +180,7 @@ export default function TestimonialsPage() {
           Get your first project estimate with zero commitment.
         </p>
         <Link
-          href="/calculator"
+          href="/calculator/"
           className="bracket-corners hover-brackets mt-8 inline-block rounded bg-primary px-8 py-3 font-[family-name:var(--font-space)] text-base font-bold text-white transition-colors hover:bg-[#E55A00]"
         >
           Get a Free Estimate

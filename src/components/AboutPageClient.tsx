@@ -141,12 +141,12 @@ export default function AboutPageClient() {
               </h1>
               <p className="font-sans text-lg text-on-surface-variant leading-relaxed font-medium">
                 The ACE Services is a US{' '}
-                <Link href="/services" className="font-semibold text-primary hover:underline">
+                <Link href="/services/" className="font-semibold text-primary hover:underline">
                   construction estimating company
                 </Link>{' '}
                 delivering pre-construction estimates, material takeoffs, and cost planning for
                 general contractors and developers nationwide. Since 2019, our team has completed{' '}
-                <Link href="/projects" className="font-semibold text-primary hover:underline">
+                <Link href="/projects/" className="font-semibold text-primary hover:underline">
                   2,893+ construction estimating projects
                 </Link>{' '}
                 across 35 states with an 89% bid win rate for our clients. With a legacy built on
@@ -169,7 +169,7 @@ export default function AboutPageClient() {
 
               <div className="pt-4">
                 <Link
-                  href="/contact-us"
+                  href="/contact-us/"
                   className="inline-flex items-center gap-2 bg-primary text-white font-bold px-8 py-3 rounded-lg text-lg hover:bg-primary/90 transition-colors"
                 >
                   Consult Now <ArrowRight className="w-5 h-5" />
@@ -256,7 +256,7 @@ export default function AboutPageClient() {
 
               <div className="pt-4">
                 <Link
-                  href="/contact-us"
+                  href="/contact-us/"
                   className="inline-flex items-center gap-2 bg-primary text-white font-bold px-8 py-3 rounded-lg text-lg hover:bg-primary/90 transition-colors"
                 >
                   Consult Now <ArrowRight className="w-5 h-5" />

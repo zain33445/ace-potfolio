@@ -2,6 +2,15 @@
 const nextConfig = {
   reactStrictMode: true,
 
+  // The WordPress site served every URL with a trailing slash, so that is the
+  // form Google indexed and holds ranking history for. Next defaults to false,
+  // which 308-redirected every one of those historical URLs. Restoring it puts
+  // the indexed URLs (and every external backlink) back on a 200.
+  // Every hardcoded destination below, in sitemap.ts, middleware.ts, the page
+  // canonicals and every internal <Link href> carries the slash to match —
+  // next/link does NOT append it, so a non-slash href becomes a 308 hop.
+  trailingSlash: true,
+
   experimental: {
     optimizePackageImports: ['motion', 'lucide-react', 'three', '@react-three/fiber'],
     // The blog/pages content is prerendered from shared WordPress hosting that
@@ -59,7 +68,7 @@ const nextConfig = {
       {
         // Blog posts moved from /blog/:slug to root-level /:slug
         source: '/blog/:slug',
-        destination: '/:slug',
+        destination: '/:slug/',
         permanent: true,
       },
       {
@@ -67,33 +76,33 @@ const nextConfig = {
         // ([slug]/page.tsx) — same content, two indexable URLs. Nothing on
         // the site links to /services/:slug except itself; consolidate.
         source: '/services/:slug',
-        destination: '/:slug',
+        destination: '/:slug/',
         permanent: true,
       },
       {
         // "Pauma Travel Center" was entered twice in the CMS during
         // extraction (same PDF, same content) — collapse into one page.
         source: '/projects/pauma-travel-center-2',
-        destination: '/projects/pauma-travel-center',
+        destination: '/projects/pauma-travel-center/',
         permanent: true,
       },
       {
         // /about renamed to /about-us
         source: '/about',
-        destination: '/about-us',
+        destination: '/about-us/',
         permanent: true,
       },
       {
         // /contact renamed to /contact-us
         source: '/contact',
-        destination: '/contact-us',
+        destination: '/contact-us/',
         permanent: true,
       },
       {
         // Portfolio moved from /samples (single WP page with tabs) to /projects
         // The WP site has no /samples/:slug URLs, so a single 301 covers it.
         source: '/samples',
-        destination: '/projects',
+        destination: '/projects/',
         permanent: true,
       },
       {
@@ -108,7 +117,7 @@ const nextConfig = {
         // WP page slug "terms-conditions" duplicates "/terms-and-conditions",
         // which is the version actually linked and in the sitemap.
         source: '/terms-conditions',
-        destination: '/terms-and-conditions',
+        destination: '/terms-and-conditions/',
         permanent: true,
       },
       {
@@ -116,17 +125,17 @@ const nextConfig = {
         // same post was published twice. Deleted the -2 versions from CMS and
         // redirect any lingering inbound links here.
         source: '/industrial-estimation-the-complete-guide-for-us-contractors-2',
-        destination: '/industrial-estimation-the-complete-guide-for-us-contractors',
+        destination: '/industrial-estimation-the-complete-guide-for-us-contractors/',
         permanent: true,
       },
       {
         source: '/exploring-the-top-construction-and-estimation-services-in-usa-a-complete-guide-for-builders-and-developers-2',
-        destination: '/exploring-the-top-construction-and-estimation-services-in-usa-a-complete-guide-for-builders-and-developers',
+        destination: '/exploring-the-top-construction-and-estimation-services-in-usa-a-complete-guide-for-builders-and-developers/',
         permanent: true,
       },
       {
         source: '/residential-construction-estimation-save-thousands-2',
-        destination: '/residential-construction-estimation-save-thousands',
+        destination: '/residential-construction-estimation-save-thousands/',
         permanent: true,
       },
       {
@@ -136,7 +145,7 @@ const nextConfig = {
         // removal), so send it to /blog as the closest relevant page — a
         // 301 still gets it deindexed and out of the sitemap (see sitemap.ts).
         source: '/test-post',
-        destination: '/blog',
+        destination: '/blog/',
         permanent: true,
       },
     ];
@@ -182,7 +191,7 @@ const nextConfig = {
       },
       {
         // Static pages: allow bfcache with must-revalidate
-        source: '/(about-us|services|blog|projects|testimonials|privacy-policy|terms-and-conditions|contact-us|calculator)',
+        source: '/(about-us|services|blog|projects|testimonials|privacy-policy|terms-and-conditions|contact-us|calculator)/',
         headers: [
           {
             key: 'Cache-Control',

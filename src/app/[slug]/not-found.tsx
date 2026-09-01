@@ -20,7 +20,7 @@ export default function BlogPostNotFound() {
         </p>
 
         <Link
-          href="/blog"
+          href="/blog/"
           className="group mt-10 inline-flex items-center gap-2 border border-primary bg-primary px-8 py-3.5 font-mono text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary"
         >
           <svg

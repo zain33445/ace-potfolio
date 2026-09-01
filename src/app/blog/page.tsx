@@ -11,13 +11,13 @@ export const metadata: Metadata = {
   description:
     'Expert insights on construction estimating services, quantity surveying, material takeoffs, cost analysis, and pre-construction best practices from The ACE Services team.',
   alternates: {
-    canonical: 'https://theaceservices.com/blog',
+    canonical: 'https://theaceservices.com/blog/',
   },
   openGraph: {
     title: 'Construction Estimating Insights & Blog | The ACE Services',
     description:
       'Expert insights on construction estimating services, quantity surveying, material takeoffs, cost analysis, and pre-construction best practices.',
-    url: 'https://theaceservices.com/blog',
+    url: 'https://theaceservices.com/blog/',
   },
 };
 
@@ -100,7 +100,7 @@ export default async function BlogPage() {
           project.
         </p>
         <Link
-          href="/calculator"
+          href="/calculator/"
           className="bracket-corners hover-brackets mt-8 inline-block rounded bg-primary px-8 py-3 font-[family-name:var(--font-space)] text-base font-bold text-white transition-colors hover:bg-[#E55A00]"
         >
           Get a Free Estimate

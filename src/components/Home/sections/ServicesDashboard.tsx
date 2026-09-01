@@ -39,7 +39,7 @@ const hoverBase1 = ` transition-transform
 
 const TILES: Tile[] = [
   {
-    href: "/3d-rendering-services",
+    href: "/3d-rendering-services/",
     src: "/3drendering.webp",
     images: ["/hero-renderings.webp", "/HTeao-3D-Renders.webp", "/3drendering.webp"],
     alt: "3D rendering",
@@ -52,7 +52,7 @@ const TILES: Tile[] = [
     titleSize: "text-2xl lg:text-[2.2rem]",
   },
   {
-    href: "/shop-drawing-services",
+    href: "/shop-drawing-services/",
     src: "/designs.webp",
     alt: "Shop drawings",
     position: "center 35%",
@@ -64,7 +64,7 @@ const TILES: Tile[] = [
     titleSize: "text-xl lg:text-[1.7rem]",
   },
   {
-    href: "/cost-estimating",
+    href: "/cost-estimating/",
     src: "/cost.webp",
     alt: "Cost estimation",
     position: "center 30%",
@@ -80,7 +80,7 @@ const TILES: Tile[] = [
     titleSize: "text-xl lg:text-[1.7rem]",
   },
   {
-    href: "/permit-set-services",
+    href: "/permit-set-services/",
     src: "/permit.webp",
     images: ["/permit.webp", "/permit-slide-2.webp", "/permit-slide-3.webp"],
     alt: "Permit sets",
@@ -166,7 +166,7 @@ export default function ServicesDashboard() {
         </div>
         <div className="mb-[18px] mt-5 flex flex-wrap items-end justify-end">
           <Link
-            href="/services"
+            href="/services/"
             className="text-[25px] whitespace-nowrap text-[#c25400] hover:underline"
           >
             All services&nbsp;›

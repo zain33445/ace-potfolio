@@ -17,7 +17,7 @@ export function sampleToHeroCard(project: SampleProject): HeroParallaxProduct {
   return {
     title: project.title,
     subtitle: project.category,
-    link: '/projects',
+    link: '/projects/',
     thumbnail: project.imageUrl,
   };
 }

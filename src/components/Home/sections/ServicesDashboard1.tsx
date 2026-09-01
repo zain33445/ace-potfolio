@@ -211,7 +211,7 @@ type Card = {
 
 const cards: Card[] = [
   {
-    href: "/cost-estimating",
+    href: "/cost-estimating/",
     src: "/cost.webp",
     position: "center 30%",
     eyebrow: "Estimating · Budgeting & Bidding",
@@ -223,7 +223,7 @@ const cards: Card[] = [
     titleSize: "text-5xl",
   },
   {
-    href: "/mep-coordination",
+    href: "/mep-coordination/",
     src: "/designs.webp",
     position: "center 35%",
     eyebrow: "MEP Coordination · BIM & Clash Detection",
@@ -235,7 +235,7 @@ const cards: Card[] = [
     titleSize: "text-5xl",
   },
   {
-    href: "/services/permit-sets",
+    href: "/permit-set-services/",
     src: "/permit.webp",
     position: "center 25%",
     eyebrow: "Portfolio",
@@ -247,7 +247,7 @@ const cards: Card[] = [
     titleSize: "text-6xl",
   },
   {
-    href: "/architectural-services",
+    href: "/architectural-services/",
     src: "/3drendering.webp",
     position: "center 60%",
     eyebrow: "Architectural · Documentation & Visualization",
@@ -306,7 +306,7 @@ export default function ServicesDashboard() {
       {/* Left: full-height CTA. No hoverBase by design — it is the anchor of
           the grid, so it stays put while the photo cards lift. */}
       <Link
-        href="/services"
+        href="/services/"
         className={`${panelBase} ${hoverBase}  h-56 items-center justify-center border-dashed border-white/30 bg-primary hover:border-white lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-3 lg:h-auto `}
       >
         <div className="flex flex-row items-center justify-center gap-4 -rotate-90">

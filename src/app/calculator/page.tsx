@@ -7,13 +7,13 @@ export const metadata: Metadata = {
   description:
     'Get an instant preliminary cost estimate for your construction project — AACE Class 3 budgetary allocations based on type, square footage, and complexity.',
   alternates: {
-    canonical: 'https://theaceservices.com/calculator',
+    canonical: 'https://theaceservices.com/calculator/',
   },
   openGraph: {
     title: 'Cost Calculator | The ACE Services',
     description:
       'Interactive construction cost estimation engine. Configure project parameters and receive instant budgetary allocations with material, labor, equipment, and permit breakdowns.',
-    url: 'https://theaceservices.com/calculator',
+    url: 'https://theaceservices.com/calculator/',
   },
 };
 
@@ -33,7 +33,7 @@ export default function CalculatorPage() {
           Configure your project parameters below to receive an AACE Class 3
           budgetary allocation covering materials, labor, equipment, and permit
           fees — or explore{' '}
-          <Link href="/services" className="text-primary font-semibold hover:underline">
+          <Link href="/services/" className="text-primary font-semibold hover:underline">
             our construction estimating services
           </Link>{' '}
           for a full custom quote.

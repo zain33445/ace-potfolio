@@ -6,13 +6,13 @@ export const metadata: Metadata = {
   description:
     'The ACE Services is a pre-construction estimation firm with 2,893 projects estimated and an 89% bid win rate — precision estimating and QA nationwide.',
   alternates: {
-    canonical: 'https://theaceservices.com/about-us',
+    canonical: 'https://theaceservices.com/about-us/',
   },
   openGraph: {
     title: 'About Us | The ACE Services — Top Cost Estimation Company in the US',
     description:
       'With 2,893 projects estimated and an 89% bid win rate, The ACE Services delivers precision pre-construction estimation, material takeoffs, and quantity surveying nationwide.',
-    url: 'https://theaceservices.com/about-us',
+    url: 'https://theaceservices.com/about-us/',
   },
 };
 

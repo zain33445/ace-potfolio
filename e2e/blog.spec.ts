@@ -52,7 +52,7 @@ test.describe('Blog — functional', () => {
       waitUntil: 'domcontentloaded',
     });
     // Redirect is followed; final URL must be the root-level slug
-    await expect(page).toHaveURL(/\/this-slug-definitely-does-not-exist-12345$/);
+    await expect(page).toHaveURL(/\/this-slug-definitely-does-not-exist-12345\/$/);
   });
 
   test('blog page has loading state', async ({ page }) => {

@@ -174,7 +174,7 @@ export default function ProjectsSection() {
             return (
               <Link
                 key={project.id}
-                href={`/projects/${project.slug}`}
+                href={`/projects/${project.slug}/`}
                 className="block rounded-xl overflow-hidden bg-surface border border-blueprint-line shadow-sm transition-all hover:border-primary"
               >
                 {/* img */}
@@ -311,7 +311,7 @@ export default function ProjectsSection() {
 
             return (
               <Link
-                href={`/projects/${project.slug}`}
+                href={`/projects/${project.slug}/`}
                 className="group relative block w-full h-full overflow-hidden rounded-[10px] bg-surface transition-all duration-300 hover:border-primary hover:shadow-[0_0_40px_rgba(255,107,0,0.1)]"
               >
                 {/* Image */}
@@ -402,7 +402,7 @@ export default function ProjectsSection() {
       {/* View All Link */}
       <div className="flex justify-center mt-10 md:mt-5">
         <Link
-          href="/projects"
+          href="/projects/"
           className="group/btn inline-flex items-center gap-2 border border-blueprint-line bg-transparent px-6 py-3 font-mono text-sm font-bold uppercase tracking-wider text-on-surface-variant transition-all hover:border-primary hover:text-primary"
         >
           <span>VIEW ALL PROJECTS</span>

@@ -12,13 +12,13 @@ export const metadata: Metadata = {
   description:
     'Cost estimating, architectural services, structural & engineering, and project management for contractors nationwide.',
   alternates: {
-    canonical: 'https://theaceservices.com/services',
+    canonical: 'https://theaceservices.com/services/',
   },
   openGraph: {
     title: 'Construction Estimating Company | The ACE Services',
     description:
       'Professional pre-construction services: cost estimating, architectural services, structural & engineering, and project management.',
-    url: 'https://theaceservices.com/services',
+    url: 'https://theaceservices.com/services/',
   },
 };
 
@@ -82,7 +82,7 @@ export default async function ServicesPage() {
               <CardContainer key={service.id} className="w-full h-full">
                 <CardBody className="w-full h-full">
                   <Link
-                    href={`/${service.slug}`}
+                    href={`/${service.slug}/`}
                     className="group relative flex flex-col border border-blueprint-line bg-surface p-6 transition-all duration-700 ease-out hover:border-primary hover:shadow-[0_0_30px_rgba(255,107,0,0.06)] bracket-corners hover-brackets h-full"
                   >
                     {/* Top row: Number + Icon */}
@@ -163,11 +163,11 @@ export default async function ServicesPage() {
               As a full-service <strong>construction estimating company</strong>, successful construction projects are won before ground is ever broken. At The ACE Services, our integrated suite of <strong>pre-construction services</strong> ensures that every phase of your build is meticulously planned, accurately budgeted, and structurally sound. We serve a diverse clientele across the USA, including general contractors, subcontractors, architects, and real estate developers.
             </p>
             <p>
-              By combining precision <Link href="/cost-estimating" className="text-primary hover:underline font-semibold">construction cost estimating</Link> with detailed <Link href="/architectural-services" className="text-primary hover:underline font-semibold">Architectural Documentation</Link>, we eliminate the communication silos that often cause delays and budget overruns. When your estimators, drafters, and project managers work from the same reliable data pool, your bids become sharper and your margins more secure. Compare us to any other construction estimating firm and you'll find the same team handling your estimate, drawings, and schedule from day one.
+              By combining precision <Link href="/cost-estimating/" className="text-primary hover:underline font-semibold">construction cost estimating</Link> with detailed <Link href="/architectural-services/" className="text-primary hover:underline font-semibold">Architectural Documentation</Link>, we eliminate the communication silos that often cause delays and budget overruns. When your estimators, drafters, and project managers work from the same reliable data pool, your bids become sharper and your margins more secure. Compare us to any other construction estimating firm and you'll find the same team handling your estimate, drawings, and schedule from day one.
             </p>
             <p>
-              Whether you require PE-sealed <Link href="/structural-engineering" className="text-primary hover:underline font-semibold">Structural Engineering</Link> designs for complex commercial builds or comprehensive <Link href="/project-management" className="text-primary hover:underline font-semibold">Construction Project Management</Link> to orchestrate procurement and CPM scheduling, our nationwide team delivers the blueprints and schedules you need to bid competitively and build confidently. Trusted construction cost estimating services since 2019 — browse{' '}
-              <Link href="/projects" className="text-primary hover:underline font-semibold">our construction estimating portfolio</Link>{' '}
+              Whether you require PE-sealed <Link href="/structural-engineering/" className="text-primary hover:underline font-semibold">Structural Engineering</Link> designs for complex commercial builds or comprehensive <Link href="/project-management/" className="text-primary hover:underline font-semibold">Construction Project Management</Link> to orchestrate procurement and CPM scheduling, our nationwide team delivers the blueprints and schedules you need to bid competitively and build confidently. Trusted construction cost estimating services since 2019 — browse{' '}
+              <Link href="/projects/" className="text-primary hover:underline font-semibold">our construction estimating portfolio</Link>{' '}
               to see the depth of work behind that track record.
             </p>
           </div>
@@ -191,7 +191,7 @@ export default async function ServicesPage() {
             new clients.
           </p>
           <Link
-            href="/contact-us"
+            href="/contact-us/"
             className="group mt-4 inline-flex items-center gap-3 border border-primary bg-primary px-8 py-3.5 font-mono text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary"
           >
             <span>CONTACT US</span>

@@ -35,7 +35,7 @@ export default function BlogPostError({
           </button>
 
           <Link
-            href="/blog"
+            href="/blog/"
             className="inline-flex items-center gap-2 border border-blueprint-line bg-transparent px-8 py-3.5 font-mono text-sm font-bold uppercase tracking-wider text-on-surface-variant transition-all hover:border-primary hover:text-primary"
           >
             Back to Insights

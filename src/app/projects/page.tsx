@@ -14,13 +14,13 @@ export const metadata: Metadata = {
   description:
     'Portfolio of construction estimating company projects — AACE Class 3 cost estimates delivered across residential, commercial, industrial, and municipal builds nationwide.',
   alternates: {
-    canonical: 'https://theaceservices.com/projects',
+    canonical: 'https://theaceservices.com/projects/',
   },
   openGraph: {
     title: 'Projects | The ACE Services',
     description:
       'A portfolio of construction estimation work spanning residential, commercial, and industrial sectors.',
-    url: 'https://theaceservices.com/projects',
+    url: 'https://theaceservices.com/projects/',
   },
 };
 
@@ -105,7 +105,7 @@ export default async function ProjectsPage() {
           2,893+ projects spanning residential, commercial, industrial,
           hospitality, and municipal sectors since 2019. The {projects.length}{' '}
           featured below are a curated sample — each represents a complete{' '}
-          <Link href="/cost-estimating" className="font-semibold text-primary hover:underline">
+          <Link href="/cost-estimating/" className="font-semibold text-primary hover:underline">
             construction cost estimating
           </Link>{' '}
           engagement — browse the portfolio to see the depth of trade
@@ -165,7 +165,7 @@ export default async function ProjectsPage() {
             24-48 hours. Rush turnaround available.
           </p>
           <Link
-            href="/contact-us"
+            href="/contact-us/"
             className="group mt-4 inline-flex items-center gap-3 border border-primary bg-primary px-8 py-3.5 font-mono text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary"
           >
             <span>REQUEST ESTIMATE</span>
@@ -218,7 +218,7 @@ function ProjectCard({
     <CometCard>
       <article className="group relative flex flex-col border border-blueprint-line bg-surface transition-all duration-300 hover:border-primary hover:shadow-[0_0_30px_rgba(255,107,0,0.08)] bracket-corners hover-brackets h-full">
         {/* Image area — preserves Lens + scanline overlay animations */}
-        <Link href={`/projects/${project.slug}`} className="block">
+        <Link href={`/projects/${project.slug}/`} className="block">
           <div className="relative aspect-[4/3] overflow-hidden">
             <Lens zoomFactor={2.5} lensSize={170}>
               <Image
@@ -260,7 +260,7 @@ function ProjectCard({
         {/* Content area */}
         <div className="flex flex-1 flex-col px-5 py-6">
           {/* Title + Location */}
-          <Link href={`/projects/${project.slug}`}>
+          <Link href={`/projects/${project.slug}/`}>
             <h3 className="font-[family-name:var(--font-space)] text-xl font-bold leading-snug text-on-background transition-colors group-hover:text-primary">
               {project.title}
             </h3>
@@ -317,7 +317,7 @@ function ProjectCard({
           {/* View Case Study + PDF buttons */}
           <div className="flex items-center gap-2 border-t border-blueprint-line/40 pt-4">
             <Link
-              href={`/projects/${project.slug}`}
+              href={`/projects/${project.slug}/`}
               className="group/btn inline-flex items-center gap-2 border border-primary bg-primary px-4 py-2.5 font-mono text-xs font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary"
             >
               <span>VIEW CASE STUDY</span>

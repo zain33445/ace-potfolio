@@ -104,12 +104,12 @@ export async function generateMetadata({
       title: service.title,
       description: truncate(service.summary, 160),
       alternates: {
-        canonical: `https://theaceservices.com/${toUrlSlug(slug)}`,
+        canonical: `https://theaceservices.com/${toUrlSlug(slug)}/`,
       },
       openGraph: {
         title: `${service.title} | The ACE Services — Pre-Construction Estimation`,
         description: truncate(service.summary, 160),
-        url: `https://theaceservices.com/${toUrlSlug(slug)}`,
+        url: `https://theaceservices.com/${toUrlSlug(slug)}/`,
       },
     };
   }
@@ -120,13 +120,13 @@ export async function generateMetadata({
       title: post.title,
       description: truncate(post.excerpt, 160),
       alternates: {
-        canonical: `https://theaceservices.com/${toUrlSlug(slug)}`,
+        canonical: `https://theaceservices.com/${toUrlSlug(slug)}/`,
       },
       openGraph: {
         title: `${post.title} | The ACE Services`,
         description: truncate(post.excerpt, 160),
         ...(post.image ? { images: [{ url: post.image }] } : {}),
-        url: `https://theaceservices.com/${toUrlSlug(slug)}`,
+        url: `https://theaceservices.com/${toUrlSlug(slug)}/`,
       },
     };
   }
@@ -198,13 +198,13 @@ async function ServiceView({
                 "@type": "ListItem",
                 position: 2,
                 name: "Services",
-                item: "https://theaceservices.com/services",
+                item: "https://theaceservices.com/services/",
               },
               {
                 "@type": "ListItem",
                 position: 3,
                 name: service.title,
-                item: `https://theaceservices.com/${toUrlSlug(slug)}`,
+                item: `https://theaceservices.com/${toUrlSlug(slug)}/`,
               },
             ],
           }),
@@ -246,7 +246,7 @@ async function ServiceView({
         <div className="relative  max-w-7xl px-5 px-[var(--spacing-margin-mobile)] pt-16 md:px-[var(--spacing-margin-desktop)] md:pt-16">
           <div className="mb-8 flex items-center gap-2 font-mono text-SM font-bold uppercase tracking-wider text-on-surface-variant">
             <Link
-              href="/services"
+              href="/services/"
               className="hover:text-primary transition-colors"
             >
               SERVICES
@@ -327,7 +327,7 @@ async function SubServicesSidebar({ service }: { service: Service }) {
               return (
                 <Link
                   key={s.slug}
-                  href={`/${s.slug}`}
+                  href={`/${s.slug}/`}
                   className="group w-full flex flex-col items-center text-center gap-2 border border-blueprint-line bg-surface p-3 transition-all duration-300 hover:border-primary hover:shadow-[0_0_20px_rgba(255,107,0,0.06)] md:flex-row md:text-left md:items-start"
                 >
                   <div className="flex items-center justify-center w-10 h-10 border border-blueprint-line bg-background bracket-corners flex-shrink-0 group-hover:border-primary transition-colors">
@@ -348,7 +348,7 @@ async function SubServicesSidebar({ service }: { service: Service }) {
         </>
       )}
       <Link
-        href="/services"
+        href="/services/"
         className="inline-flex justify-center md:justify-start items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-on-surface-variant transition-colors hover:text-primary"
       >
         <svg
@@ -467,7 +467,7 @@ function PricingFeaturesSection({ service }: { service: Service }) {
             </div>
           </div>
           <Link
-            href="/contact-us"
+            href="/contact-us/"
             className="inline-flex items-center gap-2 border border-primary bg-primary px-6 py-3 font-mono text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary"
           >
             <span>REQUEST QUOTE</span>
@@ -543,7 +543,7 @@ function CtaSection({ service }: { service: Service }) {
         </p>
         <div className="flex flex-col sm:flex-row items-center gap-4">
           <Link
-            href="/contact-us"
+            href="/contact-us/"
             className="group inline-flex items-center gap-3 border border-primary bg-primary px-8 py-3.5 font-mono text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary"
           >
             <span>REQUEST ESTIMATE</span>
@@ -563,7 +563,7 @@ function CtaSection({ service }: { service: Service }) {
           </Link>
           {service.slug !== "project-management" && (
             <Link
-              href="/calculator"
+              href="/calculator/"
               className="group inline-flex items-center gap-3 border border-blueprint-line bg-surface px-8 py-3.5 font-mono text-sm font-bold uppercase tracking-wider text-on-surface-variant transition-all hover:border-primary hover:text-primary"
             >
               <span>TRY CALCULATOR</span>
@@ -686,13 +686,13 @@ function BlogPostView({ post, slug }: { post: BlogPost; slug: string }) {
                 "@type": "ListItem",
                 position: 2,
                 name: "Insights & Blog",
-                item: "https://theaceservices.com/blog",
+                item: "https://theaceservices.com/blog/",
               },
               {
                 "@type": "ListItem",
                 position: 3,
                 name: post.title,
-                item: `https://theaceservices.com/${toUrlSlug(slug)}`,
+                item: `https://theaceservices.com/${toUrlSlug(slug)}/`,
               },
             ],
           }),
@@ -719,7 +719,7 @@ function BlogPostView({ post, slug }: { post: BlogPost; slug: string }) {
               name: "The ACE Services",
               url: "https://theaceservices.com",
             },
-            mainEntityOfPage: `https://theaceservices.com/${toUrlSlug(slug)}`,
+            mainEntityOfPage: `https://theaceservices.com/${toUrlSlug(slug)}/`,
           }),
         }}
       />
@@ -754,7 +754,7 @@ function BlogPostView({ post, slug }: { post: BlogPost; slug: string }) {
             )}
             <div className={post.image ? "lg:flex-1" : ""}>
               <Link
-                href="/blog"
+                href="/blog/"
                 className="group mb-8 inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-on-surface-variant transition-colors hover:text-primary"
               >
                 <svg
@@ -806,7 +806,7 @@ function BlogPostView({ post, slug }: { post: BlogPost; slug: string }) {
             <div className="my-12 border-t border-blueprint-line" />
             <div className="flex items-center justify-between">
               <Link
-                href="/blog"
+                href="/blog/"
                 className="group inline-flex items-center gap-2 font-mono text-sm font-bold uppercase tracking-wider text-on-surface-variant transition-colors hover:text-primary"
               >
                 <svg
@@ -868,7 +868,7 @@ function BlogPostView({ post, slug }: { post: BlogPost; slug: string }) {
           </p>
           <div className="mt-4 flex flex-col items-center gap-4 sm:flex-row">
             <Link
-              href="/calculator"
+              href="/calculator/"
               className="group inline-flex items-center gap-3 border border-primary bg-primary px-8 py-3.5 font-mono text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary"
             >
               <span>GET_ESTIMATE</span>
@@ -887,7 +887,7 @@ function BlogPostView({ post, slug }: { post: BlogPost; slug: string }) {
               </svg>
             </Link>
             <Link
-              href="/services"
+              href="/services/"
               className="font-mono text-sm font-bold uppercase tracking-wider text-on-surface-variant transition-colors hover:text-primary"
             >
               Get construction estimating services

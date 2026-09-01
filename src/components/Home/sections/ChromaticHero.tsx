@@ -35,7 +35,7 @@ const HERO_SLIDES: HeroSlide[] = [
     line2: "Win More Work.",
     pitch: headerH3,
     ctaLabel: "Run the calculator",
-    ctaHref: "/calculator",
+    ctaHref: "/calculator/",
   },
   {
     id: "3d-renderings",
@@ -47,7 +47,7 @@ const HERO_SLIDES: HeroSlide[] = [
     pitch:
       "Photorealistic renderings built to support permitting, coordination, and presentation — so stakeholders sign off on what they can actually see.",
     ctaLabel: "Get renderings",
-    ctaHref: "/3d-rendering-services",
+    ctaHref: "/3d-rendering-services/",
   },
   {
     id: "shop-drawings",
@@ -59,7 +59,7 @@ const HERO_SLIDES: HeroSlide[] = [
     pitch:
       "Fabrication-ready shop drawing coordination that resolves spatial conflicts before breaking ground.",
     ctaLabel: "Get drawings",
-    ctaHref: "/shop-drawing-services",
+    ctaHref: "/shop-drawing-services/",
   },
   {
     id: "permit-sets",
@@ -71,7 +71,7 @@ const HERO_SLIDES: HeroSlide[] = [
     pitch:
       "Renderings, shop drawings, and stamped permit sets from delivered projects — assembled to the reviewer's checklist, not ours.",
     ctaLabel: "Get permits",
-    ctaHref: "/permit-set-services",
+    ctaHref: "/permit-set-services/",
   },
 ];
 
@@ -283,7 +283,7 @@ export default function ChromaticHero() {
                   {slide.ctaLabel}
                 </Link>
                 <Link
-                  href="/projects"
+                  href="/projects/"
                   className="font-mono text-[13px] font-bold uppercase tracking-[0.14em] px-8 py-[15px] border-2 border-white/80 text-white transition-colors duration-200 hover:bg-white hover:text-on-background hover:border-white"
                 >
                   View our work
@@ -325,7 +325,7 @@ export default function ChromaticHero() {
 
         {/* Signature CTA bar — bottom-right corner */}
         <Link
-          href="/contact-us"
+          href="/contact-us/"
           aria-label="Request a quote"
           className="absolute right-0 bottom-0 z-20 flex items-center bg-primary text-white transition-colors duration-200 hover:bg-[#cc5500]"
           style={{ boxShadow: "0 -8px 30px rgba(0,0,0,.25)" }}

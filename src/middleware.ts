@@ -82,25 +82,25 @@ const GONE_URLS = new Set<string>([
 // /outsourced-construction-estimating.
 const LEGACY_301: Record<string, string> = {
   // Cluster A — Warehouse development → /warehouses-development
-  '/end-to-end-warehouse-development-services-for-modern-businesses': '/warehouses-development',
-  '/warehouse-development-services-how-warehouses-are-planned-designed-and-built': '/warehouses-development',
-  '/why-your-business-needs-a-professional-warehouse-development-company': '/warehouses-development',
-  '/warehouse-development-services-in-usa-building-efficient-scalable-and-modern-storage-solutions': '/warehouses-development',
-  '/warehouse-development-services-in-usa-building-efficient-spaces-for-modern-businesses': '/warehouses-development',
-  '/warehouse-development-services-in-usa': '/warehouses-development',
+  '/end-to-end-warehouse-development-services-for-modern-businesses': '/warehouses-development/',
+  '/warehouse-development-services-how-warehouses-are-planned-designed-and-built': '/warehouses-development/',
+  '/why-your-business-needs-a-professional-warehouse-development-company': '/warehouses-development/',
+  '/warehouse-development-services-in-usa-building-efficient-scalable-and-modern-storage-solutions': '/warehouses-development/',
+  '/warehouse-development-services-in-usa-building-efficient-spaces-for-modern-businesses': '/warehouses-development/',
+  '/warehouse-development-services-in-usa': '/warehouses-development/',
   // Cluster B — Blueprint estimation → /blueprint-estimation
-  '/blueprint-estimation-cut-costs-before-you-break-ground': '/blueprint-estimation',
-  '/blueprint-estimation-services-explained-a-step-by-step-construction-guide': '/blueprint-estimation',
-  '/reliable-estimating-services-for-u-s-contractors-from-blueprint-to-completion': '/blueprint-estimation',
-  '/blueprint-estimation-services-usa-the-foundation-of-accurate-construction-planning': '/blueprint-estimation',
-  '/blueprint-estimation-services-in-usa-the-foundation-of-cost-effective-construction': '/blueprint-estimation',
-  '/best-blueprint-estimation-services-in-usa': '/blueprint-estimation',
+  '/blueprint-estimation-cut-costs-before-you-break-ground': '/blueprint-estimation/',
+  '/blueprint-estimation-services-explained-a-step-by-step-construction-guide': '/blueprint-estimation/',
+  '/reliable-estimating-services-for-u-s-contractors-from-blueprint-to-completion': '/blueprint-estimation/',
+  '/blueprint-estimation-services-usa-the-foundation-of-accurate-construction-planning': '/blueprint-estimation/',
+  '/blueprint-estimation-services-in-usa-the-foundation-of-cost-effective-construction': '/blueprint-estimation/',
+  '/best-blueprint-estimation-services-in-usa': '/blueprint-estimation/',
   // Cluster C — Quantity surveyor → /quantity-surveyor-services
-  '/what-is-a-quantity-surveyor-service-a-complete-construction-guide': '/quantity-surveyor-services',
-  '/quantity-surveyor-services-ensuring-accuracy-and-efficiency-in-construction-projects': '/quantity-surveyor-services',
-  '/quantity-surveyor-services-in-usa-ensuring-precision-and-profitability-in-construction-projects': '/quantity-surveyor-services',
+  '/what-is-a-quantity-surveyor-service-a-complete-construction-guide': '/quantity-surveyor-services/',
+  '/quantity-surveyor-services-ensuring-accuracy-and-efficiency-in-construction-projects': '/quantity-surveyor-services/',
+  '/quantity-surveyor-services-in-usa-ensuring-precision-and-profitability-in-construction-projects': '/quantity-surveyor-services/',
   // Slug collision — reserve the loser for the canonical outsourced page.
-  '/outsource-construction-estimation': '/outsourced-construction-estimating',
+  '/outsource-construction-estimation': '/outsourced-construction-estimating/',
 };
 
 // Reachable, but must never rank or be indexed.
@@ -192,7 +192,7 @@ export async function middleware(request: NextRequest) {
       const clean = toAsciiSlug(decoded);
       if (KNOWN_CANONICAL_SLUGS.has(clean)) {
         const url = request.nextUrl.clone();
-        url.pathname = `/${clean}`;
+        url.pathname = `/${clean}/`;
         return NextResponse.redirect(url, 301);
       }
       return notFoundResponse();

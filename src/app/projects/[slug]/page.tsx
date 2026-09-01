@@ -40,13 +40,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: project.title,
     description,
     alternates: {
-      canonical: `https://theaceservices.com/projects/${slug}`,
+      canonical: `https://theaceservices.com/projects/${slug}/`,
     },
     openGraph: {
       title: `${project.title} | The ACE Services`,
       description,
       images: project.imageUrl ? [{ url: project.imageUrl }] : [],
-      url: `https://theaceservices.com/projects/${slug}`,
+      url: `https://theaceservices.com/projects/${slug}/`,
     },
     ...(hasData ? {} : { robots: { index: false, follow: true } }),
   };
@@ -206,8 +206,8 @@ export default async function ProjectDetailPage({ params }: Props) {
             '@type': 'BreadcrumbList',
             itemListElement: [
               { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://theaceservices.com' },
-              { '@type': 'ListItem', position: 2, name: 'Projects', item: 'https://theaceservices.com/projects' },
-              { '@type': 'ListItem', position: 3, name: project.title, item: `https://theaceservices.com/projects/${slug}` },
+              { '@type': 'ListItem', position: 2, name: 'Projects', item: 'https://theaceservices.com/projects/' },
+              { '@type': 'ListItem', position: 3, name: project.title, item: `https://theaceservices.com/projects/${slug}/` },
             ],
           }),
         }}
@@ -235,7 +235,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                 ))}
               </div>
               <Link
-                href="/projects"
+                href="/projects/"
                 className="mt-6 inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-on-surface-variant transition-colors hover:text-primary"
               >
                 <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -308,7 +308,7 @@ function HeroSection({ project }: { project: ProjectDetail }) {
       <div className="relative mx-auto max-w-7xl px-[var(--spacing-margin-mobile)] py-16 md:px-[var(--spacing-margin-desktop)] md:py-24">
         {/* Breadcrumb */}
         <div className="mb-8 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-on-surface-variant">
-          <Link href="/projects" className="hover:text-primary transition-colors">
+          <Link href="/projects/" className="hover:text-primary transition-colors">
             PORTFOLIO
           </Link>
           <span>/</span>
@@ -361,7 +361,7 @@ function QuickStat({ label, value }: { label: string; value: string }) {
 function FeaturedProjectCard({ project }: { project: ProjectDetail }) {
   return (
     <Link
-      href={`/projects/${project.slug}`}
+      href={`/projects/${project.slug}/`}
       className="group flex gap-3 border border-blueprint-line bg-surface p-3 transition-all duration-300 hover:border-primary hover:shadow-[0_0_20px_rgba(255,107,0,0.06)]"
     >
       <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden">
@@ -685,7 +685,7 @@ function CtaSection({ project }: { project: ProjectDetail }) {
           {cta.body}
         </p>
         <Link
-          href="/contact-us"
+          href="/contact-us/"
           className="group mt-4 inline-flex items-center gap-3 border border-primary bg-primary px-8 py-3.5 font-mono text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary"
         >
           <span>{cta.button}</span>

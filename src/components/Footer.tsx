@@ -10,19 +10,19 @@ import TextPressure from "@/src/components/ui/TextPressure";
 
 export default function Footer() {
   const navItems = [
-    { label: "ABOUT", href: "/about-us" },
-    { label: "BLOGS", href: "/blog" },
-    { label: "SERVICES", href: "/services" },
-    { label: "CONTACT", href: "/contact-us" },
-    { label: "PROJECTS", href: "/projects" },
-    { label: "CALCULATOR", href: "/calculator" },
-    { label: "TESTIMONIALS", href: "/testimonials" },
+    { label: "ABOUT", href: "/about-us/" },
+    { label: "BLOGS", href: "/blog/" },
+    { label: "SERVICES", href: "/services/" },
+    { label: "CONTACT", href: "/contact-us/" },
+    { label: "PROJECTS", href: "/projects/" },
+    { label: "CALCULATOR", href: "/calculator/" },
+    { label: "TESTIMONIALS", href: "/testimonials/" },
     // Solutions — internal links so these pages stop being sitemap orphans.
-    { label: "WAREHOUSE DEVELOPMENT", href: "/warehouses-development" },
-    { label: "BLUEPRINT ESTIMATION", href: "/blueprint-estimation" },
-    { label: "QUANTITY SURVEYOR", href: "/quantity-surveyor-services" },
-    { label: "privacy policy", href: "/privacy-policy" },
-    { label: "terms & conditions", href: "/terms-and-conditions" },
+    { label: "WAREHOUSE DEVELOPMENT", href: "/warehouses-development/" },
+    { label: "BLUEPRINT ESTIMATION", href: "/blueprint-estimation/" },
+    { label: "QUANTITY SURVEYOR", href: "/quantity-surveyor-services/" },
+    { label: "privacy policy", href: "/privacy-policy/" },
+    { label: "terms & conditions", href: "/terms-and-conditions/" },
   ];
 
   const standards = [
