@@ -1,9 +1,10 @@
 {
   "_meta": {
-    "extracted": "2026-07-14T14:24:19.073Z",
+    "extracted": "2026-09-01T13:53:37.089Z",
     "total": 58,
-    "success": 38,
-    "fallback": 20
+    "withEstimate": 39,
+    "withoutEstimate": 19,
+    "suspect": 1
   },
   "projects": [
     {
@@ -13,16 +14,22 @@
       "category": "GENERAL CONTRACTOR",
       "location": "USA",
       "imageUrl": "https://cms.theaceservices.com/wp-content/uploads/2024/10/Daniel-Teel.jpg",
-      "pdfUrl": "https://cms.theaceservices.com/wp-content/uploads/2024/10/GC-Sample-Mechanical-Shop-All-Trade-Rev00-1.pdf",
+      "pdfUrl": "http://cms.theaceservices.com/wp-content/uploads/2024/10/GC-Sample-Mechanical-Shop-All-Trade-Rev00-1.pdf",
       "scope": [
         "Complete Cost Estimation",
         "Quantity Takeoff"
       ],
-      
+      "hasEstimate": true,
       "totalAreaSqFt": 5789,
+      "buildingGsf": 5789,
+      "siteGsf": 0,
+      "areaBasis": 5789,
+      "areaBasisKind": "building",
       "estimatedCost": 642960,
       "suggestedBid": 851922,
-      "costPerSf": 144.18,
+      "costPerSf": 111.07,
+      "bidPerSf": 147.16,
+      "bidPerSfPrinted": 144.18,
       "costDivisions": [
         {
           "csiCode": "1000",
@@ -105,7 +112,7 @@
         "8000 OPENINGS",
         "9000 FINISHES"
       ],
-      "description": "Complete cost estimation for Mechanical Shop spanning 5,789 SF across 13 trade divisions including GENERAL REQUIREMENTS, CONCRETE, METALS. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for Mechanical Shop spanning 5,789 SF GSF across 13 trade divisions including GENERAL REQUIREMENTS, CONCRETE, METALS. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-002",
@@ -114,15 +121,22 @@
       "category": "GENERAL CONTRACTOR",
       "location": "USA",
       "imageUrl": "https://cms.theaceservices.com/wp-content/uploads/2025/03/Sauced-House.jpg",
-      "pdfUrl": "https://cms.theaceservices.com/wp-content/uploads/2024/10/Sauced-House-Restaurant-2.pdf",
+      "pdfUrl": "http://cms.theaceservices.com/wp-content/uploads/2024/10/Sauced-House-Restaurant-2.pdf",
       "scope": [
         "Complete Cost Estimation",
         "Quantity Takeoff"
       ],
+      "hasEstimate": true,
       "totalAreaSqFt": 3000,
+      "buildingGsf": 3000,
+      "siteGsf": 0,
+      "areaBasis": 3000,
+      "areaBasisKind": "building",
       "estimatedCost": 189184,
       "suggestedBid": 263912,
-      "costPerSf": 87.97,
+      "costPerSf": 63.06,
+      "bidPerSf": 87.97,
+      "bidPerSfPrinted": 87.97,
       "costDivisions": [
         {
           "csiCode": "1000",
@@ -169,7 +183,7 @@
         "8000 OPENING",
         "9000 FINISHES"
       ],
-      "description": "Complete cost estimation for Sauce'd House spanning 3,000 SF across 7 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITION, OPENING. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for Sauce'd House spanning 3,000 SF GSF across 7 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITION, OPENING. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-003",
@@ -178,15 +192,22 @@
       "category": "GENERAL CONTRACTOR",
       "location": "USA",
       "imageUrl": "https://cms.theaceservices.com/wp-content/uploads/2025/03/Paris-Bagatue.jpeg",
-      "pdfUrl": "https://cms.theaceservices.com/wp-content/uploads/2024/10/GC-Sample-Paris-Baquette-All-Trade-Rev00-2.pdf",
+      "pdfUrl": "http://cms.theaceservices.com/wp-content/uploads/2024/10/GC-Sample-Paris-Baquette-All-Trade-Rev00-2.pdf",
       "scope": [
         "Complete Cost Estimation",
         "Quantity Takeoff"
       ],
+      "hasEstimate": true,
       "totalAreaSqFt": 3000,
+      "buildingGsf": 3000,
+      "siteGsf": 0,
+      "areaBasis": 3000,
+      "areaBasisKind": "building",
       "estimatedCost": 517602,
       "suggestedBid": 696174,
-      "costPerSf": 232.06,
+      "costPerSf": 172.53,
+      "bidPerSf": 232.06,
+      "bidPerSfPrinted": 232.06,
       "costDivisions": [
         {
           "csiCode": "1000",
@@ -245,7 +266,7 @@
         "8000 OPENING",
         "9000 FINISHES"
       ],
-      "description": "Complete cost estimation for Paris Baquette spanning 3,000 SF across 9 trade divisions including GENERAL REQUIREMENTS, WOOD, PLASTIC & COMPOSITES, OPENING. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for Paris Baquette spanning 3,000 SF GSF across 9 trade divisions including GENERAL REQUIREMENTS, WOOD, PLASTIC & COMPOSITES, OPENING. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-004",
@@ -254,15 +275,22 @@
       "category": "GENERAL CONTRACTOR",
       "location": "USA",
       "imageUrl": "https://cms.theaceservices.com/wp-content/uploads/2025/03/Denia-Teel.jpg",
-      "pdfUrl": "https://cms.theaceservices.com/wp-content/uploads/2024/10/GC-Sample-Daneil-Teel-All-Trade.pdf",
+      "pdfUrl": "http://cms.theaceservices.com/wp-content/uploads/2024/10/GC-Sample-Daneil-Teel-All-Trade.pdf",
       "scope": [
         "Complete Cost Estimation",
         "Quantity Takeoff"
       ],
+      "hasEstimate": true,
       "totalAreaSqFt": 5789,
+      "buildingGsf": 5789,
+      "siteGsf": 0,
+      "areaBasis": 5789,
+      "areaBasisKind": "building",
       "estimatedCost": 530035,
       "suggestedBid": 702296,
-      "costPerSf": 121.32,
+      "costPerSf": 91.56,
+      "bidPerSf": 121.32,
+      "bidPerSfPrinted": 121.32,
       "costDivisions": [
         {
           "csiCode": "1000",
@@ -339,7 +367,7 @@
         "8000 OPENINGS",
         "9000 FINISHES"
       ],
-      "description": "Complete cost estimation for DANIEL Teel spanning 5,789 SF across 12 trade divisions including GENERAL REQUIREMENTS, CONCRETE, WOOD, PLASTIC & COMPONENTS. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for DANIEL Teel spanning 5,789 SF GSF across 12 trade divisions including GENERAL REQUIREMENTS, CONCRETE, WOOD, PLASTIC & COMPONENTS. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-005",
@@ -348,19 +376,25 @@
       "category": "GENERAL CONTRACTOR",
       "location": "USA",
       "imageUrl": "https://cms.theaceservices.com/wp-content/uploads/2025/03/Retail-Spaces.jpg",
-      "pdfUrl": "https://cms.theaceservices.com/wp-content/uploads/2024/10/GC-Sample-Corner-of-MD-RT-5-Golden-Beach-Rd-Charlotte-Hall-MD.pdf",
+      "pdfUrl": "http://cms.theaceservices.com/wp-content/uploads/2024/10/GC-Sample-Corner-of-MD-RT-5-Golden-Beach-Rd-Charlotte-Hall-MD.pdf",
       "scope": [
         "Complete Cost Estimation",
         "Quantity Takeoff"
       ],
+      "hasEstimate": false,
+      "buildingGsf": 0,
+      "siteGsf": 0,
+      "areaBasis": 0,
+      "areaBasisKind": "none",
       "totalAreaSqFt": 0,
       "estimatedCost": 0,
       "suggestedBid": 0,
       "costPerSf": 0,
+      "bidPerSf": 0,
+      "bidPerSfPrinted": 0,
       "costDivisions": [],
       "csiDivisions": [],
-      "description": "Cost estimation for WEIS Retail Spaces — precise material takeoffs and AACE Class 3 pricing delivered by The ACE Services in 24-48 hours.",
-      "_fallback": true
+      "description": "WEIS Retail Spaces — general contractor project."
     },
     {
       "id": "P-006",
@@ -369,15 +403,22 @@
       "category": "GENERAL CONTRACTOR",
       "location": "USA",
       "imageUrl": "https://cms.theaceservices.com/wp-content/uploads/2025/03/Five-star-car-wash.png",
-      "pdfUrl": "https://cms.theaceservices.com/wp-content/uploads/2024/10/GC-Sample-NEW-AUTOMATED-CARWASH-FACILITY-All-Trade.pdf",
+      "pdfUrl": "http://cms.theaceservices.com/wp-content/uploads/2024/10/GC-Sample-NEW-AUTOMATED-CARWASH-FACILITY-All-Trade.pdf",
       "scope": [
         "Complete Cost Estimation",
         "Quantity Takeoff"
       ],
+      "hasEstimate": true,
       "totalAreaSqFt": 5148,
+      "buildingGsf": 5148,
+      "siteGsf": 0,
+      "areaBasis": 5148,
+      "areaBasisKind": "building",
       "estimatedCost": 1613637,
       "suggestedBid": 1871819,
-      "costPerSf": 363.6,
+      "costPerSf": 313.45,
+      "bidPerSf": 363.6,
+      "bidPerSfPrinted": 363.6,
       "costDivisions": [
         {
           "csiCode": "1000",
@@ -448,7 +489,7 @@
         "8000 OPENINGS",
         "9000 FINISHES"
       ],
-      "description": "Complete cost estimation for Five Star Car Wash spanning 5,148 SF across 11 trade divisions including GENERAL REQUIREMENTS, CONCRETE, MASONRY. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for Five Star Car Wash spanning 5,148 SF GSF across 11 trade divisions including GENERAL REQUIREMENTS, CONCRETE, MASONRY. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-007",
@@ -457,15 +498,23 @@
       "category": "GENERAL CONTRACTOR",
       "location": "USA",
       "imageUrl": "https://cms.theaceservices.com/wp-content/uploads/2025/03/Freshmen-Hill.jpg",
-      "pdfUrl": "https://cms.theaceservices.com/wp-content/uploads/2024/10/GC-Sample-Student-Life-Improvements-Freshman-Hill-Sunset-Terrace-Troy-NY-12180-1.pdf",
+      "pdfUrl": "http://cms.theaceservices.com/wp-content/uploads/2024/10/GC-Sample-Student-Life-Improvements-Freshman-Hill-Sunset-Terrace-Troy-NY-12180-1.pdf",
       "scope": [
         "Complete Cost Estimation",
         "Quantity Takeoff"
       ],
+      "_verified": "GC-Sample-Student-Life-Improvements-Freshman-Hill: TWO summary tables. First table cost row prints 1,551,278 and SUGGESTED BID 1,977,880; stored bid 2,016,661 came from mixing both tables.",
+      "hasEstimate": true,
       "totalAreaSqFt": 2650,
+      "buildingGsf": 2650,
+      "siteGsf": 39478,
+      "areaBasis": 2650,
+      "areaBasisKind": "building",
       "estimatedCost": 1551278,
-      "suggestedBid": 2016661,
+      "suggestedBid": 1977880,
       "costPerSf": 585.39,
+      "bidPerSf": 746.37,
+      "bidPerSfPrinted": 367.56,
       "costDivisions": [
         {
           "csiCode": "1000",
@@ -531,102 +580,24 @@
           "csiCode": "33000",
           "name": "UTILITIES",
           "cost": 142208
-        },
-        {
-          "csiCode": "1000",
-          "name": "GENERAL REQUIREMENTS",
-          "cost": 57375
-        },
-        {
-          "csiCode": "2000",
-          "name": "EXISTING CONDITIONS",
-          "cost": 16683
-        },
-        {
-          "csiCode": "3000",
-          "name": "CONCRETE",
-          "cost": 96991
-        },
-        {
-          "csiCode": "4000",
-          "name": "MASONRY",
-          "cost": 35830
-        },
-        {
-          "csiCode": "5000",
-          "name": "METALS",
-          "cost": 261935
-        },
-        {
-          "csiCode": "6000",
-          "name": "WOOD, PLASTIC & COMPONENTS",
-          "cost": 21772
-        },
-        {
-          "csiCode": "7000",
-          "name": "THERMAL AND MOISTURE PROTECTION",
-          "cost": 9999
-        },
-        {
-          "csiCode": "8000",
-          "name": "OPENINGS",
-          "cost": 9503
-        },
-        {
-          "csiCode": "9000",
-          "name": "FINISHES",
-          "cost": 123151
-        },
-        {
-          "csiCode": "10000",
-          "name": "SPECIALITIES",
-          "cost": 2397
-        },
-        {
-          "csiCode": "31000",
-          "name": "EARTHWORK",
-          "cost": 45244
-        },
-        {
-          "csiCode": "32000",
-          "name": "SITE IMRPOVEMENTS",
-          "cost": 425976
-        },
-        {
-          "csiCode": "33000",
-          "name": "UTILITIES",
-          "cost": 51779
         }
       ],
       "csiDivisions": [
         "1000 GENERAL REQUIREMENTS",
-        "1000 GENERAL REQUIREMENTS",
-        "10000 SPECIALITIES",
         "10000 SPECIALITIES",
         "2000 EXISTING CONDITIONS",
-        "2000 EXISTING CONDITIONS",
-        "3000 CONCRETE",
         "3000 CONCRETE",
         "31000 EARTHWORK",
-        "31000 EARTHWORK",
-        "32000 SITE IMRPOVEMENTS",
         "32000 SITE IMRPOVEMENTS",
         "33000 UTILITIES",
-        "33000 UTILITIES",
-        "4000 MASONRY",
         "4000 MASONRY",
         "5000 METALS",
-        "5000 METALS",
-        "6000 WOOD, PLASTIC & COMPONENTS",
         "6000 WOOD, PLASTIC & COMPONENTS",
         "7000 THERMAL AND MOISTURE PROTECTION",
-        "7000 THERMAL AND MOISTURE PROTECTION",
         "8000 OPENINGS",
-        "8000 OPENINGS",
-        "9000 FINISHES",
         "9000 FINISHES"
       ],
-      "description": "Complete cost estimation for Freshman Hill spanning 2,650 SF across 26 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITIONS, CONCRETE. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for Freshman Hill spanning 2,650 SF GSF across 13 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITIONS, CONCRETE. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-008",
@@ -640,10 +611,17 @@
         "Complete Cost Estimation",
         "Quantity Takeoff"
       ],
+      "hasEstimate": true,
       "totalAreaSqFt": 17366,
+      "buildingGsf": 17366,
+      "siteGsf": 0,
+      "areaBasis": 17366,
+      "areaBasisKind": "building",
       "estimatedCost": 3050942,
       "suggestedBid": 3600112,
-      "costPerSf": 207.31,
+      "costPerSf": 175.68,
+      "bidPerSf": 207.31,
+      "bidPerSfPrinted": 207.31,
       "costDivisions": [
         {
           "csiCode": "1000",
@@ -756,7 +734,7 @@
         "8000 OPENINGS",
         "9000 FINISHES"
       ],
-      "description": "Complete cost estimation for Pinnacle Montessori School spanning 17,366 SF across 18 trade divisions including GENERAL REQUIREMENTS, CONCRETE, MASONRY. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for Pinnacle Montessori School spanning 17,366 SF GSF across 18 trade divisions including GENERAL REQUIREMENTS, CONCRETE, MASONRY. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-009",
@@ -770,14 +748,40 @@
         "Complete Cost Estimation",
         "Quantity Takeoff"
       ],
+      "hasEstimate": true,
       "totalAreaSqFt": 0,
-      "estimatedCost": 0,
-      "suggestedBid": 0,
-      "costPerSf": 0,
-      "costDivisions": [],
-      "csiDivisions": [],
-      "description": "Cost estimation for Watermill Express City — precise material takeoffs and AACE Class 3 pricing delivered by The ACE Services in 24-48 hours.",
-      "_fallback": true
+      "buildingGsf": 0,
+      "siteGsf": 12000,
+      "areaBasis": 12000,
+      "areaBasisKind": "site",
+      "estimatedCost": 123086,
+      "suggestedBid": 155088,
+      "costPerSf": 10.26,
+      "bidPerSf": 12.92,
+      "bidPerSfPrinted": 12.92,
+      "costDivisions": [
+        {
+          "csiCode": "1000",
+          "name": "GENERAL REQUIREMENTS",
+          "cost": 2200
+        },
+        {
+          "csiCode": "32000",
+          "name": "EXTERIOR IMPROVEMENTS",
+          "cost": 4149
+        },
+        {
+          "csiCode": "33000",
+          "name": "UTILITIES",
+          "cost": 116737
+        }
+      ],
+      "csiDivisions": [
+        "1000 GENERAL REQUIREMENTS",
+        "32000 EXTERIOR IMPROVEMENTS",
+        "33000 UTILITIES"
+      ],
+      "description": "Cost estimation for Watermill Express City spanning 12,000 SF site area across 3 trade divisions including GENERAL REQUIREMENTS, EXTERIOR IMPROVEMENTS, UTILITIES. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-010",
@@ -791,10 +795,17 @@
         "Complete Cost Estimation",
         "Quantity Takeoff"
       ],
+      "hasEstimate": true,
       "totalAreaSqFt": 1196,
+      "buildingGsf": 1196,
+      "siteGsf": 0,
+      "areaBasis": 1196,
+      "areaBasisKind": "building",
       "estimatedCost": 261375,
       "suggestedBid": 329332,
-      "costPerSf": 275.36,
+      "costPerSf": 218.54,
+      "bidPerSf": 275.36,
+      "bidPerSfPrinted": 275.36,
       "costDivisions": [
         {
           "csiCode": "1000",
@@ -895,7 +906,7 @@
         "8000 OPENINGS",
         "9000 FINISHES"
       ],
-      "description": "Complete cost estimation for College Ave Adu San Diego spanning 1,196 SF across 16 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITION, CONCRETE. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for College Ave Adu San Diego spanning 1,196 SF GSF across 16 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITION, CONCRETE. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-011",
@@ -909,10 +920,17 @@
         "Complete Cost Estimation",
         "Quantity Takeoff"
       ],
+      "hasEstimate": true,
       "totalAreaSqFt": 6383,
+      "buildingGsf": 6383,
+      "siteGsf": 0,
+      "areaBasis": 6383,
+      "areaBasisKind": "building",
       "estimatedCost": 1106874,
       "suggestedBid": 1339317,
-      "costPerSf": 209.83,
+      "costPerSf": 173.41,
+      "bidPerSf": 209.83,
+      "bidPerSfPrinted": 209.83,
       "costDivisions": [
         {
           "csiCode": "1000",
@@ -1019,7 +1037,7 @@
         "8000 OPENINGS",
         "9000 FINISHES"
       ],
-      "description": "Complete cost estimation for Light Church spanning 6,383 SF across 17 trade divisions including GENERAL REQUIREMENT, CONCRETE, MASONRY. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for Light Church spanning 6,383 SF GSF across 17 trade divisions including GENERAL REQUIREMENT, CONCRETE, MASONRY. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-012",
@@ -1033,10 +1051,17 @@
         "Complete Cost Estimation",
         "Quantity Takeoff"
       ],
+      "hasEstimate": true,
       "totalAreaSqFt": 3326,
+      "buildingGsf": 3326,
+      "siteGsf": 0,
+      "areaBasis": 3326,
+      "areaBasisKind": "building",
       "estimatedCost": 913080,
       "suggestedBid": 1150481,
-      "costPerSf": 345.91,
+      "costPerSf": 274.53,
+      "bidPerSf": 345.91,
+      "bidPerSfPrinted": 345.91,
       "costDivisions": [
         {
           "csiCode": "1000",
@@ -1143,7 +1168,7 @@
         "8000 OPENINGS",
         "9000 FINISHES"
       ],
-      "description": "Complete cost estimation for Comstock San Diego spanning 3,326 SF across 17 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITION, CONCRETE. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for Comstock San Diego spanning 3,326 SF GSF across 17 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITION, CONCRETE. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-013",
@@ -1157,10 +1182,17 @@
         "Complete Cost Estimation",
         "Quantity Takeoff"
       ],
+      "hasEstimate": true,
       "totalAreaSqFt": 14210,
+      "buildingGsf": 14210,
+      "siteGsf": 0,
+      "areaBasis": 14210,
+      "areaBasisKind": "building",
       "estimatedCost": 2391945,
       "suggestedBid": 2966011,
-      "costPerSf": 208.73,
+      "costPerSf": 168.33,
+      "bidPerSf": 208.73,
+      "bidPerSfPrinted": 208.73,
       "costDivisions": [
         {
           "csiCode": "1000",
@@ -1279,7 +1311,7 @@
         "8000 OPENINGS",
         "9000 FINISHES"
       ],
-      "description": "Complete cost estimation for E Avenue J Grand Prairie spanning 14,210 SF across 19 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITIONS, CONCRETE. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for E Avenue J Grand Prairie spanning 14,210 SF GSF across 19 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITIONS, CONCRETE. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-014",
@@ -1293,10 +1325,18 @@
         "Complete Cost Estimation",
         "Quantity Takeoff"
       ],
+      "_verified": "Estimate-Wildlife-Pickleball-Park: header \"BUILDING GSF 299 / SITE GSF 211,266\". PROJECTED COST 1,056,720 + O&P 10% 105,672 + insurance 15,851 + contingency 4.5% 47,552 + tax 0 = SUGGESTED BID 1,225,795. Park, not a building: per-SF must use SITE GSF.",
+      "hasEstimate": true,
       "totalAreaSqFt": 299,
+      "buildingGsf": 299,
+      "siteGsf": 211266,
+      "areaBasis": 211266,
+      "areaBasisKind": "site",
       "estimatedCost": 1056720,
       "suggestedBid": 1225795,
-      "costPerSf": 528.4,
+      "costPerSf": 5,
+      "bidPerSf": 5.8,
+      "bidPerSfPrinted": 528.4,
       "costDivisions": [
         {
           "csiCode": "1000",
@@ -1385,7 +1425,7 @@
         "8000 OPENINGS",
         "9000 FINISHES"
       ],
-      "description": "Complete cost estimation for Wildlife Pickleball Park spanning 299 SF across 14 trade divisions including GENERAL REQUIREMENTS, CONCRETE, MASONRY. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for Wildlife Pickleball Park spanning 211,266 SF site area across 14 trade divisions including GENERAL REQUIREMENTS, CONCRETE, MASONRY. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-015",
@@ -1399,10 +1439,17 @@
         "Complete Cost Estimation",
         "Quantity Takeoff"
       ],
+      "hasEstimate": true,
       "totalAreaSqFt": 4083,
+      "buildingGsf": 4083,
+      "siteGsf": 0,
+      "areaBasis": 4083,
+      "areaBasisKind": "building",
       "estimatedCost": 512895,
       "suggestedBid": 646248,
-      "costPerSf": 158.28,
+      "costPerSf": 125.62,
+      "bidPerSf": 158.28,
+      "bidPerSfPrinted": 158.28,
       "costDivisions": [
         {
           "csiCode": "1000",
@@ -1497,7 +1544,7 @@
         "8000 OPENINGS",
         "9000 FINISHES"
       ],
-      "description": "Complete cost estimation for Shane PL San Diego spanning 4,083 SF across 15 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITION, CONCRETE. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for Shane PL San Diego spanning 4,083 SF GSF across 15 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITION, CONCRETE. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-016",
@@ -1511,10 +1558,17 @@
         "Complete Cost Estimation",
         "Quantity Takeoff"
       ],
+      "hasEstimate": true,
       "totalAreaSqFt": 1262,
+      "buildingGsf": 1262,
+      "siteGsf": 0,
+      "areaBasis": 1262,
+      "areaBasisKind": "building",
       "estimatedCost": 90205,
       "suggestedBid": 113658,
-      "costPerSf": 90.06,
+      "costPerSf": 71.48,
+      "bidPerSf": 90.06,
+      "bidPerSfPrinted": 90.06,
       "costDivisions": [
         {
           "csiCode": "1000",
@@ -1573,7 +1627,7 @@
         "8000 OPENINGS",
         "9000 FINISHES"
       ],
-      "description": "Complete cost estimation for TriStar Drive spanning 1,262 SF across 9 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITION, WOOD, PLASTIC & COMPONENTS. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for TriStar Drive spanning 1,262 SF GSF across 9 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITION, WOOD, PLASTIC & COMPONENTS. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-017",
@@ -1587,10 +1641,17 @@
         "Complete Cost Estimation",
         "Quantity Takeoff"
       ],
+      "hasEstimate": true,
       "totalAreaSqFt": 5550,
+      "buildingGsf": 5550,
+      "siteGsf": 0,
+      "areaBasis": 5550,
+      "areaBasisKind": "building",
       "estimatedCost": 966678,
       "suggestedBid": 1121347,
-      "costPerSf": 202.04,
+      "costPerSf": 174.18,
+      "bidPerSf": 202.04,
+      "bidPerSfPrinted": 202.04,
       "costDivisions": [
         {
           "csiCode": "1000",
@@ -1691,7 +1752,7 @@
         "8000 OPENINGS",
         "9000 FINISHES"
       ],
-      "description": "Complete cost estimation for W Arkansas LN spanning 5,550 SF across 16 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITIONS, CONCRETE. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for W Arkansas LN spanning 5,550 SF GSF across 16 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITIONS, CONCRETE. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-018",
@@ -1705,10 +1766,17 @@
         "Complete Cost Estimation",
         "Quantity Takeoff"
       ],
+      "hasEstimate": true,
       "totalAreaSqFt": 11180,
+      "buildingGsf": 11180,
+      "siteGsf": 0,
+      "areaBasis": 11180,
+      "areaBasisKind": "building",
       "estimatedCost": 1007318,
       "suggestedBid": 1168489,
-      "costPerSf": 104.52,
+      "costPerSf": 90.1,
+      "bidPerSf": 104.52,
+      "bidPerSfPrinted": 104.52,
       "costDivisions": [
         {
           "csiCode": "1000",
@@ -1797,7 +1865,10 @@
         "8000 OPENINGS",
         "9000 FINISHES"
       ],
-      "description": "Complete cost estimation for Will Residence spanning 11,180 SF across 14 trade divisions including GENERAL REQUIREMENTS, CONCRETE, MASONRY. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for Will Residence spanning 11,180 SF GSF across 14 trade divisions including GENERAL REQUIREMENTS, CONCRETE, MASONRY. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation.",
+      "_suspect": [
+        "divisions sum 1096362 != estimatedCost 1007318 (1.09x)"
+      ]
     },
     {
       "id": "P-019",
@@ -1811,10 +1882,17 @@
         "Complete Cost Estimation",
         "Quantity Takeoff"
       ],
+      "hasEstimate": true,
       "totalAreaSqFt": 1196,
+      "buildingGsf": 1196,
+      "siteGsf": 0,
+      "areaBasis": 1196,
+      "areaBasisKind": "building",
       "estimatedCost": 703668,
       "suggestedBid": 816255,
-      "costPerSf": 682.49,
+      "costPerSf": 588.35,
+      "bidPerSf": 682.49,
+      "bidPerSfPrinted": 682.49,
       "costDivisions": [
         {
           "csiCode": "1000",
@@ -1921,7 +1999,7 @@
         "8000 OPENINGS",
         "9000 FINISHES"
       ],
-      "description": "Complete cost estimation for Heinzsman Residence spanning 1,196 SF across 17 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITION, CONCRETE. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for Heinzsman Residence spanning 1,196 SF GSF across 17 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITION, CONCRETE. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-020",
@@ -1935,10 +2013,17 @@
         "Complete Cost Estimation",
         "Quantity Takeoff"
       ],
+      "hasEstimate": true,
       "totalAreaSqFt": 1148,
+      "buildingGsf": 1148,
+      "siteGsf": 0,
+      "areaBasis": 1148,
+      "areaBasisKind": "building",
       "estimatedCost": 140895,
       "suggestedBid": 177528,
-      "costPerSf": 154.64,
+      "costPerSf": 122.73,
+      "bidPerSf": 154.64,
+      "bidPerSfPrinted": 154.64,
       "costDivisions": [
         {
           "csiCode": "1000",
@@ -2003,7 +2088,7 @@
         "8000 OPENINGS",
         "9000 FINISHES"
       ],
-      "description": "Complete cost estimation for Amicable CT spanning 1,148 SF across 10 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITION, MASONRY. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for Amicable CT spanning 1,148 SF GSF across 10 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITION, MASONRY. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-021",
@@ -2017,10 +2102,17 @@
         "Complete Cost Estimation",
         "Quantity Takeoff"
       ],
+      "hasEstimate": true,
       "totalAreaSqFt": 162076,
+      "buildingGsf": 162076,
+      "siteGsf": 0,
+      "areaBasis": 162076,
+      "areaBasisKind": "building",
       "estimatedCost": 529261,
       "suggestedBid": 640406,
-      "costPerSf": 3.95,
+      "costPerSf": 3.27,
+      "bidPerSf": 3.95,
+      "bidPerSfPrinted": 3.95,
       "costDivisions": [
         {
           "csiCode": "1000",
@@ -2049,7 +2141,7 @@
         "32000 EXTERIOR IMPROVEMENTS",
         "33000 UTILITIES"
       ],
-      "description": "Complete cost estimation for Parker Henderson Project spanning 162,076 SF across 4 trade divisions including GENERAL REQUIREMENTS, EARTHWORK, EXTERIOR IMPROVEMENTS. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for Parker Henderson Project spanning 162,076 SF GSF across 4 trade divisions including GENERAL REQUIREMENTS, EARTHWORK, EXTERIOR IMPROVEMENTS. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-022",
@@ -2063,14 +2155,20 @@
         "Complete Cost Estimation",
         "Quantity Takeoff"
       ],
+      "hasEstimate": false,
+      "buildingGsf": 0,
+      "siteGsf": 0,
+      "areaBasis": 0,
+      "areaBasisKind": "none",
       "totalAreaSqFt": 0,
       "estimatedCost": 0,
       "suggestedBid": 0,
       "costPerSf": 0,
+      "bidPerSf": 0,
+      "bidPerSfPrinted": 0,
       "costDivisions": [],
       "csiDivisions": [],
-      "description": "General-contractor project for PLANET FITNESS — complete cost estimation and quantity takeoff. AACE Class 3 pricing and material takeoffs by The ACE Services.",
-      "_fallback": true
+      "description": "PLANET FITNESS — general contractor project."
     },
     {
       "id": "P-023",
@@ -2084,14 +2182,20 @@
         "Complete Cost Estimation",
         "Quantity Takeoff"
       ],
+      "hasEstimate": false,
+      "buildingGsf": 0,
+      "siteGsf": 0,
+      "areaBasis": 0,
+      "areaBasisKind": "none",
       "totalAreaSqFt": 0,
       "estimatedCost": 0,
       "suggestedBid": 0,
       "costPerSf": 0,
+      "bidPerSf": 0,
+      "bidPerSfPrinted": 0,
       "costDivisions": [],
       "csiDivisions": [],
-      "description": "General-contractor project for Fortox Retail — complete cost estimation and quantity takeoff. AACE Class 3 pricing and material takeoffs by The ACE Services.",
-      "_fallback": true
+      "description": "Fortox Retail — general contractor project."
     },
     {
       "id": "P-024",
@@ -2105,10 +2209,17 @@
         "Complete Cost Estimation",
         "Quantity Takeoff"
       ],
+      "hasEstimate": true,
       "totalAreaSqFt": 1004,
+      "buildingGsf": 1004,
+      "siteGsf": 0,
+      "areaBasis": 1004,
+      "areaBasisKind": "building",
       "estimatedCost": 266524,
       "suggestedBid": 363805,
-      "costPerSf": 362.36,
+      "costPerSf": 265.46,
+      "bidPerSf": 362.36,
+      "bidPerSfPrinted": 362.36,
       "costDivisions": [
         {
           "csiCode": "1000",
@@ -2173,7 +2284,7 @@
         "8000 OPENINGS",
         "9000 FINISHES"
       ],
-      "description": "Complete cost estimation for Lucky Hair Salloon spanning 1,004 SF across 10 trade divisions including GENERAL REQUIREMENTS, WOOD, PLASTIC & COMPONENTS, OPENINGS. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for Lucky Hair Salloon spanning 1,004 SF GSF across 10 trade divisions including GENERAL REQUIREMENTS, WOOD, PLASTIC & COMPONENTS, OPENINGS. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-025",
@@ -2187,10 +2298,17 @@
         "MEP Takeoff",
         "Trade-Specific Estimate"
       ],
+      "hasEstimate": true,
       "totalAreaSqFt": 28900,
+      "buildingGsf": 28900,
+      "siteGsf": 0,
+      "areaBasis": 28900,
+      "areaBasisKind": "building",
       "estimatedCost": 154271,
       "suggestedBid": 178954,
-      "costPerSf": 6.19,
+      "costPerSf": 5.34,
+      "bidPerSf": 6.19,
+      "bidPerSfPrinted": 6.19,
       "costDivisions": [
         {
           "csiCode": "6000",
@@ -2207,7 +2325,7 @@
         "12000 FURNISHINGS",
         "6000 WOOD, PLASTICS, AND COMPOSITES"
       ],
-      "description": "Complete cost estimation for New Community Living Center spanning 28,900 SF across 2 trade divisions including WOOD, PLASTICS, AND COMPOSITES, FURNISHINGS. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for New Community Living Center spanning 28,900 SF GSF across 2 trade divisions including WOOD, PLASTICS, AND COMPOSITES, FURNISHINGS. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-026",
@@ -2216,15 +2334,22 @@
       "category": "SUB CONTRACTORS",
       "location": "USA",
       "imageUrl": "https://cms.theaceservices.com/wp-content/uploads/2025/03/305-Regency.jpg",
-      "pdfUrl": "https://cms.theaceservices.com/wp-content/uploads/2024/10/Concrete-Sample-305-Regency-Parkway-Mansfield-TX.pdf",
+      "pdfUrl": "http://cms.theaceservices.com/wp-content/uploads/2024/10/Concrete-Sample-305-Regency-Parkway-Mansfield-TX.pdf",
       "scope": [
         "MEP Takeoff",
         "Trade-Specific Estimate"
       ],
+      "hasEstimate": true,
       "totalAreaSqFt": 3138,
+      "buildingGsf": 3138,
+      "siteGsf": 0,
+      "areaBasis": 3138,
+      "areaBasisKind": "building",
       "estimatedCost": 67651,
       "suggestedBid": 78813,
-      "costPerSf": 25.12,
+      "costPerSf": 21.56,
+      "bidPerSf": 25.12,
+      "bidPerSfPrinted": 25.12,
       "costDivisions": [
         {
           "csiCode": "1000",
@@ -2241,7 +2366,7 @@
         "1000 GENERAL REQUIREMENTS",
         "3000 CONCRETE"
       ],
-      "description": "Complete cost estimation for Regency Parkway Mansfield spanning 3,138 SF across 2 trade divisions including GENERAL REQUIREMENTS, CONCRETE. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for Regency Parkway Mansfield spanning 3,138 SF GSF across 2 trade divisions including GENERAL REQUIREMENTS, CONCRETE. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-027",
@@ -2255,10 +2380,17 @@
         "MEP Takeoff",
         "Trade-Specific Estimate"
       ],
+      "hasEstimate": true,
       "totalAreaSqFt": 961,
+      "buildingGsf": 961,
+      "siteGsf": 0,
+      "areaBasis": 961,
+      "areaBasisKind": "building",
       "estimatedCost": 18243,
       "suggestedBid": 22987,
-      "costPerSf": 23.92,
+      "costPerSf": 18.98,
+      "bidPerSf": 23.92,
+      "bidPerSfPrinted": 23.92,
       "costDivisions": [
         {
           "csiCode": "1000",
@@ -2293,7 +2425,7 @@
         "31000 EARTHWORK",
         "32000 EXTERIOR IMPROVEMENTS"
       ],
-      "description": "Complete cost estimation for Lake Arlington Branch spanning 961 SF across 5 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITIONS, CONCRETE. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for Lake Arlington Branch spanning 961 SF GSF across 5 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITIONS, CONCRETE. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-028",
@@ -2302,15 +2434,22 @@
       "category": "SUB CONTRACTORS",
       "location": "USA",
       "imageUrl": "https://cms.theaceservices.com/wp-content/uploads/2024/10/First-Bapist-Church.png",
-      "pdfUrl": "https://cms.theaceservices.com/wp-content/uploads/2024/10/Plumbing-Sample-First-Chinies-Baptist-Church-Plumbing-Rev00.pdf",
+      "pdfUrl": "http://cms.theaceservices.com/wp-content/uploads/2024/10/Plumbing-Sample-First-Chinies-Baptist-Church-Plumbing-Rev00.pdf",
       "scope": [
         "MEP Takeoff",
         "Trade-Specific Estimate"
       ],
+      "hasEstimate": true,
       "totalAreaSqFt": 650,
+      "buildingGsf": 650,
+      "siteGsf": 0,
+      "areaBasis": 650,
+      "areaBasisKind": "building",
       "estimatedCost": 77500,
       "suggestedBid": 106563,
-      "costPerSf": 163.94,
+      "costPerSf": 119.23,
+      "bidPerSf": 163.94,
+      "bidPerSfPrinted": 163.94,
       "costDivisions": [
         {
           "csiCode": "1000",
@@ -2327,7 +2466,7 @@
         "1000 GENERAL REQUIREMENTS",
         "2200 PLUMBING"
       ],
-      "description": "Complete cost estimation for First Chinies Baptist Church spanning 650 SF across 2 trade divisions including GENERAL REQUIREMENTS, PLUMBING. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for First Chinies Baptist Church spanning 650 SF GSF across 2 trade divisions including GENERAL REQUIREMENTS, PLUMBING. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-029",
@@ -2336,15 +2475,22 @@
       "category": "SUB CONTRACTORS",
       "location": "USA",
       "imageUrl": "https://cms.theaceservices.com/wp-content/uploads/2024/10/Untitled-12.png",
-      "pdfUrl": "https://cms.theaceservices.com/wp-content/uploads/2024/10/Plumbing-Sample-First-Chinies-Baptist-Church-Plumbing-Rev00.pdf",
+      "pdfUrl": "http://cms.theaceservices.com/wp-content/uploads/2024/10/Plumbing-Sample-First-Chinies-Baptist-Church-Plumbing-Rev00.pdf",
       "scope": [
         "MEP Takeoff",
         "Trade-Specific Estimate"
       ],
+      "hasEstimate": true,
       "totalAreaSqFt": 650,
+      "buildingGsf": 650,
+      "siteGsf": 0,
+      "areaBasis": 650,
+      "areaBasisKind": "building",
       "estimatedCost": 77500,
       "suggestedBid": 106563,
-      "costPerSf": 163.94,
+      "costPerSf": 119.23,
+      "bidPerSf": 163.94,
+      "bidPerSfPrinted": 163.94,
       "costDivisions": [
         {
           "csiCode": "1000",
@@ -2361,7 +2507,7 @@
         "1000 GENERAL REQUIREMENTS",
         "2200 PLUMBING"
       ],
-      "description": "Complete cost estimation for Capital Grill 3500 West Olive spanning 650 SF across 2 trade divisions including GENERAL REQUIREMENTS, PLUMBING. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for Capital Grill 3500 West Olive spanning 650 SF GSF across 2 trade divisions including GENERAL REQUIREMENTS, PLUMBING. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-030",
@@ -2370,15 +2516,22 @@
       "category": "SUB CONTRACTORS",
       "location": "USA",
       "imageUrl": "https://cms.theaceservices.com/wp-content/uploads/2024/10/Untitled-9.png",
-      "pdfUrl": "https://cms.theaceservices.com/wp-content/uploads/2024/10/Concrete-Sample-305-Regency-Parkway-Mansfield-TX.pdf",
+      "pdfUrl": "http://cms.theaceservices.com/wp-content/uploads/2024/10/Concrete-Sample-305-Regency-Parkway-Mansfield-TX.pdf",
       "scope": [
         "MEP Takeoff",
         "Trade-Specific Estimate"
       ],
+      "hasEstimate": true,
       "totalAreaSqFt": 3138,
+      "buildingGsf": 3138,
+      "siteGsf": 0,
+      "areaBasis": 3138,
+      "areaBasisKind": "building",
       "estimatedCost": 67651,
       "suggestedBid": 78813,
-      "costPerSf": 25.12,
+      "costPerSf": 21.56,
+      "bidPerSf": 25.12,
+      "bidPerSfPrinted": 25.12,
       "costDivisions": [
         {
           "csiCode": "1000",
@@ -2395,7 +2548,7 @@
         "1000 GENERAL REQUIREMENTS",
         "3000 CONCRETE"
       ],
-      "description": "Complete cost estimation for Detroit MI, 2nd Ave spanning 3,138 SF across 2 trade divisions including GENERAL REQUIREMENTS, CONCRETE. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for Detroit MI, 2nd Ave spanning 3,138 SF GSF across 2 trade divisions including GENERAL REQUIREMENTS, CONCRETE. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-031",
@@ -2404,15 +2557,22 @@
       "category": "SUB CONTRACTORS",
       "location": "USA",
       "imageUrl": "https://cms.theaceservices.com/wp-content/uploads/2024/10/Untitled-13.png",
-      "pdfUrl": "https://cms.theaceservices.com/wp-content/uploads/2024/10/Concrete-Sample-305-Regency-Parkway-Mansfield-TX.pdf",
+      "pdfUrl": "http://cms.theaceservices.com/wp-content/uploads/2024/10/Concrete-Sample-305-Regency-Parkway-Mansfield-TX.pdf",
       "scope": [
         "MEP Takeoff",
         "Trade-Specific Estimate"
       ],
+      "hasEstimate": true,
       "totalAreaSqFt": 3138,
+      "buildingGsf": 3138,
+      "siteGsf": 0,
+      "areaBasis": 3138,
+      "areaBasisKind": "building",
       "estimatedCost": 67651,
       "suggestedBid": 78813,
-      "costPerSf": 25.12,
+      "costPerSf": 21.56,
+      "bidPerSf": 25.12,
+      "bidPerSfPrinted": 25.12,
       "costDivisions": [
         {
           "csiCode": "1000",
@@ -2429,7 +2589,7 @@
         "1000 GENERAL REQUIREMENTS",
         "3000 CONCRETE"
       ],
-      "description": "Complete cost estimation for AQUAZZURRA, Drywall spanning 3,138 SF across 2 trade divisions including GENERAL REQUIREMENTS, CONCRETE. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for AQUAZZURRA, Drywall spanning 3,138 SF GSF across 2 trade divisions including GENERAL REQUIREMENTS, CONCRETE. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-032",
@@ -2443,10 +2603,17 @@
         "MEP Takeoff",
         "Trade-Specific Estimate"
       ],
+      "hasEstimate": true,
       "totalAreaSqFt": 2124,
+      "buildingGsf": 2124,
+      "siteGsf": 0,
+      "areaBasis": 2124,
+      "areaBasisKind": "building",
       "estimatedCost": 59723,
       "suggestedBid": 75251,
-      "costPerSf": 35.43,
+      "costPerSf": 28.12,
+      "bidPerSf": 35.43,
+      "bidPerSfPrinted": 35.43,
       "costDivisions": [
         {
           "csiCode": "1000",
@@ -2469,7 +2636,7 @@
         "6000 WOOD, PLASTIC & COMPONENTS",
         "9000 FINISHES"
       ],
-      "description": "Complete cost estimation for Project Norris spanning 2,124 SF across 3 trade divisions including GENERAL REQUIREMENTS, WOOD, PLASTIC & COMPONENTS, FINISHES. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for Project Norris spanning 2,124 SF GSF across 3 trade divisions including GENERAL REQUIREMENTS, WOOD, PLASTIC & COMPONENTS, FINISHES. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-033",
@@ -2483,10 +2650,17 @@
         "MEP Takeoff",
         "Trade-Specific Estimate"
       ],
+      "hasEstimate": true,
       "totalAreaSqFt": 3572,
+      "buildingGsf": 3572,
+      "siteGsf": 0,
+      "areaBasis": 3572,
+      "areaBasisKind": "building",
       "estimatedCost": 45596,
       "suggestedBid": 57451,
-      "costPerSf": 16.08,
+      "costPerSf": 12.76,
+      "bidPerSf": 16.08,
+      "bidPerSfPrinted": 16.08,
       "costDivisions": [
         {
           "csiCode": "1000",
@@ -2509,7 +2683,7 @@
         "6000 WOOD, PLASTIC & COMPONENTS",
         "7000 THERMAL AND MOISTURE PROTECTION"
       ],
-      "description": "Complete cost estimation for Cardin Place Eagleville spanning 3,572 SF across 3 trade divisions including GENERAL REQUIREMENTS, WOOD, PLASTIC & COMPONENTS, THERMAL AND MOISTURE PROTECTION. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for Cardin Place Eagleville spanning 3,572 SF GSF across 3 trade divisions including GENERAL REQUIREMENTS, WOOD, PLASTIC & COMPONENTS, THERMAL AND MOISTURE PROTECTION. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-034",
@@ -2523,10 +2697,17 @@
         "MEP Takeoff",
         "Trade-Specific Estimate"
       ],
+      "hasEstimate": true,
       "totalAreaSqFt": 4777,
+      "buildingGsf": 4777,
+      "siteGsf": 0,
+      "areaBasis": 4777,
+      "areaBasisKind": "building",
       "estimatedCost": 75330,
       "suggestedBid": 91150,
-      "costPerSf": 19.08,
+      "costPerSf": 15.77,
+      "bidPerSf": 19.08,
+      "bidPerSfPrinted": 19.08,
       "costDivisions": [
         {
           "csiCode": "1000",
@@ -2555,7 +2736,7 @@
         "6000 WOOD, PLASTICS, AND COMPOSITES",
         "9000 FINISHES"
       ],
-      "description": "Complete cost estimation for McCulloh St Baltimore spanning 4,777 SF across 4 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITIONS, WOOD, PLASTICS, AND COMPOSITES. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for McCulloh St Baltimore spanning 4,777 SF GSF across 4 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITIONS, WOOD, PLASTICS, AND COMPOSITES. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-035",
@@ -2564,19 +2745,25 @@
       "category": "SUB CONTRACTORS",
       "location": "USA",
       "imageUrl": "https://cms.theaceservices.com/wp-content/uploads/2025/03/SCC-EVANS-BUILDING.jpg",
-      "pdfUrl": "https://cms.theaceservices.com/wp-content/uploads/2024/10/Paint-Estimate-SCC-EVANS-BUILDING-220-E-Kennedy-St-Spartanburg-SC-29302.pdf",
+      "pdfUrl": "http://cms.theaceservices.com/wp-content/uploads/2024/10/Paint-Estimate-SCC-EVANS-BUILDING-220-E-Kennedy-St-Spartanburg-SC-29302.pdf",
       "scope": [
         "MEP Takeoff",
         "Trade-Specific Estimate"
       ],
+      "hasEstimate": false,
+      "buildingGsf": 0,
+      "siteGsf": 0,
+      "areaBasis": 0,
+      "areaBasisKind": "none",
       "totalAreaSqFt": 0,
       "estimatedCost": 0,
       "suggestedBid": 0,
       "costPerSf": 0,
+      "bidPerSf": 0,
+      "bidPerSfPrinted": 0,
       "costDivisions": [],
       "csiDivisions": [],
-      "description": "Subcontractor project for SCC EVANS BUILDING — mep takeoff and trade-specific estimate. AACE Class 3 pricing and material takeoffs by The ACE Services.",
-      "_fallback": true
+      "description": "SCC EVANS BUILDING — sub contractors project."
     },
     {
       "id": "P-036",
@@ -2585,19 +2772,25 @@
       "category": "SUB CONTRACTORS",
       "location": "USA",
       "imageUrl": "https://cms.theaceservices.com/wp-content/uploads/2025/03/Double-Tree-by-Hilton-300x200-1.jpg",
-      "pdfUrl": "https://cms.theaceservices.com/wp-content/uploads/2024/10/Estimate-Doubletree-By-Hilton-Bradley-International-Airport.pdf",
+      "pdfUrl": "http://cms.theaceservices.com/wp-content/uploads/2024/10/Estimate-Doubletree-By-Hilton-Bradley-International-Airport.pdf",
       "scope": [
         "MEP Takeoff",
         "Trade-Specific Estimate"
       ],
+      "hasEstimate": false,
+      "buildingGsf": 0,
+      "siteGsf": 0,
+      "areaBasis": 0,
+      "areaBasisKind": "none",
       "totalAreaSqFt": 0,
       "estimatedCost": 0,
       "suggestedBid": 0,
       "costPerSf": 0,
+      "bidPerSf": 0,
+      "bidPerSfPrinted": 0,
       "costDivisions": [],
       "csiDivisions": [],
-      "description": "Subcontractor project for Doubletree By Hilton — mep takeoff and trade-specific estimate. AACE Class 3 pricing and material takeoffs by The ACE Services.",
-      "_fallback": true
+      "description": "Doubletree By Hilton — sub contractors project."
     },
     {
       "id": "P-037",
@@ -2611,14 +2804,20 @@
         "MEP Takeoff",
         "Trade-Specific Estimate"
       ],
+      "hasEstimate": false,
+      "buildingGsf": 0,
+      "siteGsf": 0,
+      "areaBasis": 0,
+      "areaBasisKind": "none",
       "totalAreaSqFt": 0,
       "estimatedCost": 0,
       "suggestedBid": 0,
       "costPerSf": 0,
+      "bidPerSf": 0,
+      "bidPerSfPrinted": 0,
       "costDivisions": [],
       "csiDivisions": [],
-      "description": "Subcontractor project for Mornington Rd Dundalk — mep takeoff and trade-specific estimate. AACE Class 3 pricing and material takeoffs by The ACE Services.",
-      "_fallback": true
+      "description": "Mornington Rd Dundalk — sub contractors project."
     },
     {
       "id": "P-038",
@@ -2627,15 +2826,23 @@
       "category": "SUB CONTRACTORS",
       "location": "USA",
       "imageUrl": "https://cms.theaceservices.com/wp-content/uploads/2024/10/Untitled-4.png",
-      "pdfUrl": "https://cms.theaceservices.com/wp-content/uploads/2024/10/Openings-Estimate-NEW-AUTOMATED-CARWASH-FACILITY-1.pdf",
+      "pdfUrl": "http://cms.theaceservices.com/wp-content/uploads/2024/10/Openings-Estimate-NEW-AUTOMATED-CARWASH-FACILITY-1.pdf",
       "scope": [
         "MEP Takeoff",
         "Trade-Specific Estimate"
       ],
+      "_verified": "Openings-Estimate-NEW-AUTOMATED-CARWASH-FACILITY: summary reads \"195,010 $ 38 $ OVERHEAD AND PROFIT 10% 19,501.03 ... TAX 4.5% 8,775 $ 1.70 $ 238,888 $ 46.40 $\". Stored suggestedBid 253,513 does not appear in the PDF.",
+      "hasEstimate": true,
       "totalAreaSqFt": 5148,
+      "buildingGsf": 5148,
+      "siteGsf": 0,
+      "areaBasis": 5148,
+      "areaBasisKind": "building",
       "estimatedCost": 195010,
-      "suggestedBid": 253513,
+      "suggestedBid": 238888,
       "costPerSf": 37.88,
+      "bidPerSf": 46.4,
+      "bidPerSfPrinted": 46.4,
       "costDivisions": [
         {
           "csiCode": "8000",
@@ -2646,24 +2853,32 @@
       "csiDivisions": [
         "8000 OPENINGS"
       ],
-      "description": "Complete cost estimation for AUTOMATED CARWASH FACILITY spanning 5,148 SF across 1 trade divisions including OPENINGS. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for AUTOMATED CARWASH FACILITY spanning 5,148 SF GSF across 1 trade divisions including OPENINGS. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-039",
       "slug": "polytechnic-institute",
-      "title": "Polytechnic Institute",
+      "title": "Freshman Hill - Asphalt Work",
       "category": "SUB CONTRACTORS",
       "location": "USA",
       "imageUrl": "https://cms.theaceservices.com/wp-content/uploads/2024/10/WhatsApp-Image-2024-10-21-at-9.44.07-PM-1.jpeg",
-      "pdfUrl": "https://cms.theaceservices.com/wp-content/uploads/2024/10/Asphalt-Work-Student-Life-Improvements-Freshman-Hill-Sunset-Terrace-Troy-NY-12180.pdf",
+      "pdfUrl": "http://cms.theaceservices.com/wp-content/uploads/2024/10/Asphalt-Work-Student-Life-Improvements-Freshman-Hill-Sunset-Terrace-Troy-NY-12180.pdf",
       "scope": [
         "MEP Takeoff",
         "Trade-Specific Estimate"
       ],
+      "_verified": "Asphalt-Work-Student-Life-Improvements-Freshman-Hill: PDF header reads \"Project Name: Freshman Hill\". This is the asphalt trade estimate for Freshman Hill, NOT a separate Polytechnic Institute project — the title came from the WordPress imagebox, not the PDF. First-table cost row prints 904,650; first-table SUGGESTED BID 1,153,428.",
+      "hasEstimate": true,
       "totalAreaSqFt": 2650,
+      "buildingGsf": 2650,
+      "siteGsf": 39478,
+      "areaBasis": 2650,
+      "areaBasisKind": "building",
       "estimatedCost": 904650,
       "suggestedBid": 1153428,
-      "costPerSf": 56.44,
+      "costPerSf": 341.38,
+      "bidPerSf": 435.26,
+      "bidPerSfPrinted": 56.44,
       "costDivisions": [
         {
           "csiCode": "2000",
@@ -2684,45 +2899,15 @@
           "csiCode": "33000",
           "name": "UTILITIES",
           "cost": 142208
-        },
-        {
-          "csiCode": "1000",
-          "name": "GENERAL REQUIREMENTS",
-          "cost": 57375
-        },
-        {
-          "csiCode": "2000",
-          "name": "EXISTING CONDITIONS",
-          "cost": 16683
-        },
-        {
-          "csiCode": "31000",
-          "name": "EARTHWORK",
-          "cost": 45244
-        },
-        {
-          "csiCode": "32000",
-          "name": "SITE IMRPOVEMENTS",
-          "cost": 425976
-        },
-        {
-          "csiCode": "33000",
-          "name": "UTILITIES",
-          "cost": 51779
         }
       ],
       "csiDivisions": [
-        "1000 GENERAL REQUIREMENTS",
-        "2000 EXISTING CONDITIONS",
         "2000 EXISTING CONDITIONS",
         "31000 EARTHWORK",
-        "31000 EARTHWORK",
         "32000 SITE IMRPOVEMENTS",
-        "32000 SITE IMRPOVEMENTS",
-        "33000 UTILITIES",
         "33000 UTILITIES"
       ],
-      "description": "Complete cost estimation for Polytechnic Institute spanning 2,650 SF across 9 trade divisions including EXISTING CONDITIONS, EARTHWORK, SITE IMRPOVEMENTS. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for Freshman Hill - Asphalt Work spanning 2,650 SF GSF across 4 trade divisions including EXISTING CONDITIONS, EARTHWORK, SITE IMRPOVEMENTS. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-040",
@@ -2731,19 +2916,25 @@
       "category": "SUB CONTRACTORS",
       "location": "USA",
       "imageUrl": "https://cms.theaceservices.com/wp-content/uploads/2024/10/WhatsApp-Image-2024-10-21-at-9.44.07-PM-1.jpeg",
-      "pdfUrl": "https://cms.theaceservices.com/wp-content/uploads/2024/10/Estimate-2950-SUNDIAL-DR-Dallas-TX-75229-Block-18-6597.pdf",
+      "pdfUrl": "http://cms.theaceservices.com/wp-content/uploads/2024/10/Estimate-2950-SUNDIAL-DR-Dallas-TX-75229-Block-18-6597.pdf",
       "scope": [
         "MEP Takeoff",
         "Trade-Specific Estimate"
       ],
+      "hasEstimate": false,
+      "buildingGsf": 0,
+      "siteGsf": 0,
+      "areaBasis": 0,
+      "areaBasisKind": "none",
       "totalAreaSqFt": 0,
       "estimatedCost": 0,
       "suggestedBid": 0,
       "costPerSf": 0,
+      "bidPerSf": 0,
+      "bidPerSfPrinted": 0,
       "costDivisions": [],
       "csiDivisions": [],
-      "description": "Subcontractor project for SUNDIAL DR — mep takeoff and trade-specific estimate. AACE Class 3 pricing and material takeoffs by The ACE Services.",
-      "_fallback": true
+      "description": "SUNDIAL DR — sub contractors project."
     },
     {
       "id": "P-041",
@@ -2752,19 +2943,25 @@
       "category": "SUB CONTRACTORS",
       "location": "USA",
       "imageUrl": "https://cms.theaceservices.com/wp-content/uploads/2024/10/WhatsApp-Image-2024-10-21-at-9.44.07-PM-1.jpeg",
-      "pdfUrl": "https://cms.theaceservices.com/wp-content/uploads/2024/10/Estimate-PAUSE-SOUTHLAKE-TX-CARROL-POINTE-1241-E.STATE-HIGHWAY-114-SUITE-180-SOUTHLAKE-TX-76092.pdf",
+      "pdfUrl": "http://cms.theaceservices.com/wp-content/uploads/2024/10/Estimate-PAUSE-SOUTHLAKE-TX-CARROL-POINTE-1241-E.STATE-HIGHWAY-114-SUITE-180-SOUTHLAKE-TX-76092.pdf",
       "scope": [
         "MEP Takeoff",
         "Trade-Specific Estimate"
       ],
+      "hasEstimate": false,
+      "buildingGsf": 0,
+      "siteGsf": 0,
+      "areaBasis": 0,
+      "areaBasisKind": "none",
       "totalAreaSqFt": 0,
       "estimatedCost": 0,
       "suggestedBid": 0,
       "costPerSf": 0,
+      "bidPerSf": 0,
+      "bidPerSfPrinted": 0,
       "costDivisions": [],
       "csiDivisions": [],
-      "description": "Subcontractor project for PAUSE SOUTHLAKE — mep takeoff and trade-specific estimate. AACE Class 3 pricing and material takeoffs by The ACE Services.",
-      "_fallback": true
+      "description": "PAUSE SOUTHLAKE — sub contractors project."
     },
     {
       "id": "P-042",
@@ -2773,19 +2970,25 @@
       "category": "SUB CONTRACTORS",
       "location": "USA",
       "imageUrl": "https://cms.theaceservices.com/wp-content/uploads/2025/03/WhatsApp-Image-2025-03-22-at-01.11.12_b152bc7c.jpg",
-      "pdfUrl": "https://cms.theaceservices.com/wp-content/uploads/2024/10/Tiles-Countertops-Estimate-Pauma-Travel-Center-Pauma-Valley-California-1.pdf",
+      "pdfUrl": "http://cms.theaceservices.com/wp-content/uploads/2024/10/Tiles-Countertops-Estimate-Pauma-Travel-Center-Pauma-Valley-California-1.pdf",
       "scope": [
         "MEP Takeoff",
         "Trade-Specific Estimate"
       ],
+      "hasEstimate": false,
+      "buildingGsf": 0,
+      "siteGsf": 0,
+      "areaBasis": 0,
+      "areaBasisKind": "none",
       "totalAreaSqFt": 0,
       "estimatedCost": 0,
       "suggestedBid": 0,
       "costPerSf": 0,
+      "bidPerSf": 0,
+      "bidPerSfPrinted": 0,
       "costDivisions": [],
       "csiDivisions": [],
-      "description": "Subcontractor project for Pauma Travel Center — mep takeoff and trade-specific estimate. AACE Class 3 pricing and material takeoffs by The ACE Services.",
-      "_fallback": true
+      "description": "Pauma Travel Center — sub contractors project."
     },
     {
       "id": "P-043",
@@ -2794,19 +2997,25 @@
       "category": "SUB CONTRACTORS",
       "location": "USA",
       "imageUrl": "https://cms.theaceservices.com/wp-content/uploads/2025/03/WhatsApp-Image-2025-03-22-at-01.11.12_b152bc7c-1.jpg",
-      "pdfUrl": "https://cms.theaceservices.com/wp-content/uploads/2024/10/Tiles-Countertops-Estimate-Pauma-Travel-Center-Pauma-Valley-California-1.pdf",
+      "pdfUrl": "http://cms.theaceservices.com/wp-content/uploads/2024/10/Tiles-Countertops-Estimate-Pauma-Travel-Center-Pauma-Valley-California-1.pdf",
       "scope": [
         "MEP Takeoff",
         "Trade-Specific Estimate"
       ],
+      "hasEstimate": false,
+      "buildingGsf": 0,
+      "siteGsf": 0,
+      "areaBasis": 0,
+      "areaBasisKind": "none",
       "totalAreaSqFt": 0,
       "estimatedCost": 0,
       "suggestedBid": 0,
       "costPerSf": 0,
+      "bidPerSf": 0,
+      "bidPerSfPrinted": 0,
       "costDivisions": [],
       "csiDivisions": [],
-      "description": "Subcontractor project for Pauma Travel Center — mep takeoff and trade-specific estimate. AACE Class 3 pricing and material takeoffs by The ACE Services.",
-      "_fallback": true
+      "description": "Pauma Travel Center — sub contractors project."
     },
     {
       "id": "P-044",
@@ -2820,14 +3029,20 @@
         "MEP Takeoff",
         "Trade-Specific Estimate"
       ],
+      "hasEstimate": false,
+      "buildingGsf": 0,
+      "siteGsf": 0,
+      "areaBasis": 0,
+      "areaBasisKind": "none",
       "totalAreaSqFt": 0,
       "estimatedCost": 0,
       "suggestedBid": 0,
       "costPerSf": 0,
+      "bidPerSf": 0,
+      "bidPerSfPrinted": 0,
       "costDivisions": [],
       "csiDivisions": [],
-      "description": "Subcontractor project for Estimate-1014 — mep takeoff and trade-specific estimate. AACE Class 3 pricing and material takeoffs by The ACE Services.",
-      "_fallback": true
+      "description": "Estimate-1014 — sub contractors project."
     },
     {
       "id": "P-045",
@@ -2841,14 +3056,20 @@
         "MEP Takeoff",
         "Trade-Specific Estimate"
       ],
+      "hasEstimate": false,
+      "buildingGsf": 0,
+      "siteGsf": 0,
+      "areaBasis": 0,
+      "areaBasisKind": "none",
       "totalAreaSqFt": 0,
       "estimatedCost": 0,
       "suggestedBid": 0,
       "costPerSf": 0,
+      "bidPerSf": 0,
+      "bidPerSfPrinted": 0,
       "costDivisions": [],
       "csiDivisions": [],
-      "description": "Subcontractor project for Aghanabi Residence — mep takeoff and trade-specific estimate. AACE Class 3 pricing and material takeoffs by The ACE Services.",
-      "_fallback": true
+      "description": "Aghanabi Residence — sub contractors project."
     },
     {
       "id": "P-046",
@@ -2862,10 +3083,17 @@
         "MEP Takeoff",
         "Trade-Specific Estimate"
       ],
+      "hasEstimate": true,
       "totalAreaSqFt": 2520,
+      "buildingGsf": 2520,
+      "siteGsf": 0,
+      "areaBasis": 2520,
+      "areaBasisKind": "building",
       "estimatedCost": 22204,
       "suggestedBid": 29087,
-      "costPerSf": 11.54,
+      "costPerSf": 8.81,
+      "bidPerSf": 11.54,
+      "bidPerSfPrinted": 11.54,
       "costDivisions": [
         {
           "csiCode": "1000",
@@ -2882,7 +3110,7 @@
         "1000 GENERAL REQUIREMENTS",
         "9000 FINISHES"
       ],
-      "description": "Complete cost estimation for Willowdale Drive spanning 2,520 SF across 2 trade divisions including GENERAL REQUIREMENTS, FINISHES. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for Willowdale Drive spanning 2,520 SF GSF across 2 trade divisions including GENERAL REQUIREMENTS, FINISHES. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-047",
@@ -2896,10 +3124,17 @@
         "MEP Takeoff",
         "Trade-Specific Estimate"
       ],
+      "hasEstimate": true,
       "totalAreaSqFt": 11670,
+      "buildingGsf": 11670,
+      "siteGsf": 0,
+      "areaBasis": 11670,
+      "areaBasisKind": "building",
       "estimatedCost": 29550,
       "suggestedBid": 37233,
-      "costPerSf": 3.19,
+      "costPerSf": 2.53,
+      "bidPerSf": 3.19,
+      "bidPerSfPrinted": 3.19,
       "costDivisions": [
         {
           "csiCode": "1000",
@@ -2916,7 +3151,7 @@
         "1000 GENERAL REQUIREMENTS",
         "9000 FINISHES"
       ],
-      "description": "Complete cost estimation for Rose Tree Media School spanning 11,670 SF across 2 trade divisions including GENERAL REQUIREMENTS, FINISHES. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for Rose Tree Media School spanning 11,670 SF GSF across 2 trade divisions including GENERAL REQUIREMENTS, FINISHES. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-048",
@@ -2930,10 +3165,17 @@
         "MEP Takeoff",
         "Trade-Specific Estimate"
       ],
+      "hasEstimate": true,
       "totalAreaSqFt": 18967,
+      "buildingGsf": 18967,
+      "siteGsf": 0,
+      "areaBasis": 18967,
+      "areaBasisKind": "building",
       "estimatedCost": 102407,
       "suggestedBid": 123913,
-      "costPerSf": 6.53,
+      "costPerSf": 5.4,
+      "bidPerSf": 6.53,
+      "bidPerSfPrinted": 6.53,
       "costDivisions": [
         {
           "csiCode": "1000",
@@ -2950,7 +3192,7 @@
         "1000 GENERAL REQUIREMENTS",
         "7000 THERMAL AND MOISTURE PROTECTION"
       ],
-      "description": "Complete cost estimation for Power River Ct  Evanston spanning 18,967 SF across 2 trade divisions including GENERAL REQUIREMENTS, THERMAL AND MOISTURE PROTECTION. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for Power River Ct  Evanston spanning 18,967 SF GSF across 2 trade divisions including GENERAL REQUIREMENTS, THERMAL AND MOISTURE PROTECTION. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-049",
@@ -2964,10 +3206,17 @@
         "MEP Takeoff",
         "Trade-Specific Estimate"
       ],
+      "hasEstimate": true,
       "totalAreaSqFt": 2502,
+      "buildingGsf": 2502,
+      "siteGsf": 0,
+      "areaBasis": 2502,
+      "areaBasisKind": "building",
       "estimatedCost": 81409,
       "suggestedBid": 102576,
-      "costPerSf": 41,
+      "costPerSf": 32.54,
+      "bidPerSf": 41,
+      "bidPerSfPrinted": 41,
       "costDivisions": [
         {
           "csiCode": "1000",
@@ -3002,7 +3251,7 @@
         "7000 THERMAL AND MOISTURE PROTECTION",
         "9000 FINISHES"
       ],
-      "description": "Complete cost estimation for Renaldi Plant spanning 2,502 SF across 5 trade divisions including GENERAL REQUIREMENTS, MASONRY, WOOD, PLASTIC & COMPONENTS. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for Renaldi Plant spanning 2,502 SF GSF across 5 trade divisions including GENERAL REQUIREMENTS, MASONRY, WOOD, PLASTIC & COMPONENTS. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-050",
@@ -3016,10 +3265,17 @@
         "MEP Takeoff",
         "Trade-Specific Estimate"
       ],
+      "hasEstimate": true,
       "totalAreaSqFt": 2614,
+      "buildingGsf": 2614,
+      "siteGsf": 0,
+      "areaBasis": 2614,
+      "areaBasisKind": "building",
       "estimatedCost": 46052,
       "suggestedBid": 58026,
-      "costPerSf": 22.2,
+      "costPerSf": 17.62,
+      "bidPerSf": 22.2,
+      "bidPerSfPrinted": 22.2,
       "costDivisions": [
         {
           "csiCode": "1000",
@@ -3048,7 +3304,7 @@
         "6000 WOOD, PLASTIC & COMPONENTS",
         "7000 THERMAL AND MOISTURE PROTECTION"
       ],
-      "description": "Complete cost estimation for Jacob Stoeckel spanning 2,614 SF across 4 trade divisions including GENERAL REQUIREMENTS, MASONRY, WOOD, PLASTIC & COMPONENTS. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for Jacob Stoeckel spanning 2,614 SF GSF across 4 trade divisions including GENERAL REQUIREMENTS, MASONRY, WOOD, PLASTIC & COMPONENTS. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-051",
@@ -3062,10 +3318,17 @@
         "MEP Takeoff",
         "Trade-Specific Estimate"
       ],
+      "hasEstimate": true,
       "totalAreaSqFt": 750,
+      "buildingGsf": 750,
+      "siteGsf": 0,
+      "areaBasis": 750,
+      "areaBasisKind": "building",
       "estimatedCost": 10870,
       "suggestedBid": 13696,
-      "costPerSf": 18.26,
+      "costPerSf": 14.49,
+      "bidPerSf": 18.26,
+      "bidPerSfPrinted": 18.26,
       "costDivisions": [
         {
           "csiCode": "1000",
@@ -3088,7 +3351,7 @@
         "2000 EXISTING CONDITION",
         "7000 THERMAL AND MOISTURE PROTECTION"
       ],
-      "description": "Complete cost estimation for Hanover St. Baltimore Md spanning 750 SF across 3 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITION, THERMAL AND MOISTURE PROTECTION. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
+      "description": "Cost estimation for Hanover St. Baltimore Md spanning 750 SF GSF across 3 trade divisions including GENERAL REQUIREMENTS, EXISTING CONDITION, THERMAL AND MOISTURE PROTECTION. AACE Class 3 estimate delivered with full quantity takeoff and bid preparation."
     },
     {
       "id": "P-052",
@@ -3102,14 +3365,20 @@
         "3D Visualization",
         "Design Review"
       ],
+      "hasEstimate": false,
+      "buildingGsf": 0,
+      "siteGsf": 0,
+      "areaBasis": 0,
+      "areaBasisKind": "none",
       "totalAreaSqFt": 0,
       "estimatedCost": 0,
       "suggestedBid": 0,
       "costPerSf": 0,
+      "bidPerSf": 0,
+      "bidPerSfPrinted": 0,
       "costDivisions": [],
       "csiDivisions": [],
-      "description": "3d-render + estimate project for HTeaO — 3d visualization and design review. AACE Class 3 pricing and material takeoffs by The ACE Services.",
-      "_fallback": true
+      "description": "HTeaO — 3d renders project."
     },
     {
       "id": "P-053",
@@ -3123,14 +3392,20 @@
         "3D Visualization",
         "Design Review"
       ],
+      "hasEstimate": false,
+      "buildingGsf": 0,
+      "siteGsf": 0,
+      "areaBasis": 0,
+      "areaBasisKind": "none",
       "totalAreaSqFt": 0,
       "estimatedCost": 0,
       "suggestedBid": 0,
       "costPerSf": 0,
+      "bidPerSf": 0,
+      "bidPerSfPrinted": 0,
       "costDivisions": [],
       "csiDivisions": [],
-      "description": "3d-render + estimate project for Fellas Car Wash — 3d visualization and design review. AACE Class 3 pricing and material takeoffs by The ACE Services.",
-      "_fallback": true
+      "description": "Fellas Car Wash — 3d renders project."
     },
     {
       "id": "P-054",
@@ -3144,14 +3419,20 @@
         "3D Visualization",
         "Design Review"
       ],
+      "hasEstimate": false,
+      "buildingGsf": 0,
+      "siteGsf": 0,
+      "areaBasis": 0,
+      "areaBasisKind": "none",
       "totalAreaSqFt": 0,
       "estimatedCost": 0,
       "suggestedBid": 0,
       "costPerSf": 0,
+      "bidPerSf": 0,
+      "bidPerSfPrinted": 0,
       "costDivisions": [],
       "csiDivisions": [],
-      "description": "Cost estimation for Ergola Main Street & Conklin — precise material takeoffs and AACE Class 3 pricing delivered by The ACE Services in 24-48 hours.",
-      "_fallback": true
+      "description": "Ergola Main Street & Conklin — 3d renders project."
     },
     {
       "id": "P-055",
@@ -3165,14 +3446,20 @@
         "Permit Drawing Check",
         "Structural Stamping"
       ],
+      "hasEstimate": false,
+      "buildingGsf": 0,
+      "siteGsf": 0,
+      "areaBasis": 0,
+      "areaBasisKind": "none",
       "totalAreaSqFt": 0,
       "estimatedCost": 0,
       "suggestedBid": 0,
       "costPerSf": 0,
+      "bidPerSf": 0,
+      "bidPerSfPrinted": 0,
       "costDivisions": [],
       "csiDivisions": [],
-      "description": "Permit-set + cost project for Fella Carwash — permit drawing check and structural stamping. AACE Class 3 pricing and material takeoffs by The ACE Services.",
-      "_fallback": true
+      "description": "Fella Carwash — permit sets project."
     },
     {
       "id": "P-056",
@@ -3186,14 +3473,20 @@
         "Permit Drawing Check",
         "Structural Stamping"
       ],
+      "hasEstimate": false,
+      "buildingGsf": 0,
+      "siteGsf": 0,
+      "areaBasis": 0,
+      "areaBasisKind": "none",
       "totalAreaSqFt": 0,
       "estimatedCost": 0,
       "suggestedBid": 0,
       "costPerSf": 0,
+      "bidPerSf": 0,
+      "bidPerSfPrinted": 0,
       "costDivisions": [],
       "csiDivisions": [],
-      "description": "Cost estimation for My Urgentcare Center — precise material takeoffs and AACE Class 3 pricing delivered by The ACE Services in 24-48 hours.",
-      "_fallback": true
+      "description": "My Urgentcare Center — permit sets project."
     },
     {
       "id": "P-057",
@@ -3207,14 +3500,20 @@
         "Shop Drawing Review",
         "Fabrication Detailing"
       ],
+      "hasEstimate": false,
+      "buildingGsf": 0,
+      "siteGsf": 0,
+      "areaBasis": 0,
+      "areaBasisKind": "none",
       "totalAreaSqFt": 0,
       "estimatedCost": 0,
       "suggestedBid": 0,
       "costPerSf": 0,
+      "bidPerSf": 0,
+      "bidPerSfPrinted": 0,
       "costDivisions": [],
       "csiDivisions": [],
-      "description": "Cost estimation for Special Laterals Replacement — precise material takeoffs and AACE Class 3 pricing delivered by The ACE Services in 24-48 hours.",
-      "_fallback": true
+      "description": "Special Laterals Replacement — shop drawings project."
     },
     {
       "id": "P-058",
@@ -3228,14 +3527,20 @@
         "Shop Drawing Review",
         "Fabrication Detailing"
       ],
+      "hasEstimate": false,
+      "buildingGsf": 0,
+      "siteGsf": 0,
+      "areaBasis": 0,
+      "areaBasisKind": "none",
       "totalAreaSqFt": 0,
       "estimatedCost": 0,
       "suggestedBid": 0,
       "costPerSf": 0,
+      "bidPerSf": 0,
+      "bidPerSfPrinted": 0,
       "costDivisions": [],
       "csiDivisions": [],
-      "description": "Cost estimation for LADDER SHOP DRAWING — precise material takeoffs and AACE Class 3 pricing delivered by The ACE Services in 24-48 hours.",
-      "_fallback": true
+      "description": "LADDER SHOP DRAWING — shop drawings project."
     }
   ]
 }

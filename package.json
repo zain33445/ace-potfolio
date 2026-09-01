@@ -43,6 +43,7 @@
     "@types/node": "^22.14.0",
     "@types/sanitize-html": "^2.16.1",
     "lighthouse": "^13.4.1",
+    "pdfjs-dist": "^6.3.289",
     "postcss": "^8.5.3",
     "tailwindcss": "^4.1.14",
     "typescript": "~5.8.2",
