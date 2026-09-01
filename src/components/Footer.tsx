@@ -32,7 +32,7 @@ export default function Footer() {
   ];
 
   const communication = [
-    { text: "+1-281-899-0250", href: "tel:+12818990250" },
+    { text: "+1-346-458-0237", href: "tel:+13464580237" },
     { text: "16319 Hillside Garden LN", href: null },
     { text: "Houston, TX 77084", href: null },
     { text: "info@theaceservices.com", href: "mailto:info@theaceservices.com" },

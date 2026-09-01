@@ -36,7 +36,7 @@ export const localBusinessSchema = {
   name: 'The ACE Services',
   image: OG_IMAGE,
   url: SITE_URL,
-  telephone: '+1-281-899-0250',
+  telephone: '+1-346-458-0237',
   email: 'info@theaceservices.com',
   priceRange: '$$',
   address: {

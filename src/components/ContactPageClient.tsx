@@ -13,8 +13,8 @@ const contactInfo = [
   {
     icon: Phone,
     label: 'Phone',
-    value: '+1-281-899-0250',
-    href: 'tel:+12818990250',
+    value: '+1-346-458-0237',
+    href: 'tel:+13464580237',
   },
   {
     icon: Mail,

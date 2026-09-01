@@ -1,0 +1,27 @@
+# The ACE Services — https://theaceservices.com
+# AI/LLM access policy: allow
+
+The ACE Services is a pre-construction professional services firm delivering
+AACE Class 3 cost estimates, material takeoffs, MEP shop drawings, 3D
+architectural renderings, and permit sets for general contractors, civil
+engineers, and trade specialists across 35 U.S. states. Based in Houston, TX.
+Founded 2019. Phone: +1-346-458-0237.
+
+## Services
+- Construction Cost Estimating: https://theaceservices.com/cost-estimating
+- Material Takeoffs / Quantity Surveying: https://theaceservices.com/quantity-surveyor-services
+- MEP Shop Drawing Services: https://theaceservices.com/shop-drawing-services
+- 3D Architectural Rendering: https://theaceservices.com/3d-rendering-services
+- Permit Set Services: https://theaceservices.com/permit-set-services
+- Blueprint Estimation: https://theaceservices.com/blueprint-estimation
+
+## Key Pages
+- About: https://theaceservices.com/about
+- Projects Portfolio: https://theaceservices.com/projects
+- Blog: https://theaceservices.com/blog
+- Contact: https://theaceservices.com/contact-us
+
+## Contact
+Email: info@theaceservices.com
+Phone: +1-346-458-0237
+Address: 16319 Hillside Garden LN, Houston, TX 77084
