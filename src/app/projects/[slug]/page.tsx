@@ -31,10 +31,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: 'Project Not Found' };
   }
 
-  // Extraction produced entries with no real stats (area/cost both 0) —
-  // keep them reachable for visitors but keep them out of the index until
-  // they carry real data.
-  const hasData = project.totalAreaSqFt > 0 || project.estimatedCost > 0;
+  // Renders, permit sets and shop drawings carry no estimate — keep them
+  // reachable for visitors but out of the index until they carry real data.
+  const hasData = project.hasEstimate;
   const description = truncate(project.description, 155);
 
   return {
@@ -111,13 +110,28 @@ function buildProjectH1(project: ProjectDetail): string {
 
   const trade = project.scope?.[0];
 
-  const parts = [
-    `${project.title} Cost Estimate`,
-    trade ? `— ${trade}` : '',
-    hasRealLocation ? `in ${project.location}` : '',
-  ];
+  // Renders, permit sets and shop drawings are not estimates — calling them
+  // "Cost Estimate" is wrong, and they have no trade to append.
+  const parts = project.hasEstimate
+    ? [
+        `${project.title} Cost Estimate`,
+        trade ? `— ${trade}` : '',
+        hasRealLocation ? `in ${project.location}` : '',
+      ]
+    : [project.title, hasRealLocation ? `in ${project.location}` : ''];
 
   return parts.filter(Boolean).join(' ').replace(/\s+/g, ' ').trim();
+}
+
+/** Human-readable deliverable name for projects that carry no estimate. */
+function deliverableLabel(category: string): string {
+  return (
+    {
+      '3D RENDERS': '3D Rendering',
+      'PERMIT SETS': 'Permit Set',
+      'SHOP DRAWINGS': 'Shop Drawings',
+    }[category] ?? 'Project Document'
+  );
 }
 
 /* ── Page Component ────────────────────────────────────────────── */
@@ -188,11 +202,15 @@ export default async function ProjectDetailPage({ params }: Props) {
             {/* Project Summary */}
             <ProjectSummarySection project={project} />
 
-            {/* Cost Breakdown */}
-            <CostBreakdownSection project={project} />
-
-            {/* CSI Divisions */}
-            <CsiDivisionsSection project={project} />
+            {/* Cost sections exist only for projects that carry an estimate.
+                Renders, permit sets and shop drawings have no divisions, so
+                these rendered $0 / "TOTAL DIVISIONS $0" placeholders. */}
+            {project.hasEstimate && (
+              <>
+                <CostBreakdownSection project={project} />
+                <CsiDivisionsSection project={project} />
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -259,13 +277,18 @@ function HeroSection({ project }: { project: ProjectDetail }) {
           {project.description}
         </p>
 
-        {/* Quick stats row */}
-        <div className="mt-10 flex flex-wrap gap-8 border-t border-blueprint-line pt-8">
-          <QuickStat label="BUILDING AREA" value={`${project.totalAreaSqFt.toLocaleString()} SF`} />
-          <QuickStat label="EST. COST" value={formatCurrency(project.estimatedCost)} />
-          <QuickStat label="SUGGESTED BID" value={formatCurrency(project.suggestedBid)} />
-          <QuickStat label="COST PER SF" value={`$${project.costPerSf.toFixed(2)}`} />
-        </div>
+        {/* Quick stats row — only where an estimate exists. */}
+        {project.hasEstimate && (
+          <div className="mt-10 flex flex-wrap gap-8 border-t border-blueprint-line pt-8">
+            <QuickStat
+              label={project.areaBasisKind === 'site' ? 'SITE AREA' : 'BUILDING AREA'}
+              value={`${project.areaBasis.toLocaleString()} SF`}
+            />
+            <QuickStat label="EST. COST" value={formatCurrency(project.estimatedCost)} />
+            <QuickStat label="SUGGESTED BID" value={formatCurrency(project.suggestedBid)} />
+            <QuickStat label="COST PER SF" value={`$${project.costPerSf.toFixed(2)}`} />
+          </div>
+        )}
       </div>
     </section>
   );
@@ -353,10 +376,10 @@ function ProjectSummarySection({ project }: { project: ProjectDetail }) {
 
           <div className="h-px w-full bg-blueprint-line" />
 
-          {/* Estimation Scope */}
+          {/* Scope — "estimation" only where an estimate exists. */}
           <div>
             <span className="font-mono text-xs font-bold uppercase tracking-wider text-primary">
-              ESTIMATION SCOPE
+              {project.hasEstimate ? 'ESTIMATION SCOPE' : 'DELIVERABLES'}
             </span>
             <div className="mt-2 space-y-1.5">
               {project.scope.map((item) => (
@@ -370,13 +393,18 @@ function ProjectSummarySection({ project }: { project: ProjectDetail }) {
             </div>
           </div>
 
-          {/* Key Metrics */}
-          <div className="grid grid-cols-2 gap-4 bg-surface-variant/50 p-4 border border-blueprint-line">
-            <MetricBox label="Building Area" value={`${project.totalAreaSqFt.toLocaleString()} SF`} />
-            <MetricBox label="Est. Cost" value={formatCurrency(project.estimatedCost)} />
-            <MetricBox label="Suggested Bid" value={formatCurrency(project.suggestedBid)} />
-            <MetricBox label="Cost / SF" value={`$${project.costPerSf.toFixed(2)}`} />
-          </div>
+          {/* Key Metrics — only where an estimate exists. */}
+          {project.hasEstimate && (
+            <div className="grid grid-cols-2 gap-4 bg-surface-variant/50 p-4 border border-blueprint-line">
+              <MetricBox
+                label={project.areaBasisKind === 'site' ? 'Site Area' : 'Building Area'}
+                value={`${project.areaBasis.toLocaleString()} SF`}
+              />
+              <MetricBox label="Est. Cost" value={formatCurrency(project.estimatedCost)} />
+              <MetricBox label="Suggested Bid" value={formatCurrency(project.suggestedBid)} />
+              <MetricBox label="Cost / SF" value={`$${project.costPerSf.toFixed(2)}`} />
+            </div>
+          )}
         </div>
       </div>
     </section>
@@ -521,16 +549,25 @@ function SampleReportSection({ project }: { project: ProjectDetail }) {
     <section className="border-b border-blueprint-line">
       <div className="mx-auto max-w-7xl px-[var(--spacing-margin-mobile)] py-20 md:px-[var(--spacing-margin-desktop)] md:py-24">
         <div className="mb-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
-          Sample Estimate Report
+          {project.hasEstimate ? 'Sample Estimate Report' : `Sample ${deliverableLabel(project.category)}`}
         </div>
 
         <h2 className="font-[family-name:var(--font-space)] text-4xl font-bold text-on-background md:text-5xl mb-4">
-          View the Full Estimate PDF
+          {project.hasEstimate ? 'View the Full Estimate PDF' : 'View the Full PDF'}
         </h2>
 
         <p className="max-w-2xl font-sans text-base leading-relaxed text-on-surface-variant mb-8">
-          Download the complete cost estimation report for {project.title}, including
-          division-by-division cost breakdowns, material quantities, and bid recommendations.
+          {project.hasEstimate ? (
+            <>
+              Download the complete cost estimation report for {project.title}, including
+              division-by-division cost breakdowns, material quantities, and bid recommendations.
+            </>
+          ) : (
+            <>
+              Download the full {deliverableLabel(project.category).toLowerCase()} produced for{' '}
+              {project.title}.
+            </>
+          )}
         </p>
 
           <div className="border border-blueprint-line bg-surface overflow-hidden">
@@ -539,7 +576,7 @@ function SampleReportSection({ project }: { project: ProjectDetail }) {
             <iframe
               src={`https://docs.google.com/viewer?url=${encodeURIComponent(project.pdfUrl)}&embedded=true`}
               className="h-full w-full"
-              title={`${project.title} - Estimate Report`}
+              title={`${project.title} - ${project.hasEstimate ? 'Estimate Report' : deliverableLabel(project.category)}`}
               loading="lazy"
             />
             {/* Fallback overlay */}
@@ -552,7 +589,7 @@ function SampleReportSection({ project }: { project: ProjectDetail }) {
                 REPORT
               </span>
               <p className="font-[family-name:var(--font-space)] text-base font-bold text-on-background mt-0.5">
-                {project.title} — Complete Estimate
+                {project.title} — {project.hasEstimate ? 'Complete Estimate' : deliverableLabel(project.category)}
               </p>
             </div>
             <a
