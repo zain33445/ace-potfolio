@@ -134,6 +134,55 @@ function deliverableLabel(category: string): string {
   );
 }
 
+/**
+ * Closing CTA, matched to what the project actually is. A permit-set page
+ * asking for blueprints "to receive a precision cost schedule" sells the
+ * wrong service to a visitor who came for permit drawings.
+ *
+ * Only the estimate variant claims a turnaround, because 24-48 hours is the
+ * documented SLA for estimates and not for the other deliverables. Add real
+ * turnarounds here once they are known.
+ */
+interface Cta {
+  eyebrow: string;
+  heading: string;
+  body: string;
+  button: string;
+}
+
+const CTA_BY_CATEGORY: Record<string, Cta> = {
+  '3D RENDERS': {
+    eyebrow: 'Request a Rendering',
+    heading: 'Need 3D Renderings for Your Next Project?',
+    body: 'Send us your drawings and receive photorealistic renderings you can put in front of clients, lenders and planning boards.',
+    button: 'REQUEST RENDERING',
+  },
+  'PERMIT SETS': {
+    eyebrow: 'Request a Permit Set',
+    heading: 'Need a Permit Set for Your Next Project?',
+    body: 'Send us your design and receive a coordinated, submission-ready permit set prepared against your local authority requirements.',
+    button: 'REQUEST PERMIT SET',
+  },
+  'SHOP DRAWINGS': {
+    eyebrow: 'Request Shop Drawings',
+    heading: 'Need Shop Drawings for Your Next Project?',
+    body: 'Send us your design intent and receive fabrication-ready shop drawings detailed for the trades doing the work.',
+    button: 'REQUEST SHOP DRAWINGS',
+  },
+};
+
+const ESTIMATE_CTA: Cta = {
+  eyebrow: 'Request an Estimate',
+  heading: 'Need an Estimate for Your Next Project?',
+  body: 'Submit your blueprints and receive a precision cost schedule within 24-48 hours. Rush turnaround available.',
+  button: 'REQUEST ESTIMATE',
+};
+
+function ctaFor(project: ProjectDetail): Cta {
+  if (project.hasEstimate) return ESTIMATE_CTA;
+  return CTA_BY_CATEGORY[project.category] ?? ESTIMATE_CTA;
+}
+
 /* ── Page Component ────────────────────────────────────────────── */
 
 export default async function ProjectDetailPage({ params }: Props) {
@@ -216,9 +265,11 @@ export default async function ProjectDetailPage({ params }: Props) {
       </div>
 
       {/* ════════════════════════════════════════════════════════
-          OUR PROCESS
+          OUR PROCESS — estimate workflow, so estimate pages only.
+          "From Blueprint to Bid-Ready Estimate" describes work that never
+          happens on a render, permit set or shop drawing.
           ════════════════════════════════════════════════════════ */}
-      <ProcessSection />
+      {project.hasEstimate && <ProcessSection />}
 
       {/* ════════════════════════════════════════════════════════
           SAMPLE ESTIMATE REPORT
@@ -230,7 +281,7 @@ export default async function ProjectDetailPage({ params }: Props) {
       {/* ════════════════════════════════════════════════════════
           CTA BANNER
           ════════════════════════════════════════════════════════ */}
-      <CtaSection />
+      <CtaSection project={project} />
     </main>
   );
 }
@@ -618,25 +669,26 @@ function SampleReportSection({ project }: { project: ProjectDetail }) {
 
 /* ── CTA ───────────────────────────────────────────────────────── */
 
-function CtaSection() {
+function CtaSection({ project }: { project: ProjectDetail }) {
+  const cta = ctaFor(project);
+
   return (
     <section className="border-b border-blueprint-line">
       <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-[var(--spacing-margin-mobile)] py-20 text-center md:px-[var(--spacing-margin-desktop)] md:py-28">
         <div className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
-          Request an Estimate
+          {cta.eyebrow}
         </div>
         <h2 className="font-[family-name:var(--font-space)] text-4xl font-bold text-on-background md:text-6xl max-w-3xl">
-          Need an Estimate for Your Next Project?
+          {cta.heading}
         </h2>
         <p className="max-w-lg text-base leading-relaxed text-on-surface-variant">
-          Submit your blueprints and receive a precision cost schedule within
-          24-48 hours. Rush turnaround available.
+          {cta.body}
         </p>
         <Link
           href="/contact-us"
           className="group mt-4 inline-flex items-center gap-3 border border-primary bg-primary px-8 py-3.5 font-mono text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary"
         >
-          <span>REQUEST ESTIMATE</span>
+          <span>{cta.button}</span>
           <svg
             className="h-4 w-4 transition-transform group-hover:translate-x-1"
             fill="none"
