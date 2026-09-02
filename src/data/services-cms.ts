@@ -43,6 +43,7 @@ export async function getServicesEnriched(): Promise<Service[]> {
       
       const next = { ...baseService };
       if (page?.title?.trim()) next.title = page.title.trim();
+      if (page?.seoTitle?.trim()) next.seoTitle = page.seoTitle.trim();
       if (page?.summary?.trim()) next.summary = page.summary.trim();
       
       cmsServices.push(next);
@@ -65,6 +66,7 @@ export async function getServiceEnriched(
     if (baseService) {
       const next = { ...baseService };
       if (page?.title?.trim()) next.title = page.title.trim();
+      if (page?.seoTitle?.trim()) next.seoTitle = page.seoTitle.trim();
       if (page?.summary?.trim()) next.summary = page.summary.trim();
       return next;
     }
@@ -75,6 +77,7 @@ export async function getServiceEnriched(
         id: `SVC_${slug.substring(0, 5).toUpperCase()}`,
         slug: slug,
         title: page.title?.trim() || slug.replace(/-/g, ' '),
+        ...(page.seoTitle?.trim() ? { seoTitle: page.seoTitle.trim() } : {}),
         tagline: 'Professional Service',
         category: 'SERVICE',
         description: page.summary?.trim() || '',
@@ -120,6 +123,7 @@ export async function getFeaturedServicesEnriched(
       
       const next = { ...baseService };
       if (page?.title?.trim()) next.title = page.title.trim();
+      if (page?.seoTitle?.trim()) next.seoTitle = page.seoTitle.trim();
       if (page?.summary?.trim()) next.summary = page.summary.trim();
       
       cmsServices.push(next);

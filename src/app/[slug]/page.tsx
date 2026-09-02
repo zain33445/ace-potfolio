@@ -101,13 +101,13 @@ export async function generateMetadata({
   if (resolved && "service" in resolved) {
     const { service } = resolved;
     return {
-      title: service.title,
+      title: service.seoTitle ?? service.title,
       description: truncate(service.summary, 160),
       alternates: {
         canonical: `https://theaceservices.com/${toUrlSlug(slug)}/`,
       },
       openGraph: {
-        title: `${service.title} | The ACE Services — Pre-Construction Estimation`,
+        title: `${service.seoTitle ?? service.title} | The ACE Services — Pre-Construction Estimation`,
         description: truncate(service.summary, 160),
         url: `https://theaceservices.com/${toUrlSlug(slug)}/`,
       },

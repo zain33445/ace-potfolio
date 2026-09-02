@@ -16,9 +16,59 @@ import type { WPPage, WPRendered } from '@/src/services/wordpress/types';
 
 export interface ServicePageCopy {
   title?: string;
+  /** Overrides `title` for the <title> tag only; the H1 still uses `title`. */
+  seoTitle?: string;
   summary?: string;
   /** Raw sanitized HTML content from WP — for full-page rendering */
   rawContent?: string;
+}
+
+/**
+ * Slug-keyed overrides for WP pages whose CMS copy targets the wrong query.
+ *
+ * `/warehouses-development` earns 450 impressions/mo at position 68 for
+ * "data warehouse development services" — a SERP owned entirely by software
+ * companies (Google Cloud, Databricks, ScienceSoft). `/hotels-development`
+ * matches "hotel development it services" at 69. Both pages read as though
+ * ACE builds the buildings: "development" 12-14x, "estimat*" 7-8x, and zero
+ * mentions of takeoffs or quantity surveying. The WP title feeds BOTH the
+ * <title> and the H1, so a CMS-only edit cannot give them different text.
+ *
+ * Renaming the URLs would be wrong — six blog posts already 301 into
+ * /warehouses-development (Cluster A in src/middleware.ts), so a rename
+ * creates two-hop chains. The fix is the copy, not the URL.
+ *
+ * The copy describes the deliverable and claims no first-hand project
+ * evidence, because there is none: extracted-projects.json holds zero
+ * warehouse records, and its single hotel record (Doubletree By Hilton) is
+ * empty (0 sf, $0, no CSI divisions). These titles stop the wrong-intent
+ * bleed; they will not make either page rank. See item 7 of
+ * seo/seo-todo-2026-09-01.md.
+ *
+ * ponytail: these override the CMS rather than replacing it. The page BODY
+ * (rawContent) is still CMS-owned and still development-framed — that half
+ * has to be edited in WordPress (pages 5115 and 5109). Delete the matching
+ * entry here once a page's CMS copy is corrected at the source.
+ */
+const CMS_COPY_OVERRIDES: Record<string, Pick<ServicePageCopy, 'title' | 'seoTitle' | 'summary'>> = {
+  'warehouses-development': {
+    seoTitle: 'Warehouse Construction Cost Estimating',
+    title: 'Warehouse Construction Cost Estimating and Quantity Takeoffs',
+    summary:
+      'Warehouse construction cost estimating and quantity takeoffs. Send us your drawings and you get quantities counted off the plans, unit pricing broken out by CSI division and a total you can bid. Most jobs come back in 24 to 48 hours. And to be clear, this is estimating for warehouse buildings. Not data warehousing.',
+  },
+  'hotels-development': {
+    seoTitle: 'Hotel Construction Cost Estimating',
+    title: 'Hotel Construction Cost Estimating and Quantity Takeoffs',
+    summary:
+      'Hotel construction cost estimating and quantity takeoffs. We price new builds, conversions and renovations, and break the numbers out per key and per square foot so you can check them against your own historicals before you bid. Costs come back by CSI division with the quantities behind them. Usually in 24 to 48 hours.',
+  },
+};
+
+/** Apply any slug override on top of the copy resolved from WordPress. */
+function withOverrides(slug: string, copy: ServicePageCopy): ServicePageCopy {
+  const override = CMS_COPY_OVERRIDES[slug];
+  return override ? { ...copy, ...override } : copy;
 }
 
 /** Strip WP's `{ rendered }` HTML wrappers and decode HTML entities to plain text. */
@@ -168,11 +218,11 @@ export async function getServicePage(
   const page = data[0];
   if (!page) return null;
 
-  return {
+  return withOverrides(page.slug, {
     title: stripHtml(page.title?.rendered),
     summary: resolveSummary(page.excerpt, page.content),
     rawContent: sanitizeElementorHtml(page.content?.rendered),
-  };
+  });
 }
 
 /**
@@ -189,8 +239,10 @@ export async function getServicePages(
 
   return data.map((page) => ({
     slug: page.slug,
-    title: stripHtml(page.title?.rendered),
-    summary: resolveSummary(page.excerpt, page.content),
+    ...withOverrides(page.slug, {
+      title: stripHtml(page.title?.rendered),
+      summary: resolveSummary(page.excerpt, page.content),
+    }),
   }));
 }
 
@@ -206,7 +258,9 @@ export async function getAllServicePages(): Promise<(ServicePageCopy & { slug: s
 
   return data.map((page) => ({
     slug: page.slug,
-    title: stripHtml(page.title?.rendered),
-    summary: resolveSummary(page.excerpt, page.content),
+    ...withOverrides(page.slug, {
+      title: stripHtml(page.title?.rendered),
+      summary: resolveSummary(page.excerpt, page.content),
+    }),
   }));
 }

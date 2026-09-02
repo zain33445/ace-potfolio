@@ -42,6 +42,8 @@ export interface Service {
   stats: { label: string; value: string }[];
   process: ServiceProcess[];
   ctaLabel: string;
+  /** Overrides `title` for the <title> tag only; the H1 still uses `title`. */
+  seoTitle?: string;
   footnote?: string;
   seoContent?: SeoContent;
   /** Full sanitized HTML from WordPress — only present for CMS-only services */
