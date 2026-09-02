@@ -53,6 +53,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // JS widget with ~100 words of indexable content — not worth a top-3 priority.
     { url: `${BASE_URL}/calculator/`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.4 },
     { url: `${BASE_URL}/projects/`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
+    // Keyword-first cost guide (~4,150/mo cluster at KD 0-5) — highest
+    // priority non-home page on the site, so it outranks the service pages.
+    { url: `${BASE_URL}/adu-construction-cost/`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/about-us/`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
     { url: `${BASE_URL}/contact-us/`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
     { url: `${BASE_URL}/testimonials/`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
