@@ -12,26 +12,54 @@
 import sanitize from 'sanitize-html';
 
 /**
- * Rewrite an internal link that points at the CMS domain to the equivalent
- * public-site URL.
+ * Normalise an internal in-content link to the canonical public-site form.
  *
- * Elementor authors internal links against `cms.theaceservices.com` because
- * that's the domain the WYSIWYG editor runs on — but that domain is the
- * headless WordPress backend (`Disallow: /` in its robots.txt, `noindex`),
- * never meant to be browsed directly. A reader who clicks one of these
- * in-content links lands on the raw, unstyled backend instead of the public
- * Next.js site, and any link equity flows to a domain Google won't index.
+ * Two separate problems, one fix, because authors produce both forms and a
+ * link only has to be wrong once to cost a hop:
  *
- * `/wp-content/uploads/*` links are the one legitimate exception — those are
- * real asset files (PDFs, images) that only exist on the CMS host and must
- * keep pointing there.
+ * 1. Wrong host. Elementor authors links against `cms.theaceservices.com`,
+ *    the domain its WYSIWYG editor runs on — but that is the headless
+ *    WordPress backend (`Disallow: /` in robots.txt, `noindex`), never meant
+ *    to be browsed. A reader who clicks one lands on the raw, unstyled
+ *    backend, and the link equity flows to a domain Google won't index.
+ *
+ * 2. Missing trailing slash. The public site canonicalises to trailing
+ *    slashes, so `/cost-estimating` 308-redirects to `/cost-estimating/`.
+ *    Links are hand-authored both ways and against both hosts — the live
+ *    blog posts carry `https://theaceservices.com/cost-estimating`, which
+ *    has the right host and still costs a redirect. Left alone, the blog's
+ *    entire internal link graph runs through 308s.
+ *
+ * `/wp-content/*` links are the one legitimate exception to the host rewrite:
+ * those are real asset files (PDFs, images) that only exist on the CMS host.
+ * Asset filenames (`…/estimate.pdf`) never gain a slash, on either host, and
+ * a query or hash is preserved after it.
  */
-function rewriteCmsPageLink(href: string): string {
-  const match = /^https?:\/\/cms\.theaceservices\.com(\/.*)?$/i.exec(href);
-  if (!match) return href;
-  const path = match[1] ?? '/';
-  if (path.startsWith('/wp-content/')) return href;
-  return `https://theaceservices.com${path}`;
+const INTERNAL_LINK_RE =
+  /^(?:https?:)?\/\/(?:cms\.|www\.)?theaceservices\.com(\/.*)?$/i;
+
+function normalizeInternalLink(href: string): string {
+  const isCmsHost = /^(?:https?:)?\/\/cms\.theaceservices\.com/i.test(href);
+  const match = INTERNAL_LINK_RE.exec(href);
+
+  // Root-relative links ("/cost-estimating") need the slash too, but must not
+  // swallow protocol-relative ones ("//example.com/…").
+  const raw = match
+    ? (match[1] ?? '/')
+    : href.startsWith('/') && !href.startsWith('//')
+      ? href
+      : null;
+  if (raw === null) return href;
+
+  // CMS-hosted assets are the exception: they genuinely live over there.
+  if (isCmsHost && raw.startsWith('/wp-content/')) return href;
+
+  const cut = raw.search(/[?#]/);
+  const path = cut === -1 ? raw : raw.slice(0, cut);
+  const suffix = cut === -1 ? '' : raw.slice(cut);
+  const needsSlash = !path.endsWith('/') && !/\.[a-z0-9]+$/i.test(path);
+
+  return `https://theaceservices.com${path}${needsSlash ? '/' : ''}${suffix}`;
 }
 
 const NAMED_ENTITIES: Record<string, string> = {
@@ -161,11 +189,11 @@ export function sanitizeHtml(html: string): string {
     // also the semantically correct tag.
     transformTags: {
       h1: 'p',
-      // Send in-content internal links to the public site instead of the
-      // headless CMS backend — see rewriteCmsPageLink() above.
+      // Point in-content internal links at the public site, on the canonical
+      // trailing-slash URL — see normalizeInternalLink() above.
       a: (tagName, attribs) => {
         if (attribs.href) {
-          attribs.href = rewriteCmsPageLink(attribs.href);
+          attribs.href = normalizeInternalLink(attribs.href);
         }
         return { tagName, attribs };
       },
@@ -204,9 +232,54 @@ export function cleanTitle(rendered: string): string {
 
 /** Plain-text excerpt, truncated to `maxChars` on a word boundary. */
 export function cleanExcerpt(rendered: string, maxChars = 220): string {
-  const text = htmlToText(rendered).replace(/\[[^\]]*\]/g, '').trim(); // drop [...] read-more shortcodes
-  if (text.length <= maxChars) return text;
+  const raw = htmlToText(rendered);
+  // WordPress's auto-excerpt clips at 55 words and appends a "[…]" read-more
+  // marker. Stripping that marker on its own leaves a sentence that just
+  // stops ("…title block and scale first, then site"), which then reads as a
+  // typo rather than a truncation wherever the excerpt is shown. Remember
+  // that WP truncated, so the ellipsis can be put back below.
+  const wasTruncated = /\[[^\]]*\]\s*$/.test(raw.trim());
+  const text = raw.replace(/\[[^\]]*\]/g, '').trim();
+
+  if (text.length <= maxChars) {
+    return wasTruncated && !/[.!?…]$/.test(text) ? `${text}…` : text;
+  }
   const clipped = text.slice(0, maxChars);
   const lastSpace = clipped.lastIndexOf(' ');
   return `${(lastSpace > 0 ? clipped.slice(0, lastSpace) : clipped).trim()}…`;
+}
+
+/**
+ * A meta-description-shaped summary taken from the start of a post's body.
+ *
+ * Preferred over the WP excerpt because these posts open answer-first: the
+ * opening sentence is a direct definition of the topic, which is exactly what
+ * a search snippet wants. The excerpt, by contrast, is whatever WordPress's
+ * 55-word auto-clip happened to land on.
+ *
+ * Takes whole sentences while they fit. If even the first sentence overruns
+ * (about two thirds of this blog), trims on a word boundary and marks it with
+ * an ellipsis — never mid-word, never a bare dangling clause.
+ */
+export function leadDescription(
+  html: string,
+  { max = 158, min = 110 }: { max?: number; min?: number } = {},
+): string | null {
+  const text = htmlToText(html);
+  if (!text) return null;
+
+  let out = '';
+  for (const sentence of text.match(/[^.!?]+[.!?]+/g) ?? []) {
+    const next = (out + sentence).trim();
+    if (next.length > max) break;
+    out = `${next} `;
+  }
+  out = out.trim();
+  if (out.length >= min) return out;
+
+  if (text.length <= max) return text;
+  const clipped = text.slice(0, max - 1);
+  const lastSpace = clipped.lastIndexOf(' ');
+  const base = lastSpace > min ? clipped.slice(0, lastSpace) : clipped;
+  return `${base.replace(/[,;:\s]+$/, '')}…`;
 }

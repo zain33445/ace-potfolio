@@ -11,8 +11,11 @@ import {
   getPosts,
   type BlogPost,
 } from "@/src/services/wordpress/content";
+import { leadDescription } from "@/src/services/wordpress/html";
 import { extractHeadings } from "@/src/lib/extractHeadings";
 import TableOfContents from "@/src/components/TableOfContents";
+import { getPostSeo } from "@/src/data/post-seo";
+import { getRelatedSlugs } from "@/src/data/related-posts";
 
 // Service Imports
 import { services, getServiceIcon, type Service } from "@/src/data/services";
@@ -100,15 +103,21 @@ export async function generateMetadata({
 
   if (resolved && "service" in resolved) {
     const { service } = resolved;
+    // seoTitle is the finished <title>: it already carries whatever brand
+    // suffix it needs, so bypass the root layout's "%s | The ACE Services".
+    const title = service.seoTitle
+      ? { absolute: service.seoTitle }
+      : service.title;
+    const description = service.seoDescription ?? truncate(service.summary, 160);
     return {
-      title: service.seoTitle ?? service.title,
-      description: truncate(service.summary, 160),
+      title,
+      description,
       alternates: {
         canonical: `https://theaceservices.com/${toUrlSlug(slug)}/`,
       },
       openGraph: {
-        title: `${service.seoTitle ?? service.title} | The ACE Services — Pre-Construction Estimation`,
-        description: truncate(service.summary, 160),
+        title: service.seoTitle ?? `${service.title} | The ACE Services`,
+        description,
         url: `https://theaceservices.com/${toUrlSlug(slug)}/`,
       },
     };
@@ -116,15 +125,28 @@ export async function generateMetadata({
 
   if (resolved && "post" in resolved) {
     const { post } = resolved;
+    const seo = getPostSeo(slug);
+    // A post title doubles as its H1, so it is usually too long for the SERP,
+    // and the WP auto-excerpt arrives clipped mid-sentence — all 78 posts are
+    // affected. Order of preference: a hand-written override, else the post's
+    // own opening sentences (these posts are written answer-first, so that is
+    // the best snippet available), else the excerpt as a last resort.
+    const description =
+      seo.description ??
+      leadDescription(post.content) ??
+      truncate(post.excerpt, 160);
     return {
-      title: post.title,
-      description: truncate(post.excerpt, 160),
+      // `absolute` bypasses the root layout's "%s | The ACE Services": an
+      // override is already a finished title, and the 19-char brand suffix
+      // buys nothing on informational queries.
+      title: seo.title ? { absolute: seo.title } : post.title,
+      description,
       alternates: {
         canonical: `https://theaceservices.com/${toUrlSlug(slug)}/`,
       },
       openGraph: {
-        title: `${post.title} | The ACE Services`,
-        description: truncate(post.excerpt, 160),
+        title: seo.title ?? `${post.title} | The ACE Services`,
+        description,
         ...(post.image ? { images: [{ url: post.image }] } : {}),
         url: `https://theaceservices.com/${toUrlSlug(slug)}/`,
       },
@@ -661,6 +683,68 @@ function SeoContentSection({ service }: { service: Service }) {
 /*  BLOG POST VIEW COMPONENT                                      */
 /* ═══════════════════════════════════════════════════════════════ */
 
+/**
+ * Post-to-post links.
+ *
+ * Without these a blog post's only inbound link is /blog/, so every post is
+ * a leaf: nothing flows between topically adjacent articles and the cluster
+ * reads to a crawler as a flat list rather than a body of related work.
+ *
+ * A CMS outage must not take the post down with it — the article itself is
+ * already rendered by the time this resolves, so failure degrades to no
+ * related strip at all.
+ */
+async function RelatedPosts({ currentSlug }: { currentSlug: string }) {
+  let posts;
+  try {
+    const result = await getPosts({ per_page: 100 });
+    const bySlug = new Map(result.data.map((p) => [p.slug, p]));
+
+    // Topical siblings first — see src/data/related-posts.ts. Falling back to
+    // "newest" would put the same three links on all 63 posts, which is what
+    // this replaced.
+    const picked = getRelatedSlugs(currentSlug)
+      .map((s) => bySlug.get(s))
+      .filter((p) => p !== undefined);
+
+    posts = picked.length
+      ? picked
+      : result.data.filter((p) => p.slug !== currentSlug).slice(0, 3);
+  } catch {
+    return null;
+  }
+
+  if (posts.length === 0) return null;
+
+  return (
+    <section className="mb-12">
+      <h2 className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">
+        Keep Reading
+      </h2>
+      <ul className="mt-6 grid gap-px border border-blueprint-line bg-blueprint-line sm:grid-cols-3">
+        {posts.map((p) => (
+          <li key={p.id} className="bg-background">
+            <Link
+              href={`/${toUrlSlug(p.slug)}/`}
+              className="group flex h-full flex-col gap-2 p-5 transition-colors hover:bg-surface"
+            >
+              <span className="font-[family-name:var(--font-space)] text-base font-bold leading-snug text-on-background transition-colors group-hover:text-primary">
+                {p.title}
+              </span>
+              <time
+                dateTime={p.date}
+                className="mt-auto font-mono text-xs text-on-surface-variant"
+              >
+                {formatDate(p.date)}
+              </time>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
 function BlogPostView({ post, slug }: { post: BlogPost; slug: string }) {
   const tocResult = post.content ? extractHeadings(post.content) : null;
   const tocItems = tocResult?.items ?? [];
@@ -705,7 +789,12 @@ function BlogPostView({ post, slug }: { post: BlogPost; slug: string }) {
             "@context": "https://schema.org",
             "@type": "Article",
             headline: post.title,
-            description: post.excerpt,
+            // Same clipped-excerpt problem as the meta description — do not
+            // let a mid-sentence fragment into the structured data either.
+            description:
+              getPostSeo(slug).description ??
+              leadDescription(post.content) ??
+              post.excerpt,
             datePublished: post.date,
             dateModified: post.modified,
             image: post.image,
@@ -718,6 +807,10 @@ function BlogPostView({ post, slug }: { post: BlogPost; slug: string }) {
               "@type": "Organization",
               name: "The ACE Services",
               url: "https://theaceservices.com",
+              logo: {
+                "@type": "ImageObject",
+                url: "https://theaceservices.com/aceLogo.webp",
+              },
             },
             mainEntityOfPage: `https://theaceservices.com/${toUrlSlug(slug)}/`,
           }),
@@ -779,6 +872,20 @@ function BlogPostView({ post, slug }: { post: BlogPost; slug: string }) {
                 {post.title}
               </h1>
               <div className="mt-6 flex flex-wrap items-center gap-4 font-mono text-sm text-on-surface-variant">
+                {/* Google's "Who" test. An organisation byline is the honest
+                    floor while no post has a named estimator behind it —
+                    swap in a Person (here and in the Article schema above)
+                    the day one does. */}
+                <span>
+                  By{" "}
+                  <Link
+                    href="/about-us/"
+                    className="font-bold text-on-background transition-colors hover:text-primary"
+                  >
+                    The ACE Services
+                  </Link>
+                </span>
+                <span className="text-on-surface-variant/40">·</span>
                 <time dateTime={post.date}>{formatDate(post.date)}</time>
                 {post.modified !== post.date && (
                   <span className="text-on-surface-variant/60">
@@ -804,6 +911,9 @@ function BlogPostView({ post, slug }: { post: BlogPost; slug: string }) {
               </p>
             )}
             <div className="my-12 border-t border-blueprint-line" />
+            <Suspense fallback={null}>
+              <RelatedPosts currentSlug={slug} />
+            </Suspense>
             <div className="flex items-center justify-between">
               <Link
                 href="/blog/"
