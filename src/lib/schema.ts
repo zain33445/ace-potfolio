@@ -128,6 +128,33 @@ export const serviceSchema = {
   },
 };
 
+export const PERSON_ID = `${SITE_URL}/#author-amz`;
+
+export const personSchema = {
+  '@type': 'Person',
+  '@id': PERSON_ID,
+  name: 'Abdul Manan Zafar',
+  honorificPrefix: 'Engr.',
+  jobTitle: 'Chief Executive Officer',
+  description:
+    'Civil engineer and CEO of The ACE Services, a pre-construction estimating firm serving general contractors across the United States.',
+  url: `${SITE_URL}/authors/abdul-manan-zafar/`,
+  image: 'https://cms.theaceservices.com/wp-content/uploads/2024/11/Engr._Abdul_Manan-removebg-preview.png',
+  worksFor: { '@id': ORGANIZATION_ID },
+  alumniOf: {
+    '@type': 'CollegeOrUniversity',
+    name: 'University of Engineering and Technology, Lahore',
+  },
+  knowsAbout: [
+    'Civil engineering',
+    'Construction project management',
+    'Quantity surveying',
+    'Construction site management',
+    'Construction health and safety',
+  ],
+  sameAs: ['https://pk.linkedin.com/in/abdul-manan-3390121b1'],
+};
+
 export const websiteGraphSchema = {
   '@context': 'https://schema.org',
   '@graph': [organizationSchema, websiteSchema, localBusinessSchema],

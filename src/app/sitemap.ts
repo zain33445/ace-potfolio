@@ -57,6 +57,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // priority non-home page on the site, so it outranks the service pages.
     { url: `${BASE_URL}/adu-construction-cost/`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/about-us/`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${BASE_URL}/authors/abdul-manan-zafar/`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.5 },
     { url: `${BASE_URL}/contact-us/`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
     { url: `${BASE_URL}/blog/`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
     // Consolidated orphan targets (rich content, previously not linked

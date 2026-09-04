@@ -20,6 +20,7 @@ import { getRelatedSlugs } from "@/src/data/related-posts";
 // Service Imports
 import { services, getServiceIcon, type Service } from "@/src/data/services";
 import { getServiceEnriched, getSubServices } from "@/src/data/services-cms";
+import { PERSON_ID, personSchema } from "@/src/lib/schema";
 
 /**
  * Serve prerendered/ISR pages for this route rather than rendering on-demand
@@ -816,6 +817,26 @@ function BlogPostView({ post, slug }: { post: BlogPost; slug: string }) {
           }),
         }}
       />
+      {/* reviewedBy is only valid on WebPage in schema.org, not on Article —
+          hence a separate node rather than a property on the Article above. */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "WebPage",
+                "@id": `https://theaceservices.com/${toUrlSlug(slug)}/#webpage`,
+                url: `https://theaceservices.com/${toUrlSlug(slug)}/`,
+                reviewedBy: { "@id": PERSON_ID },
+                lastReviewed: post.modified,
+              },
+              personSchema,
+            ],
+          }),
+        }}
+      />
       <div className="relative overflow-hidden border-b border-blueprint-line">
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.03]"
@@ -872,17 +893,17 @@ function BlogPostView({ post, slug }: { post: BlogPost; slug: string }) {
                 {post.title}
               </h1>
               <div className="mt-6 flex flex-wrap items-center gap-4 font-mono text-sm text-on-surface-variant">
-                {/* Google's "Who" test. An organisation byline is the honest
-                    floor while no post has a named estimator behind it —
-                    swap in a Person (here and in the Article schema above)
-                    the day one does. */}
+                {/* These posts aren't written by a named individual, so
+                    Article.author above stays the Organization. The CEO
+                    reviews them for technical accuracy — that's what this
+                    line and the WebPage.reviewedBy node record. */}
                 <span>
-                  By{" "}
+                  Reviewed by{" "}
                   <Link
-                    href="/about-us/"
+                    href="/authors/abdul-manan-zafar/"
                     className="font-bold text-on-background transition-colors hover:text-primary"
                   >
-                    The ACE Services
+                    Engr. Abdul Manan Zafar
                   </Link>
                 </span>
                 <span className="text-on-surface-variant/40">·</span>

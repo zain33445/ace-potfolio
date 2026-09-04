@@ -228,7 +228,7 @@ export default function AboutPageClient() {
               </h3>
               <p className="font-sans text-base text-on-surface-variant leading-relaxed">
                 Abdul Manan Zafar, a seasoned civil engineer and the visionary CEO of The ACE
-                Services, Top Construction &amp; Estimation Company, brings over half a decade of
+                Services, Top Construction &amp; Estimation Company, brings six years of
                 experience in the construction industry. Having worked with prestigious national and
                 international firms, he has honed his expertise in delivering innovative, efficient,
                 and high-quality solutions.
