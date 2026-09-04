@@ -85,11 +85,21 @@ async function fetchOne(path: string): Promise<string[] | null> {
 }
 
 async function fetchWpSlugs(): Promise<Set<string> | null> {
-  // /[slug] resolves against both posts (blog, category 1) and pages
-  // (any published page — sub-services + CMS-driven marketing pages).
-  // Both sources must be represented or middleware will 404 real content.
+  // /[slug] resolves against both posts and pages (any published page —
+  // sub-services + CMS-driven marketing pages). Both sources must be
+  // represented or middleware will 404 real content.
+  //
+  // The category allowlist MUST match INSIGHT_CATEGORY_IDS in
+  // services/wordpress/content.ts — 1 is WP's default "Uncategorized", 2 is
+  // this install's real "Blog" category. Duplicated as a literal rather than
+  // imported so middleware doesn't pull the whole content module into its
+  // edge bundle. A mismatch here edge-404s pages the route would happily
+  // serve; scripts/check-blog-category-coverage.mjs guards it.
+  //
+  // ponytail: per_page=100 with no pagination. 77 posts + 47 pages today;
+  // add pagination if either source crosses 100.
   const [posts, pages] = await Promise.all([
-    fetchOne('/posts?per_page=100&_fields=slug&categories=1'),
+    fetchOne('/posts?per_page=100&_fields=slug&categories=1,2'),
     fetchOne('/pages?per_page=100&_fields=slug'),
   ]);
   // If BOTH fetches failed, we have nothing → fail-open (null).

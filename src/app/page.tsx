@@ -9,9 +9,9 @@ import { serviceSchema } from '@/src/lib/schema';
 // (marketing content changes rarely) instead of serving it dynamically.
 export const revalidate = 3600;
 
-const HOME_TITLE = 'Construction Estimating, Shop Drawings & 3D Rendering | The ACE Services';
+const HOME_TITLE = 'Construction and Estimation Services | The ACE Services';
 const HOME_DESCRIPTION =
-  'Construction estimating services, material takeoffs, MEP shop drawings, 3D architectural renderings, and stamped permit sets for general contractors nationwide.';
+  'Get AACE Class 3 construction cost estimates and material takeoffs nationwide in 24-48 hours. Request your free quote today and start winning more bids.';
 
 export const metadata = {
   title: { absolute: HOME_TITLE },

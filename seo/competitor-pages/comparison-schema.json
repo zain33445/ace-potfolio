@@ -1,0 +1,147 @@
+{
+  "_comment": [
+    "JSON-LD for /compare/ace-services-vs-world-estimating/. Drop into src/lib/schema.ts as a page-level @graph.",
+    "Deliberately OMITTED: aggregateRating and Review. Per seo/content-eeat-audit-2026-09-03.md the six site testimonials are hardcoded with no client record. Do not add rating markup until verified reviews exist — fabricated review markup is a manual-action and an FTC risk.",
+    "Deliberately OMITTED: SoftwareApplication / Offer price nodes for the competitor. Marking up a rival's pricing as your own Offer is wrong, and their prices change.",
+    "author must be a real Person. Replace the placeholder sameAs before shipping.",
+    "Update dateModified on every quarterly price review."
+  ],
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://theaceservices.com/compare/ace-services-vs-world-estimating/#webpage",
+      "url": "https://theaceservices.com/compare/ace-services-vs-world-estimating/",
+      "name": "The ACE Services vs World Estimating: Which Estimating Partner Fits Your Project?",
+      "description": "An honest side-by-side of two construction estimating providers: deliverable scope, turnaround, pricing model and portfolio depth. Published by The ACE Services.",
+      "inLanguage": "en-US",
+      "datePublished": "2026-09-03",
+      "dateModified": "2026-09-03",
+      "isPartOf": { "@id": "https://theaceservices.com/#website" },
+      "publisher": { "@id": "https://theaceservices.com/#organization" },
+      "author": { "@id": "https://theaceservices.com/#author-amz" },
+      "breadcrumb": { "@id": "https://theaceservices.com/compare/ace-services-vs-world-estimating/#breadcrumb" },
+      "mainEntity": { "@id": "https://theaceservices.com/compare/ace-services-vs-world-estimating/#comparison" },
+      "disambiguatingDescription": "Comparison published by The ACE Services, one of the two providers compared. Competitor information compiled from worldestimating.com public pages on 2026-09-03 and cited inline."
+    },
+    {
+      "@type": "Person",
+      "@id": "https://theaceservices.com/#author-amz",
+      "name": "Abdul Manan Zafar",
+      "honorificPrefix": "Engr.",
+      "jobTitle": "Chief Executive Officer",
+      "description": "Civil engineer and CEO of The ACE Services, a nationwide pre-construction estimating and design firm based in Houston, Texas.",
+      "url": "https://theaceservices.com/authors/abdul-manan-zafar/",
+      "worksFor": { "@id": "https://theaceservices.com/#organization" },
+      "knowsAbout": [
+        "Construction cost estimating",
+        "AACE cost estimate classification",
+        "CSI MasterFormat",
+        "Material takeoffs",
+        "Shop drawings",
+        "Permit sets"
+      ],
+      "sameAs": ["REPLACE_WITH_REAL_LINKEDIN_URL"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://theaceservices.com/compare/ace-services-vs-world-estimating/#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://theaceservices.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Compare", "item": "https://theaceservices.com/compare/" },
+        { "@type": "ListItem", "position": 3, "name": "ACE Services vs World Estimating" }
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://theaceservices.com/compare/ace-services-vs-world-estimating/#comparison",
+      "name": "Construction estimating providers compared",
+      "itemListOrder": "https://schema.org/ItemListUnordered",
+      "numberOfItems": 2,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "Service",
+            "@id": "https://theaceservices.com/#service-preconstruction",
+            "name": "Pre-Construction Estimating, Drawings and Permit Sets",
+            "serviceType": "Construction cost estimating and pre-construction design",
+            "provider": { "@id": "https://theaceservices.com/#organization" },
+            "areaServed": { "@type": "Country", "name": "United States" },
+            "url": "https://theaceservices.com/services/",
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Pre-construction deliverables",
+              "itemListElement": [
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AACE Class 3 Cost Estimating", "url": "https://theaceservices.com/cost-estimating/" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Material Takeoffs and Quantity Surveying", "url": "https://theaceservices.com/quantity-surveyor-services/" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Shop Drawing Services", "url": "https://theaceservices.com/shop-drawing-services/" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "3D Architectural Rendering", "url": "https://theaceservices.com/3d-rendering-services/" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Permit Set Preparation", "url": "https://theaceservices.com/permit-set-services/" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Structural Engineering and MEP Design", "url": "https://theaceservices.com/structural-engineering/" } }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "Organization",
+            "name": "World Estimating",
+            "url": "https://worldestimating.com/",
+            "description": "Construction cost estimating and material takeoff provider offering single-trade takeoffs, monthly estimator retainers and Xactimate insurance claim estimates."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://theaceservices.com/compare/ace-services-vs-world-estimating/#faq",
+      "isPartOf": { "@id": "https://theaceservices.com/compare/ace-services-vs-world-estimating/#webpage" },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does World Estimating provide shop drawings, renderings or permit sets?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Based on their public page sitemap reviewed on 2026-09-03, World Estimating publishes no pages for shop drawings, 3D rendering or permit sets. Their published scope is cost estimating, material takeoffs, CPM scheduling and Xactimate insurance claim estimates. The ACE Services provides all three as dedicated services alongside estimating."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which company is cheaper?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "World Estimating publishes rates: approximately $200 for a single-trade takeoff, under $100 for small scopes, and a dedicated estimator retainer starting at $1,500 per month covering 10 to 15 typical jobs, as listed on their pricing page on 2026-09-03. The ACE Services quotes per project based on square footage, scope complexity and documentation quality, and provides a free preliminary quote and a public cost calculator. For a single-trade takeoff, a published flat rate is usually the lower-cost route."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do both companies deliver in 24 to 48 hours?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Both state a 24 to 48 hour standard turnaround. World Estimating notes their turnaround depends on scope of work and does not apply to complex projects. The ACE Services delivers AACE Class 3 estimates with CSI MasterFormat cost breakdowns in Excel and PDF within the same window, with larger multi-discipline packages quoted individually."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which one handles insurance or damage claim estimates?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "World Estimating offers Xactimate estimating and damage claim estimate services. The ACE Services does not currently offer insurance restoration estimating."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can a contractor use both providers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The two have limited overlap outside core estimating. Contractors needing high-volume single-trade takeoffs at a published rate, or insurance claim work, are well served by a specialist. Projects that also require coordinated shop drawings, client-facing renderings or a stamped permit set are better handled by a single multi-discipline provider."
+          }
+        }
+      ]
+    }
+  ]
+}

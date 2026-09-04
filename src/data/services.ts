@@ -44,6 +44,8 @@ export interface Service {
   ctaLabel: string;
   /** Overrides `title` for the <title> tag only; the H1 still uses `title`. */
   seoTitle?: string;
+  /** Overrides the generated meta description only; the on-page `summary` is untouched. */
+  seoDescription?: string;
   footnote?: string;
   seoContent?: SeoContent;
   /** Full sanitized HTML from WordPress — only present for CMS-only services */
@@ -79,6 +81,9 @@ export const services: Service[] = [
   {
     id: 'SVC_EST',
     slug: 'cost-estimating',
+    seoTitle: 'Construction Cost Estimating Services',
+    seoDescription:
+      'AACE Class 3 construction cost estimates, material takeoffs and CSI cost breakdowns delivered in 24-48 hours. Request your free estimate quote today.',
     title: 'Construction Cost Estimating Services',
     icon: 'SVC_EST',
     tagline: 'Budgeting & Bidding',
@@ -173,6 +178,9 @@ export const services: Service[] = [
   {
     id: 'SVC_ARC',
     slug: 'architectural-services',
+    seoTitle: 'Architectural Drafting & Permit Services',
+    seoDescription:
+      'Shop drawings, permit sets, submittals and 3D rendering for contractors and developers nationwide. Request a free quote to speed up your next approval.',
     title: 'Architectural Drafting & Permit Services',
     icon: 'SVC_ARC',
     tagline: 'Documentation & Visualization',
@@ -265,6 +273,9 @@ export const services: Service[] = [
   {
     id: 'SVC_ENG',
     slug: 'structural-engineering',
+    seoTitle: 'Structural Engineering & MEP Design Services',
+    seoDescription:
+      'PE-sealed structural engineering and MEP design for commercial, residential and industrial construction. Get your free structural engineering quote today.',
     title: 'Structural Engineering & MEP Design',
     icon: 'SVC_ENG',
     tagline: 'Design & Analysis',
@@ -354,6 +365,9 @@ export const services: Service[] = [
   {
     id: 'SVC_PMG',
     slug: 'project-management',
+    seoTitle: 'Construction Project Management Services',
+    seoDescription:
+      'CPM and Gantt scheduling, procurement coordination and project controls for contractors nationwide. Request a free scheduling consultation now.',
     title: 'Construction Project Management Services',
     icon: 'SVC_PMG',
     tagline: 'Planning & Controls',
@@ -446,6 +460,9 @@ export const services: Service[] = [
   {
     id: 'SVC_3DR',
     slug: '3d-rendering-services',
+    seoTitle: '3D Architectural Rendering Services | The ACE Services',
+    seoDescription:
+      'Photorealistic 3D exterior and interior renderings for permitting, coordination and marketing presentations. Get a free rendering quote in 3-5 days.',
     parent: 'architectural-services',
     title: '3D Architectural Rendering Services',
     icon: 'SVC_ARC',
@@ -540,6 +557,9 @@ export const services: Service[] = [
   {
     id: 'SVC_SHD',
     slug: 'shop-drawing-services',
+    seoTitle: 'Shop Drawing Services | MEP, Structural & Rebar',
+    seoDescription:
+      'Fabrication-ready MEP, structural, rebar and millwork shop drawings with cross-trade clash coordination. Request your free shop drawing quote today.',
     parent: 'architectural-services',
     title: 'Shop Drawing Services',
     icon: 'SVC_ENG',
@@ -634,6 +654,9 @@ export const services: Service[] = [
   {
     id: 'SVC_PMT',
     slug: 'permit-set-services',
+    seoTitle: 'Permit Set & Drawing Services | The ACE Services',
+    seoDescription:
+      "Code-compliant, stamped permit sets built to your reviewer's checklist for faster municipal approval. Get a free permit set quote in 3-7 business days.",
     parent: 'architectural-services',
     title: 'Permit Set & Drawing Services',
     icon: 'SVC_ARC',

@@ -1,16 +1,16 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Terms and Conditions',
+  title: { absolute: 'Terms & Conditions | The ACE Services' },
   description:
-    'Terms and Conditions for The ACE Services. Learn about the rules governing your use of our website and SMS messaging services.',
+    "Review the terms and conditions governing use of The ACE Services' estimating and design services. Contact us today if you have any questions.",
   alternates: {
     canonical: 'https://theaceservices.com/terms-and-conditions/',
   },
   openGraph: {
-  title: 'Terms and Conditions',
+    title: 'Terms & Conditions | The ACE Services',
     description:
-      'Terms and Conditions for The ACE Services. Learn about the rules governing your use of our website and SMS messaging services.',
+      "Review the terms and conditions governing use of The ACE Services' estimating and design services. Contact us today if you have any questions.",
     url: 'https://theaceservices.com/terms-and-conditions/',
   },
 };

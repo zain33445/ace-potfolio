@@ -50,4 +50,17 @@ export function getProjectCategories(): string[] {
   return ['ALL','Estimates', ...Array.from(cats).sort().filter((c) => (c.toLocaleLowerCase() !== 'general contractor' && c.toLocaleLowerCase() !== 'sub contractors'))];
 }
 
+export interface ProjectFilterOptions {
+  locations: string[];
+  states: string[];
+  csiDivisions: string[];
+}
+
+export function getProjectFilterOptions(): ProjectFilterOptions {
+  const locations = [...new Set(projects.map((p) => p.location))].sort();
+  const states = [...new Set(projects.map((p) => p.state).filter((s): s is string => s !== undefined))].sort();
+  const csiDivisions = [...new Set(projects.filter((p) => p.hasEstimate).flatMap((p) => p.csiDivisions))].sort();
+  return { locations, states, csiDivisions };
+}
+
 export type { ProjectDetail };

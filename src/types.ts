@@ -58,6 +58,7 @@ export interface ProjectDetail {
   title: string;
   category: string;
   location: string;
+  state?: string;
   imageUrl: string;
   pdfUrl: string;
   scope: string[];

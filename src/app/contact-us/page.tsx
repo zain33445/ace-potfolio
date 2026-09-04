@@ -2,16 +2,16 @@ import type { Metadata } from 'next';
 import ContactPageClient from '@/src/components/ContactPageClient';
 
 export const metadata: Metadata = {
-  title: 'Contact Houston Construction Estimators',
+  title: { absolute: 'Contact The ACE Services | Get a Free Estimate Quote' },
   description:
-    'Get in touch with The ACE Services for pre-construction estimation, material takeoffs, and cost estimation services. We respond within 24 hours.',
+    'Ready to bid smarter? Submit your blueprints and get a free construction estimate quote back in 24-48 hours. Contact our team and get started today.',
   alternates: {
     canonical: 'https://theaceservices.com/contact-us/',
   },
   openGraph: {
-  title: 'Contact Us',
+    title: 'Contact The ACE Services | Get a Free Estimate Quote',
     description:
-      'Get in touch with The ACE Services for pre-construction estimation, material takeoffs, and cost estimation services.',
+      'Ready to bid smarter? Submit your blueprints and get a free construction estimate quote back in 24-48 hours. Contact our team and get started today.',
     url: 'https://theaceservices.com/contact-us/',
   },
 };

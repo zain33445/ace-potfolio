@@ -8,16 +8,16 @@ import { CardBody, CardContainer, CardItem } from "@/src/components/ui/3d-card";
 /* ── Page metadata ────────────────────────────────────────────── */
 
 export const metadata: Metadata = {
-  title: 'Construction Estimating Company',
+  title: { absolute: 'Our Services | Construction and Estimation Company' },
   description:
-    'Cost estimating, architectural services, structural & engineering, and project management for contractors nationwide.',
+    'Explore cost estimating, architectural, structural engineering and project management services for contractors nationwide. Get a free consultation today.',
   alternates: {
     canonical: 'https://theaceservices.com/services/',
   },
   openGraph: {
-    title: 'Construction Estimating Company | The ACE Services',
+    title: 'Our Services | Construction and Estimation Company',
     description:
-      'Professional pre-construction services: cost estimating, architectural services, structural & engineering, and project management.',
+      'Explore cost estimating, architectural, structural engineering and project management services for contractors nationwide. Get a free consultation today.',
     url: 'https://theaceservices.com/services/',
   },
 };

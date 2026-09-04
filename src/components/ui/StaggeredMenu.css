@@ -304,8 +304,9 @@
   opacity: var(--sm-num-opacity, 0);
 }
 
-/* Mobile+tablet: full-width panel, z-index above fixed nav, centered toggle */
-@media (max-width: 1499px) {
+/* Mobile+tablet: full-width panel, z-index above fixed nav, centered toggle.
+   Upper bound tracks --breakpoint-desktop-nav in globals.css (1280px). */
+@media (max-width: 1279px) {
   .staggered-menu-panel {
     width: 100%;
     left: 0;
@@ -335,16 +336,46 @@
   }
 }
 
-/* Tablet widths (768px–1499px): nav uses md:h-22 = 5.5rem, keep the toggle centered */
-@media (min-width: 768px) and (max-width: 1499px) {
+/* Tablet widths (768px–1279px): nav uses md:h-22 = 5.5rem, keep the toggle centered */
+@media (min-width: 768px) and (max-width: 1279px) {
   .staggered-menu-header {
     height: 5.5rem;
     transform: translateY(0.75rem);
   }
 }
 
+/* ── Toggle inside the nav pill ──────────────────────────────────────────
+   The header is a full-viewport overlay, so its flex-end toggle lands on the
+   screen edge. Once scrolled, the nav is no longer full-width: it collapses to
+   a centered pill. Nav.tsx adds `sm-in-pill` for that state and publishes
+   --nav-pill-right (distance from the viewport's right edge to the pill's inner
+   content edge), so the toggle lands inside the pill on every width.
+
+   The offset is MEASURED from the live nav rather than re-derived from its
+   w-[95%]/lg:w-[75%] classes: the pill is centered in clientWidth while this
+   overlay spans 100vw, so any percentage mirrored here drifts by half the
+   scrollbar — and the two definitions could silently diverge. */
+@media (max-width: 1279px) {
+  .staggered-menu-wrapper.sm-in-pill .staggered-menu-header {
+    left: auto;
+    right: var(--nav-pill-right, 16px);
+    width: auto;
+    padding: 0;
+    transform: translateY(0.75rem);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  .staggered-menu-wrapper.sm-in-pill .staggered-menu-header {
+    /* The full-width nav is md:h-20, but the scrolled pill is md:h-18 (4.5rem).
+       The tablet rule above sizes the header for the taller unscrolled bar,
+       leaving the toggle ~7px below the pill's centre. Match the pill instead. */
+    height: 4.5rem;
+  }
+}
+
 /* Desktop: hide StaggeredMenu entirely — desktop uses horizontal nav links */
-@media (min-width: 1500px) {
+@media (min-width: 1280px) {
   .staggered-menu-wrapper {
     display: none !important;
   }

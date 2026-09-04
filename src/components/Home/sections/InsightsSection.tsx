@@ -2,6 +2,7 @@
 
 import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Reveal from '../../../components/Reveal';
 import type { Insight } from '../../../services/wordpress';
 
@@ -47,12 +48,16 @@ export default function InsightsSection({ insights }: InsightsSectionProps) {
                 className="group flex flex-col border border-blueprint-line bg-background bracket-corners overflow-hidden hover:border-primary transition-all duration-300"
               >
                 {post.image && (
-                  <div className="aspect-[16/9] overflow-hidden border-b border-blueprint-line">
-                    <img
+                  /* `relative` so next/image `fill` has a positioned parent.
+                     next/image resizes and re-encodes the CMS's ~1MB source
+                     PNGs at the edge rather than serving them raw. */
+                  <div className="relative aspect-[16/9] overflow-hidden border-b border-blueprint-line">
+                    <Image
                       src={post.image}
                       alt={post.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                     />
                   </div>
                 )}

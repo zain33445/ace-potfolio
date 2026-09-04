@@ -1,0 +1,171 @@
+{
+  "summary": {
+    "health_score": 74,
+    "business_type": "Local Service / B2B professional services — construction estimating, takeoffs, shop drawings, 3D rendering, permit sets",
+    "scope": "Homepage (/) only",
+    "url": "https://theaceservices.com/",
+    "top_findings": [
+      "Thin homepage content (325 visible words) — cannot rank for KD 47 commercial terms",
+      "Homepage not cacheable (Cache-Control: no-store) — hurts TTFB/LCP and crawl efficiency",
+      "Schema stale — Shop Drawings and 3D Rendering services missing from OfferCatalog",
+      "Testimonials section disabled on homepage — missing E-E-A-T/social proof",
+      "Title 72 chars (truncation risk); H3 appears before H1 in DOM order"
+    ],
+    "quick_wins": [
+      "Switch homepage to static/ISR so Cloudflare caches it",
+      "Add Shop Drawings + 3D Rendering to serviceSchema OfferCatalog",
+      "Re-enable TestimonialsSection with genuine client quotes",
+      "Add logo + sameAs to Organization schema"
+    ]
+  },
+  "categories": [
+    {
+      "name": "Technical SEO",
+      "score": 85,
+      "what_works": [
+        "robots.txt correct: Allow /, disallows admin/api, sitemap declared",
+        "sitemap.xml valid, homepage priority 1",
+        "Self-referencing canonical present",
+        "Enterprise security headers: CSP, HSTS preload, X-Frame-Options DENY, Permissions-Policy",
+        "lang=en, viewport, single H1"
+      ],
+      "findings": [
+        {
+          "title": "Homepage not cacheable (Cache-Control: no-store, must-revalidate)",
+          "severity": "High",
+          "description": "Homepage renders dynamically per request with no-store, defeating CDN/browser caching for a rarely-changing marketing page. Slows TTFB/LCP and wastes crawl budget.",
+          "recommendation": "Render statically or with ISR (export const revalidate = 3600) so Cloudflare caches the page; verify header changes to a max-age/s-maxage policy."
+        }
+      ]
+    },
+    {
+      "name": "Content Quality",
+      "score": 50,
+      "what_works": [
+        "Trust stats present (2,893+ projects, 35 states, 89% bid win rate)",
+        "NAP consistent with schema"
+      ],
+      "findings": [
+        {
+          "title": "Thin homepage content (325 words)",
+          "severity": "High",
+          "description": "Only ~325 indexable words. Insufficient to rank for competitive commercial terms (construction estimating services, KD 47) and starves AI engines of citable passages.",
+          "recommendation": "Add 600-900 words of substantive copy across service sections, a how-it-works narrative, differentiators, and trades/industries served."
+        },
+        {
+          "title": "Testimonials section disabled",
+          "severity": "Medium",
+          "description": "TestimonialsSection is commented out in home-page.tsx, removing a primary E-E-A-T/social-proof signal.",
+          "recommendation": "Re-enable with genuine client testimonials; add aggregateRating to ProfessionalService only if authentic reviews exist."
+        }
+      ]
+    },
+    {
+      "name": "On-Page SEO",
+      "score": 82,
+      "what_works": [
+        "Keyword-led title and accurate meta description",
+        "Single H1 anchoring flagship term",
+        "25 healthy internal links"
+      ],
+      "findings": [
+        {
+          "title": "Title length 72 characters",
+          "severity": "Low",
+          "description": "Title may truncate the brand in SERPs (~60 char display limit).",
+          "recommendation": "Optionally shorten to keep the brand visible, e.g. 'Construction Estimating, Shop Drawings & Rendering | ACE Services'."
+        },
+        {
+          "title": "Heading hierarchy jump (H3 before H1)",
+          "severity": "Low",
+          "description": "An H3 ('Socials') appears before the page H1 in DOM order, breaking strict heading nesting.",
+          "recommendation": "Demote to a non-heading element or move it after the H1."
+        }
+      ]
+    },
+    {
+      "name": "Schema / Structured Data",
+      "score": 85,
+      "what_works": [
+        "@graph with Organization, WebSite, ProfessionalService (full NAP/hours/geo), Service (OfferCatalog), FAQPage",
+        "Proper @id linking between nodes"
+      ],
+      "findings": [
+        {
+          "title": "Schema stale vs. current service lineup",
+          "severity": "Medium",
+          "description": "OfferCatalog omits Shop Drawings and 3D Architectural Rendering (now core, and present in title/copy). Organization description still calls the company only an 'estimation company'.",
+          "recommendation": "Add Shop Drawings and 3D Rendering Offers; broaden Organization description; add logo and sameAs to Organization node. File: src/lib/schema.ts."
+        }
+      ]
+    },
+    {
+      "name": "Performance (CWV)",
+      "score": 70,
+      "what_works": [
+        "LCP image preload hint on logo",
+        "Self-hosted fonts (no external font requests)",
+        "Third-party scripts lazy-loaded"
+      ],
+      "findings": [
+        {
+          "title": "Field data required; caching defeats performance",
+          "severity": "Info",
+          "description": "CWV not measurable on the unoptimized dev build. The no-store homepage policy will suppress LCP/TTFB gains.",
+          "recommendation": "Pull CrUX/GSC field data on production and re-measure LCP after the caching fix."
+        }
+      ]
+    },
+    {
+      "name": "AI Search Readiness",
+      "score": 70,
+      "what_works": [
+        "FAQPage schema (strong citation surface)",
+        "Clean semantic HTML + rich entity graph"
+      ],
+      "findings": [
+        {
+          "title": "Thin body text limits passage citability",
+          "severity": "Medium",
+          "description": "AI engines cite extractable passages; 325 words offers little to quote.",
+          "recommendation": "The content expansion in Phase 1 directly increases citable surface area."
+        }
+      ]
+    },
+    {
+      "name": "Images",
+      "score": 95,
+      "what_works": [
+        "12 images, 0 missing alt text",
+        "WebP format in use"
+      ],
+      "findings": []
+    }
+  ],
+  "action_plan": {
+    "phases": [
+      {"name": "Phase 1: Critical Fixes", "timeframe": "Week 1", "items": [
+        "Expand homepage copy to 800+ words across service sections",
+        "Switch homepage to static/ISR so Cloudflare caches it",
+        "Add Shop Drawings + 3D Rendering to schema OfferCatalog; broaden Organization description"
+      ]},
+      {"name": "Phase 2: High-Impact Improvements", "timeframe": "Weeks 2-3", "items": [
+        "Re-enable TestimonialsSection with genuine quotes",
+        "Tighten title; fix H3-before-H1 heading order",
+        "Add logo + sameAs to Organization schema"
+      ]},
+      {"name": "Phase 3: Content & Authority", "timeframe": "Month 2", "items": [
+        "Build dedicated service pages: shop drawings, 3D rendering, permit sets",
+        "Launch cost-guide blog cluster (concrete slab cost, drywall cost, foundation cost)"
+      ]},
+      {"name": "Phase 4: Monitoring & Iteration", "timeframe": "Ongoing", "items": [
+        "Pull CrUX/GSC field data on production; re-measure LCP after caching fix",
+        "Track estimating-cluster keywords in Rank Tracker"
+      ]}
+    ]
+  },
+  "artifacts": {
+    "findings_dir": "findings/",
+    "screenshots_dir": "screenshots/"
+  }
+}

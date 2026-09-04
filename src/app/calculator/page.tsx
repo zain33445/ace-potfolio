@@ -3,16 +3,16 @@ import Link from 'next/link';
 import EstimatorWrapper from './EstimatorWrapper';
 
 export const metadata: Metadata = {
-  title: 'Instant Construction Cost Calculator',
+  title: { absolute: 'Instant Construction Cost Calculator | The ACE Services' },
   description:
-    'Get an instant preliminary cost estimate for your construction project — AACE Class 3 budgetary allocations based on type, square footage, and complexity.',
+    'Get an instant AACE Class 3 budgetary construction cost estimate using our free online calculator. Try it now, no forms and no waiting required.',
   alternates: {
     canonical: 'https://theaceservices.com/calculator/',
   },
   openGraph: {
-    title: 'Cost Calculator | The ACE Services',
+    title: 'Instant Construction Cost Calculator | The ACE Services',
     description:
-      'Interactive construction cost estimation engine. Configure project parameters and receive instant budgetary allocations with material, labor, equipment, and permit breakdowns.',
+      'Get an instant AACE Class 3 budgetary construction cost estimate using our free online calculator. Try it now, no forms and no waiting required.',
     url: 'https://theaceservices.com/calculator/',
   },
 };

@@ -139,15 +139,24 @@ export interface SampleProject {
 /**
  * Category IDs to PULL blog posts from — an allowlist, not a denylist.
  *
- * This install is heavily polluted with SEO/casino spam scattered across many
- * categories (13 "public", 54, 56, 2 "Blog", …), so excluding spam is endless
- * whack-a-mole. Every genuine construction article instead lives in the
- * default category `1`. Allowlisting is therefore the robust filter.
+ * This install was heavily polluted with SEO/casino spam scattered across many
+ * categories, so excluding spam is endless whack-a-mole and allowlisting is
+ * the robust filter.
  *
- * After the WordPress content is cleaned up / properly categorized, add the
- * real category IDs here (e.g. a dedicated "Estimation" category).
+ * `1` is WordPress's default "Uncategorized"; `2` is the install's real "Blog"
+ * category. An earlier revision allowlisted only `1`, which silently dropped
+ * all 28 category-2 posts — the entire state-targeting cluster (California,
+ * Michigan, Ohio, Georgia, Pennsylvania, Illinois, New York, North Carolina)
+ * plus several service guides. They vanished from the blog listing and the
+ * sitemap, and middleware edge-404'd them (see src/lib/valid-slugs.ts, which
+ * hardcodes the same allowlist and must be kept in sync). Every post in
+ * category 2 was verified as genuine construction content; the spam
+ * categories all sit at count 0 since the cleanup.
+ *
+ * After the WordPress content is properly categorized, add the real category
+ * IDs here (e.g. a dedicated "Estimation" category).
  */
-export const INSIGHT_CATEGORY_IDS = [1];
+export const INSIGHT_CATEGORY_IDS = [1, 2];
 
 /**
  * Curated service/project Pages worth surfacing (by slug), in display order.

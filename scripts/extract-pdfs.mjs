@@ -80,7 +80,10 @@ function describe(title, category, costs) {
   return (
     `Cost estimation for ${title} spanning ${costs.areaBasis.toLocaleString()} SF ` +
     `${basis} across ${costs.costDivisions.length} trade divisions including ${sample}. ` +
-    `AACE Class 3 estimate delivered with full quantity takeoff and bid preparation.`
+    // Describes what the PDFs demonstrably contain. Do NOT reintroduce a
+    // standards claim (e.g. "AACE Class 3") here: it would assert a
+    // classification for all 39 costed records that no PDF states.
+    `Full quantity takeoff with unit pricing broken out by CSI division.`
   );
 }
 

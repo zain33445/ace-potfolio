@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { CardBody, CardContainer, CardItem } from "@/src/components/ui/3d-card";
 
 /* ── Helpers ──────────────────────────────────────────────────── */
@@ -75,11 +76,15 @@ export function BlogCard3D({
             <CardItem translateZ="100" scaleOnHover className="mt-5 w-full">
               <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-background">
                 {image ? (
-                  <img
+                  /* next/image so the CMS's ~1MB source PNGs are resized and
+                     re-encoded (WebP/AVIF) at the edge instead of being shipped
+                     raw to every visitor. */
+                  <Image
                     src={image}
                     alt={title}
-                    className="h-full w-full object-cover transition-shadow duration-500 group-hover:shadow-xl"
-                    loading="lazy"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                    className="object-cover transition-shadow duration-500 group-hover:shadow-xl"
                   />
                 ) : (
                   <div className="flex h-full w-full items-center justify-center">

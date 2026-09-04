@@ -92,6 +92,33 @@ export default function Nav() {
     };
   }, [isHome]);
 
+  /* Publish the nav pill's right content edge so the StaggeredMenu toggle — a
+     fixed full-viewport overlay — can sit inside the pill instead of on the
+     screen edge. Measured (not re-derived from the w-[95%]/lg:w-[75%] classes)
+     because the pill centers within clientWidth while the overlay spans 100vw.
+     The ResizeObserver also tracks the 700ms width transition, so the toggle
+     travels with the pill rather than snapping at the end. */
+  useEffect(() => {
+    const el = navRef.current;
+    if (!el) return;
+    const sync = () => {
+      const rect = el.getBoundingClientRect();
+      const padRight = parseFloat(getComputedStyle(el).paddingRight) || 0;
+      document.documentElement.style.setProperty(
+        '--nav-pill-right',
+        `${Math.max(0, window.innerWidth - rect.right + padRight)}px`,
+      );
+    };
+    sync();
+    const ro = new ResizeObserver(sync);
+    ro.observe(el);
+    window.addEventListener('resize', sync);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener('resize', sync);
+    };
+  }, []);
+
   const PAGE_LINKS = [
   { href: '/blog/', label: 'BLOG', shortLabel: 'Blog' },
   { href: '/about-us/', label: 'ABOUT', shortLabel: 'About' },
@@ -158,12 +185,12 @@ export default function Nav() {
                   href={href}
                   className={
                     isCalculator
-                      ? `font-mono text-sm font-bold uppercase tracking-wider px-5 py-2 ${navScrolled ? 'lg:rounded-full' : ''} border-2 transition-all duration-500 ${
+                      ? `font-mono ${navScrolled ? 'text-xs 2xl:text-sm' : 'text-sm'} font-bold uppercase tracking-wider px-5 py-2 ${navScrolled ? 'lg:rounded-full' : ''} border-2 transition-all duration-500 ${
                           isActive(href)
                             ? 'border-primary bg-primary text-white'
                             :  'border-primary bg-primary text-white hover:bg-transparent hover:text-primary'
                         }`
-                      : `font-mono text-sm font-bold border-transparent px-1 tracking-widest pb-0.5 ${navScrolled ? "text-black" : "text-white"} transition-colors duration-500 hover:border-b-primary hover:border-b-2 ${
+                      : `font-mono ${navScrolled ? 'text-xs 2xl:text-sm' : 'text-sm'} font-bold border-transparent px-1 tracking-widest pb-0.5 ${navScrolled ? "text-black" : "text-white"} transition-colors duration-500 hover:border-b-primary hover:border-b-2 ${
                           isActive(href)
                               ? 'border-b-primary'
                               : ''
@@ -187,7 +214,7 @@ export default function Nav() {
       <StaggeredMenu
         position="right"
         isFixed
-        className="desktop-nav:hidden"
+        className={`desktop-nav:hidden ${navScrolled ? 'sm-in-pill' : ''}`}
         items={menuItems as any}
         socialItems={socialItems as any}
         displaySocials

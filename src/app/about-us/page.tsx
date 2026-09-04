@@ -2,16 +2,16 @@ import type { Metadata } from 'next';
 import AboutPageClient from '@/src/components/AboutPageClient';
 
 export const metadata: Metadata = {
-  title: 'About Us — Top Construction & Estimation Company',
+  title: { absolute: 'About The ACE Services | Construction Estimating Team' },
   description:
-    'The ACE Services is a pre-construction estimation firm with 2,893 projects estimated and an 89% bid win rate — precision estimating and QA nationwide.',
+    'Meet the nationwide estimating team behind 2,893+ delivered projects and an 89% bid win rate for contractors. Contact us to start your project today.',
   alternates: {
     canonical: 'https://theaceservices.com/about-us/',
   },
   openGraph: {
-    title: 'About Us | The ACE Services — Top Cost Estimation Company in the US',
+    title: 'About The ACE Services | Construction Estimating Team',
     description:
-      'With 2,893 projects estimated and an 89% bid win rate, The ACE Services delivers precision pre-construction estimation, material takeoffs, and quantity surveying nationwide.',
+      'Meet the nationwide estimating team behind 2,893+ delivered projects and an 89% bid win rate for contractors. Contact us to start your project today.',
     url: 'https://theaceservices.com/about-us/',
   },
 };

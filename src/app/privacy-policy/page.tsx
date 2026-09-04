@@ -1,16 +1,16 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy',
+  title: { absolute: 'Privacy Policy | The ACE Services' },
   description:
-    'Privacy Policy for The ACE Services. Learn how we collect, use, and protect your information, including SMS communication and data security practices.',
+    "Read The ACE Services' privacy policy to learn how we collect, use and protect your personal data. Contact our team with any privacy questions today.",
   alternates: {
     canonical: 'https://theaceservices.com/privacy-policy/',
   },
   openGraph: {
-  title: 'Privacy Policy',
+    title: 'Privacy Policy | The ACE Services',
     description:
-      'Privacy Policy for The ACE Services. Learn how we collect, use, and protect your information.',
+      "Read The ACE Services' privacy policy to learn how we collect, use and protect your personal data. Contact our team with any privacy questions today.",
     url: 'https://theaceservices.com/privacy-policy/',
   },
 };

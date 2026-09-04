@@ -5,8 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import Reveal from "../../../components/Reveal";
-import { getAllProjects, getProjectCategories } from "@/src/data/projects";
-import { motion } from "framer-motion";
+import { getAllProjects } from "@/src/data/projects";
+import { ProjectDetail } from "@/src/types";
 const Masonry = dynamic(() => import("../../../components/ui/mosonry"), {
   ssr: false,
 });
@@ -17,6 +17,14 @@ function formatCurrency(n: number): string {
   return `$${n.toLocaleString()}`;
 }
 
+const SCOPE_GROUPS = ["ALL", "Estimation", "Permit Sets", "Shop Drawings", "3D Renderings", "Civil Plans"] as const;
+
+const SUBCATEGORIES: Record<string, string[]> = {
+  Estimation: ["GCs", "Subcontractors"],
+  "Permit Sets": ["Architectural", "Structural", "MEP", "Seal & Stamps"],
+  "Shop Drawings": ["Framing", "Millwork", "Plumbing", "Fabrication Plans"],
+};
+
 const CATEGORY_COLORS: Record<string, string> = {
   "GENERAL CONTRACTOR": "bg-primary/15 text-primary border-primary/30",
   "SUB CONTRACTORS": "bg-[#a3a3a3]/15 text-[#a3a3a3] border-[#a3a3a3]/30",
@@ -26,15 +34,11 @@ const CATEGORY_COLORS: Record<string, string> = {
 };
 
 export default function ProjectsSection() {
-  const [activeCategory, setActiveCategory] = useState("ALL");
-  const [estimatesSubFilter, setEstimatesSubFilter] = useState<
-    "all" | "gc" | "sub"
-  >("all");
+  const [selectedScopeGroup, setSelectedScopeGroup] = useState("ALL");
+  const [selectedSubcategory, setSelectedSubcategory] = useState("ALL");
+  const [selectedDrillDown, setSelectedDrillDown] = useState("ALL");
   const allProjects = useMemo(() => getAllProjects(), []);
-  const categories = useMemo(() => getProjectCategories(), []);
 
-  // Below sm the grid is 3 narrow columns, so the tall desktop heights would
-  // read as thin ribbons — use short tiles on phones, leave desktop untouched.
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 639px)");
@@ -44,23 +48,78 @@ export default function ProjectsSection() {
     return () => mq.removeEventListener("change", update);
   }, []);
 
+  const subcategories = selectedScopeGroup !== "ALL" ? (SUBCATEGORIES[selectedScopeGroup] || []) : [];
+
   const filteredProjects = useMemo(() => {
-    if (activeCategory === "ALL") {
-      return [...allProjects].reverse().slice(0, 9);
+    let result = allProjects;
+
+    if (selectedScopeGroup !== "ALL") {
+      switch (selectedScopeGroup) {
+        case "Estimation":
+          result = result.filter(
+            (p) => p.hasEstimate && (p.category === "GENERAL CONTRACTOR" || p.category === "SUB CONTRACTORS"),
+          );
+          break;
+        case "Permit Sets":
+          result = result.filter((p) => p.category === "PERMIT SETS");
+          break;
+        case "Shop Drawings":
+          result = result.filter((p) => p.category === "SHOP DRAWINGS");
+          break;
+        case "3D Renderings":
+          result = result.filter((p) => p.category === "3D RENDERS");
+          break;
+        case "Civil Plans":
+          result = result.filter(() => false);
+          break;
+      }
     }
-    if (activeCategory === "Estimates") {
-      const filtered = allProjects.filter((p) => {
-        const cat = p.category.toLocaleLowerCase();
-        if (estimatesSubFilter === "gc") return cat === "general contractor";
-        if (estimatesSubFilter === "sub") return cat === "sub contractors";
-        return cat === "general contractor" || cat === "sub contractors";
-      });
-      return [...filtered].reverse().slice(0, 9);
+
+    if (selectedSubcategory !== "ALL") {
+      switch (`${selectedScopeGroup}:${selectedSubcategory}`) {
+        case "Estimation:GCs":
+          result = result.filter((p) => p.category === "GENERAL CONTRACTOR");
+          break;
+        case "Estimation:Subcontractors":
+          result = result.filter((p) => p.category === "SUB CONTRACTORS");
+          break;
+        default:
+          result = result.filter((p) =>
+            p.scope.some((s) => s.toLowerCase().includes(selectedSubcategory.toLowerCase())),
+          );
+          break;
+      }
     }
-    return [...allProjects.filter((p) => p.category === activeCategory)]
-      .reverse()
-      .slice(0, 9);
-  }, [allProjects, activeCategory, estimatesSubFilter]);
+
+    if (selectedDrillDown !== "ALL") {
+      switch (`${selectedScopeGroup}:${selectedSubcategory}`) {
+        case "Estimation:Subcontractors":
+          result = result.filter((p) => p.csiDivisions?.includes(selectedDrillDown));
+          break;
+        case "Permit Sets:Seal & Stamps":
+          result = result.filter((p) => p.state === selectedDrillDown);
+          break;
+      }
+    }
+
+    return [...result].reverse().slice(0, 9);
+  }, [allProjects, selectedScopeGroup, selectedSubcategory, selectedDrillDown]);
+
+  const drillDownOptions = useMemo(() => {
+    if (selectedSubcategory === "ALL") return [];
+    const key = `${selectedScopeGroup}:${selectedSubcategory}`;
+    if (key === "Estimation:Subcontractors") {
+      const csiSet = new Set(filteredProjects.flatMap((p) => p.csiDivisions));
+      return [...csiSet].sort();
+    }
+    if (key === "Permit Sets:Seal & Stamps") {
+      const stateSet = new Set(filteredProjects.map((p) => p.state).filter((s): s is string => s !== undefined));
+      return [...stateSet].sort();
+    }
+    return [];
+  }, [selectedScopeGroup, selectedSubcategory, filteredProjects]);
+
+  const hasDrillDown = selectedSubcategory !== "ALL" && drillDownOptions.length > 0;
 
   const masonryItems = useMemo(
     () =>
@@ -106,61 +165,72 @@ export default function ProjectsSection() {
               </p>
             </div>
 
-            {/* Category Filters */}
-            <div className="flex flex-wrap items-center gap-2">
-              <div className="flex flex-wrap gap-2">
-                {categories.map((cat) => {
-                  const isActive = activeCategory === cat;
-                  const count =
-                    cat === "ALL"
-                      ? allProjects.length
-                      : cat === "Estimates"
-                        ? allProjects.filter(
-                            (p) =>
-                              p.category.toLocaleLowerCase() ===
-                                "general contractor" ||
-                              p.category.toLocaleLowerCase() ===
-                                "sub contractors",
-                          ).length
-                        : allProjects.filter((p) => p.category === cat).length;
-
-                  return (
-                    <button
-                      key={cat}
-                      onClick={() => {
-                        setActiveCategory(cat);
-                        if (cat !== "Estimates") setEstimatesSubFilter("all");
-                      }}
-                      className={`font-mono text-sm font-bold uppercase tracking-wider px-4 py-2 border-b-2 transition-all duration-500 ease-in-out ${
-                        isActive
-                          ? "border-b-primary text-black"
-                          : "border-b-transparent bg-transparent text-on-surface-variant  hover:text-primary"
-                      }`}
-                    >
-                      {cat}
-                      <span className="ml-1.5 opacity-60">({count})</span>
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Estimates Sub-Filter Select */}
-              {activeCategory === "Estimates" && (
-                <select
-                  value={estimatesSubFilter}
-                  onChange={(e) =>
-                    setEstimatesSubFilter(
-                      e.target.value as "all" | "gc" | "sub",
-                    )
-                  }
-                  className="ml-auto font-mono text-sm font-bold uppercase tracking-wider px-3 py-2 border border-blueprint-line bg-transparent text-on-surface-variant rounded-none appearance-none cursor-pointer hover:border-primary focus:border-primary focus:outline-none transition-colors duration-300"
+            {/* Scope Group Pills */}
+            <div className="flex flex-wrap gap-2">
+              {SCOPE_GROUPS.map((g) => (
+                <button
+                  key={g}
+                  onClick={() => { setSelectedScopeGroup(g); setSelectedSubcategory("ALL"); setSelectedDrillDown("ALL"); }}
+                  className={`font-mono text-base font-bold uppercase tracking-wider px-4 py-2 border-b-2 transition-all duration-500 ease-in-out ${
+                    selectedScopeGroup === g
+                      ? "border-b-primary text-black"
+                      : "border-b-transparent bg-transparent text-on-surface-variant hover:text-primary"
+                  }`}
                 >
-                  <option value="all">All Estimates</option>
-                  <option value="gc">GC Only</option>
-                  <option value="sub">Sub Only</option>
-                </select>
-              )}
+                  {g === 'ALL' ? 'All Projects' : g}
+                </button>
+              ))}
             </div>
+
+            {/* Sub-category Pills (conditional) */}
+            {subcategories.length > 0 && (
+              <div className="flex flex-wrap gap-2 mt-2">
+                <button
+                  onClick={() => { setSelectedSubcategory("ALL"); setSelectedDrillDown("ALL"); }}
+                  className={`font-mono text-base font-bold uppercase tracking-wider px-4 py-2 border-b-2 transition-all duration-500 ease-in-out ${
+                    selectedSubcategory === "ALL"
+                      ? "border-b-primary text-black"
+                      : "border-b-transparent bg-transparent text-on-surface-variant hover:text-primary"
+                  }`}
+                >
+                  All
+                </button>
+                {subcategories.map((sub) => (
+                  <button
+                    key={sub}
+                    onClick={() => { setSelectedSubcategory(sub); setSelectedDrillDown("ALL"); }}
+                    className={`font-mono text-base font-bold uppercase tracking-wider px-4 py-2 border-b-2 transition-all duration-500 ease-in-out ${
+                      selectedSubcategory === sub
+                        ? "border-b-primary text-black"
+                        : "border-b-transparent bg-transparent text-on-surface-variant hover:text-primary"
+                    }`}
+                  >
+                    {sub}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* Drill-down Filter (conditional) */}
+            {hasDrillDown && (
+              <div className="flex flex-wrap items-end gap-3 mt-2">
+                <div className="flex flex-col gap-1">
+                  <label className="font-mono text-xs text-primary uppercase tracking-widest">
+                    {`${selectedSubcategory} Filter`}
+                  </label>
+                  <select
+                    value={selectedDrillDown}
+                    onChange={(e) => setSelectedDrillDown(e.target.value)}
+                    className="bg-background border border-blueprint-line px-3 py-1.5 font-mono text-sm text-on-surface-variant bracket-corners focus:border-primary outline-none min-w-[160px]"
+                  >
+                    <option value="ALL">All</option>
+                    {drillDownOptions.map((opt) => (
+                      <option key={opt} value={opt}>{opt}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </Reveal>
@@ -177,7 +247,6 @@ export default function ProjectsSection() {
                 href={`/projects/${project.slug}/`}
                 className="block rounded-xl overflow-hidden bg-surface border border-blueprint-line shadow-sm transition-all hover:border-primary"
               >
-                {/* img */}
                 <div className="relative h-82 w-full">
                   <Image
                     src={project.imageUrl}
@@ -188,27 +257,18 @@ export default function ProjectsSection() {
                   />
                 </div>
 
-                {/* info */}
                 <div className="p-3 flex flex-col gap-1.5">
-                  {/* <p className="font-mono text-[10px] font-bold uppercase tracking-wide text-primary truncate">
-                  {project.category}
-                </p> */}
-
-                  {/* title */}
                   <h3 className="font-[family-name:var(--font-space)] text-lg font-bold text-on-background leading-snug line-clamp-2">
                     {project.title}
                   </h3>
 
-                  {/* location */}
                   <p className="font-mono text-[10px] text-on-surface-variant truncate">
                     {project.location}
                   </p>
 
-                  {/* Estimates: size + scope + cost */}
                   {project.category.toLowerCase() === "general contractor" ||
                   project.category.toLowerCase() === "sub contractors" ? (
                     <div className="flex flex-col gap-0.5 mt-1 text-sm tracking-wider">
-                      {/* size */}
                       {project.totalAreaSqFt > 0 && (
                         <p className="font-mono text-on-surface-variant ">
                           <span className="text-primary font-bold  tracking-wider">
@@ -219,7 +279,6 @@ export default function ProjectsSection() {
                           </span>
                         </p>
                       )}
-                      {/* cost */}
                       {project.estimatedCost > 0 && (
                         <p className=" text-on-surface-variant ">
                           <span className="text-primary font-bold ">COST:</span>{" "}
@@ -231,7 +290,6 @@ export default function ProjectsSection() {
                           </span>
                         </p>
                       )}
-                      {/* scope */}
                       {project.scope.length > 0 && (
                         <p className="font-mono text-on-surface-variant ">
                           <span className="text-primary font-bold block">
@@ -287,7 +345,7 @@ export default function ProjectsSection() {
       {/* Desktop: Masonry Grid */}
       <div className="hidden md:block my-10 max-w-7xl mx-auto min-h-[400px] px-4 md:px-0">
         <Masonry
-          key={`${activeCategory}-${estimatesSubFilter}`}
+          key={`${selectedScopeGroup}-${selectedSubcategory}`}
           items={masonryItems}
           columns={{
             "(min-width:1024px)": 3,
@@ -314,7 +372,6 @@ export default function ProjectsSection() {
                 href={`/projects/${project.slug}/`}
                 className="group relative block w-full h-full overflow-hidden rounded-[10px] bg-surface transition-all duration-300 hover:border-primary hover:shadow-[0_0_40px_rgba(255,107,0,0.1)]"
               >
-                {/* Image */}
                 <div className="relative w-full h-full overflow-hidden">
                   <Image
                     src={project.imageUrl}
@@ -324,7 +381,6 @@ export default function ProjectsSection() {
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
 
-                  {/* Scanline overlay */}
                   <div
                     className="pointer-events-none absolute inset-0 opacity-20"
                     style={{
@@ -333,10 +389,8 @@ export default function ProjectsSection() {
                     }}
                   />
 
-                  {/* Dark gradient overlay — always visible */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
-                  {/* Hover overlay with project details */}
                   <div
                     className={
                       "absolute inset-0 z-20 flex flex-col justify-end p-5 bg-black/60 transition-opacity duration-300 " +
@@ -354,7 +408,6 @@ export default function ProjectsSection() {
 
                     <div className="h-px w-full bg-white/20 mb-1 md:mb-3" />
 
-                    {/* Scope */}
                     <div className="mb-2">
                       <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-primary">
                         SCOPE:
@@ -364,7 +417,6 @@ export default function ProjectsSection() {
                       </p>
                     </div>
 
-                    {/* Size */}
                     <div className="mb-3">
                       <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-primary">
                         SIZE:
@@ -374,7 +426,6 @@ export default function ProjectsSection() {
                       </p>
                     </div>
 
-                    {/* View button */}
                     <div className="inline-flex items-center gap-2 border border-primary bg-primary px-4 py-2 font-mono text-xs font-bold uppercase tracking-wider text-white w-fit">
                       <span>VIEW</span>
                       <svg

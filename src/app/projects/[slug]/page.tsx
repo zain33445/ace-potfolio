@@ -6,6 +6,11 @@ import { getProjectBySlug, getFeaturedProjects, getAllProjects } from '@/src/dat
 import type { ProjectDetail } from '@/src/types';
 import CostBreakdownChart from './CostBreakdownChart';
 
+/* Project slugs that have a long-form cost guide built from their estimate. */
+const GUIDE_FOR: Record<string, string> = {
+  'college-ave-adu-san-diego': '/adu-construction-cost/',
+};
+
 /* ── Dynamic metadata ─────────────────────────────────────────── */
 
 interface Props {
@@ -327,6 +332,17 @@ function HeroSection({ project }: { project: ProjectDetail }) {
         <p className="mt-6 max-w-2xl font-sans text-lg leading-relaxed text-on-surface-variant md:text-xl">
           {project.description}
         </p>
+
+        {/* Contextual link to the cost guide built from this estimate.
+            A lookup, not a special case: add a slug when a guide exists. */}
+        {GUIDE_FOR[project.slug] && (
+          <p className="mt-6 max-w-2xl font-sans text-base leading-relaxed text-on-surface-variant">
+            This estimate is broken out division by division, with what it excludes, in our{' '}
+            <Link href={GUIDE_FOR[project.slug]} className="font-semibold text-primary hover:underline">
+              ADU construction cost guide
+            </Link>.
+          </p>
+        )}
 
         {/* Quick stats row — only where an estimate exists. */}
         {project.hasEstimate && (

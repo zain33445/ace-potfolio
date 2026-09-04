@@ -33,7 +33,14 @@
   --animate-cell-ripple: cell-ripple var(--duration, 500ms) var(--delay, 0ms)
     ease-out;
   /* ── Desktop navigation breakpoint ──────────── */
-  --breakpoint-desktop-nav: 1500px;
+  /* Logo (238px) + 7 nav links incl. the Calculator button (626px) + the
+     nav's own 42px padding = 906px of content. The nav pill is ~0.74 of the
+     viewport when scrolled, so 906px of content needs a ~1225px viewport.
+     1280 is the next standard step up and clears it with ~43px of slack.
+     Was 1500px, which pushed every common laptop width (1280/1366/1440) onto
+     the mobile hamburger even though the full nav fits. Do not raise the link
+     count or logo size without re-measuring this. */
+  --breakpoint-desktop-nav: 1280px;
   /* ── Extra-large screens ────────────────────── */
   --breakpoint-3xl: 1920px;
 }

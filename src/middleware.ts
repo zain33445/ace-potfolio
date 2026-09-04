@@ -101,6 +101,8 @@ const LEGACY_301: Record<string, string> = {
   '/quantity-surveyor-services-in-usa-ensuring-precision-and-profitability-in-construction-projects': '/quantity-surveyor-services/',
   // Slug collision — reserve the loser for the canonical outsourced page.
   '/outsource-construction-estimation': '/outsourced-construction-estimating/',
+  // Duplicate lead-capture page — /contact-us/ is the canonical form.
+  '/quick-quote': '/contact-us/',
 };
 
 // Reachable, but must never rank or be indexed.
@@ -151,6 +153,32 @@ function notFoundResponse(): NextResponse {
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  /* Force one scheme. Plain HTTP serves a full 200 copy of the site with no
+     edge redirect, so every URL exists twice and each http:// page emits an
+     https:// canonical — crawlers therefore see the whole http:// set as
+     non-indexable duplicates pointing somewhere else. The HSTS header is
+     already sent, but browsers ignore HSTS delivered over HTTP, so it cannot
+     close this on its own.
+
+     Scoped to the production hostname AND an explicit 'http' value. Both
+     guards matter: `next dev` also sends x-forwarded-proto: http, so a
+     header-only check redirects localhost to https://localhost and breaks
+     local development and any preview deployment. A missing header or any
+     other host falls through, so this cannot loop.
+
+     Cloudflare's "Always Use HTTPS" (SSL/TLS → Edge Certificates) does the
+     same thing one hop earlier and also covers static assets — enable it too;
+     this is the in-app backstop. */
+  if (
+    request.headers.get('x-forwarded-proto') === 'http' &&
+    request.nextUrl.hostname === 'theaceservices.com'
+  ) {
+    const url = request.nextUrl.clone();
+    url.protocol = 'https:';
+    url.port = '';
+    return NextResponse.redirect(url, 301);
+  }
 
   const legacyTarget = LEGACY_301[pathname] ?? LEGACY_301[pathname.replace(/\/$/, '')];
   if (legacyTarget) {

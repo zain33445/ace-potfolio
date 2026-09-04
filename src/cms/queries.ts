@@ -18,6 +18,8 @@ export interface ServicePageCopy {
   title?: string;
   /** Overrides `title` for the <title> tag only; the H1 still uses `title`. */
   seoTitle?: string;
+  /** Overrides the generated meta description only; the on-page summary is untouched. */
+  seoDescription?: string;
   summary?: string;
   /** Raw sanitized HTML content from WP — for full-page rendering */
   rawContent?: string;
@@ -50,25 +52,110 @@ export interface ServicePageCopy {
  * has to be edited in WordPress (pages 5115 and 5109). Delete the matching
  * entry here once a page's CMS copy is corrected at the source.
  */
-const CMS_COPY_OVERRIDES: Record<string, Pick<ServicePageCopy, 'title' | 'seoTitle' | 'summary'>> = {
+const CMS_COPY_OVERRIDES: Record<string, Pick<ServicePageCopy, 'title' | 'summary'>> = {
   'warehouses-development': {
-    seoTitle: 'Warehouse Construction Cost Estimating',
     title: 'Warehouse Construction Cost Estimating and Quantity Takeoffs',
     summary:
       'Warehouse construction cost estimating and quantity takeoffs. Send us your drawings and you get quantities counted off the plans, unit pricing broken out by CSI division and a total you can bid. Most jobs come back in 24 to 48 hours. And to be clear, this is estimating for warehouse buildings. Not data warehousing.',
   },
   'hotels-development': {
-    seoTitle: 'Hotel Construction Cost Estimating',
     title: 'Hotel Construction Cost Estimating and Quantity Takeoffs',
     summary:
       'Hotel construction cost estimating and quantity takeoffs. We price new builds, conversions and renovations, and break the numbers out per key and per square foot so you can check them against your own historicals before you bid. Costs come back by CSI division with the quantities behind them. Usually in 24 to 48 hours.',
   },
 };
 
+/**
+ * Hand-written <title> and meta description for CMS-driven service pages.
+ *
+ * These only touch the head: `seoTitle` is emitted as the absolute <title>
+ * (no " | The ACE Services" template suffix) and `seoDescription` replaces the
+ * first-paragraph excerpt as the meta description. The H1 and body copy stay
+ * CMS-owned, so editing a page in WordPress will not silently undo them.
+ *
+ * Statically-defined services carry the same two fields in data/services.ts.
+ */
+const SEO_OVERRIDES: Record<string, Pick<ServicePageCopy, 'seoTitle' | 'seoDescription'>> = {
+  'blueprint-estimation': {
+    seoTitle: 'Blueprint Estimation Services | Accurate Takeoffs',
+    seoDescription:
+      'Accurate blueprint estimation and quantity takeoffs prepared directly from your construction plans. Request a free blueprint estimation quote today.',
+  },
+  'quantity-surveyor-services': {
+    seoTitle: 'Quantity Surveyor Services | The ACE Services',
+    seoDescription:
+      'Professional quantity surveying and material takeoffs for general contractors and developers nationwide. Get a free quantity surveyor quote today.',
+  },
+  'industrial-estimating': {
+    seoTitle: 'Industrial Estimating Services | The ACE Services',
+    seoDescription:
+      'Precise industrial construction cost estimates for plants, warehouses and manufacturing facilities. Request a free industrial estimate quote today.',
+  },
+  'building-estimating': {
+    seoTitle: 'Building Cost Estimating Services | The ACE Services',
+    seoDescription:
+      'Detailed building cost estimates and material takeoffs for every project type, delivered fast. Get your free building estimate quote in 24-48 hours.',
+  },
+  'electrical-estimation': {
+    seoTitle: 'Electrical Estimating Services | The ACE Services',
+    seoDescription:
+      'Accurate electrical material takeoffs and cost estimates for subcontractors nationwide. Request a free electrical estimating quote in 24-48 hours.',
+  },
+  'residential-estimating': {
+    seoTitle: 'Residential Construction Estimating | The ACE Services',
+    seoDescription:
+      'Fast, accurate residential cost estimates and material takeoffs for builders and homeowners. Get your free residential estimate quote today.',
+  },
+  'structural-services': {
+    seoTitle: 'Structural Management Services | The ACE Services',
+    seoDescription:
+      'Structural design, analysis and cross-discipline coordination for safe, code-compliant construction. Request a free structural management quote today.',
+  },
+  'residential-construction': {
+    seoTitle: 'Residential Construction | The ACE Services',
+    seoDescription:
+      'Cost estimating, drafting and permit sets for residential builds and developments nationwide. Get a free residential construction estimate quote today.',
+  },
+  'commercial-construction': {
+    seoTitle: 'Commercial Construction Estimating | The ACE Services',
+    seoDescription:
+      'AACE Class 3 cost estimates, shop drawings and permit sets for commercial construction projects. Request your free commercial construction quote now.',
+  },
+  'industrial-construction': {
+    seoTitle: 'Industrial Construction Estimating | The ACE Services',
+    seoDescription:
+      'Cost estimating and documentation for plants, warehouses and industrial facility construction. Get a free industrial construction estimate quote today.',
+  },
+  'bridges-construction': {
+    seoTitle: 'Bridge Construction Estimating Services',
+    seoDescription:
+      'Specialized cost estimating and quantity takeoffs for bridge and infrastructure construction projects. Request a free bridge construction quote today.',
+  },
+  'warehouses-development': {
+    seoTitle: 'Warehouse Development & Estimating Services',
+    seoDescription:
+      'Cost estimating, drafting and permits for warehouse and distribution center development projects. Get your free warehouse development quote today.',
+  },
+  'hotels-development': {
+    seoTitle: 'Hotel Development & Construction Estimating',
+    seoDescription:
+      'Cost estimating and construction documentation for hospitality and hotel development projects. Request a free hotel development estimate quote now.',
+  },
+  'healthcare-buildings': {
+    seoTitle: 'Healthcare Construction Estimating Services',
+    seoDescription:
+      'Precise cost estimating and permit sets for hospitals, clinics and healthcare facility construction. Get a free healthcare construction estimate today.',
+  },
+  'educational-buildings': {
+    seoTitle: 'Educational Building Estimating Services',
+    seoDescription:
+      'Accurate cost estimating and construction documentation for schools and campus building projects. Request your free educational project quote now.',
+  },
+};
+
 /** Apply any slug override on top of the copy resolved from WordPress. */
 function withOverrides(slug: string, copy: ServicePageCopy): ServicePageCopy {
-  const override = CMS_COPY_OVERRIDES[slug];
-  return override ? { ...copy, ...override } : copy;
+  return { ...copy, ...CMS_COPY_OVERRIDES[slug], ...SEO_OVERRIDES[slug] };
 }
 
 /** Strip WP's `{ rendered }` HTML wrappers and decode HTML entities to plain text. */
