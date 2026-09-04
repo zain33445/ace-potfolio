@@ -14,6 +14,8 @@ import {
   getFeaturedServices,
 } from '@/src/data/services';
 import { getServicePage, getServicePages, getAllServicePages } from '@/src/cms/queries';
+import { LEGACY_301 } from '@/src/data/legacy-redirects';
+import { NOINDEX_URLS } from '@/src/middleware';
 
 type Service = (typeof services)[number];
 
@@ -148,6 +150,29 @@ function extractKeywords(text: string): Set<string> {
 // Slugs of our hardcoded primary services — exclude them from sub-service lists
 const PRIMARY_SERVICE_SLUGS = new Set(services.map(s => s.slug));
 
+// A redirect source is no longer a real page — it 301s elsewhere — so linking
+// it from getSubServices would create an internal link into a 301. LEGACY_301
+// keys are stored as "/bare-slug" (leading slash, no trailing slash); strip
+// the leading slash to match a WP page's bare `slug` field.
+const REDIRECT_SOURCE_SLUGS = new Set(
+  Object.keys(LEGACY_301).map((path) => path.replace(/^\//, '')),
+);
+
+// Reused from middleware's NOINDEX_URLS (e.g. /email-marketing-expert — an
+// internal hiring post WordPress exposes as a public page): if it's not fit
+// to index, it's not fit to link to as a "related service" either.
+const NOINDEX_SLUGS = new Set(
+  Array.from(NOINDEX_URLS, (path) => path.replace(/^\/|\/$/g, '')),
+);
+
+// Conservative filter for obvious non-service WP pages the fuzzy keyword
+// matcher would otherwise surface (e.g. job postings like
+// /business-development-communication-specialist/). Matches "specialist",
+// "expert", "executive", or "manager" as a hyphen-delimited word, or a
+// "-jobs" segment — deliberately narrow so a borderline real service is
+// never excluded.
+const JOB_POSTING_SLUG_RE = /(?:^|-)(?:specialist|expert|executive|manager)(?:-|$)|(?:^|-)jobs(?:-|$)/;
+
 /**
  * Fetch WP pages and rank them based on keyword overlap with the parent service.
  */
@@ -170,8 +195,16 @@ export async function getSubServices(parentService: Service): Promise<Service[]>
     const cap = Math.max(parentService.features.length, 6);
 
     const scoredServices = pages
-      // Exclude the parent service itself and the other 3 primary services
-      .filter(p => !PRIMARY_SERVICE_SLUGS.has(p.slug))
+      // Exclude the parent service itself and the other primary services,
+      // any page that's now a redirect source (would link into a 301), any
+      // page already noindex'd (not fit to surface as a related service),
+      // and obvious job-posting slugs.
+      .filter(p =>
+        !PRIMARY_SERVICE_SLUGS.has(p.slug) &&
+        !REDIRECT_SOURCE_SLUGS.has(p.slug) &&
+        !NOINDEX_SLUGS.has(p.slug) &&
+        !JOB_POSTING_SLUG_RE.test(p.slug)
+      )
       .map(page => {
         let score = 0;
         const titleKeywords = extractKeywords(page.title ?? '');

@@ -336,9 +336,56 @@ async function ServiceView({
 
 async function SubServicesSidebar({ service }: { service: Service }) {
   const subServices = await getSubServices(service);
+  /* A sub-service links DOWN to its children via getSubServices, but nothing
+     linked back UP to its hub — so /rebar-detailing-services/ and the three
+     architectural sub-services were reachable from their parent and dead-ended
+     there. One link here covers every service with a `parent`. */
+  const parentService = service.parent
+    ? services.find((s) => s.slug === service.parent)
+    : undefined;
+
+  /* Real, top-level services (no `parent`) the company actually sells —
+     structural engineering, cost estimating, etc. `getSubServices` mixes in
+     fuzzy-matched WP marketing pages, so without this block a reader on a
+     narrow service page (e.g. electrical estimating) never sees the core
+     catalogue. Excludes the current page, the parent already shown above,
+     and anything already listed in Sub Services, so nothing repeats. */
+  const subServiceSlugs = new Set(subServices.map((s) => s.slug));
+  const relatedServices = services
+    .filter((s) => !s.parent)
+    .filter((s) => s.slug !== service.slug)
+    .filter((s) => s.slug !== parentService?.slug)
+    .filter((s) => !subServiceSlugs.has(s.slug))
+    .slice(0, 5);
 
   return (
     <div className="">
+      {parentService && (
+        <div className="mb-8">
+          <div className="mb-4 font-mono text-sm font-bold uppercase tracking-[0.2em] text-primary">
+            Part Of
+          </div>
+          <Link
+            href={`/${parentService.slug}/`}
+            className="group flex w-full items-start gap-2 border border-blueprint-line bg-surface p-3 transition-all duration-300 hover:border-primary hover:shadow-[0_0_20px_rgba(255,107,0,0.06)]"
+          >
+            <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center border border-blueprint-line bg-background bracket-corners transition-colors group-hover:border-primary">
+              {(() => {
+                const ParentIcon = getServiceIcon(parentService.id);
+                return <ParentIcon className="h-5 w-5 text-primary" />;
+              })()}
+            </div>
+            <div className="flex min-w-0 flex-col justify-center">
+              <h4 className="truncate font-[family-name:var(--font-space)] text-base font-bold text-on-background transition-colors group-hover:text-primary">
+                {parentService.title}
+              </h4>
+              <p className="hidden font-mono text-[10px] text-on-surface-variant md:block">
+                Parent Service
+              </p>
+            </div>
+          </Link>
+        </div>
+      )}
       {subServices.length > 0 && (
         <>
           <div className="mb-4 font-mono text-sm font-bold uppercase tracking-[0.2em] text-primary">
@@ -346,6 +393,37 @@ async function SubServicesSidebar({ service }: { service: Service }) {
           </div>
           <div className="mb-8 grid grid-cols-2 w-full gap-2 md:block md:space-y-2">
             {subServices.map((s) => {
+              const SvgIcon = getServiceIcon(s.id);
+              return (
+                <Link
+                  key={s.slug}
+                  href={`/${s.slug}/`}
+                  className="group w-full flex flex-col items-center text-center gap-2 border border-blueprint-line bg-surface p-3 transition-all duration-300 hover:border-primary hover:shadow-[0_0_20px_rgba(255,107,0,0.06)] md:flex-row md:text-left md:items-start"
+                >
+                  <div className="flex items-center justify-center w-10 h-10 border border-blueprint-line bg-background bracket-corners flex-shrink-0 group-hover:border-primary transition-colors">
+                    <SvgIcon className="w-5 h-5 text-primary" />
+                  </div>
+                  <div className="flex min-w-0 flex-col justify-center">
+                    <h4 className="font-[family-name:var(--font-space)] text-base font-bold text-on-background transition-colors group-hover:text-primary line-clamp-2 md:truncate">
+                      {s.title}
+                    </h4>
+                    <p className="font-mono text-[10px] text-on-surface-variant hidden md:block">
+                      Related Service
+                    </p>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </>
+      )}
+      {relatedServices.length > 0 && (
+        <>
+          <div className="mb-4 font-mono text-sm font-bold uppercase tracking-[0.2em] text-primary">
+            Related Services
+          </div>
+          <div className="mb-8 grid grid-cols-2 w-full gap-2 md:block md:space-y-2">
+            {relatedServices.map((s) => {
               const SvgIcon = getServiceIcon(s.id);
               return (
                 <Link

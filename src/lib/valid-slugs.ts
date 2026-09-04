@@ -25,19 +25,12 @@
  */
 
 import { CANONICAL_TO_WP } from '@/src/services/wordpress/slug-aliases';
+import { SERVICE_SLUGS } from '@/src/data/service-slugs';
 
-// ponytail: hardcoded to keep middleware bundle small (data/services.ts
-// pulls in Lucide icons). Update this list when a service is added.
-// If drift becomes a real risk, generate this file at build time.
-const SERVICE_SLUGS = [
-  'cost-estimating',
-  'architectural-services',
-  'structural-engineering',
-  'project-management',
-  '3d-rendering-services',
-  'shop-drawing-services',
-  'permit-set-services',
-] as const;
+// Single source of truth for service slugs is data/service-slugs.ts (a
+// plain string array, no imports — keeps this middleware bundle icon-free).
+// data/services.ts asserts its `services` array stays in sync with it at
+// import time, so the two can't silently drift.
 
 // Fallback insurance: known-important WP pages we never want 404'd even
 // if the WP fetch is failing and the cache is cold. Primary source is

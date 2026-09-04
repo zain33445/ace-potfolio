@@ -6,6 +6,7 @@ import {
   Layers,
   type LucideIcon,
 } from 'lucide-react';
+import { SERVICE_SLUGS } from '@/src/data/service-slugs';
 
 /* ── Types ─────────────────────────────────────────────────────── */
 
@@ -748,7 +749,244 @@ export const services: Service[] = [
       ],
     },
   },
+  {
+    id: 'SVC_ELEC',
+    slug: 'electrical-estimating-services',
+    seoTitle: 'Electrical Estimating Services',
+    seoDescription:
+      'CSI Division 26 electrical takeoffs and cost estimates delivered in 24-48 hours. Request your free electrical estimate quote today.',
+    title: 'Electrical Estimating Services',
+    icon: 'SVC_EST',
+    tagline: 'Division 26 Estimating',
+    category: 'ESTIMATING',
+    description:
+      'Electrical estimating services — CSI Division 26 quantity takeoffs and cost estimates covering service and distribution, branch circuits, devices, lighting, and low-voltage rough-in, delivered in 24-48 hours.',
+    summary:
+      'Electrical estimating services — CSI Division 26 quantity takeoffs and cost estimates covering service and distribution, branch circuits, devices, lighting, and low-voltage rough-in, delivered in 24-48 hours.',
+    details: [
+      'Service and distribution takeoffs covering utility service entrance, main switchgear, panelboards, transformers, and distribution feeders.',
+      'Branch circuit and conductor counts — homeruns, circuiting, and conduit and wire sized and typed to the drawings.',
+      'Wiring devices, lighting fixtures, and controls counted by type, including receptacles, switches, GFCI/AFCI, lamps, drivers, and occupancy and dimming controls.',
+      'Motor and equipment connections, grounding and bonding, temporary power, and testing/commissioning allowances priced alongside low-voltage scope where it is in contract.',
+    ],
+    features: [
+      'Service & Distribution Equipment',
+      'Branch Circuits & Conductor',
+      'Wiring Devices',
+      'Lighting & Lighting Controls',
+      'Motor & Equipment Connections',
+      'Low-Voltage Rough-In (Fire Alarm, Data, Security)',
+      'Grounding & Bonding',
+      'Site & Exterior Electrical',
+    ],
+    startingPrice: 'Custom',
+    turnaround: '24-48 hours',
+    stats: [
+      { label: 'PROJECTS', value: '16' },
+      { label: 'TURNAROUND', value: '24-48h' },
+      { label: 'DIVISION', value: 'CSI 26' },
+      { label: 'FORMAT', value: 'XLS + PDF' },
+    ],
+    process: [
+      {
+        title: 'Drawing & Panel Schedule Review',
+        description:
+          'We review your E-sheets, panel schedules, fixture schedule, and specifications to confirm scope and flag any missing information.',
+      },
+      {
+        title: 'Device & Fixture Takeoff',
+        description:
+          'Receptacles, switches, lighting fixtures, and other devices are counted directly off the drawings by type and location.',
+      },
+      {
+        title: 'Homerun & Feeder Tracing',
+        description:
+          'Homeruns and feeders are traced from each device and panel back to source, and conduit and wire are sized and typed accordingly.',
+      },
+      {
+        title: 'Gear & Conductor Pricing',
+        description:
+          'Switchgear, panelboards, transformers, devices, fixtures, and conductor are priced at current market rates and delivered in editable Excel plus PDF.',
+      },
+    ],
+    ctaLabel: 'EXPLORE ELECTRICAL ESTIMATING',
+    seoContent: {
+      heading: 'Electrical Estimating Services for Division 26 Scope',
+      body: [
+        'Our electrical estimating services cover the full CSI Division 26 scope: service and distribution equipment, branch circuits and conductor, wiring devices, lighting and lighting controls, motor and equipment connections, low-voltage rough-in where it is in contract, grounding and bonding, site and exterior electrical, temporary power, and testing and commissioning allowances. Every quantity is counted directly off your E-sheets, panel schedules, and fixture schedule and priced at current market rates, then delivered in an editable Excel spreadsheet alongside a PDF report.',
+        "We've built a CSI Division 26 electrical breakdown into 16 of our completed cost estimates, totaling $926,744 in electrical scope. Across those projects, electrical work ran a median of 9.3% of total project cost, with a range from 0.5% to 24.0% — proof that a flat percentage rule of thumb is not a reliable way to price electrical scope. On Comstock San Diego, a 3,326 sf project, electrical came to $146,085, or 16.0% of the total. On Pinnacle Montessori School, 17,366 sf, electrical was $135,181, just 4.4% of the total. On Lucky Hair Salloon, a dense 1,004 sf fit-out, electrical reached $64,026 — 24.0% of the total. And on Wildlife Pickleball Park, a site-work project rather than a building, electrical was just $4,775, or 0.5% of total cost.",
+        "A small fit-out with dense devices and lighting runs far higher as a percentage of total cost than a large, simple structure — which is exactly why a counted takeoff protects your bid where a percentage rule of thumb loses it. These figures are quantity takeoffs and cost estimates rather than electrical design or code review, which we handle separately as an engineering service.",
+        'If your electrical scope is part of a larger bid, our Construction Cost Estimating service can fold this Division 26 breakdown into a full CSI cost estimate across every trade, and our free Calculator gives you a fast ballpark before you request a formal takeoff.',
+      ],
+      benefits: [
+        {
+          title: 'Bid With Real Numbers',
+          description: 'A counted Division 26 takeoff beats a percentage rule of thumb, protecting your margin on dense fit-outs where electrical runs high.',
+        },
+        {
+          title: 'Fast Turnaround',
+          description: '24-48 hour delivery keeps your electrical scope off the critical path on tight bid deadlines.',
+        },
+        {
+          title: 'Priced at Market Rates',
+          description: 'Gear, devices, fixtures, and conductor are priced against current market rates, not stale unit costs.',
+        },
+      ],
+      faqs: [
+        {
+          question: 'How long does an electrical estimate take?',
+          answer: 'Our standard turnaround is 24 to 48 hours (1-2 business days), depending on project size and the number of panels and circuits involved. Expedited service is available for urgent bids.',
+        },
+        {
+          question: 'Do you check NEC code compliance or provide electrical design?',
+          answer: "Not as part of the estimate. An electrical estimate is a quantity takeoff and cost estimate rather than a design or code-review deliverable. Electrical design, MEP documentation and PE review and sealing are handled separately by our engineering service, subject to applicable licensing and jurisdictional requirements in your state.",
+        },
+        {
+          question: 'What file formats do you deliver?',
+          answer: 'Every electrical estimate is delivered as an editable Excel spreadsheet broken out by CSI Division 26 line item, plus a summary PDF report.',
+        },
+        {
+          question: 'Do you price gear and fixtures at current market rates?',
+          answer: 'Yes. Switchgear, panelboards, transformers, devices, and fixtures are priced against current market rates rather than a static database, so your bid reflects what the equipment actually costs today.',
+        },
+        {
+          question: 'What drawings do you need to start an electrical estimate?',
+          answer: 'At minimum we need your E-sheets, panel schedules, and a fixture schedule. Specifications and addenda help us confirm device types, ratings, and any low-voltage scope that is in contract.',
+        },
+      ],
+    },
+  },
+  {
+    id: 'SVC_REBAR',
+    slug: 'rebar-detailing-services',
+    seoTitle: 'Rebar Detailing Services',
+    seoDescription:
+      "Fabrication-ready rebar placing drawings and bar bending schedules built from your engineer's design. Request your free rebar detailing quote today.",
+    parent: 'shop-drawing-services',
+    title: 'Rebar Detailing Services',
+    icon: 'SVC_ENG',
+    tagline: 'Reinforcement Detailing',
+    category: 'DRAFTING',
+    description:
+      "Rebar detailing services — placing drawings, bar bending schedules, and bar lists built from your engineer's design for fabrication and field placement.",
+    summary:
+      "Rebar detailing services — placing drawings, bar bending schedules, and bar lists built from your engineer's design for fabrication and field placement.",
+    details: [
+      'Placing drawings — plan, section, and elevation views showing bar placement for columns, beams, slabs, walls, footings, and pile caps.',
+      'Bar bending schedules with bar marks, sizes, shapes, lengths, and quantities, plus bar lists and cut lengths ready for fabrication.',
+      "Lap splice and development length detailing per the engineer's design, with bar supports, chairs, spacers, and accessories called out.",
+      'Congestion and clash review at joints and intersections, with openings, embeds, and penetration reinforcement detailed before pour.',
+    ],
+    features: [
+      'Placing Drawings',
+      'Bar Bending Schedules',
+      'Bar Lists & Cut Lengths',
+      'Lap Splice & Development Length Detailing',
+      'Column, Beam, Slab & Footing Reinforcement',
+      'Post-Tensioning Coordination',
+      'Congestion & Clash Review',
+      'Revision & Resubmittal Handling',
+    ],
+    startingPrice: 'Custom',
+    turnaround: '3–7 Business Days',
+    stats: [
+      { label: 'SCOPE', value: 'Rebar Only' },
+      { label: 'TURNAROUND', value: '3–7 Days' },
+      { label: 'STANDARD', value: 'Fabrication-Ready' },
+      { label: 'FORMAT', value: 'DWG + PDF' },
+    ],
+    process: [
+      {
+        title: 'Documentation Review',
+        description:
+          'We review structural drawings, schedules, and specifications to confirm reinforcement scope and flag missing information.',
+      },
+      {
+        title: 'Placing Drawing Preparation',
+        description:
+          'Plan, section, and elevation views are detailed for each element — columns, beams, slabs, walls, footings, and pile caps.',
+      },
+      {
+        title: 'Bar Bending Schedule & Bar List',
+        description:
+          'Bar marks, sizes, shapes, lengths, and quantities are scheduled, with cut lengths listed for fabrication.',
+      },
+      {
+        title: 'Coordination & Delivery',
+        description:
+          'Congestion and clashes are reviewed at joints and intersections before drawings are delivered in DWG and PDF, with fast revision cycles.',
+      },
+    ],
+    ctaLabel: 'EXPLORE REBAR DETAILING',
+    seoContent: {
+      heading: 'Rebar Detailing Services for Fabrication-Ready Reinforcement',
+      body: [
+        "Our rebar detailing services turn a structural engineer's design into fabrication-ready placing drawings and bar bending schedules. We detail plan, section, and elevation views for columns, beams, slabs, walls, footings, and pile caps, schedule every bar by mark, size, shape, length, and quantity, and list cut lengths so fabricators and placing crews know exactly what to bend and where it goes.",
+        "Lap splices and development lengths are detailed per the engineer's design, along with bar supports, chairs, spacers, and accessories, post-tensioning coordination where applicable, and openings, embeds, and penetration reinforcement. We review congestion and clashes at joints and intersections before anything is fabricated, and we turn around revisions and resubmittals quickly against reviewer comments.",
+        "Rebar detailing works from the structural engineer's design — the detailing itself is not structural engineering, and placing drawings are prepared to standard industry detailing conventions. Where a jurisdiction or project requires sealed engineering documents, PE review and sealing is available, subject to applicable licensing and jurisdictional requirements in your state.",
+        'Rebar is one of the trades we detail under our broader Shop Drawing Services, alongside MEP, structural, and millwork shop drawings. If your reinforcement scope is part of a larger submittal package, our Shop Drawing Services team can coordinate rebar alongside the other trades under one set.',
+      ],
+      benefits: [
+        {
+          title: 'Fabrication-Ready Bar Detail',
+          description: 'Placing drawings and bar bending schedules give fabricators and placing crews exact bar marks, shapes, and cut lengths, with no guesswork on-site.',
+        },
+        {
+          title: 'Clash-Checked Before Pour',
+          description: 'Congestion and clashes at joints and intersections are resolved on the drawing before concrete is placed, protecting the schedule.',
+        },
+        {
+          title: "Built From Your Engineer's Design",
+          description: "Detailing follows the structural engineer's design and standard industry detailing conventions — not a substitute for engineering.",
+        },
+      ],
+      faqs: [
+        {
+          question: 'How long does rebar detailing take?',
+          answer: 'Our standard turnaround is 3–7 business days, depending on the size and complexity of the structure.',
+        },
+        {
+          question: 'What do you need to start a rebar detailing project?',
+          answer: "At minimum we need the structural drawings and specifications. Existing bar schedules or a bar list, where available, help us confirm bar marks and match your engineer's design faster.",
+        },
+        {
+          question: 'Does rebar detailing include structural engineering or design?',
+          answer: "Detailing itself is not structural engineering — it translates the engineer's design into placing drawings and bar bending schedules for fabrication, and the design responsibility stays with the engineer of record. Where your jurisdiction or project requires sealed engineering documents, we do provide PE review and sealing, subject to applicable licensing and jurisdictional requirements in your state.",
+        },
+        {
+          question: 'What file formats do you deliver?',
+          answer: 'Rebar detailing drawings are delivered in editable DWG and review-ready PDF, prepared to standard industry detailing conventions for fabricator and reviewer sign-off.',
+        },
+        {
+          question: 'How do you handle revisions and resubmittals?',
+          answer: 'We turn around revisions quickly against reviewer and fabricator comments, updating placing drawings and bar bending schedules through each resubmittal cycle until the set is approved.',
+        },
+      ],
+    },
+  },
 ];
+
+/* ── Drift guard ───────────────────────────────────────────────── */
+// data/service-slugs.ts is the source of truth SERVICE_SLUGS feeds to the
+// middleware (see lib/valid-slugs.ts). If a slug is added here without
+// updating that list, the page renders fine but the middleware 404s it —
+// fail the build instead of shipping that drift.
+{
+  const definedSlugs = services.map((s) => s.slug);
+  const missing = definedSlugs.filter(
+    (slug) => !(SERVICE_SLUGS as readonly string[]).includes(slug),
+  );
+  if (missing.length > 0) {
+    throw new Error(
+      `services.ts: slug(s) ${missing.join(', ')} missing from SERVICE_SLUGS (src/data/service-slugs.ts) — the middleware will 404 them.`,
+    );
+  }
+  if (definedSlugs.length !== SERVICE_SLUGS.length) {
+    throw new Error(
+      `services.ts: services array has ${definedSlugs.length} entries but SERVICE_SLUGS has ${SERVICE_SLUGS.length} — the two lists have drifted out of sync.`,
+    );
+  }
+}
 
 /* ── Lookup helpers ─────────────────────────────────────────────── */
 
