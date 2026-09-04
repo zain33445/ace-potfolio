@@ -140,13 +140,6 @@ export async function getFeaturedServicesEnriched(
   }
 }
 
-/** Extract simple keywords from a string */
-function extractKeywords(text: string): Set<string> {
-  const words = text.toLowerCase().replace(/[^a-z0-9\s]/g, '').split(/\s+/);
-  const stopWords = new Set(['the', 'and', 'or', 'a', 'an', 'in', 'on', 'with', 'for', 'to', 'of', 'is', 'services', 'service']);
-  return new Set(words.filter(w => w.length > 2 && !stopWords.has(w)));
-}
-
 // Slugs of our hardcoded primary services — exclude them from sub-service lists
 const PRIMARY_SERVICE_SLUGS = new Set(services.map(s => s.slug));
 
