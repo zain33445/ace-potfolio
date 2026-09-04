@@ -176,10 +176,14 @@ const JOB_POSTING_SLUG_RE = /(?:^|-)specialist(?:-|$)|(?:^|-)expert(?:-|$)|(?:^|
 // Non-service pages that the fuzzy keyword matcher could surface as
 // sub-services (blog archives, CTA pages, etc.). These must never appear
 // in the Sub Services sidebar.
-const NON_SERVICE_PAGE_SLUG_RE = /(?:^|-)blog(?:-|$)|(?:^|/)get-a-quote(?:-|$)|(?:^|/)get-a-quote$/;
+const NON_SERVICE_PAGE_SLUG_RE = /(?:^|-)blog(?:-|$)|get-a-quote(?:-|$)/;
 
 /**
- * Fetch WP pages and rank them based on keyword overlap with the parent service.
+ * Fetch WP pages and match them against the parent service slug words.
+ *
+ * Breaks the parent slug into individual words (e.g. "shop-drawing-services"
+ * → ["shop", "drawing", "services"]) and scores candidate pages by how many
+ * slug words they contain. Only the top 5 matches are returned.
  */
 export async function getSubServices(parentService: Service): Promise<Service[]> {
   // Hardcoded sub-services declared as children of this parent (via `parent`).
@@ -189,41 +193,30 @@ export async function getSubServices(parentService: Service): Promise<Service[]>
     const pages = await getAllServicePages();
     if (pages.length === 0) return children;
 
-    // Build parent keyword set from title, slug, summary AND each feature string
-    const parentKeywords = new Set([
-      ...extractKeywords(parentService.title),
-      ...extractKeywords(parentService.slug),
-      ...extractKeywords(parentService.summary),
-      ...parentService.features.flatMap(f => Array.from(extractKeywords(f)))
-    ]);
+    // Break parent slug into words (e.g. "shop-drawing-services" → ["shop", "drawing", "services"])
+    const parentSlugWords = parentService.slug.split('-').filter(w => w.length > 0);
 
-    const cap = Math.max(parentService.features.length, 6);
+    const cap = 5;
 
     const scoredServices = pages
       // Exclude the parent service itself and the other primary services,
       // any page that's now a redirect source (would link into a 301), any
-      // page already noindex'd (not fit to surface as a related service),
-      // and obvious job-posting slugs.
+      // page already noindex'd, obvious job-posting slugs, and non-service pages.
       .filter(p =>
         !PRIMARY_SERVICE_SLUGS.has(p.slug) &&
         !REDIRECT_SOURCE_SLUGS.has(p.slug) &&
         !NOINDEX_SLUGS.has(p.slug) &&
         !JOB_POSTING_SLUG_RE.test(p.slug) &&
-        !NON_SERVICE_PAGE_SLUG_RE.test(p.slug)
+        !NON_SERVICE_PAGE_SLUG_RE.test(p.slug) &&
+        p.slug !== parentService.slug
       )
       .map(page => {
+        const pageSlugWords = page.slug.split('-');
+        // Count how many parent slug words appear in the page slug
         let score = 0;
-        const titleKeywords = extractKeywords(page.title ?? '');
-        const slugKeywords  = extractKeywords(page.slug);
-        const bodyKeywords  = extractKeywords(page.summary ?? '');
-
-        // Slug matches score double (strongest signal)
-        for (const kw of slugKeywords)  if (parentKeywords.has(kw)) score += 2;
-        // Title matches score 1.5x
-        for (const kw of titleKeywords) if (parentKeywords.has(kw)) score += 1;
-        // Body matches score normal
-        for (const kw of bodyKeywords)  if (parentKeywords.has(kw)) score += 0.5;
-
+        for (const word of parentSlugWords) {
+          if (pageSlugWords.some(pw => pw === word)) score += 1;
+        }
         return { page, score };
       })
       .filter(p => p.score > 0)
@@ -231,9 +224,8 @@ export async function getSubServices(parentService: Service): Promise<Service[]>
       .slice(0, cap);
 
     const wpSubs = scoredServices.map(({ page }) => {
-      // Check if it exists in hardcoded
       const baseService = getServiceBySlug(page.slug);
-      return baseService 
+      return baseService
         ? {
             ...baseService,
             title: page.title?.trim() || baseService.title,
