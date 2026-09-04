@@ -16,7 +16,6 @@ export default function Footer() {
     { label: "CONTACT", href: "/contact-us/" },
     { label: "PROJECTS", href: "/projects/" },
     { label: "CALCULATOR", href: "/calculator/" },
-    { label: "TESTIMONIALS", href: "/testimonials/" },
     // Solutions — internal links so these pages stop being sitemap orphans.
     { label: "ADU COST GUIDE", href: "/adu-construction-cost/" },
     { label: "WAREHOUSE DEVELOPMENT", href: "/warehouses-development/" },

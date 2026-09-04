@@ -20,7 +20,7 @@ export default function AboutSection() {
               Who We Are
             </h2>
             <p className="font-sans text-lg text-on-surface-variant leading-relaxed font-medium">
-              At The ACE Services, we don&rsquo;t just provide numbers; we provide the foundation for successful project execution. With a track record of 2,893 projects estimated and a verified 89% bid win rate, we have established ourselves as a dominant force in the pre-construction space. Our mission is to reshape the industry through innovation, excellence, and a commitment to sustainability, ensuring every structure we support is built to endure.
+              At The ACE Services, we don&rsquo;t just provide numbers; we provide the foundation for successful project execution. With a track record of 2,893 projects estimated and an 89% bid win rate, we have established ourselves as a dominant force in the pre-construction space. Our mission is to reshape the industry through innovation, excellence, and a commitment to sustainability, ensuring every structure we support is built to endure.
             </p>
 
             <div className="border-t border-b border-blueprint-line/40 py-5 my-2">

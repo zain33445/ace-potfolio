@@ -125,7 +125,6 @@ export default function Nav() {
   { href: '/services/', label: 'SERVICES', shortLabel: 'Services' },
   { href: '/contact-us/', label: 'CONTACT', shortLabel: 'Contact' },
   { href: '/projects/', label: 'PROJECTS', shortLabel: 'Projects' },
-  { href: '/testimonials/', label: 'TESTIMONIALS', shortLabel: 'Testimonials' },
   { href: '/calculator/', label: 'CALCULATOR', shortLabel: 'Calculator' },
 ]; 
 

@@ -125,7 +125,6 @@ const KNOWN_TOP_LEVEL_ROUTES = new Set<string>([
   'blog',
   'privacy-policy',
   'terms-and-conditions',
-  'testimonials',
   'admin',
   'admin-login',
   'robots.txt',

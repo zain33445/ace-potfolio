@@ -106,6 +106,13 @@ const nextConfig = {
         permanent: true,
       },
       {
+        // Testimonials page removed — its six quotes could not be traced to a
+        // real client. /projects/ is the evidence-backed replacement.
+        source: '/testimonials',
+        destination: '/projects/',
+        permanent: true,
+      },
+      {
         // WP page slug "home" is a second, fully indexable, self-canonical
         // homepage competing with the real one at "/" — direct duplicate
         // content on the site's single most important URL. Collapse it.
@@ -191,7 +198,7 @@ const nextConfig = {
       },
       {
         // Static pages: allow bfcache with must-revalidate
-        source: '/(about-us|services|blog|projects|testimonials|privacy-policy|terms-and-conditions|contact-us|calculator)/',
+        source: '/(about-us|services|blog|projects|privacy-policy|terms-and-conditions|contact-us|calculator)/',
         headers: [
           {
             key: 'Cache-Control',
