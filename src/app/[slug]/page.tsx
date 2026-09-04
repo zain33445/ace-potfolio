@@ -344,20 +344,6 @@ async function SubServicesSidebar({ service }: { service: Service }) {
     ? services.find((s) => s.slug === service.parent)
     : undefined;
 
-  /* Real, top-level services (no `parent`) the company actually sells —
-     structural engineering, cost estimating, etc. `getSubServices` mixes in
-     fuzzy-matched WP marketing pages, so without this block a reader on a
-     narrow service page (e.g. electrical estimating) never sees the core
-     catalogue. Excludes the current page, the parent already shown above,
-     and anything already listed in Sub Services, so nothing repeats. */
-  const subServiceSlugs = new Set(subServices.map((s) => s.slug));
-  const relatedServices = services
-    .filter((s) => !s.parent)
-    .filter((s) => s.slug !== service.slug)
-    .filter((s) => s.slug !== parentService?.slug)
-    .filter((s) => !subServiceSlugs.has(s.slug))
-    .slice(0, 5);
-
   return (
     <div className="">
       {parentService && (
@@ -408,38 +394,7 @@ async function SubServicesSidebar({ service }: { service: Service }) {
                       {s.title}
                     </h4>
                     <p className="font-mono text-[10px] text-on-surface-variant hidden md:block">
-                      Related Service
-                    </p>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-        </>
-      )}
-      {relatedServices.length > 0 && (
-        <>
-          <div className="mb-4 font-mono text-sm font-bold uppercase tracking-[0.2em] text-primary">
-            Related Services
-          </div>
-          <div className="mb-8 grid grid-cols-2 w-full gap-2 md:block md:space-y-2">
-            {relatedServices.map((s) => {
-              const SvgIcon = getServiceIcon(s.id);
-              return (
-                <Link
-                  key={s.slug}
-                  href={`/${s.slug}/`}
-                  className="group w-full flex flex-col items-center text-center gap-2 border border-blueprint-line bg-surface p-3 transition-all duration-300 hover:border-primary hover:shadow-[0_0_20px_rgba(255,107,0,0.06)] md:flex-row md:text-left md:items-start"
-                >
-                  <div className="flex items-center justify-center w-10 h-10 border border-blueprint-line bg-background bracket-corners flex-shrink-0 group-hover:border-primary transition-colors">
-                    <SvgIcon className="w-5 h-5 text-primary" />
-                  </div>
-                  <div className="flex min-w-0 flex-col justify-center">
-                    <h4 className="font-[family-name:var(--font-space)] text-base font-bold text-on-background transition-colors group-hover:text-primary line-clamp-2 md:truncate">
-                      {s.title}
-                    </h4>
-                    <p className="font-mono text-[10px] text-on-surface-variant hidden md:block">
-                      Related Service
+                      Sub Service
                     </p>
                   </div>
                 </Link>
