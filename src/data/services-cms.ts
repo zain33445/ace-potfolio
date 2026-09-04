@@ -171,7 +171,12 @@ const NOINDEX_SLUGS = new Set(
 // "expert", "executive", or "manager" as a hyphen-delimited word, or a
 // "-jobs" segment — deliberately narrow so a borderline real service is
 // never excluded.
-const JOB_POSTING_SLUG_RE = /(?:^|-)(?:specialist|expert|executive|manager)(?:-|$)|(?:^|-)jobs(?:-|$)/;
+const JOB_POSTING_SLUG_RE = /(?:^|-)specialist(?:-|$)|(?:^|-)expert(?:-|$)|(?:^|-)executive(?:-|$)|(?:^|-)manager(?:-|$)|(?:^|-)jobs(?:-|$)/;
+
+// Non-service pages that the fuzzy keyword matcher could surface as
+// sub-services (blog archives, CTA pages, etc.). These must never appear
+// in the Sub Services sidebar.
+const NON_SERVICE_PAGE_SLUG_RE = /(?:^|-)blog(?:-|$)|(?:^|/)get-a-quote(?:-|$)|(?:^|/)get-a-quote$/;
 
 /**
  * Fetch WP pages and rank them based on keyword overlap with the parent service.
@@ -203,7 +208,8 @@ export async function getSubServices(parentService: Service): Promise<Service[]>
         !PRIMARY_SERVICE_SLUGS.has(p.slug) &&
         !REDIRECT_SOURCE_SLUGS.has(p.slug) &&
         !NOINDEX_SLUGS.has(p.slug) &&
-        !JOB_POSTING_SLUG_RE.test(p.slug)
+        !JOB_POSTING_SLUG_RE.test(p.slug) &&
+        !NON_SERVICE_PAGE_SLUG_RE.test(p.slug)
       )
       .map(page => {
         let score = 0;
