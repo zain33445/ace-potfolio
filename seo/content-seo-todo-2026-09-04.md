@@ -21,7 +21,9 @@
 
 **Nothing else on this list should ship before these two are closed.** Both are honesty items, and both get worse the more pages you publish on top of them.
 
-> **Gate status 2026-09-04:** item 1 closed, item 2 half closed. The unearned "verified/certified" wording is gone, but the four numbers still carry no stated basis. Phase 1 onward stays gated until the three figures in item 2 arrive.
+> **Gate status 2026-09-04:** item 1 closed, item 2 half closed. The unearned "verified/certified" wording is gone, but the four numbers still carry no stated basis.
+>
+> **The gate was overridden by the owner and Phase 1 shipped anyway** (worker `33316cd0`). Item 2's remaining half — a stated basis for each of the four figures, needing three facts only the owner has — is still open. It should be closed before Phase 2 adds twelve more pages carrying the same unsupported numbers.
 
 ### ☑ 1. Verify the six testimonials
 
@@ -75,7 +77,21 @@ These are genuinely good differentiators **if** they hold up. Add a one-line bas
 
 # Phase 1 — Put a human name on the content
 
-### ☐ 3. Build the author page and swap every byline
+### ☑ 3. Build the author page and swap every byline
+
+> **DONE 2026-09-04 — shipped as a *reviewer* attribution, not an author swap.** Commit `26e226a`, worker version `33316cd0`.
+>
+> **The spec's premise did not hold.** It says "swap every byline" to a named person, but the owner confirmed the CEO does **not** write the posts — he reviews them. Bylining him as author would have replaced an honest Organization byline with a false personal one, which is the same failure Phase 0 had just finished removing. So `Article.author` stays the Organization, and the review is recorded instead: a visible "Reviewed by Engr. Abdul Manan Zafar" line, plus a `WebPage` node carrying `reviewedBy` → the Person `@id` and `lastReviewed`. `reviewedBy` is only valid on `WebPage` in schema.org, not on `Article`, hence the separate node.
+>
+> Shipped: `PERSON_ID` + `personSchema` in `src/lib/schema.ts`; `/authors/abdul-manan-zafar/` emitting `ProfilePage` + `Person`; the byline change in `src/app/[slug]/page.tsx`; the sitemap entry; and "over half a decade" → "six years" on `/about-us/`.
+>
+> **Every claim was verified against his LinkedIn profile before being written** (`https://pk.linkedin.com/in/abdul-manan-3390121b1`): BSc Civil Engineering, UET Lahore 2020; NEBOSH IGC; DHA Multan with the NLC from Aug 2020; Kohistan Builders; two B+G+4 buildings at CITI Housing. **Deliberately excluded as unverified:** a Master's in Construction Project Management that appears only in his profile's free text and not its education section; any PEC or other engineering-body registration; and AACE / CSI MasterFormat expertise, which nothing in his documented background supports — the draft `knowsAbout` in `seo/competitor-pages/comparison-schema.json` claimed both and should not be copied verbatim.
+>
+> **Verified live:** `/authors/abdul-manan-zafar/` 200 in zero hops; posts emit `reviewedBy` → `#author-amz` with the LinkedIn `sameAs`; author URL in the sitemap; `/about-us/` reads "six years".
+>
+> **Two open items for the owner, neither blocking:** his LinkedIn headline says "President @ACE Services" while his own summary and this site say CEO — `sameAs` now makes that visible. And his summary still claims "over a year of hands-on experience", written ~2022 and now four years stale, with ACE Services absent from his Experience section entirely.
+>
+> **Routing note for future pages:** `/authors/<name>/` is two segments, and the `KNOWN_TOP_LEVEL_ROUTES` check in `src/middleware.ts` only applies to single-segment paths — so nested routes need no middleware entry. Single-segment routes still do.
 
 **Effort:** 1 day · **Highest-leverage E-E-A-T fix on the site**
 
