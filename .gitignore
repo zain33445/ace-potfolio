@@ -20,6 +20,7 @@ worker-configuration.d.ts
 .agents/
 .planning/
 skills/
+skills-lock.json
 # Blender source assets
 *.blend
 *.blend1
@@ -47,6 +48,6 @@ src/services/extract-pdfs.mjs
 # design-sync (claude.ai/design)
 .ds-sync/
 ds-bundle/
-.design-sync/.cache/
-.design-sync/learnings/
-.design-sync/node_modules
+.design-sync/
+.ds-entry.mjs
+.ds-shim.mjs
