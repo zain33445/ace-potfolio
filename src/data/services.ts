@@ -91,14 +91,14 @@ export const services: Service[] = [
     tagline: 'Budgeting & Bidding',
     category: 'ESTIMATING',
     description:
-      'Construction cost estimating services for general contractors — AACE Class 3 estimates, material takeoffs, and CSI cost breakdowns delivered in 24-48 hours.',
+      'Detailed construction cost estimating services, quantity takeoffs, and cost analysis to support accurate budgeting, competitive bidding, and confident project decisions, delivered nationwide by The ACE Services.',
     summary:
-      'Construction cost estimating services for general contractors — AACE Class 3 estimates, material takeoffs, and CSI cost breakdowns delivered in 24-48 hours.',
+      'Detailed construction cost estimating services, quantity takeoffs, and cost analysis to support accurate budgeting, competitive bidding, and confident project decisions, delivered nationwide by The ACE Services.',
     details: [
-      'Estimate packages prepared across residential, commercial, and industrial sectors.',
-      'Quantity takeoffs and material lists built directly from your blueprints.',
-      'Cost analysis structured for budgeting, bidding, and project decisions.',
-      'Editable Excel spreadsheets and professional PDF reports included.',
+      'Construction cost estimate packages prepared across residential, commercial, and industrial construction sectors nationwide.',
+      'Detailed quantity takeoffs and material lists built directly from your blueprints and construction drawings.',
+      'Cost analysis structured to support budgeting, competitive bidding, and informed project decisions.',
+      'Editable Excel spreadsheets and professional PDF cost estimate reports included with every delivery.',
     ],
     features: [
       'Construction Cost Estimation',
@@ -120,22 +120,22 @@ export const services: Service[] = [
       {
         title: 'Blueprint Review',
         description:
-          'We review your blueprints, drawings, and project scope to confirm what is being estimated and flag any missing information.',
+          'We review your blueprints, drawings, and project scope to confirm what needs to be estimated and flag any missing information before work begins.',
       },
       {
         title: 'Quantity Takeoff',
         description:
-          'Materials and labor quantities are measured and itemized directly from your drawings.',
+          'Our estimators measure and itemize all material and labor quantities directly from your construction drawings using digital takeoff software.',
       },
       {
         title: 'Cost Analysis & Rate Calibration',
         description:
-          'Quantities are priced against current market rates and organized for budgeting or bidding.',
+          'Quantities are priced against current regional market rates and organized into a clear format for budgeting or competitive bidding.',
       },
       {
         title: 'Delivery',
         description:
-          'Final estimates delivered in editable Excel spreadsheets and professional PDF reports.',
+          'Your final construction cost estimate is delivered as an editable Excel spreadsheet and a professional PDF report, ready for bidding.',
       },
     ],
     ctaLabel: 'EXPLORE ESTIMATING',
@@ -194,14 +194,14 @@ export const services: Service[] = [
     tagline: 'Documentation & Visualization',
     category: 'ARCHITECTURAL',
     description:
-      'Construction documentation and visualization designed to support permitting, coordination, and project presentation.',
+      'Construction documentation and visualization services designed to support permitting, cross-discipline coordination, and project presentation, architectural shop drawings, permit sets, and 3D renderings delivered nationwide.',
     summary:
-      'Construction documentation and visualization designed to support permitting, coordination, and project presentation.',
+      'Construction documentation and visualization services designed to support permitting, cross-discipline coordination, and project presentation, architectural shop drawings, permit sets, and 3D renderings delivered nationwide.',
     details: [
-      'Architectural shop drawings prepared for construction and coordination.',
-      'Permit and submission drawing sets organized for municipal review.',
-      'Submittal packages assembled for approval workflows.',
-      '3D rendering for stakeholder presentation.',
+      'Architectural shop drawings prepared for construction, fabrication, and cross-trade coordination.',
+      'Permit sets and submission drawing sets organized to meet municipal review requirements.',
+      'Submittal packages assembled and formatted for architect and owner approval workflows.',
+      'Photorealistic 3D rendering for stakeholder presentation, marketing, and investor buy-in.',
     ],
     features: [
       'Architectural Shop Drawings',
@@ -222,22 +222,22 @@ export const services: Service[] = [
       {
         title: 'Documentation Review',
         description:
-          'Existing drawings and project requirements are reviewed to define the documentation scope.',
+          'We review your existing drawings, sketches, and project requirements to define the full architectural documentation scope.',
       },
       {
         title: 'Shop Drawing & Set Preparation',
         description:
-          'Architectural shop drawings, permit sets, and submission sets are drafted for your project.',
+          'Our drafting team prepares architectural shop drawings, permit sets, and submission drawing sets tailored to your project.',
       },
       {
         title: 'Coordination & Compliance Check',
         description:
-          'Drawings are coordinated across disciplines and checked against applicable requirements.',
+          'Drawings are cross-coordinated with structural and MEP disciplines and checked against local building code requirements.',
       },
       {
         title: 'Presentation & Delivery',
         description:
-          'Final sets and renderings delivered in DWG and PDF formats for submission and presentation.',
+          'Final drawing sets and 3D renderings are delivered in DWG and PDF formats, ready for submission and client presentation.',
       },
     ],
     ctaLabel: 'EXPLORE ARCHITECTURAL',
@@ -296,14 +296,14 @@ export const services: Service[] = [
     tagline: 'Design & Analysis',
     category: 'STRUCTURAL & ENGINEERING',
     description:
-      'PE-sealed structural engineering and MEP design for commercial, residential, and industrial construction. Code-compliant documentation by The ACE Services.',
+      'PE-sealed structural engineering and MEP design services for commercial, residential, and industrial construction, code-compliant documentation delivered nationwide by The ACE Services.',
     summary:
-      'PE-sealed structural engineering and MEP design for commercial, residential, and industrial construction. Code-compliant documentation by The ACE Services.',
+      'PE-sealed structural engineering and MEP design services for commercial, residential, and industrial construction, code-compliant documentation delivered nationwide by The ACE Services.',
     details: [
-      'Structural design and analysis for safe, code-conscious construction.',
-      'MEP shop drawings coordinated with architectural sets.',
-      'Engineering documentation prepared for review and permitting.',
-      'PE review and sealing available where required.',
+      'Structural design and analysis for safe, code-compliant construction across residential, commercial, and industrial projects.',
+      'MEP shop drawings coordinated directly with architectural drawing sets to prevent clashes.',
+      'Engineering documentation prepared for plan review, permitting, and construction.',
+      'PE review and sealing available where required by state and local jurisdiction.',
     ],
     features: [
       'Structural Design',
@@ -324,22 +324,22 @@ export const services: Service[] = [
       {
         title: 'Scope & Requirements Review',
         description:
-          'Project scope, loads, and applicable requirements are reviewed to define engineering deliverables.',
+          'We review project scope, structural loads, and applicable building codes to define the engineering deliverables needed.',
       },
       {
         title: 'Structural & MEP Engineering',
         description:
-          'Structural design, analysis, and MEP shop drawings are developed for the project.',
+          'Our engineers develop structural design, load path analysis, and coordinated MEP shop drawings for your project.',
       },
       {
         title: 'Documentation & PE Review',
         description:
-          'Engineering documentation is compiled and reviewed by licensed professionals where applicable.',
+          'Engineering documentation is compiled and reviewed by licensed professional engineers where required by jurisdiction.',
       },
       {
         title: 'Delivery & Coordination',
         description:
-          'Final documents delivered in DWG and PDF formats, coordinated with other disciplines.',
+          'Final structural and MEP documents are delivered in DWG and PDF formats, fully coordinated with architectural drawings.',
       },
     ],
     ctaLabel: 'EXPLORE ENGINEERING',
@@ -399,14 +399,14 @@ export const services: Service[] = [
     tagline: 'Planning & Controls',
     category: 'PROJECT MANAGEMENT',
     description:
-      'Construction scheduling, procurement coordination, and project controls designed to keep activities, milestones, and resources aligned.',
+      'Construction scheduling, procurement coordination, and project controls designed to keep activities, milestones, and resources aligned, delivered nationwide by The ACE Services.',
     summary:
-      'Construction scheduling, procurement coordination, and project controls designed to keep activities, milestones, and resources aligned.',
+      'Construction scheduling, procurement coordination, and project controls designed to keep activities, milestones, and resources aligned, delivered nationwide by The ACE Services.',
     details: [
-      'Construction Scheduling — CPM and Gantt schedules aligned with project milestones, dependencies, and construction sequencing.',
-      'Project Planning — Scope definition, activity sequencing, milestone planning, and schedule development.',
-      'Procurement Coordination — Procurement activities integrated with the construction schedule to support timely delivery.',
-      'Project Controls — Progress tracking, milestone monitoring, and schedule reporting throughout the project.',
+      'Construction scheduling using CPM and Gantt schedules aligned with project milestones, task dependencies, and construction sequencing.',
+      'Project planning covering scope definition, activity sequencing, milestone planning, and full schedule development from pre-construction through closeout.',
+      'Procurement coordination integrated directly into the construction schedule to support timely material and equipment delivery.',
+      'Project controls provide ongoing progress tracking, milestone monitoring, and schedule reporting throughout construction.',
     ],
     features: [
       'Project Management',
@@ -427,22 +427,22 @@ export const services: Service[] = [
       {
         title: 'Define Scope & Milestones',
         description:
-          'Establish project activities, dependencies, deliverables, and key milestones.',
+          'We establish project activities, task dependencies, deliverables, and key construction milestones.',
       },
       {
         title: 'Build the Schedule',
         description:
-          'Develop CPM and Gantt schedules around construction sequencing and project requirements.',
+          'Our team develops CPM and Gantt schedules structured around construction sequencing and project requirements.',
       },
       {
         title: 'Integrate Procurement',
         description:
-          'Coordinate procurement activities with the schedule to identify critical materials and potential delays.',
+          'Procurement activities are coordinated with the schedule to identify critical materials and flag potential delays early.',
       },
       {
         title: 'Track & Report',
         description:
-          'Monitor progress against planned milestones and provide clear schedule reporting.',
+          'We monitor progress against planned milestones and provide clear, easy-to-read schedule reporting throughout construction.',
       },
     ],
     ctaLabel: 'EXPLORE PROJECT MANAGEMENT',

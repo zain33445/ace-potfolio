@@ -470,7 +470,7 @@ function ServiceOverviewSection({ service }: { service: Service }) {
   return (
     <section>
       <div className="mb-6 font-mono text-base font-bold uppercase tracking-[0.1em] text-primary">
-        {service.slug === "project-management" ? "WHAT WE DELIVER" : "OVERVIEW"}
+        OVERVIEW
       </div>
       <div className="space-y-8">
         {/* If we have full WP content, render it richly */}
@@ -594,8 +594,8 @@ function CtaSection({ service }: { service: Service }) {
         </h2>
         <p className="max-w-lg text-base leading-relaxed text-on-surface-variant md:text-center">
           {service.slug === "project-management"
-            ? "Send us your project plans, scope, or existing schedule for a preliminary review. We'll recommend the appropriate planning and project-control service."
-            : "Submit your blueprints and receive a precision cost schedule within 24-48 hours. Rush turnaround available."}
+            ? "Send us your project plans, scope, or existing schedule for a preliminary review. We'll recommend the appropriate CPM scheduling and project-control services within 3-5 business days."
+            : "Submit your blueprints and receive a precision construction cost estimate within 24-48 hours. Expedited turnaround is available."}
         </p>
         <div className="flex flex-col sm:flex-row items-center gap-4">
           <Link

@@ -291,31 +291,31 @@ export default function ProjectsSection() {
                         </p>
                       )}
                       {project.scope.length > 0 && (
-                        <p className="font-mono text-on-surface-variant ">
+                        <div className="font-mono text-on-surface-variant ">
                           <span className="text-primary font-bold block">
                             SCOPE:
                           </span>{" "}
                           {project.scope.map((s, i) => (
-                            <li key={i} className="w-fit ml-4">
+                            <div key={i} className="w-fit ml-4">
                               {s}
-                            </li>
+                            </div>
                           ))}
-                        </p>
+                        </div>
                       )}
                     </div>
                   ) : (
                     <div className="mt-1">
                       {project.scope.length > 0 && (
-                        <p className="font-mono text-[10px] text-on-surface-variant line-clamp-2">
+                        <div className="font-mono text-[10px] text-on-surface-variant line-clamp-2">
                           <span className="text-primary block font-bold">
                             SCOPE
                           </span>{" "}
                           {project.scope.map((s) => (
-                            <li key={s} className="w-fit ml-4">
+                            <div key={s} className="w-fit ml-4">
                               {s}
-                            </li>
+                            </div>
                           ))}
-                        </p>
+                        </div>
                       )}
                     </div>
                   )}
