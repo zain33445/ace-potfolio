@@ -51,3 +51,5 @@ ds-bundle/
 .design-sync/
 .ds-entry.mjs
 .ds-shim.mjs
+# Google Search Console verification
+public/google*.html

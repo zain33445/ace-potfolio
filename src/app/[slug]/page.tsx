@@ -666,6 +666,23 @@ function SeoContentSection({ service }: { service: Service }) {
           </p>
         ))}
       </div>
+      {seoContent.highlightSection && (
+        <div className="mb-12">
+          <div className="mb-6 font-mono text-sm font-bold uppercase tracking-[0.2em] text-primary">
+            {seoContent.highlightSection.heading}
+          </div>
+          <div className="space-y-6">
+            {seoContent.highlightSection.body.map((paragraph, idx) => (
+              <p
+                key={idx}
+                className="font-sans text-base md:text-lg leading-relaxed text-on-surface-variant"
+              >
+                {paragraph}
+              </p>
+            ))}
+          </div>
+        </div>
+      )}
       <div className="mb-6 font-mono text-sm font-bold uppercase tracking-[0.2em] text-primary">
         Key Benefits
       </div>

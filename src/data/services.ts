@@ -25,6 +25,7 @@ export interface SeoContent {
   body: string[]; 
   benefits: { title: string; description: string }[];
   faqs: FaqItem[];
+  highlightSection?: { heading: string; body: string[] };
 }
 
 export interface Service {
@@ -141,39 +142,45 @@ export const services: Service[] = [
     seoContent: {
       heading: 'Precision Construction Cost Estimating Services Nationwide',
       body: [
-        'AACE Class 3 Construction Cost Estimating for Every Project Type. Our construction cost estimating services cover the full pre-construction workflow: quantity takeoffs from architectural blueprints, material and labor pricing against current localized rates, CSI MasterFormat-organized cost breakdowns, and delivery in editable Excel plus stamped PDF. Whether you\'re preparing a competitive bid on a commercial build or budgeting a residential development, our cost estimating team delivers precision you can defend to owners, lenders, and permitting authorities.',
-        'In today\'s volatile material market, guesswork leads to lost bids and shrinking margins. At The ACE Services, our professional construction cost estimating services provide general contractors, subcontractors, developers, and architects across the USA with highly accurate, data-driven material takeoffs and labor pricing.',
-        'Whether you are bidding on a complex commercial build, managing a residential development, or planning an industrial facility, our expert estimators leverage industry-leading software and up-to-date pricing databases to ensure your bids are both competitive and profitable.',
-        'A precise estimate is only as good as the plans it is based on. If your current blueprints lack detail, our Architectural Services team can refine your shop drawings before we begin the quantity survey. Once your budget is locked, our Project Management experts can develop schedules to ensure your procurement aligns perfectly with the cash flow projections.'
+        'In today\'s volatile material market, guesswork in construction cost estimating leads to lost bids and shrinking margins. At The ACE Services, our professional construction cost estimating services provide general contractors, subcontractors, developers, and architects across the USA with highly accurate, data-driven material takeoffs, labor pricing, and AACE Class 3 cost estimates organized to the CSI MasterFormat.',
+        'Whether you are bidding on a complex commercial build, managing a residential development, or planning an industrial facility, our expert cost estimators leverage industry-leading estimating software and up-to-date regional pricing databases to ensure your bids are both competitive and profitable. Every estimate reflects real material costs, labor rates, and market conditions specific to your project location.',
+        'A precise estimate is only as good as the plans it is based on. If your current blueprints lack detail, our Architectural Services team can refine your shop drawings before we begin the quantity survey. Once your budget is locked, our Project Management experts can develop CPM schedules to align procurement with cash flow projections. Backed by ISO 9001-aligned processes, our estimating team has supported contractors across 35 U.S. states since 2019.'
       ],
       benefits: [
         {
           title: 'Win More Bids',
-          description: 'Accurate, detailed takeoffs mean you can bid with confidence, knowing your margins are protected.'
+          description: 'Accurate, itemized construction cost estimates mean you can bid with confidence, knowing your margins are protected from day one.'
         },
         {
           title: 'Save Valuable Time',
-          description: 'Free up your internal team to focus on project execution while we handle the time-consuming quantity surveying.'
+          description: 'Free up your internal team to focus on project execution while our estimators handle the time-consuming quantity surveying and takeoff work.'
         },
         {
           title: 'Nationwide Accuracy',
-          description: 'We adjust labor and material rates based on your specific geographic location within the USA.'
+          description: 'We adjust labor and material rates based on your specific geographic location, ensuring every estimate reflects real regional construction costs.'
         }
       ],
       faqs: [
         {
-          question: 'What is the turnaround time for a construction estimate?',
-          answer: 'Our standard turnaround time is 24 to 48 hours (1-2 business days), depending on the size and complexity of the project. Expedited services are also available for urgent bids.'
+          question: 'What is the turnaround time for a construction cost estimate?',
+          answer: 'Our standard turnaround time for construction cost estimating services is 24 to 48 hours, depending on project size and complexity. Expedited turnaround is available for urgent bid deadlines.'
         },
         {
-          question: 'Do you provide editable Excel spreadsheets?',
-          answer: 'Yes, all of our cost estimates include fully editable Excel spreadsheets alongside professional PDF summary reports, allowing you to easily adjust margins and rates.'
+          question: 'Do you provide editable Excel spreadsheets with your estimates?',
+          answer: 'Yes. Every cost estimate includes a fully editable Excel spreadsheet alongside a professional PDF summary report, so you can adjust margins and rates as needed.'
         },
         {
-          question: 'Who can benefit from your estimating services?',
-          answer: 'We serve a wide range of professionals nationwide, including General Contractors, Subcontractors (electrical, plumbing, framing, etc.), Architects, and Real Estate Developers.'
+          question: 'Who can benefit from your construction cost estimating services?',
+          answer: 'Our estimating services support general contractors, subcontractors (electrical, plumbing, framing, and more), architects, and real estate developers across residential, commercial, and industrial sectors nationwide.'
         }
-      ]
+      ],
+      highlightSection: {
+        heading: 'Our Estimating Standards: AACE Class 3 & CSI MasterFormat',
+        body: [
+          'Every cost estimate produced by The ACE Services follows AACE International Class 3 estimating standards, meaning quantities and costs are developed from a defined project scope with an accuracy range suitable for budget approval and competitive bidding. Cost data is organized using the CSI MasterFormat, the standard classification system used across the U.S. construction industry, so your estimate integrates cleanly with your existing bid documents, specifications, and project management software.',
+          'This standards-based approach is why general contractors, architects, and developers nationwide trust our construction cost estimating services for budgets they can defend to lenders, investors, and project owners.'
+        ]
+      }
     }
   },
   {
@@ -235,40 +242,47 @@ export const services: Service[] = [
     ],
     ctaLabel: 'EXPLORE ARCHITECTURAL',
     seoContent: {
-      heading: 'Comprehensive Architectural Drafting & Shop Drawings',
+      heading: 'Comprehensive Architectural Drafting & Shop Drawing Services',
       body: [
-        'Clear, coordinated, and code-compliant documentation is the backbone of any successful construction project. The ACE Services provides top-tier architectural services, specializing in shop drawings, permit sets, and 3D visualization for contractors, developers, and architectural firms nationwide.',
-        'Our drafting team bridges the gap between conceptual design and physical construction. By producing meticulous architectural shop drawings, we help mitigate on-site errors and streamline the approval process with municipalities and stakeholders.',
-        'Proper documentation seamlessly integrates with our other disciplines. Detailed shop drawings allow our Structural & Engineering team to accurately assess load paths, while providing our Cost Estimating division with the exact specifications needed to generate pinpoint-accurate material takeoffs.'
+        'Clear, coordinated, and code-compliant architectural documentation is the backbone of any successful construction project. The ACE Services provides top-tier architectural drafting services, specializing in architectural shop drawings, permit sets, submittals, and 3D rendering for contractors, developers, and architectural firms nationwide.',
+        'Our drafting team bridges the gap between conceptual design and physical construction. By producing meticulous architectural shop drawings using industry-standard CAD software, we help mitigate on-site errors and streamline the municipal approval process across jurisdictions nationwide.',
+        'Proper architectural documentation integrates seamlessly with our other disciplines. Detailed shop drawings allow our Structural Engineering team to accurately assess load paths, while giving our Cost Estimating division the exact specifications needed to generate pinpoint-accurate material takeoffs and construction cost estimates.'
       ],
       benefits: [
         {
           title: 'Accelerated Approvals',
-          description: 'Our permit and submission sets are tailored to meet municipal standards, reducing back-and-forth revisions.'
+          description: 'Our permit and submission drawing sets are tailored to meet municipal standards, reducing plan-review revisions and approval delays.'
         },
         {
           title: 'Enhanced Coordination',
-          description: 'Identify and resolve clashes early through precise drafting, preventing costly rework in the field.'
+          description: 'Identify and resolve design clashes early through precise architectural drafting, preventing costly rework in the field.'
         },
         {
           title: 'Stunning Visualizations',
-          description: 'High-quality 3D renderings help secure client buy-in and investment by bringing blueprints to life.'
+          description: 'High-quality 3D architectural renderings help secure client buy-in and investment by bringing blueprints to life before construction begins.'
         }
       ],
       faqs: [
         {
           question: 'What file formats do you deliver for architectural drawings?',
-          answer: 'We deliver all final documents in both standard PDF format for easy viewing and DWG (AutoCAD) format for seamless integration into your existing workflows.'
+          answer: 'We deliver all final architectural documents in PDF format for easy review and DWG (AutoCAD) format for seamless integration into your existing drafting and design workflows.'
         },
         {
           question: 'Do you create architectural shop drawings from scratch?',
-          answer: 'We typically work from conceptual designs, sketches, or base architectural plans to develop fully detailed shop drawings ready for fabrication and installation.'
+          answer: 'We typically work from conceptual designs, sketches, or base architectural plans to develop fully detailed shop drawings ready for permitting, fabrication, and installation.'
         },
         {
-          question: 'How long does a typical permit set take?',
-          answer: 'Standard turnaround for architectural documentation is 7 to 10 business days, though timelines may vary based on project scale and complexity.'
+          question: 'How long does a typical architectural permit set take to complete?',
+          answer: 'Standard turnaround for architectural documentation, including permit sets, is 7 to 10 business days, though timelines may vary based on project scale and jurisdictional complexity.'
         }
-      ]
+      ],
+      highlightSection: {
+        heading: 'Software & Tools We Use for Architectural Drafting',
+        body: [
+          'Our drafting team produces every architectural shop drawing, permit set, and 3D rendering using industry-standard tools including AutoCAD, Revit, and Bluebeam Revu, the same platforms used by architects, general contractors, and plan reviewers nationwide. This means your DWG and PDF deliverables open cleanly in your existing workflow and integrate directly with your structural and MEP consultants, with no file-conversion guesswork before submission.',
+          'Because our drawings are built to CAD industry standards from the start, revisions, redlines, and coordination with your in-house team move faster at every stage of the permitting and construction process.'
+        ]
+      }
     }
   },
   {
@@ -331,36 +345,47 @@ export const services: Service[] = [
     ctaLabel: 'EXPLORE ENGINEERING',
     footnote: '*Subject to applicable licensing and jurisdictional requirements.',
     seoContent: {
-      heading: 'Expert Structural Design and MEP Engineering Services',
+      heading: 'Expert Structural Engineering and MEP Design Services',
       body: [
-        'Safety, stability, and code compliance are non-negotiable in construction. The ACE Services delivers robust structural engineering and MEP (Mechanical, Electrical, Plumbing) design solutions for commercial, residential, and industrial projects across the USA.',
-        'Our engineering team provides comprehensive structural analysis, load path calculations, and coordinated MEP shop drawings. We ensure that every beam, column, and conduit is designed for optimal performance and safety, meeting rigorous local and national building codes.',
-        'We work hand-in-hand with our Architectural Services division to ensure that aesthetic visions are structurally viable. By resolving engineering challenges during the pre-construction phase, we provide a solid foundation for our Project Management team to schedule activities without fear of design-related delays.'
+        'Safety, structural stability, and code compliance are non-negotiable in construction. The ACE Services delivers robust structural engineering and MEP (mechanical, electrical, plumbing) design services for commercial, residential, and industrial construction projects across the USA.',
+        'Our structural engineering team provides comprehensive structural analysis, load path calculations, and coordinated MEP shop drawings. We ensure every beam, column, and conduit is designed for optimal performance and safety, meeting rigorous local and national building codes, including the International Building Code (IBC).',
+        'We work hand-in-hand with our Architectural Services division to ensure aesthetic design visions remain structurally viable. By resolving engineering challenges during pre-construction, we provide a solid, code-compliant foundation for our Project Management team to schedule construction activities without fear of design-related delays.'
       ],
       benefits: [
         {
           title: 'Code-Conscious Design',
-          description: 'Our designs strictly adhere to IBC and local building codes, ensuring smooth permitting and safe construction.'
+          description: 'Our structural and MEP designs strictly adhere to IBC and local building codes, ensuring smooth plan review and safe construction.'
         },
         {
           title: 'PE Sealing Available',
-          description: 'We offer Professional Engineer (PE) review and sealing services where required by jurisdiction.'
+          description: 'We offer Professional Engineer (PE) review and sealing services for structural documents where required by jurisdiction.'
         },
         {
           title: 'Clash-Free MEP Integration',
-          description: 'Coordinated MEP shop drawings prevent spatial conflicts between mechanical systems and structural elements.'
+          description: 'Coordinated MEP shop drawings prevent spatial conflicts between mechanical systems, electrical routing, and structural elements.'
         }
       ],
       faqs: [
         {
-          question: 'Do you offer PE stamping/sealing?',
-          answer: 'Yes, we provide PE review and sealing services for engineering documents, subject to applicable licensing and jurisdictional requirements in your specific state.'
+          question: 'Do you offer PE stamping and sealing for structural drawings?',
+          answer: 'Yes. We provide Professional Engineer (PE) review and sealing services for structural and MEP engineering documents, subject to applicable licensing and jurisdictional requirements in your state.'
         },
         {
           question: 'Can you coordinate MEP designs with existing architectural plans?',
-          answer: 'Absolutely. We specialize in coordinating MEP shop drawings directly with your existing architectural sets to ensure seamless integration and prevent clashes.'
+          answer: 'Absolutely. We specialize in coordinating MEP shop drawings directly with your existing architectural drawing sets to ensure seamless integration and prevent clashes in the field.'
+        },
+        {
+          question: 'What is the turnaround time for structural engineering and MEP design?',
+          answer: 'Standard turnaround for structural engineering and MEP design services is 7 to 10 business days, depending on project scope, structural complexity, and whether PE sealing is required.'
         }
-      ]
+      ],
+      highlightSection: {
+        heading: 'Codes & Standards We Design To',
+        body: [
+          'Every structural and MEP design produced by The ACE Services is developed in accordance with the International Building Code (IBC), ASCE 7 load standards, and applicable state and local amendments, so your engineering documentation is built for a smooth plan-review process from the first submission. Our engineers factor in region-specific requirements such as seismic design categories, wind load zones, and soil-bearing conditions, ensuring structural designs hold up to both code officials and real-world site conditions.',
+          'This code-first approach is why general contractors and developers across commercial, residential, and industrial sectors trust The ACE Services for structural engineering and MEP design they can permit with confidence.'
+        ]
+      }
     }
   },
   {
@@ -422,40 +447,47 @@ export const services: Service[] = [
     ],
     ctaLabel: 'EXPLORE PROJECT MANAGEMENT',
     seoContent: {
-      heading: 'Construction Project Management & CPM Scheduling',
+      heading: 'Construction Project Management & CPM Scheduling Services',
       body: [
-        'Time is money in construction, and project delays can decimate profitability. The ACE Services provides elite construction project management, CPM scheduling, and project controls for general contractors and developers nationwide.',
-        'We specialize in developing highly detailed Critical Path Method (CPM) and Gantt schedules that align with project milestones, resource availability, and construction sequencing. By integrating procurement activities directly into the schedule, we help you foresee and mitigate supply chain bottlenecks before they impact the critical path.',
-        'Effective project management ties all our services together. Our schedules rely on the accurate budgets generated by our Cost Estimating team and the precise timelines required to execute the designs finalized by our Architectural and Structural Engineering divisions.'
+        'Time is money in construction, and project delays can quickly erode profitability. The ACE Services provides expert construction project management, CPM scheduling, and project controls for general contractors and developers nationwide.',
+        'We specialize in developing highly detailed Critical Path Method (CPM) and Gantt schedules that align with project milestones, resource availability, and construction sequencing. By integrating procurement activities directly into the schedule, we help you identify and mitigate supply chain bottlenecks before they impact your critical path.',
+        'Effective project management ties all our services together. Our schedules rely on the accurate budgets generated by our Cost Estimating team and the precise construction timelines required to execute the designs finalized by our Architectural and Structural Engineering divisions.'
       ],
       benefits: [
         {
           title: 'Mitigate Delays',
-          description: 'Identify the critical path and potential bottlenecks early to keep your project moving forward on time.'
+          description: 'Identify the critical path and potential scheduling bottlenecks early to keep your construction project moving forward on time.'
         },
         {
           title: 'Optimize Procurement',
-          description: 'Coordinate material deliveries with installation schedules to prevent site congestion and material shortages.'
+          description: 'Coordinate material and equipment deliveries with installation schedules to prevent site congestion and material shortages.'
         },
         {
           title: 'Clear Stakeholder Communication',
-          description: 'Professional Gantt charts and progress reports keep owners, investors, and subcontractors aligned.'
+          description: 'Professional Gantt charts and progress reports keep owners, investors, and subcontractors aligned throughout construction.'
         }
       ],
       faqs: [
         {
-          question: 'What scheduling methods do you use?',
-          answer: 'We primarily utilize the Critical Path Method (CPM) and Gantt charts to visually map dependencies, milestones, and project durations.'
+          question: 'What scheduling methods do you use for construction project management?',
+          answer: 'We primarily use the Critical Path Method (CPM) and Gantt charts to visually map task dependencies, project milestones, and construction durations.'
         },
         {
           question: 'How long does it take to build a construction schedule?',
-          answer: 'A comprehensive preliminary schedule typically takes 3 to 5 business days to develop, depending on the availability of project scope and documentation.'
+          answer: 'A comprehensive preliminary construction schedule typically takes 3 to 5 business days to develop, depending on the availability of project scope and documentation.'
         },
         {
-          question: 'Do you track progress after the initial schedule is built?',
-          answer: 'Yes, we offer ongoing project controls and progress tracking to update schedules as conditions change in the field, ensuring you always have an accurate completion forecast.'
+          question: 'Do you track construction progress after the initial schedule is built?',
+          answer: 'Yes. We offer ongoing project controls and progress tracking to update schedules as field conditions change, so you always have an accurate completion forecast.'
         }
-      ]
+      ],
+      highlightSection: {
+        heading: 'Deliverables & Reporting Formats',
+        body: [
+          'Every construction schedule we build is delivered in industry-standard formats such as Microsoft Project and Primavera P6-compatible files, alongside clear PDF Gantt charts and milestone reports formatted for owners, lenders, and project stakeholders who may not use scheduling software directly. Progress updates include percent-complete tracking by activity, critical path highlighting, and variance reporting so you can see exactly where a project stands against the original baseline schedule at any point during construction.',
+          'This format flexibility means your project management deliverables integrate directly into your existing reporting workflow, whether you\'re updating an internal team, a general contractor, or a project owner.'
+        ]
+      }
     }
   },
   {

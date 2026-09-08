@@ -9,7 +9,12 @@
 	],
 	"assets": {
 		"directory": ".open-next/assets",
-		"binding": "ASSETS"
+		"binding": "ASSETS",
+		// Cloudflare's default ("auto-trailing-slash") 307s /foo.html -> /foo,
+		// which would break Google's site-verification file — it must return 200
+		// at its exact path. No other .html assets are served this way; every
+		// real route is rendered by the worker.
+		"html_handling": "none"
 	},
 	"routes": [
 		{ "pattern": "theaceservices.com", "custom_domain": true }
