@@ -122,7 +122,10 @@ export default function AbdulMananZafarAuthorPage() {
             international construction market.
           </p>
 
-          <p>He founded The ACE Services on returning, and now leads its estimating team.</p>
+          <p>
+            He leads the estimating team at The ACE Services, which has served general contractors
+            across the United States since 2019.
+          </p>
 
           <h2 className="pt-4 font-[family-name:var(--font-space)] text-xl font-bold text-on-background">
             What he reviews here
