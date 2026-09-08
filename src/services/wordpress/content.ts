@@ -15,6 +15,7 @@
  * can be updated to point at the new endpoints.
  */
 
+import { LEGACY_301 } from '@/src/data/legacy-redirects';
 import { wpGet, wpGetList, wpGetListSafe } from './client';
 import { canonicalSlugFor, wpSlugFor } from './slug-aliases';
 import { cleanExcerpt, cleanTitle, decodeEntities, htmlToArticle, htmlToText, sanitizeHtml } from './html';
@@ -380,6 +381,11 @@ export function toStat(page: WPPage): Stat {
  * @param options.search   Search query string.
  * @returns List of insights + pagination metadata.
  */
+/** Slugs (no slashes) of posts that permanently redirect — see LEGACY_301. */
+const REDIRECTED_SLUGS = new Set(
+  Object.keys(LEGACY_301).map((path) => path.replace(/^\/|\/$/g, '')),
+);
+
 export async function getPosts(
   options: {
     per_page?: number;
@@ -421,7 +427,11 @@ export async function getPosts(
   });
 
   return {
-    data: result.data.map(toInsight),
+    // Drop the posts middleware 301s into consolidated targets. Filtering here
+    // rather than at each call site fixes every consumer at once: the blog
+    // listing and the related-posts strip stop linking to redirects, and
+    // generateStaticParams stops prerendering routes that never resolve.
+    data: result.data.map(toInsight).filter((p) => !REDIRECTED_SLUGS.has(p.slug)),
     pagination: result.pagination,
   };
 }

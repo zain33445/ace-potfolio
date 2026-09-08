@@ -46,32 +46,39 @@ const BLOG_SLUG_DENYLIST = new Set([
   'quantity-surveyor-services-in-usa-ensuring-precision-and-profitability-in-construction-projects',
 ]);
 
+// Only blog posts carry `lastModified` — they're the one route with a real
+// content-change date (WordPress `post.date`). Everything else deliberately
+// omits it. This route regenerates hourly, so `new Date()` stamped every
+// non-blog URL with the generation time: 62 of 128 URLs claimed to have just
+// changed on every fetch. Google verifies lastmod against what it crawls and
+// discounts the signal for the whole domain once it proves false, which
+// leaves it no way to prioritise crawling here. An absent lastmod is a
+// missing hint; a false one is a broken hint. Do not reintroduce `new Date()`.
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
-    { url: `${BASE_URL}/`, lastModified: new Date(), changeFrequency: 'monthly', priority: 1 },
-    { url: `${BASE_URL}/services/`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${BASE_URL}/`, changeFrequency: 'monthly', priority: 1 },
+    { url: `${BASE_URL}/services/`, changeFrequency: 'weekly', priority: 0.9 },
     // JS widget with ~100 words of indexable content — not worth a top-3 priority.
-    { url: `${BASE_URL}/calculator/`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.4 },
-    { url: `${BASE_URL}/projects/`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
+    { url: `${BASE_URL}/calculator/`, changeFrequency: 'monthly', priority: 0.4 },
+    { url: `${BASE_URL}/projects/`, changeFrequency: 'weekly', priority: 0.7 },
     // Keyword-first cost guide (~4,150/mo cluster at KD 0-5) — highest
     // priority non-home page on the site, so it outranks the service pages.
-    { url: `${BASE_URL}/adu-construction-cost/`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
-    { url: `${BASE_URL}/about-us/`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
-    { url: `${BASE_URL}/authors/abdul-manan-zafar/`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.5 },
-    { url: `${BASE_URL}/contact-us/`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
-    { url: `${BASE_URL}/blog/`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
+    { url: `${BASE_URL}/adu-construction-cost/`, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/about-us/`, changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${BASE_URL}/authors/abdul-manan-zafar/`, changeFrequency: 'yearly', priority: 0.5 },
+    { url: `${BASE_URL}/contact-us/`, changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${BASE_URL}/blog/`, changeFrequency: 'weekly', priority: 0.7 },
     // Consolidated orphan targets (rich content, previously not linked
     // from the site — 15 duplicate blog posts 301 into them via middleware).
-    { url: `${BASE_URL}/warehouses-development/`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${BASE_URL}/blueprint-estimation/`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${BASE_URL}/quantity-surveyor-services/`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${BASE_URL}/privacy-policy/`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.1 },
-    { url: `${BASE_URL}/terms-and-conditions/`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.1 },
+    { url: `${BASE_URL}/warehouses-development/`, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/blueprint-estimation/`, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/quantity-surveyor-services/`, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/privacy-policy/`, changeFrequency: 'yearly', priority: 0.1 },
+    { url: `${BASE_URL}/terms-and-conditions/`, changeFrequency: 'yearly', priority: 0.1 },
   ];
 
   const serviceRoutes: MetadataRoute.Sitemap = services.map((s) => ({
     url: `${BASE_URL}/${s.slug}/`,
-    lastModified: new Date(),
     changeFrequency: 'monthly',
     priority: 0.7,
   }));
@@ -82,7 +89,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     .filter((p) => p.totalAreaSqFt > 0 || p.estimatedCost > 0)
     .map((p) => ({
       url: `${BASE_URL}/projects/${p.slug}/`,
-      lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.6,
     }));
