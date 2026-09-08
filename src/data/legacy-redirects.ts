@@ -37,6 +37,13 @@ export const LEGACY_301: Record<string, string> = {
   // each other. The repo route wins: FAQPage schema, the Division 26
   // project evidence, and it is in the sitemap (the WP page never was).
   '/electrical-estimation': '/electrical-estimating-services/',
+  // Cluster E — duplicate structural page. The WP page at
+  // /structural-services/ ("Structural Management") covers the same scope as
+  // the repo route below and was never in the sitemap, yet the sub-services
+  // matcher surfaced it in place of the canonical page. The repo route wins:
+  // it is the one that carries the PE-sealed structural and MEP design
+  // positioning, and it is indexed.
+  '/structural-services': '/structural-engineering/',
   // Duplicate lead-capture page — /contact-us/ is the canonical form.
   '/quick-quote': '/contact-us/',
 };
