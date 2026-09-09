@@ -94,6 +94,7 @@ const KNOWN_TOP_LEVEL_ROUTES = new Set<string>([
   'services',
   'calculator',
   'adu-construction-cost',
+  'houston-construction-estimating',
   'projects',
   'about-us',
   'contact-us',

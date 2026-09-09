@@ -64,6 +64,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Keyword-first cost guide (~4,150/mo cluster at KD 0-5) — highest
     // priority non-home page on the site, so it outranks the service pages.
     { url: `${BASE_URL}/adu-construction-cost/`, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/houston-construction-estimating/`, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/about-us/`, changeFrequency: 'monthly', priority: 0.6 },
     { url: `${BASE_URL}/authors/abdul-manan-zafar/`, changeFrequency: 'yearly', priority: 0.5 },
     { url: `${BASE_URL}/contact-us/`, changeFrequency: 'monthly', priority: 0.6 },

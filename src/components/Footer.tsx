@@ -17,6 +17,7 @@ export default function Footer() {
     { label: "PROJECTS", href: "/projects/" },
     { label: "CALCULATOR", href: "/calculator/" },
     // Solutions — internal links so these pages stop being sitemap orphans.
+    { label: "HOUSTON ESTIMATING", href: "/houston-construction-estimating/" },
     { label: "ADU COST GUIDE", href: "/adu-construction-cost/" },
     { label: "WAREHOUSE DEVELOPMENT", href: "/warehouses-development/" },
     { label: "BLUEPRINT ESTIMATION", href: "/blueprint-estimation/" },
