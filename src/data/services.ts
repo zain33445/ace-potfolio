@@ -553,38 +553,45 @@ export const services: Service[] = [
     seoContent: {
       heading: 'Photorealistic 3D Architectural Rendering Services',
       body: [
-        'Our 3D architectural rendering services turn drawings into images stakeholders can actually understand. From 3D exterior renderings that place a building in its real site context to detailed interior visualizations, we help owners, review boards, and buyers sign off on what they can see — long before ground is broken.',
-        'Photorealistic renderings do more than look good. They accelerate permitting and design review, resolve questions about materials and massing early, and give developers and marketing teams the assets they need to pre-sell and fund a project. Every render is built from an accurate 3D model, so what you present is what gets built.',
-        'Renderings work best as part of a coordinated pre-construction package. Pair them with our Architectural drafting and permit sets to move from concept to approval, or with our Cost Estimating team so the design you visualize is priced accurately from day one.',
+        'Our 3D architectural rendering services turn drawings into images stakeholders can actually understand. From 3D exterior renderings that place a building in its real site context to detailed interior visualizations, we help owners, review boards, and buyers sign off on a design long before ground is broken.',
+        'Photorealistic renderings do more than look good, they accelerate permitting and design review, resolve questions about materials and massing early, and give developers and marketing teams the visual assets they need to pre-sell units and secure project funding. Every 3D rendering is built from an accurate architectural model, so what you present is what actually gets built.',
+        '3D renderings work best as part of a coordinated pre-construction package. Pair them with our Architectural Services drafting and permit sets to move from concept to approval, or with our Cost Estimating team so the design you visualize is priced accurately from day one.',
       ],
       benefits: [
         {
           title: 'Win Approvals Faster',
-          description: 'Give review boards and clients a clear, photorealistic picture so decisions happen sooner and with fewer revisions.',
+          description: 'Give review boards and clients a clear, photorealistic picture so permitting and design decisions happen sooner, with fewer revision cycles.',
         },
         {
           title: 'Sell & Fund Projects',
-          description: 'Marketing-grade exterior and interior renders help developers pre-sell units and secure investor buy-in.',
+          description: 'Marketing-grade exterior and interior renderings help developers pre-sell units and secure investor buy-in before construction starts.',
         },
         {
           title: 'Catch Issues Early',
-          description: 'Seeing the design in 3D surfaces material and spatial problems while they are still cheap to fix.',
+          description: 'Seeing a design in 3D surfaces material and spatial problems while they\'re still inexpensive to fix on the model, not the job site.',
         },
       ],
       faqs: [
         {
-          question: 'What do I need to provide for a 3D rendering?',
-          answer: 'Floor plans, elevations, and any material or finish selections are ideal. We can also work from sketches or a set of reference images if drawings are still in progress.',
+          question: 'What do I need to provide for a 3D architectural rendering?',
+          answer: 'Floor plans, elevations, and any material or finish selections are ideal for an accurate rendering. We can also work from hand sketches or a set of reference images if your drawings are still in progress.',
         },
         {
           question: 'Do you provide both exterior and interior renderings?',
-          answer: 'Yes. We produce 3D exterior renderings, interior visualizations, and floor-plan renders — for permitting, coordination, or marketing use.',
+          answer: 'Yes. We produce 3D exterior renderings, interior visualizations, and floor-plan renderings for permitting, cross-discipline coordination, or marketing use \u2014 often as part of the same project.',
         },
         {
-          question: 'How long does a rendering take?',
-          answer: 'Most renderings are delivered in 3 to 5 business days depending on complexity and the number of views, with a draft review before final delivery.',
+          question: 'How long does a 3D rendering take to complete?',
+          answer: 'Most 3D architectural renderings are delivered in 3 to 5 business days, depending on complexity and the number of views, with a draft review included before final delivery.',
         },
       ],
+      highlightSection: {
+        heading: 'What Affects 3D Rendering Turnaround & Pricing',
+        body: [
+          'Every 3D architectural rendering quote is shaped by a few core variables: the number of views (a single exterior still costs less than a full exterior-plus-interior package), the complexity of the design, the level of photorealism required, and how many revision rounds are included.',
+          'Rush turnaround for permitting deadlines or investor presentations is available, typically for a premium over our standard 3-5 business day delivery. Because every rendering is priced around your specific scope rather than a flat rate, sharing your floor plans, elevations, and reference imagery upfront gets you the most accurate quote in the shortest time.',
+        ],
+      },
     },
   },
   {
@@ -650,9 +657,9 @@ export const services: Service[] = [
     seoContent: {
       heading: 'Fabrication-Ready Shop Drawing Services',
       body: [
-        'Our shop drawing services turn design intent into buildable, fabrication-ready documentation. We prepare MEP, structural, rebar, and millwork shop drawings that give fabricators and field crews the exact dimensions, connections, and details they need — with no ambiguity and no guesswork.',
-        'Most costly rework starts as a clash on paper. We coordinate shop drawings across trades before anything is fabricated, catching spatial conflicts between ductwork, piping, structure, and finishes while they are still a line on a drawing rather than a change order in the field.',
-        'Shop drawings connect design and construction. They build directly on the architectural and structural sets our drafting teams produce, and they feed the accurate quantities our Cost Estimating team relies on — so your documentation, pricing, and fabrication all speak the same language.',
+        'Our shop drawing services turn design intent into buildable, fabrication-ready documentation. We prepare MEP, structural, rebar, and millwork shop drawings that give fabricators and field crews the exact dimensions, connections, and details they need, with no ambiguity and no guesswork.',
+        'Most costly rework starts as a clash on paper. We coordinate shop drawings across trades before anything is fabricated, catching spatial conflicts between ductwork, piping, structure, and finishes while they\'re still a line on a drawing, not a change order in the field.',
+        'Shop drawings connect design and construction. They build directly on the architectural and structural sets our drafting teams produce, and they feed the accurate quantities our Cost Estimating team relies on, so your documentation, pricing, and fabrication all speak the same language.',
       ],
       benefits: [
         {
@@ -671,17 +678,24 @@ export const services: Service[] = [
       faqs: [
         {
           question: 'What types of shop drawings do you produce?',
-          answer: 'We prepare MEP (mechanical, electrical, plumbing), structural, rebar, and millwork shop drawings, along with fabrication and installation details.',
+          answer: 'We prepare MEP (mechanical, electrical, plumbing), structural, rebar, and millwork shop drawings, along with fabrication and installation details for each trade.',
         },
         {
           question: 'Do you coordinate shop drawings across trades?',
-          answer: 'Yes. Cross-trade clash coordination is a core part of our service — we resolve spatial conflicts between disciplines before anything reaches the shop or the field.',
+          answer: 'Yes. Cross-trade clash coordination is a core part of our shop drawing service \u2014 we resolve spatial conflicts between disciplines before anything reaches the shop or the field.',
         },
         {
-          question: 'What formats do you deliver in?',
-          answer: 'Shop drawings are delivered in editable DWG and review-ready PDF, prepared to fabrication standards for sign-off.',
+          question: 'What formats do you deliver shop drawings in?',
+          answer: 'Shop drawings are delivered in editable DWG and review-ready PDF formats, prepared to fabrication standards for fabricator and reviewer sign-off.',
         },
       ],
+      highlightSection: {
+        heading: 'Standards & Trades We Detail To',
+        body: [
+          'Every shop drawing we produce is developed to the standards your fabricator and reviewer already expect. Structural steel shop drawings follow AISC detailing conventions, rebar shop drawings follow ACI and CRSI placement standards, and MEP shop drawings follow SMACNA guidelines for ductwork alongside standard trade practice for piping and electrical routing.',
+          'Detailing to these recognized industry standards from the start means fewer reviewer comments, faster fabricator sign-off, and shop drawings that hold up whether they\'re reviewed by your general contractor, your structural engineer, or the fabrication shop itself.',
+        ],
+      },
     },
   },
   {
@@ -747,9 +761,9 @@ export const services: Service[] = [
     seoContent: {
       heading: 'Complete, Code-Compliant Permit Set Services',
       body: [
-        'Our permit set services assemble complete, code-compliant permit drawings into a single package built for plan review. We coordinate architectural, structural, and MEP sheets to the jurisdiction\'s checklist — not ours — so your submission clears review with fewer comments and fewer costly resubmittals.',
-        'A rejected permit set can stall a project for weeks. By preparing building permit drawings that anticipate what reviewers look for and flag code issues before submission, we help general contractors and developers move from design to approval faster and keep the schedule intact.',
-        'Permit sets are the approval layer of your documentation. They build directly on our architectural drafting and shop drawing work and align with the budgets our Cost Estimating team prepares — so what you submit, price, and build all stay in sync.',
+        'Our permit set services assemble complete, code-compliant permit drawings into a single package built for plan review. We coordinate architectural, structural, and MEP sheets to the jurisdiction\'s checklist, not a generic template, so your submission clears review with fewer comments and fewer costly resubmittals.',
+        'A rejected permit set can stall a project for weeks. By preparing building permit drawings that anticipate what reviewers look for and flag code issues before submission, we help general contractors and developers move from design to approval faster while keeping the schedule intact.',
+        'Permit sets are the approval layer of your documentation. They build directly on our architectural drafting and shop drawing work, and they align with the budgets our Cost Estimating team prepares, so what you submit, price, and build all stay in sync.',
       ],
       benefits: [
         {
@@ -768,17 +782,29 @@ export const services: Service[] = [
       faqs: [
         {
           question: 'What is a permit set?',
-          answer: 'A permit set is the coordinated package of drawings and documents a jurisdiction requires for plan review and building-permit approval, covering architectural, structural, and MEP scope as applicable.',
+          answer: 'A permit set is the coordinated package of drawings and documents a jurisdiction requires for plan review and building-permit approval, covering architectural, structural, and MEP scope as applicable to your project.',
         },
         {
           question: 'Do you prepare drawings to our local code requirements?',
-          answer: 'Yes. We build each permit set to the specific jurisdiction\'s submission checklist and applicable codes, and we review for compliance before submission to reduce review comments.',
+          answer: 'Yes. We build each permit set to the specific jurisdiction\'s submission checklist and applicable codes, and review it for compliance before submission to reduce review comments.',
         },
         {
           question: 'Can you help with reviewer comments and resubmittals?',
           answer: 'Absolutely. We turn around markups and revisions quickly to address plan-review comments and keep your approval moving without losing schedule.',
         },
       ],
+      highlightSection: {
+        heading: 'What\'s Included in a Complete Permit Set',
+        body: [
+          'Exactly what belongs in a permit set depends on your jurisdiction and project scope, but a complete package typically includes:',
+          'A cover sheet and site plan showing property lines, setbacks, and building placement',
+          'Architectural sheets: floor plans, elevations, sections, and door/window schedules, built by our Architectural Services team',
+          'Structural sheets: foundation, framing, and load-bearing details, sealed by a PE where required, see Structural Engineering & MEP Design',
+          'MEP sheets: mechanical, electrical, and plumbing layouts sized to code',
+          'Code compliance documentation, including energy code and accessibility notes where applicable',
+          'Any jurisdiction-specific forms or checklists required for submission',
+        ],
+      },
     },
   },
   {
@@ -992,6 +1018,120 @@ export const services: Service[] = [
         {
           question: 'How do you handle revisions and resubmittals?',
           answer: 'We turn around revisions quickly against reviewer and fabricator comments, updating placing drawings and bar bending schedules through each resubmittal cycle until the set is approved.',
+        },
+      ],
+    },
+  },
+  {
+    id: 'SVC_BP',
+    slug: 'blueprint-estimation',
+    seoTitle: 'Blueprint Estimation Services | Accurate Takeoffs',
+    seoDescription:
+      'Accurate blueprint estimation and quantity takeoffs for residential, commercial, and industrial construction. Bid-ready cost estimates delivered in 24-48 hours.',
+    title: 'Blueprint Estimation Services',
+    icon: 'SVC_EST',
+    tagline: 'Budgeting & Bidding',
+    category: 'ESTIMATING',
+    description:
+      'Blueprint estimation services that turn architectural and engineering drawings into precise, bid-ready construction cost estimates with quantity takeoffs and cost breakdowns built directly from your plans.',
+    summary:
+      'Blueprint estimation services that turn architectural and engineering drawings into precise, bid-ready construction cost estimates with quantity takeoffs and cost breakdowns built directly from your plans.',
+    details: [
+      'Blueprint estimating is a careful process of analysis, quantification, and cost calculation that determines whether your project is priced to win the bid and still protect your margin.',
+      'Our estimators combine construction experience, digital takeoff software, and current regional pricing data to deliver blueprint estimates you can submit with confidence.',
+      'Accurate project budgeting built directly from your architectural and structural drawings.',
+      'Reduced risk of unexpected costs and change orders once construction begins.',
+    ],
+    features: [
+      'Blueprint Estimation',
+      'Quantity Takeoffs',
+      'Material & Labor Planning',
+      'Bid Package Preparation',
+      'Cost Breakdown',
+      'Review & Adjustments',
+    ],
+    startingPrice: 'Custom',
+    turnaround: '24-48 hours',
+    stats: [
+      { label: 'SECTORS', value: '3+' },
+      { label: 'TURNAROUND', value: '24-48h' },
+      { label: 'SCOPE', value: 'Full-Service' },
+      { label: 'FORMAT', value: 'XLS + PDF' },
+    ],
+    process: [
+      {
+        title: 'Review Blueprints',
+        description:
+          'Our estimators examine every architectural and structural sheet to understand the full scope and complexity of the work before a single quantity is measured.',
+      },
+      {
+        title: 'Quantification',
+        description:
+          'We measure and list every material and component required for the project directly from your drawings, using digital takeoff tools for precise quantities.',
+      },
+      {
+        title: 'Takeoffs',
+        description:
+          'Quantity takeoffs are the backbone of blueprint estimating \u2014 the exact material and labor quantities calculated directly from your construction drawings.',
+      },
+      {
+        title: 'Cost Estimation',
+        description:
+          'With takeoffs complete, we calculate the total cost of materials, labor, and other project expenses to produce your blueprint-based construction cost estimate.',
+      },
+      {
+        title: 'Bid Preparation',
+        description:
+          'We compile all material, labor, and equipment costs into a single estimate, include the project timeline and key milestones, and format the bid to meet your client\'s or general contractor\'s specific requirements.',
+      },
+      {
+        title: 'Review and Adjustments',
+        description:
+          'We provide continuous review and adjustments so your blueprint estimate stays accurate throughout preconstruction, accounting for design changes, scope adjustments, and material price fluctuations.',
+      },
+      {
+        title: 'Submission',
+        description:
+          'We deliver a complete, professional blueprint estimate package ready for your clients, stakeholders, or general contractor.',
+      },
+    ],
+    ctaLabel: 'EXPLORE BLUEPRINT ESTIMATION',
+    seoContent: {
+      heading: 'Blueprint Estimation Services',
+      body: [
+        'At The ACE Services, blueprint estimation turns architectural and engineering drawings into a precise, bid-ready construction cost estimate. Whether you\'re building a residential, commercial, or industrial property, accurate blueprint estimating services keep your project on budget from the very first bid, with quantity takeoffs and cost breakdowns built directly from your plans.',
+        'Blueprint estimating is more than reading plans line by line \u2014 it\'s a careful process of analysis, quantification, and cost calculation that determines whether your project is priced to win the bid and still protect your margin. Our estimators combine construction experience, digital takeoff software, and current regional pricing data to deliver blueprint estimates you can submit with confidence.',
+      ],
+      benefits: [
+        {
+          title: 'Accurate Project Budgeting',
+          description: 'Accurate project budgeting built directly from your architectural and structural drawings.',
+        },
+        {
+          title: 'Reduced Risk of Unexpected Costs',
+          description: 'Reduced risk of unexpected costs and change orders once construction begins.',
+        },
+        {
+          title: 'Efficient Material & Labor Planning',
+          description: 'Efficient material and labor planning based on precise quantity takeoffs.',
+        },
+        {
+          title: 'Competitive Bid Packages',
+          description: 'Bid packages formatted and detailed enough to compete on price without sacrificing margin.',
+        },
+      ],
+      faqs: [
+        {
+          question: 'What\'s the difference between blueprint estimation and a general cost estimate?',
+          answer: 'Blueprint estimation specifically starts from your architectural and structural drawings to produce quantity takeoffs and pricing, while a general cost estimate can sometimes be based on square footage or project type alone; blueprint-based estimates are more precise because every quantity is measured directly from your plans.',
+        },
+        {
+          question: 'What file formats do you accept for blueprint estimation?',
+          answer: 'We accept PDF, DWG, and most common CAD file formats, and can also work from scanned or hand-drawn plans if digital files aren\'t available.',
+        },
+        {
+          question: 'How long does blueprint estimation take?',
+          answer: 'Standard turnaround for blueprint estimation is 24 to 48 hours from receipt of complete plans, with expedited turnaround available for urgent bid deadlines.',
         },
       ],
     },

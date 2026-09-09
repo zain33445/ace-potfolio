@@ -18,4 +18,5 @@ export const SERVICE_SLUGS = [
   'permit-set-services',
   'electrical-estimating-services',
   'rebar-detailing-services',
+  'blueprint-estimation',
 ] as const;

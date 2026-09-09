@@ -89,18 +89,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteGraphSchema) }}
         />
 
-        {/* Google Tag Manager */}
-        <Script
-          id="gtm-script"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-W2L9L9PW');`,
-          }}
-        />
 
         {/* Preconnect to critical third-party origins (max 4 per Lighthouse) */}
         <link rel="preconnect" href="https://www.googletagmanager.com" />
@@ -148,6 +136,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
       </head>
       <body className="min-h-screen antialiased selection:bg-primary selection:text-white" suppressHydrationWarning>
+
+        {/* Google Tag Manager */}
+        <div dangerouslySetInnerHTML={{
+          __html: `<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W2L9L9PW');</script>`,
+        }} />
 
         {/* Google Tag Manager (noscript) */}
         <noscript
