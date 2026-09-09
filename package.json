@@ -7,7 +7,7 @@
     "build": "next build",
     "pages:build": "npx @opennextjs/cloudflare build",
     "preview": "npx @opennextjs/cloudflare preview",
-    "deploy": "npx @opennextjs/cloudflare deploy",
+    "deploy": "npm run pages:build && npx @opennextjs/cloudflare deploy",
     "start": "next start",
     "clean": "npx rimraf .next .open-next",
     "lint": "tsc --noEmit",
