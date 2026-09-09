@@ -94,24 +94,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://connect.facebook.net" />
 
-        {/* Google Analytics 4 — deferred to after interactive to reduce main-thread work */}
-        {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}`}
-              strategy="lazyOnload"
-            />
-            <Script id="google-analytics" strategy="lazyOnload">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}');
-              `}
-            </Script>
-          </>
-        )}
-        
         {/* Meta Pixel — deferred to after interactive */}
         {process.env.NEXT_PUBLIC_META_PIXEL_ID && (
           <Script
