@@ -81,21 +81,6 @@ const SEO_OVERRIDES: Record<string, Pick<ServicePageCopy, 'seoTitle' | 'seoDescr
     seoDescription:
       'Accurate blueprint estimation and quantity takeoffs prepared directly from your construction plans. Request a free blueprint estimation quote today.',
   },
-  'quantity-surveyor-services': {
-    seoTitle: 'Quantity Surveyor Services | The ACE Services',
-    seoDescription:
-      'Professional quantity surveying and material takeoffs for general contractors and developers nationwide. Get a free quantity surveyor quote today.',
-  },
-  'industrial-estimating': {
-    seoTitle: 'Industrial Estimating Services | The ACE Services',
-    seoDescription:
-      'Precise industrial construction cost estimates for plants, warehouses and manufacturing facilities. Request a free industrial estimate quote today.',
-  },
-  'building-estimating': {
-    seoTitle: 'Building Cost Estimating Services | The ACE Services',
-    seoDescription:
-      'Detailed building cost estimates and material takeoffs for every project type, delivered fast. Get your free building estimate quote in 24-48 hours.',
-  },
   'electrical-estimation': {
     seoTitle: 'Electrical Estimating Services | The ACE Services',
     seoDescription:

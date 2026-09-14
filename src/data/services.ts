@@ -872,8 +872,8 @@ export const services: Service[] = [
       heading: 'Electrical Estimating Services for Division 26 Scope',
       body: [
         'Our electrical estimating services cover the full CSI Division 26 scope: service and distribution equipment, branch circuits and conductor, wiring devices, lighting and lighting controls, motor and equipment connections, low-voltage rough-in where it is in contract, grounding and bonding, site and exterior electrical, temporary power, and testing and commissioning allowances. Every quantity is counted directly off your E-sheets, panel schedules, and fixture schedule and priced at current market rates, then delivered in an editable Excel spreadsheet alongside a PDF report.',
-        "We've built a CSI Division 26 electrical breakdown into 16 of our completed cost estimates, totaling $926,744 in electrical scope. Across those projects, electrical work ran a median of 9.3% of total project cost, with a range from 0.5% to 24.0% — proof that a flat percentage rule of thumb is not a reliable way to price electrical scope. On Comstock San Diego, a 3,326 sf project, electrical came to $146,085, or 16.0% of the total. On Pinnacle Montessori School, 17,366 sf, electrical was $135,181, just 4.4% of the total. On Lucky Hair Salloon, a dense 1,004 sf fit-out, electrical reached $64,026 — 24.0% of the total. And on Wildlife Pickleball Park, a site-work project rather than a building, electrical was just $4,775, or 0.5% of total cost.",
-        "A small fit-out with dense devices and lighting runs far higher as a percentage of total cost than a large, simple structure — which is exactly why a counted takeoff protects your bid where a percentage rule of thumb loses it. These figures are quantity takeoffs and cost estimates rather than electrical design or code review, which we handle separately as an engineering service.",
+        "We've built a CSI Division 26 electrical breakdown into 16 of our completed cost estimates, totaling $926,744 in electrical scope. Across those projects, electrical work ran a median of 9.3% of total project cost, with a range from 0.5% to 24.0% — proof that a flat percentage rule of thumb is not a reliable way to price electrical scope. On Comstock San Diego, a 3,326 sf project, electrical came to $146,085, or 16.0% of the total. On Pinnacle Montessori School, 17,366 sf, electrical was $135,181, just 4.4% of the total. On Lucky Hair Saloon, a dense 1,004 sf fit-out, electrical reached $64,026, 24.0% of the total. And on Wildlife Pickleball Park, a site-work project rather than a building, electrical was just $4,775, or 0.5% of total cost.",
+        "A small fit-out with dense devices and lighting runs far higher as a percentage of total cost than a large, simple structure, which is exactly why a counted takeoff protects your bid where a percentage rule of thumb loses it. These figures are quantity takeoffs and cost estimates rather than electrical design or code review, which we handle separately as an engineering service.",
         'If your electrical scope is part of a larger bid, our Construction Cost Estimating service can fold this Division 26 breakdown into a full CSI cost estimate across every trade, and our free Calculator gives you a fast ballpark before you request a formal takeoff.',
       ],
       benefits: [
@@ -910,6 +910,10 @@ export const services: Service[] = [
         {
           question: 'What drawings do you need to start an electrical estimate?',
           answer: 'At minimum we need your E-sheets, panel schedules, and a fixture schedule. Specifications and addenda help us confirm device types, ratings, and any low-voltage scope that is in contract.',
+        },
+        {
+          question: 'What are common electrical estimating mistakes that cost contractors money?',
+          answer: "Even experienced contractors lose margin on electrical scope through a handful of recurring mistakes. Pricing electrical as a flat percentage of total project cost is the most common, as our own data shows, electrical scope ranged from 0.5% to 24.0% of total cost across similar-sized projects, so a rule-of-thumb percentage can just as easily overprice a simple structure as underprice a dense fit-out. Missing low-voltage scope (fire alarm, data, security) because it wasn't clearly called out in the contract is another frequent gap, along with pricing devices and gear against outdated unit costs instead of current market rates. A counted, Division 26-specific takeoff avoids all three by pricing exactly what's on your drawings, not an average.",
         },
       ],
     },
@@ -1134,6 +1138,327 @@ export const services: Service[] = [
           answer: 'Standard turnaround for blueprint estimation is 24 to 48 hours from receipt of complete plans, with expedited turnaround available for urgent bid deadlines.',
         },
       ],
+    },
+  },
+  {
+    id: 'SVC_QS',
+    slug: 'quantity-surveyor-services',
+    seoTitle: 'Quantity Surveyor Services | The ACE Services',
+    seoDescription:
+      'Professional quantity surveying and material takeoffs for general contractors and developers nationwide. Get a free quantity surveyor quote today.',
+    title: 'Quantity Surveyor Services',
+    icon: 'SVC_EST',
+    tagline: 'Cost Control & Contract Management',
+    category: 'ESTIMATING',
+    description:
+      'Quantity surveyor services, pre-construction cost planning, tender analysis, contract administration, and final account settlement to keep your construction budget under control from first estimate to project closeout.',
+    summary:
+      'Quantity surveyor services, pre-construction cost planning, tender analysis, contract administration, and final account settlement to keep your construction budget under control from first estimate to project closeout.',
+    details: [
+      'Pre-construction cost planning and budget development based on your project scope and drawings.',
+      'Tender and bid analysis that compares contractor pricing on a true apples-to-apples basis, not just the lowest number.',
+      'Contract preparation, negotiation, and ongoing change and variation management throughout construction.',
+      'Progress payment certification and final account settlement delivered as clear, audit-ready reports.',
+    ],
+    features: [
+      'Pre-Construction Cost Planning',
+      'Tender & Bid Analysis',
+      'Contract Drafting & Negotiation',
+      'Change & Variation Management',
+      'Progress Payment Certification',
+      'Final Account Settlement',
+    ],
+    startingPrice: 'Custom',
+    turnaround: '24-48 hours',
+    stats: [
+      { label: 'SCOPE', value: 'Full-Lifecycle' },
+      { label: 'TURNAROUND', value: '24-48h' },
+      { label: 'COVERAGE', value: 'Cost + Contract' },
+      { label: 'FORMAT', value: 'XLS + PDF' },
+    ],
+    process: [
+      {
+        title: 'Consultation & Scope Review',
+        description:
+          'We review your project scope, drawings, and timeline to define the quantity surveying deliverables you need.',
+      },
+      {
+        title: 'Cost Planning & Budget Report',
+        description:
+          'We prepare an itemized cost plan and budget report your team can use for financing, bidding, or approvals.',
+      },
+      {
+        title: 'Contract & Tender Support',
+        description:
+          'We analyze bids, support contract negotiation, and track variations as the project moves into construction.',
+      },
+      {
+        title: 'Certification & Final Account',
+        description:
+          'We certify progress payments throughout construction and finalize accounts and cost reporting at closeout.',
+      },
+    ],
+    ctaLabel: 'EXPLORE QUANTITY SURVEYOR',
+    seoContent: {
+      heading: 'Full-Lifecycle Quantity Surveyor Services for U.S. Contractors and Developers',
+      body: [
+        'Cost overruns rarely come from one bad decision, they build up from unclear budgets, unchecked variations, and contractor invoices no one is independently verifying. Our quantity surveyor services give general contractors, developers, and investors a dedicated cost-control function across the entire project lifecycle, from the first budget estimate through final account settlement.',
+        "A quantity surveyor's job goes beyond estimating. We analyze competing bids so you're comparing true value, not just the lowest number; draft and negotiate contracts that reduce dispute risk; track every scope change and its cost impact as it happens; and certify progress payments so you know exactly what's owed and why at every draw.",
+        "Quantity surveying works best paired with the documentation it's built on. Our Cost Estimating team can prepare the initial takeoff your cost plan is based on, and our Project Management team can align your payment schedule with the CPM schedule driving construction sequencing.",
+      ],
+      benefits: [
+        {
+          title: 'Independent Cost Control',
+          description: "A dedicated quantity surveyor verifies contractor invoices and certifies payments, so you're never paying for work that wasn't actually done.",
+        },
+        {
+          title: 'Fewer Disputes',
+          description: 'Clear contracts and documented variation tracking reduce the ambiguity that leads to costly change-order disputes.',
+        },
+        {
+          title: 'Full Financial Visibility',
+          description: 'From the first budget to the final account, you get an audit-ready record of exactly where every dollar went.',
+        },
+      ],
+      faqs: [
+        {
+          question: 'What does a quantity surveyor actually do?',
+          answer: 'A quantity surveyor manages the financial and contractual side of a construction project, estimating and controlling costs, analyzing bids, drafting and negotiating contracts, tracking scope changes, and certifying payments from initial planning through final account settlement.',
+        },
+        {
+          question: 'When should I bring in a quantity surveyor?',
+          answer: 'Ideally at the pre-construction stage, so your cost plan and contracts are solid before bidding begins, but quantity surveyor services also add value mid-project for cost control, variation tracking, and payment certification on projects already underway.',
+        },
+        {
+          question: 'Is quantity surveying the same as cost estimating?',
+          answer: "Not quite. Cost estimating produces the initial pricing for your project, while quantity surveying covers that estimate plus the ongoing financial and contractual management through the full project lifecycle. If you only need a one-time bid number, our Cost Estimating service is the right fit; if you need cost control through the life of the project, quantity surveyor services are built for that.",
+        },
+      ],
+      highlightSection: {
+        heading: 'Quantity Surveyor vs. Cost Estimator: What\u2019s the Difference?',
+        body: [
+          'People often use "quantity surveyor" and "cost estimator" interchangeably, but they cover different parts of a project. A cost estimator focuses on producing an accurate price for a defined scope of work, typically at the bidding stage. A quantity surveyor covers that same estimating function, then continues through the project as the ongoing financial manager, analyzing tenders, negotiating contracts, tracking variations, certifying payments, and closing out final accounts.',
+          'In short: every quantity surveyor does cost estimating, but not every cost estimate comes with a quantity surveyor\u2019s ongoing contract and cost management. If you only need a one-time bid number, our Cost Estimating service is the right fit; if you need cost control through the life of the project, quantity surveyor services are built for that.',
+        ],
+      },
+    },
+  },
+  {
+    id: 'SVC_BLD',
+    slug: 'building-estimating',
+    seoTitle: 'Building Cost Estimating Services | The ACE Services',
+    seoDescription:
+      'Detailed building cost estimates and material takeoffs for every project type, delivered fast. Get your free building estimate quote in 24-48 hours.',
+    title: 'Building Estimating',
+    icon: 'SVC_EST',
+    tagline: 'Cost Estimating',
+    category: 'ESTIMATING',
+    description:
+      'Building estimating services, detailed cost estimates and quantity takeoffs for residential, commercial, and institutional building projects, built directly from your drawings and checked against local code requirements.',
+    summary:
+      'Building estimating services, detailed cost estimates and quantity takeoffs for residential, commercial, and institutional building projects, built directly from your drawings and checked against local code requirements.',
+    details: [
+      'Cost estimates and material takeoffs covering residential, commercial, and institutional building projects.',
+      'Quantities measured directly from architectural and structural drawings using digital takeoff software.',
+      'Estimates checked against local building codes and regulations to avoid budget surprises tied to compliance.',
+      'Editable Excel spreadsheets and professional PDF reports delivered for every building estimate.',
+    ],
+    features: [
+      'Residential Building Estimates',
+      'Commercial Building Estimates',
+      'Institutional Building Estimates',
+      'Material Takeoffs',
+      'Code-Compliant Cost Planning',
+      'Bid-Ready Estimate Packages',
+    ],
+    startingPrice: 'Custom',
+    turnaround: '24-48 hours',
+    stats: [
+      { label: 'SCOPE', value: 'Residential + Commercial' },
+      { label: 'TURNAROUND', value: '24-48h' },
+      { label: 'COMPLIANCE', value: 'Code-Aware' },
+      { label: 'FORMAT', value: 'XLS + PDF' },
+    ],
+    process: [
+      {
+        title: 'Blueprint & Scope Review',
+        description:
+          'We review your architectural and structural drawings to confirm project scope, building type, and any local code considerations.',
+      },
+      {
+        title: 'Quantity Takeoff',
+        description:
+          'Every material and labor quantity is measured directly from your drawings using digital takeoff software.',
+      },
+      {
+        title: 'Cost Analysis',
+        description:
+          'Quantities are priced against current regional material and labor rates and organized for budgeting or bidding.',
+      },
+      {
+        title: 'Delivery',
+        description:
+          'Your building estimate is delivered as an editable Excel spreadsheet and a professional PDF report, ready to submit.',
+      },
+    ],
+    ctaLabel: 'EXPLORE BUILDING ESTIMATING',
+    seoContent: {
+      heading: 'Building Estimating Services for Every Project Type',
+      body: [
+        "Whether you're building a single-family home, a retail plaza, or an institutional facility, an accurate building estimate is what separates a winning bid from a losing one. Our building estimating services cover residential, commercial, and institutional construction, with quantities and costs built directly from your drawings rather than rough square-footage guesswork.",
+        "Different building types carry different cost drivers, a residential build is priced differently than a multi-tenant commercial structure or a code-heavy institutional facility like a school or clinic. Our estimators account for the specific materials, methods, and local code requirements each building type demands, so your estimate reflects the real project in front of you, not a generic average.",
+        "Building estimates work best as part of a coordinated pre-construction package. If your plans need refinement first, our Architectural Services team can tighten up drawings before the takeoff begins, and our Project Management team can turn your locked budget into a construction schedule ready for execution.",
+      ],
+      benefits: [
+        {
+          title: 'Accurate Across Building Types',
+          description: 'Whether residential, commercial, or institutional, your estimate reflects the specific materials and code requirements of that building type.',
+        },
+        {
+          title: 'Code-Aware Budgeting',
+          description: 'Estimates account for local building code and regulatory requirements, reducing the risk of compliance-driven cost surprises.',
+        },
+        {
+          title: 'Bid-Ready Documentation',
+          description: 'Every estimate is delivered in a professional, itemized format ready to submit to a client or general contractor.',
+        },
+      ],
+      faqs: [
+        {
+          question: 'What types of building projects do you estimate?',
+          answer: 'We estimate residential, commercial, and institutional building projects, including single-family and multi-family residential, retail and office commercial space, and institutional facilities like schools and healthcare buildings.',
+        },
+        {
+          question: 'Do building estimates account for local building codes?',
+          answer: "Yes. We check estimates against applicable local building codes and regulations so your budget reflects compliance requirements specific to your project's jurisdiction, not just national averages.",
+        },
+        {
+          question: 'How is building estimating different from residential or commercial estimating?',
+          answer: 'Building estimating is the umbrella service covering all building types; our residential and commercial estimating services apply the same core process with pricing and code considerations tailored specifically to those project types.',
+        },
+      ],
+      highlightSection: {
+        heading: "What\u2019s Included in a Building Estimate",
+        body: [
+          'A complete building estimate from The ACE Services includes:',
+          '\u2022 A full material takeoff broken out by CSI MasterFormat division',
+          '\u2022 Labor cost estimates by trade and project phase',
+          '\u2022 Equipment and general conditions costs where applicable',
+          '\u2022 Regional material and labor pricing specific to your project location',
+          '\u2022 An editable Excel spreadsheet plus a professional PDF summary report',
+        ],
+      },
+    },
+  },
+  {
+    id: 'SVC_IND',
+    slug: 'industrial-estimating',
+    seoTitle: 'Industrial Estimating Services | The ACE Services',
+    seoDescription:
+      'Precise industrial construction cost estimates for plants, warehouses and manufacturing facilities. Request a free industrial estimate quote today.',
+    title: 'Industrial Estimating',
+    icon: 'SVC_EST',
+    tagline: 'Cost Estimating',
+    category: 'ESTIMATING',
+    description:
+      'Industrial estimating services, quantity takeoffs and cost estimates for complex industrial construction, covering chemical, oil and gas, manufacturing, and processing facilities for EPC contractors, owners, and investors nationwide.',
+    summary:
+      'Industrial estimating services, quantity takeoffs and cost estimates for complex industrial construction, covering chemical, oil and gas, manufacturing, and processing facilities for EPC contractors, owners, and investors nationwide.',
+    details: [
+      'Industrial cost estimates covering chemical and petrochemical, oil and gas, mining and metals, and manufacturing facilities.',
+      'Specialized equipment and process-system pricing that goes beyond standard commercial cost estimating.',
+      'Estimates audited and analyzed by professional construction estimators for EPC contractors, owners, and investors.',
+      'Editable Excel spreadsheets and professional PDF reports delivered for every industrial estimate.',
+    ],
+    features: [
+      'Chemical & Petrochemical Estimating',
+      'Oil & Gas Estimating',
+      'Mining & Metals Estimating',
+      'Manufacturing & Processing Facility Estimating',
+      'Power & Energy Facility Estimating',
+      'Warehouse & Logistics Estimating',
+    ],
+    startingPrice: 'Custom',
+    turnaround: '24-48 hours',
+    stats: [
+      { label: 'SECTORS', value: '12+' },
+      { label: 'TURNAROUND', value: '24-48h' },
+      { label: 'SCOPE', value: 'EPC-Ready' },
+      { label: 'FORMAT', value: 'XLS + PDF' },
+    ],
+    process: [
+      {
+        title: 'Scope & Systems Review',
+        description:
+          'We review your project scope, process systems, and specialized equipment requirements to define the full estimating scope.',
+      },
+      {
+        title: 'Quantity Takeoff',
+        description:
+          'Materials, equipment, and process-system components are measured and itemized directly from your drawings and specifications.',
+      },
+      {
+        title: 'Specialized Cost Analysis',
+        description:
+          'Quantities are priced using industrial-specific rates for specialized equipment, materials, and skilled labor.',
+      },
+      {
+        title: 'Delivery & Audit Review',
+        description:
+          'Your estimate is audited by a second estimator before delivery as an editable Excel spreadsheet and PDF report.',
+      },
+    ],
+    ctaLabel: 'EXPLORE INDUSTRIAL ESTIMATING',
+    seoContent: {
+      heading: 'Industrial Estimating Services for Complex, Capital-Intensive Projects',
+      body: [
+        'Industrial construction projects, factories, processing plants, refineries, and manufacturing facilities, are among the most capital-intensive and technically complex builds in the industry. Our industrial estimating services support EPC contractors, owners, engineering firms, and financial investors with cost estimates built for that complexity, not adapted from a standard commercial template.',
+        'Industrial estimating differs from commercial estimating in scope and stakes. Where commercial projects focus on architectural finishes and occupant comfort, industrial projects prioritize process functionality, specialized equipment, and strict regulatory and safety compliance.',
+        'Given the scale of industrial investment, an estimating error carries outsized consequences, which is why every industrial estimate is reviewed by a second estimator before delivery. Once your industrial budget is set, our Project Management team can build the CPM schedule needed to sequence complex, multi-trade industrial construction.',
+      ],
+      benefits: [
+        {
+          title: 'Built for Industrial Complexity',
+          description: "Estimates account for specialized equipment, process systems, and safety requirements that standard commercial estimating doesn't cover.",
+        },
+        {
+          title: 'Audited Accuracy',
+          description: 'Every industrial estimate is reviewed by a second estimator before delivery, reducing the risk of costly errors on high-stakes projects.',
+        },
+        {
+          title: 'Sector-Specific Expertise',
+          description: 'From petrochemical to pharmaceutical to power generation, estimates reflect the specific cost drivers of your industrial sector.',
+        },
+      ],
+      faqs: [
+        {
+          question: 'What industrial sectors do you provide estimating for?',
+          answer: 'We estimate across chemical and petrochemical, oil and gas, mining and metals, marine, pharmaceutical, food processing, biofuels, hydrocarbon processing, polymers and fertilizers, paper and pulp, and refrigeration and packaging facilities, among other industrial sectors.',
+        },
+        {
+          question: 'How is industrial estimating different from commercial estimating?',
+          answer: 'Industrial estimating involves specialized equipment, process systems, and stricter regulatory and safety compliance than commercial estimating, which focuses more on architectural finishes and occupant comfort. Industrial projects also typically carry larger budgets and more complex, capital-intensive systems.',
+        },
+        {
+          question: 'Who uses your industrial estimating services?',
+          answer: 'Our industrial estimating services support EPC contractors, facility owners, engineering firms, financial investors, and joint venture partners planning or bidding on industrial construction projects.',
+        },
+      ],
+      highlightSection: {
+        heading: 'Industries We Estimate For',
+        body: [
+          '\u2022 Chemical & Petrochemical: process units, tank farms, and specialized piping systems',
+          '\u2022 Mining & Metals: processing facilities, conveyance systems, and heavy-duty infrastructure',
+          '\u2022 Oil & Gas: refineries, processing units, and pipeline-adjacent facilities',
+          '\u2022 Marine & Drill Platforms: offshore and marine-rated structures and equipment',
+          '\u2022 Pharmaceutical Plants: cleanroom construction and regulatory-compliant systems',
+          '\u2022 Food Ingredients & Biofuels: processing lines and specialized production equipment',
+          '\u2022 Hydrocarbon Processing & Refining: large-scale process systems and safety-critical infrastructure',
+          '\u2022 Polymers & Fertilizers: chemical processing and specialized material handling',
+          '\u2022 Paper & Pulp: heavy industrial processing facilities',
+          '\u2022 Refrigeration & Packing: cold-chain and packaging-line infrastructure',
+        ],
+      },
     },
   },
 ];
