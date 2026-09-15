@@ -378,6 +378,7 @@ export const StaggeredMenu = ({
                 {socialItems.map((s, i) => (
                   <li key={s.label + i} className="sm-socials-item">
                     <a href={s.link} target="_blank" rel="noopener noreferrer" className="sm-socials-link">
+                      {s.icon && <span className="sm-socials-icon">{s.icon}</span>}
                       {s.label}
                     </a>
                   </li>

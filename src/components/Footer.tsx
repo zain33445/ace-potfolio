@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { TextRepel } from "@/src/components/ui/text-repel";
 import TextPressure from "@/src/components/ui/TextPressure";
+import { SOCIAL_LINKS } from "@/src/data/social-links";
 
 // Note:
 // Make sure the font you're using supports all the variable properties.
@@ -229,6 +230,22 @@ export default function Footer() {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Social Links */}
+        <div className="flex justify-center gap-6 my-10">
+          {SOCIAL_LINKS.map((s) => (
+            <a
+              key={s.label}
+              href={s.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/70 hover:text-white transition-colors"
+              aria-label={s.label}
+            >
+              {s.icon}
+            </a>
+          ))}
         </div>
 
         <div

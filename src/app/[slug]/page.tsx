@@ -387,7 +387,7 @@ async function SubServicesSidebar({ service }: { service: Service }) {
           </Link>
         </div>
       )}
-      {subServices.length > 0 && (
+      {/* {subServices.length > 0 && (
         <>
           <div className="mb-4 font-mono text-sm font-bold uppercase tracking-[0.2em] text-primary">
             Sub Services
@@ -417,7 +417,7 @@ async function SubServicesSidebar({ service }: { service: Service }) {
             })}
           </div>
         </>
-      )}
+      )} */}
       {relatedServices.length > 0 && (
         <>
           <div className="mb-4 font-mono text-sm font-bold uppercase tracking-[0.2em] text-primary">
@@ -605,7 +605,7 @@ function ProcessSection({ service }: { service: Service }) {
       <h2 className="font-[family-name:var(--font-space)] text-4xl font-bold text-on-background md:text-5xl mb-12">
         How It Works
       </h2>
-      <div className="grid gap-8 md:grid-cols-4">
+      <div className="grid gap-8 md:grid-cols-1">
         {service.process.map((step, i) => (
           <div key={step.title} className="relative">
             <div className="flex items-center gap-2 ">
@@ -614,13 +614,15 @@ function ProcessSection({ service }: { service: Service }) {
                   {String(i + 1).padStart(2, "0")}.
                 </span>
               </div>
-              <h3 className="font-[family-name:var(--font-space)] text-xl font-bold text-on-background mb-2">
+              <div>
+              <h3 className="font-[family-name:var(--font-space)] text-xl font-bold text-left text-on-background mb-2">
                 {step.title}
               </h3>
-            </div>
             <p className="font-sans text-base leading-relaxed text-on-surface-variant">
               {step.description}
             </p>
+            </div>
+            </div>
           </div>
         ))}
       </div>

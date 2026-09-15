@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { usePin } from '../PinContext';
 import dynamic from 'next/dynamic';
+import { SOCIAL_LINKS } from '@/src/data/social-links';
 
 const StaggeredMenu = dynamic(() => import('@/src/components/ui/StaggeredMenu'), { ssr: false });
 
@@ -15,13 +16,6 @@ const menuItems = [
   { label: 'About Us', ariaLabel: 'Learn about us', link: '/about-us/' },
   { label: 'Contact', ariaLabel: 'Contact us', link: '/contact-us/' },
   { label: 'Calculator', ariaLabel: 'Estimate costs', link: '/calculator/' }
-];
-
-const socialItems = [
-  // { label: 'Twitter', link: 'https://twitter.com' },
-  { label: 'Facebook', link: 'https://www.facebook.com/theaceservicesllc/' },
-  { label: 'Instagram', link: 'https://www.instagram.com/aceservicesllc/' },
-  { label: 'LinkedIn', link: 'https://www.linkedin.com/company/aceservicesllc/' }
 ];
 
 
@@ -215,7 +209,7 @@ export default function Nav() {
         isFixed
         className={`desktop-nav:hidden ${navScrolled ? 'sm-in-pill' : ''}`}
         items={menuItems as any}
-        socialItems={socialItems as any}
+        socialItems={SOCIAL_LINKS as any}
         displaySocials
         displayItemNumbering={true}
         logoUrl="/aceLogo.webp"

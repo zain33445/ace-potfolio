@@ -212,10 +212,22 @@
   text-decoration: none;
   position: relative;
   padding: 2px 0;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   transition:
     color 0.3s ease,
     opacity 0.3s ease;
+}
+
+.sm-socials-icon {
+  display: inline-flex;
+  align-items: center;
+}
+
+.sm-socials-icon svg {
+  width: 20px;
+  height: 20px;
 }
 
 .sm-socials-link:hover {

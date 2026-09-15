@@ -15,7 +15,7 @@ export const organizationSchema = {
     'The ACE Services is a pre-construction services firm delivering AACE Class 3 cost estimates, material takeoffs, MEP shop drawings, 3D architectural renderings, and permit sets for general contractors nationwide.',
   url: SITE_URL,
   logo: `${SITE_URL}/aceLogo.webp`,
-  sameAs: ['https://www.linkedin.com/company/aceservicesllc/', GBP_URL],
+  sameAs: ['https://www.facebook.com/share/1DWoUEzLig/', 'https://www.instagram.com/aceservicesllc?stkn=azlqMGRyOTNlbmQ3', 'https://www.linkedin.com/company/ace-services-official/', GBP_URL],
   areaServed: {
     '@type': 'Country',
     name: 'United States',
@@ -53,7 +53,7 @@ export const localBusinessSchema = {
     opens: '09:00',
     closes: '18:00',
   },
-  sameAs: ['https://www.linkedin.com/company/aceservicesllc/', GBP_URL],
+  sameAs: ['https://www.facebook.com/share/1DWoUEzLig/', 'https://www.instagram.com/aceservicesllc?stkn=azlqMGRyOTNlbmQ3', 'https://www.linkedin.com/company/ace-services-official/', GBP_URL],
 };
 
 export const serviceSchema = {

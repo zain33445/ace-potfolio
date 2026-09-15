@@ -91,9 +91,9 @@ export const services: Service[] = [
     tagline: 'Budgeting & Bidding',
     category: 'ESTIMATING',
     description:
-      'Detailed construction cost estimating services, quantity takeoffs, and cost analysis to support accurate budgeting, competitive bidding, and confident project decisions, delivered nationwide by The ACE Services.',
+      'Construction cost estimating services, quantity takeoffs, and cost analysis to support accurate budgeting, competitive bidding, and confident project decisions, delivered nationwide by The ACE Services.',
     summary:
-      'Detailed construction cost estimating services, quantity takeoffs, and cost analysis to support accurate budgeting, competitive bidding, and confident project decisions, delivered nationwide by The ACE Services.',
+      'Construction cost estimating services, quantity takeoffs, and cost analysis to support accurate budgeting, competitive bidding, and confident project decisions, delivered nationwide by The ACE Services.',
     details: [
       'Construction cost estimate packages prepared across residential, commercial, and industrial construction sectors nationwide.',
       'Detailed quantity takeoffs and material lists built directly from your blueprints and construction drawings.',
@@ -118,171 +118,175 @@ export const services: Service[] = [
     ],
     process: [
       {
-        title: 'Blueprint Review',
+        title: 'Client Consultation',
         description:
-          'We review your blueprints, drawings, and project scope to confirm what needs to be estimated and flag any missing information before work begins.',
+          'Project scope, timeline, and location are discussed upfront to define the full estimating deliverable.',
       },
       {
-        title: 'Quantity Takeoff',
+        title: 'Document Review',
         description:
-          'Our estimators measure and itemize all material and labor quantities directly from your construction drawings using digital takeoff software.',
+          'Drawings and specifications are analyzed; if your blueprints aren\'t finalized yet, this step flags what\'s missing.',
       },
       {
-        title: 'Cost Analysis & Rate Calibration',
+        title: 'Quantity Takeoff & Cost Analysis',
         description:
-          'Quantities are priced against current regional market rates and organized into a clear format for budgeting or competitive bidding.',
+          'Materials and labor are measured and priced against current local rates using digital takeoff software.',
       },
       {
-        title: 'Delivery',
+        title: 'Reporting & Delivery',
         description:
-          'Your final construction cost estimate is delivered as an editable Excel spreadsheet and a professional PDF report, ready for bidding.',
+          'A clear, itemized estimate is delivered along with any cost-saving recommendations as an editable Excel spreadsheet and PDF report.',
       },
     ],
     ctaLabel: 'EXPLORE ESTIMATING',
     seoContent: {
-      heading: 'Precision Construction Cost Estimating Services Nationwide',
+      heading: 'What Is Construction Estimation? Types, Process, and Why It Matters',
       body: [
-        'In today\'s volatile material market, guesswork in construction cost estimating leads to lost bids and shrinking margins. At The ACE Services, our professional construction cost estimating services provide general contractors, subcontractors, developers, and architects across the USA with highly accurate, data-driven material takeoffs, labor pricing, and AACE Class 3 cost estimates organized to the CSI MasterFormat.',
-        'Whether you are bidding on a complex commercial build, managing a residential development, or planning an industrial facility, our expert cost estimators leverage industry-leading estimating software and up-to-date regional pricing databases to ensure your bids are both competitive and profitable. Every estimate reflects real material costs, labor rates, and market conditions specific to your project location.',
-        'A precise estimate is only as good as the plans it is based on. If your current blueprints lack detail, our Architectural Services team can refine your shop drawings before we begin the quantity survey. Once your budget is locked, our Project Management experts can develop CPM schedules to align procurement with cash flow projections. Backed by ISO 9001-aligned processes, our estimating team has supported contractors across 35 U.S. states since 2019.'
+        "Construction estimation is the process of forecasting the total cost of a construction project, materials, labor, equipment, subcontractors, overhead, and contingencies, before a single shovel goes in the ground. It's the financial groundwork every later decision gets built on, from securing financing to submitting a competitive bid.",
+        'A construction estimate actually includes materials (every item the project requires, quantified directly from the drawings), labor (the hours and trades needed to install those materials, priced at current wage rates), equipment (machinery, tools, and temporary facilities required to execute the work), subcontractor pricing (costs for specialty trades not self-performed), overhead and profit (the business costs and margin built into a competitive bid), and contingency (an allowance for the unknowns every project encounters).',
+        'Poor estimates cause problems that compound: budget overruns, cash flow strain mid-project, disputes with contractors over what was actually included, and financing that falls short of what construction actually costs. Accurate estimation, by contrast, supports realistic budgeting, stronger and more competitive bids, better cash flow planning, and fewer disputes once construction is underway.',
       ],
       benefits: [
         {
           title: 'Win More Bids',
-          description: 'Accurate, itemized construction cost estimates mean you can bid with confidence, knowing your margins are protected from day one.'
+          description: 'Accurate, itemized construction cost estimates mean you can bid with confidence, knowing your margins are protected from day one.',
         },
         {
           title: 'Save Valuable Time',
-          description: 'Free up your internal team to focus on project execution while our estimators handle the time-consuming quantity surveying and takeoff work.'
+          description: 'Free up your internal team to focus on project execution while our estimators handle the time-consuming quantity surveying and takeoff work.',
         },
         {
           title: 'Nationwide Accuracy',
-          description: 'We adjust labor and material rates based on your specific geographic location, ensuring every estimate reflects real regional construction costs.'
-        }
+          description: 'We adjust labor and material rates based on your specific geographic location, ensuring every estimate reflects real regional construction costs.',
+        },
       ],
       faqs: [
         {
-          question: 'What is the turnaround time for a construction cost estimate?',
-          answer: 'Our standard turnaround time for construction cost estimating services is 24 to 48 hours, depending on project size and complexity. Expedited turnaround is available for urgent bid deadlines.'
+          question: "What's the difference between a preliminary estimate and a detailed estimate?",
+          answer: 'A preliminary estimate is a rough, early-stage number used to test feasibility, while a detailed estimate is an itemized, quantity-takeoff-based number accurate enough to submit in a competitive bid.',
         },
         {
-          question: 'Do you provide editable Excel spreadsheets with your estimates?',
-          answer: 'Yes. Every cost estimate includes a fully editable Excel spreadsheet alongside a professional PDF summary report, so you can adjust margins and rates as needed.'
+          question: 'How accurate is a typical construction estimate?',
+          answer: 'Accuracy depends on the estimate type: a preliminary estimate might carry a wide range, while a detailed, AACE Class 3 bid-ready estimate is developed to a much tighter accuracy range appropriate for competitive bidding.',
         },
         {
-          question: 'Who can benefit from your construction cost estimating services?',
-          answer: 'Our estimating services support general contractors, subcontractors (electrical, plumbing, framing, and more), architects, and real estate developers across residential, commercial, and industrial sectors nationwide.'
-        }
+          question: 'Who prepares a construction cost estimate?',
+          answer: 'Estimates are typically prepared by a professional construction estimator or quantity surveyor, either on staff or outsourced to a dedicated estimating service, using digital takeoff software and current regional cost data.',
+        },
       ],
       highlightSection: {
-        heading: 'Our Estimating Standards: AACE Class 3 & CSI MasterFormat',
+        heading: 'Types of Construction Estimates (by Project Stage)',
         body: [
-          'Every cost estimate produced by The ACE Services follows AACE International Class 3 estimating standards, meaning quantities and costs are developed from a defined project scope with an accuracy range suitable for budget approval and competitive bidding. Cost data is organized using the CSI MasterFormat, the standard classification system used across the U.S. construction industry, so your estimate integrates cleanly with your existing bid documents, specifications, and project management software.',
-          'This standards-based approach is why general contractors, architects, and developers nationwide trust our construction cost estimating services for budgets they can defend to lenders, investors, and project owners.'
-        ]
-      }
+          'Preliminary (Budgetary) Estimate: A rough, early-stage number used to test feasibility before design is finalized \u2014 useful for initial financing conversations, but not accurate enough to bid or build from.',
+          'Detailed (Bid) Estimate: An itemized, quantity-takeoff-based estimate accurate enough to submit in a competitive bid, typically developed to AACE Class 3 standards. This is the type of estimate our Construction Cost Estimating service delivers.',
+          'Change Order Estimate: Prices the cost impact of a scope or design change made after construction has already started, so both sides agree on the number before work proceeds.',
+        ],
+      },
     }
   },
   {
     id: 'SVC_ARC',
     slug: 'architectural-services',
-    seoTitle: 'Architectural Drafting & Permit Services',
+    seoTitle: 'Residential Pre-Construction Services | The ACE Services',
     seoDescription:
-      'Shop drawings, permit sets, submittals and 3D rendering for contractors and developers nationwide. Request a free quote to speed up your next approval.',
-    title: 'Architectural Drafting & Permit Services',
+      'Residential construction support, cost estimating, architectural drafting, and permit sets for single-family, multi-family, and custom residential builds nationwide, from initial concept through permit-ready documentation.',
+    title: 'Residential Pre-Construction Services',
     icon: 'SVC_ARC',
     tagline: 'Documentation & Visualization',
     category: 'ARCHITECTURAL',
     description:
-      'Construction documentation and visualization services designed to support permitting, cross-discipline coordination, and project presentation, architectural shop drawings, permit sets, and 3D renderings delivered nationwide.',
+      'Residential construction support, cost estimating, architectural drafting, and permit sets for single-family, multi-family, and custom residential builds nationwide, from initial concept through permit-ready documentation.',
     summary:
-      'Construction documentation and visualization services designed to support permitting, cross-discipline coordination, and project presentation, architectural shop drawings, permit sets, and 3D renderings delivered nationwide.',
+      'Residential construction support, cost estimating, architectural drafting, and permit sets for single-family, multi-family, and custom residential builds nationwide, from initial concept through permit-ready documentation.',
     details: [
-      'Architectural shop drawings prepared for construction, fabrication, and cross-trade coordination.',
-      'Permit sets and submission drawing sets organized to meet municipal review requirements.',
-      'Submittal packages assembled and formatted for architect and owner approval workflows.',
-      'Photorealistic 3D rendering for stakeholder presentation, marketing, and investor buy-in.',
+      'Cost estimating and quantity takeoffs for single-family, multi-family, and custom residential projects.',
+      'Architectural drafting, shop drawings, and permit sets prepared for residential builds and renovations.',
+      'Structural engineering and MEP design support for residential projects requiring PE-sealed documentation.',
+      'Project management and scheduling support to keep residential construction on budget and on time.',
     ],
     features: [
-      'Architectural Shop Drawings',
-      'Permit Sets',
-      'Submission Drawing Sets',
-      'Submittals',
-      '3D Rendering',
+      'Residential Cost Estimating',
+      'Residential Architectural Drafting',
+      'Residential Permit Sets',
+      'Residential Structural & MEP Support',
+      'Residential Project Scheduling',
     ],
     startingPrice: '$50',
     turnaround: '7–10 business days',
     stats: [
-      { label: 'TURNAROUND', value: '7-10 Days' },
-      { label: 'DOCUMENTS', value: 'Shop + Permit' },
-      { label: 'RENDERING', value: '3D' },
-      { label: 'DELIVERY', value: 'DWG + PDF' },
+      { label: 'SCOPE', value: 'Pre-Construction' },
+      { label: 'TURNAROUND', value: '24-48h Estimate' },
+      { label: 'COVERAGE', value: 'Nationwide' },
+      { label: 'FORMAT', value: 'XLS + DWG + PDF' },
     ],
     process: [
       {
-        title: 'Documentation Review',
+        title: 'Consultation & Scope Review',
         description:
-          'We review your existing drawings, sketches, and project requirements to define the full architectural documentation scope.',
+          'We review your residential project scope, drawings, and goals to define which pre-construction services you need.',
       },
       {
-        title: 'Shop Drawing & Set Preparation',
+        title: 'Estimating & Documentation',
         description:
-          'Our drafting team prepares architectural shop drawings, permit sets, and submission drawing sets tailored to your project.',
+          'Our teams prepare cost estimates, architectural drawings, and permit sets tailored to your residential project.',
       },
       {
-        title: 'Coordination & Compliance Check',
+        title: 'Engineering & Coordination',
         description:
-          'Drawings are cross-coordinated with structural and MEP disciplines and checked against local building code requirements.',
+          'Structural and MEP support is coordinated with your architectural documents where your project requires it.',
       },
       {
-        title: 'Presentation & Delivery',
+        title: 'Delivery & Scheduling Support',
         description:
-          'Final drawing sets and 3D renderings are delivered in DWG and PDF formats, ready for submission and client presentation.',
+          'Final documents are delivered, with project scheduling available to carry your budget into construction.',
       },
     ],
     ctaLabel: 'EXPLORE ARCHITECTURAL',
     seoContent: {
-      heading: 'Comprehensive Architectural Drafting & Shop Drawing Services',
+      heading: 'Residential Pre-Construction Services for Builders, Developers, and Homeowners',
       body: [
-        'Clear, coordinated, and code-compliant architectural documentation is the backbone of any successful construction project. The ACE Services provides top-tier architectural drafting services, specializing in architectural shop drawings, permit sets, submittals, and 3D rendering for contractors, developers, and architectural firms nationwide.',
-        'Our drafting team bridges the gap between conceptual design and physical construction. By producing meticulous architectural shop drawings using industry-standard CAD software, we help mitigate on-site errors and streamline the municipal approval process across jurisdictions nationwide.',
-        'Proper architectural documentation integrates seamlessly with our other disciplines. Detailed shop drawings allow our Structural Engineering team to accurately assess load paths, while giving our Cost Estimating division the exact specifications needed to generate pinpoint-accurate material takeoffs and construction cost estimates.'
+        "Building a home, whether a custom single-family residence, a multi-family development, or a renovation, starts long before the first day on site. Our residential construction support covers the pre-construction work that determines whether that project stays on budget and on schedule: cost estimating, architectural drafting, permit sets, and, where needed, structural and MEP engineering.",
+        "We work with individual homeowners planning a custom build, builders bidding residential projects, and developers managing multi-family construction, giving each the specific documentation their project needs rather than a one-size-fits-all package.",
+        "Every residential project is different, which is why our services are modular: some clients need only a Residential Estimate to bid a job, others need a full estimating-to-permit package coordinated across our Architectural Services, Structural Engineering, and Project Management teams.",
       ],
       benefits: [
         {
-          title: 'Accelerated Approvals',
-          description: 'Our permit and submission drawing sets are tailored to meet municipal standards, reducing plan-review revisions and approval delays.'
+          title: 'One Coordinated Team',
+          description: 'Estimating, drafting, permitting, and engineering are handled by teams who coordinate with each other, not separate vendors working from different assumptions.',
         },
         {
-          title: 'Enhanced Coordination',
-          description: 'Identify and resolve design clashes early through precise architectural drafting, preventing costly rework in the field.'
+          title: 'Built for Any Residential Scope',
+          description: 'From a single custom home to a multi-family development, services scale to the size and complexity of your project.',
         },
         {
-          title: 'Stunning Visualizations',
-          description: 'High-quality 3D architectural renderings help secure client buy-in and investment by bringing blueprints to life before construction begins.'
-        }
+          title: 'Nationwide Coverage',
+          description: 'We support residential projects across the U.S., with pricing and documentation reflecting local market and code conditions.',
+        },
       ],
       faqs: [
         {
-          question: 'What file formats do you deliver for architectural drawings?',
-          answer: 'We deliver all final architectural documents in PDF format for easy review and DWG (AutoCAD) format for seamless integration into your existing drafting and design workflows.'
+          question: 'Does The ACE Services build homes, or only handle the pre-construction documentation?',
+          answer: 'We provide pre-construction services, cost estimating, architectural drafting, permit sets, structural and MEP engineering, and project scheduling, for residential projects. We do not perform physical on-site construction; our documentation and estimates are used by your builder or general contractor to execute the build.',
         },
         {
-          question: 'Do you create architectural shop drawings from scratch?',
-          answer: 'We typically work from conceptual designs, sketches, or base architectural plans to develop fully detailed shop drawings ready for permitting, fabrication, and installation.'
+          question: 'Can I use just one service, like a cost estimate, without the full package?',
+          answer: 'Yes. Each service, estimating, drafting, permitting, engineering, and scheduling, can be requested individually or combined into a full pre-construction package, depending on what your project needs.',
         },
         {
-          question: 'How long does a typical architectural permit set take to complete?',
-          answer: 'Standard turnaround for architectural documentation, including permit sets, is 7 to 10 business days, though timelines may vary based on project scale and jurisdictional complexity.'
-        }
+          question: 'Do you work with individual homeowners, or only builders and developers?',
+          answer: 'Both. We support individual homeowners planning a custom home or renovation, as well as builders and developers managing residential projects at scale.',
+        },
       ],
       highlightSection: {
-        heading: 'Software & Tools We Use for Architectural Drafting',
+        heading: "What\u2019s Included in a Residential Pre-Construction Package",
         body: [
-          'Our drafting team produces every architectural shop drawing, permit set, and 3D rendering using industry-standard tools including AutoCAD, Revit, and Bluebeam Revu, the same platforms used by architects, general contractors, and plan reviewers nationwide. This means your DWG and PDF deliverables open cleanly in your existing workflow and integrate directly with your structural and MEP consultants, with no file-conversion guesswork before submission.',
-          'Because our drawings are built to CAD industry standards from the start, revisions, redlines, and coordination with your in-house team move faster at every stage of the permitting and construction process.'
-        ]
-      }
+          "Depending on your project's stage and needs, a full residential pre-construction package can include:",
+          '\u2022 A detailed cost estimate and material takeoff for budgeting and bidding',
+          '\u2022 Architectural drawings and a code-compliant permit set',
+          '\u2022 Structural and MEP engineering documentation where required by your project or jurisdiction',
+          '\u2022 A construction schedule to carry your budget into execution',
+        ],
+      },
     }
   },
   {
@@ -916,6 +920,109 @@ export const services: Service[] = [
           answer: "Even experienced contractors lose margin on electrical scope through a handful of recurring mistakes. Pricing electrical as a flat percentage of total project cost is the most common, as our own data shows, electrical scope ranged from 0.5% to 24.0% of total cost across similar-sized projects, so a rule-of-thumb percentage can just as easily overprice a simple structure as underprice a dense fit-out. Missing low-voltage scope (fire alarm, data, security) because it wasn't clearly called out in the contract is another frequent gap, along with pricing devices and gear against outdated unit costs instead of current market rates. A counted, Division 26-specific takeoff avoids all three by pricing exactly what's on your drawings, not an average.",
         },
       ],
+    },
+  },
+  {
+    id: 'SVC_RES',
+    slug: 'residential-estimating',
+    seoTitle: 'Residential Estimating Services | The ACE Services',
+    seoDescription:
+      'Residential estimating services, cost estimates and material takeoffs for single-family homes, multi-family developments, and custom residential builds, built directly from your plans for builders, developers, and homeowners nationwide.',
+    title: 'Residential Estimating Services',
+    icon: 'SVC_EST',
+    tagline: 'Cost Estimating',
+    category: 'ESTIMATING',
+    description:
+      'Residential estimating services, cost estimates and material takeoffs for single-family homes, multi-family developments, and custom residential builds, built directly from your plans for builders, developers, and homeowners nationwide.',
+    summary:
+      'Residential estimating services, cost estimates and material takeoffs for single-family homes, multi-family developments, and custom residential builds, built directly from your plans for builders, developers, and homeowners nationwide.',
+    details: [
+      'Cost estimates and quantity takeoffs for single-family homes, townhomes, and multi-family residential developments.',
+      'Custom home and renovation estimates built directly from architectural drawings, not square-footage guesswork.',
+      'Material and labor pricing based on current regional rates for your specific project location.',
+      'Editable Excel spreadsheets and professional PDF reports delivered for every residential estimate.',
+    ],
+    features: [
+      'Single-Family Home Estimates',
+      'Multi-Family & Townhome Estimates',
+      'Custom Home Estimates',
+      'Renovation & Addition Estimates',
+      'Material Takeoffs',
+      'Bid-Ready Estimate Packages',
+    ],
+    startingPrice: 'Custom',
+    turnaround: '24-48 hours',
+    stats: [
+      { label: 'SCOPE', value: 'Single & Multi-Family' },
+      { label: 'TURNAROUND', value: '24-48h' },
+      { label: 'CLIENTS', value: 'Homeowner + Builder' },
+      { label: 'FORMAT', value: 'XLS + PDF' },
+    ],
+    process: [
+      {
+        title: 'Blueprint Review',
+        description:
+          'We review your architectural drawings and project scope to confirm exactly what needs to be estimated.',
+      },
+      {
+        title: 'Quantity Takeoff',
+        description:
+          'Every material and labor quantity is measured directly from your plans using digital takeoff software.',
+      },
+      {
+        title: 'Cost Analysis',
+        description:
+          'Quantities are priced against current regional material and labor rates specific to your project\'s location.',
+      },
+      {
+        title: 'Delivery',
+        description:
+          'Your residential estimate is delivered as an editable Excel spreadsheet and a professional PDF report, ready to bid or build.',
+      },
+    ],
+    ctaLabel: 'EXPLORE RESIDENTIAL ESTIMATING',
+    seoContent: {
+      heading: 'Residential Construction Estimating for Builders, Developers, and Homeowners',
+      body: [
+        "Whether you're pricing a custom home, a multi-family development, or a renovation, an accurate residential estimate is what keeps a project on budget from the first shovel of dirt. Our residential estimating services give builders, developers, and homeowners a detailed, bid-ready cost breakdown built directly from your plans.",
+        "Residential projects carry their own cost drivers, finish-level selections, lot conditions, and local permitting requirements all move the number in ways a generic per-square-foot rule of thumb can't capture. Our estimators price your specific plans, not a regional average, so your budget reflects the home you're actually building.",
+        "Residential estimates work best paired with the rest of your pre-construction package. If your plans need tightening first, our Architectural Services team can refine drawings before the takeoff begins, and our Project Management team can turn your locked budget into a construction schedule.",
+      ],
+      benefits: [
+        {
+          title: 'Accurate to Your Plans',
+          description: 'Estimates are built from your actual drawings and finish selections, not a generic per-square-foot average.',
+        },
+        {
+          title: 'Budget With Confidence',
+          description: "Know your real costs before you break ground, whether you're a builder bidding the job or a homeowner planning a custom build.",
+        },
+        {
+          title: 'Fast Turnaround',
+          description: 'Most residential estimates are delivered within 24-48 hours, keeping your project moving.',
+        },
+      ],
+      faqs: [
+        {
+          question: 'Do you estimate custom home builds, or only standard floor plans?',
+          answer: 'We estimate custom homes, standard floor plans, multi-family developments, renovations, and additions alike, every estimate is built from your specific drawings, not a generic template.',
+        },
+        {
+          question: 'Can homeowners request a residential estimate, or is this only for builders?',
+          answer: 'Both. We work with individual homeowners planning a custom build or renovation, as well as builders and developers who need bid-ready estimates for multiple projects.',
+        },
+        {
+          question: 'What information do you need to estimate a residential project?',
+          answer: 'At minimum, we need your architectural drawings or floor plans; structural drawings, finish schedules, and site information help us refine accuracy further.',
+        },
+      ],
+      highlightSection: {
+        heading: 'Single-Family vs. Multi-Family Estimating: What\u2019s Different',
+        body: [
+          "A single-family home estimates prices for one structure's materials, labor, and finishes from the ground up. Multi-family estimating adds layers a single-family estimate doesn't need to account for, repeated unit types priced at scale, shared systems like common-area HVAC and fire suppression, and code requirements that shift once a project crosses the multi-family threshold.",
+          "Renovation and addition estimates carry their own complexity too, since existing conditions, what's already there, and what has to be demolished or worked around, affect cost in ways new construction doesn't. Whichever category your project falls into, our estimators price the version of the project you're actually building, not a generic residential average.",
+        ],
+      },
     },
   },
   {

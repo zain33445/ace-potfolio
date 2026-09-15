@@ -22,4 +22,5 @@ export const SERVICE_SLUGS = [
   'quantity-surveyor-services',
   'building-estimating',
   'industrial-estimating',
+  'residential-estimating',
 ] as const;
