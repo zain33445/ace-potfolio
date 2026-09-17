@@ -28,35 +28,60 @@ export interface ServicePageCopy {
 /**
  * Slug-keyed overrides for WP pages whose CMS copy targets the wrong query.
  *
- * `/warehouses-development` earns 450 impressions/mo at position 68 for
+ * `commercial-construction`, `industrial-construction`, `bridges-construction`,
+ * and `warehouses-development` are now backed by full static `Service` entries
+ * in `src/data/services.ts` — their body content is no longer CMS-owned, only
+ * their `enrich` step still consults this map. The entries below exist purely
+ * as a backstop so the WordPress `enrich` step can never overwrite the new
+ * static title/summary with stale Elementor copy if those WP pages are ever
+ * re-published. `hotels-development` remains the exception: it has no static
+ * entry, so its page body (rawContent) is still CMS-owned.
+ *
+ * `/warehouses-development` earned 450 impressions/mo at position 68 for
  * "data warehouse development services" — a SERP owned entirely by software
- * companies (Google Cloud, Databricks, ScienceSoft). `/hotels-development`
- * matches "hotel development it services" at 69. Both pages read as though
- * ACE builds the buildings: "development" 12-14x, "estimat*" 7-8x, and zero
- * mentions of takeoffs or quantity surveying. The WP title feeds BOTH the
- * <title> and the H1, so a CMS-only edit cannot give them different text.
+ * companies (Google Cloud, Databricks, ScienceSoft) — before the static
+ * rewrite. `/hotels-development` matches "hotel development it services" at
+ * 69 and still reads as though ACE builds the buildings: "development"
+ * 12-14x, "estimat*" 7-8x, and zero mentions of takeoffs or quantity
+ * surveying. The WP title feeds BOTH the <title> and the H1, so a CMS-only
+ * edit cannot give it different text.
  *
  * Renaming the URLs would be wrong — six blog posts already 301 into
  * /warehouses-development (Cluster A in src/middleware.ts), so a rename
  * creates two-hop chains. The fix is the copy, not the URL.
  *
- * The copy describes the deliverable and claims no first-hand project
- * evidence, because there is none: extracted-projects.json holds zero
- * warehouse records, and its single hotel record (Doubletree By Hilton) is
- * empty (0 sf, $0, no CSI divisions). These titles stop the wrong-intent
- * bleed; they will not make either page rank. See item 7 of
+ * The `hotels-development` copy describes the deliverable and claims no
+ * first-hand project evidence, because there is none: extracted-projects.json
+ * holds zero warehouse records, and its single hotel record (Doubletree By
+ * Hilton) is empty (0 sf, $0, no CSI divisions). This title stops the
+ * wrong-intent bleed; it will not make the page rank. See item 7 of
  * seo/seo-todo-2026-09-01.md.
  *
- * ponytail: these override the CMS rather than replacing it. The page BODY
- * (rawContent) is still CMS-owned and still development-framed — that half
- * has to be edited in WordPress (pages 5115 and 5109). Delete the matching
- * entry here once a page's CMS copy is corrected at the source.
+ * ponytail: the `hotels-development` entry overrides the CMS rather than
+ * replacing it. The page BODY (rawContent) is still CMS-owned and still
+ * development-framed — that half has to be edited in WordPress (page 5109).
+ * Delete the entry here once that page's CMS copy is corrected at the source.
  */
 const CMS_COPY_OVERRIDES: Record<string, Pick<ServicePageCopy, 'title' | 'summary'>> = {
-  'warehouses-development': {
-    title: 'Warehouse Construction Cost Estimating and Quantity Takeoffs',
+  'commercial-construction': {
+    title: 'Commercial Construction Estimating',
     summary:
-      'Warehouse construction cost estimating and quantity takeoffs. Send us your drawings and you get quantities counted off the plans, unit pricing broken out by CSI division and a total you can bid. Most jobs come back in 24 to 48 hours. And to be clear, this is estimating for warehouse buildings. Not data warehousing.',
+      'Commercial construction estimating and documentation, AACE Class 3 cost estimates, architectural drawings, and permit sets for office, retail, hospitality, and mixed-use commercial projects nationwide.',
+  },
+  'industrial-construction': {
+    title: 'Industrial Construction Support',
+    summary:
+      'Industrial construction support, cost estimating, architectural and structural documentation, and project scheduling for factories, plants, and processing facilities nationwide.',
+  },
+  'bridges-construction': {
+    title: 'Bridge & Infrastructure Estimating',
+    summary:
+      'Bridge and infrastructure cost estimating, quantity takeoffs and cost estimates for highway overpasses, pedestrian bridges, and civil infrastructure projects, prepared for government agencies, DOT contractors, and private developers nationwide.',
+  },
+  'warehouses-development': {
+    title: 'Warehouse Development Estimating',
+    summary:
+      'Warehouse development support, cost estimating, architectural drafting, and permit sets for distribution centers, fulfillment centers, and cold storage warehouses nationwide.',
   },
   'hotels-development': {
     title: 'Hotel Construction Cost Estimating and Quantity Takeoffs',

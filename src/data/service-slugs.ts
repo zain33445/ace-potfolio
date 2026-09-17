@@ -23,4 +23,8 @@ export const SERVICE_SLUGS = [
   'building-estimating',
   'industrial-estimating',
   'residential-estimating',
+  'commercial-construction',
+  'industrial-construction',
+  'bridges-construction',
+  'warehouses-development',
 ] as const;

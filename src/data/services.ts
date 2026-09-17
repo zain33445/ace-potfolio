@@ -1568,6 +1568,424 @@ export const services: Service[] = [
       },
     },
   },
+  {
+    id: 'SVC_COMCON',
+    slug: 'commercial-construction',
+    seoTitle: 'Commercial Construction Estimating | The ACE Services',
+    seoDescription:
+      'AACE Class 3 cost estimates, shop drawings and permit sets for commercial construction projects. Request your free commercial construction quote now.',
+    title: 'Commercial Construction Estimating',
+    icon: 'SVC_EST',
+    tagline: 'Cost Estimating & Documentation',
+    category: 'COMMERCIAL',
+    description:
+      'Commercial construction estimating and documentation, AACE Class 3 cost estimates, architectural drawings, and permit sets for office, retail, hospitality, and mixed-use commercial projects nationwide.',
+    summary:
+      'Commercial construction estimating and documentation, AACE Class 3 cost estimates, architectural drawings, and permit sets for office, retail, hospitality, and mixed-use commercial projects nationwide.',
+    details: [
+      'Cost estimates and material takeoffs for office buildings, retail spaces, hotels, and mixed-use commercial developments.',
+      'Architectural drawings, shop drawings, and permit sets prepared for commercial construction and renovation projects.',
+      'Estimates and documentation checked against commercial building codes, energy codes, and local zoning requirements.',
+      'Editable Excel spreadsheets, DWG drawing files, and professional PDF reports delivered for every commercial project.',
+    ],
+    features: [
+      'Commercial Cost Estimating',
+      'Commercial Architectural Drafting',
+      'Commercial Permit Sets',
+      'Commercial Renovation Estimating',
+      'Office & Retail Estimating',
+      'Hospitality & Mixed-Use Estimating',
+    ],
+    startingPrice: 'Custom',
+    turnaround: '24-48 hours',
+    stats: [
+      { label: 'SCOPE', value: 'Office/Retail/Hospitality' },
+      { label: 'TURNAROUND', value: '24-48h' },
+      { label: 'STANDARD', value: 'AACE Class 3' },
+      { label: 'FORMAT', value: 'XLS + DWG + PDF' },
+    ],
+    process: [
+      {
+        title: 'Consultation & Scope Review',
+        description:
+          'We review your commercial project type, drawings, and goals to define the estimating and documentation services you need.',
+      },
+      {
+        title: 'Estimating & Drafting',
+        description:
+          'Our teams prepare cost estimates, architectural drawings, and permit sets tailored to your specific commercial building type.',
+      },
+      {
+        title: 'Code & Compliance Check',
+        description:
+          'Documentation is checked against applicable commercial building codes, energy codes, and local zoning requirements.',
+      },
+      {
+        title: 'Delivery',
+        description:
+          'Final estimates and documents are delivered in editable Excel, DWG, and PDF formats, ready for bidding or permitting.',
+      },
+    ],
+    ctaLabel: 'EXPLORE COMMERCIAL CONSTRUCTION',
+    seoContent: {
+      heading: 'Commercial Construction Estimating for Every Building Type',
+      body: [
+        "From a single-tenant retail buildout to a multi-story office tower, commercial construction carries cost drivers residential projects simply don't have — code-heavy MEP systems, ADA compliance, energy code requirements, and tenant-specific build-out standards. Our commercial construction estimating and documentation services are built around those realities, not adapted from a residential template.",
+        'We support general contractors, developers, franchise owners, and property investors across office, retail, hospitality, and mixed-use commercial projects, whether you need a standalone cost estimate to bid a job or a full estimating-to-permit documentation package.',
+        'Commercial projects rarely need just one service. Pair your estimate with our Architectural Services team for shop drawings and permit sets, our Structural Engineering & MEP Design team for PE-sealed documentation, and our Project Management team for a CPM schedule that carries your budget into construction.',
+      ],
+      benefits: [
+        {
+          title: 'Built for Commercial Complexity',
+          description: 'Estimates and drawings account for the code, MEP, and compliance demands specific to commercial construction.',
+        },
+        {
+          title: 'One Coordinated Package',
+          description: 'Estimating, drafting, permitting, and engineering are available as a single coordinated service, not disconnected vendors.',
+        },
+        {
+          title: 'Every Commercial Building Type',
+          description: 'From office to retail to hospitality, documentation is tailored to your specific building type and use.',
+        },
+      ],
+      faqs: [
+        {
+          question: 'What types of commercial projects do you provide estimating and documentation for?',
+          answer: 'We support office buildings, retail stores and plazas, hotels, restaurants, and mixed-use commercial developments, covering new construction, renovations, and tenant build-outs.',
+        },
+        {
+          question: 'Do you provide architectural drawings and permit sets, or only cost estimates?',
+          answer: 'Both. Commercial clients can request a standalone cost estimate or a full documentation package including architectural drawings, shop drawings, and a code-compliant permit set.',
+        },
+        {
+          question: 'How is commercial estimating different from residential estimating?',
+          answer: 'Commercial estimating accounts for code requirements, MEP systems, and compliance standards — ADA accessibility, energy codes, fire and life safety systems — that go well beyond what a typical residential estimate needs to cover.',
+        },
+      ],
+      highlightSection: {
+        heading: 'What’s Included in a Commercial Construction Estimate',
+        body: [
+          'A complete commercial construction estimate from The ACE Services includes:',
+          '• Material and labor takeoffs organized by CSI MasterFormat division',
+          '• MEP system cost allowances (HVAC, electrical, plumbing, fire protection)',
+          '• Site work, sitework utilities, and parking/paving costs where applicable',
+          '• Regional material and labor pricing specific to your project location',
+          '• An editable Excel spreadsheet plus a professional PDF summary report',
+        ],
+      },
+    },
+  },
+  {
+    id: 'SVC_INDCON',
+    slug: 'industrial-construction',
+    seoTitle: 'Industrial Construction Estimating | The ACE Services',
+    seoDescription:
+      'Cost estimating and documentation for plants, warehouses and industrial facility construction. Get a free industrial construction estimate quote today.',
+    title: 'Industrial Construction Support',
+    icon: 'SVC_EST',
+    tagline: 'Pre-Construction Services',
+    category: 'INDUSTRIAL',
+    description:
+      'Industrial construction support, cost estimating, architectural and structural documentation, and project scheduling for factories, plants, and processing facilities nationwide.',
+    summary:
+      'Industrial construction support, cost estimating, architectural and structural documentation, and project scheduling for factories, plants, and processing facilities nationwide.',
+    details: [
+      'Cost estimates and quantity takeoffs for factories, processing plants, and industrial facilities.',
+      'Architectural and structural documentation, including MEP shop drawings, prepared for industrial construction.',
+      'Permit sets and code compliance documentation built for industrial and process-facility requirements.',
+      'Project scheduling support to sequence complex, multi-trade industrial construction.',
+    ],
+    features: [
+      'Industrial Cost Estimating',
+      'Industrial Architectural & Structural Drafting',
+      'Industrial Permit Sets',
+      'Industrial MEP Documentation',
+      'Industrial Project Scheduling',
+    ],
+    startingPrice: 'Custom',
+    turnaround: '24-48 hours',
+    stats: [
+      { label: 'SCOPE', value: 'Plant + Factory' },
+      { label: 'TURNAROUND', value: '24-48h' },
+      { label: 'DOCUMENTATION', value: 'EPC-Ready' },
+      { label: 'FORMAT', value: 'XLS + DWG + PDF' },
+    ],
+    process: [
+      {
+        title: 'Consultation & Scope Review',
+        description:
+          'We review your industrial project type, process requirements, and documentation needs.',
+      },
+      {
+        title: 'Estimating & Documentation',
+        description:
+          'Cost estimates, structural and MEP documentation, and permit sets are prepared for your specific facility type.',
+      },
+      {
+        title: 'Compliance Review',
+        description:
+          'Documentation is checked against applicable industrial, safety, and environmental code requirements.',
+      },
+      {
+        title: 'Delivery & Scheduling Support',
+        description:
+          'Final documents are delivered, with CPM scheduling available to sequence construction.',
+      },
+    ],
+    ctaLabel: 'EXPLORE INDUSTRIAL CONSTRUCTION',
+    seoContent: {
+      heading: 'Industrial Construction Support for Complex, Capital-Intensive Facilities',
+      body: [
+        'Factories, processing plants, and industrial facilities carry planning demands that go far beyond a standard commercial build — specialized equipment, process systems, and strict safety and environmental compliance all have to be documented and priced correctly before construction begins. Our industrial construction support brings estimating, drafting, engineering, and scheduling together for exactly that kind of project.',
+        'We work with EPC contractors, facility owners, engineering firms, and industrial developers, providing the documentation and cost control that capital-intensive industrial projects require.',
+        'Every industrial project draws on multiple services — our Industrial Estimating team prices the specialized equipment and process systems, our Structural Engineering & MEP Design team documents load paths and system coordination, and our Project Management team sequences the complex, multi-trade construction these facilities require.',
+      ],
+      benefits: [
+        {
+          title: 'Built for Industrial Scale',
+          description: 'Documentation accounts for the specialized equipment, process systems, and compliance demands of industrial construction.',
+        },
+        {
+          title: 'One Coordinated Team',
+          description: 'Estimating, drafting, engineering, and scheduling are handled by teams who coordinate with each other.',
+        },
+        {
+          title: 'EPC-Ready Documentation',
+          description: 'Deliverables are structured to support EPC contractors, owners, and investors managing capital-intensive projects.',
+        },
+      ],
+      faqs: [
+        {
+          question: 'What types of industrial facilities do you support?',
+          answer: 'We support factories, processing plants, manufacturing facilities, warehouses, and energy facilities, covering cost estimating, architectural and structural documentation, and project scheduling.',
+        },
+        {
+          question: 'Do you provide structural and MEP documentation for industrial facilities, or only cost estimates?',
+          answer: 'Both. Industrial clients can request a standalone cost estimate or a full documentation package including structural design, MEP shop drawings, and permit sets.',
+        },
+        {
+          question: 'Who do you typically work with on industrial projects?',
+          answer: 'We support EPC contractors, facility owners, engineering firms, and industrial developers and investors planning or bidding on industrial construction projects.',
+        },
+      ],
+      highlightSection: {
+        heading: 'Industrial Construction vs. Industrial Estimating: Which Service Do You Need?',
+        body: [
+          'If you only need a cost number to bid or budget an industrial project, our Industrial Estimating service delivers a standalone AACE Class 3 estimate. If your project needs estimating alongside architectural drafting, structural and MEP documentation, permit sets, or scheduling, this Industrial Construction service coordinates all of those disciplines as one package.',
+          'Most EPC contractors and facility owners start with an estimate and add documentation services as the project moves from budgeting into design.',
+        ],
+      },
+    },
+  },
+  {
+    id: 'SVC_BRGCON',
+    slug: 'bridges-construction',
+    seoTitle: 'Bridge Construction Estimating Services',
+    seoDescription:
+      'Specialized cost estimating and quantity takeoffs for bridge and infrastructure construction projects. Request a free bridge construction quote today.',
+    title: 'Bridge & Infrastructure Estimating',
+    icon: 'SVC_EST',
+    tagline: 'Infrastructure Cost Estimating',
+    category: 'INFRASTRUCTURE',
+    footnote: '*Standard 24-48 hour turnaround applies to defined scope; large civil infrastructure estimates may require additional time, confirmed at intake.',
+    description:
+      'Bridge and infrastructure cost estimating, quantity takeoffs and cost estimates for highway overpasses, pedestrian bridges, and civil infrastructure projects, prepared for government agencies, DOT contractors, and private developers nationwide.',
+    summary:
+      'Bridge and infrastructure cost estimating, quantity takeoffs and cost estimates for highway overpasses, pedestrian bridges, and civil infrastructure projects, prepared for government agencies, DOT contractors, and private developers nationwide.',
+    details: [
+      'Cost estimates and quantity takeoffs for highway overpasses, pedestrian bridges, railway bridges, and custom structures.',
+      'Estimates structured to support government agencies, transportation departments, and private infrastructure developers.',
+      'Material and labor pricing reflecting specialized bridge construction methods and civil engineering standards.',
+      'Editable Excel spreadsheets and professional PDF reports delivered for every bridge estimate.',
+    ],
+    features: [
+      'Highway & Overpass Estimating',
+      'Pedestrian Bridge Estimating',
+      'Railway Bridge Estimating',
+      'Infrastructure Quantity Takeoffs',
+      'DOT & Municipal Bid Estimating',
+    ],
+    startingPrice: 'Custom',
+    turnaround: '24-48 hours',
+    stats: [
+      { label: 'SCOPE', value: 'Civil Infrastructure' },
+      { label: 'TURNAROUND', value: '24-48h*' },
+      { label: 'BUILT FOR', value: 'DOT-Ready' },
+      { label: 'FORMAT', value: 'XLS + PDF' },
+    ],
+    process: [
+      {
+        title: 'Scope & Structure Review',
+        description:
+          'We review project drawings, structure type, and site conditions to define the estimating scope.',
+      },
+      {
+        title: 'Quantity Takeoff',
+        description:
+          'Materials, structural components, and specialized bridge construction items are measured and itemized from your drawings.',
+      },
+      {
+        title: 'Cost Analysis',
+        description:
+          'Quantities are priced using civil infrastructure-specific rates for materials, labor, and specialized equipment.',
+      },
+      {
+        title: 'Delivery & Audit Review',
+        description:
+          'Your estimate is audited by a second estimator before delivery as an editable Excel spreadsheet and PDF report.',
+      },
+    ],
+    ctaLabel: 'EXPLORE BRIDGE ESTIMATING',
+    seoContent: {
+      heading: 'Bridge & Infrastructure Cost Estimating Services',
+      body: [
+        "Bridge and infrastructure projects carry cost variables a standard building estimate doesn't need to account for — specialized materials, civil engineering standards, and government agency requirements all shape the final number. Our bridge construction estimating services are built specifically around those variables, supporting government municipalities, departments of transportation, and private infrastructure developers.",
+        'We estimate across bridge types including highway and road overpasses, pedestrian and cycling bridges, railway bridges, and custom urban or rural structures, with quantities and costs reflecting the specialized materials and methods each structure type requires.',
+        'Given the public accountability and regulatory scrutiny civil infrastructure projects carry, every bridge estimate is reviewed by a second estimator before delivery. Once your budget is set, our Project Management team can develop the CPM schedule needed to sequence a complex infrastructure build.',
+      ],
+      benefits: [
+        {
+          title: 'Built for Civil Infrastructure',
+          description: 'Estimates reflect the specialized materials, methods, and standards specific to bridge and infrastructure construction.',
+        },
+        {
+          title: 'DOT & Agency-Ready',
+          description: 'Documentation is structured to support the accountability government agencies and transportation departments require.',
+        },
+        {
+          title: 'Audited Accuracy',
+          description: 'Every bridge estimate is reviewed by a second estimator before delivery, reducing risk on high-visibility public projects.',
+        },
+      ],
+      faqs: [
+        {
+          question: 'What types of bridges do you provide cost estimating for?',
+          answer: 'We estimate highway and road overpasses, pedestrian and cycling bridges, railway bridges, and custom urban or rural bridge structures, including beam, arch, truss, and cable-stayed designs.',
+        },
+        {
+          question: 'Do you work with government agencies and departments of transportation?',
+          answer: 'Yes. Our bridge and infrastructure estimates are structured to support government municipalities, DOT contractors, and private developers bidding on public and private infrastructure projects.',
+        },
+        {
+          question: 'How is bridge estimating different from building estimating?',
+          answer: "Bridge estimating accounts for specialized civil engineering standards, materials, and construction methods that don't apply to standard building estimating, along with the added documentation and accountability requirements of publicly funded infrastructure projects.",
+        },
+      ],
+      highlightSection: {
+        heading: 'Standards We Estimate To',
+        body: [
+          'Every bridge and infrastructure estimate reflects the standards your project will actually be reviewed against, including AASHTO (American Association of State Highway and Transportation Officials) design and construction guidelines and applicable state DOT specifications.',
+          'Pricing accounts for the specialized materials and methods civil infrastructure requires, from precast concrete and structural steel to seismic and load-bearing considerations, so your estimate holds up under the same scrutiny a government reviewer or funding agency will apply.',
+        ],
+      },
+    },
+  },
+  {
+    id: 'SVC_WHSDEV',
+    slug: 'warehouses-development',
+    seoTitle: 'Warehouse Development & Estimating Services',
+    seoDescription:
+      'Cost estimating, drafting and permits for warehouse and distribution center development projects. Get your free warehouse development quote today.',
+    title: 'Warehouse Development Estimating',
+    icon: 'SVC_EST',
+    tagline: 'Cost Estimating & Documentation',
+    category: 'WAREHOUSE & LOGISTICS',
+    description:
+      'Warehouse development support, cost estimating, architectural drafting, and permit sets for distribution centers, fulfillment centers, and cold storage warehouses nationwide.',
+    summary:
+      'Warehouse development support, cost estimating, architectural drafting, and permit sets for distribution centers, fulfillment centers, and cold storage warehouses nationwide.',
+    details: [
+      'Cost estimates and quantity takeoffs for distribution centers, fulfillment centers, and cold storage warehouses.',
+      'Architectural drawings and permit sets prepared for warehouse construction and expansion projects.',
+      'Estimates account for racking, dock, and material-handling infrastructure specific to warehouse and logistics facilities.',
+      'Editable Excel spreadsheets, DWG files, and professional PDF reports delivered for every warehouse project.',
+    ],
+    features: [
+      'Warehouse Cost Estimating',
+      'Distribution Center Estimating',
+      'Cold Storage Estimating',
+      'Warehouse Architectural Drafting',
+      'Warehouse Permit Sets',
+    ],
+    startingPrice: 'Custom',
+    turnaround: '24-48 hours',
+    stats: [
+      { label: 'SCOPE', value: 'Distribution + Fulfillment' },
+      { label: 'TURNAROUND', value: '24-48h' },
+      { label: 'COVERAGE', value: 'Nationwide' },
+      { label: 'FORMAT', value: 'XLS + DWG + PDF' },
+    ],
+    process: [
+      {
+        title: 'Consultation & Scope Review',
+        description:
+          'We review your warehouse type, drawings, and operational requirements to define the services you need.',
+      },
+      {
+        title: 'Estimating & Drafting',
+        description:
+          'Cost estimates and architectural drawings are prepared for your specific warehouse or distribution facility.',
+      },
+      {
+        title: 'Compliance Review',
+        description:
+          'Documentation is checked against applicable building, fire safety, and zoning requirements for logistics facilities.',
+      },
+      {
+        title: 'Delivery',
+        description:
+          'Final estimates and documents are delivered in editable Excel, DWG, and PDF formats, ready for bidding or permitting.',
+      },
+    ],
+    ctaLabel: 'EXPLORE WAREHOUSE DEVELOPMENT',
+    seoContent: {
+      heading: 'Warehouse Development Estimating & Documentation for Logistics and Distribution',
+      body: [
+        "Warehouse and distribution facilities carry cost and design considerations a standard commercial building doesn't — racking systems, dock configurations, clear-height requirements, and, for cold storage, temperature-controlled infrastructure. Our warehouse development services are built around those specifics, supporting developers, logistics companies, and business owners planning distribution, fulfillment, or storage facilities.",
+        'We provide cost estimating and documentation across warehouse types, including e-commerce fulfillment centers, cold storage and refrigerated warehouses, distribution centers, and general storage and manufacturing-support warehouses.',
+        'Warehouse projects benefit from coordinated pre-construction planning. Pair your estimate with our Architectural Services team for drawings and permit sets, and our Project Management team for a schedule that keeps a large-footprint build on track.',
+      ],
+      benefits: [
+        {
+          title: 'Built for Logistics Facilities',
+          description: 'Estimates and drawings account for racking, dock, and material-handling infrastructure specific to warehouse projects.',
+        },
+        {
+          title: 'Every Warehouse Type',
+          description: "From fulfillment centers to cold storage, documentation is tailored to your facility's specific operational requirements.",
+        },
+        {
+          title: 'Nationwide Coverage',
+          description: 'We support warehouse and distribution projects across the U.S., with pricing reflecting local market conditions.',
+        },
+      ],
+      faqs: [
+        {
+          question: 'What types of warehouse projects do you provide estimating for?',
+          answer: 'We estimate e-commerce fulfillment centers, cold storage and refrigerated warehouses, distribution centers, and general storage and manufacturing-support warehouses.',
+        },
+        {
+          question: 'Do you account for racking and material-handling systems in warehouse estimates?',
+          answer: "Yes. Warehouse estimates factor in racking, dock configuration, and material-handling infrastructure specific to your facility's operational needs, not just the building shell.",
+        },
+        {
+          question: 'Do you provide architectural drawings for warehouse projects, or only cost estimates?',
+          answer: 'Both. Warehouse clients can request a standalone cost estimate or a full documentation package including architectural drawings and a code-compliant permit set.',
+        },
+      ],
+      highlightSection: {
+        heading: 'What Drives Warehouse Construction Costs',
+        body: [
+          'Several factors specific to warehouse and distribution facilities shape the final estimate:',
+          '• Clear-height and structural requirements for racking and vertical storage',
+          '• Dock door count and configuration for loading and unloading efficiency',
+          '• Temperature control and insulation for cold storage and refrigerated facilities',
+          '• Fire suppression and life safety systems sized to the warehouse’s use and contents',
+          '• Site work, including truck court paving and utility access',
+        ],
+      },
+    },
+  },
 ];
 
 /* ── Drift guard ───────────────────────────────────────────────── */
