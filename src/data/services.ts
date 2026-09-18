@@ -79,6 +79,12 @@ export function getServiceIcon(id: string): LucideIcon {
 
 /* ── Data ───────────────────────────────────────────────────────── */
 
+/* Array ORDER matters beyond display: the "Related Services" module on
+   src/app/[slug]/page.tsx rotates its 8-item window by each service's index
+   here to spread internal links evenly across the catalogue. New entries
+   should be appended (not inserted) and must not assume any particular
+   position is more/less "visible" — the rotation gives every index equal
+   exposure over the full array. */
 export const services: Service[] = [
   {
     id: 'SVC_EST',

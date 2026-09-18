@@ -170,6 +170,12 @@ export default async function ServicesPage() {
               <Link href="/projects/" className="text-primary hover:underline font-semibold">our construction estimating portfolio</Link>{' '}
               to see the depth of work behind that track record.
             </p>
+            <p>
+              Our sector experience runs across <Link href="/commercial-construction/" className="text-primary hover:underline font-semibold">commercial construction</Link>, <Link href="/industrial-construction/" className="text-primary hover:underline font-semibold">industrial construction</Link>, <Link href="/bridges-construction/" className="text-primary hover:underline font-semibold">bridge construction</Link>, and <Link href="/warehouses-development/" className="text-primary hover:underline font-semibold">warehouse development</Link>, so whatever the build type, our estimators have priced it before.
+            </p>
+            <p>
+              On the estimating side, our specialists cover <Link href="/building-estimating/" className="text-primary hover:underline font-semibold">building estimating</Link>, <Link href="/industrial-estimating/" className="text-primary hover:underline font-semibold">industrial estimating</Link>, <Link href="/residential-estimating/" className="text-primary hover:underline font-semibold">residential estimating</Link>, <Link href="/blueprint-estimation/" className="text-primary hover:underline font-semibold">blueprint estimation</Link>, and <Link href="/quantity-surveyor-services/" className="text-primary hover:underline font-semibold">quantity surveyor services</Link>. Contractors bidding work in Texas also rely on our dedicated <Link href="/houston-construction-estimating/" className="text-primary hover:underline font-semibold">Houston construction estimating</Link> team for local pricing and turnaround.
+            </p>
           </div>
         </div>
       </div>

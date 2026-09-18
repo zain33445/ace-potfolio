@@ -35,6 +35,15 @@ export const revalidate = 3600;
 
 const SLUG_RE = /^[\p{L}\p{N}\p{M}\p{So}]+(?:-[\p{L}\p{N}\p{M}\p{So}]+)*$/u;
 
+/* Standalone landing pages that live outside the `services` array (own app
+   dirs, not `[slug]` routes) — the Related Services rotation below can never
+   reach them, so they're appended to every service page's Related Services
+   module as curated cards instead. */
+const FEATURED_SOLUTIONS = [
+  { title: 'Houston Construction Estimating', slug: 'houston-construction-estimating' },
+  { title: 'ADU Construction Cost Guide', slug: 'adu-construction-cost' },
+];
+
 function validateSlug(slug: string): void {
   if (!SLUG_RE.test(slug)) notFound();
 }
@@ -353,11 +362,21 @@ async function SubServicesSidebar({ service }: { service: Service }) {
      parent shown above, and anything already in Sub Services, so nothing
      repeats. */
   const subServiceSlugs = new Set(subServices.map((s) => s.slug));
-  const relatedServices = services
+  const eligibleRelated = services
     .filter((s) => s.slug !== service.slug)
     .filter((s) => s.slug !== parentService?.slug)
-    .filter((s) => !subServiceSlugs.has(s.slug))
-    .slice(0, 8);
+    .filter((s) => !subServiceSlugs.has(s.slug));
+  // Rotate the window by this page's position so link equity is spread across
+  // every service instead of always surfacing the first 8 in array order
+  // (which left pages in the tail of the `services` array with zero inbound
+  // "related" links). Do NOT switch back to a plain .slice(0, 8).
+  const rotateBy = eligibleRelated.length
+    ? Math.max(0, services.findIndex((s) => s.slug === service.slug)) % eligibleRelated.length
+    : 0;
+  const relatedServices = [
+    ...eligibleRelated.slice(rotateBy),
+    ...eligibleRelated.slice(0, rotateBy),
+  ].slice(0, 8);
 
   return (
     <div className="">
@@ -441,6 +460,28 @@ async function SubServicesSidebar({ service }: { service: Service }) {
                     </h4>
                     <p className="font-mono text-[10px] text-on-surface-variant hidden md:block">
                       Related Service
+                    </p>
+                  </div>
+                </Link>
+              );
+            })}
+            {FEATURED_SOLUTIONS.filter((sol) => sol.slug !== service.slug).map((sol) => {
+              const SolutionIcon = getServiceIcon('SOLUTION');
+              return (
+                <Link
+                  key={sol.slug}
+                  href={`/${sol.slug}/`}
+                  className="group w-full flex flex-col items-center text-center gap-2 border border-blueprint-line bg-surface p-3 transition-all duration-300 hover:border-primary hover:shadow-[0_0_20px_rgba(255,107,0,0.06)] md:flex-row md:text-left md:items-start"
+                >
+                  <div className="flex items-center justify-center w-10 h-10 border border-blueprint-line bg-background bracket-corners flex-shrink-0 group-hover:border-primary transition-colors">
+                    <SolutionIcon className="w-5 h-5 text-primary" />
+                  </div>
+                  <div className="flex min-w-0 flex-col justify-center">
+                    <h4 className="font-[family-name:var(--font-space)] text-base font-bold text-on-background transition-colors group-hover:text-primary line-clamp-2 md:truncate">
+                      {sol.title}
+                    </h4>
+                    <p className="font-mono text-[10px] text-on-surface-variant hidden md:block">
+                      Solution
                     </p>
                   </div>
                 </Link>
