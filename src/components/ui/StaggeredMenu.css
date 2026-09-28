@@ -331,7 +331,9 @@
 
   /* Match nav bar height (h-16 = 4rem @ root 13px) so toggle button is vertically centered and right-aligned.
      The nav content is nudged down by translate-y-3 (0.75rem); mirror it so the toggle lines up with the logo. */
+  /* top mirrors the nav's top-10: the nav sits below the h-8 contact strip in Nav.tsx. */
   .staggered-menu-header {
+    top: 2.5rem;
     padding: 0 16px;
     height: 4rem;
     justify-content: flex-end;

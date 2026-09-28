@@ -140,9 +140,9 @@ export default function ProjectsPage() {
             Portfolio
           </div>
 
-          <h1 className="font-[family-name:var(--font-space)] text-5xl font-bold leading-tight text-on-background md:text-7xl lg:text-7xl">
+          <h1 className="font-[family-name:var(--font-space)] text-5xl leading-tighter tracking-tighter font-bold  text-on-background md:text-7xl lg:text-7xl">
             Our{' '}
-            <span className="text-primary">Projects</span>
+            <span className="text-primary italic">Projects</span>
           </h1>
 
           <p className="mt-6 max-w-2xl font-sans text-lg leading-relaxed text-on-surface-variant md:text-xl">
@@ -159,7 +159,7 @@ export default function ProjectsPage() {
       </div>
 
       {/* ── Intro paragraph ─────────────────────────────── */}
-      <div className="mx-auto max-w-4xl px-[var(--spacing-margin-mobile)] py-10 text-center md:px-[var(--spacing-margin-desktop)]">
+      <div className="mx-auto max-w-4xl px-[var(--spacing-margin-mobile)] py-10 text-center md:px-[var(--spacing-margin-desktop)] hidden">
         <p className="font-sans text-lg leading-relaxed text-on-surface-variant">
           As a nationwide construction estimating company, The ACE Services
           has delivered pre-construction estimates and material takeoffs on

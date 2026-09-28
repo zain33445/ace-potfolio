@@ -44,6 +44,10 @@ export interface Service {
   stats: { label: string; value: string }[];
   process: ServiceProcess[];
   ctaLabel: string;
+  /** Bottom CTA headline override — defaults to `Need {title}?` when absent. */
+  ctaHeading?: string;
+  /** Bottom CTA body copy override — defaults to the generic estimate blurb. */
+  ctaDescription?: string;
   /** Overrides `title` for the <title> tag only; the H1 still uses `title`. */
   seoTitle?: string;
   /** Overrides the generated meta description only; the on-page `summary` is untouched. */
@@ -1988,6 +1992,353 @@ export const services: Service[] = [
           '• Temperature control and insulation for cold storage and refrigerated facilities',
           '• Fire suppression and life safety systems sized to the warehouse’s use and contents',
           '• Site work, including truck court paving and utility access',
+        ],
+      },
+    },
+  },
+  {
+    id: 'SVC_EDUDEV',
+    slug: 'educational-buildings',
+    seoTitle: 'Educational Building Estimating Services',
+    seoDescription:
+      'Accurate cost estimating and construction documentation for schools and campus building projects. Request your free educational project quote now.',
+    title: 'Educational Buildings',
+    icon: 'SVC_EST',
+    tagline: 'Cost Estimating & Documentation',
+    category: 'EDUCATIONAL',
+    description:
+      'Educational building cost estimating and documentation, cost estimates and code-compliant permit sets for K-12 schools, universities, and campus construction projects nationwide.',
+    summary:
+      'Educational building cost estimating and documentation, cost estimates and code-compliant permit sets for K-12 schools, universities, and campus construction projects nationwide.',
+    details: [
+      'Cost estimates and quantity takeoffs for K-12 schools, colleges, universities, and vocational training centers.',
+      'Permit sets and architectural documentation prepared for classroom buildings, labs, and campus expansions.',
+      'Estimates account for occupancy, accessibility, and safety requirements specific to educational facilities.',
+      'Editable Excel spreadsheets, DWG files, and professional PDF reports delivered for every educational project.',
+    ],
+    features: [
+      'Educational Cost Estimating',
+      'School Permit Sets',
+      'K-12 Facility Estimating',
+      'University & Campus Building Estimating',
+      'Classroom Addition Estimating',
+    ],
+    startingPrice: 'Custom',
+    turnaround: '24-48 hours',
+    stats: [
+      { label: 'SCOPE', value: 'K-12 to University' },
+      { label: 'TURNAROUND', value: '24-48h' },
+      { label: 'COMPLIANCE', value: 'ADA-Aware' },
+      { label: 'FORMAT', value: 'XLS + DWG + PDF' },
+    ],
+    process: [
+      {
+        title: 'Consultation & Scope Review',
+        description:
+          "We review your institution's project type, student capacity, and drawings to define the estimating and documentation services you need.",
+      },
+      {
+        title: 'Estimating & Documentation',
+        description:
+          "Cost estimates and permit-ready documentation are prepared to reflect your facility's occupancy and program requirements.",
+      },
+      {
+        title: 'Code & Compliance Check',
+        description:
+          'Documentation is checked against ADA accessibility, fire and life safety, and education-specific code requirements.',
+      },
+      {
+        title: 'Delivery',
+        description:
+          'Final estimates and documents are delivered in editable Excel, DWG, and PDF formats, ready for bidding or permitting.',
+      },
+    ],
+    ctaLabel: 'EXPLORE EDUCATIONAL ESTIMATING',
+    ctaHeading: 'Need Educational Building Estimating?',
+    ctaDescription:
+      'Submit your blueprints and receive a precision cost estimate within 24-48 hours. Permit sets and architectural drafting are available as an add-on.',
+    seoContent: {
+      heading:
+        'Educational Building Estimating for Schools, Colleges, and Campus Projects',
+      body: [
+        "Educational facilities carry occupancy and safety requirements a standard commercial building doesn't — high-density classroom occupancy, playground and athletic space, specialized labs, and accessibility built for a full range of ages and abilities. Our educational building estimating and documentation services are built around those specifics.",
+        'We support public and private K-12 schools, colleges, universities, and vocational training centers, whether you need a standalone cost estimate for a bond measure or capital campaign, or a full estimating-to-permit documentation package for a new building or classroom addition.',
+        'Educational projects benefit from coordinated pre-construction planning. Pair your estimate with our Architectural Services team for drawings and permit sets, and our Project Management team for a schedule that works around the academic calendar.',
+      ],
+      benefits: [
+        {
+          title: 'Built for Educational Occupancy',
+          description:
+            'Estimates and documentation account for classroom density, accessibility, and safety requirements specific to educational facilities.',
+        },
+        {
+          title: 'Every Institution Type',
+          description:
+            'From K-12 additions to university research buildings, documentation is tailored to your specific institution and program.',
+        },
+        {
+          title: 'Budget-Ready for Funding Cycles',
+          description:
+            'Detailed, itemized estimates support the bond measures, capital campaigns, and funding approvals educational construction depends on.',
+        },
+      ],
+      faqs: [
+        {
+          question: 'What types of educational institutions do you provide estimating for?',
+          answer:
+            'We estimate public and private K-12 schools, colleges, universities, vocational and technical training centers, and special education facilities.',
+        },
+        {
+          question: 'Can you estimate a classroom addition or renovation, not just new construction?',
+          answer:
+            'Yes. We estimate new campus construction as well as classroom additions, renovations, and facility upgrades for existing institutions.',
+        },
+        {
+          question: 'Do you provide permit sets for educational projects, or only cost estimates?',
+          answer:
+            'Both. Educational clients can request a standalone cost estimate or a full documentation package including architectural drawings and a code-compliant permit set.',
+        },
+      ],
+      highlightSection: {
+        heading: 'What Drives Educational Construction Costs',
+        body: [
+          'Several factors specific to educational facilities shape the final estimate:',
+          '• Classroom count, size, and occupancy density requirements',
+          '• Specialized spaces such as labs, gymnasiums, libraries, and auditoriums',
+          '• ADA accessibility built for a full range of student ages and abilities',
+          '• Site work, including playgrounds, athletic fields, and parking',
+          '• Fire and life safety systems sized for high-occupancy educational use',
+        ],
+      },
+    },
+  },
+  {
+    id: 'SVC_HLTDEV',
+    slug: 'healthcare-buildings',
+    seoTitle: 'Healthcare Construction Estimating Services',
+    seoDescription:
+      'Precise cost estimating and permit sets for hospitals, clinics and healthcare facility construction. Get a free healthcare construction estimate today.',
+    title: 'Healthcare Buildings',
+    icon: 'SVC_EST',
+    tagline: 'Cost Estimating & Documentation',
+    category: 'HEALTHCARE',
+    description:
+      'Healthcare construction estimating and documentation, cost estimates and code-compliant permit sets for hospitals, clinics, labs, and medical facilities nationwide.',
+    summary:
+      'Healthcare construction estimating and documentation, cost estimates and code-compliant permit sets for hospitals, clinics, labs, and medical facilities nationwide.',
+    details: [
+      'Cost estimates and quantity takeoffs for hospitals, urgent care clinics, diagnostic labs, and outpatient facilities.',
+      'Permit sets and architectural documentation prepared to reflect infection control, accessibility, and continuous-operation requirements.',
+      'Estimates account for the specialized MEP systems healthcare facilities require, including medical gas and enhanced HVAC filtration.',
+      'Editable Excel spreadsheets, DWG files, and professional PDF reports delivered for every healthcare project.',
+    ],
+    features: [
+      'Healthcare Cost Estimating',
+      'Healthcare Permit Sets',
+      'Hospital & Clinic Estimating',
+      'Medical MEP Documentation',
+      'Senior & Assisted Living Facility Estimating',
+    ],
+    startingPrice: 'Custom',
+    turnaround: '24-48 hours',
+    stats: [
+      { label: 'SCOPE', value: 'Hospital to Clinic' },
+      { label: 'TURNAROUND', value: '24-48h' },
+      { label: 'COMPLIANCE', value: 'FGI-Aware' },
+      { label: 'FORMAT', value: 'XLS + DWG + PDF' },
+    ],
+    process: [
+      {
+        title: 'Consultation & Scope Review',
+        description:
+          'We review your facility type, patient capacity, and drawings to define the estimating and documentation services you need.',
+      },
+      {
+        title: 'Estimating & Documentation',
+        description:
+          'Cost estimates and permit-ready documentation are prepared to reflect healthcare-specific design and MEP requirements.',
+      },
+      {
+        title: 'Code & Compliance Check',
+        description:
+          'Documentation is checked against ADA accessibility, infection control, and applicable healthcare facility codes.',
+      },
+      {
+        title: 'Delivery',
+        description:
+          'Final estimates and documents are delivered in editable Excel, DWG, and PDF formats, ready for bidding or permitting.',
+      },
+    ],
+    ctaLabel: 'EXPLORE HEALTHCARE ESTIMATING',
+    ctaHeading: 'Need Healthcare Construction Estimating?',
+    ctaDescription:
+      'Submit your blueprints and receive a precision cost estimate within 24-48 hours. Permit sets and architectural drafting are available as an add-on.',
+    seoContent: {
+      heading:
+        'Healthcare Construction Estimating for Hospitals, Clinics, and Medical Facilities',
+      body: [
+        "Healthcare facilities carry cost and compliance demands a standard commercial building doesn't — infection control finishes, enhanced HVAC filtration, medical gas systems, and accessibility requirements built for patients, not just employees. Our healthcare construction estimating and documentation services are built around those specifics.",
+        'We support hospital systems, private practices, developers, and government healthcare agencies across hospitals, urgent care clinics, diagnostic labs, rehabilitation centers, and senior living facilities, whether you need a standalone cost estimate or a full documentation package.',
+        'Healthcare projects benefit from coordinated pre-construction planning. Pair your estimate with our Structural Engineering & MEP Design team for the specialized systems healthcare facilities require, and our Project Management team for a schedule that accounts for phased construction around continuous operations.',
+      ],
+      benefits: [
+        {
+          title: 'Built for Healthcare Compliance',
+          description:
+            'Estimates and documentation account for infection control, accessibility, and continuous-operation requirements specific to medical facilities.',
+        },
+        {
+          title: 'Every Facility Type',
+          description:
+            'From urgent care clinics to hospital additions, documentation is tailored to your specific facility type and patient population.',
+        },
+        {
+          title: 'Specialized MEP Awareness',
+          description:
+            "Estimates account for medical gas, enhanced filtration, and other MEP systems standard commercial estimates don't cover.",
+        },
+      ],
+      faqs: [
+        {
+          question: 'What types of healthcare facilities do you provide estimating for?',
+          answer:
+            'We estimate hospitals, urgent care clinics, physician and dental offices, diagnostic labs, rehabilitation centers, outpatient surgery centers, and senior living facilities.',
+        },
+        {
+          question: 'Do your estimates account for medical gas and specialized MEP systems?',
+          answer:
+            'Yes. Healthcare estimates factor in the specialized MEP requirements medical facilities need, including medical gas systems and enhanced HVAC filtration, not just standard commercial systems.',
+        },
+        {
+          question: 'Do you provide permit sets for healthcare projects, or only cost estimates?',
+          answer:
+            'Both. Healthcare clients can request a standalone cost estimate or a full documentation package including architectural drawings and a code-compliant permit set.',
+        },
+      ],
+      highlightSection: {
+        heading: 'What Drives Healthcare Construction Costs',
+        body: [
+          'Several factors specific to healthcare facilities shape the final estimate:',
+          '• Infection control finishes and antimicrobial surface materials',
+          '• Enhanced HVAC filtration and air-handling systems',
+          '• Medical gas and specialized equipment infrastructure',
+          '• ADA accessibility built for patient mobility, not just general compliance',
+          '• Phased construction requirements to maintain continuous facility operation',
+        ],
+      },
+    },
+  },
+  {
+    id: 'SVC_HTLDEV',
+    slug: 'hotels-development',
+    seoTitle: 'Hotel Development & Construction Estimating',
+    seoDescription:
+      'Cost estimating and construction documentation for hospitality and hotel development projects. Request a free hotel development estimate quote now.',
+    title: 'Hotel Development',
+    icon: 'SVC_EST',
+    tagline: 'Cost Estimating & Documentation',
+    category: 'HOSPITALITY',
+    description:
+      'Hotel development estimating and documentation, cost estimates, architectural drawings, and permit sets for boutique hotels, resorts, and branded hospitality projects nationwide.',
+    summary:
+      'Hotel development estimating and documentation, cost estimates, architectural drawings, and permit sets for boutique hotels, resorts, and branded hospitality projects nationwide.',
+    details: [
+      'Cost estimates and quantity takeoffs for boutique hotels, resorts, business-class hotels, and branded franchise properties.',
+      'Architectural drawings and permit sets prepared for hotel construction, renovation, and brand conversion projects.',
+      'Estimates account for guest room, lobby, dining, and amenity-space finish standards specific to hospitality construction.',
+      'Editable Excel spreadsheets, DWG files, and professional PDF reports delivered for every hotel project.',
+    ],
+    features: [
+      'Hotel Cost Estimating',
+      'Hotel Architectural Drafting',
+      'Hotel Permit Sets',
+      'Resort & Boutique Hotel Estimating',
+      'Branded Franchise Hotel Estimating',
+    ],
+    startingPrice: 'Custom',
+    turnaround: '24-48 hours',
+    stats: [
+      { label: 'SCOPE', value: 'Boutique to High-Rise' },
+      { label: 'TURNAROUND', value: '24-48h' },
+      { label: 'DOCUMENTATION', value: 'Brand-Ready' },
+      { label: 'FORMAT', value: 'XLS + DWG + PDF' },
+    ],
+    process: [
+      {
+        title: 'Consultation & Scope Review',
+        description:
+          "We review your hotel concept, brand standards, and drawings to define the estimating and documentation services you need.",
+      },
+      {
+        title: 'Estimating & Drafting',
+        description:
+          "Cost estimates and architectural drawings are prepared to reflect your hotel's brand standards and guest experience requirements.",
+      },
+      {
+        title: 'Code & Compliance Check',
+        description:
+          'Documentation is checked against fire safety, ADA, and hospitality-specific code requirements.',
+      },
+      {
+        title: 'Delivery',
+        description:
+          'Final estimates and documents are delivered in editable Excel, DWG, and PDF formats, ready for bidding or permitting.',
+      },
+    ],
+    ctaLabel: 'EXPLORE HOTEL DEVELOPMENT',
+    ctaHeading: 'Need Hotel Development Estimating?',
+    ctaDescription:
+      'Submit your blueprints and receive a precision cost estimate within 24-48 hours. Architectural drafting and permit sets are available as an add-on.',
+    seoContent: {
+      heading: 'Hotel Development Cost Estimating for Every Property Type',
+      body: [
+        "Hotel construction carries cost drivers a standard commercial building doesn't — brand-standard finishes, guest room repetition at scale, amenity spaces like pools and dining, and life-safety systems sized for overnight occupancy. Our hotel development estimating and documentation services are built around those specifics, not adapted from a generic commercial template.",
+        'We support investors, developers, and hotel ownership groups across boutique hotels, resorts, business-class properties, and branded franchise developments, whether you need a standalone cost estimate for financing or a full estimating-to-permit documentation package.',
+        'Hotel projects benefit from coordinated documentation. Pair your estimate with our Architectural Services team for drawings and permit sets, and our Project Management team for a schedule that keeps a brand-standard opening date on track.',
+      ],
+      benefits: [
+        {
+          title: 'Built for Hospitality Standards',
+          description:
+            'Estimates and drawings account for brand-standard finishes and guest-experience requirements specific to hotel construction.',
+        },
+        {
+          title: 'Every Property Type',
+          description:
+            'From boutique inns to branded franchise hotels, documentation is tailored to your specific concept and brand.',
+        },
+        {
+          title: 'Financing-Ready Numbers',
+          description:
+            'Detailed, itemized estimates support the financing and investor conversations hotel development depends on.',
+        },
+      ],
+      faqs: [
+        {
+          question: 'Do you provide estimating for branded franchise hotels?',
+          answer:
+            'Yes. We prepare cost estimates and documentation for both independent hotel concepts and branded franchise properties, accounting for brand-specific finish and design standards where applicable.',
+        },
+        {
+          question: 'What types of hotel projects do you estimate?',
+          answer:
+            'We estimate boutique hotels, resorts, business-class and airport hotels, budget motels, and mixed-use developments with a hotel component.',
+        },
+        {
+          question: 'Do you provide architectural drawings for hotel projects, or only cost estimates?',
+          answer:
+            'Both. Hotel clients can request a standalone cost estimate or a full documentation package including architectural drawings and a code-compliant permit set.',
+        },
+      ],
+      highlightSection: {
+        heading: 'What Drives Hotel Construction Costs',
+        body: [
+          'Several factors specific to hospitality projects shape the final hotel estimate:',
+          '• Guest room count and finish tier (budget, business-class, luxury)',
+          '• Amenity spaces such as pools, fitness centers, dining, and event or meeting space',
+          '• Brand-standard requirements for franchise-affiliated properties',
+          '• Life-safety and fire suppression systems sized for overnight occupancy',
+          '• Site work and parking specific to the property\u2019s location',
         ],
       },
     },

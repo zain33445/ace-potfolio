@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Shield, Heart, ShieldCheck, Compass, Check, ArrowRight } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import Reveal from '@/src/components/Reveal';
@@ -63,12 +64,15 @@ const processSteps = [
   },
 ];
 
+/* Transparent, tightly cropped PNGs (w/h = file size). Each renders at the same
+   area, not the same box, so wide and square logos carry equal visual weight. */
+const LOGO_AREA = 5000;
 const software = [
-  'PlanSwift',
-  'Bluebeam',
-  'PlanSwift',
-  'Bluebeam',
-];
+  { name: 'Kubla', logo: '/logos/kubla.webp', w: 831, h: 459 },
+  { name: 'Bluebeam', logo: '/logos/bluebeam.webp', w: 575, h: 125 },
+  { name: 'On-Screen Takeoff', logo: '/logos/on-screen-takeoff.webp', w: 248, h: 40 },
+  { name: 'PlanSwift', logo: '/logos/planswift.webp', w: 320, h: 188 },
+].map((s) => ({ ...s, width: Math.round(Math.sqrt((LOGO_AREA * s.w) / s.h)), height: Math.round(Math.sqrt((LOGO_AREA * s.h) / s.w)) }));
 
 /** Count-up number that starts when scrolled into view */
 function StatCounter({ end, suffix }: { end: number; suffix: string }) {
@@ -402,14 +406,9 @@ export default function AboutPageClient() {
             <h3 className="font-mono text-sm text-primary font-bold tracking-wider text-center mb-6">
               SOFTWARE WE USE FOR TAKEOFFS
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {software.map((name, i) => (
-                <div
-                  key={`${name}-${i}`}
-                  className="p-6 border border-blueprint-line bg-surface bracket-corners flex items-center justify-center"
-                >
-                  <span className="font-space text-lg font-bold text-on-background">{name}</span>
-                </div>
+            <div className="grid grid-cols-2 items-center gap-x-8 gap-y-10 px-6 py-10 md:grid-cols-4 md:px-12">
+              {software.map(({ name, logo, width, height }) => (
+                <Image key={name} src={logo} alt={`${name} logo`} width={width} height={height} className="mx-auto h-auto max-w-full" />
               ))}
             </div>
           </div>

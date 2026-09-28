@@ -34,7 +34,7 @@ export const steps: Step[] = [
       'Scale and alignment verification',
     ],
     output: 'Verified drawings and project requirements',
-    image: '/step1.jpg',
+    image: '/hero-permits.webp',
     position: '62% center',
   },
   {
@@ -49,7 +49,7 @@ export const steps: Step[] = [
       'Labor cost estimates by area',
     ],
     output: 'Material quantities and preliminary cost estimates',
-    image: '/step2.jpg',
+    image: '/cost.webp',
   },
   {
     id: 3,
@@ -63,7 +63,7 @@ export const steps: Step[] = [
       'Weather and timeline adjustments',
     ],
     output: 'Reviewed and approved cost estimates',
-    image: '/step3.jpg',
+    image: '/designs.webp',
   },
   {
     id: 4,
@@ -77,6 +77,6 @@ export const steps: Step[] = [
       'Complete documentation package',
     ],
     output: 'Excel bill of quantities and stamped reports',
-    image: '/step4.jpg',
+    image: '/permit.webp',
   },
 ];

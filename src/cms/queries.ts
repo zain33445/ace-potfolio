@@ -29,38 +29,25 @@ export interface ServicePageCopy {
  * Slug-keyed overrides for WP pages whose CMS copy targets the wrong query.
  *
  * `commercial-construction`, `industrial-construction`, `bridges-construction`,
- * and `warehouses-development` are now backed by full static `Service` entries
+ * `warehouses-development`, `educational-buildings`, `healthcare-buildings`,
+ * and `hotels-development` are now backed by full static `Service` entries
  * in `src/data/services.ts` — their body content is no longer CMS-owned, only
  * their `enrich` step still consults this map. The entries below exist purely
  * as a backstop so the WordPress `enrich` step can never overwrite the new
  * static title/summary with stale Elementor copy if those WP pages are ever
- * re-published. `hotels-development` remains the exception: it has no static
- * entry, so its page body (rawContent) is still CMS-owned.
+ * re-published.
  *
  * `/warehouses-development` earned 450 impressions/mo at position 68 for
  * "data warehouse development services" — a SERP owned entirely by software
  * companies (Google Cloud, Databricks, ScienceSoft) — before the static
- * rewrite. `/hotels-development` matches "hotel development it services" at
- * 69 and still reads as though ACE builds the buildings: "development"
- * 12-14x, "estimat*" 7-8x, and zero mentions of takeoffs or quantity
- * surveying. The WP title feeds BOTH the <title> and the H1, so a CMS-only
- * edit cannot give it different text.
- *
- * Renaming the URLs would be wrong — six blog posts already 301 into
+ * rewrite. Renaming the URLs would be wrong — six blog posts already 301 into
  * /warehouses-development (Cluster A in src/middleware.ts), so a rename
  * creates two-hop chains. The fix is the copy, not the URL.
  *
- * The `hotels-development` copy describes the deliverable and claims no
- * first-hand project evidence, because there is none: extracted-projects.json
- * holds zero warehouse records, and its single hotel record (Doubletree By
- * Hilton) is empty (0 sf, $0, no CSI divisions). This title stops the
- * wrong-intent bleed; it will not make the page rank. See item 7 of
- * seo/seo-todo-2026-09-01.md.
- *
- * ponytail: the `hotels-development` entry overrides the CMS rather than
- * replacing it. The page BODY (rawContent) is still CMS-owned and still
- * development-framed — that half has to be edited in WordPress (page 5109).
- * Delete the entry here once that page's CMS copy is corrected at the source.
+ * The three building-sector pages (educational/healthcare/hotels) follow the
+ * same pattern: the Google Doc rewrite is the source of truth for title and
+ * summary, and these overrides stop the `enrich` step from reverting them to
+ * the WP page copy (pages 5101/5105/5109).
  */
 const CMS_COPY_OVERRIDES: Record<string, Pick<ServicePageCopy, 'title' | 'summary'>> = {
   'commercial-construction': {
@@ -84,9 +71,19 @@ const CMS_COPY_OVERRIDES: Record<string, Pick<ServicePageCopy, 'title' | 'summar
       'Warehouse development support, cost estimating, architectural drafting, and permit sets for distribution centers, fulfillment centers, and cold storage warehouses nationwide.',
   },
   'hotels-development': {
-    title: 'Hotel Construction Cost Estimating and Quantity Takeoffs',
+    title: 'Hotel Development',
     summary:
-      'Hotel construction cost estimating and quantity takeoffs. We price new builds, conversions and renovations, and break the numbers out per key and per square foot so you can check them against your own historicals before you bid. Costs come back by CSI division with the quantities behind them. Usually in 24 to 48 hours.',
+      'Hotel development estimating and documentation, cost estimates, architectural drawings, and permit sets for boutique hotels, resorts, and branded hospitality projects nationwide.',
+  },
+  'educational-buildings': {
+    title: 'Educational Buildings',
+    summary:
+      'Educational building cost estimating and documentation, cost estimates and code-compliant permit sets for K-12 schools, universities, and campus construction projects nationwide.',
+  },
+  'healthcare-buildings': {
+    title: 'Healthcare Buildings',
+    summary:
+      'Healthcare construction estimating and documentation, cost estimates and code-compliant permit sets for hospitals, clinics, labs, and medical facilities nationwide.',
   },
 };
 

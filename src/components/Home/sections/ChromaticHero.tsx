@@ -418,7 +418,7 @@ export default function ChromaticHero() {
               <h3
                 className="
                   mx-auto mt-1
-                  text-justified text-xl text-white
+                  text-center text-xl text-white
                   hero-enter-up hero-enter-up-2
                 "
               >

@@ -14,6 +14,7 @@ import {
 import { leadDescription } from "@/src/services/wordpress/html";
 import { extractHeadings } from "@/src/lib/extractHeadings";
 import TableOfContents from "@/src/components/TableOfContents";
+import ScrollRow from "@/src/components/ScrollRow";
 import { getPostSeo } from "@/src/data/post-seo";
 import { getRelatedSlugs } from "@/src/data/related-posts";
 
@@ -40,8 +41,11 @@ const SLUG_RE = /^[\p{L}\p{N}\p{M}\p{So}]+(?:-[\p{L}\p{N}\p{M}\p{So}]+)*$/u;
    reach them, so they're appended to every service page's Related Services
    module as curated cards instead. */
 const FEATURED_SOLUTIONS = [
-  { title: 'Houston Construction Estimating', slug: 'houston-construction-estimating' },
-  { title: 'ADU Construction Cost Guide', slug: 'adu-construction-cost' },
+  {
+    title: "Houston Construction Estimating",
+    slug: "houston-construction-estimating",
+  },
+  { title: "ADU Construction Cost Guide", slug: "adu-construction-cost" },
 ];
 
 function validateSlug(slug: string): void {
@@ -118,7 +122,8 @@ export async function generateMetadata({
     const title = service.seoTitle
       ? { absolute: service.seoTitle }
       : service.title;
-    const description = service.seoDescription ?? truncate(service.summary, 160);
+    const description =
+      service.seoDescription ?? truncate(service.summary, 160);
     return {
       title,
       description,
@@ -202,6 +207,17 @@ export default async function SlugRoutePage({
 /*  SERVICE VIEW COMPONENTS                                       */
 /* ═══════════════════════════════════════════════════════════════ */
 
+/* Hero image per service; sub-services fall back to their parent, then cost.webp. */
+const HERO_IMAGES: Record<string, string> = {
+  "cost-estimating": "/cost.webp",
+  "architectural-services": "/designs.webp",
+  "structural-engineering": "/c3.webp",
+  "project-management": "/c4.webp",
+  "3d-rendering-services": "/hero-renderings.webp",
+  "shop-drawing-services": "/hero-shop.webp",
+  "permit-set-services": "/hero-permits.webp",
+};
+
 async function ServiceView({
   service,
   slug,
@@ -209,8 +225,6 @@ async function ServiceView({
   service: Service;
   slug: string;
 }) {
-  const Icon = getServiceIcon(service.id);
-
   return (
     <main className="min-h-screen bg-background">
       <script
@@ -275,60 +289,108 @@ async function ServiceView({
           }}
         />
 
-        <div className="relative  max-w-7xl px-5 px-[var(--spacing-margin-mobile)] pt-16 md:px-[var(--spacing-margin-desktop)] md:pt-16">
-          <div className="mb-8 flex items-center gap-2 font-mono text-SM font-bold uppercase tracking-wider text-on-surface-variant">
-            <Link
-              href="/services/"
-              className="hover:text-primary transition-colors"
-            >
-              SERVICES
-            </Link>
-            <span>/</span>
-            <span className="text-primary">{slug}</span>
-          </div>
+        {/* -mt cancels layout-shell main padding so the cream bg meets the contact strip; pt restores it. */}
+        <div className="relative -mt-20 bg-[#F4F1EC] pt-20 md:-mt-16 md:pt-16">
 
-          <div className="flex items-center gap-4 md:gap-10 mb-4">
-            {/* icon */}
-            <div className="flex items-center justify-center w-20 h-20 border border-blueprint-line bg-surface bracket-corners flex-shrink-0">
-              <Icon className="w-10 h-10 text-primary" />
-            </div>
-            {/* title and tagline */}
+          <div className="mx-auto grid max-w-[1440px] items-center gap-10 px-[var(--spacing-margin-mobile)] pt-30 pb-16 lg:pt-0 md:px-[var(--spacing-margin-desktop)] lg:grid-cols-2 lg:gap-16 lg:pb-20">
             <div>
-              <span className="font-mono text-sm text-on-surface-variant tracking-widest block mb-1">
-                {service.tagline}
-              </span>
-              <h1 className="font-[family-name:var(--font-space)] text-3xl font-bold leading-tight text-on-background md:text-7xl">
+              <div className="font-mono text-sm font-bold uppercase tracking-[0.2em] text-primary lg:pt-30">
+                <span className="font-[family-name:var(--font-space)]">
+                  [
+                  {String(
+                    services.findIndex((s) => s.slug === service.slug) + 1,
+                  ).padStart(2, "0")}
+                  ]
+                </span>{" "}
+                {service.category}
+              </div>
+              <h1 className="mt-4 font-sans text-4xl font-extrabold leading-[1.05] text-on-background md:text-6xl">
                 {service.title}
               </h1>
+              <p className="mt-6 max-w-2xl font-sans text-base leading-relaxed text-on-surface-variant md:text-xl">
+                {service.summary}
+              </p>
+              <div className="mt-6 flex flex-wrap gap-2 font-mono text-sm items-center font-bold uppercase tracking-wider">
+                <span className="rounded-sm bg-primary/10 px-3 py-1.5 font-[family-name:var(--font-space)] text-primary">
+                  {service.turnaround}
+                </span>
+                <span className="rounded-sm bg-black/5 px-3 py-1.5 text-on-surface">
+                  {service.tagline}
+                </span>
+                <span className="rounded-sm bg-black/5 px-3 py-1.5 font-[family-name:var(--font-space)] text-on-surface">
+                  {/^\$/.test(service.startingPrice) ? (
+                    <>
+                      From{" "}
+                      <span className="font-extrabold text-2xl">
+                        {service.startingPrice}
+                      </span>
+                    </>
+                  ) : (
+                    `${service.startingPrice} pricing`
+                  )}
+                </span>
+              </div>
+              {service.features.length > 0 && (
+                <ul className="mt-6 grid gap-x-6 gap-y-2 sm:grid-cols-2">
+                  {service.features.map((feature) => (
+                    <li
+                      key={feature}
+                      className="flex items-start gap-2 font-sans text-base text-on-surface md:text-lg"
+                    >
+                      <Check className="mt-1 h-4 w-4 flex-shrink-0 text-primary" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              )}
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link
+                  href="/contact-us/"
+                  className="inline-flex items-center rounded-md gap-2 border border-primary bg-primary px-6 py-3 font-mono text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary"
+                >
+                  <span>REQUEST QUOTE</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+                {service.slug === "cost-estimating" && (
+                  <Link
+                    href="/calculator/"
+                    className="inline-flex items-center rounded-md gap-2 border border-primary bg-transparent px-6 py-3 font-mono text-sm font-bold uppercase tracking-wider text-primary transition-all hover:bg-primary hover:text-white"
+                  >
+                    OPEN CALCULATOR
+                  </Link>
+                )}
+              </div>
+            </div>
+            <div className="relative order-first aspect-[3/2] overflow-hidden rounded-lg shadow-lg lg:order-none">
+              <Image
+                src={
+                  HERO_IMAGES[service.slug] ??
+                  HERO_IMAGES[service.parent ?? ""] ??
+                  "/cost.webp"
+                }
+                alt={service.title}
+                fill
+                priority
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="object-cover"
+              />
             </div>
           </div>
-
-          {service.stats && service.stats.length > 0 && (
-            <div className="mt-10 flex flex-wrap gap-20 border-t border-blueprint-line pt-8 items-center justify-center">
-              {service.stats.map((stat) => (
-                <QuickStat
-                  key={stat.label}
-                  label={stat.label}
-                  value={stat.value}
-                />
-              ))}
-            </div>
-          )}
         </div>
 
         <div className="mx-auto max-w-8xl px-5 px-[10px] text-justify py-16 md:px-[var(--spacing-margin-desktop)] md:py-20">
-          <div className="grid gap-12 lg:grid-cols-12">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
             {/* ── Sidebar: Sub-Services ── */}
-            <aside className="order-2 md:col-span-3 col-span-12 lg:sticky lg:top-24 lg:self-start">
+            <aside className="order-2 min-w-0 lg:col-span-3 lg:sticky lg:top-24 lg:self-start">
               <Suspense fallback={<SidebarSkeleton />}>
                 <SubServicesSidebar service={service} />
               </Suspense>
             </aside>
 
             {/* ── Main Content ── */}
-            <div className="order-1 lg:order-1 space-y-16 col-span-12 md:col-span-9  px-[5%] md:px-[0%]">
+            <div className="order-1 lg:order-1 space-y-16 min-w-0 lg:col-span-9 px-[5%] md:px-[0%]">
               <ServiceOverviewSection service={service} />
-              <PricingFeaturesSection service={service} />
+              {/* <PricingFeaturesSection service={service} /> */}
               {service.process && service.process.length > 0 && (
                 <ProcessSection service={service} />
               )}
@@ -371,7 +433,10 @@ async function SubServicesSidebar({ service }: { service: Service }) {
   // (which left pages in the tail of the `services` array with zero inbound
   // "related" links). Do NOT switch back to a plain .slice(0, 8).
   const rotateBy = eligibleRelated.length
-    ? Math.max(0, services.findIndex((s) => s.slug === service.slug)) % eligibleRelated.length
+    ? Math.max(
+        0,
+        services.findIndex((s) => s.slug === service.slug),
+      ) % eligibleRelated.length
     : 0;
   const relatedServices = [
     ...eligibleRelated.slice(rotateBy),
@@ -418,13 +483,13 @@ async function SubServicesSidebar({ service }: { service: Service }) {
                 <Link
                   key={s.slug}
                   href={`/${s.slug}/`}
-                  className="group w-full flex flex-col items-center text-center gap-2 border border-blueprint-line bg-surface p-3 transition-all duration-300 hover:border-primary hover:shadow-[0_0_20px_rgba(255,107,0,0.06)] md:flex-row md:text-left md:items-start"
+                  className="group w-full flex flex-col items-center text-center gap-2 border border-blueprint-line bg-surface p-3 transition-all duration-300 hover:border-primary hover:shadow-[0_0_20px_rgba(255,107,0,0.06)] lg:flex-row lg:text-left lg:items-start"
                 >
                   <div className="flex items-center justify-center w-10 h-10 border border-blueprint-line bg-background bracket-corners flex-shrink-0 group-hover:border-primary transition-colors">
                     <SvgIcon className="w-5 h-5 text-primary" />
                   </div>
                   <div className="flex min-w-0 flex-col justify-center">
-                    <h4 className="font-[family-name:var(--font-space)] text-base font-bold text-on-background transition-colors group-hover:text-primary line-clamp-2 md:truncate">
+                    <h4 className="font-[family-name:var(--font-space)] text-base font-bold text-on-background transition-colors group-hover:text-primary line-clamp-2 lg:truncate">
                       {s.title}
                     </h4>
                     <p className="font-mono text-[10px] text-on-surface-variant hidden md:block">
@@ -442,20 +507,20 @@ async function SubServicesSidebar({ service }: { service: Service }) {
           <div className="mb-4 font-mono text-sm font-bold uppercase tracking-[0.2em] text-primary">
             Related Services
           </div>
-          <div className="mb-8 grid grid-cols-2 w-full gap-2 md:block md:space-y-2">
+          <ScrollRow className="mb-4 flex w-full snap-x snap-mandatory gap-2 overflow-x-auto pb-2 [scrollbar-width:none] *:min-w-0 *:shrink-0 *:basis-[calc((100%-1rem)/3)] *:break-words *:snap-start lg:h-[392px] lg:flex-col lg:snap-y lg:overflow-x-hidden lg:overflow-y-auto lg:pb-0 lg:*:basis-auto lg:*:h-[72px]">
             {relatedServices.map((s) => {
               const SvgIcon = getServiceIcon(s.id);
               return (
                 <Link
                   key={s.slug}
                   href={`/${s.slug}/`}
-                  className="group w-full flex flex-col items-center text-center gap-2 border border-blueprint-line bg-surface p-3 transition-all duration-300 hover:border-primary hover:shadow-[0_0_20px_rgba(255,107,0,0.06)] md:flex-row md:text-left md:items-start"
+                  className="group w-full flex flex-col items-center text-center gap-2 border border-blueprint-line bg-surface p-3 transition-all duration-300 hover:border-primary hover:shadow-[0_0_20px_rgba(255,107,0,0.06)] lg:flex-row lg:text-left lg:items-start"
                 >
                   <div className="flex items-center justify-center w-10 h-10 border border-blueprint-line bg-background bracket-corners flex-shrink-0 group-hover:border-primary transition-colors">
                     <SvgIcon className="w-5 h-5 text-primary" />
                   </div>
                   <div className="flex min-w-0 flex-col justify-center">
-                    <h4 className="font-[family-name:var(--font-space)] text-base font-bold text-on-background transition-colors group-hover:text-primary line-clamp-2 md:truncate">
+                    <h4 className="font-[family-name:var(--font-space)] text-base font-bold text-on-background transition-colors group-hover:text-primary line-clamp-2 lg:truncate">
                       {s.title}
                     </h4>
                     <p className="font-mono text-[10px] text-on-surface-variant hidden md:block">
@@ -465,29 +530,31 @@ async function SubServicesSidebar({ service }: { service: Service }) {
                 </Link>
               );
             })}
-            {FEATURED_SOLUTIONS.filter((sol) => sol.slug !== service.slug).map((sol) => {
-              const SolutionIcon = getServiceIcon('SOLUTION');
-              return (
-                <Link
-                  key={sol.slug}
-                  href={`/${sol.slug}/`}
-                  className="group w-full flex flex-col items-center text-center gap-2 border border-blueprint-line bg-surface p-3 transition-all duration-300 hover:border-primary hover:shadow-[0_0_20px_rgba(255,107,0,0.06)] md:flex-row md:text-left md:items-start"
-                >
-                  <div className="flex items-center justify-center w-10 h-10 border border-blueprint-line bg-background bracket-corners flex-shrink-0 group-hover:border-primary transition-colors">
-                    <SolutionIcon className="w-5 h-5 text-primary" />
-                  </div>
-                  <div className="flex min-w-0 flex-col justify-center">
-                    <h4 className="font-[family-name:var(--font-space)] text-base font-bold text-on-background transition-colors group-hover:text-primary line-clamp-2 md:truncate">
-                      {sol.title}
-                    </h4>
-                    <p className="font-mono text-[10px] text-on-surface-variant hidden md:block">
-                      Solution
-                    </p>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
+            {FEATURED_SOLUTIONS.filter((sol) => sol.slug !== service.slug).map(
+              (sol) => {
+                const SolutionIcon = getServiceIcon("SOLUTION");
+                return (
+                  <Link
+                    key={sol.slug}
+                    href={`/${sol.slug}/`}
+                    className="group w-full flex flex-col items-center text-center gap-2 border border-blueprint-line bg-surface p-3 transition-all duration-300 hover:border-primary hover:shadow-[0_0_20px_rgba(255,107,0,0.06)] lg:flex-row lg:text-left lg:items-start"
+                  >
+                    <div className="flex items-center justify-center w-10 h-10 border border-blueprint-line bg-background bracket-corners flex-shrink-0 group-hover:border-primary transition-colors">
+                      <SolutionIcon className="w-5 h-5 text-primary" />
+                    </div>
+                    <div className="flex min-w-0 flex-col justify-center">
+                      <h4 className="font-[family-name:var(--font-space)] text-base font-bold text-on-background transition-colors group-hover:text-primary line-clamp-2 lg:truncate">
+                        {sol.title}
+                      </h4>
+                      <p className="font-mono text-[10px] text-on-surface-variant hidden md:block">
+                        Solution
+                      </p>
+                    </div>
+                  </Link>
+                );
+              },
+            )}
+          </ScrollRow>
         </>
       )}
       <Link
@@ -507,7 +574,7 @@ async function SubServicesSidebar({ service }: { service: Service }) {
             d="M19 12H5m7-7l-7 7 7 7"
           />
         </svg>
-        <span className="font-[family-name:var(--font-space)] block text-center text-base font-bold text-on-background transition-colors group-hover:text-primary line-clamp-2 md:truncate">
+        <span className="font-[family-name:var(--font-space)] block text-center text-base font-bold text-on-background transition-colors group-hover:text-primary line-clamp-2 lg:truncate">
           VIEW ALL SERVICES
         </span>
       </Link>
@@ -537,27 +604,11 @@ function SidebarSkeleton() {
   );
 }
 
-function QuickStat({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="text-center md:text-left">
-      {/* values */}
-      <div className="mt-1 font-[family-name:var(--font-space)] text-3xl font-bold text-on-background">
-        {value}
-      </div>
-
-      {/* label */}
-      <div className="font-mono text-sm font-bold uppercase tracking-[0.15em] text-on-surface-variant">
-        {label}
-      </div>
-    </div>
-  );
-}
-
 function ServiceOverviewSection({ service }: { service: Service }) {
   return (
     <section>
       <div className="mb-6 font-mono text-base font-bold uppercase tracking-[0.1em] text-primary">
-        OVERVIEW
+        Details
       </div>
       <div className="space-y-8">
         {/* If we have full WP content, render it richly */}
@@ -568,9 +619,6 @@ function ServiceOverviewSection({ service }: { service: Service }) {
           />
         ) : (
           <>
-            <p className="font-sans text-xl leading-relaxed text-on-surface">
-              {service.description || service.summary}
-            </p>
             {service.details && service.details.length > 0 && (
               <div className="">
                 {service.details.map((detail, i) => (
@@ -656,13 +704,13 @@ function ProcessSection({ service }: { service: Service }) {
                 </span>
               </div>
               <div>
-              <h3 className="font-[family-name:var(--font-space)] text-xl font-bold text-left text-on-background mb-2">
-                {step.title}
-              </h3>
-            <p className="font-sans text-base leading-relaxed text-on-surface-variant">
-              {step.description}
-            </p>
-            </div>
+                <h3 className="font-[family-name:var(--font-space)] text-xl font-bold text-left text-on-background mb-2">
+                  {step.title}
+                </h3>
+                <p className="font-sans text-base leading-relaxed text-on-surface-variant">
+                  {step.description}
+                </p>
+              </div>
             </div>
           </div>
         ))}
@@ -679,12 +727,13 @@ function CtaSection({ service }: { service: Service }) {
           Request an Estimate
         </div>
         <h2 className="font-[family-name:var(--font-space)] text-4xl font-bold text-on-background md:text-6xl max-w-3xl">
-          Need {service.title}?
+          {service.ctaHeading ?? `Need ${service.title}?`}
         </h2>
         <p className="max-w-lg text-base leading-relaxed text-on-surface-variant md:text-center">
-          {service.slug === "project-management"
-            ? "Send us your project plans, scope, or existing schedule for a preliminary review. We'll recommend the appropriate CPM scheduling and project-control services within 3-5 business days."
-            : "Submit your blueprints and receive a precision construction cost estimate within 24-48 hours. Expedited turnaround is available."}
+          {service.ctaDescription ??
+            (service.slug === "project-management"
+              ? "Send us your project plans, scope, or existing schedule for a preliminary review. We'll recommend the appropriate CPM scheduling and project-control services within 3-5 business days."
+              : "Submit your blueprints and receive a precision construction cost estimate within 24-48 hours. Expedited turnaround is available.")}
         </p>
         <div className="flex flex-col sm:flex-row items-center gap-4">
           <Link
@@ -801,7 +850,7 @@ function SeoContentSection({ service }: { service: Service }) {
                 key={idx}
                 className="group border-b border-b-blueprint-line bg-transparent [&_summary::-webkit-details-marker]:hidden"
               >
-                <summary className="flex cursor-pointer items-center gap-10 justify-between p-6 font-[family-name:var(--font-space)] text-lg font-bold text-on-background transition-colors hover:text-primary">
+                <summary className="flex cursor-pointer items-center gap-10 justify-between p-6 font-[family-name:var(--font-space)] text-lg font-bold text-left text-on-background transition-colors hover:text-primary">
                   {faq.question}
                   <ChevronDown className="h-7 w-7 text-primary transition-transform group-open:rotate-180" />
                 </summary>

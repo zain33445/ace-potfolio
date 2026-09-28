@@ -18,11 +18,11 @@ export default function Footer() {
     { label: "PROJECTS", href: "/projects/" },
     { label: "CALCULATOR", href: "/calculator/" },
     // Solutions — internal links so these pages stop being sitemap orphans.
-    { label: "HOUSTON ESTIMATING", href: "/houston-construction-estimating/" },
-    { label: "ADU COST GUIDE", href: "/adu-construction-cost/" },
-    { label: "WAREHOUSE DEVELOPMENT", href: "/warehouses-development/" },
-    { label: "BLUEPRINT ESTIMATION", href: "/blueprint-estimation/" },
-    { label: "QUANTITY SURVEYOR", href: "/quantity-surveyor-services/" },
+    // { label: "HOUSTON ESTIMATING", href: "/houston-construction-estimating/" },
+    // { label: "ADU COST GUIDE", href: "/adu-construction-cost/" },
+    // { label: "WAREHOUSE DEVELOPMENT", href: "/warehouses-development/" },
+    // { label: "BLUEPRINT ESTIMATION", href: "/blueprint-estimation/" },
+    // { label: "QUANTITY SURVEYOR", href: "/quantity-surveyor-services/" },
     { label: "privacy policy", href: "/privacy-policy/" },
     { label: "terms & conditions", href: "/terms-and-conditions/" },
   ];
@@ -91,12 +91,31 @@ export default function Footer() {
               "
             />
             <br />
+            
+        {/* Social Links */}
+        <div className="flex justify-center gap-6 my-10">
+          {SOCIAL_LINKS.map((s) => (
+            <a
+              key={s.label}
+              href={s.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/70 hover:text-white transition-colors"
+              aria-label={s.label}
+            >
+              {s.icon}
+            </a>
+          ))}
+        </div>
           </div>
 
           {/* Right: 3-column grid */}
           <div
             className="
-              grid grid-cols-2
+              grid grid-cols-1
+              lg:grid-cols-2
+              gap-10
+              text-center
               gap-5 justify-items-center
               lg:col-span-7
                 md:gap-50
@@ -178,7 +197,7 @@ export default function Footer() {
                     strength={35}
                     mode="repel"
                     className="
-                      font-sans text-base md:text-lg text-white/70 font-semibold
+                      font-space text-base md:text-lg text-white/70 font-semibold
                     "
                   />
                 ))}
@@ -230,22 +249,6 @@ export default function Footer() {
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Social Links */}
-        <div className="flex justify-center gap-6 my-10">
-          {SOCIAL_LINKS.map((s) => (
-            <a
-              key={s.label}
-              href={s.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/70 hover:text-white transition-colors"
-              aria-label={s.label}
-            >
-              {s.icon}
-            </a>
-          ))}
         </div>
 
         <div
