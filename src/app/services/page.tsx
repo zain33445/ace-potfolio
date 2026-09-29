@@ -8,17 +8,17 @@ import Image from 'next/image';
 /* Per-discipline presentation for the index. Only these four render here —
    everything else is linked from the feature bullets and the SEO block. */
 const DISCIPLINES: Record<string, { tab: string; badge: string; image: string; alt: string }> = {
-  SVC_EST: { tab: 'Estimating', badge: 'AACE Class 3', image: '/cost.webp', alt: 'Construction cost estimate on blueprints' },
+  SVC_EST: { tab: 'Estimation', badge: 'AACE Class 3', image: '/cost.webp', alt: 'Construction cost estimate on blueprints' },
   SVC_ARC: { tab: 'Architectural', badge: 'Permit-ready CDs', image: '/designs.webp', alt: 'Architectural drafting drawings' },
   SVC_ENG: { tab: 'Engineering', badge: 'Code compliant', image: '/c3.webp', alt: 'Structural engineering model' },
   SVC_PMG: { tab: 'Controls', badge: 'CPM + Gantt', image: '/c4.webp', alt: 'Construction project management plan' },
 };
 
 const FEATURE_LINKS: Record<string, string> = {
-  'Commercial Estimating': '/commercial-construction/',
-  'Residential Estimating': '/residential-estimating/',
-  'Industrial Estimating': '/industrial-estimating/',
-  'Electrical Estimating': '/electrical-estimating-services/',
+  'Commercial Estimation': '/commercial-construction/',
+  'Residential Estimation': '/residential-estimating/',
+  'Industrial Estimation': '/industrial-estimating/',
+  'Electrical Estimation': '/electrical-estimating-services/',
   'Material Takeoffs & Quantity Surveying': '/quantity-surveyor-services/',
   'Residential Permit Sets': '/permit-set-services/',
   'MEP Shop Drawings': '/shop-drawing-services/',
@@ -34,12 +34,6 @@ const MORE_GROUPS: {
   {
     title: 'Estimating specialties',
     slugs: ['residential-estimating', 'building-estimating', 'industrial-estimating', 'electrical-estimating-services', 'blueprint-estimation', 'quantity-surveyor-services'],
-    extra: {
-      href: '/houston-construction-estimating/',
-      title: 'Houston Construction Estimating',
-      summary: 'Local Texas pricing and fast turnaround for contractors bidding work in the Houston area.',
-      meta: 'Local',
-    },
   },
   {
     title: 'Sectors we serve',
@@ -312,7 +306,7 @@ export default async function ServicesPage() {
               Our sector experience runs across <Link href="/commercial-construction/" className="text-primary hover:underline font-semibold">commercial construction</Link>, <Link href="/industrial-construction/" className="text-primary hover:underline font-semibold">industrial construction</Link>, <Link href="/bridges-construction/" className="text-primary hover:underline font-semibold">bridge construction</Link>, <Link href="/warehouses-development/" className="text-primary hover:underline font-semibold">warehouse development</Link>, and <Link href="/educational-buildings/" className="text-primary hover:underline font-semibold">educational buildings</Link>, so whatever the build type, our estimators have priced it before.
             </p>
             <p>
-              On the estimating side, our specialists cover <Link href="/building-estimating/" className="text-primary hover:underline font-semibold">building estimating</Link>, <Link href="/industrial-estimating/" className="text-primary hover:underline font-semibold">industrial estimating</Link>, <Link href="/residential-estimating/" className="text-primary hover:underline font-semibold">residential estimating</Link>, <Link href="/blueprint-estimation/" className="text-primary hover:underline font-semibold">blueprint estimation</Link>, and <Link href="/quantity-surveyor-services/" className="text-primary hover:underline font-semibold">quantity surveyor services</Link>. Contractors bidding work in Texas also rely on our dedicated <Link href="/houston-construction-estimating/" className="text-primary hover:underline font-semibold">Houston construction estimating</Link> team for local pricing and turnaround.
+              On the estimating side, our specialists cover <Link href="/building-estimating/" className="text-primary hover:underline font-semibold">building estimating</Link>, <Link href="/industrial-estimating/" className="text-primary hover:underline font-semibold">industrial estimating</Link>, <Link href="/residential-estimating/" className="text-primary hover:underline font-semibold">residential estimating</Link>, <Link href="/blueprint-estimation/" className="text-primary hover:underline font-semibold">blueprint estimation</Link>, and <Link href="/quantity-surveyor-services/" className="text-primary hover:underline font-semibold">quantity surveyor services</Link>.
             </p>
           </div>
         </div>

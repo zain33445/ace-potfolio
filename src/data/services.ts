@@ -96,7 +96,7 @@ export const services: Service[] = [
     seoTitle: 'Construction Cost Estimating Services',
     seoDescription:
       'AACE Class 3 construction cost estimates, material takeoffs and CSI cost breakdowns delivered in 24-48 hours. Request your free estimate quote today.',
-    title: 'Construction Cost Estimating Services',
+    title: 'Construction Cost Estimation Services',
     icon: 'SVC_EST',
     tagline: 'Budgeting & Bidding',
     category: 'ESTIMATING',
@@ -113,10 +113,10 @@ export const services: Service[] = [
     features: [
       'Construction Cost Estimation',
       'Material Takeoffs & Quantity Surveying',
-      'Commercial Estimating',
-      'Residential Estimating',
-      'Industrial Estimating',
-      'Electrical Estimating',
+      'Commercial Estimation',
+      'Residential Estimation',
+      'Industrial Estimation',
+      'Electrical Estimation',
     ],
     startingPrice: 'Custom',
     turnaround: '24-48 hours',
@@ -827,7 +827,7 @@ export const services: Service[] = [
     seoTitle: 'Electrical Estimating Services',
     seoDescription:
       'CSI Division 26 electrical takeoffs and cost estimates delivered in 24-48 hours. Request your free electrical estimate quote today.',
-    title: 'Electrical Estimating Services',
+    title: 'Electrical Estimation Services',
     icon: 'SVC_EST',
     tagline: 'Division 26 Estimating',
     category: 'ESTIMATING',
@@ -938,7 +938,7 @@ export const services: Service[] = [
     seoTitle: 'Residential Estimating Services | The ACE Services',
     seoDescription:
       'Residential estimating services, cost estimates and material takeoffs for single-family homes, multi-family developments, and custom residential builds, built directly from your plans for builders, developers, and homeowners nationwide.',
-    title: 'Residential Estimating Services',
+    title: 'Residential Estimation Services',
     icon: 'SVC_EST',
     tagline: 'Cost Estimating',
     category: 'ESTIMATING',
@@ -1366,7 +1366,7 @@ export const services: Service[] = [
     seoTitle: 'Building Cost Estimating Services | The ACE Services',
     seoDescription:
       'Detailed building cost estimates and material takeoffs for every project type, delivered fast. Get your free building estimate quote in 24-48 hours.',
-    title: 'Building Estimating',
+    title: 'Building Estimation',
     icon: 'SVC_EST',
     tagline: 'Cost Estimating',
     category: 'ESTIMATING',
@@ -1473,7 +1473,7 @@ export const services: Service[] = [
     seoTitle: 'Industrial Estimating Services | The ACE Services',
     seoDescription:
       'Precise industrial construction cost estimates for plants, warehouses and manufacturing facilities. Request a free industrial estimate quote today.',
-    title: 'Industrial Estimating',
+    title: 'Industrial Estimation',
     icon: 'SVC_EST',
     tagline: 'Cost Estimating',
     category: 'ESTIMATING',
@@ -1584,7 +1584,7 @@ export const services: Service[] = [
     seoTitle: 'Commercial Construction Estimating | The ACE Services',
     seoDescription:
       'AACE Class 3 cost estimates, shop drawings and permit sets for commercial construction projects. Request your free commercial construction quote now.',
-    title: 'Commercial Construction Estimating',
+    title: 'Commercial Construction Estimation',
     icon: 'SVC_EST',
     tagline: 'Cost Estimating & Documentation',
     category: 'COMMERCIAL',
@@ -1793,7 +1793,7 @@ export const services: Service[] = [
     seoTitle: 'Bridge Construction Estimating Services',
     seoDescription:
       'Specialized cost estimating and quantity takeoffs for bridge and infrastructure construction projects. Request a free bridge construction quote today.',
-    title: 'Bridge & Infrastructure Estimating',
+    title: 'Bridge & Infrastructure Estimation',
     icon: 'SVC_EST',
     tagline: 'Infrastructure Cost Estimating',
     category: 'INFRASTRUCTURE',
@@ -1896,7 +1896,7 @@ export const services: Service[] = [
     seoTitle: 'Warehouse Development & Estimating Services',
     seoDescription:
       'Cost estimating, drafting and permits for warehouse and distribution center development projects. Get your free warehouse development quote today.',
-    title: 'Warehouse Development Estimating',
+    title: 'Warehouse Development Estimation',
     icon: 'SVC_EST',
     tagline: 'Cost Estimating & Documentation',
     category: 'WAREHOUSE & LOGISTICS',

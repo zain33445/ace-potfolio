@@ -87,20 +87,21 @@ export default function Footer() {
               mode="repel"
               className="
                 max-w-md md:max-w-lg
+                px-5 wrap
                 font-sans text-xl md:text-2xl text-white/80 leading-relaxed font-semibold
               "
             />
             <br />
             
         {/* Social Links */}
-        <div className="flex justify-center gap-6 my-10">
+        <div className="flex justify-center gap-10 my-10">
           {SOCIAL_LINKS.map((s) => (
             <a
               key={s.label}
               href={s.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white/70 hover:text-white transition-colors"
+              className="text-white/70 hover:text-white transition-all scale-200 hover:scale-250"
               aria-label={s.label}
             >
               {s.icon}

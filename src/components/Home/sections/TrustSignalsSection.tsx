@@ -1,3 +1,4 @@
+import { X, XCircle, CheckCircle2, ShieldCheck } from 'lucide-react';
 import Reveal from '../../../components/Reveal';
 
 const CLIENTS = [
@@ -27,18 +28,21 @@ export default function TrustSignalsSection() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
             {/* In-House */}
-            <div className="border border-blueprint-line bg-surface p-6 bracket-corners opacity-70">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 border border-blueprint-line flex items-center justify-center">
-                  <span className="font-mono text-sm font-bold text-on-surface-variant">✕</span>
+            <div className="bg-white rounded-3xl p-8 md:p-10 border border-slate-200/80 shadow-sm flex flex-col">
+              <div className="flex items-center justify-between mb-8">
+                <div className="w-12 h-12 rounded-2xl bg-slate-100 text-slate-400 flex items-center justify-center">
+                  <X className="w-6 h-6" />
                 </div>
-                <h3 className="font-space font-bold text-lg text-on-background">
-                  In-House Estimating
-                </h3>
+                <span className="text-xs font-semibold px-3 py-1 bg-slate-100 rounded-full text-slate-500">
+                  The old way
+                </span>
               </div>
-              <ul className="space-y-2.5">
+              <h3 className="text-2xl font-bold text-slate-900 mb-6">
+                In-House Estimating
+              </h3>
+              <ul className="space-y-3.5">
                 {[
                   '3 to 5 day turnaround on takeoffs',
                   'Full-time estimator salary: $75k to $120k/yr',
@@ -47,8 +51,8 @@ export default function TrustSignalsSection() {
                   'No built-in QA / peer review',
                   'Bid capacity shrinks during PTO or sick leave',
                 ].map((item) => (
-                  <li key={item} className="flex items-start gap-2 font-sans text-sm text-on-surface-variant">
-                    <span className="text-red-400 flex-shrink-0 mt-0.5">✕</span>
+                  <li key={item} className="flex items-start gap-3 text-[15px] text-slate-500">
+                    <XCircle className="w-5 h-5 flex-shrink-0 text-slate-300" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -56,21 +60,20 @@ export default function TrustSignalsSection() {
             </div>
 
             {/* The ACE Services */}
-            <div className="border-2 border-primary bg-surface p-6 bracket-corners relative">
-              <div className="absolute -top-3 left-4 bg-primary px-3 py-0.5">
-                <span className="font-mono text-xs font-bold text-white uppercase tracking-wider">
+            <div className="bg-[#FF6B00] text-white rounded-3xl p-8 md:p-10 shadow-xl shadow-[#FF6B00]/20 flex flex-col relative overflow-hidden group">
+              <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-white/25 rounded-full blur-2xl group-hover:scale-125 transition-transform" />
+              <div className="relative flex items-center justify-between mb-8">
+                <div className="w-12 h-12 rounded-2xl bg-white/15 flex items-center justify-center backdrop-blur-md">
+                  <ShieldCheck className="w-6 h-6" />
+                </div>
+                <span className="text-xs font-semibold px-3 py-1 bg-white text-[#FF6B00] rounded-full">
                   Recommended
                 </span>
               </div>
-              <div className="flex items-center gap-3 mb-4 mt-2">
-                <div className="w-8 h-8 border-2 border-primary flex items-center justify-center bg-primary/10">
-                  <span className="font-mono text-sm font-bold text-primary">✓</span>
-                </div>
-                <h3 className="font-space font-bold text-lg text-primary">
-                  The ACE Services
-                </h3>
-              </div>
-              <ul className="space-y-2.5">
+              <h3 className="relative text-2xl font-bold mb-6">
+                The ACE Services
+              </h3>
+              <ul className="relative space-y-3.5">
                 {[
                   '24 to 48 hour turnaround guaranteed',
                   'Flat per-project fee, no salary overhead',
@@ -79,8 +82,8 @@ export default function TrustSignalsSection() {
                   'Mandatory two-stage QA per project',
                   'Scales instantly with your bid pipeline',
                 ].map((item) => (
-                  <li key={item} className="flex items-start gap-2 font-sans text-sm text-on-background font-medium">
-                    <span className="text-primary flex-shrink-0 mt-0.5">✓</span>
+                  <li key={item} className="flex items-start gap-3 text-[15px] font-medium text-white">
+                    <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}

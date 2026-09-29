@@ -21,6 +21,53 @@ const menuItems = [
   { label: "Calculator", ariaLabel: "Estimate costs", link: "/calculator/" },
 ];
 
+/* Desktop Services mega menu. Hardcoded (not derived from data/services.ts) so
+   the client nav bundle doesn't pull in ~2k lines of service copy + icons.
+   Slugs must exist in data/service-slugs.ts. */
+const SERVICE_MENU = [
+  {
+    slug: "cost-estimating",
+    label: "Cost Estimation",
+    subs: [
+      ["residential-estimating", "Residential Estimation"],
+      ["commercial-construction", "Commercial Estimation"],
+      ["industrial-estimating", "Industrial Estimation"],
+      ["building-estimating", "Building Estimation"],
+      ["electrical-estimating-services", "Electrical Estimation"],
+      ["blueprint-estimation", "Blueprint Estimation"],
+      ["quantity-surveyor-services", "Quantity Surveying"],
+      ["bridges-construction", "Bridges & Infrastructure"],
+      ["warehouses-development", "Warehouse Development"],
+      ["educational-buildings", "Educational Buildings"],
+      ["healthcare-buildings", "Healthcare Buildings"],
+      ["hotels-development", "Hotel Development"],
+    ],
+  },
+  {
+    slug: "architectural-services",
+    label: "Architectural Services",
+    subs: [
+      ["3d-rendering-services", "3D Rendering"],
+      ["shop-drawing-services", "Shop Drawings"],
+      ["permit-set-services", "Permit Sets"],
+    ],
+  },
+  {
+    slug: "structural-engineering",
+    label: "Structural & MEP Engineering",
+    subs: [
+      ["rebar-detailing-services", "Rebar Detailing"],
+      ["shop-drawing-services", "Shop Drawings"],
+      ["permit-set-services", "PE-Stamped Permit Sets"],
+    ],
+  },
+  {
+    slug: "project-management",
+    label: "Project Management",
+    subs: [["industrial-construction", "Industrial Construction Support"]],
+  },
+] as const;
+
 export default function Nav() {
   const navRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
@@ -126,12 +173,18 @@ export default function Nav() {
 
   const isActive = (href: string) => pathname === href;
 
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [activeMain, setActiveMain] = useState(0);
+  const closeTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
+  useEffect(() => setMenuOpen(false), [pathname]);
+  const current = SERVICE_MENU[activeMain];
+
   return (
     <>
       <header
         className={`fixed z-50 flex justify-between md:justify-end gap-3 md:gap-10 items-center
     px-4 md:px-20 py-3 border-p
-    bg-primary/90 w-full
+    bg-primary w-full
     transition-[width,left,transform,background-color,box-shadow,border-radius] duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]
     top-0
     text-white text-sm md:text-base whitespace-nowrap
@@ -165,17 +218,16 @@ export default function Nav() {
         className={`fixed z-50 flex justify-between lg:justify-around items-center
     px-4 md:px-6 py-3
     transition-[width,left,transform,background-color,box-shadow,border-radius] duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]
-    top-10
+    top-8
     h-16
 
     left-1/2 -translate-x-1/2
     ${
       navScrolled
-        ? "w-[95%] lg:w-[75%] rounded-full border-primary bg-white/20 backdrop-blur-3xl shadow-2xl shadow-black/30 ring-1 ring-inset ring-white/20 md:h-18"
-        : "w-full bg-transparent md:h-20"
+        ? `w-full backdrop-blur-2xl border-b border-black/5 md:h-18 ${menuOpen ? "bg-white" : "bg-white/70 shadow-[0_8px_24px_-16px_rgba(0,0,0,0.25)]"}`
+        : `w-full md:h-20 ${menuOpen ? "bg-white" : "bg-transparent"}`
     }
 
-    ${isPinned ? "-translate-y-full" : "translate-y-3"}
   `}
         id="main-nav"
         aria-label="Main navigation"
@@ -212,7 +264,7 @@ export default function Nav() {
           >
             {PAGE_LINKS.map(({ href, label }) => {
               const isCalculator = href === "/calculator/";
-              return (
+              const link = (
                 <Link
                   key={href}
                   href={href}
@@ -223,7 +275,7 @@ export default function Nav() {
                             ? "border-primary bg-primary text-white"
                             : "border-primary bg-primary text-white hover:bg-transparent hover:text-primary"
                         }`
-                      : `font-mono ${navScrolled ? "text-xs 2xl:text-sm" : "text-sm"} font-bold border-transparent px-1 tracking-widest pb-0.5 ${navScrolled ? "text-black" : "text-white"} transition-colors duration-500 hover:border-b-primary hover:border-b-2 ${
+                      : `relative font-mono ${navScrolled ? "text-xs 2xl:text-sm" : "text-sm"} font-bold border-transparent px-1 tracking-widest pb-0.5 ${navScrolled ? "text-black" : "text-white"} transition-colors duration-500 hover:border-b-primary hover:border-b-2 ${
                           isActive(href) ? "border-b-primary" : ""
                         }`
                   }
@@ -231,16 +283,116 @@ export default function Nav() {
                   {label}
                   {isActive(href) && !isCalculator && (
                     <span
-                      className="block w-full h-px bg-primary mt-0.5"
+                      className="absolute left-0 right-0 -bottom-0.5 h-px bg-primary"
                       aria-hidden="true"
                     />
                   )}
                 </Link>
               );
+              if (href !== "/services/") return link;
+              return (
+                /* Deliberately not `relative`: the panel positions against the
+                   fixed <nav> so it spans the full pill width. */
+                <div
+                  key={href}
+                  /* flex: the inline <a> would otherwise sit on the text-xl line box and drop below its siblings */
+                  className="flex items-center"
+                  onMouseEnter={() => {
+                    clearTimeout(closeTimer.current);
+                    setMenuOpen(true);
+                  }}
+                  onMouseLeave={() => {
+                    /* grace period to cross the gap between link and panel */
+                    closeTimer.current = setTimeout(() => setMenuOpen(false), 150);
+                  }}
+                  onFocus={() => setMenuOpen(true)}
+                  onBlur={(e) => {
+                    if (!e.currentTarget.contains(e.relatedTarget as Node))
+                      setMenuOpen(false);
+                  }}
+                  onKeyDown={(e) => e.key === "Escape" && setMenuOpen(false)}
+                >
+                  {link}
+                  <div
+                    className={`absolute left-0 right-0 top-full transition-all duration-300 ${
+                      menuOpen
+                        ? "opacity-100 translate-y-0 visible"
+                        : "opacity-0 -translate-y-2 invisible pointer-events-none"
+                    }`}
+                  >
+                    <div className="grid grid-cols-[minmax(0,3fr)_minmax(0,7fr)] text-black overflow-hidden w-full bg-white border-t border-black/5 shadow-[0_24px_48px_-24px_rgba(0,0,0,0.35)]">
+                      {/* Main services sidebar */}
+                      <div className="border-r border-black/10 bg-black/[0.03] p-8">
+                        <p className="mb-4 font-mono text-xs uppercase tracking-widest">
+                          Our Services
+                        </p>
+                        <ul className="space-y-1">
+                          {SERVICE_MENU.map((m, i) => (
+                            <li key={m.slug}>
+                              <Link
+                                href={`/services/${m.slug}/`}
+                                onMouseEnter={() => setActiveMain(i)}
+                                onFocus={() => setActiveMain(i)}
+                                className={`block border-l-2 py-1.5 pl-4 text-2xl font-semibold tracking-tight whitespace-normal transition-colors ${
+                                  i === activeMain
+                                    ? "border-primary text-primary"
+                                    : "border-transparent"
+                                }`}
+                              >
+                                {m.label}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                        <Link
+                          href="/services/"
+                          className="mt-6 inline-block pl-4 font-mono text-xs font-bold uppercase tracking-wider hover:text-primary"
+                        >
+                          All Services →
+                        </Link>
+                      </div>
+                      {/* Sub services of the active main service */}
+                      <div className="p-8">
+                        <p className="mb-4 font-mono text-xs uppercase tracking-widest ">
+                          {current.label}
+                        </p>
+                        <ul className="grid max-w-xl grid-cols-2 gap-x-8 gap-y-2.5">
+                          {current.subs.map(([slug, subLabel]) => (
+                            <li key={slug}>
+                              <Link
+                                href={`/services/${slug}/`}
+                                className="text-sm font-semibold transition-colors hover:text-primary"
+                              >
+                                {subLabel}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                        <Link
+                          href={`/services/${current.slug}/`}
+                          className="mt-8 inline-flex items-center gap-2 border border-primary bg-primary px-5 py-2 font-mono text-xs font-bold uppercase tracking-wider text-white transition-all hover:bg-transparent hover:text-primary"
+                        >
+                          Explore {current.label} →
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
             })}
           </div>
         </div>
       </nav>
+
+      {/* Page dim while the Services menu is open. Outside <nav>: its transform
+          would otherwise trap this fixed layer inside the nav box. */}
+      <div
+        aria-hidden="true"
+        onClick={() => setMenuOpen(false)}
+        className={`fixed inset-0 z-40 bg-black/50 transition-opacity duration-300 ${
+          menuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+      />
 
       {/* StaggeredMenu — always mounted, self-contained open/close via its own toggle */}
       <StaggeredMenu

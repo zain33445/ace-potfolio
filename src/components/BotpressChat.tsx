@@ -1,80 +1,63 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 
+/* Page-level rules for the Botpress hosts. Max z-index so the chat sits above
+   the nav, menus and overlays; `bp-hide-fab` is toggled on <html> while the
+   homepage hero is on screen. */
+const PAGE_CSS = `
+  #fab-root {
+    position: fixed !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    z-index: 2147483647 !important;
+    transition: opacity .3s ease, visibility .3s ease !important;
+  }
+  #webchat-root, #message-preview-root { z-index: 2147483647 !important; }
+  html.bp-hide-fab #fab-root,
+  html.bp-hide-fab #message-preview-root {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+`;
+
+/* Styles injected into the fab's shadow root — survive Botpress re-rendering
+   the button, unlike inline styles on a single element. */
+const FAB_CSS = `
+  .bpFab {
+    background: #fff !important;
+    box-shadow: 0 8px 24px -8px rgba(0,0,0,.25) !important;
+    border: 1px solid #FF6B00 !important;
+    padding: 1px !important;
+    width: 4rem !important;
+    height: 4rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .bpFab img, .bpFab svg {
+    width: 3rem !important;
+    height: 3rem !important;
+    object-fit: contain !important;
+    margin: auto !important;
+  }
+`;
+
 export default function BotpressChat() {
-  const pathname = usePathname();
-  const isHome = pathname === '/';
-  const bgRef = useRef<'white' | 'transparent'>('transparent');
-  const loadedRef = useRef(false);
-  const rafRef = useRef<number>(0);
-  const styleRef = useRef<HTMLStyleElement | null>(null);
-
-  /* Apply background directly to the fab button inside Botpress's shadow root */
-  function applyFabBg(color: 'white' | 'transparent') {
-    const host = document.getElementById('fab-root');
-    const fab = host?.shadowRoot?.querySelector<HTMLElement>('.bpFab');
-    if (fab) {
-      fab.style.setProperty('background', color, 'important');
-      fab.style.setProperty('box-shadow', `0 0 0 0`, 'important');
-      fab.style.setProperty('padding', `1px`, 'important');
-      fab.style.setProperty('height', `4rem`, 'important');
-      fab.style.setProperty('width', `4rem`, 'important');
-      fab.style.setProperty('border', `1px solid #FF6B00`, 'important');
-      fab.style.setProperty('display', `flex`, 'important');
-      fab.style.setProperty('align-items', `center`, 'important');
-      fab.style.setProperty('justify-content', `center`, `important`);
-
-      const logo = fab.querySelector<HTMLElement>('img, svg');
-      if (logo) {
-        logo.style.setProperty('width', `3rem`, 'important');
-        logo.style.setProperty('height', `3rem`, 'important');
-        logo.style.setProperty('object-fit', `contain`, 'important');
-        logo.style.setProperty('margin', `auto`, `important`);
-      }
-    }
-  }
-
-  /* Inject a stylesheet rule to enforce fab positioning
-     as a baseline that cannot be easily overwritten by JS */
-  function injectPositionStyles() {
-    if (styleRef.current) return;
-    const style = document.createElement('style');
-    style.id = 'chatbit-position-styles';
-    style.textContent = `
-      #fab-root {
-        position: fixed !important;
-        transition: bottom 0.4s cubic-bezier(0.33, 1, 0.68, 1), right 0.4s cubic-bezier(0.33, 1, 0.68, 1) !important;
-      }
-    `;
-    document.head.appendChild(style);
-    styleRef.current = style;
-  }
-
-  /* Update the stylesheet content based on scroll */
-  function updatePositionCSS(pastHero: boolean) {
-    if (!styleRef.current) return;
-    const bottom = pastHero ? '20px' : '100px';
-    styleRef.current.textContent = `
-      #fab-root {
-        position: fixed !important;
-        bottom: ${bottom} !important;
-        right: 20px !important;
-        transition: bottom 0.4s cubic-bezier(0.33, 1, 0.68, 1), right 0.4s cubic-bezier(0.33, 1, 0.68, 1) !important;
-      }
-    `;
-  }
+  const isHome = usePathname() === '/';
 
   /* Inject Botpress scripts — only after first user interaction */
   useEffect(() => {
+    let loaded = false;
     function injectBotpress() {
-      if (loadedRef.current) return;
-      loadedRef.current = true;
+      if (loaded) return;
+      loaded = true;
+      cleanupListeners();
 
       const injectScript = document.createElement('script');
-      injectScript.src =
-        'https://cdn.botpress.cloud/desk/webchat/v4.1/inject.js';
+      injectScript.src = 'https://cdn.botpress.cloud/desk/webchat/v4.1/inject.js';
       injectScript.async = false;
 
       const configScript = document.createElement('script');
@@ -86,30 +69,21 @@ export default function BotpressChat() {
       document.body.appendChild(configScript);
     }
 
-    function onInteraction() {
-      injectBotpress();
-      window.removeEventListener('click', onInteraction);
-      window.removeEventListener('touchstart', onInteraction);
+    function onScroll() {
+      if (window.scrollY > window.innerHeight * 0.5) injectBotpress();
+    }
+    function cleanupListeners() {
+      window.removeEventListener('click', injectBotpress);
+      window.removeEventListener('touchstart', injectBotpress);
       window.removeEventListener('scroll', onScroll);
     }
 
-    function onScroll() {
-      if (window.scrollY > window.innerHeight * 0.5) {
-        injectBotpress();
-        window.removeEventListener('click', onInteraction);
-        window.removeEventListener('touchstart', onInteraction);
-        window.removeEventListener('scroll', onScroll);
-      }
-    }
-
-    window.addEventListener('click', onInteraction, { once: true });
-    window.addEventListener('touchstart', onInteraction, { once: true });
+    window.addEventListener('click', injectBotpress, { once: true });
+    window.addEventListener('touchstart', injectBotpress, { once: true });
     window.addEventListener('scroll', onScroll, { passive: true });
 
     return () => {
-      window.removeEventListener('click', onInteraction);
-      window.removeEventListener('touchstart', onInteraction);
-      window.removeEventListener('scroll', onScroll);
+      cleanupListeners();
       document
         .querySelectorAll('script[src*="botpress"], script[src*="bpcontent"]')
         .forEach((el) => el.remove());
@@ -119,104 +93,62 @@ export default function BotpressChat() {
     };
   }, []);
 
-  /* Inject position stylesheet on mount */
+  /* Page stylesheet + white fab styling, on every page */
   useEffect(() => {
-    injectPositionStyles();
-    return () => {
-      if (styleRef.current) {
-        styleRef.current.remove();
-        styleRef.current = null;
+    const style = document.createElement('style');
+    style.id = 'chatbot-page-styles';
+    style.textContent = PAGE_CSS;
+    document.head.appendChild(style);
+
+    /* Botpress attaches its shadow root after the script loads — poll until then. */
+    const interval = setInterval(() => {
+      const shadow = document.getElementById('fab-root')?.shadowRoot;
+      if (!shadow) return;
+      clearInterval(interval);
+      if (!shadow.getElementById('ace-fab-styles')) {
+        const fabStyle = document.createElement('style');
+        fabStyle.id = 'ace-fab-styles';
+        fabStyle.textContent = FAB_CSS;
+        shadow.appendChild(fabStyle);
       }
+    }, 500);
+
+    return () => {
+      clearInterval(interval);
+      style.remove();
     };
   }, []);
 
-  /* Continuously enforce chatbit position via rAF loop + setInterval fallback */
+  /* Hide the fab while the homepage hero is visible. The hero is dynamically
+     imported, so retry until #hero-top mounts (same approach as Nav). */
   useEffect(() => {
+    const root = document.documentElement;
     if (!isHome) {
-      /* Not on home page — set normal position */
-      const fabRoot = document.getElementById('fab-root');
-      if (fabRoot) {
-        fabRoot.style.setProperty('position', 'fixed', 'important');
-        fabRoot.style.setProperty('bottom', '20px', 'important');
-        fabRoot.style.setProperty('right', '20px', 'important');
-      }
-      updatePositionCSS(true);
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      root.classList.remove('bp-hide-fab');
       return;
     }
 
-    let intervalId: ReturnType<typeof setInterval>;
-
-    function setPosition() {
-      const fabRoot = document.getElementById('fab-root');
-      if (!fabRoot) return;
-
-      const pastHero = window.scrollY > window.innerHeight * 0.6;
-
-      fabRoot.style.setProperty('position', 'fixed', 'important');
-      fabRoot.style.setProperty('transition', 'bottom 0.4s cubic-bezier(0.33, 1, 0.68, 1), right 0.4s cubic-bezier(0.33, 1, 0.68, 1)', 'important');
-
-      if (pastHero) {
-        fabRoot.style.setProperty('bottom', '20px', 'important');
-        fabRoot.style.setProperty('right', '20px', 'important');
-      } else {
-        fabRoot.style.setProperty('bottom', '100px', 'important');
-        fabRoot.style.setProperty('right', '20px', 'important');
-      }
-
-      updatePositionCSS(pastHero);
-    }
-
-    function loop() {
-      const fabRoot = document.getElementById('fab-root');
-      if (!fabRoot) {
-        rafRef.current = requestAnimationFrame(loop);
+    root.classList.add('bp-hide-fab');
+    let observer: IntersectionObserver | null = null;
+    let raf = 0;
+    const observe = () => {
+      const hero = document.getElementById('hero-top');
+      if (!hero) {
+        raf = requestAnimationFrame(observe);
         return;
       }
-      setPosition();
-      rafRef.current = requestAnimationFrame(loop);
-    }
-
-    rafRef.current = requestAnimationFrame(loop);
-    intervalId = setInterval(setPosition, 100);
+      observer = new IntersectionObserver(([entry]) =>
+        root.classList.toggle('bp-hide-fab', entry.isIntersecting),
+      );
+      observer.observe(hero);
+    };
+    observe();
 
     return () => {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-      clearInterval(intervalId);
+      cancelAnimationFrame(raf);
+      observer?.disconnect();
+      root.classList.remove('bp-hide-fab');
     };
-  }, [isHome]);
-
-  /* Watch for the Botpress shadow root to appear */
-  useEffect(() => {
-    if (!isHome) return;
-
-    let interval: ReturnType<typeof setInterval>;
-
-    function onShadowReady() {
-      const host = document.getElementById('fab-root');
-      if (host?.shadowRoot) {
-        clearInterval(interval);
-        applyFabBg(bgRef.current);
-        const mo = new MutationObserver(() => applyFabBg(bgRef.current));
-        mo.observe(host.shadowRoot, { childList: true, subtree: true });
-        return true;
-      }
-      return false;
-    }
-
-    interval = setInterval(onShadowReady, 500);
-    return () => clearInterval(interval);
-  }, [isHome]);
-
-  /* Observe document.body for when #fab-root is injected */
-  useEffect(() => {
-    if (!isHome) return;
-
-    const observer = new MutationObserver(() => {
-      /* #fab-root detected — position enforcement loop handles the rest */
-    });
-    observer.observe(document.body, { childList: true, subtree: true });
-    return () => observer.disconnect();
   }, [isHome]);
 
   return null;

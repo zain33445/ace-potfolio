@@ -41,10 +41,7 @@ const SLUG_RE = /^[\p{L}\p{N}\p{M}\p{So}]+(?:-[\p{L}\p{N}\p{M}\p{So}]+)*$/u;
    reach them, so they're appended to every service page's Related Services
    module as curated cards instead. */
 const FEATURED_SOLUTIONS = [
-  {
-    title: "Houston Construction Estimating",
-    slug: "houston-construction-estimating",
-  },
+  { title: "Residential Estimation Services", slug: "residential-estimating" },
   { title: "ADU Construction Cost Guide", slug: "adu-construction-cost" },
 ];
 
@@ -427,7 +424,9 @@ async function SubServicesSidebar({ service }: { service: Service }) {
   const eligibleRelated = services
     .filter((s) => s.slug !== service.slug)
     .filter((s) => s.slug !== parentService?.slug)
-    .filter((s) => !subServiceSlugs.has(s.slug));
+    .filter((s) => !subServiceSlugs.has(s.slug))
+    // Featured cards are appended below — keep them out of the rotation.
+    .filter((s) => !FEATURED_SOLUTIONS.some((f) => f.slug === s.slug));
   // Rotate the window by this page's position so link equity is spread across
   // every service instead of always surfacing the first 8 in array order
   // (which left pages in the tail of the `services` array with zero inbound
