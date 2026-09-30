@@ -42,6 +42,15 @@
 			"preview_id": "8bfefc7f85d44a5a98aa9348465f95ef"
 		}
 	],
+	// Backs the OpenNext tag cache (see open-next.config.ts). Required for
+	// revalidatePath/revalidateTag to actually invalidate anything.
+	"d1_databases": [
+		{
+			"binding": "NEXT_TAG_CACHE_D1",
+			"database_name": "ace-services-tag-cache",
+			"database_id": "c92e67c8-7d73-441b-b44f-bd070cab3657"
+		}
+	],
 	"images": {
 		"binding": "IMAGES"
 	}
