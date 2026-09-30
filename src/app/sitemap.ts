@@ -6,10 +6,16 @@ import { getAllServicesSanity } from '@/src/lib/sanity/services';
 
 const BASE_URL = 'https://theaceservices.com';
 
-// Regenerate the sitemap in the background at most hourly (ISR).
-// New blog posts / projects appear here without a redeploy; if
-// WordPress is unreachable the last generated sitemap is served.
-export const revalidate = 3600;
+// Render the sitemap on every request instead of caching it.
+//
+// It was ISR (revalidate = 3600), but revalidatePath('/sitemap.xml') is a
+// no-op for metadata routes: the entry stayed x-nextjs-cache: HIT and kept
+// serving deleted posts indefinitely. Only a layout-scoped
+// revalidatePath('/', 'layout') flushed it, and that invalidates the entire
+// site cache — unacceptable on every content edit. force-dynamic costs one
+// Sanity read per crawler fetch and makes the sitemap correct by
+// construction. The webhook no longer tries to revalidate this path.
+export const dynamic = 'force-dynamic';
 
 // Real WP post slugs are plain lowercase ASCII words joined by hyphens.
 // WordPress occasionally produces junk slugs from spam/garbled titles

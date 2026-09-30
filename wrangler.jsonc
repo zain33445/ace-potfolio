@@ -29,6 +29,23 @@
 			"service": "ace-services"
 		}
 	],
+	// Runs background ISR revalidations for stale cache entries, dispatched
+	// by the OpenNext queue override (see open-next.config.ts). Uses SQLite
+	// storage, hence new_sqlite_classes below.
+	"durable_objects": {
+		"bindings": [
+			{
+				"name": "NEXT_CACHE_DO_QUEUE",
+				"class_name": "DOQueueHandler"
+			}
+		]
+	},
+	"migrations": [
+		{
+			"tag": "v1",
+			"new_sqlite_classes": ["DOQueueHandler"]
+		}
+	],
 	"r2_buckets": [
 		{
 			"binding": "NEXT_INC_CACHE_R2_BUCKET",

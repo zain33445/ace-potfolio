@@ -48,10 +48,9 @@ export async function POST(request: NextRequest) {
     // Revalidate by content type
     switch (_type) {
       case 'post':
-        // Blog listing + the individual post + sitemap
+        // Blog listing + the individual post
         revalidatePath('/blog/');
         if (slug) revalidatePath(`/${slug}/`);
-        revalidatePath('/sitemap.xml');
         break;
 
       case 'category':
@@ -61,7 +60,6 @@ export async function POST(request: NextRequest) {
       case 'service':
         revalidatePath('/services/');
         if (slug) revalidatePath(`/${slug}/`);
-        revalidatePath('/sitemap.xml');
         break;
 
       default:
