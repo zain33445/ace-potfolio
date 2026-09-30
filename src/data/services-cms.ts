@@ -23,7 +23,8 @@ type Service = (typeof services)[number];
 export async function getServicesEnriched(): Promise<Service[]> {
   try {
     return await getAllServicesSanity();
-  } catch {
+  } catch (e) {
+    console.error('[services-cms] getServicesEnriched failed:', e);
     return services;
   }
 }

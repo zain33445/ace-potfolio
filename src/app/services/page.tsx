@@ -25,7 +25,10 @@ const FEATURE_LINKS: Record<string, string> = {
 };
 
 /* Every non-discipline service, grouped. A slug missing from services.ts is
-   skipped, so removing a service never breaks this page. */
+   skipped, so removing a service never breaks this page. Any service the
+   groups below don't cover still gets a card via the dynamic "All services"
+   leftover group in ServicesPage — the homepage must never silently drop a
+   published service. */
 const MORE_GROUPS: {
   title: string;
   slugs: string[];
@@ -33,11 +36,11 @@ const MORE_GROUPS: {
 }[] = [
   {
     title: 'Estimating specialties',
-    slugs: ['residential-estimating', 'building-estimating', 'industrial-estimating', 'electrical-estimating-services', 'blueprint-estimation', 'quantity-surveyor-services'],
+    slugs: ['residential-estimating', 'building-estimating', 'industrial-estimating', 'electrical-estimating-services', 'blueprint-estimation', 'quantity-surveyor-services', 'construction-estimation', 'commercial-estimation', 'outsourcing-estimation', 'freelance-estimation'],
   },
   {
     title: 'Sectors we serve',
-    slugs: ['commercial-construction', 'industrial-construction', 'bridges-construction', 'warehouses-development', 'educational-buildings', 'healthcare-buildings', 'hotels-development'],
+    slugs: ['commercial-construction', 'industrial-construction', 'bridges-construction', 'warehouses-development', 'educational-buildings', 'healthcare-buildings', 'hotels-development', 'residential-construction', 'residential-buildings', 'office-development', 'shopping-centre', 'community-parks', 'assembly-buildings'],
   },
   {
     title: 'Drafting & documentation',
@@ -46,6 +49,11 @@ const MORE_GROUPS: {
 ];
 
 /* ── Page metadata ────────────────────────────────────────────── */
+
+/* Hourly ISR: if the build ever prerenders while Sanity is unreachable
+   (the hardcoded fallback silently drops CMS-only services), the next
+   revalidation re-renders with the full catalogue. */
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: { absolute: 'Our Services | Construction and Estimation Company' },
@@ -68,10 +76,22 @@ export default async function ServicesPage() {
   const allServices = await getServicesEnriched();
   const services = allServices.filter((s) => s.id in DISCIPLINES);
   const bySlug = new Map(allServices.map((s) => [s.slug, s]));
-  // Every card on the page: the four disciplines plus everything in More Services.
-  const serviceCount =
-    services.length +
-    MORE_GROUPS.reduce((n, g) => n + g.slugs.filter((slug) => bySlug.has(slug)).length + (g.extra ? 1 : 0), 0);
+
+  /* Safety net: any service the discipline sections and curated groups above
+     don't name explicitly still gets a card, so a newly published CMS service
+     can never be missing from this page. */
+  const curatedSlugs = new Set([
+    ...services.map((s) => s.slug),
+    ...MORE_GROUPS.flatMap((g) => g.slugs),
+  ]);
+  const leftoverSlugs = allServices
+    .filter((s) => !curatedSlugs.has(s.slug))
+    .map((s) => s.slug);
+  const groups = leftoverSlugs.length
+    ? [...MORE_GROUPS, { title: 'All services', slugs: leftoverSlugs }]
+    : MORE_GROUPS;
+
+  const serviceCount = allServices.length;
   return (
     <section className="-mt-20 min-h-screen bg-surface pt-35">
       {/* ════════════════════════════════════════════════════════
@@ -241,7 +261,7 @@ export default async function ServicesPage() {
             Specialties, sectors &amp; documentation
           </h2>
 
-          {MORE_GROUPS.map((group) => {
+          {groups.map((group) => {
             const cards = group.slugs.flatMap((slug) => {
               const s = bySlug.get(slug);
               return s ? [{ href: `/${s.slug}/`, title: s.title, summary: s.summary, meta: s.turnaround, Icon: getServiceIcon(s.id) }] : [];

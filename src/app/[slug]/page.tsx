@@ -21,6 +21,7 @@ import { getRelatedSlugs } from "@/src/data/related-posts";
 // Service Imports
 import { services, getServiceIcon, type Service } from "@/src/data/services";
 import { getServiceEnriched, getSubServices } from "@/src/data/services-cms";
+import { getAllServicesSanity } from "@/src/lib/sanity/services";
 import { PERSON_ID, personSchema } from "@/src/lib/schema";
 
 /**
@@ -91,9 +92,12 @@ async function resolveSlug(
 
 export async function generateStaticParams() {
   try {
-    const result = await getPosts({ per_page: 100 });
-    const postPaths = result.data.map((post) => ({ slug: post.slug }));
-    const servicePaths = services.map((s) => ({ slug: s.slug }));
+    const [posts, allServices] = await Promise.all([
+      getPosts({ per_page: 100 }),
+      getAllServicesSanity(),
+    ]);
+    const postPaths = posts.data.map((post) => ({ slug: post.slug }));
+    const servicePaths = allServices.map((s) => ({ slug: s.slug }));
     return [...servicePaths, ...postPaths];
   } catch {
     return services.map((s) => ({ slug: s.slug }));
@@ -294,9 +298,14 @@ async function ServiceView({
               <div className="font-mono text-sm font-bold uppercase tracking-[0.2em] text-primary lg:pt-30">
                 <span className="font-[family-name:var(--font-space)]">
                   [
-                  {String(
-                    services.findIndex((s) => s.slug === service.slug) + 1,
-                  ).padStart(2, "0")}
+                  {(() => {
+                    // CMS-only services aren't in the hardcoded array — fall
+                    // back to "//" rather than rendering a bogus "[00]".
+                    const i = services.findIndex(
+                      (s) => s.slug === service.slug,
+                    );
+                    return i >= 0 ? String(i + 1).padStart(2, "0") : "//";
+                  })()}
                   ]
                 </span>{" "}
                 {service.category}

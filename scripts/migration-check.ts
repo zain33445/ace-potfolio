@@ -54,8 +54,26 @@ async function main() {
   check('Blog posts migrated', sanityPosts === 81, `Sanity: ${sanityPosts}, Expected: 81`);
   check('WP posts (reference)', wpPosts > 0, `WP has ${wpPosts} posts`);
   check('Categories migrated', sanityCats >= 2, `Sanity: ${sanityCats}, Expected: >= 2`);
-  check('Services migrated', sanityServices === 21, `Sanity: ${sanityServices}, Expected: 21`);
+  check('Services migrated', sanityServices === 31, `Sanity: ${sanityServices}, Expected: 31 (21 hardcopy + 10 WP-only)`);
   check('Images uploaded', sanityAssets >= 70, `Sanity assets: ${sanityAssets}`);
+
+  // ── 2b. The 10 WP-only service pages (were soft-404ing on prod) ──
+  const WP_ONLY = [
+    'residential-construction', 'residential-buildings', 'office-development',
+    'shopping-centre', 'community-parks', 'assembly-buildings',
+    'construction-estimation', 'commercial-estimation',
+    'outsourcing-estimation', 'freelance-estimation',
+  ];
+  const allSvcSlugs: string[] = await sanity.fetch('*[_type == "service"].slug');
+  const missingWpOnly = WP_ONLY.filter((s) => !allSvcSlugs.includes(s));
+  check('10 WP-only services exported', missingWpOnly.length === 0,
+    missingWpOnly.length ? `Missing: ${missingWpOnly.join(', ')}` : 'All 10 present');
+
+  const withContent = await sanity.fetch<number>(
+    `count(*[_type == "service" && slug in $slugs && defined(wpContent) && length(wpContent) > 100])`,
+    { slugs: WP_ONLY },
+  );
+  check('WP-only services have wpContent', withContent === 10, `${withContent}/10`);
 
   // ── 3. Service integrity ──
   const sanitySvcSlugs = await sanity.fetch<string[]>('*[_type == "service"].slug');
@@ -136,7 +154,7 @@ async function main() {
   try {
     const { getAllServicesSanity, getServiceSanity } = await import('../src/lib/sanity/services');
     const all = await getAllServicesSanity();
-    check('E2E: getAllServicesSanity', all.length === 21, `${all.length}/21`);
+    check('E2E: getAllServicesSanity', all.length === 31, `${all.length}/31`);
 
     const est = await getServiceSanity('cost-estimating');
     check('E2E: getServiceSanity(SVC_EST)', est?.id === 'SVC_EST',
@@ -153,6 +171,11 @@ async function main() {
     );
     check('E2E: all 4 disciplines resolve', discOk.every((s) => s && discIds.includes(s.id)),
       discOk.map((s) => s?.id ?? 'undefined').join(', '));
+
+    // CMS-only service resolves with synthesized ID + WP HTML body
+    const wpSvc = await getServiceSanity('residential-construction');
+    check('E2E: CMS-only service resolves', !!wpSvc && !!wpSvc.wpContent && wpSvc.id.startsWith('SVC_'),
+      wpSvc ? `id=${wpSvc.id}, wpContent=${wpSvc.wpContent?.length}c` : 'undefined');
   } catch (e) {
     check('E2E service layer', false, (e as Error).message);
   }

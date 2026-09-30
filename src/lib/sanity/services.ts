@@ -113,15 +113,18 @@ async function fetchAllFromSanity(): Promise<Service[] | null> {
     const raws = await sanityClient.fetch<RawService[]>(
       `*[_type == "service"] | order(_createdAt asc) { ${SERVICE_PROJECTION} }`,
     );
-    // Sanity doesn't preserve array order — sort by hardcoded order
+    // Sanity doesn't preserve array order — sort by hardcoded order, with
+    // CMS-only services (not in the hardcoded array → indexOf -1) after.
     const order = hardcodedServices.map((s) => s.slug);
+    const rank = (slug: string) => {
+      const i = order.indexOf(slug);
+      return i === -1 ? order.length : i;
+    };
     return raws
       .map(toService)
-      .sort(
-        (a, b) =>
-          (order.indexOf(a.slug) ?? 999) - (order.indexOf(b.slug) ?? 999),
-      );
-  } catch {
+      .sort((a, b) => rank(a.slug) - rank(b.slug));
+  } catch (e) {
+    console.error('[services] fetchAllFromSanity failed:', e);
     return null;
   }
 }
@@ -137,7 +140,8 @@ async function fetchOneFromSanity(slug: string): Promise<Service | null> {
       { slug },
     );
     return raw ? toService(raw) : null;
-  } catch {
+  } catch (e) {
+    console.error('[services] fetchOneFromSanity failed:', e);
     return null;
   }
 }

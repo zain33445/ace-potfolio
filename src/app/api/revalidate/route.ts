@@ -1,5 +1,6 @@
-import { revalidatePath, revalidateTag } from 'next/cache';
+import { revalidatePath } from 'next/cache';
 import { NextRequest, NextResponse } from 'next/server';
+import { isValidSignature } from '@sanity/webhook';
 
 /**
  * Sanity webhook handler — triggers on-demand ISR when content changes.
@@ -7,21 +8,36 @@ import { NextRequest, NextResponse } from 'next/server';
  * Configure in Sanity Studio → Manage → API → Webhooks:
  *   URL:         https://theaceservices.com/api/revalidate/
  *   Trigger on:  create, update, delete
- *   Filter:      _type in ['post', 'category', 'servicePage']
- *   Projection:  {_type, "slug": coalesce(slug.current, '')}
+ *   Filter:      _type in ['post', 'category', 'service']
+ *   Projection:  {_type, "slug": coalesce(slug.current, slug, '')}
  *   Secret:      <REVALIDATE_SECRET>
+ *
+ * Sanity never transmits the secret — it HMAC-signs the raw body and sends
+ * `sanity-webhook-signature: t=…,v1=…`. We verify that signature against
+ * REVALIDATE_SECRET. The `x-revalidate-secret` header is kept as a manual
+ * escape hatch for curl testing.
  */
 
 export async function POST(request: NextRequest) {
-  const secret = request.headers.get('x-revalidate-secret');
+  const secret = process.env.REVALIDATE_SECRET;
+  const rawBody = await request.text();
 
-  if (secret !== process.env.REVALIDATE_SECRET) {
-    return NextResponse.json({ error: 'Invalid secret' }, { status: 401 });
+  let authorized = false;
+  const signature = request.headers.get('sanity-webhook-signature');
+  if (signature && secret) {
+    authorized = await isValidSignature(rawBody, signature, secret);
+  }
+  if (!authorized) {
+    const headerSecret = request.headers.get('x-revalidate-secret');
+    authorized = !!secret && headerSecret === secret;
+  }
+  if (!authorized) {
+    return NextResponse.json({ error: 'Invalid signature' }, { status: 401 });
   }
 
   let body: { _type?: string; slug?: string };
   try {
-    body = await request.json();
+    body = JSON.parse(rawBody);
   } catch {
     return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 });
   }
@@ -42,9 +58,10 @@ export async function POST(request: NextRequest) {
         revalidatePath('/blog/');
         break;
 
-      case 'servicePage':
+      case 'service':
         revalidatePath('/services/');
         if (slug) revalidatePath(`/${slug}/`);
+        revalidatePath('/sitemap.xml');
         break;
 
       default:

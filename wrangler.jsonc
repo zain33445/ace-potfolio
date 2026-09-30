@@ -7,6 +7,10 @@
 		"nodejs_compat",
 		"global_fetch_strictly_public"
 	],
+	"vars": {
+		"NEXT_PUBLIC_SANITY_PROJECT_ID": "q2s1xe6q",
+		"NEXT_PUBLIC_SANITY_DATASET": "production"
+	},
 	"assets": {
 		"directory": ".open-next/assets",
 		"binding": "ASSETS",

@@ -2,6 +2,7 @@ import type { MetadataRoute } from 'next';
 import { services } from '@/src/data/services';
 import { getAllProjects } from '@/src/data/projects';
 import { getPosts } from '@/src/lib/sanity/content';
+import { getAllServicesSanity } from '@/src/lib/sanity/services';
 
 const BASE_URL = 'https://theaceservices.com';
 
@@ -78,7 +79,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE_URL}/terms-and-conditions/`, changeFrequency: 'yearly', priority: 0.1 },
   ];
 
-  const serviceRoutes: MetadataRoute.Sitemap = services.map((s) => ({
+  // Sanity primary (includes CMS-only service pages), hardcoded fallback.
+  let serviceList: typeof services;
+  try {
+    serviceList = await getAllServicesSanity();
+  } catch {
+    serviceList = services;
+  }
+  const serviceRoutes: MetadataRoute.Sitemap = serviceList.map((s) => ({
     url: `${BASE_URL}/${s.slug}/`,
     changeFrequency: 'monthly',
     priority: 0.7,
