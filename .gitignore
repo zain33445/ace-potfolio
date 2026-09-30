@@ -53,3 +53,4 @@ ds-bundle/
 .ds-shim.mjs
 # Google Search Console verification
 public/google*.html
+.sanity/

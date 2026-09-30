@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { getInsights } from '@/src/services/wordpress';
+import { getInsights } from '@/src/lib/sanity/content';
 import { BlogCard3D } from '@/src/components/BlogCard3D';
 import PaginationGrid from '../../components/PaginationGrid';
 

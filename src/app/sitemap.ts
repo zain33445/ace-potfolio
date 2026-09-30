@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { services } from '@/src/data/services';
 import { getAllProjects } from '@/src/data/projects';
-import { getPosts } from '@/src/services/wordpress/content';
+import { getPosts } from '@/src/lib/sanity/content';
 
 const BASE_URL = 'https://theaceservices.com';
 

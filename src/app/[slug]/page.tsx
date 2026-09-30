@@ -5,12 +5,12 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { Check, ArrowRight, ChevronDown } from "lucide-react";
 
-// Blog Imports
+// Blog Imports (Sanity)
 import {
   getPostBySlug,
   getPosts,
   type BlogPost,
-} from "@/src/services/wordpress/content";
+} from "@/src/lib/sanity/content";
 import { leadDescription } from "@/src/services/wordpress/html";
 import { extractHeadings } from "@/src/lib/extractHeadings";
 import TableOfContents from "@/src/components/TableOfContents";

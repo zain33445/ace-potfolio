@@ -77,31 +77,45 @@ async function fetchOne(path: string): Promise<string[] | null> {
   }
 }
 
+async function fetchSanityPostSlugs(): Promise<string[] | null> {
+  try {
+    const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
+    const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET ?? 'production';
+    if (!projectId) return null;
+
+    const url = `https://${projectId}.apicdn.sanity.io/v2024-01-01/data/query/${dataset}?query=${encodeURIComponent('*[_type == "post"]{"s": slug.current}.s')}`;
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
+    try {
+      const res = await fetch(url, { signal: controller.signal });
+      if (!res.ok) return null;
+      const json = (await res.json()) as { result?: string[] };
+      return json.result ?? null;
+    } finally {
+      clearTimeout(timer);
+    }
+  } catch {
+    return null;
+  }
+}
+
 async function fetchWpSlugs(): Promise<Set<string> | null> {
-  // /[slug] resolves against both posts and pages (any published page —
-  // sub-services + CMS-driven marketing pages). Both sources must be
+  // /[slug] resolves against WP pages (any published page — sub-services +
+  // CMS-driven marketing pages) AND Sanity blog posts. Both sources must be
   // represented or middleware will 404 real content.
   //
-  // The category allowlist MUST match INSIGHT_CATEGORY_IDS in
-  // services/wordpress/content.ts — 1 is WP's default "Uncategorized", 2 is
-  // this install's real "Blog" category. Duplicated as a literal rather than
-  // imported so middleware doesn't pull the whole content module into its
-  // edge bundle. A mismatch here edge-404s pages the route would happily
-  // serve; scripts/check-blog-category-coverage.mjs guards it.
-  //
-  // ponytail: per_page=100 with no pagination. 77 posts + 47 pages today;
-  // add pagination if either source crosses 100.
-  const [posts, pages] = await Promise.all([
-    fetchOne('/posts?per_page=100&_fields=slug&categories=1,2'),
+  // Blog posts now come from Sanity; pages still come from WordPress.
+  const [sanityPosts, pages] = await Promise.all([
+    fetchSanityPostSlugs(),
     fetchOne('/pages?per_page=100&_fields=slug'),
   ]);
   // If BOTH fetches failed, we have nothing → fail-open (null).
   // If at least one succeeded, use what we got (partial is still better
   // than fail-open, and the missing side falls through to the stale cache
   // higher up).
-  if (posts === null && pages === null) return null;
+  if (sanityPosts === null && pages === null) return null;
   const merged = new Set<string>();
-  for (const s of posts ?? []) merged.add(s);
+  for (const s of sanityPosts ?? []) merged.add(s);
   for (const s of pages ?? []) merged.add(s);
   return merged;
 }
