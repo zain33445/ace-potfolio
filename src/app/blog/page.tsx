@@ -6,6 +6,15 @@ import PaginationGrid from '../../components/PaginationGrid';
 
 /* ── SEO metadata ─────────────────────────────────────────────── */
 
+/* Without this the page is a build-time snapshot with
+   initialRevalidateSeconds: false in .next/prerender-manifest.json — it
+   never expires, so a newly published post is invisible until the next
+   deploy. revalidatePath('/blog/') from the Sanity webhook does NOT
+   invalidate it on this deployment (OpenNext runs with no populated tag
+   cache, so the call is a no-op and the cached entry stays HIT). The
+   revalidate window is what actually refreshes this page. */
+export const revalidate = 300;
+
 export const metadata: Metadata = {
   title: 'Construction Estimating Insights & Blog',
   description:
