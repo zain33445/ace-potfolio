@@ -20,9 +20,13 @@
 		// real route is rendered by the worker.
 		"html_handling": "none"
 	},
-	"routes": [
-		{ "pattern": "theaceservices.com", "custom_domain": true }
-	],
+	// Theaceservices.com zone does not exist in Account B yet, so the custom
+	// domain cannot be attached here — deploying to *.workers.dev until the zone
+	// is added. Uncomment to reattach once B owns the zone.
+	// "routes": [
+	// 	{ "pattern": "theaceservices.com", "custom_domain": true }
+	// ],
+	"workers_dev": true,
 	"services": [
 		{
 			"binding": "WORKER_SELF_REFERENCE",
@@ -46,6 +50,12 @@
 			"new_sqlite_classes": ["DOQueueHandler"]
 		}
 	],
+	// Account B migration. R2 bucket + D1 DB were created explicitly in Account B
+	// because OpenNext's populateCache step reads these out of config before
+	// Wrangler runs, so auto-provisioning cannot fill them in. ESTIMATES_KV was
+	// auto-provisioned (ace-services-estimates-kv); its ID is pinned here because
+	// Wrangler 4.129.1 did not write it back on its own. Restore Account A IDs
+	// from migration/wrangler.jsonc.accountA.bak to deploy back to A.
 	"r2_buckets": [
 		{
 			"binding": "NEXT_INC_CACHE_R2_BUCKET",
@@ -55,8 +65,8 @@
 	"kv_namespaces": [
 		{
 			"binding": "ESTIMATES_KV",
-			"id": "8bfefc7f85d44a5a98aa9348465f95ef",
-			"preview_id": "8bfefc7f85d44a5a98aa9348465f95ef"
+			"id": "373b6c22221343408a52a96e6d450b41",
+			"preview_id": "373b6c22221343408a52a96e6d450b41"
 		}
 	],
 	// Backs the OpenNext tag cache (see open-next.config.ts). Required for
@@ -65,7 +75,7 @@
 		{
 			"binding": "NEXT_TAG_CACHE_D1",
 			"database_name": "ace-services-tag-cache",
-			"database_id": "c92e67c8-7d73-441b-b44f-bd070cab3657"
+			"database_id": "219a739c-5deb-4463-9689-bbdf32451b7c"
 		}
 	],
 	"images": {
