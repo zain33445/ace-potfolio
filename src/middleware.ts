@@ -99,6 +99,7 @@ const KNOWN_TOP_LEVEL_ROUTES = new Set<string>([
   'about-us',
   'contact-us',
   'blog',
+  'locations',
   'privacy-policy',
   'terms-and-conditions',
   'admin',

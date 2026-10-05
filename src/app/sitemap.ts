@@ -3,6 +3,8 @@ import { services } from '@/src/data/services';
 import { getAllProjects } from '@/src/data/projects';
 import { getPosts } from '@/src/lib/sanity/content';
 import { getAllServicesSanity } from '@/src/lib/sanity/services';
+import { getAllStatePages } from '@/src/lib/sanity/locations';
+import { locationPath } from '@/src/data/state-page-constants';
 
 const BASE_URL = 'https://theaceservices.com';
 
@@ -123,5 +125,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // WordPress unreachable during build
   }
 
-  return [...staticRoutes, ...serviceRoutes, ...projectRoutes, ...blogRoutes];
+  // Location pages (/locations/{service}+{state}) — Sanity-only, so a CMS
+  // outage simply omits them rather than serving invented locations.
+  let locationRoutes: MetadataRoute.Sitemap = [];
+  try {
+    const pages = await getAllStatePages();
+    locationRoutes = pages
+      .filter((p) => !p.excludeFromSitemap)
+      .map((p) => ({
+        url: `${BASE_URL}${locationPath(p.serviceSlug, p.slug)}`,
+        changeFrequency: 'monthly' as const,
+        priority: 0.7,
+      }));
+  } catch {
+    // Sanity unreachable — omit location URLs rather than guess them
+  }
+
+  return [...staticRoutes, ...serviceRoutes, ...projectRoutes, ...blogRoutes, ...locationRoutes];
 }

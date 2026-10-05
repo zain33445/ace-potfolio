@@ -60,6 +60,38 @@ export default defineType({
       description: 'Two-letter code, e.g. "TX".',
       validation: (Rule) => Rule.uppercase().length(2),
     }),
+    defineField({
+      name: 'serviceSlug',
+      title: 'Service URL Segment',
+      type: 'string',
+      description:
+        'The {service} half of /locations/{serviceSlug}+{slug}. Constant across states by design, so every location page shares one URL shape. Keep it as-is unless the whole set is being restructured.',
+      initialValue: 'construction-and-estimation-services',
+      validation: (Rule) =>
+        Rule.required().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, { name: 'lowercase words joined by hyphens' }),
+    }),
+    defineField({
+      name: 'cardHeadline',
+      title: 'Card Headline',
+      type: 'string',
+      description: 'One line for the /locations hub card, e.g. "Estimating and pre-construction across Houston, DFW, Austin and San Antonio". Falls back to the title.',
+      validation: (Rule) => Rule.max(120),
+    }),
+    defineField({
+      name: 'thumbnail',
+      title: 'Thumbnail',
+      type: 'image',
+      options: { hotspot: true },
+      description: 'Shown on the /locations hub card. Leave empty and the card renders a placeholder, like blog posts without a featured image.',
+      fields: [
+        {
+          name: 'alt',
+          title: 'Alt text',
+          type: 'string',
+          description: 'Describe the image for screen readers. Required for SEO.',
+        },
+      ],
+    }),
 
     // {overview} — two paragraphs
     defineField({

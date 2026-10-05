@@ -62,6 +62,19 @@ export async function POST(request: NextRequest) {
         if (slug) revalidatePath(`/${slug}/`);
         break;
 
+      case 'statePage':
+        // /locations/{service}+{state}/ — the {service} half is constant, but
+        // derive it from the payload when present so this survives the URL
+        // scheme being widened later.
+        revalidatePath('/locations/');
+        if (slug) {
+          const stateSlug = String(slug).includes('+')
+            ? String(slug).split('+')[1]
+            : String(slug);
+          revalidatePath(`/locations/${stateSlug}/`);
+        }
+        break;
+
       default:
         // Unknown type — revalidate everything as a safety net
         revalidatePath('/', 'layout');
