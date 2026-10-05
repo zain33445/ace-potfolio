@@ -8,7 +8,11 @@ import PaginationGrid from '../../components/PaginationGrid';
 /* ── SEO metadata ─────────────────────────────────────────────── */
 
 export const metadata: Metadata = {
-  title: 'Construction and Estimation Services by State | The ACE Services',
+  // `absolute` — the root layout applies a "%s | The ACE Services" template,
+  // which would otherwise emit "... | The ACE Services | The ACE Services".
+  title: {
+    absolute: 'Construction and Estimation Services by State | The ACE Services',
+  },
   description:
     'State-by-state construction and estimation coverage from The ACE Services: cost estimating, quantity surveying, shop drawings, permit sets and CPM scheduling, with local permit and pricing knowledge in every market we serve.',
   alternates: { canonical: 'https://theaceservices.com/locations/' },

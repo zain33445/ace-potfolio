@@ -1,6 +1,7 @@
 import { revalidatePath } from 'next/cache';
 import { NextRequest, NextResponse } from 'next/server';
 import { isValidSignature } from '@sanity/webhook';
+import { getStatePagePaths } from '@/src/lib/sanity/locations';
 
 /**
  * Sanity webhook handler — triggers on-demand ISR when content changes.
@@ -62,18 +63,15 @@ export async function POST(request: NextRequest) {
         if (slug) revalidatePath(`/${slug}/`);
         break;
 
-      case 'statePage':
-        // /locations/{service}+{state}/ — the {service} half is constant, but
-        // derive it from the payload when present so this survives the URL
-        // scheme being widened later.
+      case 'statePage': {
         revalidatePath('/locations/');
-        if (slug) {
-          const stateSlug = String(slug).includes('+')
-            ? String(slug).split('+')[1]
-            : String(slug);
-          revalidatePath(`/locations/${stateSlug}/`);
-        }
+        // The URL is /locations/{serviceSlug}+{stateSlug}/ and the payload only
+        // carries the document slug, so the service segment has to be resolved
+        // from the document rather than assumed.
+        const paths = await getStatePagePaths(slug ? String(slug) : undefined);
+        for (const p of paths) revalidatePath(p);
         break;
+      }
 
       default:
         // Unknown type — revalidate everything as a safety net

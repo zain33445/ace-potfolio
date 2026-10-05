@@ -1,5 +1,6 @@
 import { sanityClient } from './client';
 import type { PortableTextBlock } from '@portabletext/react';
+import { locationPath, LOCATION_SERVICE_SEGMENT } from '@/src/data/state-page-constants';
 
 /**
  * locations.ts — read layer for /locations pages.
@@ -193,6 +194,29 @@ export async function getStatePageSlugs(): Promise<string[]> {
     );
   } catch (e) {
     console.error('[locations] getStatePageSlugs failed:', e);
+    return [];
+  }
+}
+
+/**
+ * Real paths for the location pages, optionally narrowed to one state slug.
+ *
+ * The webhook payload only carries the document slug, but the URL is
+ * /locations/{serviceSlug}+{stateSlug}/ — so the service segment has to come
+ * from the document. Guessing it produced revalidatePath('/locations/texas/'),
+ * which matches no route and silently did nothing.
+ */
+export async function getStatePagePaths(stateSlug?: string): Promise<string[]> {
+  try {
+    const rows = await sanityClient.fetch<Array<{ slug: string; serviceSlug?: string }>>(
+      stateSlug
+        ? `*[_type == "statePage" && slug == $slug]{ "slug": slug, "serviceSlug": serviceSlug }`
+        : `*[_type == "statePage"]{ "slug": slug, "serviceSlug": serviceSlug }`,
+      stateSlug ? { slug: stateSlug } : {},
+    );
+    return rows.map((r) => locationPath(r.serviceSlug || LOCATION_SERVICE_SEGMENT, r.slug));
+  } catch (e) {
+    console.error('[locations] getStatePagePaths failed:', e);
     return [];
   }
 }
